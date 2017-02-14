@@ -16,13 +16,19 @@ Once you've got something interesting to add to the mix, just open a PR.
 
 Docs will come eventually.
 
-'''NOTE''': We absolutely will '''NOT''' accept Paks with ripped sprites or otherwise unauthorized artwork.  Be sure to update
+**NOTE**: We absolutely will **NOT** accept Paks with ripped sprites or otherwise unauthorized artwork.  Be sure to update
 `README.md` with the credits for your Pak.
 
 ## What about changes to the core?
 
 This is still early days, so please file an issue on GitHub with your idea so that we can ensure it meshes well with the
 rest of our plans before starting to write new code.  We promise to try to be responsive.  :D
+
+## Dev setup stuff?
+
+1. Python 3.5+
+2. `pip install -r requirements.txt`
+3. Profit?
 
 ## What's on tap for the future?
 * Levels (think mazes or platforms)
