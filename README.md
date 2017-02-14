@@ -1,5 +1,5 @@
 #System Panic
-''A game where anything can happen''
+_A game where anything can happen_
 
 ## What is it?
 
