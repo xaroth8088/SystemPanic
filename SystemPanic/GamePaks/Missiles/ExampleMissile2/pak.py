@@ -99,3 +99,15 @@ class Pak:
         :return: None
         """
         missile_state.active = False
+
+    def collided_with_level(self, missile_state, previous_position):
+        """
+            Called whenever the player bumps into a wall.
+            Usually, you just want to set missile_state.active = False
+
+        :param missile_state: Our state
+        :param previous_position: Where were we before be bumped into the wall?
+        :return: the new MissileState
+        """
+        missile_state.active = False
+        return missile_state

@@ -32,6 +32,8 @@ class SpriteState:
             "y": 0
         }
 
+        self.previous_position = None
+
         self.wrap_x = False  # should we wrap around the screen horizontally?
         self.wrap_y = False  # should we wrap around the screen vertically?
         # TODO: momentum, rotational momentum, direction facing, etc.
@@ -53,15 +55,15 @@ class SpriteState:
             return False
 
         hit_a = pygame.Rect(
-            self.hitbox["x"] + self.position["x"],
-            self.hitbox["y"] + self.position["y"],
+            self.hitbox["x"] + self.position["x"] - (self.sprite_size["width"] // 2),
+            self.hitbox["y"] + self.position["y"] - (self.sprite_size["height"] // 2),
             self.hitbox["width"],
             self.hitbox["height"]
         )
 
         hit_b = pygame.Rect(
-            sprite_b.hitbox["x"] + sprite_b.position["x"],
-            sprite_b.hitbox["y"] + sprite_b.position["y"],
+            sprite_b.hitbox["x"] + sprite_b.position["x"] - (sprite_b.sprite_size["width"] // 2),
+            sprite_b.hitbox["y"] + sprite_b.position["y"] - (sprite_b.sprite_size["height"] // 2),
             sprite_b.hitbox["width"],
             sprite_b.hitbox["height"]
         )

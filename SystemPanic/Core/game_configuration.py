@@ -30,8 +30,11 @@ class GameConfiguration:
                                                  (config.SCREEN_WIDTH, config.SCREEN_HEIGHT))
 
         self.level_generator = random.choice(level_generators)()
-        self.level_tile = random.choice(level_tiles)()
         self.music = random.choice(music)
+
+        level_tile = random.choice(level_tiles)
+        self.level_tile = level_tile["class"]()
+        self.level_tile.sprites = level_tile["sprites"]
 
         missile = random.choice(missiles)
         self.player_missile = missile["class"]()

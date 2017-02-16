@@ -423,3 +423,15 @@ class Pak:
         :return: None
         """
         enemy_state.active = False
+
+    def collided_with_level(self, enemy_state, previous_position):
+        """
+            Called whenever the player bumps into a wall.
+            Usually, you just want to set enemy_state.position = previous_position
+
+        :param enemy_state: Our state
+        :param previous_position: Where were we before be bumped into the wall?
+        :return: the new EnemyState
+        """
+        enemy_state.position = previous_position
+        return enemy_state
