@@ -39,10 +39,10 @@ class Engine:
         # TODO: move the paks directory to be outside of SystemPanic
         # TODO: move paks handling to its own class, rather than living in the engine
         self.backgrounds = self.load_pak_images('Backgrounds')
-        self.enemies = self.load_pak_sprites('Enemies')
-        self.level_generators = self.load_pak_classes('LevelGenerators')
-        self.level_tiles = self.load_pak_classes('LevelTiles')
         self.music = self.load_pak_sounds('Music')
+        self.level_generators = self.load_pak_classes('LevelGenerators')
+        self.enemies = self.load_pak_sprites('Enemies')
+        self.level_tiles = self.load_pak_sprites('LevelTiles')
         self.missiles = self.load_pak_sprites('Missiles')
         self.players = self.load_pak_sprites('Players')
 
@@ -131,8 +131,8 @@ class Engine:
         self.init_pygame()
         self.load_all_paks()
         self.init_game()
-        self.game_state.next_level()
         self.randomize_config()
+        self.game_state.next_level()
         self.main()
 
     def init_pygame(self):
@@ -223,76 +223,106 @@ class Engine:
             self.draw_text("Level: %s" % (self.game_state.level,), (200, 8))
             self.draw_text("Lives: %s" % (self.game_state.lives,), (400, 8))
 
+            # Add the level blocks
+            num_rows = len(self.game_state.walls)
+            num_columns = self.game_state.level_width
+            height = config.SCREEN_HEIGHT // num_rows
+            width = config.SCREEN_WIDTH // num_columns
+            for x in range(0, num_rows):
+                for y in range(0, num_columns):
+                    if self.game_state.walls[y][x] is True:
+                        # TODO: decide which sprite to grab based on the walls around this one
+                        sprite = self.game_state.active_config.level_tile.get_center()
+                        wall_sprite = pygame.transform.scale(
+                            sprite,
+                            (
+                                width,
+                                height
+                            )
+                        )
+
+                        self.screen.blit(
+                            wall_sprite,
+                            [
+                                x * width,
+                                y * height
+                            ],
+                        )
+
             # Add the enemies, scaled
             for enemy in self.game_state.enemies:
-                enemy_sprite = pygame.transform.scale(
-                    enemy.sprite,
-                    (
-                        enemy.sprite_size["width"],
-                        enemy.sprite_size["height"]
+                if enemy.active is True:
+                    enemy_sprite = pygame.transform.scale(
+                        enemy.sprite,
+                        (
+                            enemy.sprite_size["width"],
+                            enemy.sprite_size["height"]
+                        )
                     )
-                )
 
-                self.screen.blit(
-                    enemy_sprite,
-                    [
-                        enemy.position["x"] - (enemy.sprite_size["width"] // 2),
-                        enemy.position["y"] - (enemy.sprite_size["height"] // 2)
-                    ],
-                )
+                    self.screen.blit(
+                        enemy_sprite,
+                        [
+                            enemy.position["x"] - (enemy.sprite_size["width"] // 2),
+                            enemy.position["y"] - (enemy.sprite_size["height"] // 2)
+                        ],
+                    )
 
             # Add the player missiles, scaled
             for missile in self.game_state.player_missiles:
-                missile_sprite = pygame.transform.scale(
-                    missile.sprite,
-                    (
-                        missile.sprite_size["width"],
-                        missile.sprite_size["height"]
+                if missile.active is True:
+                    missile_sprite = pygame.transform.scale(
+                        missile.sprite,
+                        (
+                            missile.sprite_size["width"],
+                            missile.sprite_size["height"]
+                        )
                     )
-                )
 
-                self.screen.blit(
-                    missile_sprite,
-                    [
-                        missile.position["x"] - (missile.sprite_size["width"] // 2),
-                        missile.position["y"] - (missile.sprite_size["height"] // 2)
-                    ],
-                )
+                    self.screen.blit(
+                        missile_sprite,
+                        [
+                            missile.position["x"] - (missile.sprite_size["width"] // 2),
+                            missile.position["y"] - (missile.sprite_size["height"] // 2)
+                        ],
+                    )
 
             # Add the enemy missiles, scaled
             for missile in self.game_state.enemy_missiles:
-                missile_sprite = pygame.transform.scale(
-                    missile.sprite,
+                if missile.active is True:
+                    missile_sprite = pygame.transform.scale(
+                        missile.sprite,
+                        (
+                            missile.sprite_size["width"],
+                            missile.sprite_size["height"]
+                        )
+                    )
+
+                    self.screen.blit(
+                        missile_sprite,
+                        [
+                            missile.position["x"] - (missile.sprite_size["width"] // 2),
+                            missile.position["y"] - (missile.sprite_size["height"] // 2)
+                        ],
+                    )
+
+            # Add the player, scaled
+            if self.game_state.player.active is True:
+                player_sprite = pygame.transform.scale(
+                    self.game_state.player.sprite,
                     (
-                        missile.sprite_size["width"],
-                        missile.sprite_size["height"]
+                        self.game_state.player.sprite_size["width"],
+                        self.game_state.player.sprite_size["height"]
                     )
                 )
 
                 self.screen.blit(
-                    missile_sprite,
+                    player_sprite,
                     [
-                        missile.position["x"] - (missile.sprite_size["width"] // 2),
-                        missile.position["y"] - (missile.sprite_size["height"] // 2)
+                        self.game_state.player.position["x"] - (self.game_state.player.sprite_size["width"] // 2),
+                        self.game_state.player.position["y"] - (self.game_state.player.sprite_size["height"] // 2)
                     ],
                 )
-
-            # Add the player, scaled
-            player_sprite = pygame.transform.scale(
-                self.game_state.player.sprite,
-                (
-                    self.game_state.player.sprite_size["width"],
-                    self.game_state.player.sprite_size["height"]
-                )
-            )
-
-            self.screen.blit(
-                player_sprite,
-                [
-                    self.game_state.player.position["x"] - (self.game_state.player.sprite_size["width"] // 2),
-                    self.game_state.player.position["y"] - (self.game_state.player.sprite_size["height"] // 2)
-                ],
-            )
 
             pygame.display.flip()
 

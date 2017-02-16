@@ -68,3 +68,6 @@ rest of our plans before starting to write new code.  We promise to try to be re
 ### Missiles
 * ExampleMissile 1 spritesheet - Master484, license: CC0, sliced from original at [http://opengameart.org/content/bullet-collection-2-m484-games](http://opengameart.org/content/bullet-collection-2-m484-games)
 * ExampleMissile 2 spritesheet - Master484, license: CC0, sliced from original at [http://opengameart.org/content/bullet-collection-2-m484-games](http://opengameart.org/content/bullet-collection-2-m484-games)
+
+### Level Tiles
+* ExampleLevelTiles1 spritesheet - GrumpyDiamond, license: CC0, http://opengameart.org/content/seamless-wall
