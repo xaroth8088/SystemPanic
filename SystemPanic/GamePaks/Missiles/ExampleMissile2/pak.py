@@ -45,7 +45,7 @@ class Pak:
         # How are we moving?  And what's our sprite?
         missile_state["position"]["x"] += 128 * delta_t * missile_state["direction"]["x"]
         missile_state["position"]["y"] += 128 * delta_t * missile_state["direction"]["y"]
-        missile_state["sprite"] = self.sprites["missile"][0]   # No animation for this one
+        missile_state["sprite"] = self.sprites["missile"][0]  # No animation for this one
 
         # Should we die?
         if time_since_start - missile_state["start_time"] > 0.5:

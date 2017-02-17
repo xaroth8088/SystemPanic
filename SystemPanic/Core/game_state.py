@@ -1,3 +1,4 @@
+from copy import deepcopy
 from random import randint
 
 import pygame
@@ -33,7 +34,7 @@ class GameState:
         self.enemy_missiles = []
 
         # Init the level
-        self.walls = self.active_config.level_generator.generate_walls()
+        self.walls = self.active_config["level_generator"].generate_walls()
         self.level_width = 0
         for y in range(0, len(self.walls)):
             if len(self.walls[y]) > self.level_width:
@@ -59,25 +60,25 @@ class GameState:
             # Set a default sprite for the enemies, since advance() won't yet have been called for them
             enemy["sprite"] = pygame.Surface((1, 1))
 
-    def reconfigure(self, config):
+    def reconfigure(self, new_config):
         # Update our active config
-        old_config = self.active_config
-        self.active_config = config
+        old_config = deepcopy(self.active_config)
+        self.active_config = new_config
 
         if old_config is not None:
             # reset pak-specific states where needed
-            if old_config.player.__class__ != config.player.__class__:
+            if old_config["player"].__class__ != new_config["player"].__class__:
                 self.player["pak_specific_state"] = {}
 
-            if old_config.enemy.__class__ != config.enemy.__class__:
+            if old_config["enemy"].__class__ != new_config["enemy"].__class__:
                 for enemy in self.enemies:
                     enemy["pak_specific_state"] = {}
 
-            if old_config.player_missile.__class__ != config.player_missile.__class__:
+            if old_config["player_missile"].__class__ != new_config["player_missile"].__class__:
                 for missile in self.player_missiles:
                     missile["pak_specific_state"] = {}
 
-            if old_config.enemy_missile.__class__ != config.enemy_missile.__class__:
+            if old_config["enemy_missile"].__class__ != new_config["enemy_missile"].__class__:
                 for missile in self.enemy_missiles:
                     missile["pak_specific_state"] = {}
 
@@ -98,8 +99,8 @@ class GameState:
         # Advance the player, including spawning new player missiles
         new_missiles = []
         self.player["previous_position"] = self.player["position"].copy()
-        self.player = self.active_config.player.advance(self.player, all_states, time_since_start, delta_t,
-                                                        pressed_buttons, new_missiles)
+        self.player = self.active_config["player"].advance(self.player, all_states, time_since_start, delta_t,
+                                                           pressed_buttons, new_missiles)
 
         for missile in new_missiles:
             self.player_missiles.append(self.new_missile(missile, time_since_start))
@@ -108,7 +109,7 @@ class GameState:
         new_missiles = []
         for enemy in self.enemies:
             enemy["previous_position"] = enemy["position"].copy()
-            self.active_config.enemy.advance(enemy, all_states, time_since_start, delta_t, new_missiles)
+            self.active_config["enemy"].advance(enemy, all_states, time_since_start, delta_t, new_missiles)
 
         for missile in new_missiles:
             self.enemy_missiles.append(self.new_missile(missile, time_since_start))
@@ -116,12 +117,12 @@ class GameState:
         # Advance all player missiles
         for missile in self.player_missiles:
             missile["previous_position"] = missile["position"].copy()
-            self.active_config.player_missile.advance(missile, all_states, time_since_start, delta_t, "enemy")
+            self.active_config["player_missile"].advance(missile, all_states, time_since_start, delta_t, "enemy")
 
         # Advance all enemy missiles
         for missile in self.enemy_missiles:
             missile["previous_position"] = missile["position"].copy()
-            self.active_config.enemy_missile.advance(missile, all_states, time_since_start, delta_t, "player")
+            self.active_config["enemy_missile"].advance(missile, all_states, time_since_start, delta_t, "player")
 
         self.check_player_to_enemy_collisions()
         self.check_player_to_enemy_missile_collisions()
@@ -151,14 +152,14 @@ class GameState:
     def check_player_to_enemy_collisions(self):
         for enemy in self.enemies:
             if do_sprites_collide(self.player, enemy):
-                self.active_config.player.collided_with_enemy(self.player, enemy)
-                self.active_config.enemy.collided_with_player(enemy, self.player)
+                self.active_config["player"].collided_with_enemy(self.player, enemy)
+                self.active_config["enemy"].collided_with_player(enemy, self.player)
 
     def check_player_to_enemy_missile_collisions(self):
         for missile in self.enemy_missiles:
             if do_sprites_collide(self.player, missile):
-                self.active_config.player.collided_with_enemy_missile(self.player, missile)
-                self.active_config.enemy_missile.collided_with_player(missile, self.player)
+                self.active_config["player"].collided_with_enemy_missile(self.player, missile)
+                self.active_config["enemy_missile"].collided_with_player(missile, self.player)
 
     def check_enemy_to_player_missile_collisions(self):
         for enemy in self.enemies:
@@ -166,8 +167,8 @@ class GameState:
                 if enemy["active"] is True and missile["active"] is True:
                     if do_sprites_collide(enemy, missile):
                         self.score += 1
-                        self.active_config.enemy.collided_with_player_missile(enemy, missile)
-                        self.active_config.player_missile.collided_with_enemy(missile, enemy)
+                        self.active_config["enemy"].collided_with_player_missile(enemy, missile)
+                        self.active_config["player_missile"].collided_with_enemy(missile, enemy)
 
     def check_level_collisions(self):
         num_rows = len(self.walls)
@@ -191,7 +192,7 @@ class GameState:
 
                     # Player
                     if do_sprites_collide(wall, self.player):
-                        self.player = self.active_config.player.collided_with_level(
+                        self.player = self.active_config["player"].collided_with_level(
                             self.player,
                             self.player["previous_position"]
                         )
@@ -199,17 +200,19 @@ class GameState:
                     # Enemy
                     for enemy in self.enemies:
                         if do_sprites_collide(wall, enemy):
-                            self.active_config.enemy.collided_with_level(enemy, enemy["previous_position"])
+                            self.active_config["enemy"].collided_with_level(enemy, enemy["previous_position"])
 
                     # Player Missiles
                     for missile in self.player_missiles:
                         if do_sprites_collide(wall, missile):
-                            self.active_config.player_missile.collided_with_level(missile, missile["previous_position"])
+                            self.active_config["player_missile"].collided_with_level(missile,
+                                                                                     missile["previous_position"])
 
                     # Enemy Missiles
                     for missile in self.enemy_missiles:
                         if do_sprites_collide(wall, missile):
-                            self.active_config.enemy_missile.collided_with_level(missile, missile["previous_position"])
+                            self.active_config["enemy_missile"].collided_with_level(missile,
+                                                                                    missile["previous_position"])
 
     @staticmethod
     def new_missile(missile_data, time_since_start):

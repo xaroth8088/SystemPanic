@@ -7,7 +7,7 @@ from time import perf_counter
 import pygame
 
 from SystemPanic.Core import config
-from SystemPanic.Core.game_configuration import GameConfiguration
+from SystemPanic.Core.game_configuration import get_randomized_config
 from SystemPanic.Core.game_state import GameState
 from SystemPanic.Core.sprite_state import new_sprite
 
@@ -160,30 +160,27 @@ class Engine:
         self.game_state = GameState()
         self.game_state.init_new_game()
 
-    def get_random_config(self):
-        config = GameConfiguration()
-        config.randomize(
-            self.backgrounds,
-            self.enemies,
-            self.missiles,
-            self.level_generators,
-            self.level_tiles,
-            self.music,
-            self.players
-        )
-        return config
-
     def randomize_config(self):
         old_music = None
         if self.game_state.active_config is not None:
-            old_music = self.game_state.active_config.music
+            old_music = self.game_state.active_config["music"]
 
-        self.game_state.reconfigure(self.get_random_config())
+        self.game_state.reconfigure(
+            get_randomized_config(
+                self.backgrounds,
+                self.enemies,
+                self.missiles,
+                self.level_generators,
+                self.level_tiles,
+                self.music,
+                self.players
+            )
+        )
         self.last_randomize_time = perf_counter()
 
         # Restart music
-        if self.game_state.active_config.music != old_music:
-            pygame.mixer.music.load(self.game_state.active_config.music)
+        if self.game_state.active_config["music"] != old_music:
+            pygame.mixer.music.load(self.game_state.active_config["music"])
             pygame.mixer.music.play(-1)
 
     def main(self):
@@ -214,8 +211,10 @@ class Engine:
             self.screen.fill((0, 0, 0, 0))
 
             # Add the background
-            self.screen.blit(self.game_state.active_config.background,
-                             [0, 0])
+            self.screen.blit(
+                self.game_state.active_config["background"],
+                [0, 0]
+            )
 
             # Add the level blocks
             num_rows = len(self.game_state.walls)
@@ -227,7 +226,7 @@ class Engine:
                 for y in range(0, num_columns):
                     if self.game_state.walls[y][x] is True:
                         # TODO: decide which sprite to grab based on the walls around this one
-                        sprite = self.game_state.active_config.level_tile.get_center()
+                        sprite = self.game_state.active_config["level_tile"].get_center()
                         sprite_data = new_sprite()
                         sprite_data["position"] = {
                             "x": (x + 0.5) * width,
