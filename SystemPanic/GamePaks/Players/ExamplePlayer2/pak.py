@@ -435,29 +435,26 @@ class Pak:
         :return: the new PlayerState
         """
         driving_speed = 256.0
-        car_type = player_state.get_pak_specific_state("type")
+        car_type = player_state["pak_specific_state"].get("type")
 
         # State specific to us
         if car_type is None:
             car_type = random.choice(list(self.get_sprite_details().keys()))
-            player_state.set_pak_specific_state(
-                "type",
-                car_type
-            )
+            player_state["pak_specific_state"]["type"] = car_type
 
             # We can also see this as an initialization state
-            player_state.facing = {
+            player_state["facing"] = {
                 "x": -1,
                 "y": 0
             }
-            player_state.sprite = self.sprites[car_type][1]
+            player_state["sprite"] = self.sprites[car_type][1]
 
         # What size should our sprite be drawn on-screen as?
-        player_state.sprite_size["width"] = 32
-        player_state.sprite_size["height"] = 32
+        player_state["sprite_size"]["width"] = 32
+        player_state["sprite_size"]["height"] = 32
 
         # What's our hitbox rect (relative to the top-left corner of the sprite)?
-        player_state.hitbox = {
+        player_state["hitbox"] = {
             "x": 0,
             "y": 0,
             "width": 32,
@@ -468,61 +465,62 @@ class Pak:
         # TODO: change this to rotate left/right, and have sprite selected by approximate angle
         # TODO: change up/down to be accel/deccel
         if pressed_buttons["left"] is True:
-            player_state.facing = {
+            player_state["facing"] = {
                 "x": -1,
                 "y": 0
             }
-            player_state.sprite = self.sprites[car_type][1]
+            player_state["sprite"] = self.sprites[car_type][1]
         if pressed_buttons["right"] is True:
-            player_state.facing = {
+            player_state["facing"] = {
                 "x": 1,
                 "y": 0
             }
-            player_state.sprite = self.sprites[car_type][5]
+            player_state["sprite"] = self.sprites[car_type][5]
         if pressed_buttons["up"] is True:
-            player_state.facing = {
+            player_state["facing"] = {
                 "x": 0,
                 "y": -1
             }
-            player_state.sprite = self.sprites[car_type][3]
+            player_state["sprite"] = self.sprites[car_type][3]
         if pressed_buttons["down"] is True:
-            player_state.facing = {
+            player_state["facing"] = {
                 "x": 0,
                 "y": 1
             }
-            player_state.sprite = self.sprites[car_type][7]
+            player_state["sprite"] = self.sprites[car_type][7]
 
-        player_state.position["x"] += driving_speed * delta_t * player_state.facing["x"]
-        player_state.position["y"] += driving_speed * delta_t * player_state.facing["y"]
+        player_state["position"]["x"] += driving_speed * delta_t * player_state["facing"]["x"]
+        player_state["position"]["y"] += driving_speed * delta_t * player_state["facing"]["y"]
 
         if pressed_buttons["fire"] is True:
             # Limit firing to once per 0.5 seconds
-            last_fired = player_state.get_pak_specific_state("last_fired")
+            last_fired = player_state["pak_specific_state"].get("last_fired")
+
             if last_fired is None or time_since_start - last_fired > 0.5:
                 new_missiles.append(
                     {
-                        "direction": player_state.facing,
+                        "direction": player_state["facing"],
                         "position": {
-                            "x": player_state.position["x"] + player_state.facing["x"] * 16,
-                            "y": player_state.position["y"] + player_state.facing["y"] * 16
+                            "x": player_state["position"]["x"] + player_state["facing"]["x"] * 16,
+                            "y": player_state["position"]["y"] + player_state["facing"]["y"] * 16
                         }
                     }
                 )
-                player_state.set_pak_specific_state("last_fired", time_since_start)
+                player_state["pak_specific_state"]["last_fired"] = time_since_start
 
         # How do we interact with the borders of the screen?
         # TODO: make the game engine actually handle this using these variables, instead of doing it here
-        player_state.wrap_x = True
-        player_state.wrap_y = True
+        player_state["wrap_x"] = True
+        player_state["wrap_y"] = True
 
-        if player_state.position["x"] < 0:
-            player_state.position["x"] = 0
-        if player_state.position["x"] > 800:
-            player_state.position["x"] = 800
-        if player_state.position["y"] < 0:
-            player_state.position["y"] = 0
-        if player_state.position["y"] > 600:
-            player_state.position["y"] = 600
+        if player_state["position"]["x"] < 0:
+            player_state["position"]["x"] = 0
+        if player_state["position"]["x"] > 800:
+            player_state["position"]["x"] = 800
+        if player_state["position"]["y"] < 0:
+            player_state["position"]["y"] = 0
+        if player_state["position"]["y"] > 600:
+            player_state["position"]["y"] = 600
 
         # Return the new state
         return player_state
@@ -534,11 +532,11 @@ class Pak:
 
         Usually, the player is responsible for marking themselves as dead when they hit an enemy.
 
-        Set player_state.active = False to indicate that we're dying, or enemy_state.active = False to indicate it's dying
+        Set player_state["active"] = False to indicate that we're dying, or enemy_state.active = False to indicate it's dying
 
         :return: None
         """
-        player_state.active = False
+        player_state["active"] = False
 
     def collided_with_enemy_missile(self, player_state, missile_state):
         """
@@ -548,20 +546,20 @@ class Pak:
         Usually, the player is responsible for marking themselves as dead when they hit an enemy missile,
         and the missile is responsible for marking itself as stopped when it hits something.
 
-        Set player_state.active = False to indicate that we're dying, or missile.active = False to indicate it's dying
+        Set player_state["active"] = False to indicate that we're dying, or missile.active = False to indicate it's dying
 
         :return: None
         """
-        player_state.active = False
+        player_state["active"] = False
 
     def collided_with_level(self, player_state, previous_position):
         """
             Called whenever the player bumps into a wall.
-            Usually, you just want to set player_state.position = previous_position
+            Usually, you just want to set player_state["position"] = previous_position
 
         :param player_state: Our state
         :param previous_position: Where were we before be bumped into the wall?
         :return: the new PlayerState
         """
-        player_state.position = previous_position
+        player_state["position"] = previous_position
         return player_state

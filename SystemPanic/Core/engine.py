@@ -1,3 +1,4 @@
+import itertools
 import os
 import sys
 import importlib
@@ -8,6 +9,7 @@ import pygame
 from SystemPanic.Core import config
 from SystemPanic.Core.game_configuration import GameConfiguration
 from SystemPanic.Core.game_state import GameState
+from SystemPanic.Core.sprite_state import new_sprite
 
 RANDOMIZE_CONFIGURATION_TIME = 3.0  # in seconds
 
@@ -215,6 +217,45 @@ class Engine:
             self.screen.blit(self.game_state.active_config.background,
                              [0, 0])
 
+            # Add the level blocks
+            num_rows = len(self.game_state.walls)
+            num_columns = self.game_state.level_width
+            height = config.SCREEN_HEIGHT // num_rows
+            width = config.SCREEN_WIDTH // num_columns
+            # TODO: move all this into the game state, so that there's just a list of sprites that were generated...
+            for x in range(0, num_rows):
+                for y in range(0, num_columns):
+                    if self.game_state.walls[y][x] is True:
+                        # TODO: decide which sprite to grab based on the walls around this one
+                        sprite = self.game_state.active_config.level_tile.get_center()
+                        sprite_data = new_sprite()
+                        sprite_data["position"] = {
+                            "x": (x + 0.5) * width,
+                            "y": (y + 0.5) * height
+                        }
+                        sprite_data["sprite_size"] = {
+                            "width": width,
+                            "height": height
+                        }
+                        sprite_data["hitbox"] = {
+                            "x": 0,
+                            "y": 0,
+                            "width": width,
+                            "height": height
+                        }
+                        sprite_data["sprite"] = sprite
+                        self.draw_sprite(sprite_data)
+
+            # Add the enemies, player missiles, enemy missiles, and player (in that order)
+            for sprite_data in itertools.chain(
+                    self.game_state.enemies,
+                    self.game_state.player_missiles,
+                    self.game_state.enemy_missiles,
+                    [self.game_state.player]
+            ):
+                if sprite_data["active"] is True:
+                    self.draw_sprite(sprite_data)
+
             # Add the score, FPS, etc.
             # TODO: make FPS drawing toggleable
             self.draw_fps()
@@ -222,107 +263,6 @@ class Engine:
             self.draw_text("Score: %s" % (self.game_state.score,), (8, 8))
             self.draw_text("Level: %s" % (self.game_state.level,), (200, 8))
             self.draw_text("Lives: %s" % (self.game_state.lives,), (400, 8))
-
-            # Add the level blocks
-            num_rows = len(self.game_state.walls)
-            num_columns = self.game_state.level_width
-            height = config.SCREEN_HEIGHT // num_rows
-            width = config.SCREEN_WIDTH // num_columns
-            for x in range(0, num_rows):
-                for y in range(0, num_columns):
-                    if self.game_state.walls[y][x] is True:
-                        # TODO: decide which sprite to grab based on the walls around this one
-                        sprite = self.game_state.active_config.level_tile.get_center()
-                        wall_sprite = pygame.transform.scale(
-                            sprite,
-                            (
-                                width,
-                                height
-                            )
-                        )
-
-                        self.screen.blit(
-                            wall_sprite,
-                            [
-                                x * width,
-                                y * height
-                            ],
-                        )
-
-            # Add the enemies, scaled
-            for enemy in self.game_state.enemies:
-                if enemy.active is True:
-                    enemy_sprite = pygame.transform.scale(
-                        enemy.sprite,
-                        (
-                            enemy.sprite_size["width"],
-                            enemy.sprite_size["height"]
-                        )
-                    )
-
-                    self.screen.blit(
-                        enemy_sprite,
-                        [
-                            enemy.position["x"] - (enemy.sprite_size["width"] // 2),
-                            enemy.position["y"] - (enemy.sprite_size["height"] // 2)
-                        ],
-                    )
-
-            # Add the player missiles, scaled
-            for missile in self.game_state.player_missiles:
-                if missile.active is True:
-                    missile_sprite = pygame.transform.scale(
-                        missile.sprite,
-                        (
-                            missile.sprite_size["width"],
-                            missile.sprite_size["height"]
-                        )
-                    )
-
-                    self.screen.blit(
-                        missile_sprite,
-                        [
-                            missile.position["x"] - (missile.sprite_size["width"] // 2),
-                            missile.position["y"] - (missile.sprite_size["height"] // 2)
-                        ],
-                    )
-
-            # Add the enemy missiles, scaled
-            for missile in self.game_state.enemy_missiles:
-                if missile.active is True:
-                    missile_sprite = pygame.transform.scale(
-                        missile.sprite,
-                        (
-                            missile.sprite_size["width"],
-                            missile.sprite_size["height"]
-                        )
-                    )
-
-                    self.screen.blit(
-                        missile_sprite,
-                        [
-                            missile.position["x"] - (missile.sprite_size["width"] // 2),
-                            missile.position["y"] - (missile.sprite_size["height"] // 2)
-                        ],
-                    )
-
-            # Add the player, scaled
-            if self.game_state.player.active is True:
-                player_sprite = pygame.transform.scale(
-                    self.game_state.player.sprite,
-                    (
-                        self.game_state.player.sprite_size["width"],
-                        self.game_state.player.sprite_size["height"]
-                    )
-                )
-
-                self.screen.blit(
-                    player_sprite,
-                    [
-                        self.game_state.player.position["x"] - (self.game_state.player.sprite_size["width"] // 2),
-                        self.game_state.player.position["y"] - (self.game_state.player.sprite_size["height"] // 2)
-                    ],
-                )
 
             pygame.display.flip()
 
@@ -362,3 +302,36 @@ class Engine:
         buttons["fire"] = keys_pressed[pygame.K_SPACE] != 0
 
         return buttons
+
+    def draw_sprite(self, sprite_data):
+        sprite = pygame.transform.scale(
+            sprite_data["sprite"],
+            (
+                sprite_data["sprite_size"]["width"],
+                sprite_data["sprite_size"]["height"]
+            )
+        )
+
+        self.screen.blit(
+            sprite,
+            [
+                sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] // 2),
+                sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] // 2)
+            ],
+        )
+
+        # TODO: make this toggleable
+        self.draw_hitbox(sprite_data)
+
+    def draw_hitbox(self, sprite_data):
+        pygame.draw.rect(
+            self.screen,
+            (255, 0, 255),
+            [
+                sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] // 2) + sprite_data["hitbox"]["x"],
+                sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] // 2) + sprite_data["hitbox"]["y"],
+                sprite_data["hitbox"]["width"],
+                sprite_data["hitbox"]["height"]
+            ],
+            2
+        )

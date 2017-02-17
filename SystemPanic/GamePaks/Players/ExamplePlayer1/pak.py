@@ -136,11 +136,11 @@ class Pak:
         :return: the new PlayerState
         """
         # What size should our sprite be drawn on-screen as?
-        player_state.sprite_size["width"] = 32
-        player_state.sprite_size["height"] = 32
+        player_state["sprite_size"]["width"] = 32
+        player_state["sprite_size"]["height"] = 32
 
         # What's our hitbox rect (relative to the top-left corner of the sprite)?
-        player_state.hitbox = {
+        player_state["hitbox"] = {
             "x":0,
             "y": 0,
             "width": 32,
@@ -148,48 +148,49 @@ class Pak:
         }
 
         # How are we moving?  And what's our sprite?
-        player_state.sprite = self.sprites["down"][0]  # "Idle"
+        player_state["sprite"] = self.sprites["down"][0]  # "Idle"
 
         walking_speed = 128.0
 
         if pressed_buttons["left"] is True:
-            player_state.position["x"] -= walking_speed * delta_t
-            player_state.sprite = self.sprites["left"][int(time_since_start * 8) % 4]
+            player_state["position"]["x"] -= walking_speed * delta_t
+            player_state["sprite"] = self.sprites["left"][int(time_since_start * 8) % 4]
         if pressed_buttons["right"] is True:
-            player_state.position["x"] += walking_speed * delta_t
-            player_state.sprite = self.sprites["right"][int(time_since_start * 8) % 4]
+            player_state["position"]["x"] += walking_speed * delta_t
+            player_state["sprite"] = self.sprites["right"][int(time_since_start * 8) % 4]
         if pressed_buttons["up"] is True:
-            player_state.position["y"] -= walking_speed * delta_t
-            player_state.sprite = self.sprites["up"][int(time_since_start * 8) % 4]
+            player_state["position"]["y"] -= walking_speed * delta_t
+            player_state["sprite"] = self.sprites["up"][int(time_since_start * 8) % 4]
         if pressed_buttons["down"] is True:
-            player_state.position["y"] += walking_speed * delta_t
-            player_state.sprite = self.sprites["down"][int(time_since_start * 8) % 4]
+            player_state["position"]["y"] += walking_speed * delta_t
+            player_state["sprite"] = self.sprites["down"][int(time_since_start * 8) % 4]
 
         if pressed_buttons["fire"] is True:
             # Limit firing to once per 0.5 seconds
-            last_fired = player_state.get_pak_specific_state("last_fired")
+            last_fired = player_state["pak_specific_state"].get("last_fired")
+
             if last_fired is None or time_since_start - last_fired > 0.5:
                 new_missiles.append(
                     {
                         "direction": {"x": 1.0, "y": 0.0},
-                        "position": {"x": player_state.position["x"], "y": player_state.position["y"]}
+                        "position": {"x": player_state["position"]["x"], "y": player_state["position"]["y"]}
                     }
                 )
-                player_state.set_pak_specific_state("last_fired", time_since_start)
+                player_state["pak_specific_state"]["last_fired"] = time_since_start
 
         # How do we interact with the borders of the screen?
         # TODO: make the game engine actually handle this using these variables, instead of doing it here
-        player_state.wrap_x = True
-        player_state.wrap_y = True
+        player_state["wrap_x"] = True
+        player_state["wrap_y"] = True
 
-        if player_state.position["x"] < 0:
-            player_state.position["x"] = 0
-        if player_state.position["x"] > 800:
-            player_state.position["x"] = 800
-        if player_state.position["y"] < 0:
-            player_state.position["y"] = 0
-        if player_state.position["y"] > 600:
-            player_state.position["y"] = 600
+        if player_state["position"]["x"] < 0:
+            player_state["position"]["x"] = 0
+        if player_state["position"]["x"] > 800:
+            player_state["position"]["x"] = 800
+        if player_state["position"]["y"] < 0:
+            player_state["position"]["y"] = 0
+        if player_state["position"]["y"] > 600:
+            player_state["position"]["y"] = 600
 
         # Return the new state
         return player_state
@@ -201,11 +202,11 @@ class Pak:
 
         Usually, the player is responsible for marking themselves as dead when they hit an enemy.
 
-        Set player_state.active = False to indicate that we're dying, or enemy_state.active = False to indicate it's dying
+        Set player_state["active"] = False to indicate that we're dying, or enemy_state.active = False to indicate it's dying
 
         :return: None
         """
-        player_state.active = False
+        player_state["active"] = False
 
     def collided_with_enemy_missile(self, player_state, missile_state):
         """
@@ -215,20 +216,20 @@ class Pak:
         Usually, the player is responsible for marking themselves as dead when they hit an enemy missile,
         and the missile is responsible for marking itself as stopped when it hits something.
 
-        Set player_state.active = False to indicate that we're dying, or missile.active = False to indicate it's dying
+        Set player_state["active"] = False to indicate that we're dying, or missile.active = False to indicate it's dying
 
         :return: None
         """
-        player_state.active = False
+        player_state["active"] = False
 
     def collided_with_level(self, player_state, previous_position):
         """
             Called whenever the player bumps into a wall.
-            Usually, you just want to set player_state.position = previous_position
+            Usually, you just want to set player_state["position"] = previous_position
 
         :param player_state: Our state
         :param previous_position: Where were we before be bumped into the wall?
         :return: the new PlayerState
         """
-        player_state.position = previous_position
+        player_state["position"] = previous_position
         return player_state

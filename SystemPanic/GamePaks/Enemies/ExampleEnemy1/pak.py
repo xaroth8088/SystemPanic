@@ -89,40 +89,38 @@ class Pak:
         :return: the new EnemyState
         """
         # State specific to us
-        color = enemy_state.get_pak_specific_state("color")
+        color = enemy_state["pak_specific_state"].get("color")
+
         if color is None:
             color = random.choice(list(self.get_sprite_details().keys()))
-            enemy_state.set_pak_specific_state(
-                "color",
-                color
-            )
+            enemy_state["pak_specific_state"]["color"] = color
 
         # What size should our sprite be drawn on-screen as?
-        enemy_state.sprite_size["width"] = 32
-        enemy_state.sprite_size["height"] = 32
+        enemy_state["sprite_size"]["width"] = 32
+        enemy_state["sprite_size"]["height"] = 32
 
         # What's our hitbox rect (relative to the top-left corner of the sprite)?
-        enemy_state.hitbox["x"] = 0
-        enemy_state.hitbox["y"] = 0
-        enemy_state.hitbox["width"] = 32
-        enemy_state.hitbox["height"] = 32
+        enemy_state["hitbox"]["x"] = 0
+        enemy_state["hitbox"]["y"] = 0
+        enemy_state["hitbox"]["width"] = 32
+        enemy_state["hitbox"]["height"] = 32
 
         # How are we moving?  And what's our sprite?
         # Chase player, dumb
-        player_x = all_states["player"].position["x"]
-        player_y = all_states["player"].position["y"]
+        player_x = all_states["player"]["position"]["x"]
+        player_y = all_states["player"]["position"]["y"]
 
-        if enemy_state.position["x"] < player_x:
-            enemy_state.position["x"] += 16.0 * delta_t
+        if enemy_state["position"]["x"] < player_x:
+            enemy_state["position"]["x"] += 16.0 * delta_t
         else:
-            enemy_state.position["x"] -= 16.0 * delta_t
+            enemy_state["position"]["x"] -= 16.0 * delta_t
 
-        if enemy_state.position["y"] < player_y:
-            enemy_state.position["y"] += 16.0 * delta_t
+        if enemy_state["position"]["y"] < player_y:
+            enemy_state["position"]["y"] += 16.0 * delta_t
         else:
-            enemy_state.position["y"] -= 16.0 * delta_t
+            enemy_state["position"]["y"] -= 16.0 * delta_t
 
-        enemy_state.sprite = self.sprites[color][
+        enemy_state["sprite"] = self.sprites[color][
             int(time_since_start * 4) % 2]
 
         # Do we want to fire a missile?
@@ -132,22 +130,22 @@ class Pak:
                     "x": random.uniform(-1.0, 1.0),
                     "y": random.uniform(-1.0, 1.0)
                 },
-                "position": {"x": enemy_state.position["x"], "y": enemy_state.position["y"]}
+                "position": {"x": enemy_state["position"]["x"], "y": enemy_state["position"]["y"]}
             })
 
         # How do we interact with the borders of the screen?
         # TODO: make the game engine actually handle this using these variables, instead of doing it here
-        enemy_state.wrap_x = True
-        enemy_state.wrap_y = True
+        enemy_state["wrap_x"] = True
+        enemy_state["wrap_y"] = True
 
-        if enemy_state.position["x"] < 0:
-            enemy_state.position["x"] = 0
-        if enemy_state.position["x"] > 800:
-            enemy_state.position["x"] = 800
-        if enemy_state.position["y"] < 0:
-            enemy_state.position["y"] = 0
-        if enemy_state.position["y"] > 600:
-            enemy_state.position["y"] = 600
+        if enemy_state["position"]["x"] < 0:
+            enemy_state["position"]["x"] = 0
+        if enemy_state["position"]["x"] > 800:
+            enemy_state["position"]["x"] = 800
+        if enemy_state["position"]["y"] < 0:
+            enemy_state["position"]["y"] = 0
+        if enemy_state["position"]["y"] > 600:
+            enemy_state["position"]["y"] = 600
 
         # Return the new state
         return enemy_state
@@ -159,7 +157,7 @@ class Pak:
 
         Usually, the player is responsible for marking themselves as dead when they hit an enemy.
 
-        Set enemy_state.active = False to indicate that we're dying, or player_state.active = False to indicate it's dying
+        Set enemy_state["active"] = False to indicate that we're dying, or player_state["active"] = False to indicate it's dying
 
         :return: None
         """
@@ -173,20 +171,20 @@ class Pak:
         Usually, the enemy is responsible for marking themselves as dead when they hit a player missile,
         and the missile is responsible for marking itself as stopped when it hits something.
 
-        Set enemy_state.active = False to indicate that we're dying, or missile.active = False to indicate it's dying
+        Set enemy_state["active"] = False to indicate that we're dying, or missile["active"] = False to indicate it's dying
 
         :return: None
         """
-        enemy_state.active = False
+        enemy_state["active"] = False
 
     def collided_with_level(self, enemy_state, previous_position):
         """
             Called whenever the player bumps into a wall.
-            Usually, you just want to set enemy_state.position = previous_position
+            Usually, you just want to set enemy_state["position"] = previous_position
 
         :param enemy_state: Our state
         :param previous_position: Where were we before be bumped into the wall?
         :return: the new EnemyState
         """
-        enemy_state.position = previous_position
+        enemy_state["position"] = previous_position
         return enemy_state

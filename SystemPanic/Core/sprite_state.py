@@ -1,71 +1,59 @@
 """ Manages the common state for any player, enemy, or missile on the screen
 """
+from copy import deepcopy
+
 import pygame
 
+SpriteState = {
+    "active": True,
+    "sprite": None,
+    "pak_specific_state": {},
+    "position": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "sprite_size": {
+        "width": 0,
+        "height": 0
+    },
+    # Hitbox is relative to top-left corner of sprite
+    "hitbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 0.0,
+        "height": 0.0
+    },
+    "facing": {
+        "x": 0,
+        "y": 0
+    },
+    "start_time": 0,  # When was this sprite instantiated?
+    "wrap_x": False,  # should we wrap around the screen horizontally?
+    "wrap_y": False  # should we wrap around the screen vertically?
+    # TODO: momentum, rotational momentum, direction facing, etc.
+}
 
-class SpriteState:
-    def __init__(self):
-        self.active = True
-        self.sprite = None
 
-        self.pak_specific_state = {}
+def new_sprite():
+    return deepcopy(SpriteState)
 
-        self.position = {
-            "x": 0.0,
-            "y": 0.0
-        }
 
-        self.sprite_size = {
-            "width": 0,
-            "height": 0
-        }
+def do_sprites_collide(sprite_a, sprite_b):
+    if sprite_a["active"] is False or sprite_b["active"] is False:
+        return False
 
-        self.hitbox = {
-            "x": 0.0,
-            "y": 0.0,
-            "width": 0.0,
-            "height": 0.0
-        }
+    hit_a = pygame.Rect(
+        sprite_a["hitbox"]["x"] + sprite_a["position"]["x"] - (sprite_a["sprite_size"]["width"] // 2),
+        sprite_a["hitbox"]["y"] + sprite_a["position"]["y"] - (sprite_a["sprite_size"]["height"] // 2),
+        sprite_a["hitbox"]["width"],
+        sprite_a["hitbox"]["height"]
+    )
 
-        self.facing = {
-            "x": 0,
-            "y": 0
-        }
+    hit_b = pygame.Rect(
+        sprite_b["hitbox"]["x"] + sprite_b["position"]["x"] - (sprite_b["sprite_size"]["width"] // 2),
+        sprite_b["hitbox"]["y"] + sprite_b["position"]["y"] - (sprite_b["sprite_size"]["height"] // 2),
+        sprite_b["hitbox"]["width"],
+        sprite_b["hitbox"]["height"]
+    )
 
-        self.previous_position = None
-
-        self.wrap_x = False  # should we wrap around the screen horizontally?
-        self.wrap_y = False  # should we wrap around the screen vertically?
-        # TODO: momentum, rotational momentum, direction facing, etc.
-
-    def set_pak_specific_state(self, key, value):
-        self.pak_specific_state[key] = value
-
-    def get_pak_specific_state(self, key):
-        if key in self.pak_specific_state:
-            return self.pak_specific_state[key]
-
-        return None
-
-    def reset_pak_specific_states(self):
-        self.pak_specific_state = {}
-
-    def collides_with_sprite(self, sprite_b):
-        if self.active is False or sprite_b.active is False:
-            return False
-
-        hit_a = pygame.Rect(
-            self.hitbox["x"] + self.position["x"] - (self.sprite_size["width"] // 2),
-            self.hitbox["y"] + self.position["y"] - (self.sprite_size["height"] // 2),
-            self.hitbox["width"],
-            self.hitbox["height"]
-        )
-
-        hit_b = pygame.Rect(
-            sprite_b.hitbox["x"] + sprite_b.position["x"] - (sprite_b.sprite_size["width"] // 2),
-            sprite_b.hitbox["y"] + sprite_b.position["y"] - (sprite_b.sprite_size["height"] // 2),
-            sprite_b.hitbox["width"],
-            sprite_b.hitbox["height"]
-        )
-
-        return hit_a.colliderect(hit_b)
+    return hit_a.colliderect(hit_b)
