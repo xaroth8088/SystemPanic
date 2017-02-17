@@ -130,24 +130,24 @@ class Pak:
                     "x": random.uniform(-1.0, 1.0),
                     "y": random.uniform(-1.0, 1.0)
                 },
-                "position": {"x": enemy_state["position"]["x"], "y": enemy_state["position"]["y"]}
+                "position": enemy_state["position"].copy()
             })
 
-        # How do we interact with the borders of the screen?
-        # TODO: make the game engine actually handle this using these variables, instead of doing it here
-        enemy_state["wrap_x"] = True
-        enemy_state["wrap_y"] = True
+            # How do we interact with the borders of the screen?
+            # TODO: make the game engine actually handle this using these variables, instead of doing it here
+            enemy_state["wrap_x"] = True
+            enemy_state["wrap_y"] = True
 
-        if enemy_state["position"]["x"] < 0:
-            enemy_state["position"]["x"] = 0
-        if enemy_state["position"]["x"] > 800:
-            enemy_state["position"]["x"] = 800
-        if enemy_state["position"]["y"] < 0:
-            enemy_state["position"]["y"] = 0
-        if enemy_state["position"]["y"] > 600:
-            enemy_state["position"]["y"] = 600
+            if enemy_state["position"]["x"] < 0:
+                enemy_state["position"]["x"] = 0
+            if enemy_state["position"]["x"] > 800:
+                enemy_state["position"]["x"] = 800
+            if enemy_state["position"]["y"] < 0:
+                enemy_state["position"]["y"] = 0
+            if enemy_state["position"]["y"] > 600:
+                enemy_state["position"]["y"] = 600
 
-        # Return the new state
+                # Return the new state
         return enemy_state
 
     def collided_with_player(self, enemy_state, player_state):

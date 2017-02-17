@@ -375,7 +375,7 @@ class Pak:
                     "x": player_x - enemy_state["position"]["x"],
                     "y": player_y - enemy_state["position"]["y"]
                 },
-                "position": {"x": enemy_state["position"]["x"], "y": enemy_state["position"]["y"]}
+                "position": enemy_state["position"].copy()
             })
             enemy_state["pak_specific_state"]["last_fired"] = time_since_start
 

@@ -77,7 +77,7 @@ class Pak:
         lifetime = 1.0  # in seconds
 
         # What size should our sprite be drawn on-screen as?
-        time_alive_ratio = ( time_since_start - missile_state["start_time"] ) / lifetime
+        time_alive_ratio = (time_since_start - missile_state["start_time"]) / lifetime
         size = 48 * (1 - time_alive_ratio)
         missile_state["sprite_size"]["width"] = int(size)
         missile_state["sprite_size"]["height"] = int(size)

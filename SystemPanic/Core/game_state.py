@@ -102,23 +102,16 @@ class GameState:
                                                         pressed_buttons, new_missiles)
 
         for missile in new_missiles:
-            new_missile = new_sprite()
-            new_missile["start_time"] = time_since_start
-            new_missile["direction"] = missile["direction"]
-            new_missile["position"] = missile["position"]
-            self.player_missiles.append(new_missile)
+            self.player_missiles.append(self.new_missile(missile, time_since_start))
 
         # Advance the enemies, including spawning new enemy missiles
         new_missiles = []
         for enemy in self.enemies:
             enemy["previous_position"] = enemy["position"].copy()
             self.active_config.enemy.advance(enemy, all_states, time_since_start, delta_t, new_missiles)
+
         for missile in new_missiles:
-            new_missile = new_sprite()
-            new_missile["start_time"] = time_since_start
-            new_missile["direction"] = missile["direction"]
-            new_missile["position"] = missile["position"]
-            self.enemy_missiles.append(new_missile)
+            self.enemy_missiles.append(self.new_missile(missile, time_since_start))
 
         # Advance all player missiles
         for missile in self.player_missiles:
@@ -217,3 +210,24 @@ class GameState:
                     for missile in self.enemy_missiles:
                         if do_sprites_collide(wall, missile):
                             self.active_config.enemy_missile.collided_with_level(missile, missile["previous_position"])
+
+    @staticmethod
+    def new_missile(missile_data, time_since_start):
+        missile = new_sprite()
+        missile["start_time"] = time_since_start
+        missile["direction"] = missile_data["direction"]
+        missile["position"] = missile_data["position"]
+
+        if missile["direction"]["x"] == 0 and missile["direction"]["y"] == 0:
+            missile["direction"] = {
+                "x": 0,
+                "y": 0
+            }
+        else:
+            dir_vector = pygame.math.Vector2(missile["direction"]["x"], missile["direction"]["y"]).normalize()
+            missile["direction"] = {
+                "x": dir_vector.x,
+                "y": dir_vector.y
+            }
+
+        return missile
