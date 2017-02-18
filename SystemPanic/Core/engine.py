@@ -9,7 +9,6 @@ import pygame
 from SystemPanic.Core import config
 from SystemPanic.Core.game_configuration import get_randomized_config
 from SystemPanic.Core.game_state import next_level, new_game_state, reconfigure, advance
-from SystemPanic.Core.sprite_state import new_sprite
 
 RANDOMIZE_CONFIGURATION_TIME = 3.0  # in seconds
 
@@ -53,9 +52,9 @@ class Engine:
         paks = []
 
         # For each directory...
-        for directory in os.listdir(os.path.join('GamePaks', path)):
+        for directory in os.listdir(os.path.join('..', 'GamePaks', path)):
             # load the class included in the pak file
-            pak_path = os.path.join('GamePaks', path, directory, "pak.py")
+            pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.py")
             if os.path.isfile(pak_path):
                 paks.append(
                     importlib.import_module("GamePaks.%s.%s.pak" % (path, directory,)).Pak
@@ -68,10 +67,10 @@ class Engine:
         paks = []
 
         # For each directory...
-        for directory in os.listdir(os.path.join('GamePaks', path)):
+        for directory in os.listdir(os.path.join('..', 'GamePaks', path)):
             # load the class included in the pak file
-            pak_path = os.path.join('GamePaks', path, directory, "pak.py")
-            pak_png_path = os.path.join('GamePaks', path, directory, "pak.png")
+            pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.py")
+            pak_png_path = os.path.join('..', 'GamePaks', path, directory, "pak.png")
             if os.path.isfile(pak_path) and os.path.isfile(pak_png_path):
                 pak = {
                     "class": importlib.import_module("GamePaks.%s.%s.pak" % (path, directory,)).Pak
@@ -106,9 +105,9 @@ class Engine:
         paks = []
 
         # For each directory...
-        for directory in os.listdir(os.path.join('GamePaks', path)):
+        for directory in os.listdir(os.path.join('..', 'GamePaks', path)):
             # load the image included in the pak file
-            pak_path = os.path.join('GamePaks', path, directory, "pak.png")
+            pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.png")
             if os.path.isfile(pak_path):
                 paks.append(pygame.image.load(pak_path).convert_alpha())
 
@@ -120,9 +119,9 @@ class Engine:
         paks = []
 
         # For each directory...
-        for directory in os.listdir(os.path.join('GamePaks', path)):
+        for directory in os.listdir(os.path.join('..', 'GamePaks', path)):
             # load the sound included in the pak file
-            pak_path = os.path.join('GamePaks', path, directory, "pak.ogg")
+            pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.ogg")
             if os.path.isfile(pak_path):
                 paks.append(pak_path)
 
