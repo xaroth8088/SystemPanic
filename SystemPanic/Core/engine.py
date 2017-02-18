@@ -216,37 +216,9 @@ class Engine:
                 [0, 0]
             )
 
-            # Add the level blocks
-            num_rows = len(self.game_state["walls"])
-            num_columns = self.game_state["level_width"]
-            height = config.SCREEN_HEIGHT // num_rows
-            width = config.SCREEN_WIDTH // num_columns
-            # TODO: move all this into the game state, so that there's just a list of sprites that were generated...
-            for x in range(0, num_rows):
-                for y in range(0, num_columns):
-                    if self.game_state["walls"][y][x] is True:
-                        # TODO: decide which sprite to grab based on the walls around this one
-                        sprite = self.game_state["active_config"]["level_tile"].get_center()
-                        sprite_data = new_sprite()
-                        sprite_data["position"] = {
-                            "x": (x + 0.5) * width,
-                            "y": (y + 0.5) * height
-                        }
-                        sprite_data["sprite_size"] = {
-                            "width": width,
-                            "height": height
-                        }
-                        sprite_data["hitbox"] = {
-                            "x": 0,
-                            "y": 0,
-                            "width": width,
-                            "height": height
-                        }
-                        sprite_data["sprite"] = sprite
-                        self.draw_sprite(sprite_data)
-
-            # Add the enemies, player missiles, enemy missiles, and player (in that order)
+            # Add the walls, enemies, player missiles, enemy missiles, and player (in that order)
             for sprite_data in itertools.chain(
+                    self.game_state["walls"],
                     self.game_state["enemies"],
                     self.game_state["player_missiles"],
                     self.game_state["enemy_missiles"],

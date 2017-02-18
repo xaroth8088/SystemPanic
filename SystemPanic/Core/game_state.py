@@ -31,11 +31,44 @@ def next_level(game_state):
     game_state["enemy_missiles"] = []
 
     # Init the level
-    game_state["walls"] = game_state["active_config"]["level_generator"].generate_walls()
-    game_state["level_width"] = 0
-    for y in range(0, len(game_state["walls"])):
-        if len(game_state["walls"][y]) > game_state["level_width"]:
-            game_state["level_width"] = len(game_state["walls"][y])
+
+    # Generate the level
+    walls = game_state["active_config"]["level_generator"].generate_walls()
+
+    # Convert the generated walls into sprites
+
+    # Get the width / height for the level
+    num_rows = len(walls)
+    num_columns = 0
+    for y in range(0, num_rows):
+        if len(walls[y]) > num_columns:
+            num_columns = len(walls[y])
+
+    height = config.SCREEN_HEIGHT // num_rows
+    width = config.SCREEN_WIDTH // num_columns
+
+    game_state["walls"] = []
+    for y in range(0, num_rows):
+        for x in range(0, len(walls[y])):
+            if walls[y][x] is True:
+                wall = new_sprite()
+                wall["position"] = {
+                    "x": (x + 0.5) * width,
+                    "y": (y + 0.5) * height
+                }
+                wall["sprite_size"] = {
+                    "width": width,
+                    "height": height
+                }
+                wall["hitbox"] = {
+                    "x": 0,
+                    "y": 0,
+                    "width": width,
+                    "height": height
+                }
+                # TODO: decide which sprite to grab based on the walls around this one
+                wall["sprite"] = game_state["active_config"]["level_tile"].get_center()
+                game_state["walls"].append(wall)
 
     # Position the player
     game_state["player"]["position"] = {
@@ -190,55 +223,38 @@ def check_enemy_to_player_missile_collisions(game_state):
 
 
 def check_level_collisions(game_state):
-    num_rows = len(game_state["walls"])
-    num_columns = game_state["level_width"]
-    height = config.SCREEN_HEIGHT // num_rows
-    width = config.SCREEN_WIDTH // num_columns
-    for x in range(0, num_rows):
-        for y in range(0, num_columns):
-            if game_state["walls"][y][x] is True:
-                wall = new_sprite()
-                wall["position"] = {
-                    "x": x * width,
-                    "y": y * height
-                }
-                wall["hitbox"] = {
-                    "x": 0,
-                    "y": 0,
-                    "width": width,
-                    "height": height
-                }
+    for wall in game_state["walls"]:
+        if wall["active"] is True:
+            # Player
+            if do_sprites_collide(wall, game_state["player"]):
+                game_state["player"] = game_state["active_config"]["player"].collided_with_level(
+                    game_state["player"],
+                    game_state["player"]["previous_position"]
+                )
 
-                # Player
-                if do_sprites_collide(wall, game_state["player"]):
-                    game_state["player"] = game_state["active_config"]["player"].collided_with_level(
-                        game_state["player"],
-                        game_state["player"]["previous_position"]
+            # Enemy
+            for enemy in game_state["enemies"]:
+                if do_sprites_collide(wall, enemy):
+                    game_state["active_config"]["enemy"].collided_with_level(
+                        enemy,
+                        enemy["previous_position"]
                     )
 
-                # Enemy
-                for enemy in game_state["enemies"]:
-                    if do_sprites_collide(wall, enemy):
-                        game_state["active_config"]["enemy"].collided_with_level(
-                            enemy,
-                            enemy["previous_position"]
-                        )
+            # Player Missiles
+            for missile in game_state["player_missiles"]:
+                if do_sprites_collide(wall, missile):
+                    game_state["active_config"]["player_missile"].collided_with_level(
+                        missile,
+                        missile["previous_position"]
+                    )
 
-                # Player Missiles
-                for missile in game_state["player_missiles"]:
-                    if do_sprites_collide(wall, missile):
-                        game_state["active_config"]["player_missile"].collided_with_level(
-                            missile,
-                            missile["previous_position"]
-                        )
-
-                # Enemy Missiles
-                for missile in game_state["enemy_missiles"]:
-                    if do_sprites_collide(wall, missile):
-                        game_state["active_config"]["enemy_missile"].collided_with_level(
-                            missile,
-                            missile["previous_position"]
-                        )
+            # Enemy Missiles
+            for missile in game_state["enemy_missiles"]:
+                if do_sprites_collide(wall, missile):
+                    game_state["active_config"]["enemy_missile"].collided_with_level(
+                        missile,
+                        missile["previous_position"]
+                    )
 
     return game_state
 
