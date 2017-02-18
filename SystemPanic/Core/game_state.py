@@ -67,6 +67,7 @@ def next_level(game_state):
                     "height": height
                 }
                 # TODO: decide which sprite to grab based on the walls around this one
+                # TODO: this will need to be re-configured whenever we change the level up
                 wall["sprite"] = game_state["active_config"]["level_tile"].get_center()
                 game_state["walls"].append(wall)
 
