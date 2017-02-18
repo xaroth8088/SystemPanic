@@ -8,7 +8,7 @@ import pygame
 
 from SystemPanic.Core import config
 from SystemPanic.Core.game_configuration import get_randomized_config
-from SystemPanic.Core.game_state import GameState
+from SystemPanic.Core.game_state import next_level, new_game_state, reconfigure, advance
 from SystemPanic.Core.sprite_state import new_sprite
 
 RANDOMIZE_CONFIGURATION_TIME = 3.0  # in seconds
@@ -134,7 +134,7 @@ class Engine:
         self.load_all_paks()
         self.init_game()
         self.randomize_config()
-        self.game_state.next_level()
+        self.game_state = next_level(self.game_state)
         self.main()
 
     def init_pygame(self):
@@ -157,15 +157,15 @@ class Engine:
         self.start_time = perf_counter()
         self.last_frame_time = self.start_time
 
-        self.game_state = GameState()
-        self.game_state.init_new_game()
+        self.game_state = new_game_state()
 
     def randomize_config(self):
         old_music = None
-        if self.game_state.active_config is not None:
-            old_music = self.game_state.active_config["music"]
+        if self.game_state["active_config"] is not None:
+            old_music = self.game_state["active_config"]["music"]
 
-        self.game_state.reconfigure(
+        self.game_state = reconfigure(
+            self.game_state,
             get_randomized_config(
                 self.backgrounds,
                 self.enemies,
@@ -179,13 +179,13 @@ class Engine:
         self.last_randomize_time = perf_counter()
 
         # Restart music
-        if self.game_state.active_config["music"] != old_music:
-            pygame.mixer.music.load(self.game_state.active_config["music"])
+        if self.game_state["active_config"]["music"] != old_music:
+            pygame.mixer.music.load(self.game_state["active_config"]["music"])
             pygame.mixer.music.play(-1)
 
     def main(self):
         # The main game loop
-        while self.running:
+        while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
@@ -199,7 +199,7 @@ class Engine:
             pressed_buttons = self.get_pressed_buttons()
 
             # Advance the frame
-            self.running = self.game_state.advance(now - self.start_time, delta_t, pressed_buttons)
+            self.game_state = advance(self.game_state, now - self.start_time, delta_t, pressed_buttons)
 
             # Decide whether it's time to re-randomize
             if now - self.last_randomize_time > RANDOMIZE_CONFIGURATION_TIME:
@@ -212,21 +212,21 @@ class Engine:
 
             # Add the background
             self.screen.blit(
-                self.game_state.active_config["background"],
+                self.game_state["active_config"]["background"],
                 [0, 0]
             )
 
             # Add the level blocks
-            num_rows = len(self.game_state.walls)
-            num_columns = self.game_state.level_width
+            num_rows = len(self.game_state["walls"])
+            num_columns = self.game_state["level_width"]
             height = config.SCREEN_HEIGHT // num_rows
             width = config.SCREEN_WIDTH // num_columns
             # TODO: move all this into the game state, so that there's just a list of sprites that were generated...
             for x in range(0, num_rows):
                 for y in range(0, num_columns):
-                    if self.game_state.walls[y][x] is True:
+                    if self.game_state["walls"][y][x] is True:
                         # TODO: decide which sprite to grab based on the walls around this one
-                        sprite = self.game_state.active_config["level_tile"].get_center()
+                        sprite = self.game_state["active_config"]["level_tile"].get_center()
                         sprite_data = new_sprite()
                         sprite_data["position"] = {
                             "x": (x + 0.5) * width,
@@ -247,10 +247,10 @@ class Engine:
 
             # Add the enemies, player missiles, enemy missiles, and player (in that order)
             for sprite_data in itertools.chain(
-                    self.game_state.enemies,
-                    self.game_state.player_missiles,
-                    self.game_state.enemy_missiles,
-                    [self.game_state.player]
+                    self.game_state["enemies"],
+                    self.game_state["player_missiles"],
+                    self.game_state["enemy_missiles"],
+                    [self.game_state["player"]]
             ):
                 if sprite_data["active"] is True:
                     self.draw_sprite(sprite_data)
@@ -259,9 +259,9 @@ class Engine:
             # TODO: make FPS drawing toggleable
             self.draw_fps()
 
-            self.draw_text("Score: %s" % (self.game_state.score,), (8, 8))
-            self.draw_text("Level: %s" % (self.game_state.level,), (200, 8))
-            self.draw_text("Lives: %s" % (self.game_state.lives,), (400, 8))
+            self.draw_text("Score: %s" % (self.game_state["score"],), (8, 8))
+            self.draw_text("Level: %s" % (self.game_state["level"],), (200, 8))
+            self.draw_text("Lives: %s" % (self.game_state["lives"],), (400, 8))
 
             pygame.display.flip()
 

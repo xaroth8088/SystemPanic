@@ -5,7 +5,7 @@ import pygame
 
 from SystemPanic.Core import config
 
-GameConfiguration2 = {
+GameConfiguration = {
     "background": None,
     "enemy": None,
     "enemy_missile": None,
@@ -18,7 +18,7 @@ GameConfiguration2 = {
 
 
 def new_game_configuration():
-    return deepcopy(GameConfiguration2)
+    return deepcopy(GameConfiguration)
 
 
 def get_randomized_config(
