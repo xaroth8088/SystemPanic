@@ -43,15 +43,15 @@ def do_sprites_collide(sprite_a, sprite_b):
         return False
 
     hit_a = pygame.Rect(
-        sprite_a["position"]["x"] - (sprite_a["sprite_size"]["width"] // 2) + sprite_a["hitbox"]["x"],
-        sprite_a["position"]["y"] - (sprite_a["sprite_size"]["height"] // 2) + sprite_a["hitbox"]["y"],
+        sprite_a["position"]["x"] - (sprite_a["sprite_size"]["width"] / 2.0) + sprite_a["hitbox"]["x"],
+        sprite_a["position"]["y"] - (sprite_a["sprite_size"]["height"] / 2.0) + sprite_a["hitbox"]["y"],
         sprite_a["hitbox"]["width"],
         sprite_a["hitbox"]["height"]
     )
 
     hit_b = pygame.Rect(
-        sprite_b["position"]["x"] - (sprite_b["sprite_size"]["width"] // 2) + sprite_b["hitbox"]["x"],
-        sprite_b["position"]["y"] - (sprite_b["sprite_size"]["height"] // 2) + sprite_b["hitbox"]["y"],
+        sprite_b["position"]["x"] - (sprite_b["sprite_size"]["width"] / 2.0) + sprite_b["hitbox"]["x"],
+        sprite_b["position"]["y"] - (sprite_b["sprite_size"]["height"] / 2.0) + sprite_b["hitbox"]["y"],
         sprite_b["hitbox"]["width"],
         sprite_b["hitbox"]["height"]
     )
