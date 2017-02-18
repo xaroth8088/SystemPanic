@@ -100,10 +100,10 @@ class Pak:
         enemy_state["sprite_size"]["height"] = 32
 
         # What's our hitbox rect (relative to the top-left corner of the sprite)?
-        enemy_state["hitbox"]["x"] = 0
-        enemy_state["hitbox"]["y"] = 0
-        enemy_state["hitbox"]["width"] = 32
-        enemy_state["hitbox"]["height"] = 32
+        enemy_state["hitbox"]["x"] = 2
+        enemy_state["hitbox"]["y"] = 14
+        enemy_state["hitbox"]["width"] = 27
+        enemy_state["hitbox"]["height"] = 16
 
         # How are we moving?  And what's our sprite?
         # Chase player, dumb

@@ -39,8 +39,8 @@ class Pak:
         # What's our hitbox rect (relative to the top-left corner of the sprite)?
         missile_state["hitbox"]["x"] = 0
         missile_state["hitbox"]["y"] = 0
-        missile_state["hitbox"]["width"] = 32
-        missile_state["hitbox"]["height"] = 32
+        missile_state["hitbox"]["width"] = 16
+        missile_state["hitbox"]["height"] = 16
 
         # How are we moving?  And what's our sprite?
         missile_state["position"]["x"] += 128 * delta_t * missile_state["direction"]["x"]

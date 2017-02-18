@@ -453,15 +453,8 @@ class Pak:
         player_state["sprite_size"]["width"] = 32
         player_state["sprite_size"]["height"] = 32
 
-        # What's our hitbox rect (relative to the top-left corner of the sprite)?
-        player_state["hitbox"] = {
-            "x": 0,
-            "y": 0,
-            "width": 32,
-            "height": 32
-        }
-
         # How are we moving?  And what's our sprite?
+        # And what's our hitbox rect (relative to the top-left corner of the sprite)?
         # TODO: change this to rotate left/right, and have sprite selected by approximate angle
         # TODO: change up/down to be accel/deccel
         if pressed_buttons["left"] is True:
@@ -469,11 +462,23 @@ class Pak:
                 "x": -1,
                 "y": 0
             }
+            player_state["hitbox"] = {
+                "x": 4,
+                "y": 8,
+                "width": 24,
+                "height": 15
+            }
             player_state["sprite"] = self.sprites[car_type][1]
         if pressed_buttons["right"] is True:
             player_state["facing"] = {
                 "x": 1,
                 "y": 0
+            }
+            player_state["hitbox"] = {
+                "x": 4,
+                "y": 8,
+                "width": 24,
+                "height": 15
             }
             player_state["sprite"] = self.sprites[car_type][5]
         if pressed_buttons["up"] is True:
@@ -481,11 +486,23 @@ class Pak:
                 "x": 0,
                 "y": -1
             }
+            player_state["hitbox"] = {
+                "x": 10,
+                "y": 7,
+                "width": 12,
+                "height": 18
+            }
             player_state["sprite"] = self.sprites[car_type][3]
         if pressed_buttons["down"] is True:
             player_state["facing"] = {
                 "x": 0,
                 "y": 1
+            }
+            player_state["hitbox"] = {
+                "x": 10,
+                "y": 7,
+                "width": 12,
+                "height": 18
             }
             player_state["sprite"] = self.sprites[car_type][7]
 

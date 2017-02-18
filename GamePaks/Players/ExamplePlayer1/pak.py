@@ -141,10 +141,10 @@ class Pak:
 
         # What's our hitbox rect (relative to the top-left corner of the sprite)?
         player_state["hitbox"] = {
-            "x": 0,
-            "y": 0,
-            "width": 32,
-            "height": 32
+            "x": 11,
+            "y": 4,
+            "width": 9,
+            "height": 24
         }
 
         # How are we moving?  And what's our sprite?
