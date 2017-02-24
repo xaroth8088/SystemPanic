@@ -116,6 +116,7 @@ def get_sprite_details():
         ]
     }
 
+
 def advance(sprites, player_state, all_states, time_since_start, delta_t, pressed_buttons, new_missiles):
     """
     :param player_state: the PlayerState
@@ -194,6 +195,7 @@ def advance(sprites, player_state, all_states, time_since_start, delta_t, presse
     # Return the new state
     return player_state
 
+
 def collided_with_enemy(player_state, enemy_state):
     """
     :param player_state: Our state
@@ -206,6 +208,7 @@ def collided_with_enemy(player_state, enemy_state):
     :return: None
     """
     player_state["active"] = False
+
 
 def collided_with_enemy_missile(player_state, missile_state):
     """
@@ -220,6 +223,7 @@ def collided_with_enemy_missile(player_state, missile_state):
     :return: None
     """
     player_state["active"] = False
+
 
 def collided_with_level(player_state, previous_position):
     """
