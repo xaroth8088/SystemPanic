@@ -47,6 +47,7 @@ def next_level(game_state):
     height = config.SCREEN_HEIGHT // num_rows
     width = config.SCREEN_WIDTH // num_columns
 
+    level_tiles = game_state["active_config"]["level_tile"]
     game_state["walls"] = []
     for y in range(0, num_rows):
         for x in range(0, len(walls[y])):
@@ -68,7 +69,9 @@ def next_level(game_state):
                 }
                 # TODO: decide which sprite to grab based on the walls around this one
                 # TODO: this will need to be re-configured whenever we change the level up
-                wall["sprite"] = game_state["active_config"]["level_tile"].get_center()
+                wall["sprite"] = level_tiles["get_center"](
+                    level_tiles["sprites"]
+                )
                 game_state["walls"].append(wall)
 
     # Position the player
@@ -101,18 +104,18 @@ def reconfigure(game_state, new_config):
 
     if old_config is not None:
         # reset pak-specific states where needed
-        if old_config["player"].__class__ != new_config["player"].__class__:
+        if old_config["player"] != new_config["player"]:
             game_state["player"]["pak_specific_state"] = {}
 
-        if old_config["enemy"].__class__ != new_config["enemy"].__class__:
+        if old_config["enemy"] != new_config["enemy"]:
             for enemy in game_state["enemies"]:
                 enemy["pak_specific_state"] = {}
 
-        if old_config["player_missile"].__class__ != new_config["player_missile"].__class__:
+        if old_config["player_missile"] != new_config["player_missile"]:
             for missile in game_state["player_missiles"]:
                 missile["pak_specific_state"] = {}
 
-        if old_config["enemy_missile"].__class__ != new_config["enemy_missile"].__class__:
+        if old_config["enemy_missile"] != new_config["enemy_missile"]:
             for missile in game_state["enemy_missiles"]:
                 missile["pak_specific_state"] = {}
 
@@ -136,7 +139,8 @@ def advance(game_state, time_since_start, delta_t, pressed_buttons):
     # Advance the player, including spawning new player missiles
     new_missiles = []
     game_state["player"]["previous_position"] = game_state["player"]["position"].copy()
-    game_state["player"] = game_state["active_config"]["player"].advance(
+    game_state["player"] = game_state["active_config"]["player"]["advance"](
+        game_state["active_config"]["player"]["sprites"],
         game_state["player"],
         all_states,
         time_since_start,
@@ -152,7 +156,14 @@ def advance(game_state, time_since_start, delta_t, pressed_buttons):
     new_missiles = []
     for enemy in game_state["enemies"]:
         enemy["previous_position"] = enemy["position"].copy()
-        game_state["active_config"]["enemy"].advance(enemy, all_states, time_since_start, delta_t, new_missiles)
+        game_state["active_config"]["enemy"]["advance"](
+            game_state["active_config"]["enemy"]["sprites"],
+            enemy,
+            all_states,
+            time_since_start,
+            delta_t,
+            new_missiles
+        )
 
     for missile in new_missiles:
         game_state["enemy_missiles"].append(new_missile(missile, time_since_start))
@@ -160,12 +171,26 @@ def advance(game_state, time_since_start, delta_t, pressed_buttons):
     # Advance all player missiles
     for missile in game_state["player_missiles"]:
         missile["previous_position"] = missile["position"].copy()
-        game_state["active_config"]["player_missile"].advance(missile, all_states, time_since_start, delta_t, "enemy")
+        game_state["active_config"]["player_missile"]["advance"](
+            game_state["active_config"]["player_missile"]["sprites"],
+            missile,
+            all_states,
+            time_since_start,
+            delta_t,
+            "enemy"
+        )
 
     # Advance all enemy missiles
     for missile in game_state["enemy_missiles"]:
         missile["previous_position"] = missile["position"].copy()
-        game_state["active_config"]["enemy_missile"].advance(missile, all_states, time_since_start, delta_t, "player")
+        game_state["active_config"]["enemy_missile"]["advance"](
+            game_state["active_config"]["enemy_missile"]["sprites"],
+            missile,
+            all_states,
+            time_since_start,
+            delta_t,
+            "player"
+        )
 
     game_state = check_player_to_enemy_collisions(game_state)
     game_state = check_player_to_enemy_missile_collisions(game_state)
@@ -196,8 +221,8 @@ def advance(game_state, time_since_start, delta_t, pressed_buttons):
 def check_player_to_enemy_collisions(game_state):
     for enemy in game_state["enemies"]:
         if do_sprites_collide(game_state["player"], enemy):
-            game_state["active_config"]["player"].collided_with_enemy(game_state["player"], enemy)
-            game_state["active_config"]["enemy"].collided_with_player(enemy, game_state["player"])
+            game_state["active_config"]["player"]["collided_with_enemy"](game_state["player"], enemy)
+            game_state["active_config"]["enemy"]["collided_with_player"](enemy, game_state["player"])
 
     return game_state
 
@@ -205,8 +230,8 @@ def check_player_to_enemy_collisions(game_state):
 def check_player_to_enemy_missile_collisions(game_state):
     for missile in game_state["enemy_missiles"]:
         if do_sprites_collide(game_state["player"], missile):
-            game_state["active_config"]["player"].collided_with_enemy_missile(game_state["player"], missile)
-            game_state["active_config"]["enemy_missile"].collided_with_player(missile, game_state["player"])
+            game_state["active_config"]["player"]["collided_with_enemy_missile"](game_state["player"], missile)
+            game_state["active_config"]["enemy_missile"]["collided_with_player"](missile, game_state["player"])
 
     return game_state
 
@@ -217,8 +242,8 @@ def check_enemy_to_player_missile_collisions(game_state):
             if enemy["active"] is True and missile["active"] is True:
                 if do_sprites_collide(enemy, missile):
                     game_state["score"] += 1
-                    game_state["active_config"]["enemy"].collided_with_player_missile(enemy, missile)
-                    game_state["active_config"]["player_missile"].collided_with_enemy(missile, enemy)
+                    game_state["active_config"]["enemy"]["collided_with_player_missile"](enemy, missile)
+                    game_state["active_config"]["player_missile"]["collided_with_enemy"](missile, enemy)
 
     return game_state
 
@@ -228,7 +253,7 @@ def check_level_collisions(game_state):
         if wall["active"] is True:
             # Player
             if do_sprites_collide(wall, game_state["player"]):
-                game_state["player"] = game_state["active_config"]["player"].collided_with_level(
+                game_state["player"] = game_state["active_config"]["player"]["collided_with_level"](
                     game_state["player"],
                     game_state["player"]["previous_position"]
                 )
@@ -236,7 +261,7 @@ def check_level_collisions(game_state):
             # Enemy
             for enemy in game_state["enemies"]:
                 if do_sprites_collide(wall, enemy):
-                    game_state["active_config"]["enemy"].collided_with_level(
+                    game_state["active_config"]["enemy"]["collided_with_level"](
                         enemy,
                         enemy["previous_position"]
                     )
@@ -244,7 +269,7 @@ def check_level_collisions(game_state):
             # Player Missiles
             for missile in game_state["player_missiles"]:
                 if do_sprites_collide(wall, missile):
-                    game_state["active_config"]["player_missile"].collided_with_level(
+                    game_state["active_config"]["player_missile"]["collided_with_level"](
                         missile,
                         missile["previous_position"]
                     )
@@ -252,7 +277,7 @@ def check_level_collisions(game_state):
             # Enemy Missiles
             for missile in game_state["enemy_missiles"]:
                 if do_sprites_collide(wall, missile):
-                    game_state["active_config"]["enemy_missile"].collided_with_level(
+                    game_state["active_config"]["enemy_missile"]["collided_with_level"](
                         missile,
                         missile["previous_position"]
                     )

@@ -45,7 +45,7 @@ class Engine:
         self.enemies = self.load_pak_sprites('Enemies')
         self.level_tiles = self.load_pak_sprites('LevelTiles')
         self.missiles = self.load_pak_sprites('Missiles')
-        self.players = self.load_pak_sprites2('Players')
+        self.players = self.load_pak_sprites('Players')
 
     @staticmethod
     def load_pak_classes(path):
@@ -78,44 +78,17 @@ class Engine:
                 with open(pak_path) as pak_file:
                     pak_module = types.ModuleType('pak')
                     exec(pak_file.read(), pak_module.__dict__)
-                pak = {
-                    "class": pak_module.Pak
-                }
 
-                spritesheet = pygame.image.load(pak_png_path).convert_alpha()
-
-                details = pak["class"]().get_sprite_details()
-                sprites = {}
-                for key, value in details.items():
-                    if key not in sprites:
-                        sprites[key] = []
-                    for rect in value:
-                        sprites[key].append(self.image_at(spritesheet, rect))
-
-                pak["sprites"] = sprites
-
-                paks.append(pak)
-
-        # return our final list
-        return paks
-
-    def load_pak_sprites2(self, path):
-        paks = []
-
-        # For each directory...
-        for directory in os.listdir(os.path.join('..', 'GamePaks', path)):
-            # load the class included in the pak file
-            pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.py")
-            pak_png_path = os.path.join('..', 'GamePaks', path, directory, "pak.png")
-            if os.path.isfile(pak_path) and os.path.isfile(pak_png_path):
+                # Set up the pak
                 pak = new_sprite_pak()
-                pak = {
-                    "class": importlib.import_module("GamePaks.%s.%s.pak" % (path, directory,)).Pak
-                }
+                for func in pak.keys():
+                    if func in pak_module.__dict__:
+                        pak[func] = pak_module.__dict__[func]
 
+                # Set up the spritesheet
                 spritesheet = pygame.image.load(pak_png_path).convert_alpha()
 
-                details = pak["class"]().get_sprite_details()
+                details = pak["get_sprite_details"]()
                 sprites = {}
                 for key, value in details.items():
                     if key not in sprites:
@@ -347,8 +320,24 @@ class Engine:
 def new_sprite_pak():
     return {
         "get_sprite_details": lambda: {},
-        "advance": lambda sprites, player_state, all_states, time_since_start, delta_t, pressed_buttons, new_missiles: player_state,
+        "advance": lambda sprites, player_state, all_states, time_since_start, delta_t, pressed_buttons,
+                          new_missiles: player_state,
         "collided_with_enemy": lambda player_state, enemy_state: None,
+        "collided_with_player": lambda player_state, enemy_state: None,
+        "collided_with_player_missile": lambda player_state, missile_state: None,
         "collided_with_enemy_missile": lambda player_state, missile_state: None,
-        "collided_with_level": lambda player_state, previous_position: None
+        "collided_with_level": lambda player_state, previous_position: None,
+        "get_top_left_outer": lambda sprites: None,
+        "get_top_left_inner": lambda sprites: None,
+        "get_top": lambda sprites: None,
+        "get_top_right_outer": lambda sprites: None,
+        "get_top_right_inner": lambda sprites: None,
+        "get_left": lambda sprites: None,
+        "get_center": lambda sprites: None,
+        "get_right": lambda sprites: None,
+        "get_bottom_left_outer": lambda sprites: None,
+        "get_bottom_left_inner": lambda sprites: None,
+        "get_bottom": lambda sprites: None,
+        "get_bottom_right_outer": lambda sprites: None,
+        "get_bottom_right_inner": lambda sprites: None
     }
