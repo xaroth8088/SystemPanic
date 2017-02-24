@@ -45,7 +45,7 @@ class Engine:
         self.enemies = self.load_pak_sprites('Enemies')
         self.level_tiles = self.load_pak_sprites('LevelTiles')
         self.missiles = self.load_pak_sprites('Missiles')
-        self.players = self.load_pak_sprites('Players')
+        self.players = self.load_pak_sprites2('Players')
 
     @staticmethod
     def load_pak_classes(path):
@@ -72,6 +72,37 @@ class Engine:
             pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.py")
             pak_png_path = os.path.join('..', 'GamePaks', path, directory, "pak.png")
             if os.path.isfile(pak_path) and os.path.isfile(pak_png_path):
+                pak = {
+                    "class": importlib.import_module("GamePaks.%s.%s.pak" % (path, directory,)).Pak
+                }
+
+                spritesheet = pygame.image.load(pak_png_path).convert_alpha()
+
+                details = pak["class"]().get_sprite_details()
+                sprites = {}
+                for key, value in details.items():
+                    if key not in sprites:
+                        sprites[key] = []
+                    for rect in value:
+                        sprites[key].append(self.image_at(spritesheet, rect))
+
+                pak["sprites"] = sprites
+
+                paks.append(pak)
+
+        # return our final list
+        return paks
+
+    def load_pak_sprites2(self, path):
+        paks = []
+
+        # For each directory...
+        for directory in os.listdir(os.path.join('..', 'GamePaks', path)):
+            # load the class included in the pak file
+            pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.py")
+            pak_png_path = os.path.join('..', 'GamePaks', path, directory, "pak.png")
+            if os.path.isfile(pak_path) and os.path.isfile(pak_png_path):
+                pak = new_sprite_pak()
                 pak = {
                     "class": importlib.import_module("GamePaks.%s.%s.pak" % (path, directory,)).Pak
                 }
@@ -228,7 +259,7 @@ class Engine:
 
             # Add the score, FPS, etc.
             # TODO: make FPS drawing toggleable
-            self.draw_fps()
+            # self.draw_fps()
 
             self.draw_text("Score: %s" % (self.game_state["score"],), (8, 8))
             self.draw_text("Level: %s" % (self.game_state["level"],), (200, 8))
@@ -291,7 +322,7 @@ class Engine:
         )
 
         # TODO: make this toggleable
-        self.draw_hitbox(sprite_data)
+        # self.draw_hitbox(sprite_data)
 
     def draw_hitbox(self, sprite_data):
         pygame.draw.rect(
@@ -305,3 +336,13 @@ class Engine:
             ],
             2
         )
+
+
+def new_sprite_pak():
+    return {
+        "get_sprite_details": lambda: {},
+        "advance": lambda sprites, player_state, all_states, time_since_start, delta_t, pressed_buttons, new_missiles: player_state,
+        "collided_with_enemy": lambda player_state, enemy_state: None,
+        "collided_with_enemy_missile": lambda player_state, missile_state: None,
+        "collided_with_level": lambda player_state, previous_position: None
+    }
