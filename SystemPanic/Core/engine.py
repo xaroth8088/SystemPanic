@@ -1,7 +1,7 @@
 import itertools
 import os
 import sys
-import importlib
+import types
 from time import perf_counter
 
 import pygame
@@ -52,12 +52,15 @@ class Engine:
         paks = []
 
         # For each directory...
-        for directory in os.listdir(os.path.join('..', 'GamePaks', path)):
+        for directory in os.listdir(os.path.join('GamePaks', path)):
             # load the class included in the pak file
-            pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.py")
+            pak_path = os.path.join('GamePaks', path, directory, "pak.py")
             if os.path.isfile(pak_path):
+                with open(pak_path) as pak_file:
+                    pak_module = types.ModuleType('pak')
+                    exec(pak_file.read(), pak_module.__dict__)
                 paks.append(
-                    importlib.import_module("GamePaks.%s.%s.pak" % (path, directory,)).Pak
+                    pak_module.Pak
                 )
 
         # return our final list
@@ -67,13 +70,16 @@ class Engine:
         paks = []
 
         # For each directory...
-        for directory in os.listdir(os.path.join('..', 'GamePaks', path)):
+        for directory in os.listdir(os.path.join('GamePaks', path)):
             # load the class included in the pak file
-            pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.py")
-            pak_png_path = os.path.join('..', 'GamePaks', path, directory, "pak.png")
+            pak_path = os.path.join('GamePaks', path, directory, "pak.py")
+            pak_png_path = os.path.join('GamePaks', path, directory, "pak.png")
             if os.path.isfile(pak_path) and os.path.isfile(pak_png_path):
+                with open(pak_path) as pak_file:
+                    pak_module = types.ModuleType('pak')
+                    exec(pak_file.read(), pak_module.__dict__)
                 pak = {
-                    "class": importlib.import_module("GamePaks.%s.%s.pak" % (path, directory,)).Pak
+                    "class": pak_module.Pak
                 }
 
                 spritesheet = pygame.image.load(pak_png_path).convert_alpha()
@@ -136,9 +142,9 @@ class Engine:
         paks = []
 
         # For each directory...
-        for directory in os.listdir(os.path.join('..', 'GamePaks', path)):
+        for directory in os.listdir(os.path.join('GamePaks', path)):
             # load the image included in the pak file
-            pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.png")
+            pak_path = os.path.join('GamePaks', path, directory, "pak.png")
             if os.path.isfile(pak_path):
                 paks.append(pygame.image.load(pak_path).convert_alpha())
 
@@ -150,9 +156,9 @@ class Engine:
         paks = []
 
         # For each directory...
-        for directory in os.listdir(os.path.join('..', 'GamePaks', path)):
+        for directory in os.listdir(os.path.join('GamePaks', path)):
             # load the sound included in the pak file
-            pak_path = os.path.join('..', 'GamePaks', path, directory, "pak.ogg")
+            pak_path = os.path.join('GamePaks', path, directory, "pak.ogg")
             if os.path.isfile(pak_path):
                 paks.append(pak_path)
 
