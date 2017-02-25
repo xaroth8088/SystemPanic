@@ -21,17 +21,33 @@ def get_sprite_details():
     }
 
 
-def advance(sprites, missile_state, all_states, time_since_start, delta_t, target):
+def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     """
-    :param missile_state: the MissileState
-    :param all_states: a dict with all the game state you might want to examine.  Includes:
-        "player", "enemies", "player_missiles", "enemy_missiles", "level"
+    :param sprites: the sprites object constructed from get_sprite_details
+    :param path: the (key, index) tuple that describes how to find ourselves in the game_state
+        Example:
+            key, index = path
+            our_state = game_state[key][index]
+    :param game_state: the entire game state
     :param time_since_start: time in seconds from game start (useful for animation)
     :param delta_t: time in seconds since we were last called
-    :param target: One of "player" or "enemy".  E.g. A missile fired by a player will have a target of "enemy".
+    :param new_missiles: If you want to fire a new missile, append a dict for each new missile with
+        a dict like: {
+            "target": <TARGET>,
+            "direction": { "x": #, "y": # },
+            "position": { "x": #, "y": # }
+        }
 
-    :return: the new MissileState
+        ...where <TARGET> is one of "player" or "enemy".
+
+        The direction vector need not be normalized. Note that the missile may choose to override this direction
+        once fired!
+
+    :return: the new game_state
     """
+    key, index = path
+    missile_state = game_state[key][index]
+
     # What size should our sprite be drawn on-screen as?
     missile_state["sprite_size"]["width"] = 16
     missile_state["sprite_size"]["height"] = 16
@@ -66,7 +82,7 @@ def advance(sprites, missile_state, all_states, time_since_start, delta_t, targe
         missile_state["position"]["y"] = 600
 
     # Return the new state
-    return missile_state
+    return game_state
 
 
 def collided_with_player(missile_state, player_state):

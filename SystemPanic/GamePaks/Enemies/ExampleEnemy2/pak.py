@@ -312,22 +312,33 @@ def get_sprite_details():
     }
 
 
-def advance(sprites, enemy_state, all_states, time_since_start, delta_t, new_missiles):
+def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     """
-    :param enemy_state: the EnemyState
-    :param all_states: a dict with all the game state you might want to examine.  Includes:
-        "player", "enemies", "player_missiles", "enemy_missiles", "level"
+    :param sprites: the sprites object constructed from get_sprite_details
+    :param path: the (key, index) tuple that describes how to find ourselves in the game_state
+        Example:
+            key, index = path
+            our_state = game_state[key][index]
+    :param game_state: the entire game state
     :param time_since_start: time in seconds from game start (useful for animation)
     :param delta_t: time in seconds since we were last called
     :param new_missiles: If you want to fire a new missile, append a dict for each new missile with
         a dict like: {
+            "target": <TARGET>,
             "direction": { "x": #, "y": # },
             "position": { "x": #, "y": # }
         }
-        The vector need not be normalized. Note that the missile may choose to override this direction once fired!
 
-    :return: the new EnemyState
+        ...where <TARGET> is one of "player" or "enemy".
+
+        The direction vector need not be normalized. Note that the missile may choose to override this direction
+        once fired!
+
+    :return: the new game_state
     """
+    key, index = path
+    enemy_state = game_state[key][index]
+
     # State specific to us
     color = enemy_state["pak_specific_state"].get("color")
 
@@ -348,8 +359,8 @@ def advance(sprites, enemy_state, all_states, time_since_start, delta_t, new_mis
 
     # How are we moving?  And what's our sprite?
     # Flee player, dumb
-    player_x = all_states["player"]["position"]["x"]
-    player_y = all_states["player"]["position"]["y"]
+    player_x = game_state["players"][0]["position"]["x"]
+    player_y = game_state["players"][0]["position"]["y"]
 
     speed = 16.0
     if enemy_state["position"]["x"] < player_x:
@@ -371,6 +382,7 @@ def advance(sprites, enemy_state, all_states, time_since_start, delta_t, new_mis
 
     if last_fired is None or time_since_start - last_fired > 1.5:
         new_missiles.append({
+            "target": "player",
             "direction": {
                 "x": player_x - enemy_state["position"]["x"],
                 "y": player_y - enemy_state["position"]["y"]
@@ -394,7 +406,7 @@ def advance(sprites, enemy_state, all_states, time_since_start, delta_t, new_mis
         enemy_state["position"]["y"] = 600
 
     # Return the new state
-    return enemy_state
+    return game_state
 
 
 def collided_with_player(enemy_state, player_state):

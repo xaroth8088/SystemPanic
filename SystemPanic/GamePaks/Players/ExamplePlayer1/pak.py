@@ -117,24 +117,33 @@ def get_sprite_details():
     }
 
 
-def advance(sprites, player_state, all_states, time_since_start, delta_t, pressed_buttons, new_missiles):
+def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     """
-    :param player_state: the PlayerState
-    :param all_states: a dict with all the game state you might want to examine.  Includes:
-        "player", "enemies", "player_missiles", "enemy_missiles", "level"
+    :param sprites: the sprites object constructed from get_sprite_details
+    :param path: the (key, index) tuple that describes how to find ourselves in the game_state
+        Example:
+            key, index = path
+            our_state = game_state[key][index]
+    :param game_state: the entire game state
     :param time_since_start: time in seconds from game start (useful for animation)
     :param delta_t: time in seconds since we were last called
-    :param pressed_buttons: A dict of the controls that are currently active.  Includes:
-        "up", "down", "left", "right", "fire"
     :param new_missiles: If you want to fire a new missile, append a dict for each new missile with
         a dict like: {
+            "target": <TARGET>,
             "direction": { "x": #, "y": # },
             "position": { "x": #, "y": # }
         }
-        The vector need not be normalized. Note that the missile may choose to override this direction once fired!
 
-    :return: the new PlayerState
+        ...where <TARGET> is one of "player" or "enemy".
+
+        The direction vector need not be normalized. Note that the missile may choose to override this direction
+        once fired!
+
+    :return: the new game_state
     """
+    key, index = path
+    player_state = game_state[key][index]
+
     # What size should our sprite be drawn on-screen as?
     player_state["sprite_size"]["width"] = 32
     player_state["sprite_size"]["height"] = 32
@@ -152,26 +161,27 @@ def advance(sprites, player_state, all_states, time_since_start, delta_t, presse
 
     walking_speed = 128.0
 
-    if pressed_buttons["left"] is True:
+    if game_state["pressed_buttons"]["left"] is True:
         player_state["position"]["x"] -= walking_speed * delta_t
         player_state["sprite"] = sprites["left"][int(time_since_start * 8) % 4]
-    if pressed_buttons["right"] is True:
+    if game_state["pressed_buttons"]["right"] is True:
         player_state["position"]["x"] += walking_speed * delta_t
         player_state["sprite"] = sprites["right"][int(time_since_start * 8) % 4]
-    if pressed_buttons["up"] is True:
+    if game_state["pressed_buttons"]["up"] is True:
         player_state["position"]["y"] -= walking_speed * delta_t
         player_state["sprite"] = sprites["up"][int(time_since_start * 8) % 4]
-    if pressed_buttons["down"] is True:
+    if game_state["pressed_buttons"]["down"] is True:
         player_state["position"]["y"] += walking_speed * delta_t
         player_state["sprite"] = sprites["down"][int(time_since_start * 8) % 4]
 
-    if pressed_buttons["fire"] is True:
+    if game_state["pressed_buttons"]["fire"] is True:
         # Limit firing to once per 0.5 seconds
         last_fired = player_state["pak_specific_state"].get("last_fired")
 
         if last_fired is None or time_since_start - last_fired > 0.5:
             new_missiles.append(
                 {
+                    "target": "enemy",
                     "direction": {"x": 1.0, "y": 0.0},
                     "position": {"x": player_state["position"]["x"], "y": player_state["position"]["y"]}
                 }
@@ -193,7 +203,7 @@ def advance(sprites, player_state, all_states, time_since_start, delta_t, presse
         player_state["position"]["y"] = 600
 
     # Return the new state
-    return player_state
+    return game_state
 
 
 def collided_with_enemy(player_state, enemy_state):

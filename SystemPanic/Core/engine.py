@@ -225,13 +225,13 @@ class Engine:
                 [0, 0]
             )
 
-            # Add the walls, enemies, player missiles, enemy missiles, and player (in that order)
+            # Add the sprites (each is drawn atop the previous)
             for sprite_data in itertools.chain(
                     self.game_state["walls"],
                     self.game_state["enemies"],
                     self.game_state["player_missiles"],
                     self.game_state["enemy_missiles"],
-                    [self.game_state["player"]]
+                    self.game_state["players"]
             ):
                 if sprite_data["active"] is True:
                     self.draw_sprite(sprite_data)
@@ -284,6 +284,9 @@ class Engine:
         return buttons
 
     def draw_sprite(self, sprite_data):
+        if sprite_data["sprite"] is None:
+            return
+
         sprite = pygame.transform.scale(
             sprite_data["sprite"],
             (
@@ -320,8 +323,7 @@ class Engine:
 def new_sprite_pak():
     return {
         "get_sprite_details": lambda: {},
-        "advance": lambda sprites, player_state, all_states, time_since_start, delta_t, pressed_buttons,
-                          new_missiles: player_state,
+        "advance": lambda sprites, path, game_state, time_since_start, delta_t, new_missiles: game_state,
         "collided_with_enemy": lambda player_state, enemy_state: None,
         "collided_with_player": lambda player_state, enemy_state: None,
         "collided_with_player_missile": lambda player_state, missile_state: None,

@@ -16,13 +16,18 @@ SpriteState = {
         "width": 0,
         "height": 0
     },
-    # Hitbox is relative to top-left corner of sprite
+
+    "target": None,
+    # One of "enemy" or "player", usually only useful for missiles
+
     "hitbox": {
         "x": 0.0,
         "y": 0.0,
         "width": 0.0,
         "height": 0.0
     },
+    # Hitbox is relative to top-left corner of sprite
+
     "facing": {
         "x": 0,
         "y": 0

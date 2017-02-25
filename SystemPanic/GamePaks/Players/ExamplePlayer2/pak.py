@@ -416,24 +416,33 @@ def get_sprite_details():
     }
 
 
-def advance(sprites, player_state, all_states, time_since_start, delta_t, pressed_buttons, new_missiles):
+def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     """
-    :param player_state: the PlayerState
-    :param all_states: a dict with all the game state you might want to examine.  Includes:
-        "player", "enemies", "player_missiles", "enemy_missiles", "level"
+    :param sprites: the sprites object constructed from get_sprite_details
+    :param path: the (key, index) tuple that describes how to find ourselves in the game_state
+        Example:
+            key, index = path
+            our_state = game_state[key][index]
+    :param game_state: the entire game state
     :param time_since_start: time in seconds from game start (useful for animation)
     :param delta_t: time in seconds since we were last called
-    :param pressed_buttons: A dict of the controls that are currently active.  Includes:
-        "up", "down", "left", "right", "fire"
     :param new_missiles: If you want to fire a new missile, append a dict for each new missile with
         a dict like: {
+            "target": <TARGET>,
             "direction": { "x": #, "y": # },
             "position": { "x": #, "y": # }
         }
-        The vector need not be normalized. Note that the missile may choose to override this direction once fired!
 
-    :return: the new PlayerState
+        ...where <TARGET> is one of "player" or "enemy".
+
+        The direction vector need not be normalized. Note that the missile may choose to override this direction
+        once fired!
+
+    :return: the new game_state
     """
+    key, index = path
+    player_state = game_state[key][index]
+
     driving_speed = 256.0
     car_type = player_state["pak_specific_state"].get("type")
 
@@ -457,7 +466,7 @@ def advance(sprites, player_state, all_states, time_since_start, delta_t, presse
     # And what's our hitbox rect (relative to the top-left corner of the sprite)?
     # TODO: change this to rotate left/right, and have sprite selected by approximate angle
     # TODO: change up/down to be accel/deccel
-    if pressed_buttons["left"] is True:
+    if game_state["pressed_buttons"]["left"] is True:
         player_state["facing"] = {
             "x": -1,
             "y": 0
@@ -469,7 +478,7 @@ def advance(sprites, player_state, all_states, time_since_start, delta_t, presse
             "height": 15
         }
         player_state["sprite"] = sprites[car_type][1]
-    if pressed_buttons["right"] is True:
+    if game_state["pressed_buttons"]["right"] is True:
         player_state["facing"] = {
             "x": 1,
             "y": 0
@@ -481,7 +490,7 @@ def advance(sprites, player_state, all_states, time_since_start, delta_t, presse
             "height": 15
         }
         player_state["sprite"] = sprites[car_type][5]
-    if pressed_buttons["up"] is True:
+    if game_state["pressed_buttons"]["up"] is True:
         player_state["facing"] = {
             "x": 0,
             "y": -1
@@ -493,7 +502,7 @@ def advance(sprites, player_state, all_states, time_since_start, delta_t, presse
             "height": 18
         }
         player_state["sprite"] = sprites[car_type][3]
-    if pressed_buttons["down"] is True:
+    if game_state["pressed_buttons"]["down"] is True:
         player_state["facing"] = {
             "x": 0,
             "y": 1
@@ -509,13 +518,14 @@ def advance(sprites, player_state, all_states, time_since_start, delta_t, presse
     player_state["position"]["x"] += driving_speed * delta_t * player_state["facing"]["x"]
     player_state["position"]["y"] += driving_speed * delta_t * player_state["facing"]["y"]
 
-    if pressed_buttons["fire"] is True:
+    if game_state["pressed_buttons"]["fire"] is True:
         # Limit firing to once per 0.5 seconds
         last_fired = player_state["pak_specific_state"].get("last_fired")
 
         if last_fired is None or time_since_start - last_fired > 0.5:
             new_missiles.append(
                 {
+                    "target": "enemy",
                     "direction": player_state["facing"],
                     "position": {
                         "x": player_state["position"]["x"] + player_state["facing"]["x"] * 16,
@@ -540,7 +550,7 @@ def advance(sprites, player_state, all_states, time_since_start, delta_t, presse
         player_state["position"]["y"] = 600
 
     # Return the new state
-    return player_state
+    return game_state
 
 
 def collided_with_enemy(player_state, enemy_state):

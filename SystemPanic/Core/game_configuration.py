@@ -6,14 +6,15 @@ import pygame
 from SystemPanic.Core import config
 
 GameConfiguration = {
+    "players": None,
+    "enemies": None,
+    "player_missiles": None,
+    "enemy_missiles": None,
+
     "background": None,
-    "enemy": None,
-    "enemy_missile": None,
-    "player_missile": None,
     "level_generator": None,
-    "level_tile": None,
+    "level_tiles": None,
     "music": None,
-    "player": None
 }
 
 
@@ -41,12 +42,12 @@ def get_randomized_config(
     )
 
     new_config["level_generator"] = random.choice(level_generators)()
-
     new_config["music"] = random.choice(music)
     new_config["level_tile"] = random.choice(level_tiles)
-    new_config["player_missile"] = random.choice(missiles)
-    new_config["enemy_missile"] = random.choice(missiles)
-    new_config["player"] = random.choice(players)
-    new_config["enemy"] = random.choice(enemies)
+
+    new_config["players"] = random.choice(players)
+    new_config["player_missiles"] = random.choice(missiles)
+    new_config["enemies"] = random.choice(enemies)
+    new_config["enemy_missiles"] = random.choice(missiles)
 
     return new_config
