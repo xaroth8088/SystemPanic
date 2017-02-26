@@ -31,7 +31,6 @@ rest of our plans before starting to write new code.  We promise to try to be re
 3. Profit?
 
 ## What's on tap for the future?
-* Levels (think mazes or platforms)
 * More Paks!
 * Code cleanup (this started as weekend hackery, and it shows)
 * Performance improvements
