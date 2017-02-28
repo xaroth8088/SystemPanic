@@ -48,8 +48,8 @@ def next_level(game_state):
         if len(walls[y]) > num_columns:
             num_columns = len(walls[y])
 
-    height = config.SCREEN_HEIGHT // num_rows
-    width = config.SCREEN_WIDTH // num_columns
+    height = config.GAME_SURFACE_HEIGHT // num_rows
+    width = config.GAME_SURFACE_WIDTH // num_columns
 
     level_tiles = game_state["active_config"]["level_tile"]
     game_state["walls"] = []
@@ -80,8 +80,8 @@ def next_level(game_state):
 
     # Position the player
     game_state["players"][0]["position"] = {
-        "x": randint(0, config.SCREEN_WIDTH),
-        "y": randint(0, config.SCREEN_HEIGHT)
+        "x": randint(0, config.GAME_SURFACE_WIDTH),
+        "y": randint(0, config.GAME_SURFACE_HEIGHT)
     }
 
     # Init the enemies
@@ -91,8 +91,8 @@ def next_level(game_state):
     # TODO: account for the level, the player's position, and other enemies' positions
     for enemy in game_state["enemies"]:
         enemy["position"] = {
-            "x": randint(0, config.SCREEN_WIDTH),
-            "y": randint(0, config.SCREEN_HEIGHT)
+            "x": randint(0, config.GAME_SURFACE_WIDTH),
+            "y": randint(0, config.GAME_SURFACE_HEIGHT)
         }
 
         # Set a default sprite for the enemies, since advance() won't yet have been called for them

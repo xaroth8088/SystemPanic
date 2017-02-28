@@ -36,8 +36,8 @@ def get_randomized_config(
     new_config["background"] = pygame.transform.scale(
         random.choice(backgrounds),
         (
-            config.SCREEN_WIDTH,
-            config.SCREEN_HEIGHT
+            config.GAME_SURFACE_WIDTH,
+            config.GAME_SURFACE_HEIGHT
         )
     )
 

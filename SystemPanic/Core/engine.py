@@ -24,6 +24,7 @@ class Engine:
 
         # pygame state
         self.screen = None
+        self.game_surface = None
         self.font = None
         self.pygame_clock = None
 
@@ -150,15 +151,22 @@ class Engine:
         pygame.init()
         pygame.mixer.init()
 
-        self.font = pygame.font.SysFont('mono', 20, bold=True)
+        self.font = pygame.font.Font('./Core/PressStart2P-Regular.ttf', 8)
+        # self.font = pygame.font.SysFont('mono', 8, bold=True)
+
         self.pygame_clock = pygame.time.Clock()
 
         # Screen init
         size = config.SCREEN_WIDTH, config.SCREEN_HEIGHT
-        # TODO: work on a 800x600 surface, and scale up to whatever fullscreen mode we can do
         # TODO: configuration / display options
         # self.screen = pygame.display.set_mode(size, pygame.FULLSCREEN | pygame.HWSURFACE | pygame.DOUBLEBUF)
         self.screen = pygame.display.set_mode(size, pygame.DOUBLEBUF)
+
+        self.game_surface = pygame.Surface(
+            (config.GAME_SURFACE_WIDTH, config.GAME_SURFACE_HEIGHT),
+            flags=pygame.SRCALPHA
+        ).convert_alpha()
+
         pygame.display.toggle_fullscreen()
 
     def init_game(self):
@@ -220,7 +228,7 @@ class Engine:
             self.screen.fill((0, 0, 0, 0))
 
             # Add the background
-            self.screen.blit(
+            self.game_surface.blit(
                 self.game_state["active_config"]["background"],
                 [0, 0]
             )
@@ -240,15 +248,40 @@ class Engine:
             # TODO: make FPS drawing toggleable
             # self.draw_fps()
 
-            self.draw_text("Score: %s" % (self.game_state["score"],), (8, 8))
-            self.draw_text("Level: %s" % (self.game_state["level"],), (200, 8))
-            self.draw_text("Lives: %s" % (self.game_state["lives"],), (400, 8))
+            self.draw_text("Score: %s" % (self.game_state["score"],), (8, 4))
+            self.draw_text("Level: %s" % (self.game_state["level"],), (125, 4))
+            self.draw_text("Lives: %s" % (self.game_state["lives"],), (240, 4))
+
+            # Put the game surface onto the screen
+            surface = pygame.transform.scale(
+                self.game_surface,
+                (
+                    800, 600  # TODO: fully separate game surface from window size.
+                    # config.SCREEN_WIDTH,
+                    # config.SCREEN_HEIGHT
+                )
+            )
+
+            self.screen.blit(
+                surface,
+                [
+                    0,
+                    0
+                ],
+            )
 
             pygame.display.flip()
 
     def draw_text(self, text, position):
-        surface = self.font.render(text, True, (0, 255, 0))
-        self.screen.blit(surface, position)
+        # Draw the shadow first
+        shadow_position = position[0] + 1, position[1] + 1
+
+        surface = self.font.render(text, True, (0, 0, 0))
+        self.game_surface.blit(surface, shadow_position)
+
+        # Then the actual text
+        surface = self.font.render(text, True, (255, 255, 255))
+        self.game_surface.blit(surface, position)
 
     def draw_fps(self):
         self.pygame_clock.tick()
@@ -256,7 +289,7 @@ class Engine:
         text_width, _ = self.font.size(fps)
         self.draw_text(
             fps,
-            (config.SCREEN_WIDTH - text_width - 8, 8)
+            (config.GAME_SURFACE_WIDTH - text_width - 4, 4)
         )
 
     @staticmethod
@@ -295,7 +328,7 @@ class Engine:
             )
         )
 
-        self.screen.blit(
+        self.game_surface.blit(
             sprite,
             [
                 sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] // 2),

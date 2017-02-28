@@ -70,3 +70,6 @@ rest of our plans before starting to write new code.  We promise to try to be re
 
 ### Level Tiles
 * ExampleLevelTiles1 spritesheet - GrumpyDiamond, license: CC0, http://opengameart.org/content/seamless-wall
+
+### Fonts
+* Press Start 2P - Copyright 2012 The Press Start 2P Project Authors (cody@zone38.net), license: OFL
