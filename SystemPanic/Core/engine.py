@@ -256,9 +256,8 @@ class Engine:
             surface = pygame.transform.scale(
                 self.game_surface,
                 (
-                    800, 600  # TODO: fully separate game surface from window size.
-                    # config.SCREEN_WIDTH,
-                    # config.SCREEN_HEIGHT
+                    config.SCREEN_WIDTH,
+                    config.SCREEN_HEIGHT
                 )
             )
 
