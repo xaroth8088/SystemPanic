@@ -2,62 +2,140 @@ def get_sprite_details():
     """
         Tells the game engine how to slice up your spritesheet.
 
-        This should be in the form of a dict, where each key has an array of rect objects, where a rect object
-        is defined as a dict with these keys: x, y, width, height
+        Each slice of your spritesheet should be an object that looks like this:
+        {
+            "image rect": {
+                "x": <x offset in pixels, relative to left edge>,
+                "y": <y offset in pixels, relative to top edge>,
+                "width": <width in pixels>,
+                "height": <height in pixels>
+            },
+            "hitbox": {
+                "x": <x offset in pixels, relative to the left edge of this sprite's image>,
+                "y": <y offset in pixels, relative to the top edge of this sprite's image>,
+                "width": <width in pixels>,
+                "height": <height in pixels>
+            }
+        }
 
-        Later, when advance() is called, it will receive an object of sprite objects in the same shape,
-        except the rect objects will be replaced with the sprite objects that you can set on the missile state.
-    :return:
+        Slices are grouped into arrays, one per key that you define.  That key is what you'll use to get
+        the sprite object later when deciding what to set in the state's "sprite" field.
+
+    :return: A dict, where each key holds an array of the dicts described above.
     """
     return {
         "spinner": [
             {
-                "x": 0,
-                "y": 0,
-                "width": 16,
-                "height": 16
+                "image rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                }
             },
             {
-                "x": 16,
-                "y": 0,
-                "width": 16,
-                "height": 16
+                "image rect": {
+                    "x": 16,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                }
             },
             {
-                "x": 32,
-                "y": 0,
-                "width": 16,
-                "height": 16
+                "image rect": {
+                    "x": 32,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                }
             },
             {
-                "x": 48,
-                "y": 0,
-                "width": 16,
-                "height": 16
+                "image rect": {
+                    "x": 48,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                }
             },
             {
-                "x": 64,
-                "y": 0,
-                "width": 16,
-                "height": 16
+                "image rect": {
+                    "x": 64,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                }
             },
             {
-                "x": 80,
-                "y": 0,
-                "width": 16,
-                "height": 16
+                "image rect": {
+                    "x": 80,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                }
             },
             {
-                "x": 96,
-                "y": 0,
-                "width": 16,
-                "height": 16
+                "image rect": {
+                    "x": 96,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                }
             },
             {
-                "x": 112,
-                "y": 0,
-                "width": 16,
-                "height": 16
+                "image rect": {
+                    "x": 112,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 16,
+                    "height": 16
+                }
             },
         ]
     }
@@ -94,15 +172,9 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
 
     # What size should our sprite be drawn on-screen as?
     time_alive_ratio = (time_since_start - missile_state["start_time"]) / lifetime
-    size = 48 * (1 - time_alive_ratio)
+    size = 24 * (1 - time_alive_ratio)
     missile_state["sprite_size"]["width"] = int(size)
     missile_state["sprite_size"]["height"] = int(size)
-
-    # What's our hitbox rect (relative to the top-left corner of the sprite)?
-    missile_state["hitbox"]["x"] = 0
-    missile_state["hitbox"]["y"] = 0
-    missile_state["hitbox"]["width"] = size
-    missile_state["hitbox"]["height"] = size
 
     # How are we moving?  And what's our sprite?
     missile_state["position"]["x"] += 256 * delta_t * missile_state["direction"]["x"]
@@ -121,12 +193,12 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
 
     if missile_state["position"]["x"] < 0:
         missile_state["position"]["x"] = 0
-    if missile_state["position"]["x"] > 800:
-        missile_state["position"]["x"] = 800
+    if missile_state["position"]["x"] > 320:
+        missile_state["position"]["x"] = 320
     if missile_state["position"]["y"] < 0:
         missile_state["position"]["y"] = 0
-    if missile_state["position"]["y"] > 600:
-        missile_state["position"]["y"] = 600
+    if missile_state["position"]["y"] > 240:
+        missile_state["position"]["y"] = 240
 
     # Return the new state
     return game_state

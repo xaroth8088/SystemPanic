@@ -5,412 +5,1001 @@ def get_sprite_details():
     """
         Tells the game engine how to slice up your spritesheet.
 
-        This should be in the form of a dict, where each key has an array of rect objects, where a rect object
-        is defined as a dict with these keys: x, y, width, height
+        Each slice of your spritesheet should be an object that looks like this:
+        {
+            "image rect": {
+                "x": <x offset in pixels, relative to left edge>,
+                "y": <y offset in pixels, relative to top edge>,
+                "width": <width in pixels>,
+                "height": <height in pixels>
+            },
+            "hitbox": {
+                "x": <x offset in pixels, relative to the left edge of this sprite's image>,
+                "y": <y offset in pixels, relative to the top edge of this sprite's image>,
+                "width": <width in pixels>,
+                "height": <height in pixels>
+            }
+        }
 
-        Later, when advance() is called, it will receive an object of sprite objects in the same shape,
-        except the rect objects will be replaced with the sprite objects that you can set on the player state.
-    :return:
+        Slices are grouped into arrays, one per key that you define.  That key is what you'll use to get
+        the sprite object later when deciding what to set in the state's "sprite" field.
+
+    :return: A dict, where each key holds an array of the dicts described above.
     """
     return {
         "Basic sedan car": [
             {
-                "x": 0,
-                "y": 0,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                }
             },
             {
-                "x": 32,
-                "y": 0,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 32,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 64,
-                "y": 0,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 64,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 96,
-                "y": 0,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 96,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
             {
-                "x": 128,
-                "y": 0,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 128,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 160,
-                "y": 0,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 160,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 192,
-                "y": 0,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 192,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 224,
-                "y": 0,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 224,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
         ],
         "Sport coupe": [
             {
-                "x": 0,
-                "y": 32,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 0,
+                    "y": 32,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 32,
-                "y": 32,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 32,
+                    "y": 32,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 64,
-                "y": 32,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 64,
+                    "y": 32,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 96,
-                "y": 32,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 96,
+                    "y": 32,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
             {
-                "x": 128,
-                "y": 32,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 128,
+                    "y": 32,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 160,
-                "y": 32,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 160,
+                    "y": 32,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 192,
-                "y": 32,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 192,
+                    "y": 32,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 224,
-                "y": 32,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 224,
+                    "y": 32,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
         ],
         "Hothatch car": [
             {
-                "x": 0,
-                "y": 64,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 0,
+                    "y": 64,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 32,
-                "y": 64,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 32,
+                    "y": 64,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 64,
-                "y": 64,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 64,
+                    "y": 64,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 96,
-                "y": 64,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 96,
+                    "y": 64,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
             {
-                "x": 128,
-                "y": 64,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 128,
+                    "y": 64,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 160,
-                "y": 64,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 160,
+                    "y": 64,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 192,
-                "y": 64,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 192,
+                    "y": 64,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 224,
-                "y": 64,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 224,
+                    "y": 64,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
         ],
         "Small delivery car": [
             {
-                "x": 0,
-                "y": 96,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 0,
+                    "y": 96,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 32,
-                "y": 96,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 32,
+                    "y": 96,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 64,
-                "y": 96,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 64,
+                    "y": 96,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 96,
-                "y": 96,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 96,
+                    "y": 96,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
             {
-                "x": 128,
-                "y": 96,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 128,
+                    "y": 96,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 160,
-                "y": 96,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 160,
+                    "y": 96,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 192,
-                "y": 96,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 192,
+                    "y": 96,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 224,
-                "y": 96,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 224,
+                    "y": 96,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
         ],
         "Station wagon": [
             {
-                "x": 0,
-                "y": 128,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 0,
+                    "y": 128,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 32,
-                "y": 128,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 32,
+                    "y": 128,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 64,
-                "y": 128,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 64,
+                    "y": 128,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 96,
-                "y": 128,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 96,
+                    "y": 128,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
             {
-                "x": 128,
-                "y": 128,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 128,
+                    "y": 128,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 160,
-                "y": 128,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 160,
+                    "y": 128,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 192,
-                "y": 128,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 192,
+                    "y": 128,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 224,
-                "y": 128,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 224,
+                    "y": 128,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
         ],
         "Minibus": [
             {
-                "x": 0,
-                "y": 160,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 0,
+                    "y": 160,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 32,
-                "y": 160,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 32,
+                    "y": 160,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 64,
-                "y": 160,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 64,
+                    "y": 160,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 96,
-                "y": 160,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 96,
+                    "y": 160,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
             {
-                "x": 128,
-                "y": 160,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 128,
+                    "y": 160,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 160,
-                "y": 160,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 160,
+                    "y": 160,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 192,
-                "y": 160,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 192,
+                    "y": 160,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 224,
-                "y": 160,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 224,
+                    "y": 160,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
         ],
         "Delivery van": [
             {
-                "x": 0,
-                "y": 192,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 0,
+                    "y": 192,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 32,
-                "y": 192,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 32,
+                    "y": 192,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 64,
-                "y": 192,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 64,
+                    "y": 192,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 96,
-                "y": 192,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 96,
+                    "y": 192,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
             {
-                "x": 128,
-                "y": 192,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 128,
+                    "y": 192,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 160,
-                "y": 192,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 160,
+                    "y": 192,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 192,
-                "y": 192,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 192,
+                    "y": 192,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 224,
-                "y": 192,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 224,
+                    "y": 192,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
         ],
         "Pickup truck": [
             {
-                "x": 0,
-                "y": 224,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 0,
+                    "y": 224,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 32,
-                "y": 224,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 32,
+                    "y": 224,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 64,
-                "y": 224,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 64,
+                    "y": 224,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 96,
-                "y": 224,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 96,
+                    "y": 224,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
             {
-                "x": 128,
-                "y": 224,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 128,
+                    "y": 224,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 160,
-                "y": 224,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 160,
+                    "y": 224,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 4,
+                    "y": 8,
+                    "width": 24,
+                    "height": 15
+                },
             },
             {
-                "x": 192,
-                "y": 224,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 192,
+                    "y": 224,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 32,
+                    "height": 32
+                },
             },
             {
-                "x": 224,
-                "y": 224,
-                "width": 32,
-                "height": 32
+                "image rect": {
+                    "x": 224,
+                    "y": 224,
+                    "width": 32,
+                    "height": 32
+
+                },
+                "hitbox": {
+                    "x": 10,
+                    "y": 7,
+                    "width": 12,
+                    "height": 18
+                },
             },
         ],
     }
@@ -443,7 +1032,7 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     key, index = path
     player_state = game_state[key][index]
 
-    driving_speed = 256.0
+    driving_speed = 100.0
     car_type = player_state["pak_specific_state"].get("type")
 
     # State specific to us
@@ -459,11 +1048,10 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
         player_state["sprite"] = sprites[car_type][1]
 
     # What size should our sprite be drawn on-screen as?
-    player_state["sprite_size"]["width"] = 32
-    player_state["sprite_size"]["height"] = 32
+    player_state["sprite_size"]["width"] = 16
+    player_state["sprite_size"]["height"] = 16
 
     # How are we moving?  And what's our sprite?
-    # And what's our hitbox rect (relative to the top-left corner of the sprite)?
     # TODO: change this to rotate left/right, and have sprite selected by approximate angle
     # TODO: change up/down to be accel/deccel
     if game_state["pressed_buttons"]["left"] is True:
@@ -471,23 +1059,11 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
             "x": -1,
             "y": 0
         }
-        player_state["hitbox"] = {
-            "x": 4,
-            "y": 8,
-            "width": 24,
-            "height": 15
-        }
         player_state["sprite"] = sprites[car_type][1]
     if game_state["pressed_buttons"]["right"] is True:
         player_state["facing"] = {
             "x": 1,
             "y": 0
-        }
-        player_state["hitbox"] = {
-            "x": 4,
-            "y": 8,
-            "width": 24,
-            "height": 15
         }
         player_state["sprite"] = sprites[car_type][5]
     if game_state["pressed_buttons"]["up"] is True:
@@ -495,23 +1071,11 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
             "x": 0,
             "y": -1
         }
-        player_state["hitbox"] = {
-            "x": 10,
-            "y": 7,
-            "width": 12,
-            "height": 18
-        }
         player_state["sprite"] = sprites[car_type][3]
     if game_state["pressed_buttons"]["down"] is True:
         player_state["facing"] = {
             "x": 0,
             "y": 1
-        }
-        player_state["hitbox"] = {
-            "x": 10,
-            "y": 7,
-            "width": 12,
-            "height": 18
         }
         player_state["sprite"] = sprites[car_type][7]
 
@@ -542,12 +1106,12 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
 
     if player_state["position"]["x"] < 0:
         player_state["position"]["x"] = 0
-    if player_state["position"]["x"] > 800:
-        player_state["position"]["x"] = 800
+    if player_state["position"]["x"] > 320:
+        player_state["position"]["x"] = 320
     if player_state["position"]["y"] < 0:
         player_state["position"]["y"] = 0
-    if player_state["position"]["y"] > 600:
-        player_state["position"]["y"] = 600
+    if player_state["position"]["y"] > 240:
+        player_state["position"]["y"] = 240
 
     # Return the new state
     return game_state

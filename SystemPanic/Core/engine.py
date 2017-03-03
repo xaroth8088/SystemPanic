@@ -87,15 +87,16 @@ class Engine:
                         pak[func] = pak_module.__dict__[func]
 
                 # Set up the spritesheet
-                spritesheet = pygame.image.load(pak_png_path).convert_alpha()
+                spritesheet_raw_image = pygame.image.load(pak_png_path).convert_alpha()
 
                 details = pak["get_sprite_details"]()
+
                 sprites = {}
                 for key, value in details.items():
                     if key not in sprites:
                         sprites[key] = []
-                    for rect in value:
-                        sprites[key].append(self.image_at(spritesheet, rect))
+                    for sprite_spec in value:
+                        sprites[key].append(self.construct_sprite(spritesheet_raw_image, sprite_spec))
 
                 pak["sprites"] = sprites
 
@@ -105,11 +106,15 @@ class Engine:
         return paks
 
     @staticmethod
-    def image_at(spritesheet, rectangle):
-        rect = pygame.Rect((rectangle["x"], rectangle["y"], rectangle["width"], rectangle["height"]))
+    def construct_sprite(spritesheet_image, sprite_spec):
+        rect = pygame.Rect((sprite_spec["image rect"]["x"], sprite_spec["image rect"]["y"], sprite_spec["image rect"]["width"], sprite_spec["image rect"]["height"]))
         image = pygame.Surface(rect.size, flags=pygame.SRCALPHA).convert_alpha()
-        image.blit(spritesheet, (0, 0), rect)
-        return image
+        image.blit(spritesheet_image, (0, 0), rect)
+        return {
+            "image": image,
+            "original size": sprite_spec["image rect"],
+            "hitbox": sprite_spec["hitbox"]
+        }
 
     @staticmethod
     def load_pak_images(path):
@@ -316,11 +321,11 @@ class Engine:
         return buttons
 
     def draw_sprite(self, sprite_data):
-        if sprite_data["sprite"] is None:
+        if sprite_data["sprite"] is None or sprite_data["sprite"]["image"] is None:
             return
 
         sprite = pygame.transform.scale(
-            sprite_data["sprite"],
+            sprite_data["sprite"]["image"],
             (
                 sprite_data["sprite_size"]["width"],
                 sprite_data["sprite_size"]["height"]
@@ -339,14 +344,22 @@ class Engine:
         # self.draw_hitbox(sprite_data)
 
     def draw_hitbox(self, sprite_data):
+        hitbox_x_ratio = sprite_data["sprite_size"]["width"] / sprite_data["sprite"]["original size"]["width"]
+        hitbox_y_ratio = sprite_data["sprite_size"]["height"] / sprite_data["sprite"]["original size"]["height"]
+
+        x = sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] / 2) + (sprite_data["sprite"]["hitbox"]["x"] * hitbox_x_ratio)
+        y = sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] / 2) + (sprite_data["sprite"]["hitbox"]["y"] * hitbox_y_ratio)
+        width = sprite_data["sprite"]["hitbox"]["width"] * hitbox_x_ratio
+        height = sprite_data["sprite"]["hitbox"]["height"] * hitbox_y_ratio
+
         pygame.draw.rect(
-            self.screen,
+            self.game_surface,
             (255, 0, 255),
             [
-                sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] // 2) + sprite_data["hitbox"]["x"],
-                sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] // 2) + sprite_data["hitbox"]["y"],
-                sprite_data["hitbox"]["width"],
-                sprite_data["hitbox"]["height"]
+                int(x),
+                int(y),
+                int(width),
+                int(height)
             ],
             2
         )

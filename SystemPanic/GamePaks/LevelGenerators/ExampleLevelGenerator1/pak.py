@@ -25,11 +25,11 @@ class Pak:
 
         """
         walls = [
-            [False for _ in range(0, 10)]
-            for _ in range(0, 10)
+            [False for _ in range(0, 16)]
+            for _ in range(0, 16)
             ]
 
         for _ in range(0, randint(0, 30)):
-            walls[randint(0, 9)][randint(0, 9)] = True
+            walls[randint(0, 15)][randint(0, 15)] = True
 
         return walls

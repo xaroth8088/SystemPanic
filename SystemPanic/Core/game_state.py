@@ -65,12 +65,6 @@ def next_level(game_state):
                     "width": width,
                     "height": height
                 }
-                wall["hitbox"] = {
-                    "x": 0,
-                    "y": 0,
-                    "width": width,
-                    "height": height
-                }
                 # TODO: decide which sprite to grab based on the walls around this one
                 # TODO: this will need to be re-configured whenever we change the level up
                 wall["sprite"] = level_tiles["get_center"](
@@ -96,7 +90,21 @@ def next_level(game_state):
         }
 
         # Set a default sprite for the enemies, since advance() won't yet have been called for them
-        enemy["sprite"] = pygame.Surface((1, 1))
+        enemy["sprite"] = {
+            "image": pygame.Surface((1, 1)),
+            "original size": {
+                "x": 0,
+                "y": 0,
+                "width": 1,
+                "height": 1
+            },
+            "hitbox": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        }
 
     return game_state
 

@@ -2,20 +2,42 @@ def get_sprite_details():
     """
         Tells the game engine how to slice up your spritesheet.
 
-        This should be in the form of a dict, where each key has an array of rect objects, where a rect object
-        is defined as a dict with these keys: x, y, width, height
+        Each slice of your spritesheet should be an object that looks like this:
+        {
+            "image rect": {
+                "x": <x offset in pixels, relative to left edge>,
+                "y": <y offset in pixels, relative to top edge>,
+                "width": <width in pixels>,
+                "height": <height in pixels>
+            },
+            "hitbox": {
+                "x": <x offset in pixels, relative to the left edge of this sprite's image>,
+                "y": <y offset in pixels, relative to the top edge of this sprite's image>,
+                "width": <width in pixels>,
+                "height": <height in pixels>
+            }
+        }
 
-        Later, when advance() is called, it will receive an object of sprite objects in the same shape,
-        except the rect objects will be replaced with the sprite objects that you can set on the missile state.
-    :return:
+        Slices are grouped into arrays, one per key that you define.  That key is what you'll use to get
+        the sprite object later when deciding what to set in the state's "sprite" field.
+
+    :return: A dict, where each key holds an array of the dicts described above.
     """
     return {
         "missile": [
             {
-                "x": 0,
-                "y": 0,
-                "width": 8,
-                "height": 8
+                "image rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 8,
+                    "height": 8
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 8,
+                    "height": 8
+                }
             },
         ]
     }
@@ -49,14 +71,8 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     missile_state = game_state[key][index]
 
     # What size should our sprite be drawn on-screen as?
-    missile_state["sprite_size"]["width"] = 16
-    missile_state["sprite_size"]["height"] = 16
-
-    # What's our hitbox rect (relative to the top-left corner of the sprite)?
-    missile_state["hitbox"]["x"] = 0
-    missile_state["hitbox"]["y"] = 0
-    missile_state["hitbox"]["width"] = 16
-    missile_state["hitbox"]["height"] = 16
+    missile_state["sprite_size"]["width"] = 8
+    missile_state["sprite_size"]["height"] = 8
 
     # How are we moving?  And what's our sprite?
     missile_state["position"]["x"] += 128 * delta_t * missile_state["direction"]["x"]
@@ -74,12 +90,12 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
 
     if missile_state["position"]["x"] < 0:
         missile_state["position"]["x"] = 0
-    if missile_state["position"]["x"] > 800:
-        missile_state["position"]["x"] = 800
+    if missile_state["position"]["x"] > 320:
+        missile_state["position"]["x"] = 320
     if missile_state["position"]["y"] < 0:
         missile_state["position"]["y"] = 0
-    if missile_state["position"]["y"] > 600:
-        missile_state["position"]["y"] = 600
+    if missile_state["position"]["y"] > 240:
+        missile_state["position"]["y"] = 240
 
     # Return the new state
     return game_state

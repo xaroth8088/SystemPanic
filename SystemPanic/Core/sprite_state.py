@@ -2,7 +2,7 @@
 """
 from copy import deepcopy
 
-import pygame
+from pygame import Rect
 
 SpriteState = {
     "active": True,
@@ -19,14 +19,6 @@ SpriteState = {
 
     "target": None,
     # One of "enemy" or "player", usually only useful for missiles
-
-    "hitbox": {
-        "x": 0.0,
-        "y": 0.0,
-        "width": 0.0,
-        "height": 0.0
-    },
-    # Hitbox is relative to top-left corner of sprite
 
     "facing": {
         "x": 0,
@@ -47,18 +39,28 @@ def do_sprites_collide(sprite_a, sprite_b):
     if sprite_a["active"] is False or sprite_b["active"] is False:
         return False
 
-    hit_a = pygame.Rect(
-        sprite_a["position"]["x"] - (sprite_a["sprite_size"]["width"] / 2.0) + sprite_a["hitbox"]["x"],
-        sprite_a["position"]["y"] - (sprite_a["sprite_size"]["height"] / 2.0) + sprite_a["hitbox"]["y"],
-        sprite_a["hitbox"]["width"],
-        sprite_a["hitbox"]["height"]
+    hitbox_x_ratio_a = sprite_a["sprite_size"]["width"] / sprite_a["sprite"]["original size"]["width"]
+    hitbox_y_ratio_a = sprite_a["sprite_size"]["height"] / sprite_a["sprite"]["original size"]["height"]
+
+    hitbox_x_ratio_b = sprite_b["sprite_size"]["width"] / sprite_b["sprite"]["original size"]["width"]
+    hitbox_y_ratio_b = sprite_b["sprite_size"]["height"] / sprite_b["sprite"]["original size"]["height"]
+
+    hit_a = Rect(
+        sprite_a["position"]["x"] - (sprite_a["sprite_size"]["width"] / 2.0) + sprite_a["sprite"]["hitbox"][
+            "x"] * hitbox_x_ratio_a,
+        sprite_a["position"]["y"] - (sprite_a["sprite_size"]["height"] / 2.0) + sprite_a["sprite"]["hitbox"][
+            "y"] * hitbox_y_ratio_a,
+        sprite_a["sprite"]["hitbox"]["width"] * hitbox_x_ratio_a,
+        sprite_a["sprite"]["hitbox"]["height"] * hitbox_y_ratio_a
     )
 
-    hit_b = pygame.Rect(
-        sprite_b["position"]["x"] - (sprite_b["sprite_size"]["width"] / 2.0) + sprite_b["hitbox"]["x"],
-        sprite_b["position"]["y"] - (sprite_b["sprite_size"]["height"] / 2.0) + sprite_b["hitbox"]["y"],
-        sprite_b["hitbox"]["width"],
-        sprite_b["hitbox"]["height"]
+    hit_b = Rect(
+        sprite_b["position"]["x"] - (sprite_b["sprite_size"]["width"] / 2.0) + sprite_b["sprite"]["hitbox"][
+            "x"] * hitbox_x_ratio_b,
+        sprite_b["position"]["y"] - (sprite_b["sprite_size"]["height"] / 2.0) + sprite_b["sprite"]["hitbox"][
+            "y"] * hitbox_y_ratio_b,
+        sprite_b["sprite"]["hitbox"]["width"] * hitbox_x_ratio_b,
+        sprite_b["sprite"]["hitbox"]["height"] * hitbox_y_ratio_b
     )
 
     return hit_a.colliderect(hit_b)

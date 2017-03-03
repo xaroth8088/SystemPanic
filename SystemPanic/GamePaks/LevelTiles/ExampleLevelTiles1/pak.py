@@ -2,22 +2,44 @@ def get_sprite_details():
     """
         Tells the game engine how to slice up your spritesheet.
 
-        This should be in the form of a dict, where each key has an array of rect objects, where a rect object
-        is defined as a dict with these keys: x, y, width, height
+        Each slice of your spritesheet should be an object that looks like this:
+        {
+            "image rect": {
+                "x": <x offset in pixels, relative to left edge>,
+                "y": <y offset in pixels, relative to top edge>,
+                "width": <width in pixels>,
+                "height": <height in pixels>
+            },
+            "hitbox": {
+                "x": <x offset in pixels, relative to the left edge of this sprite's image>,
+                "y": <y offset in pixels, relative to the top edge of this sprite's image>,
+                "width": <width in pixels>,
+                "height": <height in pixels>
+            }
+        }
 
-        Later, when a block accessor method is called, it will receive an object of sprite objects in the same shape,
-        except the rect objects will be replaced with the sprite objects that you can set on the player state.
-    :return:
+        Slices are grouped into arrays, one per key that you define.  That key is what you'll use to get
+        the sprite object later when deciding what to set in the state's "sprite" field.
+
+    :return: A dict, where each key holds an array of the dicts described above.
     """
     # TODO: do we need to do something about the collision sizes here, too?  Probably.
     # TODO: when we do that, we'll need to keep in mind that the actual size of the block gets scaled later.
     return {
         "block": [
             {
-                "x": 0,
-                "y": 0,
-                "width": 128,
-                "height": 128
+                "image rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 128,
+                    "height": 128
+                },
+                "hitbox": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 128,
+                    "height": 128
+                }
             }
         ],
     }
