@@ -9,9 +9,9 @@ from SystemPanic.Core.sprite_state import do_sprites_collide, new_sprite
 from SystemPanic.Core import config
 from SystemPanic.Core.game_configuration import get_randomized_config
 
+
 # TODO: should this be something we can set in options?  Or on game start or something?
 RANDOMIZE_CONFIGURATION_TIME = 3.0  # in seconds
-
 
 GAME_MODES = Enum(
     "GAME_MODES",
@@ -19,6 +19,7 @@ GAME_MODES = Enum(
 )
 
 GameState = {
+    "mode_specific": {},
     "active_config": new_game_configuration(),
     "players": [new_sprite()],
     "enemies": [],
@@ -154,14 +155,16 @@ def advance(paks, game_state, time_since_start, delta_t, pressed_buttons):
         game_state = randomize_config(game_state, paks, time_since_start)
 
     if game_state["game_mode"] is GAME_MODES.IN_GAME:
-        return advance_in_game(game_state, time_since_start, delta_t)
+        return advance_in_game(paks, game_state, time_since_start, delta_t)
     elif game_state["game_mode"] is GAME_MODES.TITLE_SCREEN:
-        return advance_title_screen(game_state, time_since_start, delta_t)
+        return advance_title_screen(paks, game_state, time_since_start, delta_t)
+    elif game_state["game_mode"] is GAME_MODES.GAME_OVER:
+        return advance_game_over(paks, game_state, time_since_start, delta_t)
 
     return game_state
 
 
-def advance_in_game(game_state, time_since_start, delta_t):
+def advance_in_game(paks, game_state, time_since_start, delta_t):
     # Advance the sprites and add new missiles as we go
     new_missiles = []
     for key in ["players", "enemies", "player_missiles", "enemy_missiles"]:
@@ -193,11 +196,13 @@ def advance_in_game(game_state, time_since_start, delta_t):
         else:
             game_state["enemy_missiles"].append(new_missile(missile, time_since_start))
 
-    # TODO: player dying logic & animation
+    # TODO: player dying animation
     if game_state["players"][0]["active"] is False:
         game_state["lives"] -= 1
+        if game_state["lives"] <= 0:
+            return change_mode(game_state, GAME_MODES.GAME_OVER)
+
         game_state["players"][0]["active"] = True
-        # TODO: Check for end-of-game state, game over screen, new game screen
 
     # Prune dead enemies
     game_state["enemies"] = [enemy for enemy in game_state["enemies"] if enemy["active"] is True]
@@ -210,10 +215,34 @@ def advance_in_game(game_state, time_since_start, delta_t):
     return game_state
 
 
-def advance_title_screen(game_state, time_since_start, delta_t):
-    if game_state["pressed_buttons"]["fire"] is True:
+def advance_title_screen(paks, game_state, time_since_start, delta_t):
+    # We want to ensure that the player has released the fire button before advancing to the title screen,
+    # since it's likely that they'll die with the fire button pressed.
+    if game_state["pressed_buttons"]["fire"] is False:
+        game_state["mode_specific"]["fire_released"] = True
+    elif game_state["mode_specific"].get("fire_released") is True:
         game_state = next_level(game_state)
-        game_state["game_mode"] = GAME_MODES.IN_GAME
+        game_state = change_mode(game_state, GAME_MODES.IN_GAME)
+
+    return game_state
+
+
+def advance_game_over(paks, game_state, time_since_start, delta_t):
+    fade_time = 0.5  # seconds to fade out over
+    # We want to ensure that the player has released the fire button before advancing to the title screen,
+    # since it's likely that they'll die with the fire button pressed.
+    if game_state["pressed_buttons"]["fire"] is False:
+        game_state["mode_specific"]["fire_released"] = True
+    elif game_state["mode_specific"].get("fire_released") is True:
+        game_state["mode_specific"]["fade_timer"] = fade_time
+
+    if game_state["mode_specific"].get("fade_timer") is not None:
+        game_state["mode_specific"]["fade_timer"] -= delta_t
+        game_state["mode_specific"]["fade_percent"] = game_state["mode_specific"]["fade_timer"] / fade_time
+
+        if game_state["mode_specific"]["fade_timer"] <= 0.0:
+            game_state = new_game_state(paks, 0)
+            return change_mode(game_state, GAME_MODES.TITLE_SCREEN)
 
     return game_state
 
@@ -322,3 +351,9 @@ def randomize_config(game_state, paks, now):
             paks["players"]
         )
     )
+
+
+def change_mode(game_state, game_mode):
+    game_state["mode_specific"] = {}
+    game_state["game_mode"] = game_mode
+    return game_state

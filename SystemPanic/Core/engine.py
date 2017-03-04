@@ -100,6 +100,8 @@ class Engine:
                 self.draw_ingame()
             elif self.game_state["game_mode"] == GAME_MODES.TITLE_SCREEN:
                 self.draw_title_screen()
+            elif self.game_state["game_mode"] == GAME_MODES.GAME_OVER:
+                self.draw_game_over_screen()
 
             # TODO: make FPS drawing toggleable
             if self.show_fps is True:
@@ -252,3 +254,23 @@ class Engine:
 
         self.draw_text("SYSTEM PANIC!", (160, 120))
         self.draw_text("PRESS FIRE TO START", (160, 130))
+
+    def draw_game_over_screen(self):
+        # Add the background
+        self.game_surface.blit(
+            self.game_state["active_config"]["background"],
+            [0, 0]
+        )
+
+        self.draw_text("GAME OVER", (160, 120))
+        self.draw_text("FINAL SCORE: %s" % (self.game_state["score"],), (160, 130))
+        if self.game_state["mode_specific"].get("fade_percent") is not None:
+            fade_mask = pygame.Surface(self.game_surface.get_size(), flags=pygame.SRCALPHA)
+            alpha = 255 - self.game_state["mode_specific"]["fade_percent"] * 255.0
+            if alpha < 0:
+                alpha = 0
+            fade_mask.fill((0, 0, 0, alpha))
+            self.game_surface.blit(
+                fade_mask,
+                [0, 0]
+            )
