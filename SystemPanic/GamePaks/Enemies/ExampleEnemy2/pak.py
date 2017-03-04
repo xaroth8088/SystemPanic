@@ -753,7 +753,6 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
         enemy_state["sprite_size"]["width"] = size
         enemy_state["sprite_size"]["height"] = size
 
-
     # How are we moving?  And what's our sprite?
     # Flee player, dumb
     player_x = game_state["players"][0]["position"]["x"]

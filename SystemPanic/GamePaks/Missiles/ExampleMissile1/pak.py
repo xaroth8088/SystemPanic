@@ -168,7 +168,7 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     key, index = path
     missile_state = game_state[key][index]
 
-    lifetime = 1.0  # in seconds
+    lifetime = 0.75  # in seconds
 
     # What size should our sprite be drawn on-screen as?
     time_alive_ratio = (time_since_start - missile_state["start_time"]) / lifetime
@@ -177,8 +177,8 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     missile_state["sprite_size"]["height"] = int(size)
 
     # How are we moving?  And what's our sprite?
-    missile_state["position"]["x"] += 256 * delta_t * missile_state["direction"]["x"]
-    missile_state["position"]["y"] += 256 * delta_t * missile_state["direction"]["y"]
+    missile_state["position"]["x"] += 96 * delta_t * missile_state["direction"]["x"]
+    missile_state["position"]["y"] += 96 * delta_t * missile_state["direction"]["y"]
 
     missile_state["sprite"] = sprites["spinner"][int(time_since_start * 16) % 8]
 

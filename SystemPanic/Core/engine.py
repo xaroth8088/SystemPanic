@@ -1,16 +1,12 @@
 import itertools
-import os
 import sys
-import types
 from time import perf_counter
 
 import pygame
 
 from SystemPanic.Core import config
-from SystemPanic.Core.game_configuration import get_randomized_config
-from SystemPanic.Core.game_state import next_level, new_game_state, reconfigure, advance
-
-RANDOMIZE_CONFIGURATION_TIME = 3.0  # in seconds
+from SystemPanic.Core.game_state import new_game_state, advance, GAME_MODES
+from SystemPanic.Core.paks import new_paks, load_all_paks
 
 
 class Engine:
@@ -20,7 +16,10 @@ class Engine:
         self.game_state = None
         self.start_time = None
         self.last_frame_time = None
-        self.last_randomize_time = None
+
+        # config
+        self.show_fps = False
+        self.show_hitboxes = False
 
         # pygame state
         self.screen = None
@@ -29,127 +28,13 @@ class Engine:
         self.pygame_clock = None
 
         # paks
-        self.backgrounds = []
-        self.enemies = []
-        self.missiles = []
-        self.level_generators = []
-        self.level_tiles = []
-        self.music = []
-        self.players = []
-
-    def load_all_paks(self):
-        # TODO: move the paks directory to be outside of SystemPanic
-        # TODO: move paks handling to its own class, rather than living in the engine
-        self.backgrounds = self.load_pak_images('Backgrounds')
-        self.music = self.load_pak_sounds('Music')
-        self.level_generators = self.load_pak_classes('LevelGenerators')
-        self.enemies = self.load_pak_sprites('Enemies')
-        self.level_tiles = self.load_pak_sprites('LevelTiles')
-        self.missiles = self.load_pak_sprites('Missiles')
-        self.players = self.load_pak_sprites('Players')
-
-    @staticmethod
-    def load_pak_classes(path):
-        paks = []
-
-        # For each directory...
-        for directory in os.listdir(os.path.join('GamePaks', path)):
-            # load the class included in the pak file
-            pak_path = os.path.join('GamePaks', path, directory, "pak.py")
-            if os.path.isfile(pak_path):
-                with open(pak_path) as pak_file:
-                    pak_module = types.ModuleType('pak')
-                    exec(pak_file.read(), pak_module.__dict__)
-                paks.append(
-                    pak_module.Pak
-                )
-
-        # return our final list
-        return paks
-
-    def load_pak_sprites(self, path):
-        paks = []
-
-        # For each directory...
-        for directory in os.listdir(os.path.join('GamePaks', path)):
-            # load the class included in the pak file
-            pak_path = os.path.join('GamePaks', path, directory, "pak.py")
-            pak_png_path = os.path.join('GamePaks', path, directory, "pak.png")
-            if os.path.isfile(pak_path) and os.path.isfile(pak_png_path):
-                with open(pak_path) as pak_file:
-                    pak_module = types.ModuleType('pak')
-                    exec(pak_file.read(), pak_module.__dict__)
-
-                # Set up the pak
-                pak = new_sprite_pak()
-                for func in pak.keys():
-                    if func in pak_module.__dict__:
-                        pak[func] = pak_module.__dict__[func]
-
-                # Set up the spritesheet
-                spritesheet_raw_image = pygame.image.load(pak_png_path).convert_alpha()
-
-                details = pak["get_sprite_details"]()
-
-                sprites = {}
-                for key, value in details.items():
-                    if key not in sprites:
-                        sprites[key] = []
-                    for sprite_spec in value:
-                        sprites[key].append(self.construct_sprite(spritesheet_raw_image, sprite_spec))
-
-                pak["sprites"] = sprites
-
-                paks.append(pak)
-
-        # return our final list
-        return paks
-
-    @staticmethod
-    def construct_sprite(spritesheet_image, sprite_spec):
-        rect = pygame.Rect((sprite_spec["image rect"]["x"], sprite_spec["image rect"]["y"], sprite_spec["image rect"]["width"], sprite_spec["image rect"]["height"]))
-        image = pygame.Surface(rect.size, flags=pygame.SRCALPHA).convert_alpha()
-        image.blit(spritesheet_image, (0, 0), rect)
-        return {
-            "image": image,
-            "original size": sprite_spec["image rect"],
-            "hitbox": sprite_spec["hitbox"]
-        }
-
-    @staticmethod
-    def load_pak_images(path):
-        paks = []
-
-        # For each directory...
-        for directory in os.listdir(os.path.join('GamePaks', path)):
-            # load the image included in the pak file
-            pak_path = os.path.join('GamePaks', path, directory, "pak.png")
-            if os.path.isfile(pak_path):
-                paks.append(pygame.image.load(pak_path).convert_alpha())
-
-        # return our final list
-        return paks
-
-    @staticmethod
-    def load_pak_sounds(path):
-        paks = []
-
-        # For each directory...
-        for directory in os.listdir(os.path.join('GamePaks', path)):
-            # load the sound included in the pak file
-            pak_path = os.path.join('GamePaks', path, directory, "pak.ogg")
-            if os.path.isfile(pak_path):
-                paks.append(pak_path)
-
-        # return our final list
-        return paks
+        self.paks = new_paks()
 
     def start(self):
         self.init_pygame()
-        self.load_all_paks()
+        self.paks = load_all_paks()
         self.init_game()
-        self.randomize_config()
-        self.game_state = next_level(self.game_state)
+        self.start_music(self.game_state["active_config"]["music"])
         self.main()
 
     def init_pygame(self):
@@ -157,7 +42,6 @@ class Engine:
         pygame.mixer.init()
 
         self.font = pygame.font.Font('./Core/PressStart2P-Regular.ttf', 8)
-        # self.font = pygame.font.SysFont('mono', 8, bold=True)
 
         self.pygame_clock = pygame.time.Clock()
 
@@ -179,31 +63,7 @@ class Engine:
         self.start_time = perf_counter()
         self.last_frame_time = self.start_time
 
-        self.game_state = new_game_state()
-
-    def randomize_config(self):
-        old_music = None
-        if self.game_state["active_config"] is not None:
-            old_music = self.game_state["active_config"]["music"]
-
-        self.game_state = reconfigure(
-            self.game_state,
-            get_randomized_config(
-                self.backgrounds,
-                self.enemies,
-                self.missiles,
-                self.level_generators,
-                self.level_tiles,
-                self.music,
-                self.players
-            )
-        )
-        self.last_randomize_time = perf_counter()
-
-        # Restart music
-        if self.game_state["active_config"]["music"] != old_music:
-            pygame.mixer.music.load(self.game_state["active_config"]["music"])
-            pygame.mixer.music.play(-1)
+        self.game_state = new_game_state(self.paks, 0)
 
     def main(self):
         # The main game loop
@@ -220,42 +80,30 @@ class Engine:
             # Get the current player input state
             pressed_buttons = self.get_pressed_buttons()
 
+            # Keep track of the current music, in case we need to swap it out in a moment
+            old_music = None
+            if self.game_state["active_config"] is not None:
+                old_music = self.game_state["active_config"]["music"]
+
             # Advance the frame
-            self.game_state = advance(self.game_state, now - self.start_time, delta_t, pressed_buttons)
+            self.game_state = advance(self.paks, self.game_state, now - self.start_time, delta_t, pressed_buttons)
 
-            # Decide whether it's time to re-randomize
-            if now - self.last_randomize_time > RANDOMIZE_CONFIGURATION_TIME:
-                self.randomize_config()
+            # Restart music, if needs be
+            if self.game_state["active_config"]["music"] != old_music:
+                self.start_music(self.game_state["active_config"]["music"])
 
-            # Draw the frame
-
-            # Blank it out
+            # Blank the screen
             self.screen.fill((0, 0, 0, 0))
 
-            # Add the background
-            self.game_surface.blit(
-                self.game_state["active_config"]["background"],
-                [0, 0]
-            )
+            # Draw the frame
+            if self.game_state["game_mode"] == GAME_MODES.IN_GAME:
+                self.draw_ingame()
+            elif self.game_state["game_mode"] == GAME_MODES.TITLE_SCREEN:
+                self.draw_title_screen()
 
-            # Add the sprites (each is drawn atop the previous)
-            for sprite_data in itertools.chain(
-                    self.game_state["walls"],
-                    self.game_state["enemies"],
-                    self.game_state["player_missiles"],
-                    self.game_state["enemy_missiles"],
-                    self.game_state["players"]
-            ):
-                if sprite_data["active"] is True:
-                    self.draw_sprite(sprite_data)
-
-            # Add the score, FPS, etc.
             # TODO: make FPS drawing toggleable
-            # self.draw_fps()
-
-            self.draw_text("Score: %s" % (self.game_state["score"],), (8, 4))
-            self.draw_text("Level: %s" % (self.game_state["level"],), (125, 4))
-            self.draw_text("Lives: %s" % (self.game_state["lives"],), (240, 4))
+            if self.show_fps is True:
+                self.draw_fps()
 
             # Put the game surface onto the screen
             surface = pygame.transform.scale(
@@ -275,6 +123,11 @@ class Engine:
             )
 
             pygame.display.flip()
+
+    @staticmethod
+    def start_music(music):
+        pygame.mixer.music.load(music)
+        pygame.mixer.music.play(-1)
 
     def draw_text(self, text, position):
         # Draw the shadow first
@@ -341,14 +194,17 @@ class Engine:
         )
 
         # TODO: make this toggleable
-        # self.draw_hitbox(sprite_data)
+        if self.show_hitboxes is True:
+            self.draw_hitbox(sprite_data)
 
     def draw_hitbox(self, sprite_data):
         hitbox_x_ratio = sprite_data["sprite_size"]["width"] / sprite_data["sprite"]["original size"]["width"]
         hitbox_y_ratio = sprite_data["sprite_size"]["height"] / sprite_data["sprite"]["original size"]["height"]
 
-        x = sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] / 2) + (sprite_data["sprite"]["hitbox"]["x"] * hitbox_x_ratio)
-        y = sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] / 2) + (sprite_data["sprite"]["hitbox"]["y"] * hitbox_y_ratio)
+        x = sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] / 2) + (
+            sprite_data["sprite"]["hitbox"]["x"] * hitbox_x_ratio)
+        y = sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] / 2) + (
+            sprite_data["sprite"]["hitbox"]["y"] * hitbox_y_ratio)
         width = sprite_data["sprite"]["hitbox"]["width"] * hitbox_x_ratio
         height = sprite_data["sprite"]["hitbox"]["height"] * hitbox_y_ratio
 
@@ -364,27 +220,35 @@ class Engine:
             2
         )
 
+    def draw_ingame(self):
+        # Add the background
+        self.game_surface.blit(
+            self.game_state["active_config"]["background"],
+            [0, 0]
+        )
 
-def new_sprite_pak():
-    return {
-        "get_sprite_details": lambda: {},
-        "advance": lambda sprites, path, game_state, time_since_start, delta_t, new_missiles: game_state,
-        "collided_with_enemy": lambda player_state, enemy_state: None,
-        "collided_with_player": lambda player_state, enemy_state: None,
-        "collided_with_player_missile": lambda player_state, missile_state: None,
-        "collided_with_enemy_missile": lambda player_state, missile_state: None,
-        "collided_with_level": lambda player_state, previous_position: None,
-        "get_top_left_outer": lambda sprites: None,
-        "get_top_left_inner": lambda sprites: None,
-        "get_top": lambda sprites: None,
-        "get_top_right_outer": lambda sprites: None,
-        "get_top_right_inner": lambda sprites: None,
-        "get_left": lambda sprites: None,
-        "get_center": lambda sprites: None,
-        "get_right": lambda sprites: None,
-        "get_bottom_left_outer": lambda sprites: None,
-        "get_bottom_left_inner": lambda sprites: None,
-        "get_bottom": lambda sprites: None,
-        "get_bottom_right_outer": lambda sprites: None,
-        "get_bottom_right_inner": lambda sprites: None
-    }
+        # Add the sprites (each is drawn atop the previous)
+        for sprite_data in itertools.chain(
+                self.game_state["walls"],
+                self.game_state["enemies"],
+                self.game_state["player_missiles"],
+                self.game_state["enemy_missiles"],
+                self.game_state["players"]
+        ):
+            if sprite_data["active"] is True:
+                self.draw_sprite(sprite_data)
+
+        # Add the score, etc.
+        self.draw_text("Score: %s" % (self.game_state["score"],), (8, 4))
+        self.draw_text("Level: %s" % (self.game_state["level"],), (125, 4))
+        self.draw_text("Lives: %s" % (self.game_state["lives"],), (240, 4))
+
+    def draw_title_screen(self):
+        # Add the background
+        self.game_surface.blit(
+            self.game_state["active_config"]["background"],
+            [0, 0]
+        )
+
+        self.draw_text("SYSTEM PANIC!", (160, 120))
+        self.draw_text("PRESS FIRE TO START", (160, 130))

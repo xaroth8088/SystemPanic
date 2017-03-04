@@ -1,11 +1,22 @@
 from copy import deepcopy
 from random import randint
+from enum import Enum
 
 import pygame
 
 from SystemPanic.Core.game_configuration import new_game_configuration
 from SystemPanic.Core.sprite_state import do_sprites_collide, new_sprite
 from SystemPanic.Core import config
+from SystemPanic.Core.game_configuration import get_randomized_config
+
+# TODO: should this be something we can set in options?  Or on game start or something?
+RANDOMIZE_CONFIGURATION_TIME = 3.0  # in seconds
+
+
+GAME_MODES = Enum(
+    "GAME_MODES",
+    "TITLE_SCREEN IN_GAME DYING GAME_OVER"
+)
 
 GameState = {
     "active_config": new_game_configuration(),
@@ -18,6 +29,8 @@ GameState = {
     "lives": 3,
     "score": 0,
     "level": 0,
+    "game_mode": GAME_MODES.TITLE_SCREEN,
+    "last_randomize_time": 0,
 
     "pressed_buttons": {}
     # A dict of the controls that are currently active.  Includes:
@@ -25,8 +38,8 @@ GameState = {
 }
 
 
-def new_game_state():
-    return deepcopy(GameState)
+def new_game_state(paks, now):
+    return randomize_config(deepcopy(GameState), paks, now)
 
 
 def next_level(game_state):
@@ -124,7 +137,7 @@ def reconfigure(game_state, new_config):
     return game_state
 
 
-def advance(game_state, time_since_start, delta_t, pressed_buttons):
+def advance(paks, game_state, time_since_start, delta_t, pressed_buttons):
     """
     The game engine will call this once per frame
     :param time_since_start: The time in seconds since the game started (useful for animating)
@@ -136,6 +149,19 @@ def advance(game_state, time_since_start, delta_t, pressed_buttons):
     # Prep the frame
     game_state["pressed_buttons"] = pressed_buttons
 
+    # Decide whether it's time to re-randomize
+    if time_since_start - game_state["last_randomize_time"] > RANDOMIZE_CONFIGURATION_TIME:
+        game_state = randomize_config(game_state, paks, time_since_start)
+
+    if game_state["game_mode"] is GAME_MODES.IN_GAME:
+        return advance_in_game(game_state, time_since_start, delta_t)
+    elif game_state["game_mode"] is GAME_MODES.TITLE_SCREEN:
+        return advance_title_screen(game_state, time_since_start, delta_t)
+
+    return game_state
+
+
+def advance_in_game(game_state, time_since_start, delta_t):
     # Advance the sprites and add new missiles as we go
     new_missiles = []
     for key in ["players", "enemies", "player_missiles", "enemy_missiles"]:
@@ -180,6 +206,14 @@ def advance(game_state, time_since_start, delta_t, pressed_buttons):
     if len(game_state["enemies"]) == 0:
         game_state = next_level(game_state)
         # TODO: inter-level screen
+
+    return game_state
+
+
+def advance_title_screen(game_state, time_since_start, delta_t):
+    if game_state["pressed_buttons"]["fire"] is True:
+        game_state = next_level(game_state)
+        game_state["game_mode"] = GAME_MODES.IN_GAME
 
     return game_state
 
@@ -271,3 +305,20 @@ def new_missile(missile_data, time_since_start):
         }
 
     return missile
+
+
+def randomize_config(game_state, paks, now):
+    game_state["last_randomize_time"] = now
+
+    return reconfigure(
+        game_state,
+        get_randomized_config(
+            paks["backgrounds"],
+            paks["enemies"],
+            paks["missiles"],
+            paks["level_generators"],
+            paks["level_tiles"],
+            paks["music"],
+            paks["players"]
+        )
+    )
