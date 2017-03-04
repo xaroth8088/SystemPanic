@@ -1,4 +1,3 @@
-import itertools
 import sys
 from time import perf_counter
 
@@ -7,6 +6,10 @@ import pygame
 from SystemPanic.Core import config
 from SystemPanic.Core.game_state import new_game_state, advance, GAME_MODES
 from SystemPanic.Core.paks import new_paks, load_all_paks
+from SystemPanic.Core.draw_util import init_font, draw_text
+from SystemPanic.Core.Screens.title import draw_title_screen
+from SystemPanic.Core.Screens.in_game import draw_ingame
+from SystemPanic.Core.Screens.game_over import draw_game_over_screen
 
 
 class Engine:
@@ -41,7 +44,7 @@ class Engine:
         pygame.init()
         pygame.mixer.init()
 
-        self.font = pygame.font.Font('./Core/PressStart2P-Regular.ttf', 8)
+        init_font()
 
         self.pygame_clock = pygame.time.Clock()
 
@@ -97,11 +100,11 @@ class Engine:
 
             # Draw the frame
             if self.game_state["game_mode"] == GAME_MODES.IN_GAME:
-                self.draw_ingame()
+                draw_ingame(self.game_surface, self.game_state)
             elif self.game_state["game_mode"] == GAME_MODES.TITLE_SCREEN:
-                self.draw_title_screen()
+                draw_title_screen(self.game_surface, self.game_state)
             elif self.game_state["game_mode"] == GAME_MODES.GAME_OVER:
-                self.draw_game_over_screen()
+                draw_game_over_screen(self.game_surface, self.game_state)
 
             # TODO: make FPS drawing toggleable
             if self.show_fps is True:
@@ -131,26 +134,6 @@ class Engine:
         pygame.mixer.music.load(music)
         pygame.mixer.music.play(-1)
 
-    def draw_text(self, text, position):
-        # Draw the shadow first
-        shadow_position = position[0] + 1, position[1] + 1
-
-        surface = self.font.render(text, True, (0, 0, 0))
-        self.game_surface.blit(surface, shadow_position)
-
-        # Then the actual text
-        surface = self.font.render(text, True, (255, 255, 255))
-        self.game_surface.blit(surface, position)
-
-    def draw_fps(self):
-        self.pygame_clock.tick()
-        fps = "FPS: {:3.3}".format(self.pygame_clock.get_fps(), )
-        text_width, _ = self.font.size(fps)
-        self.draw_text(
-            fps,
-            (config.GAME_SURFACE_WIDTH - text_width - 4, 4)
-        )
-
     @staticmethod
     def get_pressed_buttons():
         buttons = {
@@ -175,102 +158,12 @@ class Engine:
 
         return buttons
 
-    def draw_sprite(self, sprite_data):
-        if sprite_data["sprite"] is None or sprite_data["sprite"]["image"] is None:
-            return
-
-        sprite = pygame.transform.scale(
-            sprite_data["sprite"]["image"],
-            (
-                sprite_data["sprite_size"]["width"],
-                sprite_data["sprite_size"]["height"]
-            )
-        )
-
-        self.game_surface.blit(
-            sprite,
-            [
-                sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] // 2),
-                sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] // 2)
-            ],
-        )
-
-        # TODO: make this toggleable
-        if self.show_hitboxes is True:
-            self.draw_hitbox(sprite_data)
-
-    def draw_hitbox(self, sprite_data):
-        hitbox_x_ratio = sprite_data["sprite_size"]["width"] / sprite_data["sprite"]["original size"]["width"]
-        hitbox_y_ratio = sprite_data["sprite_size"]["height"] / sprite_data["sprite"]["original size"]["height"]
-
-        x = sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] / 2) + (
-            sprite_data["sprite"]["hitbox"]["x"] * hitbox_x_ratio)
-        y = sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] / 2) + (
-            sprite_data["sprite"]["hitbox"]["y"] * hitbox_y_ratio)
-        width = sprite_data["sprite"]["hitbox"]["width"] * hitbox_x_ratio
-        height = sprite_data["sprite"]["hitbox"]["height"] * hitbox_y_ratio
-
-        pygame.draw.rect(
+    def draw_fps(self):
+        self.pygame_clock.tick()
+        fps = "FPS: {:3.3}".format(self.pygame_clock.get_fps(), )
+        text_width, _ = self.font.size(fps)
+        draw_text(
             self.game_surface,
-            (255, 0, 255),
-            [
-                int(x),
-                int(y),
-                int(width),
-                int(height)
-            ],
-            2
+            fps,
+            (config.GAME_SURFACE_WIDTH - text_width - 4, 4)
         )
-
-    def draw_ingame(self):
-        # Add the background
-        self.game_surface.blit(
-            self.game_state["active_config"]["background"],
-            [0, 0]
-        )
-
-        # Add the sprites (each is drawn atop the previous)
-        for sprite_data in itertools.chain(
-                self.game_state["walls"],
-                self.game_state["enemies"],
-                self.game_state["player_missiles"],
-                self.game_state["enemy_missiles"],
-                self.game_state["players"]
-        ):
-            if sprite_data["active"] is True:
-                self.draw_sprite(sprite_data)
-
-        # Add the score, etc.
-        self.draw_text("Score: %s" % (self.game_state["score"],), (8, 4))
-        self.draw_text("Level: %s" % (self.game_state["level"],), (125, 4))
-        self.draw_text("Lives: %s" % (self.game_state["lives"],), (240, 4))
-
-    def draw_title_screen(self):
-        # Add the background
-        self.game_surface.blit(
-            self.game_state["active_config"]["background"],
-            [0, 0]
-        )
-
-        self.draw_text("SYSTEM PANIC!", (160, 120))
-        self.draw_text("PRESS FIRE TO START", (160, 130))
-
-    def draw_game_over_screen(self):
-        # Add the background
-        self.game_surface.blit(
-            self.game_state["active_config"]["background"],
-            [0, 0]
-        )
-
-        self.draw_text("GAME OVER", (160, 120))
-        self.draw_text("FINAL SCORE: %s" % (self.game_state["score"],), (160, 130))
-        if self.game_state["mode_specific"].get("fade_percent") is not None:
-            fade_mask = pygame.Surface(self.game_surface.get_size(), flags=pygame.SRCALPHA)
-            alpha = 255 - self.game_state["mode_specific"]["fade_percent"] * 255.0
-            if alpha < 0:
-                alpha = 0
-            fade_mask.fill((0, 0, 0, alpha))
-            self.game_surface.blit(
-                fade_mask,
-                [0, 0]
-            )
