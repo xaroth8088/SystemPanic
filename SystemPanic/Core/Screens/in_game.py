@@ -20,7 +20,7 @@ def draw_ingame(game_surface, game_state):
             game_state["players"]
     ):
         if sprite_data["active"] is True:
-            draw_sprite(game_surface, sprite_data)
+            draw_sprite(game_surface, sprite_data, game_state["garbled"])
 
     # Add the score, etc.
     draw_text(game_surface, "Score: %s" % (game_state["score"],), (8, 4), game_state["garbled"])

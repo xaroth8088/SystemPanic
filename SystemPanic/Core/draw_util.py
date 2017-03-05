@@ -83,8 +83,16 @@ def new_garbled_char(char, char_size):
     return surface
 
 
-def draw_sprite(draw_surface, sprite_data):
+def draw_sprite(draw_surface, sprite_data, garbled=False):
     global draw_hitboxes
+
+    # "Flicker" effect, courtesy of randomly going back and forth
+    if random.uniform(0, 1) < 0.8:
+        garbled = False
+
+    if garbled is True:
+        draw_garbled_sprite(draw_surface, sprite_data)
+        return
 
     if sprite_data["sprite"] is None or sprite_data["sprite"]["image"] is None:
         return
@@ -131,3 +139,56 @@ def draw_hitbox(draw_surface, sprite_data):
         ],
         2
     )
+
+
+def draw_garbled_sprite(draw_surface, sprite_data):
+    draw_sprite(draw_surface, sprite_data, False)
+
+    glitch_surface, blend_mode = new_garbled_sprite(
+        hash(frozenset(sprite_data["position"].items())),
+        (sprite_data["sprite_size"]["width"], sprite_data["sprite_size"]["height"])
+    )
+
+    draw_surface.blit(
+        glitch_surface,
+        [
+            sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] // 2),
+            sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] // 2)
+        ],
+        special_flags=blend_mode
+    )
+
+
+def new_garbled_sprite(seed, char_size):
+    block_density = 0.45
+    rand = random.Random()
+    rand.seed(seed)
+    block_size = int(rand.uniform(1, 2))
+
+    surface = pygame.Surface(char_size, flags=pygame.SRCALPHA)
+
+    for x in range(0, char_size[0] // block_size):
+        for y in range(0, char_size[1] // block_size):
+            if rand.uniform(0, 1) < block_density:
+                pygame.draw.rect(
+                    surface,
+                    (
+                        int(rand.uniform(0, 255)),
+                        int(rand.uniform(0, 255)),
+                        int(rand.uniform(0, 255)),
+                        int(rand.uniform(0, 255))
+                    ),
+                    [
+                        x * block_size,
+                        y * block_size,
+                        block_size,
+                        block_size
+                    ]
+                )
+
+    blend_mode = rand.choice([
+        pygame.BLEND_RGBA_ADD, pygame.BLEND_RGBA_SUB, pygame.BLEND_RGBA_MULT, pygame.BLEND_RGBA_MIN,
+        pygame.BLEND_RGBA_MAX
+    ])
+
+    return surface, blend_mode
