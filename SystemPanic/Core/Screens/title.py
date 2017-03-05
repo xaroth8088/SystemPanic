@@ -21,6 +21,5 @@ def advance_title_screen(paks, game_state, time_since_start, delta_t):
         game_state["mode_specific"]["fire_released"] = True
     elif game_state["mode_specific"].get("fire_released") is True:
         game_state = next_level(game_state)
-        game_state = change_mode(game_state, GAME_MODES.IN_GAME)
 
     return game_state

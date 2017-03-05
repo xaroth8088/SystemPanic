@@ -13,9 +13,11 @@ def init_font():
     font = pygame.font.Font('./Core/PressStart2P-Regular.ttf', 8)
 
 
-def draw_text(draw_surface, text, position, garbled=False):
-    global font
+def get_font_size(text):
+    return font.size(text)
 
+
+def draw_text(draw_surface, text, position, garbled=False):
     # "Flicker" effect, courtesy of randomly going back and forth
     if random.uniform(0, 1) < 0.6:
         garbled = False

@@ -1,24 +1,25 @@
 from copy import deepcopy
 from random import randint
 from enum import Enum
+import itertools
 
 import pygame
 
 from SystemPanic.Core.game_configuration import new_game_configuration
-from SystemPanic.Core.sprite_state import new_sprite
+from SystemPanic.Core.sprite_state import new_sprite, do_sprites_collide
 from SystemPanic.Core import config
 from SystemPanic.Core.game_configuration import get_randomized_config
 from SystemPanic.Core.Screens.title import advance_title_screen
 from SystemPanic.Core.Screens.in_game import advance_in_game
 from SystemPanic.Core.Screens.game_over import advance_game_over
-
+from SystemPanic.Core.Screens.ready import advance_ready
 
 # TODO: should this be something we can set in options?  Or on game start or something?
 RANDOMIZE_CONFIGURATION_TIME = 5.0  # in seconds
 
 GAME_MODES = Enum(
     "GAME_MODES",
-    "TITLE_SCREEN IN_GAME DYING GAME_OVER"
+    "TITLE_SCREEN READY IN_GAME DYING GAME_OVER"
 )
 
 GameState = {
@@ -50,8 +51,6 @@ def new_game_state(paks, now):
 
 def next_level(game_state):
     game_state["level"] += 1
-    game_state["player_missiles"] = []
-    game_state["enemy_missiles"] = []
 
     # Init the level
 
@@ -91,41 +90,93 @@ def next_level(game_state):
                 )
                 game_state["walls"].append(wall)
 
-    # Position the player
-    game_state["players"][0]["position"] = {
-        "x": randint(0, config.GAME_SURFACE_WIDTH),
-        "y": randint(0, config.GAME_SURFACE_HEIGHT)
-    }
-
     # Init the enemies
     game_state["enemies"] = [new_sprite() for _ in range(0, game_state["level"])]
 
-    # Position the enemies
-    # TODO: account for the level, the player's position, and other enemies' positions
+    # Start a new life
+    game_state = start_new_life(game_state)
+
+    return game_state
+
+
+def start_new_life(game_state):
+    # Ensure the player is active
+    game_state["players"][0]["active"] = True
+
+    # Clear existing missiles
+    game_state["player_missiles"] = []
+    game_state["enemy_missiles"] = []
+
+    # Start by positioning the enemies and the player off-screen, so that we can safely re-position them on-screen
     for enemy in game_state["enemies"]:
         enemy["position"] = {
+            "x": -9999,
+            "y": -9999
+        }
+    game_state["players"][0]["position"] = {
+        "x": -9999,
+        "y": -9999
+    }
+
+    # Advance the sprites one frame so that they can set their sprites to start with, but
+    # don't advance their positions (since we're not checking for collisions, and don't want them stuck in the walls)
+    # Similarly, ignore requests to fire new missiles
+    for key in ["players", "enemies"]:
+        for index in range(0, len(game_state[key])):
+            game_state[key][index]["previous_position"] = game_state[key][index]["position"].copy()
+            game_state = game_state["active_config"][key]["advance"](
+                game_state["active_config"][key]["sprites"],
+                (key, index),
+                game_state,
+                0,
+                0,
+                []
+            )
+            game_state[key][index]["position"] = game_state[key][index]["previous_position"].copy()
+
+    # Position the enemies
+    game_state["enemies"] = list(map(
+        (lambda enemy: position_sprite_safely(game_state, enemy)),
+        game_state["enemies"]
+    ))
+
+    # Position the player
+    game_state["players"][0] = position_sprite_safely(game_state, game_state["players"][0])
+
+    # put us into the 'ready' screen
+    return change_mode(game_state, GAME_MODES.READY)
+
+
+def position_sprite_safely(game_state, sprite):
+    # TODO: prevent infinite loops here
+    while True:
+        sprite["position"] = {
             "x": randint(0, config.GAME_SURFACE_WIDTH),
             "y": randint(0, config.GAME_SURFACE_HEIGHT)
         }
 
-        # Set a default sprite for the enemies, since advance() won't yet have been called for them
-        enemy["sprite"] = {
-            "image": pygame.Surface((1, 1)),
-            "original size": {
-                "x": 0,
-                "y": 0,
-                "width": 1,
-                "height": 1
-            },
-            "hitbox": {
-                "x": 0,
-                "y": 0,
-                "width": 0,
-                "height": 0
-            }
-        }
+        if does_sprite_collide_with_list_of_sprites(
+                itertools.chain(
+                    game_state["walls"],
+                    game_state["enemies"],
+                    game_state["players"]
+                ),
+                sprite
+        ):
+            continue
 
-    return game_state
+        return sprite
+
+
+def does_sprite_collide_with_list_of_sprites(sprite_list, sprite_to_check):
+    for sprite in sprite_list:
+        if sprite == sprite_to_check:
+            continue
+
+        if do_sprites_collide(sprite, sprite_to_check):
+            return True
+
+    return False
 
 
 def reconfigure(game_state, new_config):
@@ -165,7 +216,9 @@ def advance(paks, game_state, time_since_start, delta_t, pressed_buttons):
     if time_since_start - game_state["last_randomize_time"] > RANDOMIZE_CONFIGURATION_TIME:
         game_state = randomize_config(game_state, paks, time_since_start)
 
-    if game_state["game_mode"] is GAME_MODES.IN_GAME:
+    if game_state["game_mode"] is GAME_MODES.READY:
+        return advance_ready(paks, game_state, time_since_start, delta_t)
+    elif game_state["game_mode"] is GAME_MODES.IN_GAME:
         return advance_in_game(paks, game_state, time_since_start, delta_t)
     elif game_state["game_mode"] is GAME_MODES.TITLE_SCREEN:
         return advance_title_screen(paks, game_state, time_since_start, delta_t)

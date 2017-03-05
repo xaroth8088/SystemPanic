@@ -29,7 +29,7 @@ def draw_ingame(game_surface, game_state):
 
 
 def advance_in_game(paks, game_state, time_since_start, delta_t):
-    from SystemPanic.Core.game_state import next_level, change_mode, GAME_MODES, new_missile
+    from SystemPanic.Core.game_state import next_level, change_mode, GAME_MODES, new_missile, start_new_life
 
     # If we're garbling, then don't advance
     if game_state["garbling_timer"] > 0:
@@ -66,21 +66,22 @@ def advance_in_game(paks, game_state, time_since_start, delta_t):
         else:
             game_state["enemy_missiles"].append(new_missile(missile, time_since_start))
 
+    # Prune dead enemies
+    game_state["enemies"] = [enemy for enemy in game_state["enemies"] if enemy["active"] is True]
+
+    # Should we start a new level?
+    if len(game_state["enemies"]) == 0:
+        return next_level(game_state)
+        # TODO: inter-level screen
+
     # TODO: player dying animation
     if game_state["players"][0]["active"] is False:
         game_state["lives"] -= 1
         if game_state["lives"] <= 0:
             return change_mode(game_state, GAME_MODES.GAME_OVER)
 
-        game_state["players"][0]["active"] = True
-
-    # Prune dead enemies
-    game_state["enemies"] = [enemy for enemy in game_state["enemies"] if enemy["active"] is True]
-
-    # Should we start a new level?
-    if len(game_state["enemies"]) == 0:
-        game_state = next_level(game_state)
-        # TODO: inter-level screen
+        # Start a new life
+        game_state = start_new_life(game_state)
 
     return game_state
 
