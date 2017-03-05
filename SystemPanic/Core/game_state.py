@@ -13,13 +13,16 @@ from SystemPanic.Core.Screens.title import advance_title_screen
 from SystemPanic.Core.Screens.in_game import advance_in_game
 from SystemPanic.Core.Screens.game_over import advance_game_over
 from SystemPanic.Core.Screens.ready import advance_ready
+from SystemPanic.Core.Screens.level_complete import advance_level_complete
+
+
 
 # TODO: should this be something we can set in options?  Or on game start or something?
 RANDOMIZE_CONFIGURATION_TIME = 5.0  # in seconds
 
 GAME_MODES = Enum(
     "GAME_MODES",
-    "TITLE_SCREEN READY IN_GAME DYING GAME_OVER"
+    "TITLE_SCREEN READY IN_GAME DYING LEVEL_COMPLETE GAME_OVER"
 )
 
 GameState = {
@@ -149,6 +152,7 @@ def start_new_life(game_state):
 
 def position_sprite_safely(game_state, sprite):
     # TODO: prevent infinite loops here
+    # TODO: Ensure none of the sprites wind up inaccessible from the others
     while True:
         sprite["position"] = {
             "x": randint(0, config.GAME_SURFACE_WIDTH),
@@ -224,6 +228,8 @@ def advance(paks, game_state, time_since_start, delta_t, pressed_buttons):
         return advance_title_screen(paks, game_state, time_since_start, delta_t)
     elif game_state["game_mode"] is GAME_MODES.GAME_OVER:
         return advance_game_over(paks, game_state, time_since_start, delta_t)
+    elif game_state["game_mode"] is GAME_MODES.LEVEL_COMPLETE:
+        return advance_level_complete(paks, game_state, time_since_start, delta_t)
 
     return game_state
 

@@ -71,8 +71,7 @@ def advance_in_game(paks, game_state, time_since_start, delta_t):
 
     # Should we start a new level?
     if len(game_state["enemies"]) == 0:
-        return next_level(game_state)
-        # TODO: inter-level screen
+        return change_mode(game_state, GAME_MODES.LEVEL_COMPLETE)
 
     # TODO: player dying animation
     if game_state["players"][0]["active"] is False:
