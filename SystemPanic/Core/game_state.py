@@ -14,7 +14,7 @@ from SystemPanic.Core.Screens.game_over import advance_game_over
 
 
 # TODO: should this be something we can set in options?  Or on game start or something?
-RANDOMIZE_CONFIGURATION_TIME = 4.0  # in seconds
+RANDOMIZE_CONFIGURATION_TIME = 5.0  # in seconds
 
 GAME_MODES = Enum(
     "GAME_MODES",
@@ -198,6 +198,10 @@ def new_missile(missile_data, time_since_start):
 
 
 def randomize_config(game_state, paks, now):
+    # TODO: Turn this around - start garbling, but let the game continue to be played while it does.
+    # TODO: Then, once the garble completes, randomize the config
+    # TODO: This is partly a change here, partly a change in advance_in_game()
+
     garble_time = 0.5
 
     game_state["last_randomize_time"] = now + garble_time

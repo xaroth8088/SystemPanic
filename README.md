@@ -48,13 +48,10 @@ rest of our plans before starting to write new code.  We promise to try to be re
 ## Credits for packaged art
 
 ### Music
-* Doomed - Alexander Ehlers, license: CC0, [http://opengameart.org/content/free-music-pack](http://opengameart.org/content/free-music-pack)
-* Flags - Alexander Ehlers, license: CC0, [http://opengameart.org/content/free-music-pack](http://opengameart.org/content/free-music-pack)
-* Great mission - Alexander Ehlers, license: CC0, [http://opengameart.org/content/free-music-pack](http://opengameart.org/content/free-music-pack)
-* Spacetime - Alexander Ehlers, license: CC0, [http://opengameart.org/content/free-music-pack](http://opengameart.org/content/free-music-pack)
-* Twists - Alexander Ehlers, license: CC0, [http://opengameart.org/content/free-music-pack](http://opengameart.org/content/free-music-pack)
-* Waking the devil - Alexander Ehlers, license: CC0, [http://opengameart.org/content/free-music-pack](http://opengameart.org/content/free-music-pack)
-* Warped - Alexander Ehlers, license: CC0, [http://opengameart.org/content/free-music-pack](http://opengameart.org/content/free-music-pack)
+* BGM_Alpha - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
+* BGM_Delta - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
+* BGM_Omega - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
+* BGM_Menu - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
 
 ### Players
 * ExamplePlayer1 spritesheet - pondomaniac, license: CC0, [http://opengameart.org/content/hero-0](http://opengameart.org/content/hero-0)

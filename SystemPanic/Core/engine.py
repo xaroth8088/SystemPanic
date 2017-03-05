@@ -98,7 +98,9 @@ class Engine:
 
             # Advance the frame
             old_garbled = self.game_state["garbled"]
+
             self.game_state = advance(self.paks, self.game_state, now - self.start_time, delta_t, pressed_buttons)
+
             if old_garbled is False and self.game_state["garbled"] is True:
                 # Play the garbled sound, from a random location
                 sound = random.choice(self.garbled_sounds)
