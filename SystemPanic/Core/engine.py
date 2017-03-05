@@ -13,6 +13,7 @@ from SystemPanic.Core.Screens.in_game import draw_ingame
 from SystemPanic.Core.Screens.game_over import draw_game_over_screen
 from SystemPanic.Core.Screens.ready import draw_ready
 from SystemPanic.Core.Screens.level_complete import draw_level_complete
+from SystemPanic.Core.Screens.dying import draw_dying
 
 
 class Engine:
@@ -131,6 +132,8 @@ class Engine:
                 draw_ready(self.game_surface, self.game_state)
             elif self.game_state["game_mode"] == GAME_MODES.LEVEL_COMPLETE:
                 draw_level_complete(self.game_surface, self.game_state)
+            elif self.game_state["game_mode"] == GAME_MODES.DYING:
+                draw_dying(self.game_surface, self.game_state)
 
             # TODO: make FPS drawing toggleable
             if self.show_fps is True:

@@ -76,11 +76,7 @@ def advance_in_game(paks, game_state, time_since_start, delta_t):
     # TODO: player dying animation
     if game_state["players"][0]["active"] is False:
         game_state["lives"] -= 1
-        if game_state["lives"] <= 0:
-            return change_mode(game_state, GAME_MODES.GAME_OVER)
-
-        # Start a new life
-        game_state = start_new_life(game_state)
+        game_state = change_mode(game_state, GAME_MODES.DYING)
 
     return game_state
 

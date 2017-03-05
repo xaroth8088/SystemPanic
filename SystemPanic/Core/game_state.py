@@ -14,6 +14,7 @@ from SystemPanic.Core.Screens.in_game import advance_in_game
 from SystemPanic.Core.Screens.game_over import advance_game_over
 from SystemPanic.Core.Screens.ready import advance_ready
 from SystemPanic.Core.Screens.level_complete import advance_level_complete
+from SystemPanic.Core.Screens.dying import advance_dying
 
 
 
@@ -230,6 +231,8 @@ def advance(paks, game_state, time_since_start, delta_t, pressed_buttons):
         return advance_game_over(paks, game_state, time_since_start, delta_t)
     elif game_state["game_mode"] is GAME_MODES.LEVEL_COMPLETE:
         return advance_level_complete(paks, game_state, time_since_start, delta_t)
+    elif game_state["game_mode"] is GAME_MODES.DYING:
+        return advance_dying(paks, game_state, time_since_start, delta_t)
 
     return game_state
 
