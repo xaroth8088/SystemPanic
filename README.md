@@ -73,3 +73,7 @@ rest of our plans before starting to write new code.  We promise to try to be re
 
 ### Fonts
 * Press Start 2P - Copyright 2012 The Press Start 2P Project Authors (cody@zone38.net), license: OFL
+
+### Sound
+* Glitch - HarleyGlitch, license: CC0, [https://freesound.org/people/HarleyGlitch/sounds/332711/](https://freesound.org/people/HarleyGlitch/sounds/332711/) (converted to ogg)
+* Glitch-9 - HarleyGlitch, license: CC0, [https://freesound.org/people/HarleyGlitch/sounds/333982/](https://freesound.org/people/HarleyGlitch/sounds/333982/) (converted to ogg)

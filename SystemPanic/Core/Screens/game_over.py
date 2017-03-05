@@ -10,8 +10,8 @@ def draw_game_over_screen(game_surface, game_state):
         [0, 0]
     )
 
-    draw_text(game_surface, "GAME OVER", (160, 120))
-    draw_text(game_surface, "FINAL SCORE: %s" % (game_state["score"],), (160, 130))
+    draw_text(game_surface, "GAME OVER", (160, 120), game_state["garbled"])
+    draw_text(game_surface, "FINAL SCORE: %s" % (game_state["score"],), (160, 130), game_state["garbled"])
     if game_state["mode_specific"].get("fade_percent") is not None:
         fade_mask = pygame.Surface(game_surface.get_size(), flags=pygame.SRCALPHA)
         alpha = 255 - game_state["mode_specific"]["fade_percent"] * 255.0

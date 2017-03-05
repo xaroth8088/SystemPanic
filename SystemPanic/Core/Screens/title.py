@@ -8,8 +8,8 @@ def draw_title_screen(game_surface, game_state):
         [0, 0]
     )
 
-    draw_text(game_surface, "SYSTEM PANIC!", (160, 120))
-    draw_text(game_surface, "PRESS FIRE TO START", (160, 130))
+    draw_text(game_surface, "SYSTEM PANIC!", (160, 120), game_state["garbled"])
+    draw_text(game_surface, "PRESS FIRE TO START", (160, 130), game_state["garbled"])
 
 
 def advance_title_screen(paks, game_state, time_since_start, delta_t):

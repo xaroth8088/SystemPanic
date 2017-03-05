@@ -2,11 +2,12 @@ import sys
 from time import perf_counter
 
 import pygame
+import random
 
 from SystemPanic.Core import config
 from SystemPanic.Core.game_state import new_game_state, advance, GAME_MODES
 from SystemPanic.Core.paks import new_paks, load_all_paks
-from SystemPanic.Core.draw_util import init_font, draw_text
+from SystemPanic.Core.draw_util import init_font, draw_text, font
 from SystemPanic.Core.Screens.title import draw_title_screen
 from SystemPanic.Core.Screens.in_game import draw_ingame
 from SystemPanic.Core.Screens.game_over import draw_game_over_screen
@@ -29,6 +30,7 @@ class Engine:
         self.game_surface = None
         self.font = None
         self.pygame_clock = None
+        self.garbled_sounds = []
 
         # paks
         self.paks = new_paks()
@@ -47,6 +49,12 @@ class Engine:
         init_font()
 
         self.pygame_clock = pygame.time.Clock()
+
+        # Sound init
+        self.garbled_sounds = [
+            pygame.mixer.Sound(file="./FX/glitch.ogg"),
+            pygame.mixer.Sound(file="./FX/glitch-9.ogg")
+        ]
 
         # Screen init
         size = config.SCREEN_WIDTH, config.SCREEN_HEIGHT
@@ -89,7 +97,17 @@ class Engine:
                 old_music = self.game_state["active_config"]["music"]
 
             # Advance the frame
+            old_garbled = self.game_state["garbled"]
             self.game_state = advance(self.paks, self.game_state, now - self.start_time, delta_t, pressed_buttons)
+            if old_garbled is False and self.game_state["garbled"] is True:
+                # Play the garbled sound, from a random location
+                sound = random.choice(self.garbled_sounds)
+                buffer = sound.get_raw()
+                start_time = int(random.uniform(0, int(len(buffer) * 0.75)))
+                start_time = int((start_time // 4.0) * 4.0)  # ensure we're at a multiple of 4, for the sound engine
+                clipped_buffer = buffer[start_time:]
+                clipped_sound = pygame.mixer.Sound(buffer=clipped_buffer)
+                clipped_sound.play(maxtime=int(random.uniform(500, 800)))
 
             # Restart music, if needs be
             if self.game_state["active_config"]["music"] != old_music:
@@ -161,7 +179,7 @@ class Engine:
     def draw_fps(self):
         self.pygame_clock.tick()
         fps = "FPS: {:3.3}".format(self.pygame_clock.get_fps(), )
-        text_width, _ = self.font.size(fps)
+        text_width, _ = font.size(fps)
         draw_text(
             self.game_surface,
             fps,

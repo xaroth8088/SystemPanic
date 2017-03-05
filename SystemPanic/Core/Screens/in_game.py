@@ -23,13 +23,17 @@ def draw_ingame(game_surface, game_state):
             draw_sprite(game_surface, sprite_data)
 
     # Add the score, etc.
-    draw_text(game_surface, "Score: %s" % (game_state["score"],), (8, 4))
-    draw_text(game_surface, "Level: %s" % (game_state["level"],), (125, 4))
-    draw_text(game_surface, "Lives: %s" % (game_state["lives"],), (240, 4))
+    draw_text(game_surface, "Score: %s" % (game_state["score"],), (8, 4), game_state["garbled"])
+    draw_text(game_surface, "Level: %s" % (game_state["level"],), (125, 4), game_state["garbled"])
+    draw_text(game_surface, "Lives: %s" % (game_state["lives"],), (240, 4), game_state["garbled"])
 
 
 def advance_in_game(paks, game_state, time_since_start, delta_t):
     from SystemPanic.Core.game_state import next_level, change_mode, GAME_MODES, new_missile
+
+    # If we're garbling, then don't advance
+    if game_state["garbling_timer"] > 0:
+        return game_state
 
     # Advance the sprites and add new missiles as we go
     new_missiles = []

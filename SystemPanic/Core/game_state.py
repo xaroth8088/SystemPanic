@@ -14,7 +14,7 @@ from SystemPanic.Core.Screens.game_over import advance_game_over
 
 
 # TODO: should this be something we can set in options?  Or on game start or something?
-RANDOMIZE_CONFIGURATION_TIME = 3.0  # in seconds
+RANDOMIZE_CONFIGURATION_TIME = 4.0  # in seconds
 
 GAME_MODES = Enum(
     "GAME_MODES",
@@ -35,6 +35,8 @@ GameState = {
     "level": 0,
     "game_mode": GAME_MODES.TITLE_SCREEN,
     "last_randomize_time": 0,
+    "garbling_timer": 0,
+    "garbled": False,
 
     "pressed_buttons": {}
     # A dict of the controls that are currently active.  Includes:
@@ -153,6 +155,12 @@ def advance(paks, game_state, time_since_start, delta_t, pressed_buttons):
     # Prep the frame
     game_state["pressed_buttons"] = pressed_buttons
 
+    # Count down on our garble timer, if appropriate
+    game_state["garbled"] = False
+    if game_state["garbling_timer"] > 0:
+        game_state["garbled"] = True
+        game_state["garbling_timer"] -= delta_t
+
     # Decide whether it's time to re-randomize
     if time_since_start - game_state["last_randomize_time"] > RANDOMIZE_CONFIGURATION_TIME:
         game_state = randomize_config(game_state, paks, time_since_start)
@@ -190,7 +198,10 @@ def new_missile(missile_data, time_since_start):
 
 
 def randomize_config(game_state, paks, now):
-    game_state["last_randomize_time"] = now
+    garble_time = 0.5
+
+    game_state["last_randomize_time"] = now + garble_time
+    game_state["garbling_timer"] = garble_time
 
     return reconfigure(
         game_state,
