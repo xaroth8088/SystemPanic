@@ -26,8 +26,13 @@ SpriteState = {
     },
     "start_time": 0,  # When was this sprite instantiated?
     "wrap_x": False,  # should we wrap around the screen horizontally?
-    "wrap_y": False  # should we wrap around the screen vertically?
-    # TODO: momentum, rotational momentum, direction facing, etc.
+    "wrap_y": False,  # should we wrap around the screen vertically?
+
+    "velocity": {
+        "x": 0,
+        "y": 0
+    }
+    # TODO: momentum, rotational momentum, direction facing, etc.  Basically other physics state
 }
 
 

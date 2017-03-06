@@ -56,6 +56,7 @@ rest of our plans before starting to write new code.  We promise to try to be re
 ### Players
 * ExamplePlayer1 spritesheet - pondomaniac, license: CC0, [http://opengameart.org/content/hero-0](http://opengameart.org/content/hero-0)
 * ExamplePlayer2 spritesheet - eracoon, license: CC0, [http://opengameart.org/content/isometric-vehicles](http://opengameart.org/content/isometric-vehicles)
+* ExamplePlayer3 spritesheet - Disthron, license: CC0, [http://opengameart.org/content/mr-knife-guy-animated](http://opengameart.org/content/mr-knife-guy-animated)
 
 ### Enemies
 * ExampleEnemy1 spritesheet - patvanmackelberg, license: CC0, [http://opengameart.org/content/slime-2-frame-animation-32x32](http://opengameart.org/content/slime-2-frame-animation-32x32)
