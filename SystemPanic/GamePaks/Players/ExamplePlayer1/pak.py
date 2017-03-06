@@ -316,6 +316,7 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
         player_state["position"]["y"] += walking_speed * delta_t
         player_state["sprite"] = sprites["down"][int(time_since_start * 8) % 4]
 
+    # TODO: move this sort of logic into the missile pak - players shouldn't care about this
     if game_state["pressed_buttons"]["fire"] is True:
         # Limit firing to once per 0.5 seconds
         last_fired = player_state["pak_specific_state"].get("last_fired")
