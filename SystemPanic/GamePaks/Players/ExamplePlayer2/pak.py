@@ -1,5 +1,7 @@
 import random
 
+import pygame
+
 
 def get_sprite_details():
     """
@@ -1032,7 +1034,7 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     key, index = path
     player_state = game_state[key][index]
 
-    driving_speed = 100.0
+    driving_speed = 70.0
     car_type = player_state["pak_specific_state"].get("type")
 
     # State specific to us
@@ -1046,41 +1048,50 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
             "y": 0
         }
         player_state["sprite"] = sprites[car_type][1]
+        player_state["pak_specific_state"]["angle"] = 0
 
     # What size should our sprite be drawn on-screen as?
     player_state["sprite_size"]["width"] = 16
     player_state["sprite_size"]["height"] = 16
 
     # How are we moving?  And what's our sprite?
+    turning_speed = 360.0  # Degrees per second
+
     # TODO: change this to rotate left/right, and have sprite selected by approximate angle
     # TODO: change up/down to be accel/deccel
     if game_state["pressed_buttons"]["left"] is True:
-        player_state["facing"] = {
-            "x": -1,
-            "y": 0
-        }
-        player_state["sprite"] = sprites[car_type][1]
-    if game_state["pressed_buttons"]["right"] is True:
-        player_state["facing"] = {
-            "x": 1,
-            "y": 0
-        }
-        player_state["sprite"] = sprites[car_type][5]
-    if game_state["pressed_buttons"]["up"] is True:
-        player_state["facing"] = {
-            "x": 0,
-            "y": -1
-        }
-        player_state["sprite"] = sprites[car_type][3]
-    if game_state["pressed_buttons"]["down"] is True:
-        player_state["facing"] = {
-            "x": 0,
-            "y": 1
-        }
-        player_state["sprite"] = sprites[car_type][7]
+        player_state["pak_specific_state"]["angle"] -= turning_speed * delta_t
 
-    player_state["position"]["x"] += driving_speed * delta_t * player_state["facing"]["x"]
-    player_state["position"]["y"] += driving_speed * delta_t * player_state["facing"]["y"]
+    if game_state["pressed_buttons"]["right"] is True:
+        player_state["pak_specific_state"]["angle"] += turning_speed * delta_t
+
+    # Normalize the angle
+    player_state["pak_specific_state"]["angle"] %= 360.0
+    while player_state["pak_specific_state"]["angle"] < 0:
+        player_state["pak_specific_state"]["angle"] += 360.0
+
+    if 22.5 < player_state["pak_specific_state"]["angle"] <= 67.5:
+        player_state["sprite"] = sprites[car_type][4]
+    elif 67.5 < player_state["pak_specific_state"]["angle"] <= 112.5:
+        player_state["sprite"] = sprites[car_type][5]
+    elif 112.5 < player_state["pak_specific_state"]["angle"] <= 157.5:
+        player_state["sprite"] = sprites[car_type][6]
+    elif 157.5 < player_state["pak_specific_state"]["angle"] <= 202.5:
+        player_state["sprite"] = sprites[car_type][7]
+    elif 202.5 < player_state["pak_specific_state"]["angle"] <= 247.5:
+        player_state["sprite"] = sprites[car_type][0]
+    elif 247.5 < player_state["pak_specific_state"]["angle"] <= 292.5:
+        player_state["sprite"] = sprites[car_type][1]
+    elif 292.5 < player_state["pak_specific_state"]["angle"] <= 337.5:
+        player_state["sprite"] = sprites[car_type][2]
+    else:
+        player_state["sprite"] = sprites[car_type][3]
+
+    vector = pygame.math.Vector2(0, -1)
+    vector.rotate_ip(player_state["pak_specific_state"]["angle"])
+
+    player_state["position"]["x"] += driving_speed * delta_t * vector.x
+    player_state["position"]["y"] += driving_speed * delta_t * vector.y
 
     if game_state["pressed_buttons"]["fire"] is True:
         # Limit firing to once per 0.5 seconds
@@ -1090,10 +1101,13 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
             new_missiles.append(
                 {
                     "target": "enemy",
-                    "direction": player_state["facing"],
+                    "direction": {
+                        "x": vector.x,
+                        "y": vector.y
+                    },
                     "position": {
-                        "x": player_state["position"]["x"] + player_state["facing"]["x"] * 16,
-                        "y": player_state["position"]["y"] + player_state["facing"]["y"] * 16
+                        "x": player_state["position"]["x"] + vector.x * 16,
+                        "y": player_state["position"]["y"] + vector.y * 16
                     }
                 }
             )

@@ -86,6 +86,7 @@ def load_pak_sprites(path):
                 for sprite_spec in value:
                     sprites[key].append(construct_sprite(spritesheet_raw_image, sprite_spec))
 
+            pak["pak_name"] = pak_path
             pak["sprites"] = sprites
 
             paks.append(pak)

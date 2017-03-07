@@ -189,12 +189,11 @@ def reconfigure(game_state, new_config):
     old_config = deepcopy(game_state["active_config"])
     game_state["active_config"] = new_config
 
-    if old_config is not None:
-        # reset pak-specific states
-        for key in ["players", "enemies", "player_missiles", "enemy_missiles"]:
-            if old_config[key] != new_config[key]:
-                for index in range(0, len(game_state[key])):
-                    game_state[key][index]["pak_specific_state"] = {}
+    # reset pak-specific states
+    for key in ["players", "enemies", "player_missiles", "enemy_missiles"]:
+        if old_config[key] is not None and old_config[key]["pak_name"] != new_config[key]["pak_name"]:
+            for index in range(0, len(game_state[key])):
+                game_state[key][index]["pak_specific_state"] = {}
 
     return game_state
 
