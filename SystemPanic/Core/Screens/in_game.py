@@ -49,6 +49,31 @@ def advance_in_game(paks, game_state, time_since_start, delta_t):
                 new_missiles
             )
 
+            # Screen bounds checks / adjustments
+            wrap_x = game_state[key][index]["wrap_x"]
+            wrap_y = game_state[key][index]["wrap_y"]
+
+            if game_state[key][index]["position"]["x"] < 0:
+                if wrap_x is True:
+                    game_state[key][index]["position"]["x"] = 320
+                else:
+                    game_state[key][index]["position"]["x"] = 0
+            if game_state[key][index]["position"]["x"] > 320:
+                if wrap_x is True:
+                    game_state[key][index]["position"]["x"] = 0
+                else:
+                    game_state[key][index]["position"]["x"] = 320
+            if game_state[key][index]["position"]["y"] < 0:
+                if wrap_y is True:
+                    game_state[key][index]["position"]["y"] = 240
+                else:
+                    game_state[key][index]["position"]["y"] = 0
+            if game_state[key][index]["position"]["y"] > 240:
+                if wrap_y is True:
+                    game_state[key][index]["position"]["y"] = 0
+                else:
+                    game_state[key][index]["position"]["y"] = 240
+
     # Collision checks
     game_state = check_player_to_enemy_collisions(game_state)
     game_state = check_player_to_enemy_missile_collisions(game_state)

@@ -788,18 +788,8 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
         enemy_state["pak_specific_state"]["last_fired"] = time_since_start
 
     # How do we interact with the borders of the screen?
-    # TODO: make the game engine actually handle this using these variables, instead of doing it here
-    enemy_state["wrap_x"] = True
-    enemy_state["wrap_y"] = True
-
-    if enemy_state["position"]["x"] < 0:
-        enemy_state["position"]["x"] = 0
-    if enemy_state["position"]["x"] > 320:
-        enemy_state["position"]["x"] = 320
-    if enemy_state["position"]["y"] < 0:
-        enemy_state["position"]["y"] = 0
-    if enemy_state["position"]["y"] > 240:
-        enemy_state["position"]["y"] = 240
+    enemy_state["wrap_x"] = False
+    enemy_state["wrap_y"] = False
 
     # Return the new state
     return game_state

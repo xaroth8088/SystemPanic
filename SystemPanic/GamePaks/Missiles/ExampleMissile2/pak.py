@@ -84,18 +84,8 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
         missile_state["active"] = False
 
     # How do we interact with the borders of the screen?
-    # TODO: make the game engine actually handle this using these variables, instead of doing it here
     missile_state["wrap_x"] = True
     missile_state["wrap_y"] = True
-
-    if missile_state["position"]["x"] < 0:
-        missile_state["position"]["x"] = 0
-    if missile_state["position"]["x"] > 320:
-        missile_state["position"]["x"] = 320
-    if missile_state["position"]["y"] < 0:
-        missile_state["position"]["y"] = 0
-    if missile_state["position"]["y"] > 240:
-        missile_state["position"]["y"] = 240
 
     # Return the new state
     return game_state
