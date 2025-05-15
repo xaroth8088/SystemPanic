@@ -35,12 +35,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -49,12 +44,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -63,12 +53,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -77,12 +62,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -91,12 +71,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -105,12 +80,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -119,12 +89,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -133,12 +98,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -147,12 +107,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -161,12 +116,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -175,12 +125,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -189,12 +134,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
         ],
         "red": [
@@ -205,12 +145,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -219,12 +154,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -233,12 +163,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -247,12 +172,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -261,12 +181,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -275,12 +190,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -289,12 +199,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -303,12 +208,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -317,12 +217,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -331,12 +226,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -345,12 +235,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -359,12 +244,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
         ],
         "blue": [
@@ -375,12 +255,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -389,12 +264,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -403,12 +273,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -417,12 +282,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -431,12 +291,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -445,12 +300,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -459,12 +309,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -473,12 +318,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -487,12 +327,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -501,12 +336,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -515,12 +345,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -529,12 +354,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
         ],
         "gray": [
@@ -545,12 +365,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -559,12 +374,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -573,12 +383,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -587,12 +392,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -601,12 +401,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -615,12 +410,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -629,12 +419,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -643,12 +428,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -657,12 +437,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -671,12 +446,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -685,12 +455,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
                 "image rect": {
@@ -699,12 +464,7 @@ def get_sprite_details():
                     "width": 32,
                     "height": 32,
                 },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
         ],
     }
@@ -777,14 +537,16 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     last_fired = enemy_state["pak_specific_state"].get("last_fired")
 
     if last_fired is None or time_since_start - last_fired > 1.5:
-        new_missiles.append({
-            "target": "player",
-            "direction": {
-                "x": player_x - enemy_state["position"]["x"],
-                "y": player_y - enemy_state["position"]["y"]
-            },
-            "position": enemy_state["position"].copy()
-        })
+        new_missiles.append(
+            {
+                "target": "player",
+                "direction": {
+                    "x": player_x - enemy_state["position"]["x"],
+                    "y": player_y - enemy_state["position"]["y"],
+                },
+                "position": enemy_state["position"].copy(),
+            }
+        )
         enemy_state["pak_specific_state"]["last_fired"] = time_since_start
 
     # How do we interact with the borders of the screen?

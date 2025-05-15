@@ -31,977 +31,274 @@ def get_sprite_details():
     return {
         "Basic sedan car": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                }
+                "image rect": {"x": 0, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 32, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 64, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 96, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
             {
-                "image rect": {
-                    "x": 128,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 128, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 160,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 160, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 192,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 192, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 224,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 224, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
         ],
         "Sport coupe": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 0, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 32, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 64, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 96, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
             {
-                "image rect": {
-                    "x": 128,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 128, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 160,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 160, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 192,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 192, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 224,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 224, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
         ],
         "Hothatch car": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 64,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 0, "y": 64, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 64,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 32, "y": 64, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 64,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 64, "y": 64, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 64,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 96, "y": 64, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
             {
-                "image rect": {
-                    "x": 128,
-                    "y": 64,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 128, "y": 64, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 160,
-                    "y": 64,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 160, "y": 64, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 192,
-                    "y": 64,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 192, "y": 64, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 224,
-                    "y": 64,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 224, "y": 64, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
         ],
         "Small delivery car": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 96,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 0, "y": 96, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 96,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 32, "y": 96, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 96,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 64, "y": 96, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 96,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 96, "y": 96, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
             {
-                "image rect": {
-                    "x": 128,
-                    "y": 96,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 128, "y": 96, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 160,
-                    "y": 96,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 160, "y": 96, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 192,
-                    "y": 96,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 192, "y": 96, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 224,
-                    "y": 96,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 224, "y": 96, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
         ],
         "Station wagon": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 128,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 0, "y": 128, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 128,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 32, "y": 128, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 128,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 64, "y": 128, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 128,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 96, "y": 128, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
             {
-                "image rect": {
-                    "x": 128,
-                    "y": 128,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 128, "y": 128, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 160,
-                    "y": 128,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 160, "y": 128, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 192,
-                    "y": 128,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 192, "y": 128, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 224,
-                    "y": 128,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 224, "y": 128, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
         ],
         "Minibus": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 160,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 0, "y": 160, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 160,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 32, "y": 160, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 160,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 64, "y": 160, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 160,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 96, "y": 160, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
             {
-                "image rect": {
-                    "x": 128,
-                    "y": 160,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 128, "y": 160, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 160,
-                    "y": 160,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 160, "y": 160, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 192,
-                    "y": 160,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 192, "y": 160, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 224,
-                    "y": 160,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 224, "y": 160, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
         ],
         "Delivery van": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 192,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 0, "y": 192, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 192,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 32, "y": 192, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 192,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 64, "y": 192, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 192,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 96, "y": 192, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
             {
-                "image rect": {
-                    "x": 128,
-                    "y": 192,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 128, "y": 192, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 160,
-                    "y": 192,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 160, "y": 192, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 192,
-                    "y": 192,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 192, "y": 192, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 224,
-                    "y": 192,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 224, "y": 192, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
         ],
         "Pickup truck": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 224,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 0, "y": 224, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 224,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 32, "y": 224, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 224,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 64, "y": 224, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 224,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 96, "y": 224, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
             {
-                "image rect": {
-                    "x": 128,
-                    "y": 224,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 128, "y": 224, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 160,
-                    "y": 224,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 4,
-                    "y": 8,
-                    "width": 24,
-                    "height": 15
-                },
+                "image rect": {"x": 160, "y": 224, "width": 32, "height": 32},
+                "hitbox": {"x": 4, "y": 8, "width": 24, "height": 15},
             },
             {
-                "image rect": {
-                    "x": 192,
-                    "y": 224,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
+                "image rect": {"x": 192, "y": 224, "width": 32, "height": 32},
+                "hitbox": {"x": 0, "y": 0, "width": 32, "height": 32},
             },
             {
-                "image rect": {
-                    "x": 224,
-                    "y": 224,
-                    "width": 32,
-                    "height": 32
-
-                },
-                "hitbox": {
-                    "x": 10,
-                    "y": 7,
-                    "width": 12,
-                    "height": 18
-                },
+                "image rect": {"x": 224, "y": 224, "width": 32, "height": 32},
+                "hitbox": {"x": 10, "y": 7, "width": 12, "height": 18},
             },
         ],
     }
@@ -1043,10 +340,7 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
         player_state["pak_specific_state"]["type"] = car_type
 
         # We can also see this as an initialization state
-        player_state["facing"] = {
-            "x": -1,
-            "y": 0
-        }
+        player_state["facing"] = {"x": -1, "y": 0}
         player_state["sprite"] = sprites[car_type][1]
         player_state["pak_specific_state"]["angle"] = 0
 
@@ -1101,14 +395,11 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
             new_missiles.append(
                 {
                     "target": "enemy",
-                    "direction": {
-                        "x": vector.x,
-                        "y": vector.y
-                    },
+                    "direction": {"x": vector.x, "y": vector.y},
                     "position": {
                         "x": player_state["position"]["x"] + vector.x * 16,
-                        "y": player_state["position"]["y"] + vector.y * 16
-                    }
+                        "y": player_state["position"]["y"] + vector.y * 16,
+                    },
                 }
             )
             player_state["pak_specific_state"]["last_fired"] = time_since_start

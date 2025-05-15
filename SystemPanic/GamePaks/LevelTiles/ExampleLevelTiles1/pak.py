@@ -28,18 +28,8 @@ def get_sprite_details():
     return {
         "block": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 128,
-                    "height": 128
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 128,
-                    "height": 128
-                }
+                "image rect": {"x": 0, "y": 0, "width": 128, "height": 128},
+                "hitbox": {"x": 0, "y": 0, "width": 128, "height": 128},
             }
         ],
     }

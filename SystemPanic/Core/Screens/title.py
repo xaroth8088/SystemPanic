@@ -3,10 +3,7 @@ from SystemPanic.Core.draw_util import draw_text
 
 def draw_title_screen(game_surface, game_state):
     # Add the background
-    game_surface.blit(
-        game_state["active_config"]["background"],
-        [0, 0]
-    )
+    game_surface.blit(game_state["active_config"]["background"], [0, 0])
 
     draw_text(game_surface, "SYSTEM PANIC!", (160, 120), game_state["garbled"])
     draw_text(game_surface, "PRESS FIRE TO START", (160, 130), game_state["garbled"])

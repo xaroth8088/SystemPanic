@@ -26,14 +26,17 @@ BAT_TARGET_X_OFFSET_MIN = -100
 BAT_TARGET_X_OFFSET_MAX = 100
 BAT_SWOOP_COOLDOWN_MIN = 3000  # ms
 BAT_SWOOP_COOLDOWN_MAX = 6000  # ms
-BAT_SIGHT_RADIUS_FOR_SWOOP = 250  # pixels, how close player needs to be for bat to consider swooping
-BAT_LOSE_AGGRO_RADIUS_SWOOP = 350  # pixels, if player gets this far during swoop, bat might give up
+BAT_SIGHT_RADIUS_FOR_SWOOP = (
+    250  # pixels, how close player needs to be for bat to consider swooping
+)
+BAT_LOSE_AGGRO_RADIUS_SWOOP = (
+    350  # pixels, if player gets this far during swoop, bat might give up
+)
 
 
 class Enemy(BaseEnemy):
-    SPRITESHEET_LAYOUT_NOTE = "Frames (32x24px): Flap Up, Flap Down. Horizontal."
     SPRITE_WIDTH = 32  # Default width
-    SPRITE_HEIGHT = 24  # Default height
+    SPRITE_HEIGHT = 26  # Default height
 
     @staticmethod
     def load_assets(module_path):
@@ -45,37 +48,50 @@ class Enemy(BaseEnemy):
 
         try:
             sheet = pygame.image.load(spritesheet_path).convert_alpha()
-            assets['spritesheet'] = sheet
-            # Example: if sheet is 64x24 and has 2 frames, width is 32.
-            # sprite_width_from_sheet = sheet.get_width() // 2 # Assuming 2 frames
-            # sprite_height_from_sheet = sheet.get_height()
+            assets["spritesheet"] = sheet
         except pygame.error as e:
             print(f"Error loading Bat enemy spritesheet: {e}. Using placeholder.")
-            sheet = pygame.Surface((Enemy.SPRITE_WIDTH * 2, Enemy.SPRITE_HEIGHT), pygame.SRCALPHA)
+            sheet = pygame.Surface(
+                (Enemy.SPRITE_WIDTH * 2, Enemy.SPRITE_HEIGHT), pygame.SRCALPHA
+            )
             sheet.fill((0, 0, 0, 0))
             colors = [(80, 80, 80, 220), (60, 60, 60, 220)]
             for i, color in enumerate(colors):
-                frame_rect = pygame.Rect(i * Enemy.SPRITE_WIDTH, 0, Enemy.SPRITE_WIDTH, Enemy.SPRITE_HEIGHT)
+                frame_rect = pygame.Rect(
+                    i * Enemy.SPRITE_WIDTH, 0, Enemy.SPRITE_WIDTH, Enemy.SPRITE_HEIGHT
+                )
                 pygame.draw.rect(sheet, color, frame_rect)
                 pygame.draw.rect(sheet, (30, 30, 30, 255), frame_rect, 1)
-            assets['spritesheet'] = sheet
+            assets["spritesheet"] = sheet
 
-        assets['frames'] = []
-        num_expected_frames = 2
+        assets["frames"] = []
+        num_expected_frames = 3
         for i in range(num_expected_frames):
             frame = sheet.subsurface(
-                pygame.Rect(i * sprite_width_from_sheet, 0, sprite_width_from_sheet, sprite_height_from_sheet))
-            assets['frames'].append(frame)
+                pygame.Rect(
+                    i * Enemy.SPRITE_WIDTH,
+                    0,
+                    Enemy.SPRITE_WIDTH,
+                    Enemy.SPRITE_HEIGHT,
+                )
+            )
+            assets["frames"].append(frame)
 
         Enemy.SPRITE_WIDTH = sprite_width_from_sheet
         Enemy.SPRITE_HEIGHT = sprite_height_from_sheet
         return assets
 
-    def __init__(self, x, y, assets, player_rect_for_ai):  # player_rect_for_ai can be None
+    def __init__(
+        self, x, y, assets, player_rect_for_ai
+    ):  # player_rect_for_ai can be None
         super().__init__(x, y, assets, player_rect_for_ai)
         self.assets = assets
-        self.frames = self.assets.get('frames', [])
-        self.image = self.frames[0] if self.frames else pygame.Surface([Enemy.SPRITE_WIDTH, Enemy.SPRITE_HEIGHT])
+        self.frames = self.assets.get("frames", [])
+        self.image = (
+            self.frames[0]
+            if self.frames
+            else pygame.Surface([Enemy.SPRITE_WIDTH, Enemy.SPRITE_HEIGHT])
+        )
         self.image.fill((70, 70, 70))
         self.rect = self.image.get_rect(topleft=(x, y))
 
@@ -92,12 +108,19 @@ class Enemy(BaseEnemy):
 
         # AI State
         self.ai_state = "hover"  # "hover", "swoop"
-        self.target_y_offset = random.randint(BAT_TARGET_Y_OFFSET_MIN, BAT_TARGET_Y_OFFSET_MAX)
-        self.target_x_offset = random.uniform(BAT_TARGET_X_OFFSET_MIN, BAT_TARGET_X_OFFSET_MAX)
+        self.target_y_offset = random.randint(
+            BAT_TARGET_Y_OFFSET_MIN, BAT_TARGET_Y_OFFSET_MAX
+        )
+        self.target_x_offset = random.uniform(
+            BAT_TARGET_X_OFFSET_MIN, BAT_TARGET_X_OFFSET_MAX
+        )
 
-        self.swoop_cooldown = random.randint(BAT_SWOOP_COOLDOWN_MIN, BAT_SWOOP_COOLDOWN_MAX)
-        self.last_swoop_attempt_time = pygame.time.get_ticks() - random.randint(0,
-                                                                                self.swoop_cooldown)  # Stagger initial swoops
+        self.swoop_cooldown = random.randint(
+            BAT_SWOOP_COOLDOWN_MIN, BAT_SWOOP_COOLDOWN_MAX
+        )
+        self.last_swoop_attempt_time = pygame.time.get_ticks() - random.randint(
+            0, self.swoop_cooldown
+        )  # Stagger initial swoops
         self.swoop_target_pos = None  # Store (x,y) for current swoop
 
     def update(self, platforms, player_rect, dt):
@@ -114,13 +137,19 @@ class Enemy(BaseEnemy):
             distance_to_player = math.hypot(player_dist_x, player_dist_y)
 
             if self.ai_state == "hover":
-                if distance_to_player < BAT_SIGHT_RADIUS_FOR_SWOOP and \
-                        current_time_ms - self.last_swoop_attempt_time > self.swoop_cooldown:
+                if (
+                    distance_to_player < BAT_SIGHT_RADIUS_FOR_SWOOP
+                    and current_time_ms - self.last_swoop_attempt_time
+                    > self.swoop_cooldown
+                ):
                     self.ai_state = "swoop"
-                    self.swoop_target_pos = player_rect.center  # Target current player position
+                    self.swoop_target_pos = (
+                        player_rect.center
+                    )  # Target current player position
                     self.last_swoop_attempt_time = current_time_ms
-                    self.swoop_cooldown = random.randint(BAT_SWOOP_COOLDOWN_MIN,
-                                                         BAT_SWOOP_COOLDOWN_MAX)  # Reset for next
+                    self.swoop_cooldown = random.randint(
+                        BAT_SWOOP_COOLDOWN_MIN, BAT_SWOOP_COOLDOWN_MAX
+                    )  # Reset for next
                 else:
                     # Hover logic: try to maintain offset from player
                     hover_target_x = player_rect.centerx + self.target_x_offset
@@ -131,12 +160,18 @@ class Enemy(BaseEnemy):
 
                     angle_to_hover = math.atan2(dy_to_hover, dx_to_hover)
                     target_vel_x = math.cos(angle_to_hover) * self.speed_val
-                    target_vel_y = math.sin(angle_to_hover) * self.speed_val * 0.7  # Slower vertical adjustment
+                    target_vel_y = (
+                        math.sin(angle_to_hover) * self.speed_val * 0.7
+                    )  # Slower vertical adjustment
 
                     # If very close to hover point, pick new offset
                     if math.hypot(dx_to_hover, dy_to_hover) < 20:
-                        self.target_x_offset = random.uniform(BAT_TARGET_X_OFFSET_MIN, BAT_TARGET_X_OFFSET_MAX)
-                        self.target_y_offset = random.randint(BAT_TARGET_Y_OFFSET_MIN, BAT_TARGET_Y_OFFSET_MAX)
+                        self.target_x_offset = random.uniform(
+                            BAT_TARGET_X_OFFSET_MIN, BAT_TARGET_X_OFFSET_MAX
+                        )
+                        self.target_y_offset = random.randint(
+                            BAT_TARGET_Y_OFFSET_MIN, BAT_TARGET_Y_OFFSET_MAX
+                        )
 
             elif self.ai_state == "swoop":
                 current_speed_multiplier = BAT_SWOOP_SPEED_MULTIPLIER
@@ -145,7 +180,10 @@ class Enemy(BaseEnemy):
                     dy_to_swoop = self.swoop_target_pos[1] - self.rect.centery
                     dist_to_swoop_target = math.hypot(dx_to_swoop, dy_to_swoop)
 
-                    if dist_to_swoop_target < 20 or distance_to_player > BAT_LOSE_AGGRO_RADIUS_SWOOP:  # Reached target or player too far
+                    if (
+                        dist_to_swoop_target < 20
+                        or distance_to_player > BAT_LOSE_AGGRO_RADIUS_SWOOP
+                    ):  # Reached target or player too far
                         self.ai_state = "hover"
                         self.swoop_target_pos = None
                     else:
@@ -155,7 +193,9 @@ class Enemy(BaseEnemy):
                 else:  # Should not happen if swoop_target_pos is set
                     self.ai_state = "hover"
         else:  # No player, simple erratic movement or static
-            self.ai_state = "hover"  # Default to hover behavior (which will be static if no player)
+            self.ai_state = (
+                "hover"  # Default to hover behavior (which will be static if no player)
+            )
             target_vel_x = random.uniform(-0.3, 0.3) * self.speed_val
             target_vel_y = random.uniform(-0.3, 0.3) * self.speed_val
 
@@ -172,49 +212,64 @@ class Enemy(BaseEnemy):
 
         # Horizontal movement and collision
         self.rect.x += self.vel_x * dt
-        self.collide_with_platforms_axis(platforms, 'x')
+        self.collide_with_platforms_axis(platforms, "x")
 
         # Vertical movement and collision
         self.rect.y += self.vel_y * dt
-        self.collide_with_platforms_axis(platforms, 'y')
+        self.collide_with_platforms_axis(platforms, "y")
 
         # Screen boundaries (clamp position and zero out velocity if hit)
-        screen_rect = pygame.Rect(0, 0, 800, 600)  # Assuming 800x600, get from game ideally
-        if self.rect.left < 0: self.rect.left = 0; self.vel_x = 0
-        if self.rect.right > screen_rect.width: self.rect.right = screen_rect.width; self.vel_x = 0
-        if self.rect.top < 0: self.rect.top = 0; self.vel_y = 0
-        if self.rect.bottom > screen_rect.height: self.rect.bottom = screen_rect.height; self.vel_y = 0
+        screen_rect = pygame.Rect(
+            0, 0, 800, 600
+        )  # Assuming 800x600, get from game ideally
+        if self.rect.left < 0:
+            self.rect.left = 0
+            self.vel_x = 0
+        if self.rect.right > screen_rect.width:
+            self.rect.right = screen_rect.width
+            self.vel_x = 0
+        if self.rect.top < 0:
+            self.rect.top = 0
+            self.vel_y = 0
+        if self.rect.bottom > screen_rect.height:
+            self.rect.bottom = screen_rect.height
+            self.vel_y = 0
 
         self.animate(current_time_ms)
 
     def collide_with_platforms_axis(self, platforms, axis):
-        """ Handles collision with platforms along a specific axis. """
+        """Handles collision with platforms along a specific axis."""
         collided_sprites = pygame.sprite.spritecollide(self, platforms, False)
         for platform in collided_sprites:
-            if axis == 'x':
+            if axis == "x":
                 if self.vel_x > 0:  # Moving right, collided
                     self.rect.right = platform.rect.left
                 elif self.vel_x < 0:  # Moving left, collided
                     self.rect.left = platform.rect.right
                 self.vel_x *= -0.5  # Bounce slightly or stop
-                if self.ai_state == "swoop": self.ai_state = "hover"  # Knock out of swoop
-            elif axis == 'y':
+                if self.ai_state == "swoop":
+                    self.ai_state = "hover"  # Knock out of swoop
+            elif axis == "y":
                 if self.vel_y > 0:  # Moving down, collided
                     self.rect.bottom = platform.rect.top
                 elif self.vel_y < 0:  # Moving up, collided
                     self.rect.top = platform.rect.bottom
                 self.vel_y *= -0.5  # Bounce slightly or stop
-                if self.ai_state == "swoop": self.ai_state = "hover"  # Knock out of swoop
+                if self.ai_state == "swoop":
+                    self.ai_state = "hover"  # Knock out of swoop
 
     def animate(self, current_time_ms):
-        if not self.frames: return
+        if not self.frames:
+            return
         time_per_anim_frame = 1000 / self.anim_fps
         if current_time_ms - self.last_anim_update > time_per_anim_frame:
             self.last_anim_update = current_time_ms
             self.current_frame_idx = (self.current_frame_idx + 1) % len(self.frames)
 
         new_image = self.frames[self.current_frame_idx]
-        self.image = pygame.transform.flip(new_image, self.facing_direction == -1, False)
+        self.image = pygame.transform.flip(
+            new_image, self.facing_direction == -1, False
+        )
 
     def take_damage(self, amount):
         self.health -= amount

@@ -10,7 +10,7 @@ draw_hitboxes = False
 
 def init_font():
     global font
-    font = pygame.font.Font('./Core/PressStart2P-Regular.ttf', 8)
+    font = pygame.font.Font("./Core/PressStart2P-Regular.ttf", 8)
 
 
 def get_font_size(text):
@@ -41,13 +41,12 @@ def draw_garbled_text(draw_surface, text, position):
     text = str(text)
     for index in range(0, len(text)):
         char = text[index]
-        if char == ' ':
+        if char == " ":
             continue
 
         garbled_surface = new_garbled_char(char, font.size(text[index]))
         draw_surface.blit(
-            garbled_surface,
-            (position[0] + font.size(text[:index])[0], position[1])
+            garbled_surface, (position[0] + font.size(text[:index])[0], position[1])
         )
 
 
@@ -65,22 +64,12 @@ def new_garbled_char(char, char_size):
                 pygame.draw.rect(
                     surface,
                     (0, 0, 0),
-                    [
-                        x * block_size + 1,
-                        y * block_size + 1,
-                        block_size,
-                        block_size
-                    ]
+                    [x * block_size + 1, y * block_size + 1, block_size, block_size],
                 )
                 pygame.draw.rect(
                     surface,
                     (255, 255, 255),
-                    [
-                        x * block_size,
-                        y * block_size,
-                        block_size,
-                        block_size
-                    ]
+                    [x * block_size, y * block_size, block_size, block_size],
                 )
     return surface
 
@@ -101,17 +90,14 @@ def draw_sprite(draw_surface, sprite_data, garbled=False):
 
     sprite = pygame.transform.scale(
         sprite_data["sprite"]["image"],
-        (
-            sprite_data["sprite_size"]["width"],
-            sprite_data["sprite_size"]["height"]
-        )
+        (sprite_data["sprite_size"]["width"], sprite_data["sprite_size"]["height"]),
     )
 
     draw_surface.blit(
         sprite,
         [
             sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] // 2),
-            sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] // 2)
+            sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] // 2),
         ],
     )
 
@@ -120,26 +106,30 @@ def draw_sprite(draw_surface, sprite_data, garbled=False):
 
 
 def draw_hitbox(draw_surface, sprite_data):
-    hitbox_x_ratio = sprite_data["sprite_size"]["width"] / sprite_data["sprite"]["original size"]["width"]
-    hitbox_y_ratio = sprite_data["sprite_size"]["height"] / sprite_data["sprite"]["original size"]["height"]
+    hitbox_x_ratio = (
+        sprite_data["sprite_size"]["width"]
+        / sprite_data["sprite"]["original size"]["width"]
+    )
+    hitbox_y_ratio = (
+        sprite_data["sprite_size"]["height"]
+        / sprite_data["sprite"]["original size"]["height"]
+    )
 
-    x = sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] / 2) + (
-        sprite_data["sprite"]["hitbox"]["x"] * hitbox_x_ratio)
-    y = sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] / 2) + (
-        sprite_data["sprite"]["hitbox"]["y"] * hitbox_y_ratio)
+    x = (
+        sprite_data["position"]["x"]
+        - (sprite_data["sprite_size"]["width"] / 2)
+        + (sprite_data["sprite"]["hitbox"]["x"] * hitbox_x_ratio)
+    )
+    y = (
+        sprite_data["position"]["y"]
+        - (sprite_data["sprite_size"]["height"] / 2)
+        + (sprite_data["sprite"]["hitbox"]["y"] * hitbox_y_ratio)
+    )
     width = sprite_data["sprite"]["hitbox"]["width"] * hitbox_x_ratio
     height = sprite_data["sprite"]["hitbox"]["height"] * hitbox_y_ratio
 
     pygame.draw.rect(
-        draw_surface,
-        (255, 0, 255),
-        [
-            int(x),
-            int(y),
-            int(width),
-            int(height)
-        ],
-        2
+        draw_surface, (255, 0, 255), [int(x), int(y), int(width), int(height)], 2
     )
 
 
@@ -148,16 +138,16 @@ def draw_garbled_sprite(draw_surface, sprite_data):
 
     glitch_surface, blend_mode = new_garbled_sprite(
         hash(frozenset(sprite_data["position"].items())),
-        (sprite_data["sprite_size"]["width"], sprite_data["sprite_size"]["height"])
+        (sprite_data["sprite_size"]["width"], sprite_data["sprite_size"]["height"]),
     )
 
     draw_surface.blit(
         glitch_surface,
         [
             sprite_data["position"]["x"] - (sprite_data["sprite_size"]["width"] // 2),
-            sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] // 2)
+            sprite_data["position"]["y"] - (sprite_data["sprite_size"]["height"] // 2),
         ],
-        special_flags=blend_mode
+        special_flags=blend_mode,
     )
 
 
@@ -178,19 +168,19 @@ def new_garbled_sprite(seed, char_size):
                         int(rand.uniform(0, 255)),
                         int(rand.uniform(0, 255)),
                         int(rand.uniform(0, 255)),
-                        int(rand.uniform(0, 255))
+                        int(rand.uniform(0, 255)),
                     ),
-                    [
-                        x * block_size,
-                        y * block_size,
-                        block_size,
-                        block_size
-                    ]
+                    [x * block_size, y * block_size, block_size, block_size],
                 )
 
-    blend_mode = rand.choice([
-        pygame.BLEND_RGBA_ADD, pygame.BLEND_RGBA_SUB, pygame.BLEND_RGBA_MULT, pygame.BLEND_RGBA_MIN,
-        pygame.BLEND_RGBA_MAX
-    ])
+    blend_mode = rand.choice(
+        [
+            pygame.BLEND_RGBA_ADD,
+            pygame.BLEND_RGBA_SUB,
+            pygame.BLEND_RGBA_MULT,
+            pygame.BLEND_RGBA_MIN,
+            pygame.BLEND_RGBA_MAX,
+        ]
+    )
 
     return surface, blend_mode

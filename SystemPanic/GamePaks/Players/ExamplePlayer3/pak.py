@@ -1,5 +1,6 @@
 import pygame
 
+
 def get_sprite_details():
     """
         Tells the game engine how to slice up your spritesheet.
@@ -29,71 +30,39 @@ def get_sprite_details():
 
     sprites["idle right"] = []
     for x in range(0, 4):
-        sprites["idle right"].append({
-            "image rect": {
-                "x": 18 * x,
-                "y": 0,
-                "width": 18,
-                "height": 18
-            },
-            "hitbox": {
-                "x": 0,
-                "y": 0,
-                "width": 18,
-                "height": 18
+        sprites["idle right"].append(
+            {
+                "image rect": {"x": 18 * x, "y": 0, "width": 18, "height": 18},
+                "hitbox": {"x": 0, "y": 0, "width": 18, "height": 18},
             }
-        })
+        )
 
     sprites["idle left"] = []
     for x in range(2, 6):
-        sprites["idle left"].append({
-            "image rect": {
-                "x": 18 * x,
-                "y": 36,
-                "width": 18,
-                "height": 18
-            },
-            "hitbox": {
-                "x": 0,
-                "y": 0,
-                "width": 18,
-                "height": 18
+        sprites["idle left"].append(
+            {
+                "image rect": {"x": 18 * x, "y": 36, "width": 18, "height": 18},
+                "hitbox": {"x": 0, "y": 0, "width": 18, "height": 18},
             }
-        })
+        )
 
     sprites["right"] = []
     for x in range(0, 6):
-        sprites["right"].append({
-            "image rect": {
-                "x": 18 * x,
-                "y": 18,
-                "width": 18,
-                "height": 18
-            },
-            "hitbox": {
-                "x": 0,
-                "y": 0,
-                "width": 18,
-                "height": 18
+        sprites["right"].append(
+            {
+                "image rect": {"x": 18 * x, "y": 18, "width": 18, "height": 18},
+                "hitbox": {"x": 0, "y": 0, "width": 18, "height": 18},
             }
-        })
+        )
 
     sprites["left"] = []
     for x in range(0, 6):
-        sprites["left"].append({
-            "image rect": {
-                "x": 18 * x,
-                "y": 54,
-                "width": 18,
-                "height": 18
-            },
-            "hitbox": {
-                "x": 0,
-                "y": 0,
-                "width": 18,
-                "height": 18
+        sprites["left"].append(
+            {
+                "image rect": {"x": 18 * x, "y": 54, "width": 18, "height": 18},
+                "hitbox": {"x": 0, "y": 0, "width": 18, "height": 18},
             }
-        })
+        )
 
     return sprites
 
@@ -150,14 +119,14 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
             wall["position"]["x"] - wall["sprite_size"]["width"] / 2,
             wall["position"]["y"] - wall["sprite_size"]["height"] / 2,
             wall["sprite_size"]["width"],
-            wall["sprite_size"]["height"]
+            wall["sprite_size"]["height"],
         )
         if wall_rect.collidepoint(
             player_state["position"]["x"] - player_state["sprite_size"]["width"] / 2.0,
-            player_state["position"]["y"] + player_state["sprite_size"]["height"] / 2.0
+            player_state["position"]["y"] + player_state["sprite_size"]["height"] / 2.0,
         ) or wall_rect.collidepoint(
             player_state["position"]["x"] + player_state["sprite_size"]["width"] / 2.0,
-            player_state["position"]["y"] + player_state["sprite_size"]["height"] / 2.0
+            player_state["position"]["y"] + player_state["sprite_size"]["height"] / 2.0,
         ):
             on_ground = True
             break
@@ -169,7 +138,10 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
         player_state["velocity"]["y"] += gravity * delta_t
 
     # No momentum in the air - only if the player is moving
-    if game_state["pressed_buttons"]["left"] is False and game_state["pressed_buttons"]["right"] is False:
+    if (
+        game_state["pressed_buttons"]["left"] is False
+        and game_state["pressed_buttons"]["right"] is False
+    ):
         player_state["velocity"]["x"] = 0
 
     if game_state["pressed_buttons"]["left"] is True:
@@ -195,9 +167,11 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
                     "target": "enemy",
                     "direction": player_state["facing"],
                     "position": {
-                        "x": player_state["position"]["x"] + player_state["facing"]["x"] * 16,
-                        "y": player_state["position"]["y"] + player_state["facing"]["y"] * 16
-                    }
+                        "x": player_state["position"]["x"]
+                        + player_state["facing"]["x"] * 16,
+                        "y": player_state["position"]["y"]
+                        + player_state["facing"]["y"] * 16,
+                    },
                 }
             )
             player_state["pak_specific_state"]["last_fired"] = time_since_start
@@ -209,7 +183,9 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     # Pick our sprite
     if player_state["facing"]["x"] >= 0:
         if idle is True:
-            player_state["sprite"] = sprites["idle right"][int(time_since_start * 8) % 4]
+            player_state["sprite"] = sprites["idle right"][
+                int(time_since_start * 8) % 4
+            ]
         else:
             player_state["sprite"] = sprites["right"][int(time_since_start * 8) % 6]
     else:

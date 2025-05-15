@@ -17,13 +17,11 @@ from SystemPanic.Core.Screens.level_complete import advance_level_complete
 from SystemPanic.Core.Screens.dying import advance_dying
 
 
-
 # TODO: should this be something we can set in options?  Or on game start or something?
 RANDOMIZE_CONFIGURATION_TIME = 5.0  # in seconds
 
 GAME_MODES = Enum(
-    "GAME_MODES",
-    "TITLE_SCREEN READY IN_GAME DYING LEVEL_COMPLETE GAME_OVER"
+    "GAME_MODES", "TITLE_SCREEN READY IN_GAME DYING LEVEL_COMPLETE GAME_OVER"
 )
 
 GameState = {
@@ -42,8 +40,7 @@ GameState = {
     "last_randomize_time": 0,
     "garbling_timer": 0,
     "garbled": False,
-
-    "pressed_buttons": {}
+    "pressed_buttons": {},
     # A dict of the controls that are currently active.  Includes:
     #    "up", "down", "left", "right", "fire"
 }
@@ -79,19 +76,11 @@ def next_level(game_state):
         for x in range(0, len(walls[y])):
             if walls[y][x] is True:
                 wall = new_sprite()
-                wall["position"] = {
-                    "x": (x + 0.5) * width,
-                    "y": (y + 0.5) * height
-                }
-                wall["sprite_size"] = {
-                    "width": width,
-                    "height": height
-                }
+                wall["position"] = {"x": (x + 0.5) * width, "y": (y + 0.5) * height}
+                wall["sprite_size"] = {"width": width, "height": height}
                 # TODO: decide which sprite to grab based on the walls around this one
                 # TODO: this will need to be re-configured whenever we change the level up
-                wall["sprite"] = level_tiles["get_center"](
-                    level_tiles["sprites"]
-                )
+                wall["sprite"] = level_tiles["get_center"](level_tiles["sprites"])
                 game_state["walls"].append(wall)
 
     # Init the enemies
@@ -113,39 +102,41 @@ def start_new_life(game_state):
 
     # Start by positioning the enemies and the player off-screen, so that we can safely re-position them on-screen
     for enemy in game_state["enemies"]:
-        enemy["position"] = {
-            "x": -9999,
-            "y": -9999
-        }
-    game_state["players"][0]["position"] = {
-        "x": -9999,
-        "y": -9999
-    }
+        enemy["position"] = {"x": -9999, "y": -9999}
+    game_state["players"][0]["position"] = {"x": -9999, "y": -9999}
 
     # Advance the sprites one frame so that they can set their sprites to start with, but
     # don't advance their positions (since we're not checking for collisions, and don't want them stuck in the walls)
     # Similarly, ignore requests to fire new missiles
     for key in ["players", "enemies"]:
         for index in range(0, len(game_state[key])):
-            game_state[key][index]["previous_position"] = game_state[key][index]["position"].copy()
+            game_state[key][index]["previous_position"] = game_state[key][index][
+                "position"
+            ].copy()
             game_state = game_state["active_config"][key]["advance"](
                 game_state["active_config"][key]["sprites"],
                 (key, index),
                 game_state,
                 0,
                 0,
-                []
+                [],
             )
-            game_state[key][index]["position"] = game_state[key][index]["previous_position"].copy()
+            game_state[key][index]["position"] = game_state[key][index][
+                "previous_position"
+            ].copy()
 
     # Position the enemies
-    game_state["enemies"] = list(map(
-        (lambda enemy: position_sprite_safely(game_state, enemy)),
-        game_state["enemies"]
-    ))
+    game_state["enemies"] = list(
+        map(
+            (lambda enemy: position_sprite_safely(game_state, enemy)),
+            game_state["enemies"],
+        )
+    )
 
     # Position the player
-    game_state["players"][0] = position_sprite_safely(game_state, game_state["players"][0])
+    game_state["players"][0] = position_sprite_safely(
+        game_state, game_state["players"][0]
+    )
 
     # put us into the 'ready' screen
     return change_mode(game_state, GAME_MODES.READY)
@@ -157,16 +148,14 @@ def position_sprite_safely(game_state, sprite):
     while True:
         sprite["position"] = {
             "x": randint(0, config.GAME_SURFACE_WIDTH),
-            "y": randint(0, config.GAME_SURFACE_HEIGHT)
+            "y": randint(0, config.GAME_SURFACE_HEIGHT),
         }
 
         if does_sprite_collide_with_list_of_sprites(
-                itertools.chain(
-                    game_state["walls"],
-                    game_state["enemies"],
-                    game_state["players"]
-                ),
-                sprite
+            itertools.chain(
+                game_state["walls"], game_state["enemies"], game_state["players"]
+            ),
+            sprite,
         ):
             continue
 
@@ -191,7 +180,10 @@ def reconfigure(game_state, new_config):
 
     # reset pak-specific states
     for key in ["players", "enemies", "player_missiles", "enemy_missiles"]:
-        if old_config[key] is not None and old_config[key]["pak_name"] != new_config[key]["pak_name"]:
+        if (
+            old_config[key] is not None
+            and old_config[key]["pak_name"] != new_config[key]["pak_name"]
+        ):
             for index in range(0, len(game_state[key])):
                 game_state[key][index]["pak_specific_state"] = {}
 
@@ -217,7 +209,10 @@ def advance(paks, game_state, time_since_start, delta_t, pressed_buttons):
         game_state["garbling_timer"] -= delta_t
 
     # Decide whether it's time to re-randomize
-    if time_since_start - game_state["last_randomize_time"] > RANDOMIZE_CONFIGURATION_TIME:
+    if (
+        time_since_start - game_state["last_randomize_time"]
+        > RANDOMIZE_CONFIGURATION_TIME
+    ):
         game_state = randomize_config(game_state, paks, time_since_start)
 
     if game_state["game_mode"] is GAME_MODES.READY:
@@ -244,16 +239,12 @@ def new_missile(missile_data, time_since_start):
     missile["position"] = missile_data["position"]
 
     if missile["direction"]["x"] == 0 and missile["direction"]["y"] == 0:
-        missile["direction"] = {
-            "x": 0,
-            "y": 0
-        }
+        missile["direction"] = {"x": 0, "y": 0}
     else:
-        dir_vector = pygame.math.Vector2(missile["direction"]["x"], missile["direction"]["y"]).normalize()
-        missile["direction"] = {
-            "x": dir_vector.x,
-            "y": dir_vector.y
-        }
+        dir_vector = pygame.math.Vector2(
+            missile["direction"]["x"], missile["direction"]["y"]
+        ).normalize()
+        missile["direction"] = {"x": dir_vector.x, "y": dir_vector.y}
 
     return missile
 
@@ -277,8 +268,8 @@ def randomize_config(game_state, paks, now):
             paks["level_generators"],
             paks["level_tiles"],
             paks["music"],
-            paks["players"]
-        )
+            paks["players"],
+        ),
     )
 
 

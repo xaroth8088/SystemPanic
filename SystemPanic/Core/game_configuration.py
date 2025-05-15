@@ -10,7 +10,6 @@ GameConfiguration = {
     "enemies": None,
     "player_missiles": None,
     "enemy_missiles": None,
-
     "background": None,
     "level_generator": None,
     "level_tiles": None,
@@ -23,22 +22,13 @@ def new_game_configuration():
 
 
 def get_randomized_config(
-        backgrounds,
-        enemies,
-        missiles,
-        level_generators,
-        level_tiles,
-        music,
-        players
+    backgrounds, enemies, missiles, level_generators, level_tiles, music, players
 ):
     new_config = new_game_configuration()
 
     new_config["background"] = pygame.transform.scale(
         random.choice(backgrounds),
-        (
-            config.GAME_SURFACE_WIDTH,
-            config.GAME_SURFACE_HEIGHT
-        )
+        (config.GAME_SURFACE_WIDTH, config.GAME_SURFACE_HEIGHT),
     )
 
     new_config["level_generator"] = random.choice(level_generators)()

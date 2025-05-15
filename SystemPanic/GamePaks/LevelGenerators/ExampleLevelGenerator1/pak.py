@@ -24,10 +24,7 @@ class Pak:
         The game engine will take care of finding appropriate starting locations for the player and enemies.
 
         """
-        walls = [
-            [False for _ in range(0, 16)]
-            for _ in range(0, 16)
-            ]
+        walls = [[False for _ in range(0, 16)] for _ in range(0, 16)]
 
         for _ in range(0, randint(0, 30)):
             walls[randint(0, 15)][randint(0, 15)] = True

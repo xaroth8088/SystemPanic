@@ -26,116 +26,36 @@ def get_sprite_details():
     return {
         "spinner": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                }
+                "image rect": {"x": 0, "y": 0, "width": 16, "height": 16},
+                "hitbox": {"x": 0, "y": 0, "width": 16, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 16,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                }
+                "image rect": {"x": 16, "y": 0, "width": 16, "height": 16},
+                "hitbox": {"x": 0, "y": 0, "width": 16, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                }
+                "image rect": {"x": 32, "y": 0, "width": 16, "height": 16},
+                "hitbox": {"x": 0, "y": 0, "width": 16, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 48,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                }
+                "image rect": {"x": 48, "y": 0, "width": 16, "height": 16},
+                "hitbox": {"x": 0, "y": 0, "width": 16, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                }
+                "image rect": {"x": 64, "y": 0, "width": 16, "height": 16},
+                "hitbox": {"x": 0, "y": 0, "width": 16, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 80,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                }
+                "image rect": {"x": 80, "y": 0, "width": 16, "height": 16},
+                "hitbox": {"x": 0, "y": 0, "width": 16, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                }
+                "image rect": {"x": 96, "y": 0, "width": 16, "height": 16},
+                "hitbox": {"x": 0, "y": 0, "width": 16, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 112,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 16,
-                    "height": 16
-                }
+                "image rect": {"x": 112, "y": 0, "width": 16, "height": 16},
+                "hitbox": {"x": 0, "y": 0, "width": 16, "height": 16},
             },
         ]
     }

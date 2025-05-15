@@ -9,17 +9,14 @@ DYING_TIME = 1.0
 
 def draw_dying(game_surface, game_state):
     # Add the background
-    game_surface.blit(
-        game_state["active_config"]["background"],
-        [0, 0]
-    )
+    game_surface.blit(game_state["active_config"]["background"], [0, 0])
 
     # Add the sprites (each is drawn atop the previous)
     for sprite_data in itertools.chain(
-            game_state["walls"],
-            game_state["enemies"],
-            game_state["player_missiles"],
-            game_state["enemy_missiles"]
+        game_state["walls"],
+        game_state["enemies"],
+        game_state["player_missiles"],
+        game_state["enemy_missiles"],
     ):
         if sprite_data["active"] is True:
             draw_sprite(game_surface, sprite_data, game_state["garbled"])
@@ -37,9 +34,7 @@ def draw_dying(game_surface, game_state):
     # Draw a spinning player
     time_ratio = game_state["mode_specific"]["dying_timer"] / DYING_TIME
     num_spins = 10.5
-    angle = (
-        360.0 * num_spins * time_ratio
-    )
+    angle = 360.0 * num_spins * time_ratio
 
     scale = 1.25 * time_ratio
     if scale < 0:
@@ -48,25 +43,18 @@ def draw_dying(game_surface, game_state):
     # Get us to the size we were when we died...
     dying_surface = pygame.transform.scale(
         sprite_data["sprite"]["image"],
-        (
-            sprite_data["sprite_size"]["width"],
-            sprite_data["sprite_size"]["height"]
-        )
+        (sprite_data["sprite_size"]["width"], sprite_data["sprite_size"]["height"]),
     )
 
     # Then, shrink down and spin
-    dying_surface = pygame.transform.rotozoom(
-        dying_surface,
-        angle,
-        scale
-    )
+    dying_surface = pygame.transform.rotozoom(dying_surface, angle, scale)
 
     # Draw it!
     game_surface.blit(
         dying_surface,
         [
             sprite_data["position"]["x"] - (dying_surface.get_width() // 2),
-            sprite_data["position"]["y"] - (dying_surface.get_height() // 2)
+            sprite_data["position"]["y"] - (dying_surface.get_height() // 2),
         ],
     )
 

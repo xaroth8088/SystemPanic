@@ -30,7 +30,9 @@ class BaseEnemy(pygame.sprite.Sprite, ABC):
         pass
 
     @abstractmethod
-    def __init__(self, x: int, y: int, assets: dict, player_rect_for_ai: pygame.Rect | None):
+    def __init__(
+        self, x: int, y: int, assets: dict, player_rect_for_ai: pygame.Rect | None
+    ):
         """
         Initialize the enemy instance.
 
@@ -48,7 +50,9 @@ class BaseEnemy(pygame.sprite.Sprite, ABC):
         pass
 
     @abstractmethod
-    def update(self, platforms: pygame.sprite.Group, player_rect: pygame.Rect | None, dt: float):
+    def update(
+        self, platforms: pygame.sprite.Group, player_rect: pygame.Rect | None, dt: float
+    ):
         """
         Update the enemy's state (AI, movement, physics, animation).
 

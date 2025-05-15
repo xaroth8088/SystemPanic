@@ -29,124 +29,44 @@ def get_sprite_details():
     return {
         "red": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-                },
-                "hitbox": {
-                    "x": 2,
-                    "y": 14,
-                    "width": 27,
-                    "height": 16
-                }
+                "image rect": {"x": 0, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 2, "y": 14, "width": 27, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-                },
-                "hitbox": {
-                    "x": 2,
-                    "y": 14,
-                    "width": 27,
-                    "height": 16
-                }
+                "image rect": {"x": 32, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 2, "y": 14, "width": 27, "height": 16},
             },
         ],
         "green": [
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
-                "hitbox": {
-                    "x": 2,
-                    "y": 14,
-                    "width": 27,
-                    "height": 16
-                }
+                "image rect": {"x": 64, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 2, "y": 14, "width": 27, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
-                "hitbox": {
-                    "x": 2,
-                    "y": 14,
-                    "width": 27,
-                    "height": 16
-                }
+                "image rect": {"x": 96, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 2, "y": 14, "width": 27, "height": 16},
             },
         ],
         "blue": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
-                "hitbox": {
-                    "x": 2,
-                    "y": 14,
-                    "width": 27,
-                    "height": 16
-                }
+                "image rect": {"x": 0, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 2, "y": 14, "width": 27, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 32,
-                    "y": 0,
-                    "width": 32,
-                    "height": 32
-                },
-                "hitbox": {
-                    "x": 2,
-                    "y": 14,
-                    "width": 27,
-                    "height": 16
-                }
+                "image rect": {"x": 32, "y": 0, "width": 32, "height": 32},
+                "hitbox": {"x": 2, "y": 14, "width": 27, "height": 16},
             },
         ],
         "yellow": [
             {
-                "image rect": {
-                    "x": 64,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-                },
-                "hitbox": {
-                    "x": 2,
-                    "y": 14,
-                    "width": 27,
-                    "height": 16
-                }
+                "image rect": {"x": 64, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 2, "y": 14, "width": 27, "height": 16},
             },
             {
-                "image rect": {
-                    "x": 96,
-                    "y": 32,
-                    "width": 32,
-                    "height": 32
-                },
-                "hitbox": {
-                    "x": 2,
-                    "y": 14,
-                    "width": 27,
-                    "height": 16
-                }
+                "image rect": {"x": 96, "y": 32, "width": 32, "height": 32},
+                "hitbox": {"x": 2, "y": 14, "width": 27, "height": 16},
             },
-        ]
+        ],
     }
 
 
@@ -203,19 +123,20 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     else:
         enemy_state["position"]["y"] -= 16.0 * delta_t
 
-    enemy_state["sprite"] = sprites[color][
-        int(time_since_start * 4) % 2]
+    enemy_state["sprite"] = sprites[color][int(time_since_start * 4) % 2]
 
     # Do we want to fire a missile?
     if random.randint(0, 100) == 0:
-        new_missiles.append({
-            "target": "player",
-            "direction": {
-                "x": random.uniform(-1.0, 1.0),
-                "y": random.uniform(-1.0, 1.0)
-            },
-            "position": enemy_state["position"].copy()
-        })
+        new_missiles.append(
+            {
+                "target": "player",
+                "direction": {
+                    "x": random.uniform(-1.0, 1.0),
+                    "y": random.uniform(-1.0, 1.0),
+                },
+                "position": enemy_state["position"].copy(),
+            }
+        )
 
         # How do we interact with the borders of the screen?
         enemy_state["wrap_x"] = True

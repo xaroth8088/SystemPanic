@@ -30,6 +30,8 @@ rest of our plans before starting to write new code.  We promise to try to be re
 2. `pip install -r requirements.txt`
 3. Profit?
 
+Please format code with `black -t py312 .` for any PRs.
+
 ## What's on tap for the future?
 * More Paks!
 * Code cleanup (this started as weekend hackery, and it shows)
@@ -46,6 +48,22 @@ rest of our plans before starting to write new code.  We promise to try to be re
 * [Geoffrey Benson](https://github.com/xaroth8088)
 
 ## Credits for packaged art
+
+### Enemies
+* slime_enemy: patvanmackelberg, license: CC0, sliced from original at http://opengameart.org/content/slime-2-frame-animation-32x32
+* bat_enemy: AntumDeluge, license: CC-BY 3.0, sliced from original at https://opengameart.org/content/bat-rework
+
+
+### Players
+* mage_player missile: Master484, license: CC0, sliced from original at [http://opengameart.org/content/bullet-collection-2-m484-games](http://opengameart.org/content/bullet-collection-2-m484-games)
+
+
+### Platforms
+* brick_platform: Nimnon, license: CC0, sliced from original at https://opengameart.org/content/blue-brick-tileset
+* grass_platform: Redfill Production, license: CC-BY-SA 4.0, sliced from original at https://opengameart.org/content/grass-and-dirt-sprite-sheet
+
+
+## Credits for packaged art (v1)
 
 ### Music
 * BGM_Alpha - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)

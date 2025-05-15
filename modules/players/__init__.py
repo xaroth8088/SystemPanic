@@ -41,13 +41,20 @@ class BasePlayer(pygame.sprite.Sprite, ABC):
             assets (dict): The dictionary of assets loaded by load_assets().
         """
         super().__init__()  # Initialize pygame.sprite.Sprite
-        self.rect = pygame.Rect(x, y, 32, 32)  # Placeholder, should be set by concrete class
+        self.rect = pygame.Rect(
+            x, y, 32, 32
+        )  # Placeholder, should be set by concrete class
         self.image = pygame.Surface([32, 32])  # Placeholder
         # Concrete classes will set self.image, self.rect, self.health, etc.
         pass
 
     @abstractmethod
-    def update(self, keys: pygame.key.ScancodeWrapper, platforms: pygame.sprite.Group, dt: float):
+    def update(
+        self,
+        keys: pygame.key.ScancodeWrapper,
+        platforms: pygame.sprite.Group,
+        dt: float,
+    ):
         """
         Update the player's state, including movement, physics, and animations.
 

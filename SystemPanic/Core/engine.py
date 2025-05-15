@@ -56,7 +56,7 @@ class Engine:
         # Sound init
         self.garbled_sounds = [
             pygame.mixer.Sound(file="./FX/glitch.ogg"),
-            pygame.mixer.Sound(file="./FX/glitch-9.ogg")
+            pygame.mixer.Sound(file="./FX/glitch-9.ogg"),
         ]
 
         # Screen init
@@ -67,7 +67,7 @@ class Engine:
 
         self.game_surface = pygame.Surface(
             (config.GAME_SURFACE_WIDTH, config.GAME_SURFACE_HEIGHT),
-            flags=pygame.SRCALPHA
+            flags=pygame.SRCALPHA,
         ).convert_alpha()
 
         pygame.display.toggle_fullscreen()
@@ -102,14 +102,22 @@ class Engine:
             # Advance the frame
             old_garbled = self.game_state["garbled"]
 
-            self.game_state = advance(self.paks, self.game_state, now - self.start_time, delta_t, pressed_buttons)
+            self.game_state = advance(
+                self.paks,
+                self.game_state,
+                now - self.start_time,
+                delta_t,
+                pressed_buttons,
+            )
 
             if old_garbled is False and self.game_state["garbled"] is True:
                 # Play the garbled sound, from a random location
                 sound = random.choice(self.garbled_sounds)
                 buffer = sound.get_raw()
                 start_time = int(random.uniform(0, int(len(buffer) * 0.75)))
-                start_time = int((start_time // 4.0) * 4.0)  # ensure we're at a multiple of 4, for the sound engine
+                start_time = int(
+                    (start_time // 4.0) * 4.0
+                )  # ensure we're at a multiple of 4, for the sound engine
                 clipped_buffer = buffer[start_time:]
                 clipped_sound = pygame.mixer.Sound(buffer=clipped_buffer)
                 clipped_sound.play(maxtime=int(random.uniform(500, 800)))
@@ -141,19 +149,12 @@ class Engine:
 
             # Put the game surface onto the screen
             surface = pygame.transform.scale(
-                self.game_surface,
-                (
-                    config.SCREEN_WIDTH,
-                    config.SCREEN_HEIGHT
-                )
+                self.game_surface, (config.SCREEN_WIDTH, config.SCREEN_HEIGHT)
             )
 
             self.screen.blit(
                 surface,
-                [
-                    0,
-                    0
-                ],
+                [0, 0],
             )
 
             pygame.display.flip()
@@ -170,7 +171,7 @@ class Engine:
             "down": False,
             "left": False,
             "right": False,
-            "fire": False
+            "fire": False,
         }
 
         # TODO: configurable input keys
@@ -189,10 +190,10 @@ class Engine:
 
     def draw_fps(self):
         self.pygame_clock.tick()
-        fps = "FPS: {:3.3}".format(self.pygame_clock.get_fps(), )
+        fps = "FPS: {:3.3}".format(
+            self.pygame_clock.get_fps(),
+        )
         text_width, _ = font.size(fps)
         draw_text(
-            self.game_surface,
-            fps,
-            (config.GAME_SURFACE_WIDTH - text_width - 4, 4)
+            self.game_surface, fps, (config.GAME_SURFACE_WIDTH - text_width - 4, 4)
         )

@@ -2,3 +2,4 @@ pip==25.1.1
 pygame==2.6.1
 pillow==11.2.1
 setuptools==80.7.0
+black==25.1.0

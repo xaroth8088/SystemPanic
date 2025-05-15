@@ -26,236 +26,76 @@ def get_sprite_details():
     return {
         "left": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 512,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 0, "y": 512, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 256,
-                    "y": 512,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 256, "y": 512, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 512,
-                    "y": 512,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 512, "y": 512, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 768,
-                    "y": 512,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 768, "y": 512, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
         ],
         "right": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 768,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 0, "y": 768, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 256,
-                    "y": 768,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 256, "y": 768, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 512,
-                    "y": 768,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 512, "y": 768, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 768,
-                    "y": 768,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 768, "y": 768, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
         ],
         "up": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 256,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 0, "y": 256, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 256,
-                    "y": 256,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 256, "y": 256, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 512,
-                    "y": 256,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 512, "y": 256, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 768,
-                    "y": 256,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 768, "y": 256, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
         ],
         "down": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 0, "y": 0, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 256,
-                    "y": 0,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 256, "y": 0, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 512,
-                    "y": 0,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 512, "y": 0, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
             {
-                "image rect": {
-                    "x": 768,
-                    "y": 0,
-                    "width": 256,
-                    "height": 256
-                },
-                "hitbox": {
-                    "x": 92,
-                    "y": 32,
-                    "width": 72,
-                    "height": 190
-                }
+                "image rect": {"x": 768, "y": 0, "width": 256, "height": 256},
+                "hitbox": {"x": 92, "y": 32, "width": 72, "height": 190},
             },
-        ]
+        ],
     }
 
 
@@ -291,12 +131,7 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
     player_state["sprite_size"]["height"] = 16
 
     # What's our hitbox rect (relative to the top-left corner of the sprite)?
-    player_state["hitbox"] = {
-        "x": 11,
-        "y": 4,
-        "width": 9,
-        "height": 24
-    }
+    player_state["hitbox"] = {"x": 11, "y": 4, "width": 9, "height": 24}
 
     # How are we moving?  And what's our sprite?
     player_state["sprite"] = sprites["down"][0]  # "Idle"
@@ -326,7 +161,10 @@ def advance(sprites, path, game_state, time_since_start, delta_t, new_missiles):
                 {
                     "target": "enemy",
                     "direction": {"x": 1.0, "y": 0.0},
-                    "position": {"x": player_state["position"]["x"], "y": player_state["position"]["y"]}
+                    "position": {
+                        "x": player_state["position"]["x"],
+                        "y": player_state["position"]["y"],
+                    },
                 }
             )
             player_state["pak_specific_state"]["last_fired"] = time_since_start

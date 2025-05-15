@@ -26,18 +26,8 @@ def get_sprite_details():
     return {
         "missile": [
             {
-                "image rect": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 8,
-                    "height": 8
-                },
-                "hitbox": {
-                    "x": 0,
-                    "y": 0,
-                    "width": 8,
-                    "height": 8
-                }
+                "image rect": {"x": 0, "y": 0, "width": 8, "height": 8},
+                "hitbox": {"x": 0, "y": 0, "width": 8, "height": 8},
             },
         ]
     }

@@ -9,7 +9,12 @@ def draw_level_complete(game_surface, game_state):
     # Complete!
     text = "Level %s Complete!" % (game_state["level"],)
     text_width, text_height = get_font_size(text)
-    draw_text(game_surface, text, (160 - text_width // 2, 120 - text_height // 2), game_state["garbled"])
+    draw_text(
+        game_surface,
+        text,
+        (160 - text_width // 2, 120 - text_height // 2),
+        game_state["garbled"],
+    )
 
 
 def advance_level_complete(paks, game_state, time_since_start, delta_t):

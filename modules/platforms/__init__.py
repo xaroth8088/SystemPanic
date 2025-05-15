@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-import pygame # For type hinting
+import pygame  # For type hinting
+
 
 class BasePlatform(pygame.sprite.Sprite, ABC):
     """
@@ -12,6 +13,7 @@ class BasePlatform(pygame.sprite.Sprite, ABC):
     1. load_platform_assets(module_path) -> dict
     2. create_platforms(screen_width, screen_height, assets) -> pygame.sprite.Group
     """
+
     @abstractmethod
     def __init__(self, x: int, y: int, image: pygame.Surface, *args, **kwargs):
         """
@@ -36,6 +38,7 @@ class BasePlatform(pygame.sprite.Sprite, ABC):
 # The primary interface for a platform *module* is slightly different:
 # It's about loading assets and creating a collection of platforms.
 
+
 @abstractmethod
 def load_platform_assets(module_path: str) -> dict:
     """
@@ -51,8 +54,11 @@ def load_platform_assets(module_path: str) -> dict:
     """
     pass
 
+
 @abstractmethod
-def create_platforms(screen_width: int, screen_height: int, assets: dict) -> pygame.sprite.Group:
+def create_platforms(
+    screen_width: int, screen_height: int, assets: dict
+) -> pygame.sprite.Group:
     """
     Create and return a group of platform sprites for the level.
     This function must be defined at the module level of a platform module's __init__.py.

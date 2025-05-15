@@ -11,7 +11,7 @@ Paks = {
     "level_generators": [],
     "level_tiles": [],
     "music": [],
-    "players": []
+    "players": [],
 }
 
 
@@ -22,16 +22,16 @@ def new_paks():
 def load_all_paks():
     paks = new_paks()
 
-    paks["backgrounds"] = load_pak_images('Backgrounds')
+    paks["backgrounds"] = load_pak_images("Backgrounds")
 
-    paks["music"] = load_pak_sounds('Music')
+    paks["music"] = load_pak_sounds("Music")
 
-    paks["level_generators"] = load_pak_classes('LevelGenerators')
+    paks["level_generators"] = load_pak_classes("LevelGenerators")
 
-    paks["enemies"] = load_pak_sprites('Enemies')
-    paks["level_tiles"] = load_pak_sprites('LevelTiles')
-    paks["missiles"] = load_pak_sprites('Missiles')
-    paks["players"] = load_pak_sprites('Players')
+    paks["enemies"] = load_pak_sprites("Enemies")
+    paks["level_tiles"] = load_pak_sprites("LevelTiles")
+    paks["missiles"] = load_pak_sprites("Missiles")
+    paks["players"] = load_pak_sprites("Players")
 
     return paks
 
@@ -40,16 +40,14 @@ def load_pak_classes(path):
     paks = []
 
     # For each directory...
-    for directory in os.listdir(os.path.join('GamePaks', path)):
+    for directory in os.listdir(os.path.join("GamePaks", path)):
         # load the class included in the pak file
-        pak_path = os.path.join('GamePaks', path, directory, "pak.py")
+        pak_path = os.path.join("GamePaks", path, directory, "pak.py")
         if os.path.isfile(pak_path):
             with open(pak_path) as pak_file:
-                pak_module = types.ModuleType('pak')
+                pak_module = types.ModuleType("pak")
                 exec(pak_file.read(), pak_module.__dict__)
-            paks.append(
-                pak_module.Pak
-            )
+            paks.append(pak_module.Pak)
 
     # return our final list
     return paks
@@ -59,13 +57,13 @@ def load_pak_sprites(path):
     paks = []
 
     # For each directory...
-    for directory in os.listdir(os.path.join('GamePaks', path)):
+    for directory in os.listdir(os.path.join("GamePaks", path)):
         # load the class included in the pak file
-        pak_path = os.path.join('GamePaks', path, directory, "pak.py")
-        pak_png_path = os.path.join('GamePaks', path, directory, "pak.png")
+        pak_path = os.path.join("GamePaks", path, directory, "pak.py")
+        pak_png_path = os.path.join("GamePaks", path, directory, "pak.png")
         if os.path.isfile(pak_path) and os.path.isfile(pak_png_path):
             with open(pak_path) as pak_file:
-                pak_module = types.ModuleType('pak')
+                pak_module = types.ModuleType("pak")
                 exec(pak_file.read(), pak_module.__dict__)
 
             # Set up the pak
@@ -84,7 +82,9 @@ def load_pak_sprites(path):
                 if key not in sprites:
                     sprites[key] = []
                 for sprite_spec in value:
-                    sprites[key].append(construct_sprite(spritesheet_raw_image, sprite_spec))
+                    sprites[key].append(
+                        construct_sprite(spritesheet_raw_image, sprite_spec)
+                    )
 
             pak["pak_name"] = pak_path
             pak["sprites"] = sprites
@@ -99,9 +99,9 @@ def load_pak_images(path):
     paks = []
 
     # For each directory...
-    for directory in os.listdir(os.path.join('GamePaks', path)):
+    for directory in os.listdir(os.path.join("GamePaks", path)):
         # load the image included in the pak file
-        pak_path = os.path.join('GamePaks', path, directory, "pak.png")
+        pak_path = os.path.join("GamePaks", path, directory, "pak.png")
         if os.path.isfile(pak_path):
             paks.append(pygame.image.load(pak_path).convert_alpha())
 
@@ -113,9 +113,9 @@ def load_pak_sounds(path):
     paks = []
 
     # For each directory...
-    for directory in os.listdir(os.path.join('GamePaks', path)):
+    for directory in os.listdir(os.path.join("GamePaks", path)):
         # load the sound included in the pak file
-        pak_path = os.path.join('GamePaks', path, directory, "pak.ogg")
+        pak_path = os.path.join("GamePaks", path, directory, "pak.ogg")
         if os.path.isfile(pak_path):
             paks.append(pak_path)
 
@@ -124,14 +124,20 @@ def load_pak_sounds(path):
 
 
 def construct_sprite(spritesheet_image, sprite_spec):
-    rect = pygame.Rect((sprite_spec["image rect"]["x"], sprite_spec["image rect"]["y"],
-                        sprite_spec["image rect"]["width"], sprite_spec["image rect"]["height"]))
+    rect = pygame.Rect(
+        (
+            sprite_spec["image rect"]["x"],
+            sprite_spec["image rect"]["y"],
+            sprite_spec["image rect"]["width"],
+            sprite_spec["image rect"]["height"],
+        )
+    )
     image = pygame.Surface(rect.size, flags=pygame.SRCALPHA).convert_alpha()
     image.blit(spritesheet_image, (0, 0), rect)
     return {
         "image": image,
         "original size": sprite_spec["image rect"],
-        "hitbox": sprite_spec["hitbox"]
+        "hitbox": sprite_spec["hitbox"],
     }
 
 
@@ -156,5 +162,5 @@ def new_sprite_pak():
         "get_bottom_left_inner": lambda sprites: None,
         "get_bottom": lambda sprites: None,
         "get_bottom_right_outer": lambda sprites: None,
-        "get_bottom_right_inner": lambda sprites: None
+        "get_bottom_right_inner": lambda sprites: None,
     }
