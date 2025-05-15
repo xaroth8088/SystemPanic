@@ -1,0 +1,1 @@
+This is just a handy directory to move modules to that you're not using.  For example, when developing a new module it can be handy to disable all modules other than the one you're working on.

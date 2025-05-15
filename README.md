@@ -7,7 +7,7 @@ Remember [ROM CHECK FAIL](http://www.farbs.org/romcheckfail.php)?  System Panic 
 
 ## How do I run it?
 
-There's no packaged versions yet, so you'll need to already have a Python 3.5+ environment set up.  Check out the package and run `SystemPanic/__main__.py`.
+There are no packaged versions yet, so you'll need to already have a Python 3.12+ environment set up.  As usual for Python projects, a virtual environment is *strongly* encouraged. 
 
 ## How do I add to it?
 
@@ -26,7 +26,7 @@ rest of our plans before starting to write new code.  We promise to try to be re
 
 ## Dev setup stuff?
 
-1. Python 3.5+
+1. Python 3.12+
 2. `pip install -r requirements.txt`
 3. Profit?
 
