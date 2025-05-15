@@ -1,10 +1,3 @@
-# modules/enemies/slime_enemy/__init__.py
-# SPRITESHEET_LAYOUT_NOTE:
-# Horizontal. Frame dimensions: 32w x 32h.
-# Frame 0: Move/Idle 1
-# Frame 1: Move/Idle 2
-# Total image: 64w x 32h.
-
 import pygame
 import os
 import random
@@ -14,7 +7,6 @@ ENEMY_GRAVITY = 0.5
 
 
 class Enemy(BaseEnemy):
-    SPRITESHEET_LAYOUT_NOTE = "Frames (32x32px): Move1, Move2. Horizontal."
     SPRITE_WIDTH = 32
     SPRITE_HEIGHT = 32
 
@@ -22,50 +14,19 @@ class Enemy(BaseEnemy):
     def load_assets(module_path):
         spritesheet_path = os.path.join(module_path, "sprite.png")
         assets = {}
-        try:
-            sheet = pygame.image.load(spritesheet_path).convert_alpha()
-            assets["spritesheet"] = sheet
-            assets["frames"] = []
-            for i in range(sheet.get_width() // Enemy.SPRITE_WIDTH):
-                frame = sheet.subsurface(
-                    pygame.Rect(
-                        i * Enemy.SPRITE_WIDTH,
-                        0,
-                        Enemy.SPRITE_WIDTH,
-                        Enemy.SPRITE_HEIGHT,
-                    )
+        sheet = pygame.image.load(spritesheet_path).convert_alpha()
+        assets["spritesheet"] = sheet
+        assets["frames"] = []
+        for i in range(sheet.get_width() // Enemy.SPRITE_WIDTH):
+            frame = sheet.subsurface(
+                pygame.Rect(
+                    i * Enemy.SPRITE_WIDTH,
+                    0,
+                    Enemy.SPRITE_WIDTH,
+                    Enemy.SPRITE_HEIGHT,
                 )
-                assets["frames"].append(frame)
-        except pygame.error as e:
-            print(f"Error loading Slime enemy assets: {e}")
-            assets["frames"] = [
-                pygame.Surface(
-                    (Enemy.SPRITE_WIDTH, Enemy.SPRITE_HEIGHT), pygame.SRCALPHA
-                )
-                for _ in range(2)
-            ]
-            assets["frames"][0].fill((0, 150, 0, 200))
-            assets["frames"][1].fill((0, 130, 0, 200))
-
-        ###
-        frame0 = assets["frames"][0]
-        w, h = frame0.get_size()
-
-        fully_transparent = True
-        for x in range(w):
-            for y in range(h):
-                if frame0.get_at((x, y))[3] != 0:
-                    fully_transparent = False
-                    print(
-                        f"Non-transparent pixel at ({x},{y}): {frame0.get_at((x, y))}"
-                    )
-                    break
-            if not fully_transparent:
-                break
-
-        if fully_transparent:
-            print("Frame 0 is fully transparent")
-        ###
+            )
+            assets["frames"].append(frame)
 
         return assets
 

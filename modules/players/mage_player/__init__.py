@@ -23,10 +23,6 @@ class MageProjectile(pygame.sprite.Sprite):
     def __init__(self, x, y, direction, assets):
         super().__init__()
         self.image_orig = assets.get("projectile_image")
-        if not self.image_orig:
-            self.image_orig = pygame.Surface([12, 12], pygame.SRCALPHA)
-            self.image_orig.fill((0, 150, 255))
-            pygame.draw.circle(self.image_orig, (200, 220, 255), (6, 6), 4)
         self.image = self.image_orig
         self.rect = self.image.get_rect(center=(x, y))
         self.speed_val = PROJECTILE_SPEED
@@ -46,9 +42,6 @@ class MageProjectile(pygame.sprite.Sprite):
 
 
 class Player(BasePlayer):
-    SPRITESHEET_LAYOUT_NOTE = (
-        "Frames (32x48px): Idle, Walk1, Walk2, CastStart, Casting. Horizontal."
-    )
     SPRITE_WIDTH = 32
     SPRITE_HEIGHT = 48
 
@@ -57,52 +50,23 @@ class Player(BasePlayer):
         spritesheet_path = os.path.join(module_path, "sprite.png")
         projectile_image_path = os.path.join(module_path, "projectile.png")
         assets = {}
-        try:
-            sheet = pygame.image.load(spritesheet_path).convert_alpha()
-            assets["spritesheet"] = sheet
-            if os.path.exists(projectile_image_path):
-                assets["projectile_image"] = pygame.image.load(
-                    projectile_image_path
-                ).convert_alpha()
-            else:
-                proj_img = pygame.Surface((12, 12), pygame.SRCALPHA)
-                proj_img.fill((0, 150, 255))
-                pygame.draw.circle(proj_img, (200, 220, 255), (6, 6), 4)
-                assets["projectile_image"] = proj_img
+        sheet = pygame.image.load(spritesheet_path).convert_alpha()
+        assets["spritesheet"] = sheet
+        assets["projectile_image"] = pygame.image.load(
+            projectile_image_path
+        ).convert_alpha()
 
-            assets["frames"] = []
-            for i in range(sheet.get_width() // Player.SPRITE_WIDTH):
-                frame = sheet.subsurface(
-                    pygame.Rect(
-                        i * Player.SPRITE_WIDTH,
-                        0,
-                        Player.SPRITE_WIDTH,
-                        Player.SPRITE_HEIGHT,
-                    )
+        assets["frames"] = []
+        for i in range(sheet.get_width() // Player.SPRITE_WIDTH):
+            frame = sheet.subsurface(
+                pygame.Rect(
+                    i * Player.SPRITE_WIDTH,
+                    0,
+                    Player.SPRITE_WIDTH,
+                    Player.SPRITE_HEIGHT,
                 )
-                assets["frames"].append(frame)
-        except pygame.error as e:
-            print(f"Error loading Mage player assets: {e}")
-            assets["frames"] = [
-                pygame.Surface(
-                    (Player.SPRITE_WIDTH, Player.SPRITE_HEIGHT), pygame.SRCALPHA
-                )
-                for _ in range(5)
-            ]
-            colors = [
-                (0, 0, 200),
-                (0, 0, 180),
-                (0, 0, 160),
-                (50, 50, 220),
-                (70, 70, 240),
-            ]
-            for i, frame in enumerate(assets["frames"]):
-                frame.fill(colors[i])
-            if "projectile_image" not in assets:
-                proj_img = pygame.Surface((12, 12), pygame.SRCALPHA)
-                proj_img.fill((0, 150, 255))
-                pygame.draw.circle(proj_img, (200, 220, 255), (6, 6), 4)
-                assets["projectile_image"] = proj_img
+            )
+            assets["frames"].append(frame)
         return assets
 
     def __init__(self, x, y, assets):
@@ -114,7 +78,6 @@ class Player(BasePlayer):
             if self.frames
             else pygame.Surface([Player.SPRITE_WIDTH, Player.SPRITE_HEIGHT])
         )
-        self.image.fill((0, 0, 200))
         self.rect = self.image.get_rect(topleft=(x, y))
 
         self.vel_y = 0

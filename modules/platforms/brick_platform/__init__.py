@@ -1,12 +1,9 @@
-# modules/platforms/brick_platform/__init__.py
-# SPRITESHEET_LAYOUT_NOTE: A single tile image (e.g., 32x32px) named tile.png.
-
 import pygame
 import os
 
 from modules.platforms import BasePlatform
 
-TILE_SIZE = 32  # Assuming fixed tile size for this module
+TILE_SIZE = 32
 
 
 class Platform(BasePlatform):
@@ -19,25 +16,13 @@ class Platform(BasePlatform):
 def load_platform_assets(module_path):
     tile_path = os.path.join(module_path, "tile.png")
     assets = {}
-    try:
-        tile_image = pygame.image.load(tile_path).convert()
-        # Scale if not TILE_SIZE (optional, good for consistency)
-        # tile_image = pygame.transform.scale(tile_image, (TILE_SIZE, TILE_SIZE))
-        assets["tile_image"] = tile_image
-    except pygame.error as e:
-        print(f"Error loading brick platform tile: {e}")
-        tile_image = pygame.Surface((TILE_SIZE, TILE_SIZE))
-        tile_image.fill((150, 75, 0))
-        assets["tile_image"] = tile_image
+    tile_image = pygame.image.load(tile_path).convert()
+    assets["tile_image"] = tile_image
     return assets
 
 
 def create_platforms(screen_width, screen_height, assets):
     tile_image = assets.get("tile_image")
-    if not tile_image:  # Fallback if asset loading failed critically
-        tile_image = pygame.Surface((TILE_SIZE, TILE_SIZE))
-        tile_image.fill((150, 75, 0))
-
     platforms = pygame.sprite.Group()
 
     # Ground platform

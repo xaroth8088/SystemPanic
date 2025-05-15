@@ -1,6 +1,3 @@
-# modules/platforms/grass_platform/__init__.py
-# SPRITESHEET_LAYOUT_NOTE: A single tile image (e.g., 32x32px) named tile.png.
-
 import pygame
 import os
 from modules.platforms import BasePlatform
@@ -18,25 +15,13 @@ class Platform(BasePlatform):
 def load_platform_assets(module_path):
     tile_path = os.path.join(module_path, "tile.png")
     assets = {}
-    try:
-        tile_image = pygame.image.load(tile_path).convert()
-        assets["tile_image"] = tile_image
-    except pygame.error as e:
-        print(f"Error loading grass platform tile: {e}")
-        tile_image = pygame.Surface((TILE_SIZE, TILE_SIZE))
-        tile_image.fill((0, 180, 0))
-        pygame.draw.rect(tile_image, (100, 50, 20), (0, 0, TILE_SIZE, 10))
-        assets["tile_image"] = tile_image
+    tile_image = pygame.image.load(tile_path).convert()
+    assets["tile_image"] = tile_image
     return assets
 
 
 def create_platforms(screen_width, screen_height, assets):
     tile_image = assets.get("tile_image")
-    if not tile_image:
-        tile_image = pygame.Surface((TILE_SIZE, TILE_SIZE))
-        tile_image.fill((0, 180, 0))
-        pygame.draw.rect(tile_image, (100, 50, 20), (0, 0, TILE_SIZE, 10))
-
     platforms = pygame.sprite.Group()
 
     for i in range(screen_width // TILE_SIZE + 1):

@@ -10,7 +10,6 @@ class BaseEnemy(pygame.sprite.Sprite, ABC):
     """
 
     # --- Constants that concrete classes should ideally define for clarity ---
-    # SPRITESHEET_LAYOUT_NOTE = "Define how your spritesheet is laid out."
     # SPRITE_WIDTH = 32
     # SPRITE_HEIGHT = 32
 

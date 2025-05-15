@@ -1,11 +1,3 @@
-# modules/players/jetpack_player/__init__.py
-# SPRITESHEET_LAYOUT_NOTE:
-# Spritesheet horizontal. Frame dimensions: e.g., 32w x 32h.
-#   Frame 0: Idle/Hovering (no thrusters active)
-#   Frame 1: Thrusting (generic visual for any active thruster)
-#   Frame 2: Firing/Dropping Bomb animation
-# Total image: 96w x 32h.
-
 import pygame
 import os
 import math
@@ -34,17 +26,6 @@ class Bomb(pygame.sprite.Sprite):
     def __init__(self, x, y, assets):
         super().__init__()
         self.image_orig = assets.get("projectile_image")
-        if not self.image_orig:  # Fallback if asset loading failed
-            self.image_orig = pygame.Surface([15, 15], pygame.SRCALPHA)
-            self.image_orig.fill((0, 0, 0, 0))  # Transparent
-            pygame.draw.ellipse(
-                self.image_orig, (255, 100, 0, 255), self.image_orig.get_rect()
-            )  # Orange bomb
-            pygame.draw.ellipse(
-                self.image_orig,
-                (50, 50, 50, 255),
-                self.image_orig.get_rect().inflate(-6, -6),
-            )  # Darker center
         self.image = self.image_orig
         self.rect = self.image.get_rect(center=(x, y))
         self.speed_y = BOMB_DROP_SPEED
@@ -64,9 +45,6 @@ class Bomb(pygame.sprite.Sprite):
 
 
 class Player(BasePlayer):
-    SPRITESHEET_LAYOUT_NOTE = (
-        "Frames (32x32px): Idle, Thrusting, Firing. Horizontal strip."
-    )
     SPRITE_WIDTH = 32  # Default if spritesheet fails
     SPRITE_HEIGHT = 32  # Default if spritesheet fails
 
@@ -81,48 +59,12 @@ class Player(BasePlayer):
         sprite_width_from_sheet = Player.SPRITE_WIDTH
         sprite_height_from_sheet = Player.SPRITE_HEIGHT
 
-        try:
-            sheet = pygame.image.load(spritesheet_path).convert_alpha()
-            assets["spritesheet"] = sheet
-            # Potentially derive sprite_width/height from sheet if consistent
-            # For this example, assume 3 frames. If actual width is 96, then frame width is 32.
-            # sprite_width_from_sheet = sheet.get_width() // 3 # Assuming 3 frames as per note
-            # sprite_height_from_sheet = sheet.get_height()
-        except pygame.error as e:
-            print(f"Error loading Jetpack player spritesheet: {e}. Using placeholder.")
-            sheet = pygame.Surface(
-                (Player.SPRITE_WIDTH * 3, Player.SPRITE_HEIGHT), pygame.SRCALPHA
-            )
-            sheet.fill((0, 0, 0, 0))  # Transparent
-            # Draw placeholder frames directly
-            colors = [(100, 100, 255, 200), (150, 150, 255, 220), (200, 100, 100, 200)]
-            for i, color in enumerate(colors):
-                frame_rect = pygame.Rect(
-                    i * Player.SPRITE_WIDTH,
-                    0,
-                    Player.SPRITE_WIDTH,
-                    Player.SPRITE_HEIGHT,
-                )
-                pygame.draw.rect(sheet, color, frame_rect)
-                pygame.draw.rect(sheet, (50, 50, 50, 255), frame_rect, 1)  # Border
-            assets["spritesheet"] = sheet
+        sheet = pygame.image.load(spritesheet_path).convert_alpha()
+        assets["spritesheet"] = sheet
 
-        try:
-            if os.path.exists(projectile_image_path):
-                assets["projectile_image"] = pygame.image.load(
-                    projectile_image_path
-                ).convert_alpha()
-            else:  # Placeholder bomb if file missing
-                raise pygame.error("Projectile image not found for jetpack_player")
-        except pygame.error as e:
-            print(f"Error loading Jetpack projectile image: {e}. Using placeholder.")
-            bomb_img = pygame.Surface((15, 15), pygame.SRCALPHA)
-            bomb_img.fill((0, 0, 0, 0))
-            pygame.draw.ellipse(bomb_img, (255, 100, 0, 255), bomb_img.get_rect())
-            pygame.draw.ellipse(
-                bomb_img, (50, 50, 50, 255), bomb_img.get_rect().inflate(-6, -6)
-            )
-            assets["projectile_image"] = bomb_img
+        assets["projectile_image"] = pygame.image.load(
+            projectile_image_path
+        ).convert_alpha()
 
         assets["frames"] = []
         num_expected_frames = 3  # Idle, Thrust, Fire
@@ -147,13 +89,7 @@ class Player(BasePlayer):
         super().__init__(x, y, assets)
         self.assets = assets
         self.frames = self.assets.get("frames", [])
-        if not self.frames:  # Should be handled by load_assets, but as a fallback
-            self.image = pygame.Surface(
-                [Player.SPRITE_WIDTH, Player.SPRITE_HEIGHT], pygame.SRCALPHA
-            )
-            self.image.fill((100, 100, 255, 200))
-        else:
-            self.image = self.frames[0]
+        self.image = self.frames[0]
         self.rect = self.image.get_rect(topleft=(x, y))
 
         self.vel_x = 0.0

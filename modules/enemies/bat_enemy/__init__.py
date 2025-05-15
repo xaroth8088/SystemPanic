@@ -1,10 +1,3 @@
-# modules/enemies/bat_enemy/__init__.py
-# SPRITESHEET_LAYOUT_NOTE:
-# Horizontal. Frame dimensions: 32w x 24h.
-# Frame 0: Flap Up
-# Frame 1: Flap Down
-# Total image: 64w x 24h.
-
 import pygame
 import os
 import random
@@ -43,27 +36,8 @@ class Enemy(BaseEnemy):
         spritesheet_path = os.path.join(module_path, "sprite.png")
         assets = {}
 
-        sprite_width_from_sheet = Enemy.SPRITE_WIDTH
-        sprite_height_from_sheet = Enemy.SPRITE_HEIGHT
-
-        try:
-            sheet = pygame.image.load(spritesheet_path).convert_alpha()
-            assets["spritesheet"] = sheet
-        except pygame.error as e:
-            print(f"Error loading Bat enemy spritesheet: {e}. Using placeholder.")
-            sheet = pygame.Surface(
-                (Enemy.SPRITE_WIDTH * 2, Enemy.SPRITE_HEIGHT), pygame.SRCALPHA
-            )
-            sheet.fill((0, 0, 0, 0))
-            colors = [(80, 80, 80, 220), (60, 60, 60, 220)]
-            for i, color in enumerate(colors):
-                frame_rect = pygame.Rect(
-                    i * Enemy.SPRITE_WIDTH, 0, Enemy.SPRITE_WIDTH, Enemy.SPRITE_HEIGHT
-                )
-                pygame.draw.rect(sheet, color, frame_rect)
-                pygame.draw.rect(sheet, (30, 30, 30, 255), frame_rect, 1)
-            assets["spritesheet"] = sheet
-
+        sheet = pygame.image.load(spritesheet_path).convert_alpha()
+        assets["spritesheet"] = sheet
         assets["frames"] = []
         num_expected_frames = 3
         for i in range(num_expected_frames):
@@ -76,9 +50,6 @@ class Enemy(BaseEnemy):
                 )
             )
             assets["frames"].append(frame)
-
-        Enemy.SPRITE_WIDTH = sprite_width_from_sheet
-        Enemy.SPRITE_HEIGHT = sprite_height_from_sheet
         return assets
 
     def __init__(
@@ -87,12 +58,7 @@ class Enemy(BaseEnemy):
         super().__init__(x, y, assets, player_rect_for_ai)
         self.assets = assets
         self.frames = self.assets.get("frames", [])
-        self.image = (
-            self.frames[0]
-            if self.frames
-            else pygame.Surface([Enemy.SPRITE_WIDTH, Enemy.SPRITE_HEIGHT])
-        )
-        self.image.fill((70, 70, 70))
+        self.image = self.frames[0]
         self.rect = self.image.get_rect(topleft=(x, y))
 
         self.health = BAT_HEALTH
