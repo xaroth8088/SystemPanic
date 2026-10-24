@@ -1,8 +1,7 @@
 """Sky Forge — complete, independently playable Pak behaviors."""
 import math
 import pygame
-from ..model import Vec, WIDTH, HEIGHT, Cover, Beam, normalized, unit, circle_rect
-from .model import Pak
+from system_panic.model import Vec, WIDTH, HEIGHT, Cover, Beam, Controls, normalized, unit, circle_rect
 
 def move(world, dt, control, jump, special):
     p = world.player
@@ -39,7 +38,13 @@ def make_arena():
     layout = [(100, 365, 180, 18), (360, 290, 180, 18), (640, 365, 190, 18), (150, 185, 180, 18), (620, 185, 180, 18)]
     return [Cover(pygame.Rect(*rect), platform=True) for rect in layout]
 
-PAK = Pak("sky_forge", "Sky Forge", "GRAVITY / BLAST", (255, 119, 137),
-          "jumper", "bomb", "hopper", "forge",
-          "Left / right: run. Up: double jump", "X: rising forge leap",
-          "Leap between forge decks. Explosive arcs scatter the crawlers.", 3, move=move, fire=fire, advance_enemy=advance_enemy, make_arena=make_arena, cooldown=0.6, splits=0)
+def draw_arena(surface):
+    pygame.draw.line(surface, (90, 43, 53), (0, HEIGHT - 3), (WIDTH, HEIGHT - 3), 3)
+
+def demo_controls(world):
+    p = world.player
+    target = min(world.enemies, key=lambda e: e.pos.distance_squared_to(p.pos))
+    delta = target.pos - p.pos
+    vector = normalized(delta)
+    special = int(world.time * 3) % 11 == 0
+    return Controls(vector.x if delta.length() > 180 else -vector.x, -1 if world.time % 1.2 < .15 else 0, True, special)

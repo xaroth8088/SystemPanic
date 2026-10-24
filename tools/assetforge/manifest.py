@@ -20,6 +20,9 @@ def main():
     entries.extend(job for job in generation.values() if job["status"] == "generated")
     entries.extend(job for job in local_generation.values() if job["status"] == "generated")
     entries.extend(dict(job, status="derived") for job in prepared)
+    exports = ROOT / "assets/pak-exports.json"
+    if exports.is_file():
+        entries.extend(dict(job, status="derived") for job in json.loads(exports.read_text()))
     manifest = {"created":"2026-10-24", "runtime_generation":False,
                 "notes":["All revival artwork and audio originate from AI generation for this project.",
                          "Initial cloud outputs are retained. When local outputs exist, production mastering prefers them.",

@@ -11,7 +11,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 import pygame
 from system_panic.app import App
 from system_panic.model import Controls
-from system_panic.paks import PAKS
+from system_panic.paks import get_catalog
+PAKS = get_catalog().paks
 
 TEMP_ROOT = Path(__file__).resolve().parents[1] / "output" / "test-temp"
 TEMP_ROOT.mkdir(parents=True, exist_ok=True)
@@ -83,7 +84,7 @@ class UITests(unittest.TestCase):
 
     def test_all_screens_render_with_buttons_inside_canvas(self):
         self.app.prefs.shuffle_seconds = 6  # Valid hand-edited value outside preset buttons.
-        for route in ("home", "settings", "help", "credits", "game", "pause", "outcome"):
+        for route in ("home", "settings", "help", "credits", "paks", "game", "pause", "outcome"):
             if route in ("game", "pause", "outcome") and not self.app.world:
                 self.app.start()
             self.app.route = route

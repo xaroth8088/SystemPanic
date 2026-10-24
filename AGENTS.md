@@ -3,7 +3,8 @@
 This is the entry point to the project's agent wiki. Read the relevant linked page before changing a subsystem; update that page with durable decisions, verified facts, and unresolved issues when finishing work. Keep memory near the code, link instead of duplicating, and distinguish intentions from tested behavior.
 
 ## Product contract
-- A single-player offline arcade remix game. Every Pak must be a complete playable game alone; independently shuffling pilot, weapon, enemy family and arena must remain playable.
+- A single-player offline arcade remix game. Complete Paks work alone; partial Paks supply any nonempty subset of pilot, weapon, enemy family and arena for the mix. An enabled mix must cover all four channels.
+- Game content is discovered from external Pak folders, never imported from a fixed content registry. The core owns the API, loader and shared simulation. Asset-only partial Paks may inherit installed component behavior.
 - Progression is always endless: level one starts with one enemy, and each new level adds exactly one initial enemy. There is no finale, level cap, finite-run preference or scripted boss-wave replacement. Pak-specific mid-level spawning (such as asteroid fragments) remains part of that Pak's mechanics.
 - The platform arena is one Pak, not the overall design direction.
 - Six launch Paks: Signal Runner, Void Drifter, Iron Circuit, Sky Forge, Phase Garden, Orbit Keeper.
@@ -13,7 +14,7 @@ This is the entry point to the project's agent wiki. Read the relevant linked pa
 ## Wiki
 - [Design and delivery state](docs/AGENTS.md)
 - [Runtime and state invariants](src/system_panic/AGENTS.md)
-- [Pak authoring and compatibility](src/system_panic/paks/AGENTS.md)
+- [Pak authoring and compatibility](paks/AGENTS.md)
 - [Asset generation and provenance](tools/assetforge/AGENTS.md)
 - [Verification](tests/AGENTS.md)
 - [Historical prototypes](legacy/AGENTS.md)

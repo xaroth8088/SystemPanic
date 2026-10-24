@@ -1,6 +1,7 @@
 """Build the offline Windows folder distribution with only production assets."""
 from pathlib import Path
 import os
+import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -14,11 +15,17 @@ def main():
         "--exclude-module", "numpy", "--exclude-module", "soundfile", "--exclude-module", "PIL",
         "--distpath", str(ROOT / "dist"), "--workpath", str(ROOT / "build"),
         "--specpath", str(ROOT / "build"), "--paths", str(ROOT / "src"),
-        "--add-data", str(ROOT / "assets/images") + os.pathsep + "assets/images",
-        "--add-data", str(ROOT / "assets/audio/production") + os.pathsep + "assets/audio/production",
+        "--add-data", str(ROOT / "assets/images/title.png") + os.pathsep + "assets/images",
+        *[argument for name in ("shot", "impact", "shuffle", "hurt", "clear", "select")
+          for argument in ("--add-data", str(ROOT / f"assets/audio/production/{name}.ogg") + os.pathsep + "assets/audio/production")],
         "--add-data", str(ROOT / "assets/manifest.json") + os.pathsep + "assets",
         "--add-data", str(ROOT / "LICENSE") + os.pathsep + ".",
     ])
+    destination = ROOT / "dist/SystemPanic/paks"
+    destination.mkdir(exist_ok=True)
+    for manifest in sorted((ROOT / "paks").glob("*/pak.json")):
+        shutil.copytree(manifest.parent, destination / manifest.parent.name,
+                        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
     print("Built:", ROOT / "dist/SystemPanic/SystemPanic.exe")
 
 

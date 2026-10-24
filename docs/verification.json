@@ -23,9 +23,9 @@
         "12": 12,
         "13": 13
       },
-      "health": 78.6,
+      "health": 87.7,
       "score": 27300,
-      "seconds": 66.17
+      "seconds": 65.17
     },
     {
       "pak": "void_drifter",
@@ -48,9 +48,9 @@
         "12": 12,
         "13": 13
       },
-      "health": 96.8,
+      "health": 100,
       "score": 36660,
-      "seconds": 137.72
+      "seconds": 127.27
     },
     {
       "pak": "iron_circuit",
@@ -73,9 +73,9 @@
         "12": 12,
         "13": 13
       },
-      "health": 93.9,
+      "health": 100,
       "score": 27300,
-      "seconds": 98.17
+      "seconds": 90.0
     },
     {
       "pak": "sky_forge",
@@ -100,7 +100,7 @@
       },
       "health": 100,
       "score": 27300,
-      "seconds": 66.25
+      "seconds": 60.38
     },
     {
       "pak": "phase_garden",
@@ -123,9 +123,9 @@
         "12": 12,
         "13": 13
       },
-      "health": 95.0,
+      "health": 100,
       "score": 27300,
-      "seconds": 48.02
+      "seconds": 48.6
     },
     {
       "pak": "orbit_keeper",
@@ -150,7 +150,7 @@
       },
       "health": 100,
       "score": 27300,
-      "seconds": 157.77
+      "seconds": 144.47
     }
   ],
   "assets": [
@@ -223,12 +223,162 @@
       "file": "assets/images/title.png",
       "bytes": 2352934,
       "sha256": "d5fa5fbb7753fb569bf22d0509425066c89b03b39d689de69c64509d4c958506"
+    },
+    {
+      "file": "paks/iron_circuit/assets/cover.png",
+      "bytes": 59513,
+      "sha256": "ff9a138269febc7f01bdddfee4681538b2227ee092624a84d64ec96e8a3010fe"
+    },
+    {
+      "file": "paks/iron_circuit/assets/enemy.png",
+      "bytes": 70212,
+      "sha256": "3f1a22a746ea4e738ec1cba79a37248bade2b24ccbcae0058bf9c47c01de27da"
+    },
+    {
+      "file": "paks/iron_circuit/assets/music.ogg",
+      "bytes": 428838,
+      "sha256": "a88e1355f502f92bf9bc81862f88a97004c59d291bb5c7253c192ae04bb27449"
+    },
+    {
+      "file": "paks/iron_circuit/assets/pilot.png",
+      "bytes": 76233,
+      "sha256": "2282d96c27f12ca1ffab5a0739e8685f67c4068e8f15d3dd922e03a5fdc4337e"
+    },
+    {
+      "file": "paks/iron_circuit/assets/projectile.png",
+      "bytes": 41534,
+      "sha256": "cd5799935a634cb2145fa2077a62e613e03c062a598c049b08eb9a841ce7d83e"
+    },
+    {
+      "file": "paks/orbit_keeper/assets/cover.png",
+      "bytes": 88453,
+      "sha256": "dcec052dcf1e8ae17c4d38e425e6b964c5f806881aa7e64eb99ef9fae9780902"
+    },
+    {
+      "file": "paks/orbit_keeper/assets/enemy.png",
+      "bytes": 59412,
+      "sha256": "165e6e515ba79b9e3c51ecd03b04ebbe92f3f039a437a7c9138f7014739000ec"
+    },
+    {
+      "file": "paks/orbit_keeper/assets/music.ogg",
+      "bytes": 476925,
+      "sha256": "7484649e4f60ae49021e0624056f68e39141b9eaa19cb47e0c32ff51ae8c8e35"
+    },
+    {
+      "file": "paks/orbit_keeper/assets/pilot.png",
+      "bytes": 84067,
+      "sha256": "99bd6d11c1ba11ebcdc54d1ba2adc31ea33eca94b90a82955e57a7121c9a56ba"
+    },
+    {
+      "file": "paks/orbit_keeper/assets/projectile.png",
+      "bytes": 67614,
+      "sha256": "ea83b0ea2ed70df552ea5fff742a04ca620762755b1a5109672283ce9d01ba34"
+    },
+    {
+      "file": "paks/phase_garden/assets/cover.png",
+      "bytes": 83228,
+      "sha256": "e1cbec43f08fead6930b5e2c148e574e8d68a6535fe8569a6b33146667dd1ead"
+    },
+    {
+      "file": "paks/phase_garden/assets/enemy.png",
+      "bytes": 81832,
+      "sha256": "4c07e5eb63dba2dbe955dca7cb4eaeaee907a38ca977a3c2e7596f919fbbcb5f"
+    },
+    {
+      "file": "paks/phase_garden/assets/music.ogg",
+      "bytes": 443362,
+      "sha256": "145753f7b7d70370f603cf4a31bcab84abf758b8bf6f162615d1be07ceac97d9"
+    },
+    {
+      "file": "paks/phase_garden/assets/pilot.png",
+      "bytes": 66004,
+      "sha256": "91d76049334df1407cf3d41b9343b0d821c2eff4101fe37cf1648d72dcbbefb4"
+    },
+    {
+      "file": "paks/phase_garden/assets/projectile.png",
+      "bytes": 43448,
+      "sha256": "64215356ba5edad5607b5e25317f82d104c509194a0599cbb61e87e046145525"
+    },
+    {
+      "file": "paks/signal_runner/assets/cover.png",
+      "bytes": 57144,
+      "sha256": "bec8ac65b376b32ba39eef3cd6d311512ef4d162955e36a745d481fef0b5acf1"
+    },
+    {
+      "file": "paks/signal_runner/assets/enemy.png",
+      "bytes": 70657,
+      "sha256": "78ab11c7f04e980efa6eb1440fb8edf4e2c2900093214997c12741768fb95ecd"
+    },
+    {
+      "file": "paks/signal_runner/assets/music.ogg",
+      "bytes": 486722,
+      "sha256": "a26b7acac14a30cfaa94a58e4f4285646cb6b0cb8cf0797a9e19c10cc9cb9b25"
+    },
+    {
+      "file": "paks/signal_runner/assets/pilot.png",
+      "bytes": 69599,
+      "sha256": "4e2ddd30fd8f645ec8569499a01bec677f514f2f2851a1a116e107293eefd16a"
+    },
+    {
+      "file": "paks/signal_runner/assets/projectile.png",
+      "bytes": 33508,
+      "sha256": "5addaab4160b3fe147c5b8a6d1636391803480f813c1f4250256a3afc9fe4e8a"
+    },
+    {
+      "file": "paks/sky_forge/assets/cover.png",
+      "bytes": 71869,
+      "sha256": "c1bb39718886eb9bcb18f311a639568f3edb7ad4d439b963cb176c8ec071886b"
+    },
+    {
+      "file": "paks/sky_forge/assets/enemy.png",
+      "bytes": 75356,
+      "sha256": "49928e3e684cd777ad7cedc86448885f63add1c621411a5f7431026c20d75dc6"
+    },
+    {
+      "file": "paks/sky_forge/assets/music.ogg",
+      "bytes": 516921,
+      "sha256": "992b1de09191256f20d5adf68d9f554e561cff241dd2a0cc5d1c2118182bcd24"
+    },
+    {
+      "file": "paks/sky_forge/assets/pilot.png",
+      "bytes": 89503,
+      "sha256": "a34bc730576facf9761d8e46c6c78e2c3e4ff008269f5d34aa34b03462b2a3c6"
+    },
+    {
+      "file": "paks/sky_forge/assets/projectile.png",
+      "bytes": 39715,
+      "sha256": "478c0ab7fa50fddd12de9f325580eb9d502cbe9a92199b1d576391c1ba899b0b"
+    },
+    {
+      "file": "paks/void_drifter/assets/cover.png",
+      "bytes": 71728,
+      "sha256": "754809cc2fb68a1154817fda744788a669ebe6fe5c46f00df914f805a098b141"
+    },
+    {
+      "file": "paks/void_drifter/assets/enemy.png",
+      "bytes": 74487,
+      "sha256": "4b37c0c77969c301ba76c8dfe60cfa09ae35c8c7b387d16ec8c1fe113f736dd3"
+    },
+    {
+      "file": "paks/void_drifter/assets/music.ogg",
+      "bytes": 482064,
+      "sha256": "018711f6d5e3501b8400f78c16690dbb5f85c8fdcc41b21abd007419e8d53f91"
+    },
+    {
+      "file": "paks/void_drifter/assets/pilot.png",
+      "bytes": 93715,
+      "sha256": "7a3fdafbe252fcd4de9dfcba7fa1888cb1fadecd3887fe66ac41bed89603aa3e"
+    },
+    {
+      "file": "paks/void_drifter/assets/projectile.png",
+      "bytes": 35350,
+      "sha256": "985335e475f50a20c40e4fc384c9fd157b2d8c10dd7a6af7fefabce9d10fa780"
     }
   ],
   "date": "2026-10-24",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 23,
+    "passed": 33,
     "failed": 0
   },
   "compatibility": {
@@ -259,22 +409,12 @@
   ],
   "packaged_checks": [
     {
-      "pak": "signal_runner",
-      "frames": 240,
-      "exit_code": 0
-    },
-    {
-      "pak": "void_drifter",
-      "frames": 240,
-      "exit_code": 0
-    },
-    {
       "pak": "iron_circuit",
       "frames": 240,
       "exit_code": 0
     },
     {
-      "pak": "sky_forge",
+      "pak": "orbit_keeper",
       "frames": 240,
       "exit_code": 0
     },
@@ -284,15 +424,25 @@
       "exit_code": 0
     },
     {
-      "pak": "orbit_keeper",
+      "pak": "signal_runner",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "sky_forge",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "void_drifter",
       "frames": 240,
       "exit_code": 0
     }
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "dc5e2bd652460b9f1f6ff210dd0c8d5c441ddea7ac40de2cf2a19765e0e1f4f9",
-    "total_bytes": 44215789,
+    "sha256": "d7de9adceebe33713ff1ee96861cfde618521bf7e1342721aad14396307feae0",
+    "total_bytes": 43620875,
     "archive": "dist/SystemPanic-Windows-x64.zip",
     "archive_test_passed": true
   },
@@ -318,5 +468,87 @@
     "continuation_checked_through_level": 101,
     "legacy_finite_preference_ignored": true,
     "finite_toggle_removed": true
+  },
+  "distribution_checks": {
+    "checks": [
+      {
+        "check": "iron_circuit",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "orbit_keeper",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "phase_garden",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "signal_runner",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "sky_forge",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "void_drifter",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "drop_in_after_build",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "partial_only_mix",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "partial_library",
+        "frames": 1,
+        "exit_code": 0
+      },
+      {
+        "check": "empty_install",
+        "frames": 1,
+        "exit_code": 0
+      },
+      {
+        "check": "invalid_pak_isolated",
+        "frames": 1,
+        "exit_code": 0
+      }
+    ],
+    "external_code_and_helpers_executed": true,
+    "partial_only_mix_executed": true,
+    "wheel_external_layout_verified": true,
+    "executable_sha256": "d7de9adceebe33713ff1ee96861cfde618521bf7e1342721aad14396307feae0"
+  },
+  "wheel_install_check": {
+    "fresh_prefix_install": true,
+    "paks_discovered": 6,
+    "assets_loaded": true,
+    "frames": 240,
+    "exit_code": 0
+  },
+  "dynamic_paks": {
+    "api_version": 1,
+    "external_launch_paks": 6,
+    "partial_components_supported": true,
+    "asset_only_inheritance_supported": true,
+    "partial_only_mix_supported": true,
+    "rescan_supported": true,
+    "empty_install_supported": true,
+    "no_static_game_registry": true,
+    "core_loader_ide_diagnostics": 0,
+    "screenshots_inspected": true
   }
 }

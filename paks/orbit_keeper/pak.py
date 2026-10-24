@@ -1,8 +1,7 @@
 """Orbit Keeper — complete, independently playable Pak behaviors."""
 import math
 import pygame
-from ..model import Vec, WIDTH, HEIGHT, Cover, Beam, normalized, unit, circle_rect
-from .model import Pak
+from system_panic.model import Vec, WIDTH, HEIGHT, Cover, Beam, Controls, normalized, unit, circle_rect
 
 def move(world, dt, control, jump, special):
     p = world.player
@@ -37,7 +36,26 @@ def make_arena():
     layout = [(440, 200, 80, 80), (130, 100, 32, 32), (798, 100, 32, 32), (130, 348, 32, 32), (798, 348, 32, 32)]
     return [Cover(pygame.Rect(*rect), platform=False) for rect in layout]
 
-PAK = Pak("orbit_keeper", "Orbit Keeper", "ORBIT / RETURN", (242, 225, 112),
-          "orbiter", "glaive", "sentinel", "orbit",
-          "Left / right: orbit. Up / down: radius", "X: reverse orbit and shield",
-          "Hold the orbit. Returning glaives cut through circling sentinels.", 5, move=move, fire=fire, advance_enemy=advance_enemy, make_arena=make_arena, cooldown=0.48, splits=0)
+def draw_arena(surface):
+    for r in (90, 140, 190, 225):
+        pygame.draw.circle(surface, (48, 46, 33), (WIDTH // 2, HEIGHT // 2), r, 1)
+
+def prepare_pilot(world):
+    offset = world.player.pos - Vec(WIDTH / 2, HEIGHT / 2)
+    world.player.angle = math.atan2(offset.y, offset.x)
+    world.player.orbit_radius = max(80, min(215, offset.length()))
+
+def demo_controls(world):
+    p = world.player
+    target = min(world.enemies, key=lambda e: e.pos.distance_squared_to(p.pos))
+    delta = target.pos - p.pos
+    vector = normalized(delta)
+    special = int(world.time * 3) % 11 == 0
+    steering = .7
+    threats = [enemy.pos + enemy.vel * .25 for enemy in world.enemies if enemy.health > 0]
+    threats += [shot.pos + shot.vel * .25 for shot in world.projectiles if not shot.friendly]
+    if threats and min(p.pos.distance_to(pos) for pos in threats) < 90:
+        steering = max((-.7, .7), key=lambda x: min(
+            (Vec(WIDTH / 2, HEIGHT / 2) + unit(p.angle + x * 2.2 * .35) * p.orbit_radius).distance_to(pos)
+            for pos in threats))
+    return Controls(steering, math.sin(world.time * .7) * .4, True, special)

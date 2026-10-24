@@ -6,7 +6,7 @@ import pygame
 
 from .resources import asset_root
 from .model import WIDTH, HEIGHT, Vec
-from .paks import BY_ID
+from .paks import get_catalog
 
 BG = (9, 16, 25)
 PANEL = (15, 26, 38)
@@ -18,14 +18,13 @@ DIM = (70, 92, 110)
 
 
 class Graphics:
-    def __init__(self):
+    def __init__(self, catalog=None):
+        self.catalog = catalog if catalog is not None else get_catalog()
         self.fonts = {}
         self.cache = {}
-        self.atlas = None
+        self.images = {}
         self.title = None
         root = asset_root() / "images"
-        if (root / "sprites-source.png").is_file():
-            self.atlas = pygame.image.load(root / "sprites-source.png").convert_alpha()
         if (root / "title.png").is_file():
             self.title = pygame.transform.smoothscale(pygame.image.load(root / "title.png").convert(), (1280, 853))
 
@@ -57,19 +56,28 @@ class Graphics:
             y += height
         return y
 
+    def fit_text(self, surface, text, xy, width, size=20, color=TEXT, bold=False):
+        while size > 10 and self.font(size, bold).size(str(text))[0] > width:
+            size -= 1
+        text = str(text)
+        while text and self.font(size, bold).size(text)[0] > width:
+            text = text[:-2] + "…"
+        return self.text(surface, text, xy, size, color, bold)
+
     def sprite(self, pak_id, row, size):
         key = (pak_id, row, size)
         if key not in self.cache:
-            if self.atlas:
-                col = BY_ID[pak_id].atlas_column
-                cw = self.atlas.get_width() // 6
-                # Actual generated row bands have unequal heights; using a
-                # nominal grid clips players and leaks them into enemy frames.
-                top, bottom = ((0, 310), (310, 565), (565, 805), (805, 1024))[row]
-                crop = self.atlas.subsurface((col * cw + 14, top, cw - 28, bottom - top))
-                bounds = crop.get_bounding_rect(min_alpha=140)
-                if bounds.width and bounds.height:
-                    crop = crop.subsurface(bounds)
+            pak = self.catalog.by_id[pak_id]
+            path = pak.sprites[row]
+            crop = None
+            if path:
+                try:
+                    if path not in self.images:
+                        self.images[path] = pygame.image.load(path).convert_alpha()
+                    crop = self.images[path]
+                except (pygame.error, OSError):
+                    pass
+            if crop:
                 scale = min(size / crop.get_width(), size / crop.get_height())
                 image = pygame.transform.scale(crop, (max(1, int(crop.get_width() * scale)),
                                                        max(1, int(crop.get_height() * scale))))
@@ -78,7 +86,7 @@ class Graphics:
                 self.cache[key] = tile
             else:
                 image = pygame.Surface((size, size), pygame.SRCALPHA)
-                pygame.draw.circle(image, BY_ID[pak_id].color, (size // 2, size // 2), size // 3)
+                pygame.draw.circle(image, pak.color, (size // 2, size // 2), size // 3)
                 self.cache[key] = image
         return self.cache[key]
 
@@ -108,24 +116,8 @@ class Graphics:
             pygame.draw.line(surface, (15, 28, 40), (x, 0), (x, HEIGHT))
         for y in range(0, HEIGHT, 40):
             pygame.draw.line(surface, (15, 28, 40), (0, y), (WIDTH, y))
-        kind = world.pak("arena").arena
-        if kind == "void":
-            for i in range(95):
-                x, y = (i * 137 + 17) % WIDTH, (i * 79 + 13) % HEIGHT
-                pygame.draw.circle(surface, (55 + i % 80, 65 + i % 80, 95 + i % 90), (x, y), 1)
-        elif kind == "circuit":
-            pygame.draw.rect(surface, (54, 42, 31), (75, 55, 810, 370), 2, border_radius=80)
-            pygame.draw.rect(surface, (54, 42, 31), (120, 100, 720, 280), 1, border_radius=60)
-        elif kind == "orbit":
-            for r in (90, 140, 190, 225):
-                pygame.draw.circle(surface, (48, 46, 33), (WIDTH // 2, HEIGHT // 2), r, 1)
-        elif kind == "garden":
-            for i in range(35):
-                x, y = (i * 191) % WIDTH, (i * 97) % HEIGHT
-                pygame.draw.line(surface, (20, 48, 39), (x - 4, y), (x + 4, y), 1)
-                pygame.draw.line(surface, (20, 48, 39), (x, y - 4), (x, y + 4), 1)
-        elif kind == "forge":
-            pygame.draw.line(surface, (90, 43, 53), (0, HEIGHT - 3), (WIDTH, HEIGHT - 3), 3)
+        if world.pak("arena").draw_arena:
+            world.pak("arena").draw_arena(surface)
         pygame.draw.rect(surface, tuple(int(c * .30) for c in accent), (0, 0, WIDTH, HEIGHT), 2)
         for wall in world.cover:
             color = tuple(int(c * .24) for c in accent)
@@ -144,7 +136,7 @@ class Graphics:
                 continue
             size = int(enemy.radius * 3.4)
             image = self.sprite(world.mix["enemy"], 1, size)
-            if enemy.family in ("asteroid", "sentinel") and not reduced_motion:
+            if world.pak("enemy").rotate_enemy and not reduced_motion:
                 image = pygame.transform.rotate(image, -math.degrees(enemy.angle))
             if enemy.elite:
                 pygame.draw.circle(surface, world.pak("enemy").color, enemy.pos, int(enemy.radius + 7), 1)
@@ -173,9 +165,9 @@ class Graphics:
             if p.invulnerable > 0:
                 pygame.draw.circle(surface, world.pak("pilot").color, p.pos, 20, 1)
             image = self.sprite(world.mix["pilot"], 0, 44)
-            if world.pak("pilot").pilot in ("drifter", "driver"):
+            if world.pak("pilot").pilot_sprite == "rotate":
                 image = pygame.transform.rotate(image, -math.degrees(p.angle) - 90)
-            elif world.pak("pilot").pilot == "jumper" and math.cos(p.angle) < 0:
+            elif world.pak("pilot").pilot_sprite == "face" and math.cos(p.angle) < 0:
                 image = pygame.transform.flip(image, True, False)
             if world.phase != "active" or world.transition > 0 or p.invulnerable <= 0 or int(world.time * 12) % 2 or reduced_motion:
                 surface.blit(image, image.get_rect(center=p.pos))

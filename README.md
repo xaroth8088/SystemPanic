@@ -32,6 +32,19 @@ Source also runs on Linux/macOS with Python 3.12+ and Pygame; the standalone bui
 
 Each Pak has its own arena geometry, original generated sprites and soundtrack. All cover can be destroyed and every weapon can reach each enemy family. Shared engine state survives a shuffle; opaque movement/AI state does not.
 
+## Dynamic Paks
+
+The six launch Paks are ordinary external folders under [`paks/`](paks/AGENTS.md), separate from the game engine. Each contains `pak.json`, behavior code, sprites and music. Add a Pak folder and choose **Rescan Paks** in the library; no registry change or executable rebuild is needed. Use **Pak status** for installation locations and skipped-Pak errors. The library supports more than six Paks with pagination.
+
+The Windows build loads `paks/` beside its executable and `%LOCALAPPDATA%/SystemPanic/paks`. A source checkout uses project-root `paks/` plus the same user location. Complete Paks can run alone; partial Paks can supply any subset of the four components. Asset-only partial Paks can inherit installed behavior and add their own sprites. Complementary partial Paks can form a playable mix without a complete Pak.
+
+See [installation, manifest examples and callback API](docs/paks.md).
+
+```sh
+python play.py --list-paks
+python play.py --pak-dir ./my-paks
+```
+
 ## Controls and preferences
 
 - **Arrows / WASD:** current pilot's movement; the live footer shows the active controls.
@@ -41,7 +54,7 @@ Each Pak has its own arena geometry, original generated sprites and soundtrack. 
 - **F11:** fullscreen.
 - **Mouse, or Tab / arrows + Enter:** menus. Enter from the library starts the selected mix.
 
-The library's **Enabled** buttons control the remix pool. **Play Solo** starts any Pak with every component locked to it. At least one Pak must remain enabled.
+The library's **Enabled** buttons control the remix pool. **Play Solo** starts a complete Pak with every component locked to it. Partial Paks show **Mix Only** and contribute only their declared components. The enabled mix must cover pilot, weapon, enemy and arena. Coherent shuffle selects complete Paks; component remix also includes partial Paks.
 
 Periodic randomization pauses for a quarter-second screen glitch, then resumes automatically. Clearing a level instead shows a one-second **Level Cleared** message before the next level starts, without another readiness screen. The initial ready introduction appears only when starting a new run.
 
@@ -55,7 +68,7 @@ python play.py --headless --demo --frames 480 --solo sky_forge --seed 24 --scree
 
 ## Development and agent memory
 
-Start at [`AGENTS.md`](AGENTS.md). Linked wiki pages live beside the runtime, Paks, tests, asset tools and historical code. See [`docs/architecture.md`](docs/architecture.md) for the Pak callback interface.
+Start at [`AGENTS.md`](AGENTS.md). Linked wiki pages live beside the runtime, Paks, tests, asset tools and historical code. See [`docs/architecture.md`](docs/architecture.md) for engine architecture and [`docs/paks.md`](docs/paks.md) for the Pak format and callback interface.
 
 ```sh
 python -m unittest discover -s tests -v
@@ -63,7 +76,7 @@ python tools/verify.py
 python tools/compatibility.py
 ```
 
-`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` plays an opening level in all **1,296** pilot/weapon/enemy/arena mixtures using a fixed seed and relaxed difficulty. Automated gameplay checks complement human balance testing.
+`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` plays an opening level in every eligible pilot/weapon/enemy/arena mixture (**1,296** with the six launch Paks) using a fixed seed and relaxed difficulty. Automated gameplay checks complement human balance testing.
 
 ## Original AI asset pipeline
 

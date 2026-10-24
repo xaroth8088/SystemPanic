@@ -8,27 +8,15 @@ Progression is always endless. Level n starts with n normal enemies, starting at
 
 ## A complete Pak
 
-Each module under `src/system_panic/paks` owns four callbacks plus metadata:
+Game content lives in external `paks/<id>/` folders. `pak.json` declares API version, components, metadata, local sprite/music paths and an optional Python entrypoint. The core's `system_panic.paks` package contains only the contract and discovery loader. Complete Paks supply all four channels; partial Paks supply any nonempty subset and join only their eligible channel pools. Asset-only variants may inherit installed component behavior. See [the full Pak guide](paks.md) and [authoring memory](../paks/AGENTS.md).
 
-```python
-def move(world, dt, control, jump, special): ...
-def fire(world, direction): ...
-def advance_enemy(world, enemy, dt): ...
-def make_arena(): ...  # list[Cover]
+`discover(roots)` returns an immutable catalog of loaded definitions and isolated loader issues. Catalogs are passed to the shell, preferences, simulation, renderer and audio. Startup and library rescans discover folders; the executable has no static list of game content. Missing/cyclic dependencies, unsupported APIs, duplicate IDs, missing local assets/callbacks and import failures appear in Pak status. Relative helpers use separate package namespaces and fresh-source loading. Local Pak code is trusted Python, not sandboxed code.
 
-PAK = Pak(..., move=move, fire=fire, advance_enemy=advance_enemy,
-          make_arena=make_arena, cooldown=0.25, splits=0)
-```
-
-`move` updates the engine-owned pilot using shared collision helpers. `fire` uses `world.spawn_shot`, `world.damage_enemy` and/or `world.beams`. `advance_enemy` implements its AI; the engine already advances age and timer. `make_arena` returns fresh destructible cover. The engine dispatches the independently selected Pak's callback for each channel; adding a Pak does not require another behavior branch in the engine.
-
-Shared projectile capabilities include piercing, ricochets, seeking, area damage and returning to the owner. The engine advances each projectile once and owns damage, hit ownership and cleanup.
-
-Register the exported definition in `paks/registry.py`, provide original assets, update the wiki, and test alone and with current components. Pak code is trusted local Python. The game does not fetch or execute remote Paks.
+Movement, firing, enemy AI and arena geometry are dispatched through their component's callbacks. Pilot initialization, arena decoration and demo policies also belong to Paks. Sprite presentation is generic metadata; the renderer has no launch-game names, behavior branches or shared-atlas columns. Projectile capabilities (piercing, ricochets, seeking, area damage, returning), collision and damage remain shared engine services.
 
 ## Shuffle invariants
 
-Configurations map `pilot`, `weapon`, `enemy` and `arena` to Pak IDs. Solo fixes them to one Pak. Coherent mode selects a complete Pak. Component remix selects enabled channels independently; locked channels keep their initial selection. Choices exclude the previous selection when alternatives exist.
+Configurations map `pilot`, `weapon`, `enemy` and `arena` to Pak IDs. Solo fixes them to one complete Pak. Coherent mode selects an enabled complete Pak. Component remix selects enabled providers independently for each declared channel; locked channels keep their initial selection. Choices exclude the previous selection when alternatives exist.
 
 Health, score, wave and enemy identity/health survive. Changing pilot creates clean locomotion state. Enemy callbacks receive clean timers/velocity. Cover is rebuilt; a bounded search repairs overlaps; both teams' shots are cleared; the player receives invulnerability. A brief corruption transition makes the new rules readable.
 
@@ -38,6 +26,6 @@ Destructible cover, long-range weapons and default aim assistance keep different
 
 ## Assets and persistence
 
-Paths resolve from checkout, frozen bundle or installed distribution, never the working directory. Raw AI generations remain for provenance; standalone builds ship only final images and mastered audio. Runtime has no generation SDK, credential loading or HTTP code.
+Core assets resolve from the checkout, frozen bundle or Python installation. Pak assets resolve inside their own external folders. Standalone builds keep `paks/` beside the executable; Python distributions preserve the same tree under `share/system-panic/paks`. Raw AI generations remain for provenance; the build ships exported local sprites/music in each Pak plus shared title/effects. Runtime has no generation SDK, credential loading or HTTP code.
 
-Preferences validate IDs/types, clamp numbers, prevent an empty enabled set and save atomically. Corrupt files recover to defaults; save errors do not prevent play. Sandbox tests use temporary directories under `output/test-temp`, because the execution sandbox can deny atomic renames in the OS temporary directory.
+Preferences validate IDs/types, clamp numbers, repair missing providers after Pak removal and prevent a mix with missing component coverage and save atomically. Corrupt files recover to defaults; save errors do not prevent play. Sandbox tests use temporary directories under `output/test-temp`, because the execution sandbox can deny atomic renames in the OS temporary directory.

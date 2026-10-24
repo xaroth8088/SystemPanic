@@ -523,6 +523,216 @@
       "sample_rate": 44100,
       "sha256": "018711f6d5e3501b8400f78c16690dbb5f85c8fdcc41b21abd007419e8d53f91",
       "status": "derived"
+    },
+    {
+      "file": "paks/iron_circuit/assets/pilot.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 2, row 0; trim transparent bounds",
+      "sha256": "2282d96c27f12ca1ffab5a0739e8685f67c4068e8f15d3dd922e03a5fdc4337e",
+      "status": "derived"
+    },
+    {
+      "file": "paks/iron_circuit/assets/enemy.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 2, row 1; trim transparent bounds",
+      "sha256": "3f1a22a746ea4e738ec1cba79a37248bade2b24ccbcae0058bf9c47c01de27da",
+      "status": "derived"
+    },
+    {
+      "file": "paks/iron_circuit/assets/cover.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 2, row 2; trim transparent bounds",
+      "sha256": "ff9a138269febc7f01bdddfee4681538b2227ee092624a84d64ec96e8a3010fe",
+      "status": "derived"
+    },
+    {
+      "file": "paks/iron_circuit/assets/projectile.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 2, row 3; trim transparent bounds",
+      "sha256": "cd5799935a634cb2145fa2077a62e613e03c062a598c049b08eb9a841ce7d83e",
+      "status": "derived"
+    },
+    {
+      "file": "paks/iron_circuit/assets/music.ogg",
+      "source": "assets/audio/production/iron_circuit.ogg",
+      "operation": "Unmodified copy into standalone Pak",
+      "sha256": "a88e1355f502f92bf9bc81862f88a97004c59d291bb5c7253c192ae04bb27449",
+      "status": "derived"
+    },
+    {
+      "file": "paks/orbit_keeper/assets/pilot.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 5, row 0; trim transparent bounds",
+      "sha256": "99bd6d11c1ba11ebcdc54d1ba2adc31ea33eca94b90a82955e57a7121c9a56ba",
+      "status": "derived"
+    },
+    {
+      "file": "paks/orbit_keeper/assets/enemy.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 5, row 1; trim transparent bounds",
+      "sha256": "165e6e515ba79b9e3c51ecd03b04ebbe92f3f039a437a7c9138f7014739000ec",
+      "status": "derived"
+    },
+    {
+      "file": "paks/orbit_keeper/assets/cover.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 5, row 2; trim transparent bounds",
+      "sha256": "dcec052dcf1e8ae17c4d38e425e6b964c5f806881aa7e64eb99ef9fae9780902",
+      "status": "derived"
+    },
+    {
+      "file": "paks/orbit_keeper/assets/projectile.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 5, row 3; trim transparent bounds",
+      "sha256": "ea83b0ea2ed70df552ea5fff742a04ca620762755b1a5109672283ce9d01ba34",
+      "status": "derived"
+    },
+    {
+      "file": "paks/orbit_keeper/assets/music.ogg",
+      "source": "assets/audio/production/orbit_keeper.ogg",
+      "operation": "Unmodified copy into standalone Pak",
+      "sha256": "7484649e4f60ae49021e0624056f68e39141b9eaa19cb47e0c32ff51ae8c8e35",
+      "status": "derived"
+    },
+    {
+      "file": "paks/phase_garden/assets/pilot.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 4, row 0; trim transparent bounds",
+      "sha256": "91d76049334df1407cf3d41b9343b0d821c2eff4101fe37cf1648d72dcbbefb4",
+      "status": "derived"
+    },
+    {
+      "file": "paks/phase_garden/assets/enemy.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 4, row 1; trim transparent bounds",
+      "sha256": "4c07e5eb63dba2dbe955dca7cb4eaeaee907a38ca977a3c2e7596f919fbbcb5f",
+      "status": "derived"
+    },
+    {
+      "file": "paks/phase_garden/assets/cover.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 4, row 2; trim transparent bounds",
+      "sha256": "e1cbec43f08fead6930b5e2c148e574e8d68a6535fe8569a6b33146667dd1ead",
+      "status": "derived"
+    },
+    {
+      "file": "paks/phase_garden/assets/projectile.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 4, row 3; trim transparent bounds",
+      "sha256": "64215356ba5edad5607b5e25317f82d104c509194a0599cbb61e87e046145525",
+      "status": "derived"
+    },
+    {
+      "file": "paks/phase_garden/assets/music.ogg",
+      "source": "assets/audio/production/phase_garden.ogg",
+      "operation": "Unmodified copy into standalone Pak",
+      "sha256": "145753f7b7d70370f603cf4a31bcab84abf758b8bf6f162615d1be07ceac97d9",
+      "status": "derived"
+    },
+    {
+      "file": "paks/signal_runner/assets/pilot.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 0, row 0; trim transparent bounds",
+      "sha256": "4e2ddd30fd8f645ec8569499a01bec677f514f2f2851a1a116e107293eefd16a",
+      "status": "derived"
+    },
+    {
+      "file": "paks/signal_runner/assets/enemy.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 0, row 1; trim transparent bounds",
+      "sha256": "78ab11c7f04e980efa6eb1440fb8edf4e2c2900093214997c12741768fb95ecd",
+      "status": "derived"
+    },
+    {
+      "file": "paks/signal_runner/assets/cover.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 0, row 2; trim transparent bounds",
+      "sha256": "bec8ac65b376b32ba39eef3cd6d311512ef4d162955e36a745d481fef0b5acf1",
+      "status": "derived"
+    },
+    {
+      "file": "paks/signal_runner/assets/projectile.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 0, row 3; trim transparent bounds",
+      "sha256": "5addaab4160b3fe147c5b8a6d1636391803480f813c1f4250256a3afc9fe4e8a",
+      "status": "derived"
+    },
+    {
+      "file": "paks/signal_runner/assets/music.ogg",
+      "source": "assets/audio/production/signal_runner.ogg",
+      "operation": "Unmodified copy into standalone Pak",
+      "sha256": "a26b7acac14a30cfaa94a58e4f4285646cb6b0cb8cf0797a9e19c10cc9cb9b25",
+      "status": "derived"
+    },
+    {
+      "file": "paks/sky_forge/assets/pilot.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 3, row 0; trim transparent bounds",
+      "sha256": "a34bc730576facf9761d8e46c6c78e2c3e4ff008269f5d34aa34b03462b2a3c6",
+      "status": "derived"
+    },
+    {
+      "file": "paks/sky_forge/assets/enemy.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 3, row 1; trim transparent bounds",
+      "sha256": "49928e3e684cd777ad7cedc86448885f63add1c621411a5f7431026c20d75dc6",
+      "status": "derived"
+    },
+    {
+      "file": "paks/sky_forge/assets/cover.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 3, row 2; trim transparent bounds",
+      "sha256": "c1bb39718886eb9bcb18f311a639568f3edb7ad4d439b963cb176c8ec071886b",
+      "status": "derived"
+    },
+    {
+      "file": "paks/sky_forge/assets/projectile.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 3, row 3; trim transparent bounds",
+      "sha256": "478c0ab7fa50fddd12de9f325580eb9d502cbe9a92199b1d576391c1ba899b0b",
+      "status": "derived"
+    },
+    {
+      "file": "paks/sky_forge/assets/music.ogg",
+      "source": "assets/audio/production/sky_forge.ogg",
+      "operation": "Unmodified copy into standalone Pak",
+      "sha256": "992b1de09191256f20d5adf68d9f554e561cff241dd2a0cc5d1c2118182bcd24",
+      "status": "derived"
+    },
+    {
+      "file": "paks/void_drifter/assets/pilot.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 1, row 0; trim transparent bounds",
+      "sha256": "7a3fdafbe252fcd4de9dfcba7fa1888cb1fadecd3887fe66ac41bed89603aa3e",
+      "status": "derived"
+    },
+    {
+      "file": "paks/void_drifter/assets/enemy.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 1, row 1; trim transparent bounds",
+      "sha256": "4b37c0c77969c301ba76c8dfe60cfa09ae35c8c7b387d16ec8c1fe113f736dd3",
+      "status": "derived"
+    },
+    {
+      "file": "paks/void_drifter/assets/cover.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 1, row 2; trim transparent bounds",
+      "sha256": "754809cc2fb68a1154817fda744788a669ebe6fe5c46f00df914f805a098b141",
+      "status": "derived"
+    },
+    {
+      "file": "paks/void_drifter/assets/projectile.png",
+      "source": "assets/images/sprites-source.png",
+      "operation": "Lossless atlas crop, column 1, row 3; trim transparent bounds",
+      "sha256": "985335e475f50a20c40e4fc384c9fd157b2d8c10dd7a6af7fefabce9d10fa780",
+      "status": "derived"
+    },
+    {
+      "file": "paks/void_drifter/assets/music.ogg",
+      "source": "assets/audio/production/void_drifter.ogg",
+      "operation": "Unmodified copy into standalone Pak",
+      "sha256": "018711f6d5e3501b8400f78c16690dbb5f85c8fdcc41b21abd007419e8d53f91",
+      "status": "derived"
     }
   ]
 }

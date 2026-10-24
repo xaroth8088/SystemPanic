@@ -2,10 +2,12 @@
 import pygame
 
 from .resources import asset_root
+from .paks import get_catalog
 
 
 class Audio:
-    def __init__(self, prefs):
+    def __init__(self, prefs, catalog=None):
+        self.catalog = catalog if catalog is not None else get_catalog()
         self.available = False
         self.sounds = {}
         self.current = None
@@ -38,12 +40,14 @@ class Audio:
     def music(self, name):
         if not self.available or self.current == name:
             return
-        path = self.find(name)
+        pak = self.catalog.by_id.get(name)
+        path = pak.music if pak else None
+        pygame.mixer.music.stop()
+        self.current = name
         if path:
             try:
                 pygame.mixer.music.load(path)
                 pygame.mixer.music.play(-1, fade_ms=650)
-                self.current = name
             except (pygame.error, OSError):
                 pass
 

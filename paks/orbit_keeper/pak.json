@@ -1,0 +1,45 @@
+{
+  "id": "orbit_keeper",
+  "name": "Orbit Keeper",
+  "subtitle": "ORBIT / RETURN",
+  "color": [
+    242,
+    225,
+    112
+  ],
+  "pilot": "orbiter",
+  "weapon": "glaive",
+  "enemy": "sentinel",
+  "arena": "orbit",
+  "controls": "Left / right: orbit. Up / down: radius",
+  "special": "X: reverse orbit and shield",
+  "description": "Hold the orbit. Returning glaives cut through circling sentinels.",
+  "cooldown": 0.48,
+  "splits": 0,
+  "api_version": 1,
+  "version": "1.0.0",
+  "order": 5,
+  "entrypoint": "pak.py",
+  "assets": {
+    "sprites": {
+      "pilot": "assets/pilot.png",
+      "enemy": "assets/enemy.png",
+      "arena": "assets/cover.png",
+      "weapon": "assets/projectile.png"
+    },
+    "music": "assets/music.ogg"
+  },
+  "presentation": {
+    "pilot_sprite": "upright",
+    "rotate_enemy": true
+  },
+  "components": [
+    "pilot",
+    "weapon",
+    "enemy",
+    "arena"
+  ],
+  "authoring": {
+    "atlas_column": 5
+  }
+}

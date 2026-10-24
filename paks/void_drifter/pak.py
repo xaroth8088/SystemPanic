@@ -1,8 +1,7 @@
 """Void Drifter — complete, independently playable Pak behaviors."""
 import math
 import pygame
-from ..model import Vec, WIDTH, HEIGHT, Cover, Beam, normalized, unit, circle_rect
-from .model import Pak
+from system_panic.model import Vec, WIDTH, HEIGHT, Cover, Beam, Controls, normalized, unit, circle_rect
 
 def move(world, dt, control, jump, special):
     p = world.player
@@ -32,7 +31,17 @@ def make_arena():
     layout = [(275, 130, 32, 32), (660, 310, 40, 40)]
     return [Cover(pygame.Rect(*rect), platform=False) for rect in layout]
 
-PAK = Pak("void_drifter", "Void Drifter", "INERTIA / FRACTURE", (174, 151, 255),
-          "drifter", "lance", "asteroid", "void",
-          "Left / right: turn. Up: thrust", "X: brake and reverse thrust",
-          "Master momentum. Pierce drifting rocks before they fracture.", 1, move=move, fire=fire, advance_enemy=advance_enemy, make_arena=make_arena, cooldown=0.43, splits=2)
+def draw_arena(surface):
+    for i in range(95):
+        x, y = (i * 137 + 17) % WIDTH, (i * 79 + 13) % HEIGHT
+        pygame.draw.circle(surface, (55 + i % 80, 65 + i % 80, 95 + i % 90), (x, y), 1)
+
+def demo_controls(world):
+    p = world.player
+    target = min(world.enemies, key=lambda e: e.pos.distance_squared_to(p.pos))
+    delta = target.pos - p.pos
+    vector = normalized(delta)
+    special = int(world.time * 3) % 11 == 0
+    angle = math.atan2(delta.y, delta.x)
+    diff = (angle - p.angle + math.pi) % math.tau - math.pi
+    return Controls(max(-1, min(1, diff * 2)), -1 if delta.length() > 180 else .3, True, special)

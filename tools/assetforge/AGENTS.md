@@ -22,4 +22,6 @@ Six music tracks and five effect sources were generated with Stable Audio 3. Pub
 
 The atlas and title image came from built-in imagegen. The actual atlas row bands differ from the requested equal grid: `(0,310)`, `(310,565)`, `(565,805)`, `(805,1024)`. Renderer metadata slices these bands, trims 14 pixels from column edges and fits visible content without modifying the source pixels/alpha.
 
+Following the dynamic Pak reorganization, `export_paks.py` now performs that same lossless crop/trim outside the game and saves four individual sprites plus an unmodified mastered music copy under each launch Pak's local assets. The runtime has no atlas column assumptions. Re-export after mastering or replacing the original atlas, then run `manifest.py`; `assets/pak-exports.json` records the derivatives. New Paks should own their independent source/production assets rather than extending the shared source atlas.
+
 On this Windows environment, libsndfile's long Vorbis encoding overflowed its stack. `prepare.py` uses PCM IO plus installed FFmpeg for Vorbis; without FFmpeg it writes mastered WAV. Production outputs live under `assets/audio/production`. `manifest.py` validates source/derivative hashes. No generation code or credential loading enters the runtime or Windows build.

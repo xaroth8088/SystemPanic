@@ -18,8 +18,3 @@ system-panic = "system_panic.app:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.setuptools.data-files]
-"share/system-panic/images" = ["assets/images/*.png"]
-"share/system-panic/audio/production" = ["assets/audio/production/*.ogg", "assets/audio/production/*.wav"]
-"share/system-panic" = ["assets/manifest.json"]

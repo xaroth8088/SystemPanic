@@ -1,6 +1,10 @@
-# Pak memory and authoring
+# Pak loader memory
 
-Each Pak supplies a frozen `Pak` definition with its own pilot, weapon, enemy family, arena, colors, instructions and asset identifiers. Each module owns its `move`, `fire`, `advance_enemy` and `make_arena` callbacks; the core dispatches these instead of branching on behavior names. Registry validation rejects duplicate IDs and missing callbacks. Add a file here and register its exported definition in `registry.py`. See [the interface guide](../../../docs/architecture.md).
+This directory contains the loader and frozen API contract, not game content. Read [external Pak authoring](../../../paks/AGENTS.md) and [the format guide](../../../docs/paks.md). Launch Pak code and assets live outside the Python package under project-root `paks/`.
+
+`discover(roots)` returns a catalog with deterministic ordering, complete/partial component pools and loader issues. Manifest API 1 validates IDs, text, paths, assets, callbacks and inheritance. First valid manifest claims an ID; duplicate manifests are reported. Missing/cyclic inheritance and import failures isolate the affected Pak instead of aborting the library. This is trusted local Python, not a sandbox or remote execution service.
+
+Entry modules and relative helpers use isolated package namespaces. Rescans read fresh source, including helpers with unchanged timestamps. Catalogs are immutable snapshots so an active world keeps its selected definitions. Avoid static content imports, global mutable registries and hardcoded launch IDs.
 
 ## Six complete games
 | Pak | Pilot | Weapon | Enemies | Arena |

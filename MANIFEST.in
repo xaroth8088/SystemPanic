@@ -1,0 +1,9 @@
+recursive-include paks *.json *.py *.png *.ogg *.wav *.webp *.md
+include assets/manifest.json
+include assets/images/title.png
+include assets/audio/production/shot.ogg
+include assets/audio/production/impact.ogg
+include assets/audio/production/shuffle.ogg
+include assets/audio/production/hurt.ogg
+include assets/audio/production/clear.ogg
+include assets/audio/production/select.ogg

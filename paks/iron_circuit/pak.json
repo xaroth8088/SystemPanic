@@ -1,0 +1,45 @@
+{
+  "id": "iron_circuit",
+  "name": "Iron Circuit",
+  "subtitle": "STEERING / RICOCHET",
+  "color": [
+    255,
+    184,
+    77
+  ],
+  "pilot": "driver",
+  "weapon": "scatter",
+  "enemy": "turret",
+  "arena": "circuit",
+  "controls": "Left / right: steer. Up / down: speed",
+  "special": "X: overdrive and ram",
+  "description": "Never stop driving. Bank plasma off walls to silence the turrets.",
+  "cooldown": 0.45,
+  "splits": 0,
+  "api_version": 1,
+  "version": "1.0.0",
+  "order": 2,
+  "entrypoint": "pak.py",
+  "assets": {
+    "sprites": {
+      "pilot": "assets/pilot.png",
+      "enemy": "assets/enemy.png",
+      "arena": "assets/cover.png",
+      "weapon": "assets/projectile.png"
+    },
+    "music": "assets/music.ogg"
+  },
+  "presentation": {
+    "pilot_sprite": "rotate",
+    "rotate_enemy": false
+  },
+  "components": [
+    "pilot",
+    "weapon",
+    "enemy",
+    "arena"
+  ],
+  "authoring": {
+    "atlas_column": 2
+  }
+}

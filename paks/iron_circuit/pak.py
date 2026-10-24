@@ -1,8 +1,7 @@
 """Iron Circuit — complete, independently playable Pak behaviors."""
 import math
 import pygame
-from ..model import Vec, WIDTH, HEIGHT, Cover, Beam, normalized, unit, circle_rect
-from .model import Pak
+from system_panic.model import Vec, WIDTH, HEIGHT, Cover, Beam, Controls, normalized, unit, circle_rect
 
 def move(world, dt, control, jump, special):
     p = world.player
@@ -36,7 +35,14 @@ def make_arena():
     layout = [(240, 130, 110, 42), (240, 308, 110, 42), (610, 130, 110, 42), (610, 308, 110, 42), (456, 216, 48, 48)]
     return [Cover(pygame.Rect(*rect), platform=False) for rect in layout]
 
-PAK = Pak("iron_circuit", "Iron Circuit", "STEERING / RICOCHET", (255, 184, 77),
-          "driver", "scatter", "turret", "circuit",
-          "Left / right: steer. Up / down: speed", "X: overdrive and ram",
-          "Never stop driving. Bank plasma off walls to silence the turrets.", 2, move=move, fire=fire, advance_enemy=advance_enemy, make_arena=make_arena, cooldown=0.45, splits=0)
+def draw_arena(surface):
+    pygame.draw.rect(surface, (54, 42, 31), (75, 55, 810, 370), 2, border_radius=80)
+    pygame.draw.rect(surface, (54, 42, 31), (120, 100, 720, 280), 1, border_radius=60)
+
+def demo_controls(world):
+    p = world.player
+    target = min(world.enemies, key=lambda e: e.pos.distance_squared_to(p.pos))
+    delta = target.pos - p.pos
+    vector = normalized(delta)
+    special = int(world.time * 3) % 11 == 0
+    return Controls(math.sin(world.time * .7) * .7, -.3, True, special)

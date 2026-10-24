@@ -1,8 +1,7 @@
 """Signal Runner — complete, independently playable Pak behaviors."""
 import math
 import pygame
-from ..model import Vec, WIDTH, HEIGHT, Cover, Beam, normalized, unit, circle_rect
-from .model import Pak
+from system_panic.model import Vec, WIDTH, HEIGHT, Cover, Beam, Controls, normalized, unit, circle_rect
 
 def move(world, dt, control, jump, special):
     p = world.player
@@ -26,8 +25,3 @@ def advance_enemy(world, enemy, dt):
 def make_arena():
     layout = [(180, 100, 38, 110), (180, 310, 38, 70), (440, 180, 80, 38), (740, 90, 38, 90), (740, 280, 38, 110)]
     return [Cover(pygame.Rect(*rect), platform=False) for rect in layout]
-
-PAK = Pak("signal_runner", "Signal Runner", "PRECISION / SWARM", (71, 224, 244),
-          "runner", "pulse", "swarm", "servers",
-          "Arrows / WASD: strafe", "X: dash through danger",
-          "Outrun the swarm. Thread the signal rooms with rapid pulse fire.", 0, move=move, fire=fire, advance_enemy=advance_enemy, make_arena=make_arena, cooldown=0.14, splits=0)

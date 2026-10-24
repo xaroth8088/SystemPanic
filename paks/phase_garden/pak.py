@@ -1,8 +1,7 @@
 """Phase Garden — complete, independently playable Pak behaviors."""
 import math
 import pygame
-from ..model import Vec, WIDTH, HEIGHT, Cover, Beam, normalized, unit, circle_rect
-from .model import Pak
+from system_panic.model import Vec, WIDTH, HEIGHT, Cover, Beam, Controls, normalized, unit, circle_rect
 
 def move(world, dt, control, jump, special):
     p = world.player
@@ -50,7 +49,8 @@ def make_arena():
     layout = [(185, 100, 24, 120), (185, 300, 24, 80), (380, 100, 120, 24), (460, 300, 24, 120), (690, 100, 24, 120), (690, 300, 130, 24)]
     return [Cover(pygame.Rect(*rect), platform=False) for rect in layout]
 
-PAK = Pak("phase_garden", "Phase Garden", "BLINK / CHAIN", (100, 237, 175),
-          "phase", "chain", "phantom", "garden",
-          "Arrows / WASD: step-dash", "X: blink through cover",
-          "Slip through the maze. Chain lightning reveals the hidden garden.", 4, move=move, fire=fire, advance_enemy=advance_enemy, make_arena=make_arena, cooldown=0.58, splits=0)
+def draw_arena(surface):
+    for i in range(35):
+        x, y = (i * 191) % WIDTH, (i * 97) % HEIGHT
+        pygame.draw.line(surface, (20, 48, 39), (x - 4, y), (x + 4, y), 1)
+        pygame.draw.line(surface, (20, 48, 39), (x, y - 4), (x, y + 4), 1)

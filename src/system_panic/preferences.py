@@ -4,16 +4,16 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 import json
 import math
-import os
 from pathlib import Path
 import tempfile
 
-from .paks import PAKS, BY_ID, CHANNELS
+from .paks import get_catalog, CHANNELS
+from .resources import data_root
 
 
 @dataclass
 class Preferences:
-    enabled: list[str] = field(default_factory=lambda: list(BY_ID))
+    enabled: list[str] = field(default_factory=lambda: list(get_catalog().by_id))
     mix_mode: str = "remix"
     shuffle_seconds: int = 8
     difficulty: str = "standard"
@@ -26,12 +26,19 @@ class Preferences:
     high_score: int = 0
 
     @classmethod
-    def from_dict(cls, raw):
-        result = cls()
+    def from_dict(cls, raw, catalog=None):
+        catalog = catalog if catalog is not None else get_catalog()
+        result = cls(enabled=list(catalog.by_id))
         if not isinstance(raw, dict):
             return result
         if isinstance(raw.get("enabled"), list):
-            result.enabled = [p.id for p in PAKS if p.id in raw["enabled"]] or [PAKS[0].id]
+            result.enabled = [p.id for p in catalog.paks if p.id in raw["enabled"]]
+            # Removed Paks cannot leave stale IDs or an unplayable selection.
+            for channel in CHANNELS:
+                if not catalog.providers(channel, result.enabled):
+                    providers = catalog.providers(channel)
+                    if providers:
+                        result.enabled.append(providers[0])
         for name, choices in (("mix_mode", ("remix", "coherent")),
                               ("difficulty", ("relaxed", "standard", "intense"))):
             if raw.get(name) in choices:
@@ -51,30 +58,29 @@ class Preferences:
             result.high_score = max(0, min(999999999, val))
         if isinstance(raw.get("shuffle_channels"), list):
             result.shuffle_channels = [v for v in CHANNELS if v in raw["shuffle_channels"]]
+        if result.mix_mode == "coherent" and not catalog.complete_ids(result.enabled):
+            result.mix_mode = "remix"
         return result
 
 
 def default_data_dir() -> Path:
-    if os.name == "nt":
-        base = Path(os.environ.get("LOCALAPPDATA", Path.home() / "AppData/Local"))
-    else:
-        base = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local/share"))
-    return base / "SystemPanic"
+    return data_root()
 
 
 class PreferenceStore:
-    def __init__(self, directory: Path | None = None):
+    def __init__(self, directory: Path | None = None, catalog=None):
+        self.catalog = catalog if catalog is not None else get_catalog()
         self.path = (directory or default_data_dir()) / "preferences.json"
         self.error = ""
 
     def load(self) -> Preferences:
         try:
-            return Preferences.from_dict(json.loads(self.path.read_text(encoding="utf-8")))
+            return Preferences.from_dict(json.loads(self.path.read_text(encoding="utf-8")), self.catalog)
         except FileNotFoundError:
-            return Preferences()
+            return Preferences.from_dict({}, self.catalog)
         except (OSError, ValueError, TypeError) as exc:
             self.error = f"Could not read preferences: {exc}"
-            return Preferences()
+            return Preferences.from_dict({}, self.catalog)
 
     def save(self, prefs: Preferences) -> bool:
         temp_path = None

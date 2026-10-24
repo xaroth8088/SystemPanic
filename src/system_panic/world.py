@@ -9,7 +9,7 @@ import pygame
 
 from .model import (WIDTH, HEIGHT, FIXED_DT, Vec, Controls, Pilot, Enemy,
                     Projectile, Particle, Beam, normalized, unit, circle_rect)
-from .paks import BY_ID, CHANNELS
+from .paks import get_catalog, CHANNELS
 from .preferences import Preferences
 
 SWAP_GLITCH_SECONDS = .25
@@ -17,10 +17,16 @@ LEVEL_CLEAR_SECONDS = 1.0
 
 
 class World:
-    def __init__(self, prefs: Preferences, seed: int = 0, solo: str | None = None):
-        self.prefs = Preferences.from_dict(vars(prefs))
-        self.solo = solo if solo in BY_ID else None
+    def __init__(self, prefs: Preferences, seed: int = 0, solo: str | None = None, catalog=None):
+        self.catalog = catalog if catalog is not None else get_catalog()
+        self.prefs = Preferences.from_dict(vars(prefs), self.catalog)
+        if solo is not None and solo not in self.catalog.complete_ids():
+            raise ValueError("Solo play requires an installed complete Pak")
+        self.solo = solo
         self.enabled = [self.solo] if self.solo else self.prefs.enabled.copy()
+        missing = self.catalog.missing(self.enabled)
+        if missing:
+            raise ValueError("The installed mix is missing: " + ", ".join(missing))
         self.seed = seed
         self.rng = random.Random(seed)
         self.player = Pilot()
@@ -49,34 +55,41 @@ class World:
         self.start_wave()
 
     def pak(self, channel):
-        return BY_ID[self.mix[channel]]
+        return self.catalog.by_id[self.mix[channel]]
 
     @property
     def factor(self):
         return {"relaxed": .70, "standard": 1., "intense": 1.28}[self.prefs.difficulty]
 
-    def choose(self, previous=None):
-        choices = [p for p in self.enabled if p != previous] or self.enabled
+    @property
+    def can_shuffle(self):
+        if self.solo:
+            return False
+        if self.prefs.mix_mode == "coherent":
+            return len(self.catalog.complete_ids(self.enabled)) > 1
+        return any(len(self.catalog.providers(channel, self.enabled)) > 1 for channel in self.prefs.shuffle_channels)
+
+    def choose(self, channel=None, previous=None):
+        eligible = self.catalog.providers(channel, self.enabled) if channel else self.catalog.complete_ids(self.enabled)
+        choices = [p for p in eligible if p != previous] or eligible
         return self.rng.choice(choices)
 
     def shuffle(self, initial=False):
         old_pilot = self.mix.get("pilot")
-        if len(self.enabled) == 1 or self.prefs.mix_mode == "coherent":
-            selected = self.choose(self.mix.get("pilot"))
+        if self.solo or self.prefs.mix_mode == "coherent":
+            selected = self.solo or self.choose(previous=self.mix.get("pilot"))
             self.mix = {channel: selected for channel in CHANNELS}
         else:
             for channel in CHANNELS:
                 if initial or channel in self.prefs.shuffle_channels:
-                    self.mix[channel] = self.choose(self.mix.get(channel))
+                    self.mix[channel] = self.choose(channel, self.mix.get(channel))
         self.cover = self.pak("arena").make_arena()
         if old_pilot != self.mix["pilot"]:
             old = self.player
             self.player = Pilot(pos=old.pos.copy(), health=old.health,
                                 invulnerable=max(old.invulnerable, 1.5), fire_timer=old.fire_timer)
-            if self.pak("pilot").pilot == "orbiter":
-                offset = old.pos - Vec(WIDTH / 2, HEIGHT / 2)
-                self.player.angle = math.atan2(offset.y, offset.x)
-                self.player.orbit_radius = max(80, min(215, offset.length()))
+            if self.pak("pilot").prepare_pilot:
+                self.pak("pilot").prepare_pilot(self)
         self.player.pos = self.safe_position(self.player.pos, 13)
         self.player.invulnerable = max(1.5, self.player.invulnerable)
         family = self.pak("enemy").enemy
@@ -161,7 +174,7 @@ class World:
         if self.transition > 0:
             return
         self.time += dt
-        if len(self.enabled) > 1 and (self.prefs.mix_mode == "coherent" or self.prefs.shuffle_channels):
+        if self.can_shuffle:
             self.shuffle_timer -= dt
             if self.shuffle_timer <= 0:
                 self.shuffle()

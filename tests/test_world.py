@@ -12,7 +12,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from system_panic.arenas import build_arena
 from system_panic.model import Controls, Vec, Projectile, FIXED_DT, circle_rect, WIDTH, HEIGHT
-from system_panic.paks import PAKS, CHANNELS
+from system_panic.paks import get_catalog, CHANNELS
+PAKS = get_catalog().paks
 from system_panic.preferences import Preferences
 from system_panic.world import World, SWAP_GLITCH_SECONDS, LEVEL_CLEAR_SECONDS
 

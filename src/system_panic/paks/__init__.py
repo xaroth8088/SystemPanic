@@ -1,3 +1,4 @@
-from .registry import PAKS, BY_ID, CHANNELS
+from .registry import Catalog, PakIssue, discover, get_catalog, CHANNELS, API_VERSION
+from .model import Pak
 
-__all__ = ["PAKS", "BY_ID", "CHANNELS"]
+__all__ = ["Pak", "Catalog", "PakIssue", "discover", "get_catalog", "CHANNELS", "API_VERSION"]

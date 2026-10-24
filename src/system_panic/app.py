@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from dataclasses import dataclass
 import math
 from pathlib import Path
@@ -12,8 +13,8 @@ import pygame
 
 from .audio import Audio
 from .graphics import Graphics, BG, PANEL, EDGE, TEXT, MUTED, CYAN, DIM
-from .model import WIDTH, HEIGHT, Vec, Controls, normalized, unit
-from .paks import PAKS, BY_ID, CHANNELS
+from .model import WIDTH, HEIGHT, Vec, Controls, normalized
+from .paks import discover, CHANNELS
 from .preferences import Preferences, PreferenceStore
 from .world import World
 
@@ -30,18 +31,21 @@ class Button:
 
 
 class App:
-    def __init__(self, data_dir=None, seed=None):
+    def __init__(self, data_dir=None, seed=None, catalog=None):
+        self.catalog = catalog if catalog is not None else discover()
         pygame.mixer.pre_init(44100, -16, 2, 512)
         pygame.init()
-        self.store = PreferenceStore(data_dir)
+        self.store = PreferenceStore(data_dir, self.catalog)
         self.prefs = self.store.load()
         self.window = pygame.display.set_mode(SIZE, pygame.RESIZABLE)
-        pygame.display.set_caption("System Panic — Six worlds. One unstable system.")
+        pygame.display.set_caption("System Panic — One unstable system.")
         self.canvas = pygame.Surface(SIZE).convert()
         self.arena_surface = pygame.Surface((WIDTH, HEIGHT)).convert()
-        self.graphics = Graphics()
-        pygame.display.set_icon(self.graphics.sprite("signal_runner", 0, 64))
-        self.audio = Audio(self.prefs)
+        self.graphics = Graphics(self.catalog)
+        if self.catalog.paks:
+            pak = self.catalog.paks[0]
+            pygame.display.set_icon(self.graphics.sprite(pak.id, next(i for i, path in enumerate(pak.sprites) if path), 64))
+        self.audio = Audio(self.prefs, self.catalog)
         self.clock = pygame.time.Clock()
         self.running = True
         self.route = "home"
@@ -56,9 +60,46 @@ class App:
         self.toast = self.store.error
         self.toast_timer = 6. if self.toast else 0.
         self.recorded = False
+        self.library_page = 0
+        self.help_page = 0
+        self.status_page = 0
         if self.prefs.fullscreen:
             self.apply_display()
-        self.audio.music("signal_runner")
+        self.menu_music()
+
+    def menu_music(self):
+        self.audio.music(next((p.id for p in self.catalog.paks if p.music), None))
+
+    def reload_paks(self):
+        if self.world is not None:
+            return
+        self.catalog = discover(self.catalog.roots)
+        self.store.catalog = self.catalog
+        self.prefs = self.store.load()
+        self.graphics = Graphics(self.catalog)
+        self.audio.prefs = self.prefs
+        self.audio.catalog = self.catalog
+        self.audio.current = None
+        if self.audio.available:
+            pygame.mixer.music.stop()
+        self.audio.set_volumes()
+        self.menu_music()
+        self.library_page = self.help_page = self.status_page = 0
+        self.notify(f"Loaded {len(self.catalog.paks)} Paks; {len(self.catalog.issues)} skipped. Details in Pak status.")
+
+    def page_controls(self, attribute, count, y, left=430, right=1080):
+        pages = max(1, (count + 5) // 6)
+        page = min(getattr(self, attribute), pages - 1)
+        setattr(self, attribute, page)
+        if pages > 1:
+            def change(delta):
+                setattr(self, attribute, (page + delta) % pages)
+                self.focus = 0
+                self.keyboard_focus = False
+            self.button(attribute + ":prev", (left, y, 140, 29), "< PREVIOUS", lambda: change(-1), size=12)
+            self.button(attribute + ":next", (right, y, 140, 29), "NEXT >", lambda: change(1), size=12)
+            self.graphics.text(self.canvas, f"{page + 1} / {pages}", ((left + right + 140) / 2, y + 14), 12, MUTED, mono=True, anchor="center")
+        return page * 6
 
     def apply_display(self):
         try:
@@ -83,7 +124,10 @@ class App:
         self.buttons.clear()
 
     def start(self, solo=None):
-        self.world = World(self.prefs, self.seed if self.seed is not None else secrets.randbelow(1_000_000), solo)
+        if (solo is None and self.catalog.missing(self.prefs.enabled)) or (solo is not None and solo not in self.catalog.complete_ids()):
+            self.notify("Enable providers for pilot, weapon, enemy and arena, or choose a complete Pak.")
+            return
+        self.world = World(self.prefs, self.seed if self.seed is not None else secrets.randbelow(1_000_000), solo, self.catalog)
         self.recorded = False
         self.navigate("game")
         self.audio.music(self.world.mix["pilot"])
@@ -91,7 +135,7 @@ class App:
     def home(self):
         self.world = None
         self.navigate("home")
-        self.audio.music("signal_runner")
+        self.menu_music()
 
     def open_page(self, route):
         self.return_route = self.route
@@ -103,17 +147,25 @@ class App:
 
     def toggle_pak(self, pak_id):
         if pak_id in self.prefs.enabled:
-            if len(self.prefs.enabled) == 1:
-                self.notify("Keep at least one Pak enabled in the mix.")
+            candidate = [id for id in self.prefs.enabled if id != pak_id]
+            missing = self.catalog.missing(candidate)
+            if not candidate or missing:
+                self.notify("Keep a provider enabled for: " + ", ".join(missing))
                 return
             self.prefs.enabled.remove(pak_id)
         else:
             self.prefs.enabled.append(pak_id)
+        if self.prefs.mix_mode == "coherent" and not self.catalog.complete_ids(self.prefs.enabled):
+            self.prefs.mix_mode = "remix"
+            self.notify("The enabled partial Paks now play together in component remix.")
         self.save()
 
     def cycle(self, name, options):
         current = getattr(self.prefs, name)
         setattr(self.prefs, name, options[(options.index(current) + 1) % len(options)] if current in options else options[0])
+        if name == "mix_mode" and self.prefs.mix_mode == "coherent" and not self.catalog.complete_ids(self.prefs.enabled):
+            self.prefs.mix_mode = "remix"
+            self.notify("Coherent shuffle needs an enabled complete Pak. Partial Paks use component remix.")
         self.audio.set_volumes()
         if name == "fullscreen":
             self.apply_display()
@@ -156,38 +208,71 @@ class App:
         g = self.graphics
         self.header("PAK LIBRARY")
         self.button("quit", (1140, 25, 100, 34), "QUIT", self.quit, size=13)
-        g.text(self.canvas, "SIX WORLDS.", (40, 127), 13, CYAN, True, True)
+        g.text(self.canvas, f"{len(self.catalog.paks)} PAKS DISCOVERED.", (40, 127), 13, CYAN, True, True)
         g.text(self.canvas, "ONE UNSTABLE SYSTEM.", (40, 149), 13, MUTED, mono=True)
         g.text(self.canvas, "SYSTEM", (35, 190), 69, TEXT, True)
         g.text(self.canvas, "PANIC", (35, 261), 88, CYAN, True)
         g.wrapped(self.canvas, "The rules will change. Keep moving.", (42, 372), 335, 23, TEXT)
-        g.wrapped(self.canvas, "Six complete arcade Paks. Play one alone, or let their worlds collide.", (42, 445), 315, 18)
+        g.wrapped(self.canvas, "Play a complete Pak alone, or combine complete and partial Paks in the mix.", (42, 445), 315, 18)
         mode = "COMPONENT REMIX" if self.prefs.mix_mode == "remix" else "COHERENT SHUFFLE"
-        g.text(self.canvas, f"{len(self.prefs.enabled):02d} / 06 ENABLED   ·   {mode}", (42, 535), 12, CYAN, mono=True)
-        self.button("start", (40, 571, 340, 61), "START REMIX  >" if len(self.prefs.enabled) > 1 else "START SOLO  >", self.start, filled=True, size=21)
+        g.text(self.canvas, f"{len(self.prefs.enabled):02d} / {len(self.catalog.paks):02d} ENABLED   ·   {mode}", (42, 535), 12, CYAN, mono=True)
+        missing = self.catalog.missing(self.prefs.enabled)
+        if not missing:
+            self.button("start", (40, 571, 340, 61), "START REMIX  >" if len(self.prefs.enabled) > 1 else "START SOLO  >", self.start, filled=True, size=21)
+        else:
+            g.wrapped(self.canvas, "Mix needs: " + ", ".join(missing) + ". Add Paks and rescan.", (42, 574), 335, 17, CYAN)
         self.button("settings", (40, 648, 160, 44), "PREFERENCES", lambda: self.open_page("settings"), size=14)
         self.button("help", (218, 648, 162, 44), "HOW TO PLAY", lambda: self.open_page("help"), size=14)
         g.text(self.canvas, "BEST", (42, 727), 12, MUTED, mono=True)
         g.text(self.canvas, f"{self.prefs.high_score:07d}", (94, 719), 27, TEXT, mono=True)
-        self.button("credits", (248, 718, 132, 32), "CREDITS", lambda: self.open_page("credits"), size=12)
+        self.button("credits", (248, 711, 132, 28), "CREDITS", lambda: self.open_page("credits"), size=12)
+        self.button("rescan", (40, 760, 160, 28), "RESCAN PAKS", self.reload_paks, size=12)
+        self.button("pak-status", (218, 760, 162, 28), f"PAK STATUS ({len(self.catalog.issues)})", lambda: self.open_page("paks"), size=11)
         g.text(self.canvas, "CHOOSE YOUR MIX", (430, 107), 15, TEXT, True, True)
-        g.text(self.canvas, "EVERY PAK WORKS ALONE", (1230, 108), 12, MUTED, mono=True, anchor="topright")
-        for index, pak in enumerate(PAKS):
+        g.text(self.canvas, "PARTIAL PAKS JOIN THE MIX", (1230, 108), 12, MUTED, mono=True, anchor="topright")
+        start = self.page_controls("library_page", len(self.catalog.paks), 714)
+        for index, pak in enumerate(self.catalog.paks[start:start + 6]):
             x, y = 430 + index % 2 * 410, 150 + index // 2 * 190
             enabled = pak.id in self.prefs.enabled
             g.panel(self.canvas, (x, y, 390, 174), PANEL,
                     tuple(int(c * .55) for c in pak.color) if enabled else EDGE)
             pygame.draw.rect(self.canvas, pak.color if enabled else DIM, (x + 16, y + 15, 3, 15), border_radius=1)
-            g.text(self.canvas, f"PAK {index + 1:02d}", (x + 28, y + 14), 12, pak.color if enabled else MUTED, mono=True)
+            g.text(self.canvas, f"PAK {start + index + 1:02d} / " + ("COMPLETE" if pak.complete else "PARTIAL"), (x + 28, y + 14), 11, pak.color if enabled else MUTED, mono=True)
             g.text(self.canvas, "IN THE MIX" if enabled else "DISABLED", (x + 372, y + 16), 10, pak.color if enabled else DIM, mono=True, anchor="topright")
-            g.text(self.canvas, pak.name, (x + 17, y + 41), 25, TEXT, True)
-            g.text(self.canvas, pak.subtitle, (x + 18, y + 83), 11, pak.color, mono=True)
-            image = g.sprite(pak.id, 0, 90)
+            g.fit_text(self.canvas, pak.name, (x + 17, y + 41), 264, 25, TEXT, True)
+            g.fit_text(self.canvas, pak.subtitle, (x + 18, y + 83), 262, 11, pak.color)
+            g.text(self.canvas, " / ".join(pak.components).upper(), (x + 18, y + 103), 10, MUTED, mono=True)
+            image = g.sprite(pak.id, next(i for i, path in enumerate(pak.sprites) if path), 90)
             self.canvas.blit(image, (x + 286, y + 35))
-            self.button("solo:" + pak.id, (x + 17, y + 126, 145, 31), "PLAY SOLO  >", lambda p=pak.id: self.start(p), accent=pak.color, size=12)
+            if pak.complete:
+                self.button("solo:" + pak.id, (x + 17, y + 126, 145, 31), "PLAY SOLO  >", lambda p=pak.id: self.start(p), accent=pak.color, size=12)
+            else:
+                g.text(self.canvas, "MIX ONLY", (x + 18, y + 136), 12, MUTED, mono=True)
             self.button("toggle:" + pak.id, (x + 269, y + 126, 104, 31), "[x] ENABLED" if enabled else "[ ] ENABLE", lambda p=pak.id: self.toggle_pak(p), accent=pak.color, size=11)
-        g.text(self.canvas, "ARROWS / WASD + SPACE + X", (430, 747), 12, MUTED, mono=True)
-        g.text(self.canvas, "OFFLINE / ORIGINAL AI ASSETS", (1230, 747), 12, DIM, mono=True, anchor="topright")
+        if not self.catalog.paks:
+            g.text(self.canvas, "No Paks found.", (475, 230), 33, TEXT, True)
+            g.wrapped(self.canvas, "Add Pak folders to a location listed in Pak status, then choose Rescan Paks.", (475, 290), 680, 20)
+        g.text(self.canvas, "ARROWS / WASD + SPACE + X", (430, 771), 12, MUTED, mono=True)
+        g.text(self.canvas, "OFFLINE / ORIGINAL AI ASSETS", (1230, 771), 12, DIM, mono=True, anchor="topright")
+
+    def draw_pak_status(self):
+        g = self.graphics
+        self.header("PAK STATUS")
+        self.button("back", (1100, 25, 140, 34), "< BACK", self.back, size=13)
+        g.text(self.canvas, f"{len(self.catalog.paks)} loaded / {len(self.catalog.issues)} skipped", (80, 115), 33, TEXT, True)
+        y = 177
+        for root in self.catalog.roots[:3]:
+            g.fit_text(self.canvas, str(root), (80, y), 1120, 15)
+            y += 28
+        if len(self.catalog.roots) > 3:
+            g.text(self.canvas, f"+{len(self.catalog.roots) - 3} additional search locations", (80, y), 14, MUTED)
+        missing = self.catalog.missing(self.prefs.enabled)
+        g.wrapped(self.canvas, "Mix needs: " + ", ".join(missing) if missing else "The enabled mix covers all four components.", (80, y + 10), 1120, 17, CYAN)
+        start = self.page_controls("status_page", len(self.catalog.issues), 735, 80, 1060)
+        for index, issue in enumerate(self.catalog.issues[start:start + 6]):
+            top = 320 + index * 64
+            g.fit_text(self.canvas, str(issue.path), (80, top), 1120, 14, TEXT)
+            g.fit_text(self.canvas, issue.message, (80, top + 24), 1120, 14, MUTED)
 
     def setting(self, y, title, description, name, options, labels=None):
         g = self.graphics
@@ -204,7 +289,7 @@ class App:
         self.button("back", (1100, 25, 140, 34), "<  BACK", self.back, size=13)
         g.text(self.canvas, "Tune the instability.", (80, 107), 35, TEXT, True)
         g.text(self.canvas, "Saved locally. Gameplay changes apply to the next run.", (80, 158), 17, MUTED)
-        self.setting(210, "Shuffle style", "Independent components, or complete Paks together.", "mix_mode", ["remix", "coherent"], ["COMPONENT REMIX", "COHERENT PAKS"])
+        self.setting(210, "Shuffle style", "Component remix includes partial Paks; coherent uses complete Paks.", "mix_mode", ["remix", "coherent"], ["COMPONENT REMIX", "COHERENT PAKS"])
         self.setting(292, "Time between changes", "A protected transition gives you time to read the new rules.", "shuffle_seconds", [5, 8, 12, 20, 30], ["5 SECONDS", "8 SECONDS", "12 SECONDS", "20 SECONDS", "30 SECONDS"])
         self.setting(374, "Challenge", "Relaxed reduces damage and enemy speed.", "difficulty", ["relaxed", "standard", "intense"])
         g.text(self.canvas, "Endless progression", (80, 456), 21, TEXT, True)
@@ -230,13 +315,15 @@ class App:
         self.button("back", (1100, 25, 140, 34), "<  BACK", self.back, size=13)
         g.text(self.canvas, "Adapt. Survive. Keep going.", (80, 108), 35, TEXT, True)
         g.wrapped(self.canvas, "Hold SPACE to fire. Aim assistance targets the nearest enemy. X uses your pilot's special. Destroy cover to open a route. Level one starts with one enemy; each cleared level adds one more and restores 15 health. Levels continue until you are defeated.", (80, 166), 1100, 18)
-        for index, pak in enumerate(PAKS):
+        pilots = [p for p in self.catalog.paks if "pilot" in p.components]
+        start = self.page_controls("help_page", len(pilots), 702, 80, 1060)
+        for index, pak in enumerate(pilots[start:start + 6]):
             x, y = 80 + index % 2 * 575, 280 + index // 2 * 135
             image = g.sprite(pak.id, 0, 66)
             self.canvas.blit(image, (x, y))
-            g.text(self.canvas, pak.name, (x + 80, y), 22, pak.color, True)
-            g.text(self.canvas, pak.controls, (x + 80, y + 35), 16, TEXT)
-            g.text(self.canvas, pak.special, (x + 80, y + 62), 15, MUTED)
+            g.fit_text(self.canvas, pak.name, (x + 80, y), 460, 22, pak.color, True)
+            g.fit_text(self.canvas, pak.controls, (x + 80, y + 35), 460, 16, TEXT)
+            g.fit_text(self.canvas, pak.special, (x + 80, y + 62), 460, 15, MUTED)
         g.text(self.canvas, "ESC: pause / back     F11: fullscreen     TAB + ENTER: navigate menus", (80, 731), 16, MUTED, mono=True)
 
     def draw_credits(self):
@@ -276,11 +363,11 @@ class App:
             pak = w.pak(channel)
             x = 42 + index * 246
             g.text(self.canvas, channel.upper(), (x, 24), 10, MUTED, mono=True)
-            g.text(self.canvas, pak.name, (x, 44), 16, pak.color, True)
-        timer = f"SHIFT {max(0, w.shuffle_timer):04.1f}s" if len(w.enabled) > 1 else "SOLO / LOCKED"
+            g.fit_text(self.canvas, pak.name, (x, 44), 232, 16, pak.color, True)
+        timer = f"SHIFT {max(0, w.shuffle_timer):04.1f}s" if w.can_shuffle else "COMPONENTS / LOCKED" if len(w.enabled) > 1 else "SOLO / LOCKED"
         self.button("pause", (1075, 25, 165, 36), "ESC / PAUSE", lambda: self.navigate("pause"), size=13)
         g.text(self.canvas, timer, (1235, 758), 13, CYAN, mono=True, anchor="topright")
-        g.text(self.canvas, w.pak("pilot").controls + "    SPACE: fire    " + w.pak("pilot").special, (40, 759), 14, MUTED)
+        g.fit_text(self.canvas, w.pak("pilot").controls + "    SPACE: fire    " + w.pak("pilot").special, (40, 759), 1010, 14, MUTED)
         if w.phase in ("ready", "clear"):
             rect = pygame.Rect(365, 353, 550, 118)
             overlay = pygame.Surface(rect.size, pygame.SRCALPHA)
@@ -322,6 +409,8 @@ class App:
             self.draw_settings()
         elif self.route == "help":
             self.draw_help()
+        elif self.route == "paks":
+            self.draw_pak_status()
         elif self.route == "credits":
             self.draw_credits()
         elif self.route in ("game", "pause", "outcome") and self.world:
@@ -331,8 +420,8 @@ class App:
                 self.draw_overlay(outcome=self.route == "outcome")
         self.focus = min(self.focus, max(0, len(self.buttons) - 1))
         if self.toast_timer > 0:
-            self.graphics.panel(self.canvas, (200, 750, 880, 36), (28, 45, 58), CYAN, 6)
-            self.graphics.text(self.canvas, self.toast, (640, 768), 15, TEXT, anchor="center")
+            self.graphics.panel(self.canvas, (200, 84, 880, 36), (28, 45, 58), CYAN, 6)
+            self.graphics.text(self.canvas, self.toast, (640, 102), 15, TEXT, anchor="center")
         self.present()
 
     def present(self):
@@ -379,7 +468,7 @@ class App:
                     self.navigate("pause")
                 elif self.route == "pause":
                     self.navigate("game")
-                elif self.route in ("settings", "help", "credits"):
+                elif self.route in ("settings", "help", "credits", "paks"):
                     self.back()
                 elif self.route == "outcome":
                     self.home()
@@ -439,47 +528,40 @@ def autopilot(world):
     target = min(world.enemies, key=lambda e: e.pos.distance_squared_to(p.pos))
     delta = target.pos - p.pos
     vector = normalized(delta)
-    kind = world.pak("pilot").pilot
     special = int(world.time * 3) % 11 == 0
-    if kind == "drifter":
-        angle = math.atan2(delta.y, delta.x)
-        diff = (angle - p.angle + math.pi) % math.tau - math.pi
-        return Controls(max(-1, min(1, diff * 2)), -1 if delta.length() > 180 else .3, True, special)
-    if kind == "driver":
-        return Controls(math.sin(world.time * .7) * .7, -.3, True, special)
-    if kind == "orbiter":
-        steering = .7
-        threats = [enemy.pos + enemy.vel * .25 for enemy in world.enemies if enemy.health > 0]
-        threats += [shot.pos + shot.vel * .25 for shot in world.projectiles if not shot.friendly]
-        if threats and min(p.pos.distance_to(pos) for pos in threats) < 90:
-            # The demo pilot dodges imminent collisions using ordinary steering.
-            steering = max((-.7, .7), key=lambda x: min(
-                (Vec(WIDTH / 2, HEIGHT / 2) + unit(p.angle + x * 2.2 * .35) * p.orbit_radius).distance_to(pos)
-                for pos in threats))
-        return Controls(steering, math.sin(world.time * .7) * .4, True, special)
-    if kind == "jumper":
-        return Controls(vector.x if delta.length() > 180 else -vector.x, -1 if world.time % 1.2 < .15 else 0, True, special)
+    policy = world.pak("pilot").demo_controls
+    if policy:
+        return policy(world)
     movement = vector if delta.length() > 210 else Vec(-vector.y, vector.x)
     return Controls(movement.x, movement.y, True, special)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="System Panic — six arcade worlds, one unstable system.")
-    parser.add_argument("--solo", choices=list(BY_ID))
+    parser = argparse.ArgumentParser(description="System Panic — remix your installed arcade Paks.")
+    parser.add_argument("--solo", help="Installed complete Pak ID")
+    parser.add_argument("--pak-dir", type=Path, action="append", help="Pak root to load instead of default locations; repeat for multiple roots")
+    parser.add_argument("--list-paks", action="store_true", help="Print discovered Paks and loader issues, then exit")
     parser.add_argument("--seed", type=int)
     parser.add_argument("--data-dir", type=Path)
     parser.add_argument("--headless", action="store_true")
     parser.add_argument("--frames", type=int)
     parser.add_argument("--screenshot", type=Path)
-    parser.add_argument("--screen", choices=("home", "settings", "help", "credits", "game"), default="home")
+    parser.add_argument("--screen", choices=("home", "settings", "help", "credits", "paks", "game"), default="home")
     parser.add_argument("--demo", action="store_true", help="QA/demo controls; no gameplay advantages")
     args = parser.parse_args()
+    catalog = discover(args.pak_dir)
+    if args.list_paks:
+        print(json.dumps({"paks":[{"id":p.id, "components":p.components, "solo":p.complete, "directory":str(p.directory)} for p in catalog.paks],
+                          "issues":[{"path":str(issue.path), "message":issue.message} for issue in catalog.issues]}, indent=2))
+        return
+    if args.solo and args.solo not in catalog.complete_ids():
+        parser.error("--solo requires an installed complete Pak; use --list-paks to inspect the library")
     if args.headless:
         import os
         os.environ["SDL_VIDEODRIVER"] = "dummy"
         os.environ["SDL_AUDIODRIVER"] = "dummy"
     with tempfile.TemporaryDirectory(prefix="system-panic-check-") as temporary:
-        app = App(args.data_dir or (Path(temporary) if args.headless else None), args.seed)
+        app = App(args.data_dir or (Path(temporary) if args.headless else None), args.seed, catalog)
         if args.solo or args.screen == "game" or args.demo:
             app.start(args.solo)
         else:
