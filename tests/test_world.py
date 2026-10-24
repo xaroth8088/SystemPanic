@@ -10,9 +10,8 @@ os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "1")
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from system_panic.arenas import build_arena
 from system_panic.model import Controls, Vec, Projectile, FIXED_DT, circle_rect, WIDTH, HEIGHT
-from system_panic.paks import get_catalog, CHANNELS
+from system_panic.paks import get_catalog, CHANNELS, GAMEPLAY_CHANNELS
 PAKS = get_catalog().paks
 from system_panic.preferences import Preferences
 from system_panic.world import World, SWAP_GLITCH_SECONDS, LEVEL_CLEAR_SECONDS
@@ -90,8 +89,8 @@ class WorldTests(unittest.TestCase):
     def test_all_1296_component_mixes_update_and_fire_safely(self):
         for combo in itertools.product(PAKS, repeat=4):
             world = World(Preferences(shuffle_channels=[]), seed=3)
-            world.mix = {channel: pak.id for channel, pak in zip(CHANNELS, combo)}
-            world.cover = build_arena(world.pak("arena").arena)
+            world.mix.update({channel: pak.id for channel, pak in zip(GAMEPLAY_CHANNELS, combo)})
+            world.cover = world.component("obstacles").build()
             world.player.pos = world.safe_position(world.player.pos, 13)
             world.enemies.clear()
             world.spawn_enemy(world.safe_position(Vec(700, 220), avoid_player=True))
@@ -116,7 +115,7 @@ class WorldTests(unittest.TestCase):
             self.assertEqual((world.score, world.wave), (800, 3))
             self.assertEqual([e.id for e in world.enemies], original_ids)
             self.assertEqual([e.health for e in world.enemies], original_health)
-            self.assertTrue(all(e.family == world.pak("enemy").enemy for e in world.enemies))
+            self.assertTrue(all(e.family == world.component("enemy").family for e in world.enemies))
             self.assertEqual(world.projectiles, [])
             self.assertGreaterEqual(world.player.invulnerable, 1.5)
             self.assertFalse(any(circle_rect(world.player.pos, 12, c.rect) for c in world.cover))
@@ -135,7 +134,7 @@ class WorldTests(unittest.TestCase):
         world = World(prefs, 2)
         original = world.mix.copy()
         world.shuffle()
-        for channel in ("pilot", "enemy", "arena"):
+        for channel in ("pilot", "enemy", "music", "background", "obstacles"):
             self.assertEqual(world.mix[channel], original[channel])
         self.assertNotEqual(world.mix["weapon"], original["weapon"])
 

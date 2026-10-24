@@ -2,7 +2,7 @@
 
 **Six worlds. One unstable system.**
 
-An offline arcade game about adapting as its rules change around you. Play any of six complete Paks alone, shuffle whole Paks together, or independently remix their pilots, weapons, enemies and arenas. Survive an endless sequence of levels: start with one enemy, then face two, three, and one more with every cleared level. The run ends when you are defeated.
+An offline arcade game about adapting as its rules change around you. Play any of six complete Paks alone, shuffle whole Paks together, or independently remix their pilots, enemies, weapons, music, backgrounds and obstacles. Survive an endless sequence of levels: start with one enemy, then face two, three, and one more with every cleared level. The run ends when you are defeated.
 
 This is a fresh implementation. The 2017 game and unfinished 2025 rewrite are preserved under [`legacy/`](legacy/AGENTS.md); the revival does not import their code or assets.
 
@@ -34,15 +34,17 @@ Each Pak has its own arena geometry, original generated sprites and soundtrack. 
 
 ## Dynamic Paks
 
-The six launch Paks are ordinary external folders under [`paks/`](paks/AGENTS.md), separate from the game engine. Each contains `pak.json`, behavior code, sprites and music. Add a Pak folder and choose **Rescan Paks** in the library; no registry change or executable rebuild is needed. Use **Pak status** for installation locations and skipped-Pak errors. The library supports more than six Paks with pagination.
+The six launch Paks are ordinary external folders under [`paks/`](paks/AGENTS.md), separate from the game engine. Each contains `pak.json` and six component folders with code and local assets. Classes subclass the discoverable ABCs in `system_panic.pak_api`; handles such as `self.spritesheet` are private author choices. Add a Pak folder and choose **Rescan Paks** in the library; no registry change or executable rebuild is needed. Use **Pak status** for installation locations and skipped-Pak errors. The library supports more than six Paks with pagination.
 
-The Windows build loads `paks/` beside its executable and `%LOCALAPPDATA%/SystemPanic/paks`. A source checkout uses project-root `paks/` plus the same user location. Complete Paks can run alone; partial Paks can supply any subset of the four components. Asset-only partial Paks can inherit installed behavior and add their own sprites. Complementary partial Paks can form a playable mix without a complete Pak.
+The Windows build loads `paks/` beside its executable and `%LOCALAPPDATA%/SystemPanic/paks`. A source checkout uses project-root `paks/` plus the same user location. Complete Paks can run alone; partial Paks can supply any subset of the six component types. Asset-only partial Paks can inherit installed behavior and add their own sprites. Complementary partial Paks can form a playable mix without a complete Pak.
 
 See [installation, manifest examples and callback API](docs/paks.md).
 
 ```sh
 python play.py --list-paks
 python play.py --pak-dir ./my-paks
+python tools/new_pak.py paks/my_pak
+python tools/new_pak.py paks/my_weapon --components weapon
 ```
 
 ## Controls and preferences
@@ -54,7 +56,7 @@ python play.py --pak-dir ./my-paks
 - **F11:** fullscreen.
 - **Mouse, or Tab / arrows + Enter:** menus. Enter from the library starts the selected mix.
 
-The library's **Enabled** buttons control the remix pool. **Play Solo** starts a complete Pak with every component locked to it. Partial Paks show **Mix Only** and contribute only their declared components. The enabled mix must cover pilot, weapon, enemy and arena. Coherent shuffle selects complete Paks; component remix also includes partial Paks.
+The library's **Enabled** buttons control the remix pool. **Play Solo** starts a complete Pak with every component locked to it. Partial Paks show **Mix Only** and contribute only their declared components. The enabled mix must cover pilot, enemy, weapon, music, background and obstacles. Coherent shuffle selects complete Paks; component remix also includes partial Paks.
 
 Periodic randomization pauses for a quarter-second screen glitch, then resumes automatically. Clearing a level instead shows a one-second **Level Cleared** message before the next level starts, without another readiness screen. The initial ready introduction appears only when starting a new run.
 
@@ -76,7 +78,7 @@ python tools/verify.py
 python tools/compatibility.py
 ```
 
-`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` plays an opening level in every eligible pilot/weapon/enemy/arena mixture (**1,296** with the six launch Paks) using a fixed seed and relaxed difficulty. Automated gameplay checks complement human balance testing.
+`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` plays an opening level in every eligible pilot/enemy/weapon/obstacle gameplay mixture (**1,296** with the launch set) and separately renders/streams all **36** background/music pairs using a fixed seed and relaxed difficulty. Automated gameplay checks complement human balance testing.
 
 ## Original AI asset pipeline
 

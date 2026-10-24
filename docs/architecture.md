@@ -1,31 +1,37 @@
 # Runtime and Pak architecture
 
-`App` owns window lifecycle, menus, preferences, input and local audio playback. `World` owns fixed-step simulation, combat, safe placement, waves and shuffle transitions. `Graphics` draws without advancing state. `tools/assetforge` is a separate authoring pipeline.
+App owns windows, menus, preferences, input and playback. World owns engine state and 120 Hz fixed-step simulation. Graphics draws without advancing state. tools/assetforge is a separate generation/export pipeline; the game only reads finished local assets.
 
-Simulation advances at 120 steps per second with an accumulator. Pausing, focus loss and settings do not consume gameplay time. Movement, damage and cooldowns use simulation seconds. Presentation randomness does not affect the seeded gameplay RNG.
+Level n starts with n normal enemies. Play continues until defeat, with no finite-run toggle or finale. Existing health/speed scaling and Pak-specific fragments remain. Periodic swaps pause for a 0.25s visual glitch and resume held controls. Level clears show their message for one second and enter the next level directly; only a new run has the initial introduction.
 
-Progression is always endless. Level n starts with n normal enemies, starting at one; there is no eight-level finish, scripted elite-wave override or finite-run preference. Existing enemy health/speed scaling and Pak-specific mid-level spawns still apply. Defeat is the only terminal gameplay state. Legacy `endless` preference keys are ignored and removed on the next save.
+## Definitions and instances
 
-## A complete Pak
+Content lives under external paks/<id>/ folders. Each role folder contains its class and assets: pilot, enemy, weapon, music, background and obstacles. The public contract is six ABCs in system_panic.pak_api. See [the complete guide and examples](paks.md).
 
-Game content lives in external `paks/<id>/` folders. `pak.json` declares API version, components, metadata, local sprite/music paths and an optional Python entrypoint. The core's `system_panic.paks` package contains only the contract and discovery loader. Complete Paks supply all four channels; partial Paks supply any nonempty subset and join only their eligible channel pools. Asset-only variants may inherit installed component behavior. See [the full Pak guide](paks.md) and [authoring memory](../paks/AGENTS.md).
+pak.json declares API 2, display metadata and component selection/configuration. The loader validates and builds immutable ComponentSpec definitions (class, asset directory and optional overrides). Catalogs are passed to preferences, simulation, rendering and audio; there is no static launch-game registry.
 
-`discover(roots)` returns an immutable catalog of loaded definitions and isolated loader issues. Catalogs are passed to the shell, preferences, simulation, renderer and audio. Startup and library rescans discover folders; the executable has no static list of game content. Missing/cyclic dependencies, unsupported APIs, duplicate IDs, missing local assets/callbacks and import failures appear in Pak status. Relative helpers use separate package namespaces and fresh-source loading. Local Pak code is trusted Python, not sandboxed code.
+World.component(channel) creates a run-owned instance with an asset context and optional audio service, then calls activate(world). init() loads local handles before world activation. Authors choose their own handle/counter attribute names; only explicit ABC methods/properties are API. World provides typed overloads for literal component names.
 
-Movement, firing, enemy AI and arena geometry are dispatched through their component's callbacks. Pilot initialization, arena decoration and demo policies also belong to Paks. Sprite presentation is generic metadata; the renderer has no launch-game names, behavior branches or shared-atlas columns. Projectile capabilities (piercing, ricochets, seeking, area damage, returning), collision and damage remain shared engine services.
+Instances remain while their selected provider stays unchanged. Replacements call deactivate/suspend, discard private state and instantiate fresh behavior. Worlds never share mutable component state. Preview objects are separate instances with no world/audio service.
 
-## Shuffle invariants
+## Component responsibilities
 
-Configurations map `pilot`, `weapon`, `enemy` and `arena` to Pak IDs. Solo fixes them to one complete Pak. Coherent mode selects an enabled complete Pak. Component remix selects enabled providers independently for each declared channel; locked channels keep their initial selection. Choices exclude the previous selection when alternatives exist.
+PilotBase moves engine-owned pilot state; EnemyBase advances enemy behavior after engine timers; WeaponBase creates projectiles/beams through shared helpers. ObstaclesBase builds fresh Cover collision geometry. BackgroundBase draws scenery without changing state or RNG. MusicBase chooses the track for the separate streaming bus. The renderer asks sprite() for a handle/frame and optional transforms, without looking up private fields.
 
-Health, score, wave and enemy identity/health survive. Changing pilot creates clean locomotion state. Enemy callbacks receive clean timers/velocity. Cover is rebuilt; a bounded search repairs overlaps; both teams' shots are cleared; the player receives invulnerability. A brief corruption transition makes the new rules readable.
+Shared services own collision, safe placement, damage, projectile advancement/ownership, invulnerability, score and progression. Music/background swaps preserve locked pilot/enemy instances and obstacle health. Changing pilot resets locomotion state; changing enemy resets enemy behavior state while preserving identity/health; changing obstacles rebuilds cover and repairs overlaps. Protected swaps clear projectiles.
 
-Periodic swaps remain in active mode: a 0.25s visual-only glitch freezes simulation, then held controls resume immediately. Level completion uses its own 1s cleared-message phase, followed directly by active play in the next level. Level changes do not create a glitch or another ready phase. Only a new run gets the initial ready introduction.
+## Partial Paks and discovery
 
-Destructible cover, long-range weapons and default aim assistance keep different movement models compatible. The compatibility runner verifies full opening waves across all combinations.
+Complete Paks cover all six types and support solo/coherent play. Partial Paks join only their provided pools. Enabled partials can collectively cover the required six types without any complete Pak. Coherent mode uses complete Paks; component remix uses eligible providers per unlocked channel. Automatic swaps require an actual alternative provider.
+
+A component can inherit an installed provider's class with local filename overrides. It receives a fresh instance, with overridden load_asset() calls resolving locally and other assets staying at the provider. Missing/cyclic dependencies, unsupported APIs, invalid paths, abstract implementations and import/init errors become Pak status issues. Relative helpers use isolated namespaces and fresh-source rescans. Pak code is trusted local Python.
 
 ## Assets and persistence
 
-Core assets resolve from the checkout, frozen bundle or Python installation. Pak assets resolve inside their own external folders. Standalone builds keep `paks/` beside the executable; Python distributions preserve the same tree under `share/system-panic/paks`. Raw AI generations remain for provenance; the build ships exported local sprites/music in each Pak plus shared title/effects. Runtime has no generation SDK, credential loading or HTTP code.
+ImageAsset handles decode lazily and can select SpriteFrame rectangles from grid sheets. SoundAsset handles play through the current run's effects bus. Loops are idempotent per handle; cleanup stops owned voices at pause/focus loss, intermissions, replacement, death and run end. Simulation-only worlds remain silent. Music streaming follows its own preference.
 
-Preferences validate IDs/types, clamp numbers, repair missing providers after Pak removal and prevent a mix with missing component coverage and save atomically. Corrupt files recover to defaults; save errors do not prevent play. Sandbox tests use temporary directories under `output/test-temp`, because the execution sandbox can deny atomic renames in the OS temporary directory.
+Core resources resolve from checkout/frozen/Python installation locations. Pak assets resolve inside their component folder (or an explicit installed-provider override). Windows builds keep all Pak folders beside the executable; wheels preserve them as external data under share/system-panic/paks. No credentials, generation service or network call is needed to play.
+
+Preferences validate IDs/types, repair provider coverage, clamp values and save atomically. Schema 2 migrates old arena locks to background/obstacles and old pilot locks to music. Corrupt files recover to defaults; unavailable content shows an incomplete library rather than crashing. Source tests use temporary directories under output/test-temp.
+
+Compatibility checks exercise all 1,296 gameplay-component mixtures and independently render/stream all 36 background/music pairs in the launch set. These are reported separately from the 46,656 possible six-channel selections. Headless checks establish behavior, not final human balance.

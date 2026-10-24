@@ -7,39 +7,19 @@
     151,
     255
   ],
-  "pilot": "drifter",
-  "weapon": "lance",
-  "enemy": "asteroid",
-  "arena": "void",
-  "controls": "Left / right: turn. Up: thrust",
-  "special": "X: brake and reverse thrust",
   "description": "Master momentum. Pierce drifting rocks before they fracture.",
-  "cooldown": 0.43,
-  "splits": 2,
-  "api_version": 1,
   "version": "1.0.0",
   "order": 1,
-  "entrypoint": "pak.py",
-  "assets": {
-    "sprites": {
-      "pilot": "assets/pilot.png",
-      "enemy": "assets/enemy.png",
-      "arena": "assets/cover.png",
-      "weapon": "assets/projectile.png"
-    },
-    "music": "assets/music.ogg"
-  },
-  "presentation": {
-    "pilot_sprite": "rotate",
-    "rotate_enemy": true
-  },
-  "components": [
-    "pilot",
-    "weapon",
-    "enemy",
-    "arena"
-  ],
   "authoring": {
     "atlas_column": 1
-  }
+  },
+  "api_version": 2,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ]
 }

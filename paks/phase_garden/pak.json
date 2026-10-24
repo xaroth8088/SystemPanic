@@ -7,39 +7,19 @@
     237,
     175
   ],
-  "pilot": "phase",
-  "weapon": "chain",
-  "enemy": "phantom",
-  "arena": "garden",
-  "controls": "Arrows / WASD: step-dash",
-  "special": "X: blink through cover",
   "description": "Slip through the maze. Chain lightning reveals the hidden garden.",
-  "cooldown": 0.58,
-  "splits": 0,
-  "api_version": 1,
   "version": "1.0.0",
   "order": 4,
-  "entrypoint": "pak.py",
-  "assets": {
-    "sprites": {
-      "pilot": "assets/pilot.png",
-      "enemy": "assets/enemy.png",
-      "arena": "assets/cover.png",
-      "weapon": "assets/projectile.png"
-    },
-    "music": "assets/music.ogg"
-  },
-  "presentation": {
-    "pilot_sprite": "upright",
-    "rotate_enemy": false
-  },
-  "components": [
-    "pilot",
-    "weapon",
-    "enemy",
-    "arena"
-  ],
   "authoring": {
     "atlas_column": 4
-  }
+  },
+  "api_version": 2,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ]
 }

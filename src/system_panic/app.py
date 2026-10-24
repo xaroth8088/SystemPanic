@@ -44,7 +44,7 @@ class App:
         self.graphics = Graphics(self.catalog)
         if self.catalog.paks:
             pak = self.catalog.paks[0]
-            pygame.display.set_icon(self.graphics.sprite(pak.id, next(i for i, path in enumerate(pak.sprites) if path), 64))
+            pygame.display.set_icon(self.graphics.preview(pak.id, 64))
         self.audio = Audio(self.prefs, self.catalog)
         self.clock = pygame.time.Clock()
         self.running = True
@@ -68,7 +68,9 @@ class App:
         self.menu_music()
 
     def menu_music(self):
-        self.audio.music(next((p.id for p in self.catalog.paks if p.music), None))
+        providers = self.catalog.providers("music")
+        self._menu_part = self.catalog.by_id[providers[0]].create("music") if providers else None
+        self.audio.music(self._menu_part.track() if self._menu_part else None)
 
     def reload_paks(self):
         if self.world is not None:
@@ -119,20 +121,26 @@ class App:
         self.toast, self.toast_timer = text, 4.
 
     def navigate(self, route):
+        if self.world and route != "game":
+            self.world.suspend()
         self.route, self.focus = route, 0
         self.keyboard_focus = False
         self.buttons.clear()
 
     def start(self, solo=None):
         if (solo is None and self.catalog.missing(self.prefs.enabled)) or (solo is not None and solo not in self.catalog.complete_ids()):
-            self.notify("Enable providers for pilot, weapon, enemy and arena, or choose a complete Pak.")
+            self.notify("Enable every component type in the mix, or choose a complete Pak.")
             return
-        self.world = World(self.prefs, self.seed if self.seed is not None else secrets.randbelow(1_000_000), solo, self.catalog)
+        if self.world:
+            self.world.close()
+        self.world = World(self.prefs, self.seed if self.seed is not None else secrets.randbelow(1_000_000), solo, self.catalog, self.audio)
         self.recorded = False
         self.navigate("game")
-        self.audio.music(self.world.mix["pilot"])
+        self.audio.music(self.world.component("music").track(self.world))
 
     def home(self):
+        if self.world:
+            self.world.close()
         self.world = None
         self.navigate("home")
         self.menu_music()
@@ -241,8 +249,9 @@ class App:
             g.text(self.canvas, "IN THE MIX" if enabled else "DISABLED", (x + 372, y + 16), 10, pak.color if enabled else DIM, mono=True, anchor="topright")
             g.fit_text(self.canvas, pak.name, (x + 17, y + 41), 264, 25, TEXT, True)
             g.fit_text(self.canvas, pak.subtitle, (x + 18, y + 83), 262, 11, pak.color)
-            g.text(self.canvas, " / ".join(pak.components).upper(), (x + 18, y + 103), 10, MUTED, mono=True)
-            image = g.sprite(pak.id, next(i for i, path in enumerate(pak.sprites) if path), 90)
+            g.text(self.canvas, " / ".join(pak.components[:3]).upper(), (x + 18, y + 99), 9, MUTED, mono=True)
+            g.text(self.canvas, " / ".join(pak.components[3:]).upper(), (x + 18, y + 112), 9, MUTED, mono=True)
+            image = g.preview(pak.id, 90)
             self.canvas.blit(image, (x + 286, y + 35))
             if pak.complete:
                 self.button("solo:" + pak.id, (x + 17, y + 126, 145, 31), "PLAY SOLO  >", lambda p=pak.id: self.start(p), accent=pak.color, size=12)
@@ -267,7 +276,7 @@ class App:
         if len(self.catalog.roots) > 3:
             g.text(self.canvas, f"+{len(self.catalog.roots) - 3} additional search locations", (80, y), 14, MUTED)
         missing = self.catalog.missing(self.prefs.enabled)
-        g.wrapped(self.canvas, "Mix needs: " + ", ".join(missing) if missing else "The enabled mix covers all four components.", (80, y + 10), 1120, 17, CYAN)
+        g.wrapped(self.canvas, "Mix needs: " + ", ".join(missing) if missing else "The enabled mix covers all six components.", (80, y + 10), 1120, 17, CYAN)
         start = self.page_controls("status_page", len(self.catalog.issues), 735, 80, 1060)
         for index, issue in enumerate(self.catalog.issues[start:start + 6]):
             top = 320 + index * 64
@@ -299,7 +308,7 @@ class App:
         g.text(self.canvas, "COMPONENTS IN THE SHUFFLE", (80, 553), 12, MUTED, mono=True)
         for index, channel in enumerate(CHANNELS):
             enabled = channel in self.prefs.shuffle_channels
-            self.button("channel:" + channel, (80 + index * 160, 582, 145, 36), ("[x] " if enabled else "[ ] ") + channel.upper(), lambda c=channel: self.toggle_channel(c), size=13)
+            self.button("channel:" + channel, (80 + index * 123, 582, 115, 36), ("[x] " if enabled else "[ ] ") + channel.upper(), lambda c=channel: self.toggle_channel(c), size=10)
         self.button("assist", (830, 582, 370, 36), "AIM ASSIST: " + ("ON" if self.prefs.aim_assist else "OFF"), lambda: self.cycle("aim_assist", [True, False]), size=13)
         for name, label, x in (("music", "MUSIC", 80), ("effects", "EFFECTS", 440)):
             g.text(self.canvas, f"{label}  {getattr(self.prefs, name):.0%}", (x, 653), 13, MUTED, mono=True)
@@ -319,11 +328,12 @@ class App:
         start = self.page_controls("help_page", len(pilots), 702, 80, 1060)
         for index, pak in enumerate(pilots[start:start + 6]):
             x, y = 80 + index % 2 * 575, 280 + index // 2 * 135
-            image = g.sprite(pak.id, 0, 66)
+            image = g.preview(pak.id, 66)
             self.canvas.blit(image, (x, y))
             g.fit_text(self.canvas, pak.name, (x + 80, y), 460, 22, pak.color, True)
-            g.fit_text(self.canvas, pak.controls, (x + 80, y + 35), 460, 16, TEXT)
-            g.fit_text(self.canvas, pak.special, (x + 80, y + 62), 460, 15, MUTED)
+            pilot = g.previews[(pak.id, "pilot")]
+            g.fit_text(self.canvas, pilot.controls, (x + 80, y + 35), 460, 16, TEXT)
+            g.fit_text(self.canvas, pilot.special, (x + 80, y + 62), 460, 15, MUTED)
         g.text(self.canvas, "ESC: pause / back     F11: fullscreen     TAB + ENTER: navigate menus", (80, 731), 16, MUTED, mono=True)
 
     def draw_credits(self):
@@ -361,13 +371,13 @@ class App:
         self.canvas.blit(frame, VIEWPORT.move(offset))
         for index, channel in enumerate(CHANNELS):
             pak = w.pak(channel)
-            x = 42 + index * 246
+            x = 42 + index * 170
             g.text(self.canvas, channel.upper(), (x, 24), 10, MUTED, mono=True)
-            g.fit_text(self.canvas, pak.name, (x, 44), 232, 16, pak.color, True)
+            g.fit_text(self.canvas, pak.name, (x, 44), 158, 16, pak.color, True)
         timer = f"SHIFT {max(0, w.shuffle_timer):04.1f}s" if w.can_shuffle else "COMPONENTS / LOCKED" if len(w.enabled) > 1 else "SOLO / LOCKED"
         self.button("pause", (1075, 25, 165, 36), "ESC / PAUSE", lambda: self.navigate("pause"), size=13)
         g.text(self.canvas, timer, (1235, 758), 13, CYAN, mono=True, anchor="topright")
-        g.fit_text(self.canvas, w.pak("pilot").controls + "    SPACE: fire    " + w.pak("pilot").special, (40, 759), 1010, 14, MUTED)
+        g.fit_text(self.canvas, w.component("pilot").controls + "    SPACE: fire    " + w.component("pilot").special, (40, 759), 970, 14, MUTED)
         if w.phase in ("ready", "clear"):
             rect = pygame.Rect(365, 353, 550, 118)
             overlay = pygame.Surface(rect.size, pygame.SRCALPHA)
@@ -492,7 +502,7 @@ class App:
             self.world.advance(elapsed, controls)
             for event in self.world.drain_events():
                 self.audio.play(event)
-            self.audio.music(self.world.mix["pilot"])
+            self.audio.music(self.world.component("music").track(self.world))
             if self.world.phase == "dead":
                 if not self.recorded:
                     self.prefs.high_score = max(self.prefs.high_score, self.world.score)
@@ -501,6 +511,8 @@ class App:
                 self.navigate("outcome")
 
     def quit(self):
+        if self.world:
+            self.world.close()
         self.save()
         self.running = False
 
@@ -511,12 +523,16 @@ class App:
             elapsed = self.clock.tick(120) / 1000 if frames is None else 1 / 60
             for event in pygame.event.get():
                 self.handle_event(event)
+            if not self.running:
+                break
             self.update(elapsed, autopilot(self.world) if demo and self.world else None)
             self.draw()
             count += 1
         if screenshot:
             screenshot.parent.mkdir(parents=True, exist_ok=True)
             pygame.image.save(self.canvas, screenshot)
+        if self.world:
+            self.world.close()
         pygame.quit()
 
 
@@ -529,9 +545,9 @@ def autopilot(world):
     delta = target.pos - p.pos
     vector = normalized(delta)
     special = int(world.time * 3) % 11 == 0
-    policy = world.pak("pilot").demo_controls
-    if policy:
-        return policy(world)
+    controls = world.component("pilot").demo_controls(world)
+    if controls is not None:
+        return controls
     movement = vector if delta.length() > 210 else Vec(-vector.y, vector.x)
     return Controls(movement.x, movement.y, True, special)
 

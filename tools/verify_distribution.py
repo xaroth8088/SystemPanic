@@ -8,6 +8,7 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+CHANNELS = ("pilot", "enemy", "weapon", "music", "background", "obstacles")
 
 
 def main():
@@ -31,7 +32,12 @@ def main():
     assert len(manifests) == expected_paks
     for manifest in manifests:
         data = json.loads(manifest.read_text())
-        if len(data["components"]) == 4:
+        assert not (manifest.parent / "pak.py").exists()
+        assert not (manifest.parent / "assets").exists()
+        for channel in data["components"]:
+            filename = "obstacle.py" if channel == "obstacles" else channel + ".py"
+            assert (manifest.parent / channel / filename).is_file()
+        if len(data["components"]) == 6:
             run(data["id"], "--demo", "--solo", data["id"])
 
     with tempfile.TemporaryDirectory(dir=output) as temporary:
@@ -39,32 +45,34 @@ def main():
         source = ROOT / "paks/signal_runner"
 
         def make_pak(destination, id, components):
-            shutil.copytree(source, destination, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
-            data = json.loads((destination / "pak.json").read_text(encoding="utf-8"))
+            destination.mkdir(parents=True)
+            for channel in components:
+                shutil.copytree(source / channel, destination / channel, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+            data = json.loads((source / "pak.json").read_text(encoding="utf-8"))
             data.update(id=id, name=id.replace("_", " ").title(), components=list(components), order=100)
             data.pop("authoring", None)
-            data["assets"]["sprites"] = {c:p for c,p in data["assets"]["sprites"].items() if c in components}
             (destination / "pak.json").write_text(json.dumps(data), encoding="utf-8")
             if "weapon" in components:
-                code = (destination / "pak.py").read_text(encoding="utf-8")
+                code = (destination / "weapon/weapon.py").read_text(encoding="utf-8")
                 code += '''
 from .helper import PROOF
 from pathlib import Path
 import json
-original_fire = fire
-def fire(world, direction):
-    original_fire(world, direction)
-    Path(__file__).with_name("played.json").write_text(json.dumps({"proof":PROOF,"mix":world.mix,"wave":world.wave}),encoding="utf-8")
+class ProbeWeapon(SignalRunnerWeapon):
+    def fire(self, world, direction):
+        super().fire(world, direction)
+        Path(__file__).with_name("played.json").write_text(json.dumps({"proof":PROOF,"mix":world.mix,"wave":world.wave}),encoding="utf-8")
+COMPONENT = ProbeWeapon
 '''
-                (destination / "pak.py").write_text(code, encoding="utf-8")
-                (destination / "helper.py").write_text('PROOF = "loaded after executable build"\n', encoding="utf-8")
+                (destination / "weapon/weapon.py").write_text(code, encoding="utf-8")
+                (destination / "weapon/helper.py").write_text('PROOF = "loaded after executable build"\n', encoding="utf-8")
 
         probe = (folder / "paks/_verification_probe").resolve()
         assert probe.parent == (folder / "paks").resolve() and not probe.exists()
         try:
-            make_pak(probe, "external_probe", ("pilot", "weapon", "enemy", "arena"))
+            make_pak(probe, "external_probe", CHANNELS)
             run("drop_in_after_build", "--solo", "external_probe", "--demo")
-            proof = json.loads((probe / "played.json").read_text())
+            proof = json.loads((probe / "weapon/played.json").read_text())
             assert proof["proof"] == "loaded after executable build"
             assert set(proof["mix"].values()) == {"external_probe"}
         finally:
@@ -72,11 +80,11 @@ def fire(world, direction):
                 shutil.rmtree(probe)
 
         partials = temp / "partials"
-        for channel in ("pilot", "weapon", "enemy", "arena"):
+        for channel in CHANNELS:
             make_pak(partials / ("only_" + channel), "only_" + channel, [channel])
         run("partial_only_mix", "--pak-dir", partials, "--demo", "--screenshot", output / "partial-only.png")
-        proof = json.loads((partials / "only_weapon/played.json").read_text())
-        assert proof["mix"] == {c:"only_" + c for c in ("pilot", "weapon", "enemy", "arena")}
+        proof = json.loads((partials / "only_weapon/weapon/played.json").read_text())
+        assert proof["mix"] == {c:"only_" + c for c in CHANNELS}
         run("partial_library", "--pak-dir", partials, "--screenshot", output / "partial-library.png", frames=1)
         empty = temp / "empty"
         empty.mkdir()
@@ -89,6 +97,8 @@ def fire(world, direction):
     wheel = ROOT / "dist/system_panic-0.1.0-py3-none-any.whl"
     with zipfile.ZipFile(wheel) as bundle:
         names = bundle.namelist()
+        assert "system_panic/pak_api.py" in names
+        assert not any("/data/share/system-panic/paks/" in name and (name.endswith("/pak.py") or "/assets/" in name) for name in names)
         code = [name for name in names if name.startswith("system_panic/paks/") and name.endswith(".py")]
         assert set(code) == {f"system_panic/paks/{name}.py" for name in ("__init__", "model", "registry")}, code
         assert len([name for name in names if "/data/share/system-panic/paks/" in name and name.endswith("/pak.json")]) == expected_paks

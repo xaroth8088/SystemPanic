@@ -7,39 +7,19 @@
     119,
     137
   ],
-  "pilot": "jumper",
-  "weapon": "bomb",
-  "enemy": "hopper",
-  "arena": "forge",
-  "controls": "Left / right: run. Up: double jump",
-  "special": "X: rising forge leap",
   "description": "Leap between forge decks. Explosive arcs scatter the crawlers.",
-  "cooldown": 0.6,
-  "splits": 0,
-  "api_version": 1,
   "version": "1.0.0",
   "order": 3,
-  "entrypoint": "pak.py",
-  "assets": {
-    "sprites": {
-      "pilot": "assets/pilot.png",
-      "enemy": "assets/enemy.png",
-      "arena": "assets/cover.png",
-      "weapon": "assets/projectile.png"
-    },
-    "music": "assets/music.ogg"
-  },
-  "presentation": {
-    "pilot_sprite": "face",
-    "rotate_enemy": false
-  },
-  "components": [
-    "pilot",
-    "weapon",
-    "enemy",
-    "arena"
-  ],
   "authoring": {
     "atlas_column": 3
-  }
+  },
+  "api_version": 2,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ]
 }

@@ -1,20 +1,11 @@
 # Pak loader memory
 
-This directory contains the loader and frozen API contract, not game content. Read [external Pak authoring](../../../paks/AGENTS.md) and [the format guide](../../../docs/paks.md). Launch Pak code and assets live outside the Python package under project-root `paks/`.
+This directory contains immutable definitions and discovery, not game content. See [external authoring](../../../paks/AGENTS.md), [format guide](../../../docs/paks.md) and [public ABCs](../pak_api.py).
 
-`discover(roots)` returns a catalog with deterministic ordering, complete/partial component pools and loader issues. Manifest API 1 validates IDs, text, paths, assets, callbacks and inheritance. First valid manifest claims an ID; duplicate manifests are reported. Missing/cyclic inheritance and import failures isolate the affected Pak instead of aborting the library. This is trusted local Python, not a sandbox or remote execution service.
+API 2 discovers six component folder types and imports their conventional Python entry files. A module must provide a concrete subclass of the matching ABC; COMPONENT or a configured class resolves ambiguity. Validate metadata, relative file paths, abstract methods, init-time asset handles and component configuration before admitting a Pak.
 
-Entry modules and relative helpers use isolated package namespaces. Rescans read fresh source, including helpers with unchanged timestamps. Catalogs are immutable snapshots so an active world keeps its selected definitions. Avoid static content imports, global mutable registries and hardcoded launch IDs.
+discover(roots) returns an immutable catalog of class/factory definitions, component eligibility pools, complete Pak IDs and isolated issues. Actual instances are constructed per run; never cache mutable component objects in catalog metadata. Preview instances belong only to the renderer and have no world/audio service.
 
-## Six complete games
-| Pak | Pilot | Weapon | Enemies | Arena |
-|---|---|---|---|---|
-| Signal Runner | direct eight-way strafe | rapid pulse | chasing swarm | signal-room cover |
-| Void Drifter | rotate + inertial thrust | piercing lance | splitting asteroids | open starfield |
-| Iron Circuit | constant drive + steering | bouncing scatter | stationary gun turrets | circuit islands |
-| Sky Forge | gravity + double jump | explosive arc | hopping crawlers | platforms |
-| Phase Garden | discrete dash steps + blink | chaining lightning | teleporting phantoms | garden maze |
-| Orbit Keeper | angular/radial orbit | returning glaives | orbiting sentinels | concentric ruins |
+Asset-only inheritance resolves dependencies before class construction and overlays component-local filenames. It does not inspect author-owned handle attribute names. The first validated manifest claims an ID. Missing/cyclic dependencies, malformed/unsupported manifests and import/init failures skip the affected Pak while preserving other content.
 
-## Compatibility rules
-Use engine-owned positions, velocity, health and IDs. Never copy opaque state from one behavior to another. All weapons support aim assistance so different locomotion styles can clear every enemy family; controller-specific secondary actions remain distinct. Cover can be destroyed by every weapon. Every combination needs bounded simulation coverage and safe spawn/relocation.
+Modules and relative helpers use isolated package namespaces and fresh source, including unchanged-timestamp edits. Rescanning replaces the catalog only outside active runs. This is trusted local Python, not a security sandbox or a remote catalog. Avoid launch IDs, content imports, behavior branches and mutable global registries in core code.

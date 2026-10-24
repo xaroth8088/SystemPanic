@@ -32,7 +32,7 @@ def main():
         parser.error("--levels and --seconds must be positive")
     catalog = discover(args.pak_dir)
     if catalog.missing(catalog.by_id):
-        parser.error("The installed mix does not cover all four component channels")
+        parser.error("The installed mix does not cover all six component channels")
     paks = tuple(p for p in catalog.paks if p.complete)
     output = args.output
     output.mkdir(parents=True, exist_ok=True)

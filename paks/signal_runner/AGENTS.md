@@ -1,5 +1,5 @@
 # Signal Runner Pak
 
-Read [Pak authoring memory](../AGENTS.md). This is a complete API 1 Pak: Outrun the swarm. Thread the signal rooms with rapid pulse fire.
+Read [Pak authoring memory](../AGENTS.md). This is a complete API 2 Pak: Outrun the swarm. Thread the signal rooms with rapid pulse fire.
 
-`pak.json` owns metadata and asset paths; `pak.py` owns behavior, arena decoration and any pilot initialization/demo policy. Assets are local to this folder. Keep solo play and all component mixtures compatible. Original asset provenance is recorded in `assets/manifest.json` at the project root.
+`pak.json` owns display metadata. The six role folders own concrete ABC subclasses and their local assets. Study or copy one folder for a partial Pak. Private handle names are not engine API. Preserve solo play, compatible mixtures and recorded original AI provenance in the project asset manifest.

@@ -3,6 +3,7 @@ import pygame
 
 from .resources import asset_root
 from .paks import get_catalog
+from .pak_assets import SoundAsset
 
 
 class Audio:
@@ -12,6 +13,9 @@ class Audio:
         self.sounds = {}
         self.current = None
         self.last_played = {}
+        self.asset_sounds = {}
+        self.common_assets = {}
+        self.voices = {}
         self.prefs = prefs
         self.root = asset_root() / "audio"
         try:
@@ -22,6 +26,7 @@ class Audio:
                 path = self.find(name)
                 if path:
                     self.sounds[name] = pygame.mixer.Sound(path)
+                    self.common_assets[name] = SoundAsset(path, self)
             self.available = True
             self.set_volumes()
         except (pygame.error, OSError):
@@ -36,14 +41,15 @@ class Audio:
             pygame.mixer.music.set_volume(self.prefs.music)
             for name, sound in self.sounds.items():
                 sound.set_volume(self.prefs.effects * (.30 if name == "shot" else .70))
+            for index, (asset, volume, loop) in self.voices.items():
+                pygame.mixer.Channel(index).set_volume(self.prefs.effects * volume)
 
-    def music(self, name):
-        if not self.available or self.current == name:
+    def music(self, track):
+        path = track.path if track else None
+        if not self.available or self.current == path:
             return
-        pak = self.catalog.by_id.get(name)
-        path = pak.music if pak else None
         pygame.mixer.music.stop()
-        self.current = name
+        self.current = path
         if path:
             try:
                 pygame.mixer.music.load(path)
@@ -51,11 +57,39 @@ class Audio:
             except (pygame.error, OSError):
                 pass
 
+    def play_asset(self, asset, *, loop=False, volume=1.):
+        if not self.available:
+            return
+        for index in tuple(self.voices):
+            if not pygame.mixer.Channel(index).get_busy():
+                del self.voices[index]
+        if loop and any(owner is asset and looping for owner, _, looping in self.voices.values()):
+            return
+        try:
+            if asset.path not in self.asset_sounds:
+                self.asset_sounds[asset.path] = pygame.mixer.Sound(asset.path)
+            for index in range(pygame.mixer.get_num_channels()):
+                channel = pygame.mixer.Channel(index)
+                if not channel.get_busy():
+                    self.voices[index] = (asset, volume, loop)
+                    channel.set_volume(self.prefs.effects * volume)
+                    channel.play(self.asset_sounds[asset.path], loops=-1 if loop else 0)
+                    return
+        except (pygame.error, OSError):
+            pass
+
+    def stop_asset(self, asset):
+        for index, (owner, _, _) in tuple(self.voices.items()):
+            if owner is asset:
+                if self.available:
+                    pygame.mixer.Channel(index).stop()
+                del self.voices[index]
+
     def play(self, name):
         if not self.available or name not in self.sounds:
             return
         now = pygame.time.get_ticks()
         if now - self.last_played.get(name, -1000) < (65 if name == "shot" else 40):
             return
-        self.sounds[name].play()
+        self.common_assets[name].play(volume=.30 if name == "shot" else .70)
         self.last_played[name] = now

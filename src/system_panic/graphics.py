@@ -7,6 +7,7 @@ import pygame
 from .resources import asset_root
 from .model import WIDTH, HEIGHT, Vec
 from .paks import get_catalog
+from .pak_assets import ImageAsset, SpriteFrame
 
 BG = (9, 16, 25)
 PANEL = (15, 26, 38)
@@ -23,6 +24,7 @@ class Graphics:
         self.fonts = {}
         self.cache = {}
         self.images = {}
+        self.previews = {}
         self.title = None
         root = asset_root() / "images"
         if (root / "title.png").is_file():
@@ -64,31 +66,47 @@ class Graphics:
             text = text[:-2] + "…"
         return self.text(surface, text, xy, size, color, bold)
 
-    def sprite(self, pak_id, row, size):
-        key = (pak_id, row, size)
+    def render_sprite(self, handle, size, color=CYAN):
+        if handle is None:
+            tile = pygame.Surface((size, size), pygame.SRCALPHA)
+            pygame.draw.circle(tile, color, (size // 2, size // 2), size // 3)
+            return tile
+        image = handle.image if isinstance(handle, SpriteFrame) else handle
+        rect = handle.rect if isinstance(handle, SpriteFrame) else None
+        key = (image.path, rect, size)
         if key not in self.cache:
-            pak = self.catalog.by_id[pak_id]
-            path = pak.sprites[row]
-            crop = None
-            if path:
-                try:
-                    if path not in self.images:
-                        self.images[path] = pygame.image.load(path).convert_alpha()
-                    crop = self.images[path]
-                except (pygame.error, OSError):
-                    pass
-            if crop:
-                scale = min(size / crop.get_width(), size / crop.get_height())
-                image = pygame.transform.scale(crop, (max(1, int(crop.get_width() * scale)),
-                                                       max(1, int(crop.get_height() * scale))))
-                tile = pygame.Surface((size, size), pygame.SRCALPHA)
-                tile.blit(image, image.get_rect(center=(size / 2, size / 2)))
-                self.cache[key] = tile
-            else:
-                image = pygame.Surface((size, size), pygame.SRCALPHA)
-                pygame.draw.circle(image, pak.color, (size // 2, size // 2), size // 3)
-                self.cache[key] = image
+            crop = image.surface
+            self.images[image.path] = crop
+            if rect is not None:
+                crop = crop.subsurface(rect)
+            scale = min(size / crop.get_width(), size / crop.get_height())
+            frame = pygame.transform.scale(crop, (max(1, int(crop.get_width() * scale)), max(1, int(crop.get_height() * scale))))
+            tile = pygame.Surface((size, size), pygame.SRCALPHA)
+            tile.blit(frame, frame.get_rect(center=(size / 2, size / 2)))
+            self.cache[key] = tile
         return self.cache[key]
+
+    def preview(self, pak_id, size):
+        pak = self.catalog.by_id[pak_id]
+        for channel in pak.components:
+            key = (pak_id, channel)
+            if key not in self.previews:
+                self.previews[key] = pak.create(channel)
+            handle = self.previews[key].preview()
+            if handle is not None:
+                return self.render_sprite(handle, size, pak.color)
+        return self.render_sprite(None, size, pak.color)
+
+    def component_sprite(self, world, channel, entity, size, rotate=True):
+        part = world.component(channel)
+        image = self.render_sprite(part.sprite(world, entity), size, world.pak(channel).color)
+        if rotate:
+            angle = part.sprite_angle(world, entity)
+            if angle:
+                image = pygame.transform.rotate(image, angle)
+        if part.sprite_flip_x(world, entity):
+            image = pygame.transform.flip(image, True, False)
+        return image
 
     def panel(self, surface, rect, fill=PANEL, edge=EDGE, radius=12):
         pygame.draw.rect(surface, fill, rect, border_radius=radius)
@@ -110,14 +128,8 @@ class Graphics:
             pygame.draw.line(surface, (15, 30, 41), (0, y), (1280, y))
 
     def draw_world(self, surface, world, reduced_motion=False):
-        accent = world.pak("arena").color
-        surface.fill((8, 16, 25))
-        for x in range(0, WIDTH, 40):
-            pygame.draw.line(surface, (15, 28, 40), (x, 0), (x, HEIGHT))
-        for y in range(0, HEIGHT, 40):
-            pygame.draw.line(surface, (15, 28, 40), (0, y), (WIDTH, y))
-        if world.pak("arena").draw_arena:
-            world.pak("arena").draw_arena(surface)
+        accent = world.pak("obstacles").color
+        world.component("background").draw(surface, world)
         pygame.draw.rect(surface, tuple(int(c * .30) for c in accent), (0, 0, WIDTH, HEIGHT), 2)
         for wall in world.cover:
             color = tuple(int(c * .24) for c in accent)
@@ -126,7 +138,7 @@ class Graphics:
             if wall.platform:
                 pygame.draw.line(surface, accent, wall.rect.topleft, wall.rect.topright, 2)
             else:
-                image = self.sprite(world.mix["arena"], 2, min(45, max(wall.rect.size)))
+                image = self.component_sprite(world, "obstacles", wall, min(45, max(wall.rect.size)))
                 surface.blit(image, image.get_rect(center=wall.rect.center))
             if wall.health < 36:
                 pygame.draw.line(surface, accent, wall.rect.topleft,
@@ -135,9 +147,7 @@ class Graphics:
             if enemy.health <= 0:
                 continue
             size = int(enemy.radius * 3.4)
-            image = self.sprite(world.mix["enemy"], 1, size)
-            if world.pak("enemy").rotate_enemy and not reduced_motion:
-                image = pygame.transform.rotate(image, -math.degrees(enemy.angle))
+            image = self.component_sprite(world, "enemy", enemy, size, rotate=not reduced_motion)
             if enemy.elite:
                 pygame.draw.circle(surface, world.pak("enemy").color, enemy.pos, int(enemy.radius + 7), 1)
             surface.blit(image, image.get_rect(center=enemy.pos))
@@ -150,8 +160,7 @@ class Graphics:
             tail = shot.pos - shot.vel * .022
             pygame.draw.line(surface, tuple(int(c * .45) for c in color), tail, shot.pos, 3)
             if shot.friendly:
-                image = self.sprite(world.mix["weapon"], 3, 27 if shot.radius > 4 else 21)
-                image = pygame.transform.rotate(image, -math.degrees(math.atan2(shot.vel.y, shot.vel.x)))
+                image = self.component_sprite(world, "weapon", shot, 27 if shot.radius > 4 else 21)
                 surface.blit(image, image.get_rect(center=shot.pos))
             else:
                 pygame.draw.circle(surface, color, shot.pos, 5)
@@ -164,11 +173,7 @@ class Graphics:
         if world.phase != "dead":
             if p.invulnerable > 0:
                 pygame.draw.circle(surface, world.pak("pilot").color, p.pos, 20, 1)
-            image = self.sprite(world.mix["pilot"], 0, 44)
-            if world.pak("pilot").pilot_sprite == "rotate":
-                image = pygame.transform.rotate(image, -math.degrees(p.angle) - 90)
-            elif world.pak("pilot").pilot_sprite == "face" and math.cos(p.angle) < 0:
-                image = pygame.transform.flip(image, True, False)
+            image = self.component_sprite(world, "pilot", p, 44)
             if world.phase != "active" or world.transition > 0 or p.invulnerable <= 0 or int(world.time * 12) % 2 or reduced_motion:
                 surface.blit(image, image.get_rect(center=p.pos))
             pygame.draw.circle(surface, (240, 255, 255), p.pos + Vec(0, 25), 2)

@@ -1,6 +1,6 @@
-"""Compatibility lookup; each Pak owns its actual geometry factory."""
+"""Legacy helper; new code uses world.component('obstacles').build()."""
 from .paks import get_catalog
 
-def build_arena(kind, catalog=None):
+def build_arena(pak_id, catalog=None):
     catalog = catalog if catalog is not None else get_catalog()
-    return next(pak for pak in catalog.paks if "arena" in pak.components and pak.arena == kind).make_arena()
+    return catalog.by_id[pak_id].create("obstacles").build()

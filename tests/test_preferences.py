@@ -12,6 +12,13 @@ TEMP_ROOT.mkdir(parents=True, exist_ok=True)
 
 
 class PreferenceTests(unittest.TestCase):
+    def test_old_arena_and_pilot_locks_migrate_to_six_channels(self):
+        prefs = Preferences.from_dict({"shuffle_channels":["pilot", "arena"]})
+        self.assertEqual(prefs.shuffle_channels, ["pilot", "music", "background", "obstacles"])
+        current = Preferences.from_dict({"schema_version":2, "shuffle_channels":["pilot"]})
+        self.assertEqual(current.shuffle_channels, ["pilot"])
+        self.assertEqual(current.schema_version, 2)
+
     def test_malformed_values_are_sanitized(self):
         prefs = Preferences.from_dict({"enabled":["missing", {}, []], "music":float("nan"),
                                        "effects":9, "shuffle_seconds":-5, "high_score":-1,

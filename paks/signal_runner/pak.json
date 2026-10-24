@@ -7,39 +7,19 @@
     224,
     244
   ],
-  "pilot": "runner",
-  "weapon": "pulse",
-  "enemy": "swarm",
-  "arena": "servers",
-  "controls": "Arrows / WASD: strafe",
-  "special": "X: dash through danger",
   "description": "Outrun the swarm. Thread the signal rooms with rapid pulse fire.",
-  "cooldown": 0.14,
-  "splits": 0,
-  "api_version": 1,
   "version": "1.0.0",
   "order": 0,
-  "entrypoint": "pak.py",
-  "assets": {
-    "sprites": {
-      "pilot": "assets/pilot.png",
-      "enemy": "assets/enemy.png",
-      "arena": "assets/cover.png",
-      "weapon": "assets/projectile.png"
-    },
-    "music": "assets/music.ogg"
-  },
-  "presentation": {
-    "pilot_sprite": "upright",
-    "rotate_enemy": false
-  },
-  "components": [
-    "pilot",
-    "weapon",
-    "enemy",
-    "arena"
-  ],
   "authoring": {
     "atlas_column": 0
-  }
+  },
+  "api_version": 2,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ]
 }

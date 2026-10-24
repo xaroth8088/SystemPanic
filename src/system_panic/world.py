@@ -4,6 +4,7 @@ from __future__ import annotations
 from dataclasses import replace
 import math
 import random
+from typing import Literal, overload
 
 import pygame
 
@@ -11,13 +12,14 @@ from .model import (WIDTH, HEIGHT, FIXED_DT, Vec, Controls, Pilot, Enemy,
                     Projectile, Particle, Beam, normalized, unit, circle_rect)
 from .paks import get_catalog, CHANNELS
 from .preferences import Preferences
+from .pak_api import ComponentBase, PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase, ObstaclesBase
 
 SWAP_GLITCH_SECONDS = .25
 LEVEL_CLEAR_SECONDS = 1.0
 
 
 class World:
-    def __init__(self, prefs: Preferences, seed: int = 0, solo: str | None = None, catalog=None):
+    def __init__(self, prefs: Preferences, seed: int = 0, solo: str | None = None, catalog=None, audio=None):
         self.catalog = catalog if catalog is not None else get_catalog()
         self.prefs = Preferences.from_dict(vars(prefs), self.catalog)
         if solo is not None and solo not in self.catalog.complete_ids():
@@ -37,6 +39,9 @@ class World:
         self.beams: list[Beam] = []
         self.events: list[str] = []
         self.mix: dict[str, str] = {}
+        self.audio = audio
+        self._parts = {}
+        self._part_sources = {}
         self.time = 0.
         self.wave = 0
         self.score = 0
@@ -57,6 +62,44 @@ class World:
     def pak(self, channel):
         return self.catalog.by_id[self.mix[channel]]
 
+    @overload
+    def component(self, channel: Literal["pilot"]) -> PilotBase: ...
+    @overload
+    def component(self, channel: Literal["enemy"]) -> EnemyBase: ...
+    @overload
+    def component(self, channel: Literal["weapon"]) -> WeaponBase: ...
+    @overload
+    def component(self, channel: Literal["music"]) -> MusicBase: ...
+    @overload
+    def component(self, channel: Literal["background"]) -> BackgroundBase: ...
+    @overload
+    def component(self, channel: Literal["obstacles"]) -> ObstaclesBase: ...
+    @overload
+    def component(self, channel: str) -> ComponentBase: ...
+    def component(self, channel: str) -> ComponentBase:
+        """Return the run-owned instance for this channel, never a catalog singleton."""
+        if self._part_sources.get(channel) != self.mix[channel]:
+            previous = self._parts.get(channel)
+            if previous:
+                previous.deactivate(self)
+                previous.suspend()
+            part = self.pak(channel).create(channel, self.audio)
+            self._parts[channel] = part
+            self._part_sources[channel] = self.mix[channel]
+            part.activate(self)
+        return self._parts[channel]
+
+    def suspend(self):
+        for part in self._parts.values():
+            part.suspend()
+
+    def close(self):
+        for part in self._parts.values():
+            part.deactivate(self)
+            part.suspend()
+        self._parts.clear()
+        self._part_sources.clear()
+
     @property
     def factor(self):
         return {"relaxed": .70, "standard": 1., "intense": 1.28}[self.prefs.difficulty]
@@ -75,6 +118,7 @@ class World:
         return self.rng.choice(choices)
 
     def shuffle(self, initial=False):
+        old_mix = self.mix.copy()
         old_pilot = self.mix.get("pilot")
         if self.solo or self.prefs.mix_mode == "coherent":
             selected = self.solo or self.choose(previous=self.mix.get("pilot"))
@@ -83,25 +127,31 @@ class World:
             for channel in CHANNELS:
                 if initial or channel in self.prefs.shuffle_channels:
                     self.mix[channel] = self.choose(channel, self.mix.get(channel))
-        self.cover = self.pak("arena").make_arena()
         if old_pilot != self.mix["pilot"]:
             old = self.player
             self.player = Pilot(pos=old.pos.copy(), health=old.health,
                                 invulnerable=max(old.invulnerable, 1.5), fire_timer=old.fire_timer)
-            if self.pak("pilot").prepare_pilot:
-                self.pak("pilot").prepare_pilot(self)
+        if old_mix.get("obstacles") != self.mix["obstacles"]:
+            self.cover = self.component("obstacles").build()
+        for channel in CHANNELS:
+            self.component(channel)
         self.player.pos = self.safe_position(self.player.pos, 13)
         self.player.invulnerable = max(1.5, self.player.invulnerable)
-        family = self.pak("enemy").enemy
-        self.enemies = [replace(enemy, family=family, pos=self.safe_position(enemy.pos, enemy.radius),
-                                vel=Vec(), timer=self.rng.uniform(.6, 1.8), age=0,
-                                angle=self.rng.uniform(0, math.tau)) for enemy in self.enemies]
+        family = self.component("enemy").family
+        if old_mix.get("enemy") != self.mix["enemy"]:
+            self.enemies = [replace(enemy, family=family, pos=self.safe_position(enemy.pos, enemy.radius),
+                                    vel=Vec(), timer=self.rng.uniform(.6, 1.8), age=0,
+                                    angle=self.rng.uniform(0, math.tau)) for enemy in self.enemies]
+        elif old_mix.get("obstacles") != self.mix["obstacles"]:
+            for enemy in self.enemies:
+                enemy.pos = self.safe_position(enemy.pos, enemy.radius)
         # Clear both teams' shots: the new rules begin from a readable state.
         self.projectiles.clear()
         self.shuffle_timer = float(self.prefs.shuffle_seconds)
         if not initial:
             self.shuffle_count += 1
             self.transition = SWAP_GLITCH_SECONDS
+            self.suspend()
             self.events.append("shuffle")
 
     def safe_position(self, desired, radius=14, avoid_player=False):
@@ -145,7 +195,7 @@ class World:
     def spawn_enemy(self, pos, elite=False, size=0):
         self.next_id += 1
         health = (30 + self.wave * 3) * (2.8 if elite else 1) * (.50 if size else 1)
-        self.enemies.append(Enemy(self.next_id, Vec(pos), self.pak("enemy").enemy,
+        self.enemies.append(Enemy(self.next_id, Vec(pos), self.component("enemy").family,
                                   health, health, 23 if elite else 9 if size else 14,
                                   timer=self.rng.uniform(.6, 2),
                                   angle=self.rng.uniform(0, math.tau), size=size, elite=elite))
@@ -202,10 +252,12 @@ class World:
         self.remove_dead()
         if player.health <= 0:
             self.phase = "dead"
+            self.suspend()
             self.burst(player.pos, self.pak("pilot").color, 35)
         elif not self.enemies:
             self.phase = "clear"
             self.phase_timer = LEVEL_CLEAR_SECONDS
+            self.suspend()
             self.score += 250 * self.wave
             self.events.append("clear")
 
@@ -214,8 +266,7 @@ class World:
             self.player.special_timer = 2.8
             self.player.invulnerable = max(self.player.invulnerable, .65)
             self.player.phase_timer = .45
-            self.events.append("select")
-        self.pak("pilot").move(self, dt, control, jump, special)
+        self.component("pilot").move(self, dt, control, jump, special)
 
     def move_body(self, body, displacement, radius, wrap=False):
         old_y = body.pos.y
@@ -255,9 +306,8 @@ class World:
         return unit(self.player.angle)
 
     def fire_weapon(self):
-        self.player.fire_timer = self.pak("weapon").cooldown
-        self.events.append("shot")
-        self.pak("weapon").fire(self, self.aim())
+        self.player.fire_timer = self.component("weapon").cooldown
+        self.component("weapon").fire(self, self.aim())
 
     def spawn_shot(self, direction, kind, damage, speed, radius=4, pierce=0,
                    bounce=0, homing=0., blast=0., return_after=-1.):
@@ -270,7 +320,7 @@ class World:
             if enemy.health > 0:
                 enemy.age += dt
                 enemy.timer -= dt
-                self.pak("enemy").advance_enemy(self, enemy, dt)
+                self.component("enemy").advance_enemy(self, enemy, dt)
 
     def enemy_shot(self, enemy, direction, speed):
         self.projectiles.append(Projectile(enemy.pos + direction * (enemy.radius + 6),
@@ -376,8 +426,8 @@ class World:
             self.score += 150 if enemy.elite else 60 if enemy.size else 100
             self.burst(enemy.pos, self.pak("enemy").color, 15 if enemy.elite else 9)
             self.events.append("impact")
-            if self.pak("enemy").splits and not enemy.size:
-                for index in range(self.pak("enemy").splits):
+            if self.component("enemy").splits and not enemy.size:
+                for index in range(self.component("enemy").splits):
                     offset = -18 + index * 36
                     children.append(self.safe_position(enemy.pos + Vec(offset, offset), 9))
         self.enemies = [enemy for enemy in self.enemies if enemy.health > 0]

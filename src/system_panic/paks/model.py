@@ -1,7 +1,21 @@
-"""Small explicit contract for independently interchangeable game components."""
-from dataclasses import dataclass
+"""Immutable discovered definitions; mutable component instances belong to a run."""
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Callable
+from typing import Mapping
+from ..pak_api import ComponentBase
+
+CHANNELS = ("pilot", "enemy", "weapon", "music", "background", "obstacles")
+GAMEPLAY_CHANNELS = ("pilot", "enemy", "weapon", "obstacles")
+
+
+@dataclass(frozen=True)
+class ComponentSpec:
+    implementation: type[ComponentBase]
+    directory: Path
+    overrides: Mapping[str, Path] = field(default_factory=dict)
+
+    def create(self, audio=None) -> ComponentBase:
+        return self.implementation(self.directory, overrides=self.overrides, audio=audio)
 
 
 @dataclass(frozen=True)
@@ -10,30 +24,18 @@ class Pak:
     name: str
     version: str
     directory: Path
-    components: tuple[str, ...]
     subtitle: str
     color: tuple[int, int, int]
     description: str
-    sprites: tuple[Path | None, ...]
-    music: Path | None = None
-    pilot: str = ""
-    weapon: str = ""
-    enemy: str = ""
-    arena: str = ""
-    controls: str = ""
-    special: str = ""
-    move: Callable | None = None
-    fire: Callable | None = None
-    advance_enemy: Callable | None = None
-    make_arena: Callable | None = None
-    cooldown: float = .25
-    splits: int = 0
-    prepare_pilot: Callable | None = None
-    draw_arena: Callable | None = None
-    demo_controls: Callable | None = None
-    pilot_sprite: str = "upright"
-    rotate_enemy: bool = False
+    parts: Mapping[str, ComponentSpec]
+
+    @property
+    def components(self):
+        return tuple(c for c in CHANNELS if c in self.parts)
+
+    def create(self, channel, audio=None):
+        return self.parts[channel].create(audio)
 
     @property
     def complete(self):
-        return len(self.components) == 4
+        return all(c in self.parts for c in CHANNELS)

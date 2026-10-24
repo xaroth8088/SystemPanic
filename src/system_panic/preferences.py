@@ -13,6 +13,7 @@ from .resources import data_root
 
 @dataclass
 class Preferences:
+    schema_version: int = 2
     enabled: list[str] = field(default_factory=lambda: list(get_catalog().by_id))
     mix_mode: str = "remix"
     shuffle_seconds: int = 8
@@ -57,7 +58,13 @@ class Preferences:
         if type(val) is int:
             result.high_score = max(0, min(999999999, val))
         if isinstance(raw.get("shuffle_channels"), list):
-            result.shuffle_channels = [v for v in CHANNELS if v in raw["shuffle_channels"]]
+            channels = raw["shuffle_channels"].copy()
+            if raw.get("schema_version") != 2:
+                if "arena" in channels:
+                    channels.extend(["background", "obstacles"])
+                if "pilot" in channels:
+                    channels.append("music")
+            result.shuffle_channels = [v for v in CHANNELS if v in channels]
         if result.mix_mode == "coherent" and not catalog.complete_ids(result.enabled):
             result.mix_mode = "remix"
         return result
