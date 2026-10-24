@@ -194,7 +194,6 @@ class Graphics:
             else:
                 overlay.fill((*accent, 20))
             surface.blit(overlay, (0, 0))
-            self.text(surface, "SYSTEM RECONFIGURING", (WIDTH / 2, HEIGHT / 2), 25, TEXT, True, True, "center")
 
 
 def unit_vec(angle):

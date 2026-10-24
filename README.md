@@ -43,6 +43,8 @@ Each Pak has its own arena geometry, original generated sprites and soundtrack. 
 
 The library's **Enabled** buttons control the remix pool. **Play Solo** starts any Pak with every component locked to it. At least one Pak must remain enabled.
 
+Periodic randomization pauses for a quarter-second screen glitch, then resumes automatically. Clearing a level instead shows a one-second **Level Cleared** message before the next level starts, without another readiness screen. The initial ready introduction appears only when starting a new run.
+
 Preferences include coherent/component shuffle, 5–30 second intervals, component locks, three difficulty levels, finite/endless runs, audio levels, aim assistance, reduced motion and fullscreen. Gameplay changes apply to the next run; audio/display changes apply immediately. Preferences and best score save to `%LOCALAPPDATA%/SystemPanic/preferences.json` on Windows, or the platform's user data directory elsewhere.
 
 ```sh

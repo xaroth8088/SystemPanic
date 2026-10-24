@@ -14,3 +14,9 @@ Use real simulation tests for solo play, all pairings/full component combination
 - Desktop Computer Use launch was not completed: the tool timed out waiting for app approval. Native mouse/key behavior is covered by event-driven UI tests; do not call that a human playtest.
 
 Reproducible reports/screenshots live in ignored `output/verification`; concise evidence is copied to `docs/verification.json`. Re-run relevant checks after changes; do not claim new coverage from old reports.
+
+## Transition flow refinement (2026-10-24)
+- User clarified that periodic swaps get only a brief glitch/pause, while completed levels keep a short cleared message. Swaps now pause for 0.25s with no text banner or readiness state; level clears show their message for 1s, then start the next level directly. The initial new-run introduction remains.
+- 19 tests pass, including new behavioral checks that swaps freeze combat only during the glitch, held input resumes automatically, and level-clear intermissions do not add a glitch or ready step.
+- Rendered and inspected `output/transition-check/level-cleared.png`, `swap-glitch.png`, and `next-level.png`.
+- All six full solo runs again reach victory with ordinary demo controls (seed 24, relaxed): 61.98s, 118.60s, 82.28s, 60.35s, 42.23s, 111.20s in registry order. The earlier Orbit Keeper demo policy lost late in the final wave after the timing change; its demo-only controller now steers away from imminent threats. Manual player controls and combat balance were not changed.

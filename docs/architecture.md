@@ -30,6 +30,8 @@ Configurations map `pilot`, `weapon`, `enemy` and `arena` to Pak IDs. Solo fixes
 
 Health, score, wave and enemy identity/health survive. Changing pilot creates clean locomotion state. Enemy callbacks receive clean timers/velocity. Cover is rebuilt; a bounded search repairs overlaps; both teams' shots are cleared; the player receives invulnerability. A brief corruption transition makes the new rules readable.
 
+Periodic swaps remain in active mode: a 0.25s visual-only glitch freezes simulation, then held controls resume immediately. Level completion uses its own 1s cleared-message phase, followed directly by active play in the next level. Level changes do not create a glitch or another ready phase. Only a new run gets the initial ready introduction.
+
 Destructible cover, long-range weapons and default aim assistance keep different movement models compatible. The compatibility runner verifies full opening waves across all combinations.
 
 ## Assets and persistence

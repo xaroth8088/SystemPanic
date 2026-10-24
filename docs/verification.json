@@ -7,9 +7,9 @@
       "phase": "victory",
       "wave": 8,
       "kills": 88,
-      "health": 51.3,
+      "health": 35.9,
       "score": 17900,
-      "seconds": 79.22
+      "seconds": 61.98
     },
     {
       "pak": "void_drifter",
@@ -18,16 +18,16 @@
       "kills": 264,
       "health": 90.9,
       "score": 28460,
-      "seconds": 143.35
+      "seconds": 118.6
     },
     {
       "pak": "iron_circuit",
       "phase": "victory",
       "wave": 8,
       "kills": 88,
-      "health": 55.5,
+      "health": 89.1,
       "score": 17900,
-      "seconds": 100.12
+      "seconds": 82.28
     },
     {
       "pak": "sky_forge",
@@ -36,25 +36,25 @@
       "kills": 88,
       "health": 100,
       "score": 17900,
-      "seconds": 74.47
+      "seconds": 60.35
     },
     {
       "pak": "phase_garden",
       "phase": "victory",
       "wave": 8,
       "kills": 88,
-      "health": 100,
+      "health": 82.5,
       "score": 17900,
-      "seconds": 57.02
+      "seconds": 42.23
     },
     {
       "pak": "orbit_keeper",
       "phase": "victory",
       "wave": 8,
       "kills": 88,
-      "health": 13.3,
+      "health": 91.6,
       "score": 17900,
-      "seconds": 101.75
+      "seconds": 111.2
     }
   ],
   "assets": [
@@ -132,7 +132,7 @@
   "date": "2026-10-24",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 17,
+    "passed": 19,
     "failed": 0
   },
   "compatibility": {
@@ -140,7 +140,7 @@
     "opening_wave_cleared": 1296,
     "difficulty": "relaxed",
     "seed": 24,
-    "max_seconds": 44.18333333333333,
+    "max_seconds": 52.3,
     "failures": []
   },
   "local_studio": [
@@ -195,12 +195,20 @@
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "712bbe8110abb7278772f6d86963305ffaebccd770e25cf07beb4e2353d26eff",
-    "total_bytes": 44215184
+    "sha256": "1520e935d30f3c0d6c03d504f5b80e7f2a5bc42709513738923653142719716f",
+    "total_bytes": 44216097
   },
   "limitations": [
     "Automated controls used relaxed difficulty and seed 24; human balance testing remains.",
     "Desktop Computer Use launch approval timed out; no claim of a human playtest.",
     "Keyboard/mouse input; gamepad support and remapping are not implemented."
-  ]
+  ],
+  "transition_flow": {
+    "periodic_swap_glitch_seconds": 0.25,
+    "periodic_swap_prompt": false,
+    "level_cleared_seconds": 1,
+    "ready_after_level_clear": false,
+    "held_input_resumes_automatically": true,
+    "rendered_screens_checked": true
+  }
 }

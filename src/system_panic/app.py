@@ -12,7 +12,7 @@ import pygame
 
 from .audio import Audio
 from .graphics import Graphics, BG, PANEL, EDGE, TEXT, MUTED, CYAN, DIM
-from .model import WIDTH, HEIGHT, Vec, Controls, normalized
+from .model import WIDTH, HEIGHT, Vec, Controls, normalized, unit
 from .paks import PAKS, BY_ID, CHANNELS
 from .preferences import Preferences, PreferenceStore
 from .world import World
@@ -283,9 +283,10 @@ class App:
             overlay = pygame.Surface(rect.size, pygame.SRCALPHA)
             overlay.fill((5, 14, 23, 225))
             self.canvas.blit(overlay, rect)
-            text = f"WAVE {w.wave:02d} / GET READY" if w.phase == "ready" else "WAVE CLEAR"
+            text = f"WAVE {w.wave:02d} / GET READY" if w.phase == "ready" else f"LEVEL {w.wave:02d} CLEARED"
             g.text(self.canvas, text, (640, 389), 32, TEXT, True, True, "center")
-            g.text(self.canvas, "+15 HULL NEXT WAVE" if w.phase == "clear" else "HOLD SPACE TO FIRE / X FOR SPECIAL", (640, 435), 14, CYAN, mono=True, anchor="center")
+            subtitle = ("SYSTEM RESTORED" if w.wave >= 8 and not w.prefs.endless else "+15 HULL NEXT WAVE") if w.phase == "clear" else "HOLD SPACE TO FIRE / X FOR SPECIAL"
+            g.text(self.canvas, subtitle, (640, 435), 14, CYAN, mono=True, anchor="center")
 
     def draw_overlay(self, outcome=False):
         g, w = self.graphics, self.world
@@ -444,7 +445,15 @@ def autopilot(world):
     if kind == "driver":
         return Controls(math.sin(world.time * .7) * .7, -.3, True, special)
     if kind == "orbiter":
-        return Controls(.7, math.sin(world.time * .7) * .4, True, special)
+        steering = .7
+        threats = [enemy.pos + enemy.vel * .25 for enemy in world.enemies if enemy.health > 0]
+        threats += [shot.pos + shot.vel * .25 for shot in world.projectiles if not shot.friendly]
+        if threats and min(p.pos.distance_to(pos) for pos in threats) < 90:
+            # The demo pilot dodges imminent collisions using ordinary steering.
+            steering = max((-.7, .7), key=lambda x: min(
+                (Vec(WIDTH / 2, HEIGHT / 2) + unit(p.angle + x * 2.2 * .35) * p.orbit_radius).distance_to(pos)
+                for pos in threats))
+        return Controls(steering, math.sin(world.time * .7) * .4, True, special)
     if kind == "jumper":
         return Controls(vector.x if delta.length() > 180 else -vector.x, -1 if world.time % 1.2 < .15 else 0, True, special)
     movement = vector if delta.length() > 210 else Vec(-vector.y, vector.x)

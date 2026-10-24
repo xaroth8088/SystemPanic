@@ -3,6 +3,8 @@
 ## Identity
 System Panic is about adapting when familiar arcade rules change in an ongoing battle. A brief corruption transition communicates the shuffle. Coherent Paks establish learnable rules; component remix creates surprising combinations. Prefer readable chaos, generous invulnerability on swaps, and understandable controls.
 
+Flow clarification (2026-10-24): periodic randomization uses only a quarter-second visual glitch and automatically resumes. Level completion has a separate one-second "level cleared" message before the next level. Do not append a readiness screen or glitch to that level change; the initial new-run introduction is separate.
+
 ## Launch scope
 Six Paks share arena coordinates, damage, rewards and wave objectives, but own distinct locomotion, weapon, enemy behavior and arena layout. A full run has eight waves, a final elite wave, victory, score, death and restart. Endless mode is also available.
 

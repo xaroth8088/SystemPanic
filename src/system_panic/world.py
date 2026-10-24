@@ -12,6 +12,9 @@ from .model import (WIDTH, HEIGHT, FIXED_DT, Vec, Controls, Pilot, Enemy,
 from .paks import BY_ID, CHANNELS
 from .preferences import Preferences
 
+SWAP_GLITCH_SECONDS = .25
+LEVEL_CLEAR_SECONDS = 1.0
+
 
 class World:
     def __init__(self, prefs: Preferences, seed: int = 0, solo: str | None = None):
@@ -85,7 +88,7 @@ class World:
         self.shuffle_timer = float(self.prefs.shuffle_seconds)
         if not initial:
             self.shuffle_count += 1
-            self.transition = .55
+            self.transition = SWAP_GLITCH_SECONDS
             self.events.append("shuffle")
 
     def safe_position(self, desired, radius=14, avoid_player=False):
@@ -121,8 +124,10 @@ class World:
             pos = self.safe_position(Vec(self.rng.uniform(25, WIDTH - 25),
                                          self.rng.uniform(25, HEIGHT - 25)), avoid_player=True)
             self.spawn_enemy(pos, elite=self.wave % 4 == 0 and not self.enemies)
-        self.phase = "ready"
-        self.phase_timer = 1.5
+        # Only a new run has an introduction. Later levels resume directly
+        # after their cleared message, without a second readiness pause.
+        self.phase = "ready" if self.wave == 1 else "active"
+        self.phase_timer = 1.5 if self.wave == 1 else 0.
 
     def spawn_enemy(self, pos, elite=False, size=0):
         self.next_id += 1
@@ -191,7 +196,7 @@ class World:
             self.burst(player.pos, self.pak("pilot").color, 35)
         elif not self.enemies:
             self.phase = "clear"
-            self.phase_timer = 1.6
+            self.phase_timer = LEVEL_CLEAR_SECONDS
             self.score += 250 * self.wave
             self.events.append("clear")
 

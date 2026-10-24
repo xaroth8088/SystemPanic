@@ -14,10 +14,65 @@ from system_panic.arenas import build_arena
 from system_panic.model import Controls, Vec, Projectile, FIXED_DT, circle_rect, WIDTH, HEIGHT
 from system_panic.paks import PAKS, CHANNELS
 from system_panic.preferences import Preferences
-from system_panic.world import World
+from system_panic.world import World, SWAP_GLITCH_SECONDS, LEVEL_CLEAR_SECONDS
 
 
 class WorldTests(unittest.TestCase):
+    def test_periodic_swap_only_freezes_during_glitch_then_accepts_held_input(self):
+        for mode in ("coherent", "remix"):
+            with self.subTest(mode=mode):
+                world = World(Preferences(enabled=["signal_runner", "phase_garden"], mix_mode=mode), seed=9)
+                world.phase = "active"
+                world.shuffle_timer = FIXED_DT / 2
+                held = Controls(x=1, fire=True)
+                world.step(FIXED_DT, held)
+                self.assertEqual(world.shuffle_count, 1)
+                self.assertEqual(world.phase, "active")
+                self.assertAlmostEqual(world.transition, SWAP_GLITCH_SECONDS)
+                position, time = world.player.pos.copy(), world.time
+                enemies = [enemy.pos.copy() for enemy in world.enemies]
+                while world.transition > FIXED_DT + 1e-9:
+                    world.step(FIXED_DT, held)
+                    self.assertEqual(world.player.pos, position)
+                    self.assertEqual([enemy.pos for enemy in world.enemies], enemies)
+                    self.assertEqual(world.time, time)
+                    self.assertEqual(world.phase, "active")
+                world.advance(FIXED_DT * 2, held)
+                self.assertEqual(world.phase, "active")
+                self.assertEqual(world.wave, 1)
+                self.assertGreater(world.time, time)
+                self.assertNotEqual(world.player.pos, position)
+                self.assertGreater(world.player.fire_timer, 0)
+
+    def test_level_clear_has_its_own_message_delay_then_direct_action(self):
+        world = World(Preferences(), seed=24, solo="signal_runner")
+        world.phase = "active"
+        world.player.health = 50
+        for enemy in world.enemies:
+            enemy.health = 0
+        world.step(FIXED_DT, Controls())
+        self.assertEqual(world.phase, "clear")
+        self.assertAlmostEqual(world.phase_timer, LEVEL_CLEAR_SECONDS)
+        position, time, mix = world.player.pos.copy(), world.time, world.mix.copy()
+        held = Controls(x=1, fire=True)
+        while world.phase_timer > FIXED_DT + 1e-9:
+            world.step(FIXED_DT, held)
+            self.assertEqual(world.phase, "clear")
+            self.assertEqual(world.wave, 1)
+            self.assertEqual(world.player.pos, position)
+            self.assertEqual(world.time, time)
+        world.advance(FIXED_DT * 2, held)
+        self.assertEqual(world.phase, "active")
+        self.assertEqual(world.wave, 2)
+        self.assertEqual(world.transition, 0)
+        self.assertEqual(world.mix, mix)
+        self.assertEqual(world.shuffle_count, 0)
+        self.assertEqual(world.player.health, 65)
+        world.advance(FIXED_DT, held)
+        self.assertGreater(world.time, time)
+        self.assertNotEqual(world.player.pos, position)
+        self.assertGreater(world.player.fire_timer, 0)
+
     def test_six_solo_paks_hold_their_identity_and_clear_a_wave(self):
         from system_panic.app import autopilot
         for pak in PAKS:
@@ -132,7 +187,7 @@ class WorldTests(unittest.TestCase):
         world.phase_timer = 0
         world.step(FIXED_DT, Controls())
         self.assertEqual(world.wave, 9)
-        self.assertEqual(world.phase, "ready")
+        self.assertEqual(world.phase, "active")
 
     def test_dense_arena_recovery_is_bounded(self):
         from system_panic.model import Cover
