@@ -119,11 +119,11 @@ class World:
         self.projectiles.clear()
         self.player.health = min(100, self.player.health + (0 if self.wave == 1 else 15))
         self.player.invulnerable = 2.
-        count = 2 + self.wave * 2
+        count = self.wave
         for _ in range(count):
             pos = self.safe_position(Vec(self.rng.uniform(25, WIDTH - 25),
                                          self.rng.uniform(25, HEIGHT - 25)), avoid_player=True)
-            self.spawn_enemy(pos, elite=self.wave % 4 == 0 and not self.enemies)
+            self.spawn_enemy(pos)
         # Only a new run has an introduction. Later levels resume directly
         # after their cleared message, without a second readiness pause.
         self.phase = "ready" if self.wave == 1 else "active"
@@ -147,17 +147,13 @@ class World:
         self.transition = max(0., self.transition - dt)
         self.shake = max(0., self.shake - dt * 20)
         self.update_effects(dt)
-        if self.phase in ("victory", "dead"):
+        if self.phase == "dead":
             return
         if self.phase != "active":
             self.phase_timer -= dt
             if self.phase_timer <= 0:
                 if self.phase == "clear":
-                    if self.wave >= 8 and not self.prefs.endless:
-                        self.phase = "victory"
-                        self.events.append("clear")
-                    else:
-                        self.start_wave()
+                    self.start_wave()
                 else:
                     self.phase = "active"
             return

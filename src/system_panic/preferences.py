@@ -17,7 +17,6 @@ class Preferences:
     mix_mode: str = "remix"
     shuffle_seconds: int = 8
     difficulty: str = "standard"
-    endless: bool = False
     music: float = .55
     effects: float = .65
     reduced_motion: bool = False
@@ -37,7 +36,7 @@ class Preferences:
                               ("difficulty", ("relaxed", "standard", "intense"))):
             if raw.get(name) in choices:
                 setattr(result, name, raw[name])
-        for name in ("endless", "reduced_motion", "fullscreen", "aim_assist"):
+        for name in ("reduced_motion", "fullscreen", "aim_assist"):
             if type(raw.get(name)) is bool:
                 setattr(result, name, raw[name])
         for name in ("music", "effects"):

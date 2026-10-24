@@ -4,6 +4,8 @@
 
 Simulation advances at 120 steps per second with an accumulator. Pausing, focus loss and settings do not consume gameplay time. Movement, damage and cooldowns use simulation seconds. Presentation randomness does not affect the seeded gameplay RNG.
 
+Progression is always endless. Level n starts with n normal enemies, starting at one; there is no eight-level finish, scripted elite-wave override or finite-run preference. Existing enemy health/speed scaling and Pak-specific mid-level spawns still apply. Defeat is the only terminal gameplay state. Legacy `endless` preference keys are ignored and removed on the next save.
+
 ## A complete Pak
 
 Each module under `src/system_panic/paks` owns four callbacks plus metadata:

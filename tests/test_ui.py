@@ -90,3 +90,20 @@ class UITests(unittest.TestCase):
             self.app.draw()
             for button in self.app.buttons:
                 self.assertTrue(self.app.canvas.get_rect().contains(button.rect), button.id)
+
+    def test_level_eight_continues_play_and_preferences_have_no_finish_toggle(self):
+        self.app.route = "settings"
+        self.app.draw()
+        self.assertNotIn("endless", [button.id for button in self.app.buttons])
+        self.app.start("signal_runner")
+        world = self.app.world
+        world.wave = 8
+        world.enemies.clear()
+        world.phase = "clear"
+        world.phase_timer = 0
+        self.app.update(1 / 60, Controls())
+        self.assertEqual(self.app.route, "game")
+        self.assertEqual(world.phase, "active")
+        self.assertEqual(world.wave, 9)
+        self.assertEqual(len(world.enemies), 9)
+        self.assertFalse(self.app.recorded)

@@ -5,6 +5,7 @@ Read [the root wiki](../../AGENTS.md) and [Pak contracts](paks/AGENTS.md).
 ## Invariants
 - Simulation uses seconds, floating point vectors and a fixed 1/120 second step. Drawing never advances state.
 - Run RNG is local (`random.Random(seed)`); presentation RNG cannot change gameplay.
+- A run continues until defeat. Level n initially spawns n normal enemies (1, 2, 3, ...), with no finite-mode switch or victory state. Old saved `endless` flags are ignored and disappear on save. Per-enemy scaling and Pak-specific splitting remain separate from the +1 initial-enemy progression.
 - Shuffle selects only enabled Paks. Solo holds all components to its one Pak; coherent selects one Pak for all components; remix selects components independently.
 - Preserve health/score/wave and positions during shuffles; reset AI and locomotion state, clear hostile projectiles, grant invulnerability and repair overlaps.
 - Each projectile is advanced exactly once per simulation step. Cooldowns use simulation time.

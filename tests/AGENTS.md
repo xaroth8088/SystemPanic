@@ -1,8 +1,10 @@
 # Verification memory
 
-Use real simulation tests for solo play, all pairings/full component combinations, shuffle state preservation, preferences validation/persistence, projectile ownership, damage, victory/death/restart and menu input. Run with SDL dummy video/audio in automation. Do not require network or asset generation for tests.
+Use real simulation tests for solo play, all pairings/full component combinations, shuffle state preservation, preferences validation/persistence, projectile ownership, damage, endless level progression, death/restart and menu input. Run with SDL dummy video/audio in automation. Do not require network or asset generation for tests.
 
 `tools/verify.py` should produce reproducible screenshots and a machine-readable report. Inspect the screenshots in addition to checking assertions. Record exact results here after running. Interactive playtesting remains distinct from headless simulation.
+
+Earlier verification snapshots below describe the original finite implementation. The endless progression results at the end supersede their eight-wave finish and enemy counts.
 
 ## Verified 2026-10-24
 - Python 3.12.1 / Pygame 2.6.1: 17 tests pass, including local asset hashes and decoding all twelve production audio files.
@@ -20,3 +22,11 @@ Reproducible reports/screenshots live in ignored `output/verification`; concise 
 - 19 tests pass, including new behavioral checks that swaps freeze combat only during the glitch, held input resumes automatically, and level-clear intermissions do not add a glitch or ready step.
 - Rendered and inspected `output/transition-check/level-cleared.png`, `swap-glitch.png`, and `next-level.png`.
 - All six full solo runs again reach victory with ordinary demo controls (seed 24, relaxed): 61.98s, 118.60s, 82.28s, 60.35s, 42.23s, 111.20s in registry order. The earlier Orbit Keeper demo policy lost late in the final wave after the timing change; its demo-only controller now steers away from imminent threats. Manual player controls and combat balance were not changed.
+
+## Endless progression (2026-10-24)
+- Progression now starts at one enemy and adds exactly one initial enemy per level, with no level cap or victory finale. Per-enemy health/speed scaling and Pak-specific fragments still apply. Old finite-run preferences cannot stop a run and are removed on save.
+- 23 tests pass. Tests check every Pak's initial counts and direct continuation through level 21, growth at levels 99–101, ignored legacy preferences, and the absence of a finite-run setting. Existing transition, input, damage and compatibility checks still pass.
+- All six solo Paks cleared twelve levels and continued into level thirteen with ordinary demo controls (seed 24, relaxed). Initial enemy counts were exactly 1–13. Sample times in registry order: 66.17s, 137.72s, 98.17s, 66.25s, 48.02s, 157.77s. Twelve cleared levels is a bounded QA sample, not a game ending.
+- All 1,296 component mixtures cleared their opening level with ordinary controls (seed 24, relaxed; worst case 15.27s).
+- Inspected new preferences, gameplay/level-cleared, and game-over screenshots. The HUD reads `LEVEL nn / ENDLESS`; settings explain 1, 2, 3... enemies. Level clears retain their one-second message; periodic swaps retain their quarter-second glitch only.
+- Rebuilt the Windows distribution and Python wheel. All six packaged Paks passed 240-frame headless smoke checks from a different working directory; the refreshed Windows ZIP passed its archive integrity check. Current build hashes and results are recorded in `docs/verification.json`.

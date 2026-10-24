@@ -163,7 +163,7 @@ class WorldTests(unittest.TestCase):
         world.remove_dead()
         self.assertEqual(world.score, score)
 
-    def test_invulnerability_damage_and_victory_death_states(self):
+    def test_invulnerability_damage_and_death_state(self):
         world = World(Preferences(), 1)
         world.player.invulnerable = 0
         world.hurt_player(20)
@@ -174,20 +174,36 @@ class WorldTests(unittest.TestCase):
         world.phase = "active"
         world.step(FIXED_DT, Controls())
         self.assertEqual(world.phase, "dead")
-        world = World(Preferences(), 2)
-        world.wave = 8
-        world.phase = "clear"
-        world.phase_timer = 0
-        world.step(FIXED_DT, Controls())
-        self.assertEqual(world.phase, "victory")
-        world = World(Preferences(endless=True), 2)
-        world.wave = 8
-        world.enemies.clear()
-        world.phase = "clear"
-        world.phase_timer = 0
-        world.step(FIXED_DT, Controls())
-        self.assertEqual(world.wave, 9)
-        self.assertEqual(world.phase, "active")
+
+    def test_levels_add_one_enemy_and_continue_past_the_former_finale(self):
+        for pak in PAKS:
+            with self.subTest(pak=pak.id):
+                world = World(Preferences(), 24, solo=pak.id)
+                for level in range(1, 21):
+                    self.assertEqual(world.wave, level)
+                    self.assertEqual(len(world.enemies), level)
+                    self.assertTrue(all(not enemy.elite for enemy in world.enemies))
+                    world.enemies.clear()
+                    world.phase = "active"
+                    world.step(FIXED_DT, Controls())
+                    self.assertEqual(world.phase, "clear")
+                    for _ in range(round(LEVEL_CLEAR_SECONDS / FIXED_DT) + 1):
+                        world.step(FIXED_DT, Controls())
+                    self.assertEqual(world.phase, "active")
+                    self.assertEqual(world.wave, level + 1)
+                    self.assertEqual(world.transition, 0)
+
+    def test_enemy_growth_has_no_late_level_cap(self):
+        world = World(Preferences(), 24, solo="signal_runner")
+        for previous_level in (98, 99, 100):
+            world.wave = previous_level
+            world.enemies.clear()
+            world.phase = "clear"
+            world.phase_timer = 0
+            world.step(FIXED_DT, Controls())
+            self.assertEqual(world.phase, "active")
+            self.assertEqual(world.wave, previous_level + 1)
+            self.assertEqual(len(world.enemies), previous_level + 1)
 
     def test_dense_arena_recovery_is_bounded(self):
         from system_panic.model import Cover

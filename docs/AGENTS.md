@@ -6,7 +6,7 @@ System Panic is about adapting when familiar arcade rules change in an ongoing b
 Flow clarification (2026-10-24): periodic randomization uses only a quarter-second visual glitch and automatically resumes. Level completion has a separate one-second "level cleared" message before the next level. Do not append a readiness screen or glitch to that level change; the initial new-run introduction is separate.
 
 ## Launch scope
-Six Paks share arena coordinates, damage, rewards and wave objectives, but own distinct locomotion, weapon, enemy behavior and arena layout. A full run has eight waves, a final elite wave, victory, score, death and restart. Endless mode is also available.
+Six Paks share arena coordinates, damage, rewards and level objectives, but own distinct locomotion, weapon, enemy behavior and arena layout. Progression is always endless: level one starts with one enemy, level two with two, and so on until defeat. No scripted elite waves, finale, finite-run toggle or level cap. The short level-cleared message, score, death and restart remain.
 
 ## Architectural choices
 - New implementation, historical source archived under `legacy/`.
@@ -16,7 +16,7 @@ Six Paks share arena coordinates, damage, rewards and wave objectives, but own d
 - All weapons can reach enemies across the screen; destructible cover and safe relocation prevent incompatible mixtures from trapping the player.
 
 ## Delivery state
-Delivered implementation on `codex/revival`: six complete Paks, solo/coherent/component modes, finite/endless runs, local preferences and high scores, UI/help/credits, protected shuffles and original audiovisual assets. Historical prototypes are preserved under `legacy`.
+Delivered implementation on `codex/revival`: six complete Paks, solo/coherent/component modes, endless +1 enemy progression, local preferences and high scores, UI/help/credits, protected shuffles and original audiovisual assets. Historical prototypes are preserved under `legacy`.
 
 Stable Audio 3 is installed separately under ignored `.asset-tools`, with a pinned official Windows LiteRT backend and dependency lock. Six soundtracks and six effects were generated locally and mastered for production. Fresh music and SFX were also generated through the local studio API with Hugging Face downloads disabled. The studio is loopback-only; the game never calls it.
 

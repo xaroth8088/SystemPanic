@@ -44,3 +44,22 @@ class PreferenceTests(unittest.TestCase):
             store = PreferenceStore(blocker)
             self.assertFalse(store.save(Preferences()))
             self.assertIn("save", store.error)
+
+    def test_old_finite_run_preference_is_ignored_and_removed_on_save(self):
+        from system_panic.model import Controls, FIXED_DT
+        from system_panic.world import World
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as temp:
+            store = PreferenceStore(Path(temp))
+            store.path.write_text(json.dumps({"endless":False, "music":.2, "enabled":["signal_runner"]}))
+            prefs = store.load()
+            self.assertEqual(prefs.music, .2)
+            world = World(prefs, 24)
+            world.wave = 8
+            world.enemies.clear()
+            world.phase = "clear"
+            world.phase_timer = 0
+            world.step(FIXED_DT, Controls())
+            self.assertEqual(world.wave, 9)
+            self.assertEqual(world.phase, "active")
+            self.assertTrue(store.save(prefs))
+            self.assertNotIn("endless", json.loads(store.path.read_text()))

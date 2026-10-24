@@ -2,7 +2,7 @@
 
 **Six worlds. One unstable system.**
 
-An offline arcade game about adapting as its rules change around you. Play any of six complete Paks alone, shuffle whole Paks together, or independently remix their pilots, weapons, enemies and arenas. Clear eight increasingly crowded waves to restore the system, or enable endless play.
+An offline arcade game about adapting as its rules change around you. Play any of six complete Paks alone, shuffle whole Paks together, or independently remix their pilots, weapons, enemies and arenas. Survive an endless sequence of levels: start with one enemy, then face two, three, and one more with every cleared level. The run ends when you are defeated.
 
 This is a fresh implementation. The 2017 game and unfinished 2025 rewrite are preserved under [`legacy/`](legacy/AGENTS.md); the revival does not import their code or assets.
 
@@ -45,7 +45,7 @@ The library's **Enabled** buttons control the remix pool. **Play Solo** starts a
 
 Periodic randomization pauses for a quarter-second screen glitch, then resumes automatically. Clearing a level instead shows a one-second **Level Cleared** message before the next level starts, without another readiness screen. The initial ready introduction appears only when starting a new run.
 
-Preferences include coherent/component shuffle, 5–30 second intervals, component locks, three difficulty levels, finite/endless runs, audio levels, aim assistance, reduced motion and fullscreen. Gameplay changes apply to the next run; audio/display changes apply immediately. Preferences and best score save to `%LOCALAPPDATA%/SystemPanic/preferences.json` on Windows, or the platform's user data directory elsewhere.
+Preferences include coherent/component shuffle, 5–30 second intervals, component locks, three difficulty levels, audio levels, aim assistance, reduced motion and fullscreen. Progression is always endless; older finite-run settings are ignored. Gameplay changes apply to the next run; audio/display changes apply immediately. Preferences and best score save to `%LOCALAPPDATA%/SystemPanic/preferences.json` on Windows, or the platform's user data directory elsewhere.
 
 ```sh
 python play.py --solo void_drifter --seed 24
@@ -63,7 +63,7 @@ python tools/verify.py
 python tools/compatibility.py
 ```
 
-`verify.py` plays six eight-wave solo runs with deterministic ordinary inputs and writes screenshots plus a report. `compatibility.py` plays an opening wave in all **1,296** pilot/weapon/enemy/arena mixtures using a fixed seed and relaxed difficulty. Automated gameplay checks complement human balance testing.
+`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` plays an opening level in all **1,296** pilot/weapon/enemy/arena mixtures using a fixed seed and relaxed difficulty. Automated gameplay checks complement human balance testing.
 
 ## Original AI asset pipeline
 

@@ -4,57 +4,153 @@
   "runs": [
     {
       "pak": "signal_runner",
-      "phase": "victory",
-      "wave": 8,
-      "kills": 88,
-      "health": 35.9,
-      "score": 17900,
-      "seconds": 61.98
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 78.6,
+      "score": 27300,
+      "seconds": 66.17
     },
     {
       "pak": "void_drifter",
-      "phase": "victory",
-      "wave": 8,
-      "kills": 264,
-      "health": 90.9,
-      "score": 28460,
-      "seconds": 118.6
+      "phase": "active",
+      "wave": 13,
+      "kills": 234,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 96.8,
+      "score": 36660,
+      "seconds": 137.72
     },
     {
       "pak": "iron_circuit",
-      "phase": "victory",
-      "wave": 8,
-      "kills": 88,
-      "health": 89.1,
-      "score": 17900,
-      "seconds": 82.28
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 93.9,
+      "score": 27300,
+      "seconds": 98.17
     },
     {
       "pak": "sky_forge",
-      "phase": "victory",
-      "wave": 8,
-      "kills": 88,
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
       "health": 100,
-      "score": 17900,
-      "seconds": 60.35
+      "score": 27300,
+      "seconds": 66.25
     },
     {
       "pak": "phase_garden",
-      "phase": "victory",
-      "wave": 8,
-      "kills": 88,
-      "health": 82.5,
-      "score": 17900,
-      "seconds": 42.23
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 95.0,
+      "score": 27300,
+      "seconds": 48.02
     },
     {
       "pak": "orbit_keeper",
-      "phase": "victory",
-      "wave": 8,
-      "kills": 88,
-      "health": 91.6,
-      "score": 17900,
-      "seconds": 111.2
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 100,
+      "score": 27300,
+      "seconds": 157.77
     }
   ],
   "assets": [
@@ -132,7 +228,7 @@
   "date": "2026-10-24",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 19,
+    "passed": 23,
     "failed": 0
   },
   "compatibility": {
@@ -140,7 +236,7 @@
     "opening_wave_cleared": 1296,
     "difficulty": "relaxed",
     "seed": 24,
-    "max_seconds": 52.3,
+    "max_seconds": 15.266666666666667,
     "failures": []
   },
   "local_studio": [
@@ -195,8 +291,10 @@
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "1520e935d30f3c0d6c03d504f5b80e7f2a5bc42709513738923653142719716f",
-    "total_bytes": 44216097
+    "sha256": "dc5e2bd652460b9f1f6ff210dd0c8d5c441ddea7ac40de2cf2a19765e0e1f4f9",
+    "total_bytes": 44215789,
+    "archive": "dist/SystemPanic-Windows-x64.zip",
+    "archive_test_passed": true
   },
   "limitations": [
     "Automated controls used relaxed difficulty and seed 24; human balance testing remains.",
@@ -210,5 +308,15 @@
     "ready_after_level_clear": false,
     "held_input_resumes_automatically": true,
     "rendered_screens_checked": true
+  },
+  "progression": "endless_plus_one",
+  "target_levels": 12,
+  "progression_checks": {
+    "first_enemy_count": 1,
+    "enemies_added_each_level": 1,
+    "level_cap": null,
+    "continuation_checked_through_level": 101,
+    "legacy_finite_preference_ignored": true,
+    "finite_toggle_removed": true
   }
 }

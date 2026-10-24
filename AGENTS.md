@@ -4,6 +4,7 @@ This is the entry point to the project's agent wiki. Read the relevant linked pa
 
 ## Product contract
 - A single-player offline arcade remix game. Every Pak must be a complete playable game alone; independently shuffling pilot, weapon, enemy family and arena must remain playable.
+- Progression is always endless: level one starts with one enemy, and each new level adds exactly one initial enemy. There is no finale, level cap, finite-run preference or scripted boss-wave replacement. Pak-specific mid-level spawning (such as asteroid fragments) remains part of that Pak's mechanics.
 - The platform arena is one Pak, not the overall design direction.
 - Six launch Paks: Signal Runner, Void Drifter, Iron Circuit, Sky Forge, Phase Garden, Orbit Keeper.
 - Players can select enabled Paks, solo/coherent/component remix, shuffle interval, difficulty, effects, fullscreen and audio levels. No online catalog.

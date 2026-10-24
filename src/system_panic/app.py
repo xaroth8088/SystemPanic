@@ -207,7 +207,10 @@ class App:
         self.setting(210, "Shuffle style", "Independent components, or complete Paks together.", "mix_mode", ["remix", "coherent"], ["COMPONENT REMIX", "COHERENT PAKS"])
         self.setting(292, "Time between changes", "A protected transition gives you time to read the new rules.", "shuffle_seconds", [5, 8, 12, 20, 30], ["5 SECONDS", "8 SECONDS", "12 SECONDS", "20 SECONDS", "30 SECONDS"])
         self.setting(374, "Challenge", "Relaxed reduces damage and enemy speed.", "difficulty", ["relaxed", "standard", "intense"])
-        self.setting(456, "Run length", "A complete eight-wave run, or keep going indefinitely.", "endless", [False, True], ["8 WAVES / FINALE", "ENDLESS"])
+        g.text(self.canvas, "Endless progression", (80, 456), 21, TEXT, True)
+        g.text(self.canvas, "Start with one enemy. Each cleared level adds one more.", (80, 487), 15, MUTED)
+        g.text(self.canvas, "1, 2, 3... ENEMIES", (1200, 480), 16, CYAN, mono=True, anchor="midright")
+        pygame.draw.line(self.canvas, EDGE, (80, 526), (1200, 526))
         g.text(self.canvas, "COMPONENTS IN THE SHUFFLE", (80, 553), 12, MUTED, mono=True)
         for index, channel in enumerate(CHANNELS):
             enabled = channel in self.prefs.shuffle_channels
@@ -225,8 +228,8 @@ class App:
         g = self.graphics
         self.header("HOW TO PLAY")
         self.button("back", (1100, 25, 140, 34), "<  BACK", self.back, size=13)
-        g.text(self.canvas, "Adapt. Survive. Clear the wave.", (80, 108), 35, TEXT, True)
-        g.wrapped(self.canvas, "Hold SPACE to fire. Aim assistance targets the nearest enemy, so every control style can fight every enemy family. X uses your current pilot's special. Destroy cover to open a route. Clear all enemies to advance; each cleared wave restores 15 health.", (80, 166), 1100, 18)
+        g.text(self.canvas, "Adapt. Survive. Keep going.", (80, 108), 35, TEXT, True)
+        g.wrapped(self.canvas, "Hold SPACE to fire. Aim assistance targets the nearest enemy. X uses your pilot's special. Destroy cover to open a route. Level one starts with one enemy; each cleared level adds one more and restores 15 health. Levels continue until you are defeated.", (80, 166), 1100, 18)
         for index, pak in enumerate(PAKS):
             x, y = 80 + index % 2 * 575, 280 + index // 2 * 135
             image = g.sprite(pak.id, 0, 66)
@@ -256,7 +259,7 @@ class App:
     def draw_game(self):
         g, w = self.graphics, self.world
         pygame.draw.line(self.canvas, EDGE, (40, 78), (1240, 78))
-        g.text(self.canvas, f"WAVE {w.wave:02d}" + (" / 08" if not w.prefs.endless else " / ENDLESS"), (40, 98), 17, TEXT, True, True)
+        g.text(self.canvas, f"LEVEL {w.wave:02d} / ENDLESS", (40, 98), 17, TEXT, True, True)
         g.text(self.canvas, f"SCORE  {w.score:07d}", (340, 98), 17, CYAN, mono=True)
         g.text(self.canvas, f"{len(w.enemies):02d} HOSTILES", (700, 98), 15, MUTED, mono=True)
         g.text(self.canvas, "HULL", (968, 98), 12, MUTED, mono=True)
@@ -283,9 +286,9 @@ class App:
             overlay = pygame.Surface(rect.size, pygame.SRCALPHA)
             overlay.fill((5, 14, 23, 225))
             self.canvas.blit(overlay, rect)
-            text = f"WAVE {w.wave:02d} / GET READY" if w.phase == "ready" else f"LEVEL {w.wave:02d} CLEARED"
+            text = f"LEVEL {w.wave:02d} / GET READY" if w.phase == "ready" else f"LEVEL {w.wave:02d} CLEARED"
             g.text(self.canvas, text, (640, 389), 32, TEXT, True, True, "center")
-            subtitle = ("SYSTEM RESTORED" if w.wave >= 8 and not w.prefs.endless else "+15 HULL NEXT WAVE") if w.phase == "clear" else "HOLD SPACE TO FIRE / X FOR SPECIAL"
+            subtitle = "+15 HULL NEXT LEVEL" if w.phase == "clear" else "HOLD SPACE TO FIRE / X FOR SPECIAL"
             g.text(self.canvas, subtitle, (640, 435), 14, CYAN, mono=True, anchor="center")
 
     def draw_overlay(self, outcome=False):
@@ -294,8 +297,8 @@ class App:
         shade.fill((4, 10, 18, 210))
         self.canvas.blit(shade, (0, 0))
         g.panel(self.canvas, (330, 160, 620, 510), (13, 24, 36), EDGE, 16)
-        title = "SYSTEM RESTORED" if outcome and w.phase == "victory" else "SIGNAL LOST" if outcome else "SYSTEM PAUSED"
-        color = CYAN if not outcome or w.phase == "victory" else (255, 119, 137)
+        title = "SIGNAL LOST" if outcome else "SYSTEM PAUSED"
+        color = (255, 119, 137) if outcome else CYAN
         g.text(self.canvas, title, (640, 214), 35, color, True, True, "center")
         if outcome:
             g.text(self.canvas, f"SCORE  {w.score:07d}", (640, 285), 31, TEXT, mono=True, anchor="center")
@@ -401,7 +404,7 @@ class App:
             for event in self.world.drain_events():
                 self.audio.play(event)
             self.audio.music(self.world.mix["pilot"])
-            if self.world.phase in ("dead", "victory"):
+            if self.world.phase == "dead":
                 if not self.recorded:
                     self.prefs.high_score = max(self.prefs.high_score, self.world.score)
                     self.save()
