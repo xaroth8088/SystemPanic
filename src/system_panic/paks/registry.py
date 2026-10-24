@@ -10,7 +10,6 @@ import importlib.util
 import inspect
 import itertools
 import json
-import math
 from pathlib import Path
 import re
 import sys
@@ -21,7 +20,7 @@ from .model import Pak, ComponentSpec, CHANNELS
 from ..pak_api import ComponentBase, PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase, ObstaclesBase, ImageAsset, SoundAsset, SpriteFrame
 from ..resources import pak_roots
 
-API_VERSION = 2
+API_VERSION = 3
 BASES = dict(zip(CHANNELS, (PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase, ObstaclesBase)))
 FILENAMES = {c: c + ".py" for c in CHANNELS} | {"obstacles":"obstacle.py"}
 _generation = itertools.count()
@@ -182,10 +181,6 @@ def load_pak(directory, data, configs, loaded):
                 track = probe.track()
                 if track is not None and not isinstance(track, SoundAsset):
                     raise ValueError("MusicBase.track must return a SoundAsset or None")
-            if isinstance(probe, WeaponBase) and (type(probe.cooldown) not in (int, float) or not math.isfinite(probe.cooldown) or probe.cooldown <= 0):
-                raise ValueError("WeaponBase.cooldown must be a positive finite number")
-            if isinstance(probe, EnemyBase) and (type(probe.splits) is not int or not 0 <= probe.splits <= 32):
-                raise ValueError("EnemyBase.splits must be an integer from 0 to 32")
             if channel == "pilot" and any(not isinstance(getattr(probe, field), str) or len(getattr(probe, field)) > 500 for field in ("controls", "special")):
                 raise ValueError("Pilot controls and special must be text")
             probe.suspend()

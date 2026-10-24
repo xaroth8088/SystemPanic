@@ -1,20 +1,23 @@
-"""Orbit Keeper: weapon behavior and local assets."""
-import math
-import pygame
-from system_panic.model import Vec, WIDTH, HEIGHT, Cover, Beam, Controls, normalized, unit, circle_rect
+"""OrbitKeeper: Pak-owned trigger cadence and weapon behavior."""
 from system_panic.pak_api import WeaponBase
+from .projectile import Glaive
 
 
 class OrbitKeeperWeapon(WeaponBase):
-    cooldown = 0.48
-
     def init(self):
         self.projectiles = self.load_asset('weapon_sheet.png')
         self.shot_sound = self.load_asset("shot.ogg")
+        self._remaining = 0.
 
     def sprite(self, world, entity=None):
         return self.projectiles
 
+    def update(self, world, dt, control):
+        self._remaining = max(0., self._remaining - dt)
+        if control.fire and self._remaining <= 0:
+            self._remaining = 0.48
+            self.fire(world, world.aim())
+
     def fire(self, world, direction):
         self.shot_sound.play(volume=.3)
-        world.spawn_shot(direction, 'glaive', damage=28, speed=430, radius=7, pierce=6, return_after=.55)
+        world.projectiles.append(Glaive(world, self, direction))

@@ -1,5 +1,5 @@
 # Orbit Keeper: weapon
 
-Read [this Pak's memory](../AGENTS.md) and [the public ABCs](../../../src/system_panic/pak_api.py). `weapon.py` subclasses `WeaponBase`. Required methods: `fire(world, direction), sprite(world, entity=None)`. `cooldown` is seconds. Use shared combat helpers; do not advance projectiles here.
+Read [this Pak's memory](../AGENTS.md) and [public ABCs](../../../src/system_panic/pak_api.py). `weapon.py` subclasses `WeaponBase`. Required: `update(world, dt, control), sprite(world, entity=None)`. Own triggering, cadence, charging and firing. Projectile helpers implement their own update/draw, lifetime and hit outcomes; the host does not inspect weapon stats or feature flags.
 
-Load local handles in `init()` with `self.load_asset(filename)`. Their attribute names are private choices. Instances belong to one run; use the explicit lifecycle methods for world setup and sound cleanup. Drawing/track selection cannot advance simulation. These files can be copied as a partial component. Keep generated-asset provenance when replacing content.
+Load local handles in `init()`; their attribute names are private choices. Instances belong to one run. Use explicit lifecycle callbacks for setup/cleanup. Rendering cannot advance gameplay. The host schedules projectile/effect callbacks once; do not also advance them from the component update. Local helper modules and assets can be copied as partial components. Preserve asset provenance.

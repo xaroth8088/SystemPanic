@@ -1,6 +1,6 @@
 # Building a Pak: component folders and ABCs
 
-Paks are external folders. Their layout is the first guide to the API: each component keeps its Python class and assets together. The six shipped games are complete, working examples of API 2.
+Paks are external folders. Their layout is the first guide to the API: each component keeps its Python class and assets together. The six shipped games are complete, working examples of API 3.
 
 ## Start with something runnable
 
@@ -27,6 +27,7 @@ my_pak/
     enemy_sheet.png
   weapon/
     weapon.py
+    projectile.py
     weapon_sheet.png
     shot.ogg
   music/
@@ -48,9 +49,9 @@ Import base classes from system_panic.pak_api. Their abstract methods have docst
 
 | Folder | Base class | Required methods |
 |---|---|---|
-| pilot | PilotBase | move(world, dt, control, jump, special), sprite(world, entity=None) |
-| enemy | EnemyBase | advance_enemy(world, enemy, dt), sprite(world, entity=None) |
-| weapon | WeaponBase | fire(world, direction), sprite(world, entity=None) |
+| pilot | PilotBase | create(world, position), update(world, dt, control), sprite(world, entity=None) |
+| enemy | EnemyBase | create(world, identity, position), advance_enemy(world, enemy, dt), sprite(world, entity=None) |
+| weapon | WeaponBase | update(world, dt, control), sprite(world, entity=None) |
 | music | MusicBase | track(world=None) |
 | background | BackgroundBase | draw(surface, world) |
 | obstacles | ObstaclesBase | build(), sprite(world, entity=None) |
@@ -61,12 +62,12 @@ A pilot whose folder contains pilot_sheet.png, idle.ogg and moving.ogg can be wr
 
 ```python
 from system_panic.pak_api import PilotBase
-from system_panic.model import Vec
+from system_panic.model import Pilot, Vec
 
 
 class MyPilot(PilotBase):
     controls = "Arrows / WASD: move"
-    special = "X: dash"
+    special = "Hold X: boost"
 
     def init(self):
         self.spritesheet = self.load_asset("pilot_sheet.png")
@@ -76,12 +77,15 @@ class MyPilot(PilotBase):
     def sprite(self, world, entity=None):
         return self.spritesheet
 
-    def move(self, world, dt, control, jump, special):
+    def create(self, world, position):
+        return Pilot(pos=Vec(position), health=100, max_health=100, radius=11)
+
+    def update(self, world, dt, control):
         direction = Vec(control.x, control.y)
         if direction.length_squared() > 1:
             direction.normalize_ip()
-        world.player.vel = direction * (400 if special else 220)
-        world.move_body(world.player, world.player.vel * dt, 12)
+        world.player.vel = direction * (400 if control.special else 220)
+        world.move_body(world.player, world.player.vel * dt, world.player.radius)
         if direction.length_squared():
             self.idle_sounds.stop()
             self.moving_sounds.play(loop=True, volume=0.3)
@@ -94,17 +98,33 @@ spritesheet, idle_sounds and moving_sounds are ordinary author-owned attributes.
 
 load_asset() resolves inside that component's folder. PNG/WebP/JPEG files yield ImageAsset handles; OGG/WAV files yield SoundAsset handles. Loading is lazy and does not open a display or audio device. Missing files and paths escaping the component folder are rejected. Assets from an inherited component can be overridden by filename without depending on the provider's private Python attributes.
 
-For a grid spritesheet, return self.spritesheet.frame(index, columns=4, rows=2) from sprite(). Frame selection is row-major; dimensions must divide evenly. Use world.time for a simulation-based animation clock. sprite_angle(world, entity) and sprite_flip_x(world, entity) provide generic presentation transforms. WeaponBase points sprites along projectile velocity by default.
+For a grid spritesheet, return self.spritesheet.frame(index, columns=4, rows=2) from sprite(). Frame selection is row-major; dimensions must divide evenly. Use world.time for a simulation-based animation clock. sprite_angle(world, entity) and sprite_flip_x(world, entity) provide generic presentation transforms. Projectile drawing and orientation belong to the Pak, too.
 
 SoundAsset.play(loop=True) keeps a single loop active until stop(). Playback follows the effects preference. Engine-owned cleanup stops a component's voices on pause/focus loss, replacement, intermissions, defeat and run end. Sound is silent in simulation-only worlds without an audio service. MusicBase.track() returns a sound handle (or None for silence); the engine streams it using the music preference.
 
 ## What belongs to each component
 
-PilotBase.controls and special describe controls; move() updates world.player through common collision helpers. EnemyBase.family identifies the enemy state and splits specifies optional fragments; the engine advances enemy age and timer before advance_enemy(). WeaponBase.cooldown is positive seconds; fire() uses spawn_shot, damage_enemy and/or beams. ObstaclesBase.build() returns a fresh list of Cover objects each time; [] is valid for an open field.
+PilotBase.create() chooses the body's stats and update() receives raw held Controls on every active step. The Pak decides input edges, movement, abilities, hit handling and recovery timing. WeaponBase.update() likewise owns all triggering, cadence, charge and burst logic. There is no host cooldown property or automatic firing gate.
+
+EnemyBase.create() receives the host's unique identity and a suggested position, and returns an Enemy body with Pak-owned stats/state. The Pak advances its own AI clocks. Override take_damage(), on_contact() and on_death() for armor, contact attacks, rewards, transformations and child spawns. These hooks have neutral/no-op defaults: the host does not classify families or infer splitting. The shipped Void Drifter's on_death() creates its two fragment bodies itself.
+
+The core Body/Pilot/Enemy data has only common physical/health state. A Pak can subclass Enemy for its own per-entity fields, as the shipped Paks do. Host swaps preserve identity, position and shared health while the new Pak's factory creates clean local state. Obstacle constructors provide their own health/max_health; build() returns fresh Cover objects and [] is valid.
 
 BackgroundBase.draw() owns scenery without collision geometry. MusicBase owns the independently selected track. Both are separate shuffle channels, alongside pilot, enemy, weapon and obstacles. Drawing, sprite selection and track selection must not advance gameplay or consume gameplay RNG. See the shipped background and music classes for complete examples.
 
-Import state and helpers from system_panic.model: Vec, Controls, Cover, Beam, WIDTH, HEIGHT, unit, normalized and circle_rect. The world owns damage, collision, projectiles, shared state, endless level progression and transition timing. world.component("pilot") and the other literal component names have typed return values for IDE discovery. world.pak(channel) returns the selected Pak's display metadata.
+Import state and geometry helpers from system_panic.model: Body, Pilot, Enemy, Controls, Cover, Vec, WIDTH, HEIGHT, unit, normalized and circle_rect. world.move_body() resolves geometry and returns Motion collision normals. It does not change velocity, reset jumps, wrap the screen or decide bounce behavior. Paks make those decisions; bounds=None permits unconstrained motion before a Pak applies its own wrapping.
+
+world.apply_damage(body, amount) is a neutral health/protection primitive. world.hit_player() and hit_enemy() dispatch to the selected Pak's take_damage() policy. Spawn extra enemies with world.spawn_enemy(position, factory=your_factory); the factory has the same (world, identity, position) signature as EnemyBase.create(). The host registers identities and calls on_death() once after removing dead bodies. The Pak chooses any rewards/child counts.
+
+world.component("pilot") and other literal component names provide typed IDE return values. world.pak(channel) supplies display metadata. The host owns shared run state, fixed-step scheduling, user preferences, the required endless +1 initial-enemy progression and established transition/level-clear flow. Initial spawn/swap protection and the shared cleared-level heal/bonus remain run rules.
+
+### Projectiles and visual effects
+
+Implement ProjectileBase in a local helper such as weapon/projectile.py or enemy/bullet.py. Its constructor provides position, velocity, radius and alive; update(world, dt) owns every motion, lifetime and collision outcome. draw(graphics, surface, world) owns presentation. Append instances to world.projectiles. The host invokes update() once per active step and removes objects marked alive=False; it does not add another motion step, expire shots or infer their team.
+
+The six Paks implement piercing, ricochet, homing, area damage and returning flight in their own projectile classes. There is no host feature-flag constructor for these behaviors. Call the neutral geometry/hit services or apply Pak-specific rules directly. is_threat_to(world, body) is an optional query for Pak demo AI and has no host gameplay interpretation.
+
+Visual-only transients can implement EffectBase.update(dt) and draw(graphics, surface, world) and join world.effects. The host schedules them, including during intermissions. Gameplay effects must instead run in active component/projectile updates. Phase Garden owns its lightning visual in weapon/arc.py. Graphics.render_sprite() is a reusable image/frame sizing primitive; it does not infer the shot's behavior.
 
 Every run receives fresh component instances. Instances stay alive while their component remains selected; a replacement receives clean private state. Different worlds never share private counters or sound handles. Background/music swaps preserve locked pilot/enemy instances and obstacle state.
 
@@ -112,7 +132,7 @@ Every run receives fresh component instances. Instances stay alive while their c
 
 ```json
 {
-  "api_version": 2,
+  "api_version": 3,
   "id": "my_pak",
   "version": "1.0.0",
   "name": "My Pak",
@@ -135,7 +155,7 @@ For a weapon artwork variant, create only weapon/weapon_sheet.png plus a manifes
 
 ```json
 {
-  "api_version": 2,
+  "api_version": 3,
   "id": "alternate_pulse",
   "version": "1.0.0",
   "name": "Alternate Pulse",
@@ -159,6 +179,6 @@ The Windows build discovers paks/ beside SystemPanic.exe and %LOCALAPPDATA%/Syst
 
 Use --pak-dir PATH (repeatable) to replace default roots, --list-paks to inspect discovery, and --solo ID to launch a complete Pak. These switches also work on the Windows executable. Source verification tools accept --pak-dir as well.
 
-API 1's flat pak.py format has been replaced by API 2. Move its functions into the corresponding ABCs, put music in its own component, and split the old arena into background drawing and obstacle geometry. All six supplied Paks are migrated examples. Old arena/pilot shuffle preferences migrate to the corresponding new channels on load.
+API 1 flat modules and API 2 trait-driven components are superseded by API 3. Move firing gates into WeaponBase.update(), actor stats into create(), enemy death behavior into on_death(), and flight/hit logic into Pak projectile classes. Pilot input/ability clocks and per-enemy state are local too. Folder conventions and asset handles are retained. All six supplied Paks are migrated examples. Old arena/pilot shuffle preferences migrate to the corresponding new channels on load.
 
 Keep weapons able to reach all enemy families and cover destructible. Check complete Paks solo and partial Paks in eligible mixes. The compatibility runner tests all pilot/enemy/weapon/obstacle gameplay combinations plus all background/music presentation pairs; it reports these separately. Pak code is trusted local Python, with the normal permissions of the game process. The game does not fetch Paks or install arbitrary dependencies.

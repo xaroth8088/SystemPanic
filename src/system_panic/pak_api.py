@@ -1,4 +1,4 @@
-"""Public Pak API 2. Subclass one ABC per component; keep assets beside its code.
+"""Public Pak API 3. Paks own rules; the host supplies scheduling and primitives.
 
 Only the documented methods/properties below form the contract. Names used to
 store loaded handles, animation timers or other private state are author-owned.
@@ -7,17 +7,17 @@ Each world receives fresh instances; draw/sprite/track must not advance gameplay
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-import math
 from pathlib import Path
 from typing import TYPE_CHECKING
 
 from pygame.surface import Surface
 
 from .pak_assets import AssetLoader, ImageAsset, SoundAsset, SoundPlayer, SpriteFrame
-from .model import Controls, Cover, Enemy, Projectile, Vec
+from .model import Controls, Cover, Enemy, Pilot, Vec
 
 if TYPE_CHECKING:
     from .world import World
+    from .graphics import Graphics
 
 Sprite = ImageAsset | SpriteFrame | None
 
@@ -70,8 +70,19 @@ class PilotBase(SpriteComponent):
     special: str = "X: special"
 
     @abstractmethod
-    def move(self, world: World, dt: float, control: Controls, jump: bool, special: bool) -> None:
-        """Advance the pilot using engine-owned state and world.move_body."""
+    def create(self, world: World, position: Vec) -> Pilot:
+        """Create the Pak's pilot body/stats. The host preserves shared state on swaps."""
+
+    @abstractmethod
+    def update(self, world: World, dt: float, control: Controls) -> None:
+        """Own movement, input edges, abilities and their private timing/state."""
+
+    def on_contact(self, world: World, enemy: Enemy, dt: float) -> None:
+        """Optional response to overlapping an enemy; no built-in ram/dash behavior."""
+
+    def take_damage(self, world: World, damage: float) -> float:
+        """Override for shields, recovery, feedback, etc.; default applies raw damage."""
+        return world.apply_damage(world.player, damage)
 
     def demo_controls(self, world: World) -> Controls | None:
         """Optional ordinary-input policy used only by the QA/demo runner."""
@@ -79,23 +90,58 @@ class PilotBase(SpriteComponent):
 
 
 class EnemyBase(SpriteComponent):
-    family: str = "enemy"
-    splits: int = 0
+    @abstractmethod
+    def create(self, world: World, identity: int, position: Vec) -> Enemy:
+        """Own spawn stats/state. Return this identity, including on component adoption."""
 
     @abstractmethod
     def advance_enemy(self, world: World, enemy: Enemy, dt: float) -> None:
-        """Advance one enemy; the engine already advances its age and timer."""
+        """Own each enemy's AI and clocks. The host only schedules this call."""
+
+    def on_contact(self, world: World, enemy: Enemy, dt: float) -> None:
+        """Optional contact behavior; the host assigns no contact damage."""
+
+    def take_damage(self, world: World, enemy: Enemy, damage: float) -> float:
+        return world.apply_damage(enemy, damage)
+
+    def on_death(self, world: World, enemy: Enemy) -> None:
+        """Own rewards, effects and child spawns. Called once, after removal."""
 
 
 class WeaponBase(SpriteComponent):
-    cooldown: float = .25
+    @abstractmethod
+    def update(self, world: World, dt: float, control: Controls) -> None:
+        """Own triggering/cadence/charges. Append Pak-owned projectiles or effects."""
+
+
+class ProjectileBase(ABC):
+    """A scheduled object, not a menu of built-in weapon features."""
+    def __init__(self, position: Vec, velocity: Vec, radius: float = 4.):
+        self.pos, self.vel = Vec(position), Vec(velocity)
+        self.radius, self.alive = radius, True
 
     @abstractmethod
-    def fire(self, world: World, direction: Vec) -> None:
-        """Create shots/beams using engine combat helpers."""
+    def update(self, world: World, dt: float) -> None:
+        """Own motion, lifetime and every collision outcome. Set alive=False to remove."""
 
-    def sprite_angle(self, world: World, entity: object) -> float:
-        return -math.degrees(math.atan2(entity.vel.y, entity.vel.x)) if isinstance(entity, Projectile) else 0.
+    @abstractmethod
+    def draw(self, graphics: Graphics, surface: Surface, world: World) -> None:
+        """Own projectile presentation. Never mutate simulation here."""
+
+    def is_threat_to(self, world: World, body: object) -> bool:
+        """Optional query for Pak demo AI; the host never infers a projectile team."""
+        return False
+
+
+class EffectBase(ABC):
+    """A visual-only transient. Gameplay rules belong in active component updates."""
+    alive: bool = True
+
+    @abstractmethod
+    def update(self, dt: float) -> None: ...
+
+    @abstractmethod
+    def draw(self, graphics: Graphics, surface: Surface, world: World) -> None: ...
 
 
 class MusicBase(ComponentBase):
@@ -115,6 +161,10 @@ class ObstaclesBase(SpriteComponent):
     def build(self) -> list[Cover]:
         """Return fresh destructible collision geometry; [] is a valid open field."""
 
+    def draw(self, graphics: Graphics, surface: Surface, world: World, obstacle: Cover) -> None:
+        """Default generic obstacle presentation; override for a Pak's own style."""
+        graphics.draw_obstacle(surface, world, obstacle)
+
 
 __all__ = ["ComponentBase", "PilotBase", "EnemyBase", "WeaponBase", "MusicBase", "BackgroundBase", "ObstaclesBase",
-           "ImageAsset", "SoundAsset", "SpriteFrame", "Sprite"]
+           "ProjectileBase", "EffectBase", "ImageAsset", "SoundAsset", "SpriteFrame", "Sprite"]

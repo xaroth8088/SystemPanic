@@ -1,5 +1,5 @@
 # Phase Garden: enemy
 
-Read [this Pak's memory](../AGENTS.md) and [the public ABCs](../../../src/system_panic/pak_api.py). `enemy.py` subclasses `EnemyBase`. Required methods: `advance_enemy(world, enemy, dt), sprite(world, entity=None)`. `family` and `splits` describe enemy state. The engine advances age/timer first.
+Read [this Pak's memory](../AGENTS.md) and [public ABCs](../../../src/system_panic/pak_api.py). `enemy.py` subclasses `EnemyBase`. Required: `create(world, identity, position), advance_enemy(world, enemy, dt), sprite(world, entity=None)`. Own spawn stats/local entity state, AI clocks, take_damage, on_contact and on_death. Rewards and child factories belong here; the host infers no family or splitting trait.
 
-Load local handles in `init()` with `self.load_asset(filename)`. Their attribute names are private choices. Instances belong to one run; use the explicit lifecycle methods for world setup and sound cleanup. Drawing/track selection cannot advance simulation. These files can be copied as a partial component. Keep generated-asset provenance when replacing content.
+Load local handles in `init()`; their attribute names are private choices. Instances belong to one run. Use explicit lifecycle callbacks for setup/cleanup. Rendering cannot advance gameplay. The host schedules projectile/effect callbacks once; do not also advance them from the component update. Local helper modules and assets can be copied as partial components. Preserve asset provenance.

@@ -165,8 +165,7 @@ class PakTests(unittest.TestCase):
         weapon = app.world.component("weapon")
         handle = weapon.sprite(app.world)
         self.assertEqual(handle.path, self.root / "aaa_skin/weapon/alternate.png")
-        self.assertEqual(weapon.cooldown, base.create("weapon").cooldown)
-        app.world.fire_weapon()
+        app.world.component("weapon").update(app.world, 0, Controls(fire=True))
         app.draw()
         self.assertIn(handle.path, app.graphics.images)
         self.assertFalse(addon.complete)
@@ -185,12 +184,12 @@ class PakTests(unittest.TestCase):
         self.make_pak("valid")
         self.make_pak("abstract", ["pilot"], code={"pilot":"from system_panic.pak_api import PilotBase\nclass Broken(PilotBase):\n    def sprite(self, world, entity=None): return None\n"})
         self.make_pak("wrong_base", ["weapon"], code={"weapon":"class Wrong: pass\nCOMPONENT = Wrong\n"})
-        self.make_pak("missing_asset", ["weapon"], code={"weapon":"from system_panic.pak_api import WeaponBase\nclass Broken(WeaponBase):\n    def init(self): self.x = self.load_asset('absent.png')\n    def sprite(self, world, entity=None): return self.x\n    def fire(self, world, direction): pass\n"})
+        self.make_pak("missing_asset", ["weapon"], code={"weapon":"from system_panic.pak_api import WeaponBase\nclass Broken(WeaponBase):\n    def init(self): self.x = self.load_asset('absent.png')\n    def sprite(self, world, entity=None): return self.x\n    def update(self, world, dt, control): pass\n"})
         self.make_pak("import_failure", ["music"], code={"music":"raise SystemExit('broken plugin')\n"})
         catalog = discover([self.root])
         self.assertEqual(tuple(catalog.by_id), ("valid",))
         self.assertEqual(len(catalog.issues), 4)
-        self.assertTrue(any("abstract methods missing: move" in i.message for i in catalog.issues))
+        self.assertTrue(any("abstract methods missing" in i.message for i in catalog.issues))
         self.assertTrue(any("WeaponBase" in i.message for i in catalog.issues))
         self.assertTrue(any("Missing component asset" in i.message for i in catalog.issues))
 
@@ -250,14 +249,20 @@ class PakTests(unittest.TestCase):
     def test_rescan_changed_component_code_and_removed_selection(self):
         folder = self.make_pak("external")
         app = App(self.root / "profile", 24, self.catalog())
-        path = folder / "weapon/weapon.py"
+        path = folder / "weapon/projectile.py"
         timestamp = path.stat()
-        path.write_text(path.read_text(encoding="utf-8").replace("damage=16", "damage=99"), encoding="utf-8")
+        path.write_text(path.read_text(encoding="utf-8").replace("self._damage = 16", "self._damage = 99"), encoding="utf-8")
         os.utime(path, ns=(timestamp.st_atime_ns,timestamp.st_mtime_ns))
         app.reload_paks()
         app.start("external")
-        app.world.fire_weapon()
-        self.assertEqual(app.world.projectiles[0].damage, 99)
+        app.world.component("weapon").update(app.world, 0, Controls(fire=True))
+        app.world.cover = []
+        enemy = app.world.enemies[0]
+        shot = app.world.projectiles[0]
+        enemy.health, enemy.max_health = 200, 200
+        enemy.pos = shot.pos + shot.vel * FIXED_DT
+        shot.update(app.world, FIXED_DT)
+        self.assertEqual(enemy.health, 101)
         app.home()
         app.prefs.enabled = ["removed"]
         app.save()

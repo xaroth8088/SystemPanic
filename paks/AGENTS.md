@@ -2,7 +2,7 @@
 
 Read [the root wiki](../AGENTS.md), [authoring guide](../docs/paks.md), [public ABCs](../src/system_panic/pak_api.py) and [runtime architecture](../docs/architecture.md).
 
-## API 2 contract
+## API 3 contract
 - Each Pak contains role folders: pilot, enemy, weapon, music, background, obstacles. Code and its assets live together. Entry files match the role, except obstacles uses obstacle.py.
 - The corresponding ABCs are PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase and ObstaclesBase. Concrete classes implement their explicit abstract methods. Use init() and load_asset() for local handles; private attribute names are never discovered or prescribed by the engine.
 - A complete Pak supplies all six types and can play solo/coherently. A partial Pak supplies any nonempty subset and joins only its eligible pools. Complementary partials can collectively cover all six without a complete Pak.
@@ -15,4 +15,6 @@ Read [the root wiki](../AGENTS.md), [authoring guide](../docs/paks.md), [public 
 - Keep original AI provenance. export_paks.py records 48 local derivatives/copies across the launch set. No model/generation dependencies enter the runtime.
 - new_pak.py copies a runnable complete or partial starter without overwriting. Record durable decisions in this page, each Pak's memory and the nearby component memories.
 
-API 1 flat modules were superseded and all launch Paks migrated. The core owns endless +1 enemy progression, the initial introduction, the one-second cleared message and quarter-second periodic glitch.
+API 1 flat modules and API 2 trait-driven rules were superseded. API 3 actor factories own stats and local state; weapons receive every raw input step and own cadence. Enemy take_damage/on_contact/on_death hooks own armor, attacks, rewards and children. ProjectileBase/EffectBase helpers in each Pak own their full update/draw behavior. The core only schedules these objects, removes inactive/dead objects, preserves shared body state and supplies neutral geometry/damage services.
+
+The core still owns shared run rules: endless +1 initial-enemy progression, spawn/swap protection, cleared-level heal/bonus, the initial introduction, the one-second cleared message and quarter-second periodic glitch. Do not reintroduce named weapon/enemy/ability features or default combat behavior into that host layer.

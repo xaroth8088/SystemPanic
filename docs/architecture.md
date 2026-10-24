@@ -8,7 +8,7 @@ Level n starts with n normal enemies. Play continues until defeat, with no finit
 
 Content lives under external paks/<id>/ folders. Each role folder contains its class and assets: pilot, enemy, weapon, music, background and obstacles. The public contract is six ABCs in system_panic.pak_api. See [the complete guide and examples](paks.md).
 
-pak.json declares API 2, display metadata and component selection/configuration. The loader validates and builds immutable ComponentSpec definitions (class, asset directory and optional overrides). Catalogs are passed to preferences, simulation, rendering and audio; there is no static launch-game registry.
+pak.json declares API 3, display metadata and component selection/configuration. The loader validates and builds immutable ComponentSpec definitions (class, asset directory and optional overrides). Catalogs are passed to preferences, simulation, rendering and audio; there is no static launch-game registry.
 
 World.component(channel) creates a run-owned instance with an asset context and optional audio service, then calls activate(world). init() loads local handles before world activation. Authors choose their own handle/counter attribute names; only explicit ABC methods/properties are API. World provides typed overloads for literal component names.
 
@@ -16,9 +16,13 @@ Instances remain while their selected provider stays unchanged. Replacements cal
 
 ## Component responsibilities
 
-PilotBase moves engine-owned pilot state; EnemyBase advances enemy behavior after engine timers; WeaponBase creates projectiles/beams through shared helpers. ObstaclesBase builds fresh Cover collision geometry. BackgroundBase draws scenery without changing state or RNG. MusicBase chooses the track for the separate streaming bus. The renderer asks sprite() for a handle/frame and optional transforms, without looking up private fields.
+PilotBase.create() and EnemyBase.create() own actor stats/local state. Their active callbacks receive raw input or a simulation step; the host does not infer input edges, firing readiness, enemy clocks, contact damage, recovery or rewards. Weapons schedule their own attacks. Enemy death hooks decide transformations and child spawns. The removed family/splits/cooldown traits have no replacement feature flags in the host.
 
-Shared services own collision, safe placement, damage, projectile advancement/ownership, invulnerability, score and progression. Music/background swaps preserve locked pilot/enemy instances and obstacle health. Changing pilot resets locomotion state; changing enemy resets enemy behavior state while preserving identity/health; changing obstacles rebuilds cover and repairs overlaps. Protected swaps clear projectiles.
+Body/Pilot/Enemy contain only shared physical/health data. Pak subclasses can add local entity state. Motion reports collision normals without velocity, jump or wrapping policy. apply_damage() performs neutral health/protection arithmetic; hit_player()/hit_enemy() dispatch Pak damage policy. The host registers identities and removes dead enemies before invoking their death hooks once, permitting arbitrary Pak-created children.
+
+ProjectileBase and EffectBase objects are implemented in external Paks. The host schedules their callbacks and prunes inactive objects; it never separately integrates a projectile or implements ricochet, piercing, seeking, explosion or return rules. Projectile/effect rendering also belongs to those objects. Obstacles supply their own health and presentation; there is no platform trait in core geometry.
+
+Shared services provide geometry, asset/audio playback and basic rendering. Shared run rules remain the endless +1 initial-enemy sequence, clear/swap timing, initial/swap protection and cleared-level heal/bonus. Music/background swaps preserve locked actor instances and obstacle health; changing an actor component calls its factory while preserving only shared identity/position/health. Protected swaps clear projectiles.
 
 ## Partial Paks and discovery
 

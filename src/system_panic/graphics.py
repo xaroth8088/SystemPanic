@@ -127,48 +127,40 @@ class Graphics:
         for y in range(0, 800, 40):
             pygame.draw.line(surface, (15, 30, 41), (0, y), (1280, y))
 
+    def draw_obstacle(self, surface, world, wall):
+        """Generic box/sprite presentation; no platform or fixed-health policy."""
+        accent = world.pak("obstacles").color
+        color = tuple(int(c * .24) for c in accent)
+        pygame.draw.rect(surface, (16, 28, 39), wall.rect, border_radius=4)
+        pygame.draw.rect(surface, color, wall.rect, 2, border_radius=4)
+        image = self.component_sprite(world, "obstacles", wall, min(45, max(wall.rect.size)))
+        surface.blit(image, image.get_rect(center=wall.rect.center))
+        if wall.health < wall.max_health:
+            pygame.draw.line(surface, accent, wall.rect.topleft,
+                             (wall.rect.left + wall.rect.width * max(0, wall.health) / wall.max_health, wall.rect.top), 2)
+
     def draw_world(self, surface, world, reduced_motion=False):
         accent = world.pak("obstacles").color
         world.component("background").draw(surface, world)
         pygame.draw.rect(surface, tuple(int(c * .30) for c in accent), (0, 0, WIDTH, HEIGHT), 2)
         for wall in world.cover:
-            color = tuple(int(c * .24) for c in accent)
-            pygame.draw.rect(surface, (16, 28, 39), wall.rect, border_radius=4)
-            pygame.draw.rect(surface, color, wall.rect, 2, border_radius=4)
-            if wall.platform:
-                pygame.draw.line(surface, accent, wall.rect.topleft, wall.rect.topright, 2)
-            else:
-                image = self.component_sprite(world, "obstacles", wall, min(45, max(wall.rect.size)))
-                surface.blit(image, image.get_rect(center=wall.rect.center))
-            if wall.health < 36:
-                pygame.draw.line(surface, accent, wall.rect.topleft,
-                                 (wall.rect.left + wall.rect.width * max(0, wall.health) / 36, wall.rect.top), 2)
+            world.component("obstacles").draw(self, surface, world, wall)
         for enemy in world.enemies:
             if enemy.health <= 0:
                 continue
             size = int(enemy.radius * 3.4)
             image = self.component_sprite(world, "enemy", enemy, size, rotate=not reduced_motion)
-            if enemy.elite:
-                pygame.draw.circle(surface, world.pak("enemy").color, enemy.pos, int(enemy.radius + 7), 1)
             surface.blit(image, image.get_rect(center=enemy.pos))
             if enemy.health < enemy.max_health:
                 bar = pygame.Rect(enemy.pos.x - 16, enemy.pos.y - enemy.radius - 10, 32, 3)
                 pygame.draw.rect(surface, (40, 44, 54), bar)
                 pygame.draw.rect(surface, world.pak("enemy").color, (bar.x, bar.y, bar.width * max(0, enemy.health) / enemy.max_health, 3))
         for shot in world.projectiles:
-            color = world.pak("weapon").color if shot.friendly else (255, 91, 117)
-            tail = shot.pos - shot.vel * .022
-            pygame.draw.line(surface, tuple(int(c * .45) for c in color), tail, shot.pos, 3)
-            if shot.friendly:
-                image = self.component_sprite(world, "weapon", shot, 27 if shot.radius > 4 else 21)
-                surface.blit(image, image.get_rect(center=shot.pos))
-            else:
-                pygame.draw.circle(surface, color, shot.pos, 5)
-                pygame.draw.circle(surface, (255, 220, 225), shot.pos, 2)
-        for beam in world.beams:
-            mid = (beam.start + beam.end) / 2 + Vec(0, math.sin(world.time * 60) * 14)
-            pygame.draw.lines(surface, world.pak("weapon").color, False, [beam.start, mid, beam.end], 3)
-            pygame.draw.lines(surface, (225, 255, 246), False, [beam.start, mid, beam.end], 1)
+            if shot.alive:
+                shot.draw(self, surface, world)
+        for effect in world.effects:
+            if effect.alive:
+                effect.draw(self, surface, world)
         p = world.player
         if world.phase != "dead":
             if p.invulnerable > 0:

@@ -1,5 +1,5 @@
 # Phase Garden Pak
 
-Read [Pak authoring memory](../AGENTS.md). This is a complete API 2 Pak: Slip through the maze. Chain lightning reveals the hidden garden.
+Read [Pak authoring memory](../AGENTS.md). Complete API 3 Pak: Slip through the maze. Chain lightning reveals the hidden garden.
 
-`pak.json` owns display metadata. The six role folders own concrete ABC subclasses and their local assets. Study or copy one folder for a partial Pak. Private handle names are not engine API. Preserve solo play, compatible mixtures and recorded original AI provenance in the project asset manifest.
+The six role folders own their classes, assets and gameplay rules. Actor factories own stats, weapons own cadence, and local projectile/death callbacks own their mechanics. Core primitives do not interpret traits. Preserve independent play, compatible mixtures and recorded original AI provenance.

@@ -18,60 +18,46 @@ class Controls:
 
 
 @dataclass
-class Pilot:
-    pos: Vec = field(default_factory=lambda: Vec(WIDTH / 2, HEIGHT / 2))
+class Body:
+    """Shared physical/damage state; gameplay-specific state belongs to a Pak."""
+    pos: Vec = field(default_factory=Vec)
     vel: Vec = field(default_factory=Vec)
-    angle: float = -math.pi / 2
-    health: float = 100
-    invulnerable: float = 1.5
-    fire_timer: float = 0
-    special_timer: float = 0
-    grounded: bool = False
-    jumps: int = 0
-    phase_timer: float = 0
-    orbit_radius: float = 170
-    orbit_direction: int = 1
+    angle: float = 0.
+    radius: float = 1.
+    health: float = 1.
+    max_health: float = 1.
+    invulnerable: float = 0.
 
 
 @dataclass
-class Enemy:
-    id: int
-    pos: Vec
-    family: str
-    health: float
-    max_health: float
-    radius: float = 14
-    vel: Vec = field(default_factory=Vec)
-    timer: float = 1
-    age: float = 0
-    angle: float = 0
-    size: int = 0
-    elite: bool = False
+class Pilot(Body):
+    pass
 
 
 @dataclass
-class Projectile:
-    pos: Vec
-    vel: Vec
-    kind: str
-    damage: float
-    life: float
-    friendly: bool = True
-    radius: float = 4
-    pierce: int = 0
-    bounce: int = 0
-    age: float = 0
-    hit_ids: set[int] = field(default_factory=set)
-    homing: float = 0.
-    blast: float = 0.
-    return_after: float = -1.
+class Enemy(Body):
+    id: int = 0
 
 
 @dataclass
 class Cover:
     rect: pygame.Rect
-    health: float = 36
-    platform: bool = False
+    health: float
+    max_health: float
+
+
+@dataclass(frozen=True)
+class Motion:
+    """Collision normals, with no automatic jump/velocity/bounce policy."""
+    normals: tuple[Vec, ...] = ()
+
+    @property
+    def blocked_y(self):
+        return any(normal.y for normal in self.normals)
+
+    @property
+    def landed(self):
+        return any(normal.y < 0 for normal in self.normals)
 
 
 @dataclass
@@ -82,13 +68,6 @@ class Particle:
     life: float
     maximum: float
     size: float = 3
-
-
-@dataclass
-class Beam:
-    start: Vec
-    end: Vec
-    life: float = .16
 
 
 def unit(angle: float) -> Vec:

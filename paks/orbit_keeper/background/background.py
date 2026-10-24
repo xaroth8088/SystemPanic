@@ -1,7 +1,6 @@
 """Orbit Keeper: scenery; collision geometry lives in obstacles/."""
-import math
 import pygame
-from system_panic.model import Vec, WIDTH, HEIGHT, Cover, Beam, Controls, normalized, unit, circle_rect
+from system_panic.model import WIDTH, HEIGHT
 from system_panic.pak_api import BackgroundBase
 
 

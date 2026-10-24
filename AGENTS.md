@@ -4,7 +4,7 @@ This is the entry point to the project's agent wiki. Read the relevant linked pa
 
 ## Product contract
 - A single-player offline arcade remix game. Complete Paks work alone; partial Paks supply any nonempty subset of pilot, enemy, weapon, music, background and obstacles for the mix. An enabled mix must cover all six channels.
-- Game content is discovered from external Pak folders, never imported from a fixed content registry. The public ABCs in `src/system_panic/pak_api.py` define the API; each component folder owns its class and local assets. The core owns the loader and shared simulation. Asset-only partial Paks may inherit installed component behavior.
+- Game content is discovered from external Pak folders, never imported from a fixed content registry. The public ABCs in `src/system_panic/pak_api.py` define the API; each component folder owns its class and local assets. The core owns loading, scheduling, neutral primitives and shared run flow. Gameplay rules belong to Paks; no family/splitting/cooldown or projectile-feature traits are interpreted by the host. Asset-only partial Paks may inherit installed component behavior.
 - Progression is always endless: level one starts with one enemy, and each new level adds exactly one initial enemy. There is no finale, level cap, finite-run preference or scripted boss-wave replacement. Pak-specific mid-level spawning (such as asteroid fragments) remains part of that Pak's mechanics.
 - The platform arena is one Pak, not the overall design direction.
 - Six launch Paks: Signal Runner, Void Drifter, Iron Circuit, Sky Forge, Phase Garden, Orbit Keeper.

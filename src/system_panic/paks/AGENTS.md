@@ -2,7 +2,7 @@
 
 This directory contains immutable definitions and discovery, not game content. See [external authoring](../../../paks/AGENTS.md), [format guide](../../../docs/paks.md) and [public ABCs](../pak_api.py).
 
-API 2 discovers six component folder types and imports their conventional Python entry files. A module must provide a concrete subclass of the matching ABC; COMPONENT or a configured class resolves ambiguity. Validate metadata, relative file paths, abstract methods, init-time asset handles and component configuration before admitting a Pak.
+API 3 discovers six component folder types and imports their conventional Python entry files. A module must provide a concrete subclass of the matching ABC; COMPONENT or a configured class resolves ambiguity. Validate metadata, relative file paths, abstract methods, init-time asset handles and component configuration before admitting a Pak.
 
 discover(roots) returns an immutable catalog of class/factory definitions, component eligibility pools, complete Pak IDs and isolated issues. Actual instances are constructed per run; never cache mutable component objects in catalog metadata. Preview instances belong only to the renderer and have no world/audio service.
 

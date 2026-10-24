@@ -148,9 +148,9 @@
         "12": 12,
         "13": 13
       },
-      "health": 100,
+      "health": 98.2,
       "score": 27300,
-      "seconds": 144.47
+      "seconds": 137.58
     }
   ],
   "assets": [
@@ -468,7 +468,7 @@
   "date": "2026-10-24",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 45,
+    "passed": 54,
     "failed": 0
   },
   "compatibility": {
@@ -478,7 +478,7 @@
     "presentation_pairs_checked": 36,
     "full_mix_space": 46656,
     "seed": 24,
-    "max_seconds": 17.5,
+    "max_seconds": 13.6,
     "failures": []
   },
   "local_studio": [
@@ -533,8 +533,8 @@
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "13698fbd5b35a525fe73a6f769cb938947688cb5ead508df4052a7c7e42ab31b",
-    "total_bytes": 47700137,
+    "sha256": "c73391aaee1ebfaf3276baed541db6cc9f9f4bb9b9820c71e544a59b70b30e69",
+    "total_bytes": 47732158,
     "archive": "dist/SystemPanic-Windows-x64.zip",
     "archive_test_passed": true
   },
@@ -622,20 +622,21 @@
     "external_code_and_helpers_executed": true,
     "partial_only_mix_executed": true,
     "wheel_external_layout_verified": true,
-    "executable_sha256": "13698fbd5b35a525fe73a6f769cb938947688cb5ead508df4052a7c7e42ab31b"
+    "executable_sha256": "c73391aaee1ebfaf3276baed541db6cc9f9f4bb9b9820c71e544a59b70b30e69"
   },
   "wheel_install_check": {
     "fresh_prefix_install": true,
-    "api_version": 2,
+    "api_version": 3,
     "paks_discovered": 6,
     "component_folders": 36,
+    "local_projectile_helpers_loaded": true,
     "assets_loaded": true,
     "frames": 240,
     "exit_code": 0,
-    "wheel_sha256": "c6de10cdc68d259619a3d904ca41bd8e92720882f08296715e0f95b3b621caae"
+    "wheel_sha256": "a0d55179f843cbba67bd44adafdbedb9f6d73800c20c2bba262d482027a41abd"
   },
   "dynamic_paks": {
-    "api_version": 2,
+    "api_version": 3,
     "external_launch_paks": 6,
     "partial_components_supported": true,
     "asset_only_inheritance_supported": true,
@@ -662,6 +663,35 @@
     "sound_lifecycle_verified": true,
     "starter_generator_verified": true,
     "public_api_ide_diagnostics": 0,
-    "legacy_flat_layout_absent": true
+    "legacy_flat_layout_absent": true,
+    "pak_owned_combat_rules": true,
+    "trait_driven_host_removed": true,
+    "pak_owned_projectiles_and_effects": true,
+    "core_world_ide_diagnostics": 0
+  },
+  "rule_boundary_checks": {
+    "custom_rules_tests": 9,
+    "raw_input_delivery": true,
+    "pak_factories_and_local_actor_state": true,
+    "arbitrary_death_children_and_rewards": true,
+    "pak_projectile_motion_and_collision": true,
+    "neutral_geometry_and_damage": true,
+    "controlled_pak_effect_render_inspected": true,
+    "former_actor_and_projectile_traits_removed": [
+      "family",
+      "splits",
+      "cooldown",
+      "fire_timer",
+      "special_timer",
+      "phase_timer",
+      "jumps",
+      "orbit_radius",
+      "friendly",
+      "pierce",
+      "bounce",
+      "homing",
+      "blast",
+      "return_after"
+    ]
   }
 }

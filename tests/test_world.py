@@ -10,11 +10,20 @@ os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "1")
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from system_panic.model import Controls, Vec, Projectile, FIXED_DT, circle_rect, WIDTH, HEIGHT
+from system_panic.model import Controls, Vec, FIXED_DT, circle_rect, WIDTH, HEIGHT
+from system_panic.pak_api import ProjectileBase
 from system_panic.paks import get_catalog, CHANNELS, GAMEPLAY_CHANNELS
 PAKS = get_catalog().paks
 from system_panic.preferences import Preferences
 from system_panic.world import World, SWAP_GLITCH_SECONDS, LEVEL_CLEAR_SECONDS
+
+
+class CountingShot(ProjectileBase):
+    def update(self, world, dt):
+        self.pos += self.vel * dt
+
+    def draw(self, graphics, surface, world):
+        pass
 
 
 class WorldTests(unittest.TestCase):
@@ -42,7 +51,7 @@ class WorldTests(unittest.TestCase):
                 self.assertEqual(world.wave, 1)
                 self.assertGreater(world.time, time)
                 self.assertNotEqual(world.player.pos, position)
-                self.assertGreater(world.player.fire_timer, 0)
+                self.assertTrue(world.projectiles or world.effects)
 
     def test_level_clear_has_its_own_message_delay_then_direct_action(self):
         world = World(Preferences(), seed=24, solo="signal_runner")
@@ -71,7 +80,7 @@ class WorldTests(unittest.TestCase):
         world.advance(FIXED_DT, held)
         self.assertGreater(world.time, time)
         self.assertNotEqual(world.player.pos, position)
-        self.assertGreater(world.player.fire_timer, 0)
+        self.assertTrue(world.projectiles or world.effects)
 
     def test_six_solo_paks_hold_their_identity_and_clear_a_wave(self):
         from system_panic.app import autopilot
@@ -95,11 +104,12 @@ class WorldTests(unittest.TestCase):
             world.enemies.clear()
             world.spawn_enemy(world.safe_position(Vec(700, 220), avoid_player=True))
             world.phase = "active"
+            initial_health = sum(e.health for e in world.enemies) + sum(c.health for c in world.cover)
             for _ in range(20):
                 world.step(FIXED_DT, Controls(.7, -.7, fire=True, special=True))
             self.assertTrue(math.isfinite(world.player.pos.x) and math.isfinite(world.player.pos.y))
             self.assertGreater(world.player.health, 0)
-            self.assertTrue(world.projectiles or world.beams or world.kills or world.player.fire_timer > 0)
+            self.assertTrue(world.projectiles or world.effects or world.kills or sum(e.health for e in world.enemies) + sum(c.health for c in world.cover) < initial_health)
 
     def test_shuffle_preserves_shared_state_resets_behavior_and_repairs_cover(self):
         world = World(Preferences(enabled=["signal_runner", "void_drifter"]), seed=9)
@@ -108,14 +118,14 @@ class WorldTests(unittest.TestCase):
         world.wave = 3
         original_ids = [e.id for e in world.enemies]
         original_health = [e.health for e in world.enemies]
-        world.projectiles.append(Projectile(Vec(10, 10), Vec(2, 2), "hostile", 10, 1, False))
+        world.projectiles.append(CountingShot(Vec(10, 10), Vec(2, 2)))
         for _ in range(15):
             world.shuffle()
             self.assertEqual(world.player.health, 43)
             self.assertEqual((world.score, world.wave), (800, 3))
             self.assertEqual([e.id for e in world.enemies], original_ids)
             self.assertEqual([e.health for e in world.enemies], original_health)
-            self.assertTrue(all(e.family == world.component("enemy").family for e in world.enemies))
+            self.assertTrue(all(type(e).__module__ == type(world.component("enemy")).__module__ for e in world.enemies))
             self.assertEqual(world.projectiles, [])
             self.assertGreaterEqual(world.player.invulnerable, 1.5)
             self.assertFalse(any(circle_rect(world.player.pos, 12, c.rect) for c in world.cover))
@@ -154,7 +164,7 @@ class WorldTests(unittest.TestCase):
         world = World(Preferences(), 0, solo="signal_runner")
         world.phase = "active"
         world.cover = []
-        world.projectiles = [Projectile(Vec(100, 100), Vec(120, 0), "pulse", 10, 1)]
+        world.projectiles = [CountingShot(Vec(100, 100), Vec(120, 0))]
         world.step(FIXED_DT, Controls())
         self.assertEqual(world.projectiles[0].pos, Vec(101, 100))
         world.enemies[0].health = 0
@@ -166,9 +176,9 @@ class WorldTests(unittest.TestCase):
     def test_invulnerability_damage_and_death_state(self):
         world = World(Preferences(), 1)
         world.player.invulnerable = 0
-        world.hurt_player(20)
+        world.hit_player(20)
         self.assertEqual(world.player.health, 80)
-        world.hurt_player(20)
+        world.hit_player(20)
         self.assertEqual(world.player.health, 80)
         world.player.health = 0
         world.phase = "active"
@@ -182,7 +192,7 @@ class WorldTests(unittest.TestCase):
                 for level in range(1, 21):
                     self.assertEqual(world.wave, level)
                     self.assertEqual(len(world.enemies), level)
-                    self.assertTrue(all(not enemy.elite for enemy in world.enemies))
+                    self.assertTrue(all(enemy.health > 0 for enemy in world.enemies))
                     world.enemies.clear()
                     world.phase = "active"
                     world.step(FIXED_DT, Controls())
@@ -209,6 +219,6 @@ class WorldTests(unittest.TestCase):
         from system_panic.model import Cover
         import pygame
         world = World(Preferences(), 1)
-        world.cover = [Cover(pygame.Rect(0, 0, WIDTH, HEIGHT))]
+        world.cover = [Cover(pygame.Rect(0, 0, WIDTH, HEIGHT), 36, 36)]
         pos = world.safe_position(Vec(200, 200))
         self.assertFalse(any(circle_rect(pos, 14, c.rect) for c in world.cover))

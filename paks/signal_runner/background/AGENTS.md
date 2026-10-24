@@ -1,5 +1,5 @@
 # Signal Runner: background
 
-Read [this Pak's memory](../AGENTS.md) and [the public ABCs](../../../src/system_panic/pak_api.py). `background.py` subclasses `BackgroundBase`. Required methods: `draw(surface, world)`. Draw scenery only; do not change collision geometry, gameplay state or RNG.
+Read [this Pak's memory](../AGENTS.md) and [public ABCs](../../../src/system_panic/pak_api.py). `background.py` subclasses `BackgroundBase`. Required: `draw(surface, world)`. Own scenery; do not change gameplay state, geometry or RNG while rendering.
 
-Load local handles in `init()` with `self.load_asset(filename)`. Their attribute names are private choices. Instances belong to one run; use the explicit lifecycle methods for world setup and sound cleanup. Drawing/track selection cannot advance simulation. These files can be copied as a partial component. Keep generated-asset provenance when replacing content.
+Load local handles in `init()`; their attribute names are private choices. Instances belong to one run. Use explicit lifecycle callbacks for setup/cleanup. Rendering cannot advance gameplay. The host schedules projectile/effect callbacks once; do not also advance them from the component update. Local helper modules and assets can be copied as partial components. Preserve asset provenance.

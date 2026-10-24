@@ -1,5 +1,5 @@
 # Sky Forge: music
 
-Read [this Pak's memory](../AGENTS.md) and [the public ABCs](../../../src/system_panic/pak_api.py). `music.py` subclasses `MusicBase`. Required methods: `track(world=None)`. Return a local sound handle or None for silence. The engine owns streaming/music volume.
+Read [this Pak's memory](../AGENTS.md) and [public ABCs](../../../src/system_panic/pak_api.py). `music.py` subclasses `MusicBase`. Required: `track(world=None)`. Return a local sound handle or None. The host streams it and applies music volume.
 
-Load local handles in `init()` with `self.load_asset(filename)`. Their attribute names are private choices. Instances belong to one run; use the explicit lifecycle methods for world setup and sound cleanup. Drawing/track selection cannot advance simulation. These files can be copied as a partial component. Keep generated-asset provenance when replacing content.
+Load local handles in `init()`; their attribute names are private choices. Instances belong to one run. Use explicit lifecycle callbacks for setup/cleanup. Rendering cannot advance gameplay. The host schedules projectile/effect callbacks once; do not also advance them from the component update. Local helper modules and assets can be copied as partial components. Preserve asset provenance.

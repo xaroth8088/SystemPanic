@@ -13,7 +13,7 @@ Content is dynamically loaded from external folders. The six launch Paks use the
 ## Architectural choices
 - New implementation, historical source archived under `legacy/`.
 - Desktop Python/Pygame keeps installation modest and the game offline.
-- API 2 is defined by PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase and ObstaclesBase. Component classes and their assets live together in role folders. Frozen catalog definitions create fresh, run-owned instances. Mutable handles/counters belong to those instances and engine state belongs to World.
+- API 3 is defined by PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase and ObstaclesBase. Component classes and their assets live together in role folders. Frozen catalog definitions create fresh, run-owned instances. Mutable handles/counters belong to those instances and engine state belongs to World.
 - Catalogs are discovered before preferences and passed through runtime services. Library rescans replace catalogs outside active runs. UI pagination and empty/invalid-install handling are part of the contract; do not assume six installed entries.
 - Shared state across shuffles is deliberately small. Health, score, wave, entity positions and enemy health survive; movement/AI-specific transient state is reinitialized.
 - All weapons can reach enemies across the screen; destructible cover and safe relocation prevent incompatible mixtures from trapping the player.

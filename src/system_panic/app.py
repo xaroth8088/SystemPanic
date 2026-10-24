@@ -361,7 +361,7 @@ class App:
         g.text(self.canvas, f"{len(w.enemies):02d} HOSTILES", (700, 98), 15, MUTED, mono=True)
         g.text(self.canvas, "HULL", (968, 98), 12, MUTED, mono=True)
         pygame.draw.rect(self.canvas, EDGE, (1020, 100, 170, 12), border_radius=3)
-        pygame.draw.rect(self.canvas, CYAN if w.player.health > 30 else (255, 119, 137), (1020, 100, max(0, 170 * w.player.health / 100), 12), border_radius=3)
+        pygame.draw.rect(self.canvas, CYAN if w.player.health > 30 else (255, 119, 137), (1020, 100, max(0, 170 * w.player.health / w.player.max_health), 12), border_radius=3)
         g.text(self.canvas, f"{math.ceil(w.player.health):03d}", (1238, 94), 17, TEXT, mono=True, anchor="topright")
         g.draw_world(self.arena_surface, w, self.prefs.reduced_motion)
         frame = pygame.transform.scale(self.arena_surface, VIEWPORT.size)
