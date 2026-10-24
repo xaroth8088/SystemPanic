@@ -1,0 +1,206 @@
+{
+  "runtime": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+  "pygame": "2.6.1",
+  "runs": [
+    {
+      "pak": "signal_runner",
+      "phase": "victory",
+      "wave": 8,
+      "kills": 88,
+      "health": 51.3,
+      "score": 17900,
+      "seconds": 79.22
+    },
+    {
+      "pak": "void_drifter",
+      "phase": "victory",
+      "wave": 8,
+      "kills": 264,
+      "health": 90.9,
+      "score": 28460,
+      "seconds": 143.35
+    },
+    {
+      "pak": "iron_circuit",
+      "phase": "victory",
+      "wave": 8,
+      "kills": 88,
+      "health": 55.5,
+      "score": 17900,
+      "seconds": 100.12
+    },
+    {
+      "pak": "sky_forge",
+      "phase": "victory",
+      "wave": 8,
+      "kills": 88,
+      "health": 100,
+      "score": 17900,
+      "seconds": 74.47
+    },
+    {
+      "pak": "phase_garden",
+      "phase": "victory",
+      "wave": 8,
+      "kills": 88,
+      "health": 100,
+      "score": 17900,
+      "seconds": 57.02
+    },
+    {
+      "pak": "orbit_keeper",
+      "phase": "victory",
+      "wave": 8,
+      "kills": 88,
+      "health": 13.3,
+      "score": 17900,
+      "seconds": 101.75
+    }
+  ],
+  "assets": [
+    {
+      "file": "assets/audio/production/clear.ogg",
+      "bytes": 25337,
+      "sha256": "36c98b00d865aeba55543c631e40f3623e6d8d22a808fd545cb226964b240b44"
+    },
+    {
+      "file": "assets/audio/production/hurt.ogg",
+      "bytes": 8465,
+      "sha256": "434f4ab372ab8c19f751da2a80a6d31128b9f5b0e238f2ee46c4775f6fff8f78"
+    },
+    {
+      "file": "assets/audio/production/impact.ogg",
+      "bytes": 13328,
+      "sha256": "b7d23fc09dbc534dcfb340a5ec51eb1eb8715a324551bd35bf7da8b83b32dec8"
+    },
+    {
+      "file": "assets/audio/production/iron_circuit.ogg",
+      "bytes": 428838,
+      "sha256": "a88e1355f502f92bf9bc81862f88a97004c59d291bb5c7253c192ae04bb27449"
+    },
+    {
+      "file": "assets/audio/production/orbit_keeper.ogg",
+      "bytes": 476925,
+      "sha256": "7484649e4f60ae49021e0624056f68e39141b9eaa19cb47e0c32ff51ae8c8e35"
+    },
+    {
+      "file": "assets/audio/production/phase_garden.ogg",
+      "bytes": 443362,
+      "sha256": "145753f7b7d70370f603cf4a31bcab84abf758b8bf6f162615d1be07ceac97d9"
+    },
+    {
+      "file": "assets/audio/production/select.ogg",
+      "bytes": 6681,
+      "sha256": "6869c7908051afe7af47fe62c0810044867934a78a1470d7c0839477c883adb8"
+    },
+    {
+      "file": "assets/audio/production/shot.ogg",
+      "bytes": 7510,
+      "sha256": "63ba06e9538ef1e956cbb14e378ba849e1225df4497a5ad0b3a94ef6fb11e396"
+    },
+    {
+      "file": "assets/audio/production/shuffle.ogg",
+      "bytes": 27789,
+      "sha256": "7ebe07289d75ae12288e5bd860e152242d6a485c87ff84641b4f4396a62b667e"
+    },
+    {
+      "file": "assets/audio/production/signal_runner.ogg",
+      "bytes": 486722,
+      "sha256": "a26b7acac14a30cfaa94a58e4f4285646cb6b0cb8cf0797a9e19c10cc9cb9b25"
+    },
+    {
+      "file": "assets/audio/production/sky_forge.ogg",
+      "bytes": 516921,
+      "sha256": "992b1de09191256f20d5adf68d9f554e561cff241dd2a0cc5d1c2118182bcd24"
+    },
+    {
+      "file": "assets/audio/production/void_drifter.ogg",
+      "bytes": 482064,
+      "sha256": "018711f6d5e3501b8400f78c16690dbb5f85c8fdcc41b21abd007419e8d53f91"
+    },
+    {
+      "file": "assets/images/sprites-source.png",
+      "bytes": 2230133,
+      "sha256": "21da7a4462b6c653d61204df78782c6a015eebe18150f51859c569f8de2404fb"
+    },
+    {
+      "file": "assets/images/title.png",
+      "bytes": 2352934,
+      "sha256": "d5fa5fbb7753fb569bf22d0509425066c89b03b39d689de69c64509d4c958506"
+    }
+  ],
+  "date": "2026-10-24",
+  "branch": "codex/revival",
+  "unit_tests": {
+    "passed": 17,
+    "failed": 0
+  },
+  "compatibility": {
+    "combinations": 1296,
+    "opening_wave_cleared": 1296,
+    "difficulty": "relaxed",
+    "seed": 24,
+    "max_seconds": 44.18333333333333,
+    "failures": []
+  },
+  "local_studio": [
+    {
+      "model": "sm-sfx",
+      "seconds": 1,
+      "seed": 742,
+      "file": "output\\verification\\local-sm-sfx-offline.wav",
+      "status": "Generated locally in 4.1s. Saved to 05330999400b46b08dfb9db4e80c5d2e.wav.",
+      "server_model_downloads_disabled": true
+    },
+    {
+      "model": "sm-music",
+      "seconds": 4,
+      "seed": 742,
+      "file": "output\\verification\\local-sm-music-offline.wav",
+      "status": "Generated locally in 4.2s. Saved to d5e8ee115bc542a88e007b14aa658691.wav.",
+      "server_model_downloads_disabled": true
+    }
+  ],
+  "packaged_checks": [
+    {
+      "pak": "signal_runner",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "void_drifter",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "iron_circuit",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "sky_forge",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "phase_garden",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "orbit_keeper",
+      "frames": 240,
+      "exit_code": 0
+    }
+  ],
+  "windows_build": {
+    "file": "dist/SystemPanic/SystemPanic.exe",
+    "sha256": "712bbe8110abb7278772f6d86963305ffaebccd770e25cf07beb4e2353d26eff",
+    "total_bytes": 44215184
+  },
+  "limitations": [
+    "Automated controls used relaxed difficulty and seed 24; human balance testing remains.",
+    "Desktop Computer Use launch approval timed out; no claim of a human playtest.",
+    "Keyboard/mouse input; gamepad support and remapping are not implemented."
+  ]
+}

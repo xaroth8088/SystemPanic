@@ -1,0 +1,95 @@
+#System Panic
+_A game where anything can happen_
+
+## What is it?
+
+Remember [ROM CHECK FAIL](http://www.farbs.org/romcheckfail.php)?  System Panic is inspired by that, but practically anyone can extend it.
+
+## How do I run it?
+
+There are no packaged versions yet, so you'll need to already have a Python 3.12+ environment set up.  As usual for Python projects, a virtual environment is *strongly* encouraged. 
+
+## How do I add to it?
+
+If you want to submit a new Pak, take a look at one of the existing Paks, copy it, and start making modifications.
+Once you've got something interesting to add to the mix, just open a PR.
+
+Docs will come eventually.
+
+**NOTE**: We absolutely will **NOT** accept Paks with ripped sprites or otherwise unauthorized artwork.  Be sure to update
+`README.md` with the credits for your Pak.
+
+## What about changes to the core?
+
+This is still early days, so please file an issue on GitHub with your idea so that we can ensure it meshes well with the
+rest of our plans before starting to write new code.  We promise to try to be responsive.  :D
+
+## Dev setup stuff?
+
+1. Python 3.12+
+2. `pip install -r requirements.txt`
+3. Profit?
+
+Please format code with `black -t py312 .` for any PRs.
+
+## What's on tap for the future?
+* More Paks!
+* Code cleanup (this started as weekend hackery, and it shows)
+* Performance improvements
+* Pre-built binaries to play with
+* All the normal game stuff (settings, joystick support, more game states than the main game, etc.)
+* Ability to download Paks from arbitrary servers, with appropriate sandboxing
+* A central Pak repository, for finding new Paks
+* Some built-in shared functionality (such as Box2D physics, etc.) to make common Pak feature developments easier.
+* Documentation
+* Tests
+
+# Who is "we"?
+* [Geoffrey Benson](https://github.com/xaroth8088)
+
+## Credits for packaged art
+
+### Enemies
+* slime_enemy: patvanmackelberg, license: CC0, sliced from original at http://opengameart.org/content/slime-2-frame-animation-32x32
+* bat_enemy: AntumDeluge, license: CC-BY 3.0, sliced from original at https://opengameart.org/content/bat-rework
+
+
+### Players
+* mage_player missile: Master484, license: CC0, sliced from original at [http://opengameart.org/content/bullet-collection-2-m484-games](http://opengameart.org/content/bullet-collection-2-m484-games)
+
+
+### Platforms
+* brick_platform: Nimnon, license: CC0, sliced from original at https://opengameart.org/content/blue-brick-tileset
+* grass_platform: Redfill Production, license: CC-BY-SA 4.0, sliced from original at https://opengameart.org/content/grass-and-dirt-sprite-sheet
+
+
+## Credits for packaged art (v1)
+
+### Music
+* BGM_Alpha - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
+* BGM_Delta - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
+* BGM_Omega - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
+* BGM_Menu - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
+
+### Players
+* ExamplePlayer1 spritesheet - pondomaniac, license: CC0, [http://opengameart.org/content/hero-0](http://opengameart.org/content/hero-0)
+* ExamplePlayer2 spritesheet - eracoon, license: CC0, [http://opengameart.org/content/isometric-vehicles](http://opengameart.org/content/isometric-vehicles)
+* ExamplePlayer3 spritesheet - Disthron, license: CC0, [http://opengameart.org/content/mr-knife-guy-animated](http://opengameart.org/content/mr-knife-guy-animated)
+
+### Enemies
+* ExampleEnemy1 spritesheet - patvanmackelberg, license: CC0, [http://opengameart.org/content/slime-2-frame-animation-32x32](http://opengameart.org/content/slime-2-frame-animation-32x32)
+* ExampleEnemy2 spritesheet - scx, license: CC0, [http://opengameart.org/content/monsters-2](http://opengameart.org/content/monsters-2)
+
+### Missiles
+* ExampleMissile 1 spritesheet - Master484, license: CC0, sliced from original at [http://opengameart.org/content/bullet-collection-2-m484-games](http://opengameart.org/content/bullet-collection-2-m484-games)
+* ExampleMissile 2 spritesheet - Master484, license: CC0, sliced from original at [http://opengameart.org/content/bullet-collection-2-m484-games](http://opengameart.org/content/bullet-collection-2-m484-games)
+
+### Level Tiles
+* ExampleLevelTiles1 spritesheet - GrumpyDiamond, license: CC0, http://opengameart.org/content/seamless-wall
+
+### Fonts
+* Press Start 2P - Copyright 2012 The Press Start 2P Project Authors (cody@zone38.net), license: OFL
+
+### Sound
+* Glitch - HarleyGlitch, license: CC-BY-3.0, [https://freesound.org/people/HarleyGlitch/sounds/332711/](https://freesound.org/people/HarleyGlitch/sounds/332711/) (converted to ogg)
+* Glitch-9 - HarleyGlitch, license: CC-BY-3.0, [https://freesound.org/people/HarleyGlitch/sounds/333982/](https://freesound.org/people/HarleyGlitch/sounds/333982/) (converted to ogg)

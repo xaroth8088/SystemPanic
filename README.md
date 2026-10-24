@@ -1,95 +1,99 @@
-#System Panic
-_A game where anything can happen_
+# System Panic
 
-## What is it?
+**Six worlds. One unstable system.**
 
-Remember [ROM CHECK FAIL](http://www.farbs.org/romcheckfail.php)?  System Panic is inspired by that, but practically anyone can extend it.
+An offline arcade game about adapting as its rules change around you. Play any of six complete Paks alone, shuffle whole Paks together, or independently remix their pilots, weapons, enemies and arenas. Clear eight increasingly crowded waves to restore the system, or enable endless play.
 
-## How do I run it?
+This is a fresh implementation. The 2017 game and unfinished 2025 rewrite are preserved under [`legacy/`](legacy/AGENTS.md); the revival does not import their code or assets.
 
-There are no packaged versions yet, so you'll need to already have a Python 3.12+ environment set up.  As usual for Python projects, a virtual environment is *strongly* encouraged. 
+## Play on Windows
 
-## How do I add to it?
+Double-click **`run.bat`**. It uses Python 3.12, creates a project-local virtual environment and installs Pygame 2.6.1, the only runtime dependency. After that first setup, playing requires no network connection.
 
-If you want to submit a new Pak, take a look at one of the existing Paks, copy it, and start making modifications.
-Once you've got something interesting to add to the mix, just open a PR.
+If a standalone build is present, run **`dist/SystemPanic/SystemPanic.exe`**. Keep the entire `SystemPanic` folder together; no Python installation is needed for that build.
 
-Docs will come eventually.
+```sh
+python -m pip install -r requirements.txt
+python play.py
+```
 
-**NOTE**: We absolutely will **NOT** accept Paks with ripped sprites or otherwise unauthorized artwork.  Be sure to update
-`README.md` with the credits for your Pak.
+Source also runs on Linux/macOS with Python 3.12+ and Pygame; the standalone build targets Windows x64.
 
-## What about changes to the core?
+## The six Paks
 
-This is still early days, so please file an issue on GitHub with your idea so that we can ensure it meshes well with the
-rest of our plans before starting to write new code.  We promise to try to be responsive.  :D
+| Pak | Movement | Weapon | Opposition |
+|---|---|---|---|
+| Signal Runner | Eight-way strafing and invulnerable dash | Rapid pulse fire | Chasing insect swarm |
+| Void Drifter | Rotation, inertial thrust and reverse braking | Piercing lance | Asteroids that fracture into smaller rocks |
+| Iron Circuit | Constant driving, steering and overdrive ramming | Ricocheting scattershot | Aimed gun turrets |
+| Sky Forge | Gravity, double jumping and rising forge leap | Seeking explosive fireballs | Hopping forge crawlers |
+| Phase Garden | Rhythmic step-dashes and blinking through cover | Four-target chain lightning | Teleporting spectral flowers |
+| Orbit Keeper | Angular/radial orbital movement and shield reversal | Returning glaives | Circling sentinels |
 
-## Dev setup stuff?
+Each Pak has its own arena geometry, original generated sprites and soundtrack. All cover can be destroyed and every weapon can reach each enemy family. Shared engine state survives a shuffle; opaque movement/AI state does not.
 
-1. Python 3.12+
-2. `pip install -r requirements.txt`
-3. Profit?
+## Controls and preferences
 
-Please format code with `black -t py312 .` for any PRs.
+- **Arrows / WASD:** current pilot's movement; the live footer shows the active controls.
+- **Space:** hold to fire. Aim assistance targets the nearest enemy by default and can be disabled.
+- **X / Shift:** current pilot's special, with a short cooldown.
+- **Escape:** pause or back. Losing window focus also pauses gameplay.
+- **F11:** fullscreen.
+- **Mouse, or Tab / arrows + Enter:** menus. Enter from the library starts the selected mix.
 
-## What's on tap for the future?
-* More Paks!
-* Code cleanup (this started as weekend hackery, and it shows)
-* Performance improvements
-* Pre-built binaries to play with
-* All the normal game stuff (settings, joystick support, more game states than the main game, etc.)
-* Ability to download Paks from arbitrary servers, with appropriate sandboxing
-* A central Pak repository, for finding new Paks
-* Some built-in shared functionality (such as Box2D physics, etc.) to make common Pak feature developments easier.
-* Documentation
-* Tests
+The library's **Enabled** buttons control the remix pool. **Play Solo** starts any Pak with every component locked to it. At least one Pak must remain enabled.
 
-# Who is "we"?
-* [Geoffrey Benson](https://github.com/xaroth8088)
+Preferences include coherent/component shuffle, 5–30 second intervals, component locks, three difficulty levels, finite/endless runs, audio levels, aim assistance, reduced motion and fullscreen. Gameplay changes apply to the next run; audio/display changes apply immediately. Preferences and best score save to `%LOCALAPPDATA%/SystemPanic/preferences.json` on Windows, or the platform's user data directory elsewhere.
 
-## Credits for packaged art
+```sh
+python play.py --solo void_drifter --seed 24
+python play.py --data-dir ./my-local-profile
+python play.py --headless --demo --frames 480 --solo sky_forge --seed 24 --screenshot output/sky.png
+```
 
-### Enemies
-* slime_enemy: patvanmackelberg, license: CC0, sliced from original at http://opengameart.org/content/slime-2-frame-animation-32x32
-* bat_enemy: AntumDeluge, license: CC-BY 3.0, sliced from original at https://opengameart.org/content/bat-rework
+## Development and agent memory
 
+Start at [`AGENTS.md`](AGENTS.md). Linked wiki pages live beside the runtime, Paks, tests, asset tools and historical code. See [`docs/architecture.md`](docs/architecture.md) for the Pak callback interface.
 
-### Players
-* mage_player missile: Master484, license: CC0, sliced from original at [http://opengameart.org/content/bullet-collection-2-m484-games](http://opengameart.org/content/bullet-collection-2-m484-games)
+```sh
+python -m unittest discover -s tests -v
+python tools/verify.py
+python tools/compatibility.py
+```
 
+`verify.py` plays six eight-wave solo runs with deterministic ordinary inputs and writes screenshots plus a report. `compatibility.py` plays an opening wave in all **1,296** pilot/weapon/enemy/arena mixtures using a fixed seed and relaxed difficulty. Automated gameplay checks complement human balance testing.
 
-### Platforms
-* brick_platform: Nimnon, license: CC0, sliced from original at https://opengameart.org/content/blue-brick-tileset
-* grass_platform: Redfill Production, license: CC-BY-SA 4.0, sliced from original at https://opengameart.org/content/grass-and-dirt-sprite-sheet
+## Original AI asset pipeline
 
+Generation is separate from the game. The runtime only reads local finished assets and never contacts a model service.
 
-## Credits for packaged art (v1)
+- Sprite atlas and title illustration: built-in **OpenAI imagegen**. Full prompts and inspected atlas geometry: [`tools/assetforge/image-prompts.json`](tools/assetforge/image-prompts.json).
+- Six music tracks and all six effects: **Stable Audio 3**, generated locally using the [official Windows LiteRT backend](https://github.com/Stability-AI/stable-audio-3/tree/main/optimized/tflite). Initial cloud generations are retained as source history; the game ships mastered local outputs.
+- [`assets/manifest.json`](assets/manifest.json) records prompts, seeds, providers, hashes and production processing. Historical third-party art and music are not included in the new distribution.
 
-### Music
-* BGM_Alpha - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
-* BGM_Delta - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
-* BGM_Omega - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
-* BGM_Menu - CodeManu, license: CC0, [http://opengameart.org/content/the-slimekings-tower-ost-retro-like](http://opengameart.org/content/the-slimekings-tower-ost-retro-like) (converted to ogg)
+The local generator has its own environment and cached model weights under ignored `.asset-tools/`, separate from the game's environment and build. After the initial downloads, music and effects generation work offline. `run_audio.bat` starts a loopback-only browser studio at **http://127.0.0.1:7871**, with no public link.
 
-### Players
-* ExamplePlayer1 spritesheet - pondomaniac, license: CC0, [http://opengameart.org/content/hero-0](http://opengameart.org/content/hero-0)
-* ExamplePlayer2 spritesheet - eracoon, license: CC0, [http://opengameart.org/content/isometric-vehicles](http://opengameart.org/content/isometric-vehicles)
-* ExamplePlayer3 spritesheet - Disthron, license: CC0, [http://opengameart.org/content/mr-knife-guy-animated](http://opengameart.org/content/mr-knife-guy-animated)
+```sh
+python tools/assetforge/local.py install
+python tools/assetforge/local.py generate --job all --offline
+python -m pip install ".[assets]"
+python tools/assetforge/prepare.py
+python tools/assetforge/manifest.py
+```
 
-### Enemies
-* ExampleEnemy1 spritesheet - patvanmackelberg, license: CC0, [http://opengameart.org/content/slime-2-frame-animation-32x32](http://opengameart.org/content/slime-2-frame-animation-32x32)
-* ExampleEnemy2 spritesheet - scx, license: CC0, [http://opengameart.org/content/monsters-2](http://opengameart.org/content/monsters-2)
+Mastering trims/fades effects and normalizes/crossfades music into loops. Installed FFmpeg produces Vorbis files under `assets/audio/production`; without it, mastering produces PCM WAVs. Image generation uses the built-in tool, followed by copying selected outputs to `assets/images` and recording their prompt/hash.
 
-### Missiles
-* ExampleMissile 1 spritesheet - Master484, license: CC0, sliced from original at [http://opengameart.org/content/bullet-collection-2-m484-games](http://opengameart.org/content/bullet-collection-2-m484-games)
-* ExampleMissile 2 spritesheet - Master484, license: CC0, sliced from original at [http://opengameart.org/content/bullet-collection-2-m484-games](http://opengameart.org/content/bullet-collection-2-m484-games)
+## Build a Windows distribution
 
-### Level Tiles
-* ExampleLevelTiles1 spritesheet - GrumpyDiamond, license: CC0, http://opengameart.org/content/seamless-wall
+```sh
+python -m pip install ".[build]"
+python tools/build.py
+```
 
-### Fonts
-* Press Start 2P - Copyright 2012 The Press Start 2P Project Authors (cody@zone38.net), license: OFL
+The build packages only the active runtime, production assets and license. Historical prototypes, source WAVs, generation code, credentials and development environments are excluded. Assets resolve independently of the current working directory.
 
-### Sound
-* Glitch - HarleyGlitch, license: CC-BY-3.0, [https://freesound.org/people/HarleyGlitch/sounds/332711/](https://freesound.org/people/HarleyGlitch/sounds/332711/) (converted to ogg)
-* Glitch-9 - HarleyGlitch, license: CC-BY-3.0, [https://freesound.org/people/HarleyGlitch/sounds/333982/](https://freesound.org/people/HarleyGlitch/sounds/333982/) (converted to ogg)
+The current input UI uses keyboard and mouse. Gamepad support, remappable controls and an online catalog are outside this version's scope.
+
+## Credits
+
+Concept: Geoffrey Benson. Inspiration: *ROM CHECK FAIL* by Farbs. Revival code uses the repository's MIT license. Generated asset provenance is recorded in the manifest. Historical prototypes retain their credits in `legacy/README.md`.

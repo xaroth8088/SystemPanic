@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "system-panic"
+version = "0.1.0"
+description = "Six arcade worlds. One unstable system."
+requires-python = ">=3.12"
+dependencies = ["pygame==2.6.1"]
+
+[project.optional-dependencies]
+assets = ["Pillow>=11", "soundfile>=0.13", "numpy>=2"]
+build = ["pyinstaller>=6.11"]
+
+[project.scripts]
+system-panic = "system_panic.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.data-files]
+"share/system-panic/images" = ["assets/images/*.png"]
+"share/system-panic/audio/production" = ["assets/audio/production/*.ogg", "assets/audio/production/*.wav"]
+"share/system-panic" = ["assets/manifest.json"]

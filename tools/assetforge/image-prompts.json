@@ -1,0 +1,40 @@
+{
+  "provider": "OpenAI built-in imagegen",
+  "jobs": [
+    {
+      "id": "sprites",
+      "file": "assets/images/sprites-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production sprite atlas for an original retro-futurist arcade game called System Panic. Create ONE precisely aligned sprite atlas, 1536 by 1024 pixels, transparent background, 6 equal columns and 4 equal rows, each cell 256x256. Every individual sprite fully contained in its own cell, centered with generous 45-pixel padding, nothing overlaps cells. Crisp expressive high-quality pixel art, dark outlines, bright readable silhouettes, restrained 16-bit shading, no text, no labels, no borders, no watermark, true transparency. Columns represent six wholly distinct arcade worlds in this order: 1 cyan cyberpunk runner, 2 lavender spacecraft, 3 amber racing combat car, 4 coral sky-forge jumping knight, 5 mint spectral maze creature, 6 yellow circular orbital guardian. Row 1: six player sprites respectively: cyberpunk masked courier with cyan jacket viewed top-down; sleek purple triangular spaceship pointing up; amber futuristic car viewed top-down pointing up; coral armored tiny knight seen from the side facing right; mint green luminous little ghost viewed front; gold mechanical circular drone with three orbiting blades. Row 2: six matching enemy sprites: cyan angular insect robot; purple jagged asteroid with glowing cracks; amber gun turret seen top-down; coral robotic hopping beetle; mint hostile spectral flower; yellow ring sentinel drone. Row 3: six matching destructible obstacle sprites: cyan server block, purple space crystal, amber industrial barricade, coral floating forge platform block, mint garden stone carved with runes, yellow ancient orbital machinery block. Row 4: six projectile sprites: cyan energy pulse, purple elongated laser lance pointing right, amber bouncing hot plasma orb, coral fireball, mint lightning mote, yellow spinning glaive. Pixel art should feel handcrafted, cohesive, vivid and high contrast at small 32 pixel game sizes. Exact 6 column by 4 row grid is essential.",
+      "actual_geometry": {
+        "columns": 6,
+        "row_bands": [
+          [
+            0,
+            310
+          ],
+          [
+            310,
+            565
+          ],
+          [
+            565,
+            805
+          ],
+          [
+            805,
+            1024
+          ]
+        ],
+        "column_inset": 14,
+        "note": "Generated row bands were inspected and corrected in slicing metadata; original pixels and alpha are preserved."
+      }
+    },
+    {
+      "id": "title",
+      "file": "assets/images/title.png",
+      "transparent_background": false,
+      "prompt": "Use case: stylized-concept. Asset type: original title-screen background illustration for System Panic, a retro arcade game where six different game worlds remix. Landscape 1536x1024. Polished dark pixel-art illustration with rich tiny pixel detail: an abandoned futuristic arcade control room, one imposing old CRT cabinet toward the lower left-center, screen glowing brilliant cyan with a fractured six-way energy portal inside. Tiny fragments of six worlds emerge from the portal: purple spacecraft, amber racing circuit, coral floating fortress, mint spectral garden, golden orbital machinery. Deep midnight navy/teal background, cyan phosphor glow, faint lavender amber accents, restrained scanline texture, cinematic moody lighting, dimensional and atmospheric. Keep the top half and far right half dark and quiet, no large bright objects in the right half because game menu cards will overlay that area. Strong visual focal point in lower left quadrant, generous empty negative space across top for a title added by the game. High quality pixel art, readable restrained composition, no words, no lettering, no logo, no watermark."
+    }
+  ]
+}

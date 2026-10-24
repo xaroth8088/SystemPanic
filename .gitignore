@@ -153,3 +153,11 @@ atlassian-ide-plugin.xml
 
 # PyPI configuration file
 .pypirc
+
+# Revival generated output
+/output/
+/pinokio_agent/
+*.zip
+
+# Isolated local asset generation runtime and weights
+/.asset-tools/
