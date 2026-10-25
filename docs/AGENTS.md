@@ -23,6 +23,6 @@ Delivered implementation on `codex/revival`: six complete Paks, solo/coherent/co
 
 Stable Audio 3 is installed separately under ignored `.asset-tools`, with a pinned official Windows LiteRT backend and dependency lock. Six soundtracks and six effects were generated locally and mastered for production. Fresh music and SFX were also generated through the local studio API with Hugging Face downloads disabled. The studio is loopback-only; the game never calls it.
 
-See [verification memory](../tests/AGENTS.md) and `docs/verification.json` for evidence. Current input is keyboard/mouse; gamepad support and remapping remain future work. Automated runs establish playability, not final human balance. No online catalog was built.
+See [verification memory](../tests/AGENTS.md) and `docs/verification.json` for evidence. Input supports keyboard/mouse and SDL-mapped gamepads, including every menu. Preferences include a deadzone/controller page; custom remapping remains future work. Automated runs establish playability, not final human balance. No online catalog was built.
 
 Level refinement: Paks now own spawn/aim/difficulty, protection/healing/rewards and defeat feedback. Layouts procedurally regenerate each level (also solo/locked), with separate seeded RNGs and distinct Pak shapes. Enemy difficulty includes new tactics as well as numerical scaling; shared +1 progression and transitions retain their contract.

@@ -27,3 +27,4 @@ This is the entry point to the project's agent wiki. Read the relevant linked pa
 - Do not fabricate asset provenance or mark pending generation as delivered.
 
 - Every level regenerates obstacle geometry, including solo play and locked obstacle channels. Paks own procedural layout rules and level-based difficulty, including spawn/aim/protection/healing/reward policy. See API 4 and the nearby runtime/Pak memories.
+- SDL-mapped gamepads support gameplay and menu navigation through the same Controls contract. Input devices, mappings, menu focus, deadzones and disconnect/focus safety belong to the shell; do not add controller-specific rules to Paks.

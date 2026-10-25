@@ -13,6 +13,7 @@ import pygame
 
 from .audio import Audio
 from .graphics import Graphics, BG, PANEL, EDGE, TEXT, MUTED, CYAN, DIM
+from .input_devices import Gamepads, MenuRepeat, spatial_focus, A, B, START, BACK, LB, RB
 from .model import WIDTH, HEIGHT, Controls
 from .paks import discover, CHANNELS
 from .preferences import PreferenceStore
@@ -31,7 +32,7 @@ class Button:
 
 
 class App:
-    def __init__(self, data_dir=None, seed=None, catalog=None):
+    def __init__(self, data_dir=None, seed=None, catalog=None, gamepads=None):
         self.catalog = catalog if catalog is not None else discover()
         pygame.mixer.pre_init(44100, -16, 2, 512)
         pygame.init()
@@ -47,14 +48,19 @@ class App:
             pygame.display.set_icon(self.graphics.preview(pak.id, 64))
         self.audio = Audio(self.prefs, self.catalog)
         self.clock = pygame.time.Clock()
+        self.gamepads = gamepads if gamepads is not None else Gamepads()
+        self.menu_repeat = MenuRepeat()
+        self.input_device = "gamepad" if self.gamepads.connected else "keyboard"
+        self.window_focused = True
         self.running = True
         self.route = "home"
-        self.return_route = "home"
+        self.page_history = []
         self.world = None
         self.seed = seed
         self.buttons: list[Button] = []
         self.focus = 0
-        self.keyboard_focus = False
+        self.keyboard_focus = self.input_device == "gamepad"
+        self._focus_pending = self.keyboard_focus
         self.pointer = (-100, -100)
         self.elapsed = 0.
         self.toast = self.store.error
@@ -97,7 +103,10 @@ class App:
             def change(delta):
                 setattr(self, attribute, (page + delta) % pages)
                 self.focus = 0
-                self.keyboard_focus = False
+                self.keyboard_focus = self.input_device == "gamepad"
+                self._focus_pending = self.keyboard_focus
+                self.gamepads.block()
+                self.menu_repeat.block()
             self.button(attribute + ":prev", (left, y, 140, 29), "< PREVIOUS", lambda: change(-1), size=12)
             self.button(attribute + ":next", (right, y, 140, 29), "NEXT >", lambda: change(1), size=12)
             self.graphics.text(self.canvas, f"{page + 1} / {pages}", ((left + right + 140) / 2, y + 14), 12, MUTED, mono=True, anchor="center")
@@ -124,7 +133,10 @@ class App:
         if self.world and route != "game":
             self.world.suspend()
         self.route, self.focus = route, 0
-        self.keyboard_focus = False
+        self.keyboard_focus = self.input_device == "gamepad"
+        self._focus_pending = self.keyboard_focus
+        self.gamepads.block()
+        self.menu_repeat.block()
         self.buttons.clear()
 
     def start(self, solo=None):
@@ -135,6 +147,7 @@ class App:
             self.world.close()
         self.world = World(self.prefs, self.seed if self.seed is not None else secrets.randbelow(1_000_000), solo, self.catalog, self.audio)
         self.recorded = False
+        self.page_history.clear()
         self.navigate("game")
         self.audio.music(self.world.component("music").track(self.world))
 
@@ -142,16 +155,17 @@ class App:
         if self.world:
             self.world.close()
         self.world = None
+        self.page_history.clear()
         self.navigate("home")
         self.menu_music()
 
     def open_page(self, route):
-        self.return_route = self.route
+        self.page_history.append(self.route)
         self.navigate(route)
 
     def back(self):
         self.save()
-        self.navigate(self.return_route)
+        self.navigate(self.page_history.pop() if self.page_history else "home")
 
     def toggle_pak(self, pak_id):
         if pak_id in self.prefs.enabled:
@@ -196,20 +210,20 @@ class App:
         rect = pygame.Rect(rect)
         index = len(self.buttons)
         self.buttons.append(Button(id, rect, label, action))
-        hover = rect.collidepoint(self.pointer) or (self.keyboard_focus and self.focus == index)
+        hover = rect.collidepoint(self.pointer) or (self.keyboard_focus and not self._focus_pending and self.focus == index)
         fill = accent if filled else tuple(min(255, c + 7) for c in PANEL) if hover else PANEL
         border = accent if hover or filled else EDGE
         self.graphics.panel(self.canvas, rect, fill, border, 7)
         self.graphics.text(self.canvas, label, rect.center, size, BG if filled else TEXT,
                            filled, anchor="center")
-        if self.keyboard_focus and self.focus == index:
-            pygame.draw.rect(self.canvas, TEXT, rect.inflate(6, 6), 1, border_radius=9)
 
     def header(self, location):
         g = self.graphics
         g.text(self.canvas, "S / P", (40, 28), 23, CYAN, True, True)
         g.text(self.canvas, "SYSTEM PANIC", (130, 31), 17, TEXT, True, True)
         g.text(self.canvas, "/  " + location, (300, 32), 15, MUTED, mono=True)
+        if self.input_device == "gamepad":
+            g.text(self.canvas, "STICK: move   A: choose   B: back", (680, 35), 11, CYAN, mono=True)
         pygame.draw.line(self.canvas, EDGE, (40, 78), (1240, 78))
 
     def draw_home(self):
@@ -261,7 +275,8 @@ class App:
         if not self.catalog.paks:
             g.text(self.canvas, "No Paks found.", (475, 230), 33, TEXT, True)
             g.wrapped(self.canvas, "Add Pak folders to a location listed in Pak status, then choose Rescan Paks.", (475, 290), 680, 20)
-        g.text(self.canvas, "ARROWS / WASD + SPACE + X", (430, 771), 12, MUTED, mono=True)
+        hint = "STICK / D-PAD + RT/A + X/LB" if self.input_device == "gamepad" else "ARROWS / WASD + SPACE + X"
+        g.text(self.canvas, hint, (430, 771), 12, MUTED, mono=True)
         g.text(self.canvas, "OFFLINE / ORIGINAL AI ASSETS", (1230, 771), 12, DIM, mono=True, anchor="topright")
 
     def draw_pak_status(self):
@@ -316,7 +331,40 @@ class App:
             self.button(name + "+", (x + 201, 644, 43, 36), "+", lambda n=name: self.volume(n, .1))
         self.button("motion", (830, 644, 175, 36), "MOTION: " + ("REDUCED" if self.prefs.reduced_motion else "FULL"), lambda: self.cycle("reduced_motion", [False, True]), size=12)
         self.button("display", (1020, 644, 180, 36), "FULLSCREEN" if self.prefs.fullscreen else "WINDOWED", lambda: self.cycle("fullscreen", [False, True]), size=12)
-        g.wrapped(self.canvas, "Turn Paks on or off in the library. Solo launch holds every component to that Pak. In component remix, unchecked channels keep their starting Pak. Coherent mode always swaps the whole Pak.", (80, 714), 1120, 15)
+        g.wrapped(self.canvas, "Turn Paks on or off in the library. In component remix, unchecked channels keep their starting Pak. Coherent mode swaps the whole Pak.", (80, 704), 700, 15)
+        self.button("controls", (830, 703, 370, 36), "GAMEPAD / INPUT  >", lambda: self.open_page("controls"), size=14)
+
+    def draw_controls(self):
+        g = self.graphics
+        self.header("INPUT & GAMEPAD")
+        self.button("back", (1100, 25, 140, 34), "<  BACK", self.back, size=13)
+        g.text(self.canvas, "Play your way.", (80, 112), 35, TEXT, True)
+        g.fit_text(self.canvas, self.gamepads.name, (80, 175), 1120, 20, CYAN if self.gamepads.connected else MUTED)
+        rows = [
+            ("LEFT STICK / D-PAD", "Pilot movement"),
+            ("RT / R2 or A / CROSS", "Fire"),
+            ("X / SQUARE or LB / L1", "Special"),
+            ("START / OPTIONS", "Pause / resume"),
+            ("STICK / D-PAD (MENU)", "Move focus"),
+            ("A / CROSS    B / CIRCLE", "Choose / back"),
+            ("LB / RB (MENU)", "Previous / next page"),
+        ]
+        for row, (buttons, action) in enumerate(rows):
+            y = 251 + row * 50
+            g.text(self.canvas, buttons, (80, y), 14, CYAN, mono=True)
+            g.text(self.canvas, action, (395, y), 17, TEXT)
+        g.text(self.canvas, "STICK DEADZONE", (790, 251), 13, MUTED, mono=True)
+        g.wrapped(self.canvas, "Increase this if the stick drifts while centered. Applies immediately.", (790, 281), 410, 17)
+        self.button("gamepad_deadzone", (790, 352, 410, 46), f"{self.prefs.gamepad_deadzone:.0%}  >", lambda: self.cycle("gamepad_deadzone", [.12, .18, .24, .30, .36]), size=18)
+        self.button("next-gamepad", (790, 421, 410, 44), f"NEXT CONNECTED PAD ({len(self.gamepads.devices)})", self.next_gamepad, size=14)
+        g.wrapped(self.canvas, "SDL maps compatible controllers automatically. Button positions follow Xbox / PlayStation conventions. Keyboard and mouse stay available.", (790, 500), 410, 16)
+        g.wrapped(self.canvas, "Arrows / WASD: move   SPACE: fire   X / Shift: special   ESC: pause / back. Release the controls after opening a menu, resuming or reconnecting. A disconnected active pad pauses the run.", (80, 663), 1120, 17)
+        if self.gamepads.error:
+            g.fit_text(self.canvas, "Controller unavailable: " + self.gamepads.error, (80, 751), 1120, 13, MUTED)
+
+    def next_gamepad(self):
+        self.notify(self.gamepads.select_next())
+        self.menu_repeat.block()
 
     def draw_help(self):
         g = self.graphics
@@ -325,7 +373,7 @@ class App:
         g.text(self.canvas, "Adapt. Survive. Keep going.", (80, 108), 35, TEXT, True)
         g.wrapped(self.canvas, "Your selected pilot and weapon define movement, specials and attacks; see their controls in the HUD. Level one starts with one enemy; each cleared level adds one more. Paks scale enemy behavior and rebuild their obstacle layouts as levels rise. Play continues until defeat.", (80, 166), 1100, 18)
         pilots = [p for p in self.catalog.paks if "pilot" in p.components]
-        start = self.page_controls("help_page", len(pilots), 702, 80, 1060)
+        start = self.page_controls("help_page", len(pilots), 690, 80, 1060)
         for index, pak in enumerate(pilots[start:start + 6]):
             x, y = 80 + index % 2 * 575, 280 + index // 2 * 135
             image = g.preview(pak.id, 66)
@@ -334,7 +382,9 @@ class App:
             pilot = g.previews[(pak.id, "pilot")]
             g.fit_text(self.canvas, pilot.controls, (x + 80, y + 35), 460, 16, TEXT)
             g.fit_text(self.canvas, pilot.special, (x + 80, y + 62), 460, 15, MUTED)
-        g.text(self.canvas, "ESC: pause / back     F11: fullscreen     TAB + ENTER: navigate menus", (80, 731), 16, MUTED, mono=True)
+        footer = "STICK / D-PAD: menus   A: choose   B: back   START: pause" if self.input_device == "gamepad" else "ESC: pause / back   F11: fullscreen   TAB + ENTER: menus"
+        g.text(self.canvas, footer, (80, 738), 13, MUTED, mono=True)
+        self.button("help-controls", (1010, 727, 190, 34), "GAMEPAD / INPUT", lambda: self.open_page("controls"), size=12)
 
     def draw_credits(self):
         g = self.graphics
@@ -375,9 +425,10 @@ class App:
             g.text(self.canvas, channel.upper(), (x, 24), 10, MUTED, mono=True)
             g.fit_text(self.canvas, pak.name, (x, 44), 158, 16, pak.color, True)
         timer = f"SHIFT {max(0, w.shuffle_timer):04.1f}s" if w.can_shuffle else "COMPONENTS / LOCKED" if len(w.enabled) > 1 else "SOLO / LOCKED"
-        self.button("pause", (1075, 25, 165, 36), "ESC / PAUSE", lambda: self.navigate("pause"), size=13)
+        self.button("pause", (1075, 25, 165, 36), "START / PAUSE" if self.input_device == "gamepad" else "ESC / PAUSE", lambda: self.navigate("pause"), size=13)
         g.text(self.canvas, timer, (1235, 758), 13, CYAN, mono=True, anchor="topright")
-        g.fit_text(self.canvas, w.component("pilot").controls + "    SPACE: fire    " + w.component("pilot").special, (40, 759), 970, 14, MUTED)
+        hint = "STICK / D-PAD: movement    RT/A: fire    X/LB: special" if self.input_device == "gamepad" else w.component("pilot").controls + "    SPACE: fire    " + w.component("pilot").special
+        g.fit_text(self.canvas, hint, (40, 759), 970, 14, MUTED)
         if w.phase in ("ready", "clear"):
             rect = pygame.Rect(365, 353, 550, 118)
             overlay = pygame.Surface(rect.size, pygame.SRCALPHA)
@@ -385,7 +436,7 @@ class App:
             self.canvas.blit(overlay, rect)
             text = f"LEVEL {w.wave:02d} / GET READY" if w.phase == "ready" else f"LEVEL {w.wave:02d} CLEARED"
             g.text(self.canvas, text, (640, 389), 32, TEXT, True, True, "center")
-            subtitle = "NEXT LEVEL INCOMING" if w.phase == "clear" else "HOLD SPACE TO FIRE / X FOR SPECIAL"
+            subtitle = "NEXT LEVEL INCOMING" if w.phase == "clear" else "HOLD RT/A TO FIRE / X/LB FOR SPECIAL" if self.input_device == "gamepad" else "HOLD SPACE TO FIRE / X FOR SPECIAL"
             g.text(self.canvas, subtitle, (640, 435), 14, CYAN, mono=True, anchor="center")
 
     def draw_overlay(self, outcome=False):
@@ -408,7 +459,8 @@ class App:
             self.button("pause-settings", (440, 421, 400, 46), "PREFERENCES", lambda: self.open_page("settings"))
             self.button("pause-help", (440, 482, 400, 46), "CONTROLS", lambda: self.open_page("help"))
             self.button("abandon", (440, 543, 400, 46), "END RUN / PAK LIBRARY", self.home, size=15)
-        g.text(self.canvas, "YOUR PAK SELECTION IS SAVED", (640, 624), 12, DIM, mono=True, anchor="center")
+        hint = "A: choose   B: back   START: resume" if self.input_device == "gamepad" and not outcome else "A: choose   B: library" if self.input_device == "gamepad" else "YOUR PAK SELECTION IS SAVED"
+        g.text(self.canvas, hint, (640, 624), 12, MUTED, mono=True, anchor="center")
 
     def draw(self):
         self.buttons = []
@@ -417,6 +469,8 @@ class App:
             self.draw_home()
         elif self.route == "settings":
             self.draw_settings()
+        elif self.route == "controls":
+            self.draw_controls()
         elif self.route == "help":
             self.draw_help()
         elif self.route == "paks":
@@ -428,7 +482,12 @@ class App:
             if self.route in ("pause", "outcome"):
                 self.buttons = []
                 self.draw_overlay(outcome=self.route == "outcome")
+        if self._focus_pending and self.buttons:
+            self.focus = self.preferred_focus()
+            self._focus_pending = False
         self.focus = min(self.focus, max(0, len(self.buttons) - 1))
+        if self.keyboard_focus and self.buttons and self.route != "game":
+            pygame.draw.rect(self.canvas, TEXT, self.buttons[self.focus].rect.inflate(6, 6), 1, border_radius=9)
         if self.toast_timer > 0:
             self.graphics.panel(self.canvas, (200, 84, 880, 36), (28, 45, 58), CYAN, 6)
             self.graphics.text(self.canvas, self.toast, (640, 102), 15, TEXT, anchor="center")
@@ -453,35 +512,105 @@ class App:
         button.action()
 
     def preferred_focus(self):
-        preferred = {"home":"start", "pause":"resume", "outcome":"retry"}.get(self.route, "back")
-        return next((i for i, button in enumerate(self.buttons) if button.id == preferred), 0)
+        choices = {"home": ("start", "pak-status", "settings"), "pause": ("resume",), "outcome": ("retry",)}.get(self.route, ("back",))
+        return next((i for id in choices for i, button in enumerate(self.buttons) if button.id == id), 0)
+
+    def move_focus(self, direction):
+        if not self.buttons:
+            return
+        if not self.keyboard_focus:
+            self.focus = self.preferred_focus()
+        else:
+            self.focus = spatial_focus([b.rect for b in self.buttons], self.focus, direction)
+        self.keyboard_focus, self._focus_pending = True, False
+        self.pointer = (-100, -100)
+
+    def go_back(self):
+        if self.route == "game":
+            self.navigate("pause")
+        elif self.route == "pause":
+            self.navigate("game")
+        elif self.route in ("settings", "controls", "help", "credits", "paks"):
+            self.back()
+        elif self.route == "outcome":
+            self.home()
+
+    def device_notices(self):
+        for notice in self.gamepads.drain_notices():
+            if notice.active_lost and self.route == "game":
+                self.navigate("pause")
+            self.notify(notice.text)
+
+    def pad_input(self, frame, elapsed):
+        self.device_notices()
+        if not self.window_focused:
+            self.gamepads.block()
+            self.menu_repeat.block()
+            return
+        if frame.activity:
+            self.input_device = "gamepad"
+            self.pointer = (-100, -100)
+            if self.route != "game" and not self.keyboard_focus:
+                self.focus = self.preferred_focus()
+                self.keyboard_focus, self._focus_pending = True, False
+        if START in frame.pressed:
+            if self.route in ("game", "pause"):
+                self.go_back()
+            elif self.route == "home" and self.buttons:
+                self.activate(self.buttons[self.preferred_focus()])
+            return
+        if self.route == "game":
+            return
+        if B in frame.pressed or BACK in frame.pressed:
+            self.go_back()
+            return
+        if A in frame.pressed and self.buttons:
+            self.activate(self.buttons[self.focus if self.keyboard_focus else self.preferred_focus()])
+            return
+        for button, suffix in ((LB, ":prev"), (RB, ":next")):
+            if button in frame.pressed:
+                target = next((b for b in self.buttons if b.id.endswith(suffix)), None)
+                if target:
+                    self.activate(target)
+                return
+        direction = self.menu_repeat.update(*frame.menu, elapsed)
+        if direction:
+            self.move_focus(direction)
 
     def handle_event(self, event):
+        self.gamepads.handle_event(event)
+        self.device_notices()
         if event.type == pygame.QUIT:
             self.quit()
-        elif event.type == pygame.WINDOWFOCUSLOST and self.route == "game":
-            self.navigate("pause")
+        elif event.type == pygame.WINDOWFOCUSLOST:
+            self.window_focused = False
+            self.gamepads.block()
+            self.menu_repeat.block()
+            if self.route == "game":
+                self.navigate("pause")
+        elif event.type == pygame.WINDOWFOCUSGAINED:
+            self.window_focused = True
+            self.gamepads.block()
+            self.menu_repeat.block()
+        elif not self.window_focused:
+            return
         elif event.type == pygame.MOUSEMOTION:
+            self.input_device = "mouse"
             self.pointer = self.map_pointer(event.pos)
             self.keyboard_focus = False
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            self.input_device = "mouse"
             self.pointer = self.map_pointer(event.pos)
             for button in self.buttons:
                 if button.rect.collidepoint(self.pointer):
                     self.activate(button)
                     break
         elif event.type == pygame.KEYDOWN:
+            self.input_device = "keyboard"
             if event.key == pygame.K_F11:
                 self.cycle("fullscreen", [False, True])
             elif event.key == pygame.K_ESCAPE:
-                if self.route == "game":
-                    self.navigate("pause")
-                elif self.route == "pause":
-                    self.navigate("game")
-                elif self.route in ("settings", "help", "credits", "paks"):
-                    self.back()
-                elif self.route == "outcome":
-                    self.home()
+                self.go_back()
             elif self.route != "game" and self.buttons:
                 if event.key in (pygame.K_TAB, pygame.K_DOWN, pygame.K_UP):
                     direction = -1 if event.key == pygame.K_UP or (event.key == pygame.K_TAB and event.mod & pygame.KMOD_SHIFT) else 1
@@ -493,12 +622,17 @@ class App:
     def update(self, elapsed, controls=None):
         self.elapsed += elapsed
         self.toast_timer = max(0, self.toast_timer - elapsed)
+        frame = self.gamepads.poll(self.prefs.gamepad_deadzone)
+        self.pad_input(frame, elapsed)
         if self.route == "game" and self.world:
             if controls is None:
                 keys = pygame.key.get_pressed()
-                controls = Controls(float(keys[pygame.K_RIGHT] or keys[pygame.K_d]) - float(keys[pygame.K_LEFT] or keys[pygame.K_a]),
-                                    float(keys[pygame.K_DOWN] or keys[pygame.K_s]) - float(keys[pygame.K_UP] or keys[pygame.K_w]),
-                                    bool(keys[pygame.K_SPACE]), bool(keys[pygame.K_x] or keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]))
+                pad = self.gamepads.gameplay(frame)
+                x = float(keys[pygame.K_RIGHT] or keys[pygame.K_d]) - float(keys[pygame.K_LEFT] or keys[pygame.K_a])
+                y = float(keys[pygame.K_DOWN] or keys[pygame.K_s]) - float(keys[pygame.K_UP] or keys[pygame.K_w])
+                controls = Controls(x if x or y else pad.x, y if x or y else pad.y,
+                                    bool(keys[pygame.K_SPACE]) or pad.fire,
+                                    bool(keys[pygame.K_x] or keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]) or pad.special)
             self.world.advance(elapsed, controls)
             for event in self.world.drain_events():
                 self.audio.play(event)
@@ -513,6 +647,7 @@ class App:
     def quit(self):
         if self.world:
             self.world.close()
+        self.gamepads.close()
         self.save()
         self.running = False
 
@@ -533,6 +668,7 @@ class App:
             pygame.image.save(self.canvas, screenshot)
         if self.world:
             self.world.close()
+        self.gamepads.close()
         pygame.quit()
 
 
@@ -551,7 +687,7 @@ def main():
     parser.add_argument("--headless", action="store_true")
     parser.add_argument("--frames", type=int)
     parser.add_argument("--screenshot", type=Path)
-    parser.add_argument("--screen", choices=("home", "settings", "help", "credits", "paks", "game"), default="home")
+    parser.add_argument("--screen", choices=("home", "settings", "controls", "help", "credits", "paks", "game"), default="home")
     parser.add_argument("--demo", action="store_true", help="QA/demo controls; no gameplay advantages")
     args = parser.parse_args()
     catalog = discover(args.pak_dir)

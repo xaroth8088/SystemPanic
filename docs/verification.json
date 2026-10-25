@@ -468,7 +468,7 @@
   "date": "2026-10-24",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 63,
+    "passed": 79,
     "failed": 0
   },
   "compatibility": {
@@ -533,16 +533,17 @@
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "2293e72ee16d3b5bc32efc69689d2bde6f08c8fb20d730f460766727a7c3b9dc",
-    "total_bytes": 47765122,
+    "sha256": "bfdc0551dd090140176cc1b32d13f0d09f32ab4619df7593c399b1a2dc3c1633",
+    "total_bytes": 48324181,
     "archive": "dist/SystemPanic-Windows-x64.zip",
     "archive_test_passed": true,
-    "archive_sha256": "53d1d58bfdecb00c4ec6be9a1cd14a2634e1ded0b2f6fa2f23fc80db9d711874"
+    "archive_sha256": "701e612a40d871614904528e8af1d3a7a5e9c497c53aa8d38f7e962f9046f140"
   },
   "limitations": [
     "Automated controls used relaxed difficulty and seed 24; human balance testing remains.",
     "Desktop Computer Use launch approval timed out; no claim of a human playtest.",
-    "Keyboard/mouse input; gamepad support and remapping are not implemented."
+    "Gamepad verification uses native SDL virtual controllers; no physical device/driver was available.",
+    "Custom controller button remapping is not implemented; compatible pads use SDL mappings."
   ],
   "transition_flow": {
     "periodic_swap_glitch_seconds": 0.25,
@@ -623,7 +624,7 @@
     "external_code_and_helpers_executed": true,
     "partial_only_mix_executed": true,
     "wheel_external_layout_verified": true,
-    "executable_sha256": "2293e72ee16d3b5bc32efc69689d2bde6f08c8fb20d730f460766727a7c3b9dc"
+    "executable_sha256": "bfdc0551dd090140176cc1b32d13f0d09f32ab4619df7593c399b1a2dc3c1633"
   },
   "wheel_install_check": {
     "fresh_prefix_install": true,
@@ -636,7 +637,7 @@
     "obsolete_arena_helper_absent": true,
     "frames": 240,
     "exit_code": 0,
-    "wheel_sha256": "a80a95372c6f944bf65375b938aff8e9552ce46cd35267f937359e038c40169b"
+    "wheel_sha256": "dc999c69b17858f3aabf0a7d16dc83ef188b0dc098cea0ee2be674041d8aae5e"
   },
   "dynamic_paks": {
     "api_version": 4,
@@ -833,5 +834,134 @@
     "level_clear_screen_inspected": true,
     "solo_and_locked_regeneration_tests": true,
     "unchanged_provider_damage_preserved_on_presentation_swap": true
+  },
+  "gamepad_support": {
+    "pak_api_unchanged": 4,
+    "device_independent_controls": true,
+    "gameplay_and_all_menus": true,
+    "input_tests": 16,
+    "spatial_focus_and_paging": true,
+    "radial_deadzone_preference": true,
+    "active_disconnect_pauses": true,
+    "neutral_gate_for_route_focus_device_changes": true,
+    "held_gameplay_resumes_after_pak_and_level_transitions": true,
+    "keyboard_mouse_fallback": true,
+    "screenshots_inspected": true,
+    "physical_hardware_tested": false,
+    "ide_errors": 0,
+    "source": {
+      "native_sdl_virtual_controller": true,
+      "physical_controllers_seen": 0,
+      "gamepad_only_menu_paths": true,
+      "preferences_saved": true,
+      "nested_back": true,
+      "pak_selection": true,
+      "all_six_solo_inputs": [
+        {
+          "pak": "signal_runner",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "void_drifter",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "iron_circuit",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "sky_forge",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "phase_garden",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "orbit_keeper",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        }
+      ],
+      "disconnect_pauses": true,
+      "reconnect_requires_neutral": true,
+      "focus_loss_guard": true,
+      "outcome_retry": true,
+      "steps": 1136
+    },
+    "frozen": {
+      "native_sdl_virtual_controller": true,
+      "physical_controllers_seen": 0,
+      "gamepad_only_menu_paths": true,
+      "preferences_saved": true,
+      "nested_back": true,
+      "pak_selection": true,
+      "all_six_solo_inputs": [
+        {
+          "pak": "signal_runner",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "void_drifter",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "iron_circuit",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "sky_forge",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "phase_garden",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "orbit_keeper",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        }
+      ],
+      "disconnect_pauses": true,
+      "reconnect_requires_neutral": true,
+      "focus_loss_guard": true,
+      "outcome_retry": true,
+      "steps": 1136
+    }
   }
 }

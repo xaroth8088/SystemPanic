@@ -23,6 +23,7 @@ class Preferences:
     reduced_motion: bool = False
     fullscreen: bool = False
     aim_assist: bool = True
+    gamepad_deadzone: float = .18
     shuffle_channels: list[str] = field(default_factory=lambda: list(CHANNELS))
     high_score: int = 0
 
@@ -51,6 +52,9 @@ class Preferences:
             val = raw.get(name)
             if type(val) in (int, float) and math.isfinite(val):
                 setattr(result, name, max(0., min(1., float(val))))
+        val = raw.get("gamepad_deadzone")
+        if type(val) in (int, float) and math.isfinite(val):
+            result.gamepad_deadzone = max(.05, min(.45, float(val)))
         val = raw.get("shuffle_seconds")
         if type(val) is int:
             result.shuffle_seconds = max(4, min(30, val))

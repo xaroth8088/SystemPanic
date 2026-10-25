@@ -56,6 +56,19 @@ python tools/new_pak.py paks/my_weapon --components weapon
 - **F11:** fullscreen.
 - **Mouse, or Tab / arrows + Enter:** menus. Enter from the library starts the selected mix.
 
+SDL-mapped gamepads work in gameplay and every menu, with hot-plug detection. Open **Preferences → Gamepad / Input** for the connected controller, stick deadzone and button guide. Xbox / PlayStation button positions:
+
+| Control | Action |
+|---|---|
+| Left stick or D-pad | Pilot movement; directional menu focus |
+| RT / R2 or A / Cross | Fire; A / Cross selects in menus |
+| X / Square or LB / L1 | Pilot special |
+| Start / Options | Pause / resume |
+| B / Circle | Back in menus |
+| LB / RB in menus | Previous / next page |
+
+An active controller disconnect pauses the run. After connecting, resuming or changing screens, release the stick/buttons before the next action; held menu confirmation cannot fire or select again. Periodic Pak glitches and level changes resume held gameplay input automatically. Keyboard/mouse remain available, and hints follow the last input used. Compatible devices use the [SDL mapping exposed by Pygame](https://www.pygame.org/docs/ref/sdl2_controller.html); arbitrary unmapped joysticks need an SDL mapping. Custom button remapping is not included.
+
 The library's **Enabled** buttons control the remix pool. **Play Solo** starts a complete Pak with every component locked to it. Partial Paks show **Mix Only** and contribute only their declared components. The enabled mix must cover pilot, enemy, weapon, music, background and obstacles. Coherent shuffle selects complete Paks; component remix also includes partial Paks.
 
 Periodic randomization pauses for a quarter-second screen glitch, then resumes automatically. Clearing a level instead shows a one-second **Level Cleared** message before the next level starts, without another readiness screen. The initial ready introduction appears only when starting a new run.

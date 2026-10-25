@@ -57,7 +57,7 @@ def main():
         print(json.dumps(record), flush=True)
     with tempfile.TemporaryDirectory(dir=output) as temp:
         app = App(Path(temp), 24, catalog)
-        for screen in ("home", "settings", "help", "credits", "paks"):
+        for screen in ("home", "settings", "controls", "help", "credits", "paks"):
             app.route = screen
             app.draw()
             pygame.image.save(app.canvas, output / (screen + ".png"))

@@ -84,7 +84,7 @@ class UITests(unittest.TestCase):
 
     def test_all_screens_render_with_buttons_inside_canvas(self):
         self.app.prefs.shuffle_seconds = 6  # Valid hand-edited value outside preset buttons.
-        for route in ("home", "settings", "help", "credits", "paks", "game", "pause", "outcome"):
+        for route in ("home", "settings", "controls", "help", "credits", "paks", "game", "pause", "outcome"):
             if route in ("game", "pause", "outcome") and not self.app.world:
                 self.app.start()
             self.app.route = route

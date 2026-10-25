@@ -11,4 +11,6 @@
 
 Generated reports, screenshots, test profiles and build products belong in ignored `output/`, `build/` and `dist/`. Keep concise verified results in the wiki.
 
+`verify_gamepad.py --frozen` runs gamepad_probe.py through the real SDL controller backend in source and the Windows executable. Its process-local SDL virtual pad navigates menus without assigning focus/calling actions, changes preferences/Pak selection, plays every solo Pak, pauses/resumes, disconnects/reconnects, tests focus loss and retries from defeat. Frozen QA loads its observer/helper from temporary external Paks, with no instrumentation shipped in the game. Requires the Windows Pygame SDL2.dll. Native API references: [virtual attach](https://wiki.libsdl.org/SDL2/SDL_JoystickAttachVirtual), [axis injection](https://wiki.libsdl.org/SDL2/SDL_JoystickSetVirtualAxis), [button injection](https://wiki.libsdl.org/SDL2/SDL_JoystickSetVirtualButton). This tests SDL events and polling, not a physical device/driver.
+
 `verify_levels.py`: 180 cases across five seeds and levels 1/2/7/12/50/101. Checks repeatable fresh geometry, separate RNG, bounds and safe actor placements; exercises one second of advanced AI and renders levels 1/2/12 for every Pak. No survival assertion is made for late-level stress samples.
