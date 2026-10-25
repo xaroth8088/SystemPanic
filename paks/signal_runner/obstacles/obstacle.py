@@ -13,6 +13,9 @@ class SignalRunnerObstacles(ObstaclesBase):
     def sprite(self, world, entity=None):
         return self.blocks
 
+    def take_damage(self, world, obstacle, damage):
+        return 0.
+
     def build(self, world):
         # A local RNG makes the level reproducible without consuming combat randomness.
         rng = random.Random(f"{world.seed}:signal_runner:obstacles:{world.wave}")

@@ -59,7 +59,7 @@ class BurrowPatrolPilot(PilotBase):
         self._boost = max(0.,self._boost - dt)
         if special:
             self._boost = .8
-            for wall in world.cover:
+            for wall in world.geometry:
                 if circle_rect(p.pos,75,wall.rect): world.hit_cover(wall, 75)
             for enemy in world.enemies:
                 if enemy.pos.distance_to(p.pos)<75+enemy.radius:
@@ -72,7 +72,7 @@ class BurrowPatrolPilot(PilotBase):
         p.vel = direction * (310 if self._boost else 185)
         if direction.length_squared():
             p.angle = math.atan2(direction.y,direction.x)
-            for wall in world.cover:
+            for wall in world.geometry:
                 if circle_rect(p.pos + direction * 22,16,wall.rect): world.hit_cover(wall, 135 * dt)
         world.move_body(p,p.vel * dt,p.radius)
 
@@ -92,7 +92,7 @@ class BurrowPatrolPilot(PilotBase):
             if not (30<destination.x<WIDTH-30 and 30<destination.y<HEIGHT-30): return -10000
             clearance=min(destination.distance_to(t) for t in threats)
             # Keep pumping distance without trying to ram the inflated target.
-            obstruction=80 if any(w.health>0 and w.rect.clipline(p.pos,destination) for w in world.cover) else 0
+            obstruction=80 if any(w.health>0 and w.overlaps_segment(p.pos,destination) for w in world.geometry) else 0
             spacing=-abs(clearance-240)+min(clearance,100)*.2 if close_gap else clearance-abs(clearance-340)*.3
             return spacing-destination.distance_to(Vec(WIDTH/2,HEIGHT/2))*.18-obstruction
         direction=max((Vec(1,0),Vec(-1,0),Vec(0,1),Vec(0,-1)),key=safety)

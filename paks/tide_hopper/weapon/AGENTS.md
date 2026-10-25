@@ -9,3 +9,5 @@ Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and 
 One harpoon catches, reels and finishes a target, then can launch again. Missing/removed targets and host projectile cleanup must release the weapon reference. Tether drawing does not move targets.
 
 Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.
+
+Powerups: TideHopperPowerup drifts across a river lane. Hook damage 18+4n, finishing damage 38+8n, reel rate 4+.4n; flight/reeling remain projectile-owned. Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.

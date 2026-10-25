@@ -11,7 +11,7 @@ from .model import (WIDTH, HEIGHT, FIXED_DT, Vec, Controls, Pilot, Enemy,
                     Body, Motion, Particle, unit, circle_rect)
 from .paks import get_catalog, CHANNELS
 from .preferences import Preferences
-from .pak_api import ComponentBase, PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase, ObstaclesBase, ProjectileBase, EffectBase
+from .pak_api import ComponentBase, PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase, ObstaclesBase, ProjectileBase, EffectBase, PowerupBase
 
 SWAP_GLITCH_SECONDS = .25
 LEVEL_CLEAR_SECONDS = 1.0
@@ -35,6 +35,9 @@ class World:
         self.enemies: list[Enemy] = []
         self.projectiles: list[ProjectileBase] = []
         self.cover = []
+        self._geometry = {}
+        self.powerups: list[PowerupBase] = []
+        self.powerups_collected = 0
         self.particles: list[Particle] = []
         self.effects: list[EffectBase] = []
         self.events: list[str] = []
@@ -91,6 +94,7 @@ class World:
             if previous:
                 previous.deactivate(self)
                 previous.suspend()
+                self.clear_geometry(previous)
             part = self.pak(channel).create(channel, self.audio)
             self._parts[channel] = part
             self._part_sources[channel] = self.mix[channel]
@@ -116,6 +120,8 @@ class World:
             part.suspend()
         self._parts.clear()
         self._part_sources.clear()
+        self._geometry.clear()
+        self.powerups.clear()
 
     @property
     def can_shuffle(self):
@@ -150,12 +156,12 @@ class World:
             for old in self.enemies:
                 enemy = self._make_enemy(old.id, old.pos)
                 enemy.health, enemy.max_health = old.health, old.max_health
-                enemy.pos = self.safe_position(enemy.pos, enemy.radius)
+                enemy.pos = self.safe_position(enemy.pos, enemy.radius, body=enemy)
                 adopted.append(enemy)
             self.enemies = adopted
         elif old_mix.get("obstacles") != self.mix["obstacles"]:
             for enemy in self.enemies:
-                enemy.pos = self.safe_position(enemy.pos, enemy.radius)
+                enemy.pos = self.safe_position(enemy.pos, enemy.radius, body=enemy)
         # Scheduled objects cannot outlive the rules that created them across a swap.
         self.projectiles.clear()
         self.shuffle_timer = float(self.prefs.shuffle_seconds)
@@ -168,10 +174,10 @@ class World:
             self.suspend()
             self.events.append("shuffle")
 
-    def safe_position(self, desired, radius: float = 14., *, away_from: Vec | None = None, clearance: float = 0.):
+    def safe_position(self, desired, radius: float = 14., *, away_from: Vec | None = None, clearance: float = 0., body=None):
         def valid(pos):
             return (radius <= pos.x <= WIDTH - radius and radius <= pos.y <= HEIGHT - radius
-                    and not any(circle_rect(pos, radius + 2, wall.rect) for wall in self.cover)
+                    and not any(wall.health > 0 and wall.blocks_body(body if body is not None else self._player) and wall.overlaps_circle(pos, radius + 2) for wall in self.geometry)
                     and (away_from is None or pos.distance_to(away_from) > clearance))
         pos = Vec(max(radius, min(WIDTH - radius, desired.x)),
                   max(radius, min(HEIGHT - radius, desired.y)))
@@ -188,7 +194,7 @@ class World:
                 if valid(candidate):
                     return candidate
         # Bounded recovery for future unusually dense arenas.
-        self.cover = [wall for wall in self.cover if not circle_rect(pos, radius + 3, wall.rect)]
+        self.cover = [wall for wall in self.cover if not wall.overlaps_circle(pos, radius + 3)]
         return pos
 
     def start_wave(self):
@@ -216,7 +222,7 @@ class World:
         """Register a Pak-created body; optional factories support arbitrary new entities."""
         self.next_id += 1
         enemy = self._make_enemy(self.next_id, position, factory)
-        enemy.pos = self.safe_position(enemy.pos, enemy.radius)
+        enemy.pos = self.safe_position(enemy.pos, enemy.radius, body=enemy)
         self.enemies.append(enemy)
         return enemy
 
@@ -256,6 +262,11 @@ class World:
         self.component("weapon").update(self, dt, controls)
         self.update_enemies(dt)
         self.update_projectiles(dt)
+        self.component("obstacles").update(self, dt)
+        for pickup in tuple(self.powerups):
+            if pickup.alive:
+                pickup.update(self, dt)
+        self.powerups = [pickup for pickup in self.powerups if pickup.alive]
         for enemy in tuple(self.enemies):
             if enemy.health > 0 and enemy.pos.distance_to(player.pos) < enemy.radius + player.radius:
                 self.component("pilot").on_contact(self, enemy, dt)
@@ -274,30 +285,63 @@ class World:
             self.suspend()
             self.events.append("clear")
 
+    @property
+    def geometry(self):
+        if not self._geometry:
+            return self.cover
+        return self.cover + [wall for owner, walls in self._geometry.values() for wall in walls if wall.health > 0]
+
+    def set_geometry(self, owner, walls):
+        """Register component-owned shapes; replacement/close also release ownership."""
+        self._geometry[id(owner)] = (owner, list(walls))
+
+    def clear_geometry(self, owner):
+        self._geometry.pop(id(owner), None)
+
+    def segment_blocked(self, start, end, projectile=None):
+        return any(w.health > 0 and w.blocks_projectile(projectile) and w.overlaps_segment(start, end) for w in self.geometry)
+
     def move_body(self, body, displacement, radius: float, *, bounds: Rect | None = Rect(0, 0, WIDTH, HEIGHT)) -> Motion:
-        """Resolve geometry and return normals. The caller owns velocity/landing/wrap rules."""
-        normals = []
-        for axis in (0, 1):
-            body.pos[axis] += displacement[axis]
-            for wall in self.cover:
-                if wall.health <= 0 or not circle_rect(body.pos, radius, wall.rect):
-                    continue
-                positive = displacement[axis] > 0
-                normal = Vec()
-                normal[axis] = -1 if positive else 1
-                normals.append(normal)
-                if axis == 0:
-                    body.pos.x = wall.rect.left - radius if positive else wall.rect.right + radius
-                else:
-                    body.pos.y = wall.rect.top - radius if positive else wall.rect.bottom + radius
-            if bounds is not None:
-                low = bounds.left + radius if axis == 0 else bounds.top + radius
-                high = bounds.right - radius if axis == 0 else bounds.bottom - radius
-                if body.pos[axis] < low or body.pos[axis] > high:
-                    normal = Vec()
-                    normal[axis] = 1 if body.pos[axis] < low else -1
-                    normals.append(normal)
-                    body.pos[axis] = max(low, min(high, body.pos[axis]))
+        """Substepped shape queries prevent tunneling; callers own locomotion/response."""
+        normals, notified = [], {}
+        steps = max(1, math.ceil(max(abs(displacement.x), abs(displacement.y)) / max(2., min(8., radius / 2))))
+        delta = displacement / steps
+        geometry = self.geometry
+        for _ in range(steps):
+            for axis in (0, 1):
+                amount = delta[axis]
+                previous = body.pos.copy()
+                if abs(amount) > 1e-12:
+                    body.pos[axis] += amount
+                    for wall in geometry:
+                        if wall.health <= 0 or not wall.blocks_body(body) or not wall.overlaps_circle(body.pos, radius):
+                            continue
+                        normal = Vec()
+                        normal[axis] = -1 if amount > 0 else 1
+                        if not wall.overlaps_circle(previous, radius):
+                            low, high = 0., 1.
+                            for _ in range(12):
+                                mid = (low + high) / 2
+                                point = previous.copy()
+                                point[axis] += amount * mid
+                                if wall.overlaps_circle(point, radius): high = mid
+                                else: low = mid
+                            body.pos[axis] = previous[axis] + amount * low
+                        else:
+                            # Existing overlap can occur after a Pak's positional ability.
+                            body.pos[axis] = previous[axis]
+                        if id(wall) not in notified:
+                            notified[id(wall)] = bool(wall.on_contact(self, body, normal))
+                        if not notified[id(wall)]:
+                            normals.append(normal)
+                if bounds is not None:
+                    low = bounds.left + radius if axis == 0 else bounds.top + radius
+                    high = bounds.right - radius if axis == 0 else bounds.bottom - radius
+                    if body.pos[axis] < low or body.pos[axis] > high:
+                        normal = Vec()
+                        normal[axis] = 1 if body.pos[axis] < low else -1
+                        normals.append(normal)
+                        body.pos[axis] = max(low, min(high, body.pos[axis]))
         return Motion(tuple(normals))
 
     def update_enemies(self, dt):
@@ -323,7 +367,7 @@ class World:
     def hit_cover(self, obstacle, damage):
         """Dispatch to the obstacle provider; durability is a Pak policy."""
         if obstacle.health > 0:
-            return self.component("obstacles").take_damage(self, obstacle, damage)
+            return obstacle.damage(self, damage)
         return 0.
 
     @staticmethod
@@ -340,7 +384,22 @@ class World:
         self.enemies = [enemy for enemy in self.enemies if enemy.health > 0]
         for enemy in dead:
             self.kills += 1
+            position = enemy.pos.copy()
+            if self.kills % 10 == 0:
+                pickup = self.component("weapon").create_powerup(self, position)
+                if pickup is not None:
+                    if not isinstance(pickup, PowerupBase):
+                        raise TypeError("WeaponBase.create_powerup must return a PowerupBase or None")
+                    self.powerups.append(pickup)
             self.component("enemy").on_death(self, enemy)
+
+    def collect_powerup(self, pickup):
+        if not pickup.alive or not any(item is pickup for item in self.powerups):
+            return False
+        pickup.alive = False
+        self.powerups_collected += 1
+        self.component("weapon").on_powerup(self, self.powerups_collected)
+        return True
 
     def burst(self, pos, color, count):
         # Derive presentation randomness without touching the gameplay RNG.

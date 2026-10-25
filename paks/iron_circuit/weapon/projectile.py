@@ -10,8 +10,8 @@ class Ricochet(ProjectileBase):
         super().__init__(world.player.pos + direction * 19, direction * 440, 4)
         self._weapon = weapon
         self._remaining = 3.
-        self._damage = 19
-        self._bounces_left = 4
+        self._damage = 19 + 4 * world.powerups_collected
+        self._bounces_left = 4 + world.powerups_collected // 3
 
     def update(self, world, dt):
         self._remaining -= dt
@@ -31,8 +31,8 @@ class Ricochet(ProjectileBase):
             else:
                 self.alive = False
                 return
-        for obstacle in world.cover:
-            if obstacle.health <= 0 or not circle_rect(self.pos, self.radius, obstacle.rect):
+        for obstacle in world.geometry:
+            if obstacle.health <= 0 or not (obstacle.blocks_projectile(self) and obstacle.overlaps_circle(self.pos, self.radius)):
                 continue
             world.hit_cover(obstacle, self._damage)
             if self._bounces_left > 0:

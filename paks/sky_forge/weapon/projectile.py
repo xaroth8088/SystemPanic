@@ -10,7 +10,8 @@ class Bomb(ProjectileBase):
         super().__init__(world.player.pos + direction * 19, direction * 380, 7)
         self._weapon = weapon
         self._remaining = 3.
-        self._damage = 58
+        self._damage = 58 + 11 * world.powerups_collected
+        self._blast = 85 + min(100,8*world.powerups_collected)
         self._guided = world.prefs.aim_assist and world.component("pilot").aim_direction(world) is None
 
     def update(self, world, dt):
@@ -26,8 +27,8 @@ class Bomb(ProjectileBase):
         if not (4 <= self.pos.x <= WIDTH - 4 and 4 <= self.pos.y <= HEIGHT - 4):
             self.alive = False
             return
-        for obstacle in world.cover:
-            if obstacle.health <= 0 or not circle_rect(self.pos, self.radius, obstacle.rect):
+        for obstacle in world.geometry:
+            if obstacle.health <= 0 or not (obstacle.blocks_projectile(self) and obstacle.overlaps_circle(self.pos, self.radius)):
                 continue
             world.hit_cover(obstacle, self._damage)
             self.explode(world)
@@ -45,10 +46,10 @@ class Bomb(ProjectileBase):
 
     def explode(self, world):
         for enemy in world.enemies:
-            if enemy.health > 0 and enemy.pos.distance_to(self.pos) < 85 + enemy.radius:
+            if enemy.health > 0 and enemy.pos.distance_to(self.pos) < self._blast + enemy.radius:
                 world.hit_enemy(enemy, self._damage * .7)
-        for obstacle in world.cover:
-            if circle_rect(self.pos, 85, obstacle.rect):
+        for obstacle in world.geometry:
+            if obstacle.blocks_projectile(self) and obstacle.overlaps_circle(self.pos, self._blast):
                 world.hit_cover(obstacle, self._damage)
         world.burst(self.pos, world.pak("weapon").color, 20)
         world.shake = max(world.shake, 3)

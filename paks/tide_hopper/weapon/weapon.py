@@ -2,6 +2,7 @@
 import math
 from system_panic.model import normalized,unit
 from system_panic.pak_api import WeaponBase
+from .powerup import TideHopperPowerup
 from .projectile import Harpoon
 
 class TideHopperWeapon(WeaponBase):
@@ -28,3 +29,9 @@ class TideHopperWeapon(WeaponBase):
             self.sound.play(volume=.4)
             self._hook=Harpoon(world,self,self.aim(world))
             world.projectiles.append(self._hook)
+
+    def create_powerup(self,world,position):
+        return TideHopperPowerup(position,self.sprite(world),world.pak("weapon").color)
+
+    def on_powerup(self,world,count):
+        world.burst(world.player.pos,world.pak("weapon").color,12)

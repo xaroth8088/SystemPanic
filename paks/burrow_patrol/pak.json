@@ -1,14 +1,14 @@
 {
   "id": "burrow_patrol",
   "name": "Burrow Patrol",
-  "subtitle": "EXCAVATE / INFLATE",
+  "subtitle": "EXCAVATION / PRESSURE",
   "color": [
     108,
     225,
     163
   ],
-  "description": "Drill through the rock veins and inflate burrowing worms with a pressure tether.",
-  "version": "1.0.0",
+  "description": "Dig rock and pump nearby enemies within tether reach. Burrowing cells improve range and pressure.",
+  "version": "1.2.0",
   "order": 8,
   "authoring": {
     "inspired_by": "Dig Dug",

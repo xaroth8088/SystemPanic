@@ -1,14 +1,14 @@
 {
   "id": "signal_runner",
   "name": "Signal Runner",
-  "subtitle": "PRECISION / SWARM",
+  "subtitle": "DASH / PULSE",
   "color": [
     71,
     224,
     244
   ],
-  "description": "Outrun the swarm. Thread the signal rooms with rapid pulse fire.",
-  "version": "1.0.0",
+  "description": "Dash through permanent partitions. Collect magnetic cells to strengthen pulse fire.",
+  "version": "1.2.0",
   "order": 0,
   "authoring": {
     "atlas_column": 0

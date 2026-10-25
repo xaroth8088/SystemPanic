@@ -10,7 +10,7 @@ class Pulse(ProjectileBase):
         super().__init__(world.player.pos + direction * 19, direction * 520, 4)
         self._weapon = weapon
         self._remaining = 3.
-        self._damage = 16
+        self._damage = 16 + 4 * world.powerups_collected
 
     def update(self, world, dt):
         self._remaining -= dt
@@ -21,8 +21,8 @@ class Pulse(ProjectileBase):
         if not (4 <= self.pos.x <= WIDTH - 4 and 4 <= self.pos.y <= HEIGHT - 4):
             self.alive = False
             return
-        for obstacle in world.cover:
-            if obstacle.health <= 0 or not circle_rect(self.pos, self.radius, obstacle.rect):
+        for obstacle in world.geometry:
+            if obstacle.health <= 0 or not (obstacle.blocks_projectile(self) and obstacle.overlaps_circle(self.pos, self.radius)):
                 continue
             world.hit_cover(obstacle, self._damage)
             self.alive = False

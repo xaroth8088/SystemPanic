@@ -1,6 +1,8 @@
 """Hold fire and draw a closed tail with the pilot to capture enclosed enemies."""
 from system_panic.model import normalized, unit
 from system_panic.pak_api import WeaponBase
+from .powerup import VectorCoilPowerup
+from .geometry import CarvedArea, LiveLine
 from .tail import TailImage, area, contains_body, intersection
 
 
@@ -10,6 +12,8 @@ class VectorCoilWeapon(WeaponBase):
         self.sound = self.load_asset("shot.ogg")
         self._points = []
         self._visual = None
+        self._areas = []
+        self._line_hits = {}
 
     def sprite(self, world, entity=None):
         return self.art
@@ -19,7 +23,11 @@ class VectorCoilWeapon(WeaponBase):
         intent = world.component("pilot").aim_direction(world)
         return normalized(intent) if intent is not None else unit(world.player.angle)
 
-    def reset(self):
+    def reset(self, world, clear_areas=True):
+        if clear_areas:
+            self._areas.clear()
+            self._line_hits.clear()
+        world.clear_geometry(self)
         self._points.clear()
         if self._visual:
             self._visual.points = []
@@ -29,17 +37,20 @@ class VectorCoilWeapon(WeaponBase):
         self._visual = None
 
     def on_level_start(self, world):
-        self.reset()
+        self.reset(world)
 
     def on_shuffle(self, world, changed):
-        self.reset()
+        if changed.intersection({"pilot", "obstacles"}):
+            self.reset(world, clear_areas=False)
+            world.set_geometry(self,self._areas)
 
     def deactivate(self, world):
-        self.reset()
+        self.reset(world)
 
     def update(self, world, dt, control):
         if not control.fire:
             self._points.clear()
+            world.set_geometry(self,self._areas)
             if self._visual:
                 self._visual.points = []
             return
@@ -62,8 +73,14 @@ class VectorCoilWeapon(WeaponBase):
                 for enemy in tuple(world.enemies):
                     if enemy.health > 0 and contains_body(closed, enemy):
                         world.hit_enemy(enemy, enemy.health)
+                self._areas.append(CarvedArea(closed,world.pak("weapon").color,world.player.radius+3))
+                world.set_geometry(self,self._areas)
+                world.player.pos=world.safe_position(world.player.pos,world.player.radius)
+                for enemy in world.enemies:
+                    if enemy.health>0:
+                        enemy.pos=world.safe_position(enemy.pos,enemy.radius,body=enemy)
                 self.sound.play(volume=.45)
-                self._points = [position]
+                self._points = [world.player.pos.copy()]
             else:
                 if len(self._points) > 1:
                     before, after = start - self._points[-2], position - start
@@ -75,7 +92,7 @@ class VectorCoilWeapon(WeaponBase):
                     self._points.append(position)
                 self._points = self._points[-512:]
                 # A bounded tail still permits a circuit of the whole arena.
-                while len(self._points) > 2 and sum(a.distance_to(b) for a, b in zip(self._points, self._points[1:])) > 6000:
+                while len(self._points) > 2 and sum(a.distance_to(b) for a, b in zip(self._points, self._points[1:])) > 6000 + 500 * world.powerups_collected:
                     self._points.pop(0)
             if closed:
                 self.show(world)
@@ -89,3 +106,12 @@ class VectorCoilWeapon(WeaponBase):
             world.effects.append(self._visual)
         self._visual.points = [p.copy() for p in self._points]
         self._visual.remaining = max(.05, self._visual.flash)
+        width=2+min(6,world.powerups_collected*.5)
+        live=[LiveLine(a,b,self,width) for a,b in zip(self._points,self._points[1:])]
+        world.set_geometry(self,self._areas+live)
+
+    def create_powerup(self,world,position):
+        return VectorCoilPowerup(position,self.sprite(world),world.pak("weapon").color)
+
+    def on_powerup(self,world,count):
+        world.burst(world.player.pos,world.pak("weapon").color,12)

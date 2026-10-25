@@ -16,7 +16,7 @@ class HostileShot(ProjectileBase):
         if self._remaining <= 0 or not (4 <= self.pos.x <= WIDTH - 4 and 4 <= self.pos.y <= HEIGHT - 4):
             self.alive = False
             return
-        if any(obstacle.health > 0 and circle_rect(self.pos, self.radius, obstacle.rect) for obstacle in world.cover):
+        if any(obstacle.health > 0 and obstacle.blocks_projectile(self) and obstacle.overlaps_circle(self.pos, self.radius) for obstacle in world.geometry):
             self.alive = False
             return
         if self.pos.distance_to(world.player.pos) < world.player.radius + self.radius:

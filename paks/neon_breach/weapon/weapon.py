@@ -2,6 +2,7 @@
 import math
 from system_panic.model import normalized,unit
 from system_panic.pak_api import WeaponBase
+from .powerup import NeonBreachPowerup
 from .projectile import PlasmaBall
 
 class NeonBreachWeapon(WeaponBase):
@@ -25,9 +26,15 @@ class NeonBreachWeapon(WeaponBase):
     def update(self,world,dt,control):
         self._remaining=max(0.,self._remaining-dt)
         self._shots=[s for s in self._shots if s.alive and s in world.projectiles]
-        if control.fire and len(self._shots)<2 and self._remaining<=0:
+        if control.fire and len(self._shots)<2+min(3,world.powerups_collected//2) and self._remaining<=0:
             self._remaining=.65
             self.sound.play(volume=.4)
             ball=PlasmaBall(world,self,self.aim(world))
             self._shots.append(ball)
             world.projectiles.append(ball)
+
+    def create_powerup(self,world,position):
+        return NeonBreachPowerup(position,self.sprite(world),world.pak("weapon").color)
+
+    def on_powerup(self,world,count):
+        world.burst(world.player.pos,world.pak("weapon").color,12)

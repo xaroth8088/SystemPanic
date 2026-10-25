@@ -9,3 +9,5 @@ aim(world) selects this weapon's assisted/facing direction locally. The host pro
 Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.
 
 Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.
+
+Powerups: Magnetic SignalRunnerPowerup drifts to nearby pilots. Count n gives pulse damage 16+4n and cadence max(.07,.14/(1+.035n)). Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.

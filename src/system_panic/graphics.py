@@ -143,8 +143,9 @@ class Graphics:
         accent = world.pak("obstacles").color
         world.component("background").draw(surface, world)
         pygame.draw.rect(surface, tuple(int(c * .30) for c in accent), (0, 0, WIDTH, HEIGHT), 2)
-        for wall in world.cover:
-            world.component("obstacles").draw(self, surface, world, wall)
+        world.component("obstacles").draw_floor(self, surface, world)
+        for wall in world.geometry:
+            wall.draw(self, surface, world)
         for enemy in world.enemies:
             if enemy.health <= 0:
                 continue
@@ -155,6 +156,9 @@ class Graphics:
                 bar = pygame.Rect(enemy.pos.x - 16, enemy.pos.y - enemy.radius - 10, 32, 3)
                 pygame.draw.rect(surface, (40, 44, 54), bar)
                 pygame.draw.rect(surface, world.pak("enemy").color, (bar.x, bar.y, bar.width * max(0, enemy.health) / enemy.max_health, 3))
+        for pickup in world.powerups:
+            if pickup.alive:
+                pickup.draw(self, surface, world)
         for shot in world.projectiles:
             if shot.alive:
                 shot.draw(self, surface, world)
@@ -168,7 +172,6 @@ class Graphics:
             image = self.component_sprite(world, "pilot", p, 44)
             if world.phase != "active" or world.transition > 0 or p.invulnerable <= 0 or int(world.time * 12) % 2 or reduced_motion:
                 surface.blit(image, image.get_rect(center=p.pos))
-            pygame.draw.circle(surface, (240, 255, 255), p.pos + Vec(0, 25), 2)
             pygame.draw.line(surface, world.pak("pilot").color, p.pos + unit_vec(p.angle) * 19,
                              p.pos + unit_vec(p.angle) * 24, 2)
         for particle in world.particles:

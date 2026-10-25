@@ -19,7 +19,7 @@ def pursue(world, enemy, direction, speed, dt, *, avoid=False, wrap=False):
         for angle in (0, 35, -35, 70, -70, 110, -110, 160):
             candidate = direction.rotate(angle if enemy.id % 2 else -angle)
             point = enemy.pos + candidate * probe
-            if not any(w.health > 0 and circle_rect(point, enemy.radius + 3, w.rect) for w in world.cover):
+            if not any(w.health > 0 and w.blocks_body(enemy) and w.overlaps_circle(point, enemy.radius + 3) for w in world.geometry):
                 direction = candidate
                 break
     enemy.vel = normalized(direction) * speed

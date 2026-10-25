@@ -1,14 +1,14 @@
 {
   "id": "maze_muncher",
   "name": "Maze Muncher",
-  "subtitle": "BUFFERED TURNS / CLOSE BITE",
+  "subtitle": "BUFFERED TURNS / DASH",
   "color": [
     255,
     215,
     87
   ],
-  "description": "Navigate permanent maze walls. Bite one nearby enemy at a time; energize your jaws for the contact-chomp special.",
-  "version": "1.1.0",
+  "description": "Lunge forward to strike and bounce apart. Fixed power pellets strengthen the dash.",
+  "version": "1.2.0",
   "order": 7,
   "authoring": {
     "inspired_by": "Pac-Man",

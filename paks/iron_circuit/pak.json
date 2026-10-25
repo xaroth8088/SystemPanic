@@ -1,14 +1,14 @@
 {
   "id": "iron_circuit",
   "name": "Iron Circuit",
-  "subtitle": "STEERING / RICOCHET",
+  "subtitle": "RACETRACK / RICOCHET",
   "color": [
     255,
     184,
     77
   ],
-  "description": "Never stop driving. Bank plasma off walls to silence the turrets.",
-  "version": "1.0.0",
+  "description": "Drive oval and complex tracks. Guardrails block bodies but let shots through. Rolling cells boost scattershot.",
+  "version": "1.2.0",
   "order": 2,
   "authoring": {
     "atlas_column": 2

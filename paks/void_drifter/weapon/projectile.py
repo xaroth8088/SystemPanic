@@ -7,11 +7,11 @@ from system_panic.pak_api import ProjectileBase
 
 class Lance(ProjectileBase):
     def __init__(self, world, weapon, direction):
-        super().__init__(world.player.pos + direction * 19, direction * 700, 4)
+        super().__init__(world.player.pos + direction * 19, direction * (700 + min(240,20*world.powerups_collected)), 4)
         self._weapon = weapon
         self._remaining = 3.
-        self._damage = 42
-        self._hits_left = 3
+        self._damage = 42 + 9 * world.powerups_collected
+        self._hits_left = 3 + world.powerups_collected // 2
         self._hit_ids = set()
 
     def update(self, world, dt):
@@ -23,8 +23,8 @@ class Lance(ProjectileBase):
         if not (4 <= self.pos.x <= WIDTH - 4 and 4 <= self.pos.y <= HEIGHT - 4):
             self.alive = False
             return
-        for obstacle in world.cover:
-            if obstacle.health <= 0 or not circle_rect(self.pos, self.radius, obstacle.rect):
+        for obstacle in world.geometry:
+            if obstacle.health <= 0 or not (obstacle.blocks_projectile(self) and obstacle.overlaps_circle(self.pos, self.radius)):
                 continue
             world.hit_cover(obstacle, self._damage)
             self.alive = False

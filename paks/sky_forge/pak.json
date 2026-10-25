@@ -1,14 +1,14 @@
 {
   "id": "sky_forge",
   "name": "Sky Forge",
-  "subtitle": "GRAVITY / BLAST",
+  "subtitle": "DOUBLE JUMP / FORGE",
   "color": [
     255,
     119,
     137
   ],
-  "description": "Leap between forge decks. Explosive arcs scatter the crawlers.",
-  "version": "1.0.0",
+  "description": "Double-jump through permanent, connected platform arrangements. Falling embers strengthen explosive fire.",
+  "version": "1.2.0",
   "order": 3,
   "authoring": {
     "atlas_column": 3

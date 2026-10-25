@@ -1,4 +1,4 @@
-"""Twin salvo bolts wrap once, optionally guide, and own their contacts."""
+"""Twin salvo bolts expire at screen bounds, optionally guide, and own their contacts."""
 import math
 import pygame
 from system_panic.model import Vec,WIDTH,HEIGHT,normalized,circle_rect
@@ -10,7 +10,7 @@ class SalvoBolt(ProjectileBase):
         super().__init__(world.player.pos+direction*20+side_vector,direction*550,4)
         self.weapon,self.guided=weapon,guided
         self.remaining=3.
-        self.wrapped=False
+        self.damage=23+4*world.powerups_collected
     def update(self,world,dt):
         self.remaining-=dt
         if self.remaining<=0:
@@ -22,20 +22,16 @@ class SalvoBolt(ProjectileBase):
             self.vel=normalized(self.vel.lerp(normalized(target.pos-self.pos)*550,min(1,dt*3)))*550
         self.pos+=self.vel*dt
         if not (0<self.pos.x<WIDTH and 0<self.pos.y<HEIGHT):
-            if self.wrapped:
-                self.alive=False
-                return
-            self.wrapped=True
-            self.pos.x%=WIDTH
-            self.pos.y%=HEIGHT
-        for wall in world.cover:
-            if wall.health>0 and circle_rect(self.pos,self.radius,wall.rect):
-                world.hit_cover(wall,23)
+            self.alive=False
+            return
+        for wall in world.geometry:
+            if wall.health>0 and wall.blocks_projectile(self) and wall.overlaps_circle(self.pos, self.radius):
+                world.hit_cover(wall,self.damage)
                 self.alive=False
                 return
         for enemy in targets:
             if enemy.pos.distance_to(self.pos)<enemy.radius+self.radius:
-                world.hit_enemy(enemy,23)
+                world.hit_enemy(enemy,self.damage)
                 self.alive=False
                 return
     def draw(self,graphics,surface,world):

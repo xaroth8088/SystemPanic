@@ -1,14 +1,14 @@
 {
   "id": "void_drifter",
   "name": "Void Drifter",
-  "subtitle": "INERTIA / FRACTURE",
+  "subtitle": "INERTIA / GRAVITY WELLS",
   "color": [
     174,
     151,
     255
   ],
-  "description": "Master momentum. Pierce drifting rocks before they fracture.",
-  "version": "1.0.0",
+  "description": "Drift among debris, black holes and crossing comets. Collect drifting cores to upgrade the lance.",
+  "version": "1.2.0",
   "order": 1,
   "authoring": {
     "atlas_column": 1

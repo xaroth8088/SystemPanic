@@ -3,8 +3,9 @@ from dataclasses import dataclass, field
 import math
 
 import pygame
+from pygame.math import Vector2
 
-Vec = pygame.Vector2
+Vec = Vector2
 WIDTH, HEIGHT = 960, 480
 FIXED_DT = 1 / 120
 
@@ -44,6 +45,27 @@ class Cover:
     rect: pygame.Rect
     health: float
     max_health: float
+
+    def overlaps_circle(self, position, radius):
+        return circle_rect(position, radius, self.rect)
+
+    def overlaps_segment(self, start, end):
+        return bool(self.rect.clipline(start, end))
+
+    def blocks_body(self, body):
+        return True
+
+    def blocks_projectile(self, projectile):
+        return True
+
+    def on_contact(self, world, body, normal):
+        """Return True to consume a handled response; otherwise expose its normal."""
+
+    def damage(self, world, amount):
+        return world.component("obstacles").take_damage(world, self, amount)
+
+    def draw(self, graphics, surface, world):
+        world.component("obstacles").draw(graphics, surface, world, self)
 
 
 @dataclass(frozen=True)

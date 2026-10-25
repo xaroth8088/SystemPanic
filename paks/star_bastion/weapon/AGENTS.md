@@ -9,3 +9,5 @@ Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and 
 Twin salvo bolts optionally guide, wrap once, damage cover/targets and expire locally. Explicit pilot direction disables guidance; side offsets are perpendicular to the selected firing vector.
 
 Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.
+
+Powerups: StarBastionPowerup falls through bunkers toward the bottom lane. Bolts expire outside the viewport; there is no screen wrap. Damage 23+4n and 2+min(4,floor(n/3)) bolts; the original pair stays in the salvo as extras are added. Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.

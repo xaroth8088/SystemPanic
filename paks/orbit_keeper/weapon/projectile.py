@@ -7,10 +7,11 @@ from system_panic.pak_api import ProjectileBase
 
 class Glaive(ProjectileBase):
     def __init__(self, world, weapon, direction):
-        super().__init__(world.player.pos + direction * 19, direction * 600, 7)
+        super().__init__(world.player.pos + direction * 19, direction * (600 + min(160,20*world.powerups_collected)), 7)
         self._weapon = weapon
         self._remaining = 3.
-        self._damage = 28
+        self._damage = 28 + 5 * world.powerups_collected
+        self._outbound = .55 + min(.25,.025*world.powerups_collected)
         self._hits_left = 6
         self._hit_ids = set()
         self._age = 0.
@@ -21,17 +22,14 @@ class Glaive(ProjectileBase):
             self.alive = False
             return
         self._age += dt
-        if self._age > .55:
+        if self._age > self._outbound:
             self.vel = normalized(world.player.pos - self.pos) * 490
             if self.pos.distance_to(world.player.pos) < 16:
                 self.alive = False
                 return
         self.pos += self.vel * dt
-        if not (4 <= self.pos.x <= WIDTH - 4 and 4 <= self.pos.y <= HEIGHT - 4):
-            self.alive = False
-            return
-        for obstacle in world.cover:
-            if obstacle.health <= 0 or not circle_rect(self.pos, self.radius, obstacle.rect):
+        for obstacle in world.geometry:
+            if obstacle.health <= 0 or not (obstacle.blocks_projectile(self) and obstacle.overlaps_circle(self.pos, self.radius)):
                 continue
             world.hit_cover(obstacle, self._damage)
             self.alive = False

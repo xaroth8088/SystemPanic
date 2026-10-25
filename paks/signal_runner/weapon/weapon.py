@@ -1,6 +1,7 @@
 """SignalRunner: Pak-owned trigger cadence and weapon behavior."""
 from system_panic.model import normalized, unit
 from system_panic.pak_api import WeaponBase
+from .powerup import SignalRunnerPowerup
 from .projectile import Pulse
 
 
@@ -16,7 +17,7 @@ class SignalRunnerWeapon(WeaponBase):
     def update(self, world, dt, control):
         self._remaining = max(0., self._remaining - dt)
         if control.fire and self._remaining <= 0:
-            self._remaining = 0.14
+            self._remaining = max(.07, .14 / (1 + .035 * world.powerups_collected))
             self.fire(world, self.aim(world))
 
     def aim(self, world):
@@ -32,3 +33,9 @@ class SignalRunnerWeapon(WeaponBase):
     def fire(self, world, direction):
         self.shot_sound.play(volume=.3)
         world.projectiles.append(Pulse(world, self, direction))
+
+    def create_powerup(self,world,position):
+        return SignalRunnerPowerup(position,self.sprite(world),world.pak("weapon").color)
+
+    def on_powerup(self,world,count):
+        world.burst(world.player.pos,world.pak("weapon").color,12)

@@ -371,7 +371,7 @@ class App:
         self.header("HOW TO PLAY")
         self.button("back", (1100, 25, 140, 34), "<  BACK", self.back, size=13)
         g.text(self.canvas, "Adapt. Survive. Keep going.", (80, 108), 35, TEXT, True)
-        g.wrapped(self.canvas, "Your selected pilot and weapon define movement, specials and attacks; see their controls in the HUD. Level one starts with one enemy; each cleared level adds one more. Paks scale enemy behavior and rebuild their obstacle layouts as levels rise. Play continues until defeat.", (80, 166), 1100, 18)
+        g.wrapped(self.canvas, "Adapt to changing pilots and weapons. Levels add one enemy and regenerate terrain; the run ends on defeat. Every 10 destroyed enemies drops a Pak powerup at the kill site. Collect it to strengthen your current weapon; upgrades carry through swaps. Watch UP in the HUD.", (80, 166), 1100, 18)
         pilots = [p for p in self.catalog.paks if "pilot" in p.components]
         start = self.page_controls("help_page", len(pilots), 690, 80, 1060)
         for index, pak in enumerate(pilots[start:start + 6]):
@@ -409,6 +409,7 @@ class App:
         g.text(self.canvas, f"LEVEL {w.wave:02d} / ENDLESS", (40, 98), 17, TEXT, True, True)
         g.text(self.canvas, f"SCORE  {w.score:07d}", (340, 98), 17, CYAN, mono=True)
         g.text(self.canvas, f"{len(w.enemies):02d} HOSTILES", (700, 98), 15, MUTED, mono=True)
+        g.text(self.canvas, f"UP {w.powerups_collected:02d}", (850, 98), 14, CYAN, mono=True)
         g.text(self.canvas, "HULL", (968, 98), 12, MUTED, mono=True)
         pygame.draw.rect(self.canvas, EDGE, (1020, 100, 170, 12), border_radius=3)
         pygame.draw.rect(self.canvas, CYAN if w.player.health / w.player.max_health > .3 else (255, 119, 137), (1020, 100, max(0, 170 * w.player.health / w.player.max_health), 12), border_radius=3)

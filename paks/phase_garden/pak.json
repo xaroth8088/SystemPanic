@@ -1,14 +1,14 @@
 {
   "id": "phase_garden",
   "name": "Phase Garden",
-  "subtitle": "BLINK / CHAIN",
+  "subtitle": "BLINK / CHAIN ARC",
   "color": [
     100,
     237,
     175
   ],
-  "description": "Slip through the maze. Chain lightning reveals the hidden garden.",
-  "version": "1.0.0",
+  "description": "Blink through permanent hedges. Two-target lightning grows through collectible phase seeds.",
+  "version": "1.2.0",
   "order": 4,
   "authoring": {
     "atlas_column": 4

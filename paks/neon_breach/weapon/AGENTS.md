@@ -9,3 +9,5 @@ Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and 
 Up to two accelerating plasma pinballs reflect from bounds/cover/targets/paddle. Guidance uses bounded angular turn rate, including a 180-degree reversal. Prune ball references against world.projectiles after host cleanup.
 
 Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.
+
+Powerups: NeonBreachPowerup bounces and seeks a nearby paddle. Ball damage 34+6n; pool capacity 2+min(3,floor(n/2)). Existing live balls read the current pickup count. Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.

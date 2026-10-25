@@ -11,6 +11,7 @@ class Harpoon(ProjectileBase):
         self.target=None
         self.returning=False
         self.remaining=3.
+        self.power=world.powerups_collected
     def update(self,world,dt):
         self.remaining-=dt
         if self.remaining<=0:
@@ -21,10 +22,10 @@ class Harpoon(ProjectileBase):
                 self.target=None
                 self.returning=True
             else:
-                self.target.pos+=(world.player.pos-self.target.pos)*min(1,dt*4)
+                self.target.pos+=(world.player.pos-self.target.pos)*min(1,dt*(4+.4*self.power))
                 self.pos=self.target.pos.copy()
                 if self.pos.distance_to(world.player.pos)<32:
-                    world.hit_enemy(self.target,38)
+                    world.hit_enemy(self.target,38+8*self.power)
                     self.alive=False
                 return
         if self.returning:
@@ -36,14 +37,14 @@ class Harpoon(ProjectileBase):
         self.pos+=self.vel*dt
         if not (4<self.pos.x<WIDTH-4 and 4<self.pos.y<HEIGHT-4): self.returning=True
         if not self.returning:
-            for wall in world.cover:
-                if wall.health>0 and circle_rect(self.pos,self.radius,wall.rect):
+            for wall in world.geometry:
+                if wall.health>0 and wall.blocks_projectile(self) and wall.overlaps_circle(self.pos, self.radius):
                     world.hit_cover(wall,40)
                     self.returning=True
                     return
             for enemy in world.enemies:
                 if enemy.health>0 and enemy.pos.distance_to(self.pos)<enemy.radius+self.radius:
-                    world.hit_enemy(enemy,18)
+                    world.hit_enemy(enemy,18+4*self.power)
                     self.target=enemy
                     return
     def draw(self,graphics,surface,world):

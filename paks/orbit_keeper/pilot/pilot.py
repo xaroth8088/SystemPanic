@@ -6,7 +6,7 @@ from system_panic.pak_api import PilotBase
 
 
 class OrbitKeeperPilot(PilotBase):
-    controls = 'Left / right: orbit. Up / down: radius'
+    controls = 'Left / right: orbit. Up / down: step between rings'
     special = 'X: reverse, shield, toggle inward / outward fire'
 
     def init(self):
@@ -15,6 +15,7 @@ class OrbitKeeperPilot(PilotBase):
         self._special_remaining = 0.
         self._dash_remaining = 0.
         self._previous_y = 0.
+        self._radial_direction = 0
         self._previous_special = False
         self._orbit_radius = 170.
         self._orbit_direction = 1
@@ -59,7 +60,13 @@ class OrbitKeeperPilot(PilotBase):
             self._orbit_direction *= -1
             self._fire_outward = not self._fire_outward
         p.angle += (control.x * 2.2 if control.x else .65 * self._orbit_direction) * dt
-        self._orbit_radius = max(70, min(215, self._orbit_radius + control.y * 150 * dt))
+        radial = (1 if control.y > .5 else -1) if abs(control.y) > .5 else 0
+        if radial and radial != self._radial_direction:
+            rings = (70., 115., 160., 205.)
+            index = min(range(len(rings)), key=lambda i: abs(rings[i] - self._orbit_radius))
+            self._orbit_radius = rings[max(0, min(len(rings)-1, index + radial))]
+            p.pos = world.safe_position(Vec(WIDTH/2, HEIGHT/2) + unit(p.angle)*self._orbit_radius,p.radius)
+        self._radial_direction = radial
         target = Vec(WIDTH / 2, HEIGHT / 2) + unit(p.angle) * self._orbit_radius
         p.vel = (target - p.pos) * 12
         motion = world.move_body(p, p.vel * dt, 12, bounds=pygame.Rect(10, 10, WIDTH - 20, HEIGHT - 20))

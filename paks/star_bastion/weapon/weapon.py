@@ -2,6 +2,7 @@
 import math
 from system_panic.model import normalized,unit
 from system_panic.pak_api import WeaponBase
+from .powerup import StarBastionPowerup
 from .projectile import SalvoBolt
 
 class StarBastionWeapon(WeaponBase):
@@ -28,4 +29,11 @@ class StarBastionWeapon(WeaponBase):
             direction=self.aim(world)
             guided=world.prefs.aim_assist and world.component("pilot").aim_direction(world) is None
             self.sound.play(volume=.3)
-            for side in (-9,9): world.projectiles.append(SalvoBolt(world,self,direction,side,guided))
+            count=2+min(4,world.powerups_collected//3)
+            for side in (-9,9,0,-27,27,-45)[:count]: world.projectiles.append(SalvoBolt(world,self,direction,side,guided))
+
+    def create_powerup(self,world,position):
+        return StarBastionPowerup(position,self.sprite(world),world.pak("weapon").color)
+
+    def on_powerup(self,world,count):
+        world.burst(world.player.pos,world.pak("weapon").color,12)

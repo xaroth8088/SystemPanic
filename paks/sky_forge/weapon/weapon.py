@@ -1,6 +1,7 @@
 """SkyForge: Pak-owned trigger cadence and weapon behavior."""
 from system_panic.model import normalized, unit
 from system_panic.pak_api import WeaponBase
+from .powerup import SkyForgePowerup
 from .projectile import Bomb
 
 
@@ -32,3 +33,9 @@ class SkyForgeWeapon(WeaponBase):
     def fire(self, world, direction):
         self.shot_sound.play(volume=.3)
         world.projectiles.append(Bomb(world, self, direction))
+
+    def create_powerup(self,world,position):
+        return SkyForgePowerup(position,self.sprite(world),world.pak("weapon").color)
+
+    def on_powerup(self,world,count):
+        world.burst(world.player.pos,world.pak("weapon").color,12)

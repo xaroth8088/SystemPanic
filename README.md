@@ -27,18 +27,39 @@ Source also runs on Linux/macOS with Python 3.12+ and Pygame; the standalone bui
 | Void Drifter | Rotation, inertial thrust and reverse braking | Piercing lance | Asteroids that fracture into smaller rocks |
 | Iron Circuit | Constant driving, steering and overdrive ramming | Ricocheting scattershot | Aimed gun turrets |
 | Sky Forge | Gravity, double jumping and rising forge leap | Seeking explosive fireballs | Hopping forge crawlers |
-| Phase Garden | Rhythmic step-dashes and blinking through cover | Four-target chain lightning | Teleporting spectral flowers |
-| Orbit Keeper | Angular/radial movement; special reverses, shields and toggles inward/outward fire | Radially directed returning glaives | Circling sentinels |
+| Phase Garden | Rhythmic step-dashes and blinking through cover | Two-target chain lightning; upgrades add arcs | Teleporting spectral flowers |
+| Orbit Keeper | Angular movement and discrete radial ring steps; special reverses, shields and toggles inward/outward fire | Radially directed returning glaives | Circling sentinels |
 | Neon Breach | Perimeter paddle sliding and magnetic corner bursts | Accelerating, bouncing multiball | Moving brick drones |
-| Maze Muncher | Buffered cardinal turns and energized contact chomps | Short, single-target bites | Chase/scatter maze crabs |
-| Burrow Patrol | Cardinal digging and a close-range drill burst | Pressure tether that inflates and pops targets | Armored burrowing worms |
-| Vector Coil | Continuous right-angle movement and shielded reversals | Draw a tail; close loops to capture enclosed enemies | Reflecting vector sparks |
-| Star Bastion | Horizontal movement along the bottom and barrel rolls | Twin wrapping, guided salvo bolts | Sweeping formations with later diving attacks |
+| Maze Muncher | Buffered cardinal turns and energized contact chomps | Short forward dash with mutual knockback | Chase/scatter maze crabs |
+| Burrow Patrol | Cardinal digging and a close-range drill burst | Limited-reach pressure tether that inflates and pops nearby targets | Armored burrowing worms |
+| Vector Coil | Continuous right-angle movement and shielded reversals | Close tails to capture enemies and carve solid territory | Reflecting vector sparks |
+| Star Bastion | Horizontal movement along the bottom and barrel rolls | Twin guided salvo bolts that expire at screen edges | Sweeping formations with later diving attacks |
 | Tide Hopper | Discrete lane hops and long ferry leaps | Catch-and-reel harpoons | Wrapping traffic with later lane interception |
 
 The additional six use original designs inspired by classic mechanics: **Neon Breach → Breakout**, **Maze Muncher → Pac-Man**, **Burrow Patrol → Dig Dug**, **Vector Coil → Qix / Tron**, **Star Bastion → Space Invaders**, and **Tide Hopper → Frogger**. They retain System Panic's endless combat objective and mixable components. Each owns its code, procedural layouts, original AI sprites, soundtrack and effects.
 
-Each Pak has its own procedural arena geometry, original generated sprites and soundtrack. Obstacles regenerate every level, and enemies gain speed, damage and more advanced tactics as levels rise. Maze walls and capacitor posts are impervious; other obstacle Paks may choose different durability. Awkward or ineffective component combinations are allowed to persist until the next shuffle. Shared engine state survives a shuffle; opaque movement/AI state does not.
+Each Pak has its own procedural arena geometry, original generated sprites and soundtrack. Obstacles regenerate every level, and enemies gain speed, damage and more advanced tactics as levels rise. Signal partitions, Sky Forge platforms, Phase Garden hedges, maze walls and capacitor posts are impervious. Iron Circuit uses closed racetrack rails that stop bodies and pass projectiles; Void Drifter includes gravitational wells and timed crossing comets. Other obstacle Paks choose their own durability. Awkward or ineffective component combinations are allowed to persist until the next shuffle. Shared engine state survives a shuffle; opaque movement/AI state does not.
+
+## Collectible powerups
+
+Every **ten enemies destroyed**, the engine asks the active weapon Pak to create a collectible at that enemy's position. Each weapon folder contains its own `powerup.py` subclass of `PowerupBase`. Paks own movement, lifetime, pickup conditions and presentation. Pickup counts persist across levels and Pak swaps; the active weapon interprets the total. The HUD's **UP** value shows collected upgrades. Uncollected drops keep their original behavior when weapons change.
+
+| Pak | Collectible behavior | Weapon upgrade |
+|---|---|---|
+| Signal Runner | Magnetic drift nearby | Damage and faster firing |
+| Void Drifter | Inertial drift and wrapping | Lance damage, speed and piercing |
+| Iron Circuit | Rolling, bouncing cell | Damage, pellet count and ricochets |
+| Sky Forge | Falls and lands on platforms | Fireball damage and blast radius |
+| Phase Garden | Periodic blink toward the pilot | Damage; another arc every three pickups, capped at five targets |
+| Orbit Keeper | Orbits its drifting pickup center | Glaive damage and outbound reach |
+| Neon Breach | Bouncing bonus ball | Ball damage and multiball capacity |
+| Maze Muncher | Stationary power pellet | Dash damage, reach and recovery |
+| Burrow Patrol | Digs toward the pilot in steps | Tether reach (145 to 300 px), pressure and damage |
+| Vector Coil | Follows cardinal grid directions | Longer/wider tail and charged contact damage |
+| Star Bastion | Falling supply cell | Salvo damage and additional bolts |
+| Tide Hopper | Drifts across the river lane | Harpoon damage and reel speed |
+
+Vector's filled regions and live enemy-blocking lines are owned by its weapon component. Filled regions retain a walkable boundary, survive unrelated swaps, and disappear on weapon replacement or a new level. The pilot's attacks remain device-independent.
 
 ## Dynamic Paks
 
@@ -97,6 +118,8 @@ Start at [`AGENTS.md`](AGENTS.md). Linked wiki pages live beside the runtime, Pa
 python -m unittest discover -s tests -v
 python tools/verify.py
 python tools/compatibility.py
+python tools/verify_platforms.py
+python tools/verify_powerups.py --frozen
 ```
 
 `verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` checks stable gameplay updates in every eligible pilot/enemy/weapon/obstacle mixture (**20,736** with the twelve shipped Paks) and separately renders/streams all **144** background/music pairs using a fixed seed and relaxed difficulty. `--require-clear` optionally probes opening-level balance; some mixes are deliberately ineffective until a shuffle and need not clear. Automated gameplay checks complement human balance testing.

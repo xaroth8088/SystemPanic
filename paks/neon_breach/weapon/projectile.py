@@ -31,16 +31,16 @@ class PlasmaBall(ProjectileBase):
             if self.pos[axis]<self.radius or self.pos[axis]>extent-self.radius:
                 self.pos[axis]=max(self.radius,min(extent-self.radius,self.pos[axis]))
                 self.vel[axis]*=-1
-        for wall in world.cover:
-            if wall.health>0 and circle_rect(self.pos,self.radius,wall.rect):
-                world.hit_cover(wall,34)
+        for wall in world.geometry:
+            if wall.health>0 and wall.blocks_projectile(self) and wall.overlaps_circle(self.pos, self.radius):
+                world.hit_cover(wall,34+6*world.powerups_collected)
                 if old.x<wall.rect.left or old.x>wall.rect.right: self.vel.x*=-1
                 else: self.vel.y*=-1
                 self.pos=old
                 break
         for enemy in world.enemies:
             if enemy.health>0 and enemy.id not in self.hits and self.pos.distance_to(enemy.pos)<self.radius+enemy.radius:
-                world.hit_enemy(enemy,34)
+                world.hit_enemy(enemy,34+6*world.powerups_collected)
                 self.hits[enemy.id]=.16
                 normal=normalized(self.pos-enemy.pos)
                 if self.vel.dot(normal)<0: self.vel=self.vel.reflect(normal)

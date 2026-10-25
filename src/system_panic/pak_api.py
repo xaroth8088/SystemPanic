@@ -137,6 +137,13 @@ class EnemyBase(SpriteComponent):
 
 
 class WeaponBase(SpriteComponent):
+    def create_powerup(self, world: World, position: Vec) -> PowerupBase | None:
+        """Factory called at every tenth kill; the returned Pak object owns its behavior."""
+        return None
+
+    def on_powerup(self, world: World, count: int) -> None:
+        """Optional pickup feedback. world.powerups_collected persists across swaps."""
+
     @abstractmethod
     def update(self, world: World, dt: float, control: Controls) -> None:
         """Own triggering/cadence/charges. Append Pak-owned projectiles or effects."""
@@ -172,6 +179,21 @@ class EffectBase(ABC):
     def draw(self, graphics: Graphics, surface: Surface, world: World) -> None: ...
 
 
+class PowerupBase(ABC):
+    """Pak-owned collectible; the host only spawns, schedules and counts collections."""
+    def __init__(self, position: Vec, radius: float = 10.):
+        self.pos, self.vel = Vec(position), Vec()
+        self.radius, self.alive = radius, True
+
+    @abstractmethod
+    def update(self, world: World, dt: float) -> None:
+        """Own motion, lifetime and pickup conditions; call world.collect_powerup(self)."""
+
+    @abstractmethod
+    def draw(self, graphics: Graphics, surface: Surface, world: World) -> None:
+        """Read-only presentation, using captured local asset handles."""
+
+
 class MusicBase(ComponentBase):
     @abstractmethod
     def track(self, world: World | None = None) -> SoundAsset | None:
@@ -185,6 +207,12 @@ class BackgroundBase(ComponentBase):
 
 
 class ObstaclesBase(SpriteComponent):
+    def update(self, world: World, dt: float) -> None:
+        """Optional active-step hazards/dynamic geometry, entirely Pak-owned."""
+
+    def draw_floor(self, graphics: Graphics, surface: Surface, world: World) -> None:
+        """Optional read-only terrain presentation underneath obstacle bodies."""
+
     @abstractmethod
     def build(self, world: World) -> list[Cover]:
         """Fresh geometry each level/provider change; use seed/wave for procedural rules.
@@ -209,4 +237,4 @@ class ObstaclesBase(SpriteComponent):
 
 
 __all__ = ["ComponentBase", "PilotBase", "EnemyBase", "WeaponBase", "MusicBase", "BackgroundBase", "ObstaclesBase",
-           "ProjectileBase", "EffectBase", "ImageAsset", "SoundAsset", "SpriteFrame", "Sprite"]
+           "ProjectileBase", "EffectBase", "PowerupBase", "ImageAsset", "SoundAsset", "SpriteFrame", "Sprite"]

@@ -222,3 +222,35 @@ PilotBase.aim_direction(world) defaults to None. A pilot may instead return its 
 The six expansion folders provide additional authoring examples: a persistent multiball pool in neon_breach/weapon, buffered turns with off-grid obstacle escape in maze_muncher/pilot, drilling and inflation in burrow_patrol, closed-tail intersections, containment and scheduled capture visuals in vector_coil, formation and dive behavior in star_bastion, and timed hops/catch-and-reel flight in tide_hopper. Persistent component references to scheduled objects must account for the host clearing projectiles at level/swap transitions; prune references that are no longer registered before launching again.
 
 Obstacle durability uses ObstaclesBase.take_damage(world, obstacle, damage). The default applies raw damage for API 4 compatibility; returning zero makes cover impervious. All attacks call world.hit_cover(obstacle, damage), including drilling and enemy impacts. Keep finite health for geometry/rendering rather than using infinite health.
+
+
+## Collectible API (additive API 4)
+
+Keep a weapon's PowerupBase subclass in weapon/powerup.py so the whole weapon folder remains copyable as a partial Pak. The engine calls create_powerup(world, position) at every tenth removed enemy. All shipped weapons implement the factory; the default None keeps older external weapon implementations loadable. A drop owns its image handle/color so changing Paks does not change its behavior or invalidate rendering.
+
+PowerupBase supplies pos, vel, radius and alive, with abstract update(world, dt) and draw(graphics, surface, world). No movement, gravity, lifetime or pickup radius policy is inferred by the host. Call world.collect_powerup(self) when the Pak's pickup condition is met. The host checks live membership and prevents double collection, increments world.powerups_collected and calls the currently active weapon's on_powerup(world, count). Read that count in weapon formulas. It starts at zero per run and survives level/weapon changes; uncollected drops survive those transitions too. Updates freeze during pause/glitch/clear/ready states.
+
+For example, inside an existing WeaponBase subclass:
+
+```python
+from .powerup import MyPowerup
+
+def create_powerup(self, world, position):
+    return MyPowerup(position, self.load_asset("weapon_sheet.png"))
+
+def on_powerup(self, world, count):
+    world.burst(world.player.pos, world.pak("weapon").color, 12)
+# In the weapon's own attack logic: damage = 16 + 4 * world.powerups_collected
+```
+
+All twelve supplied folders demonstrate distinct motion and upgrade policies. The README records the current mapping. Do not add upgrade formulas or pickup movement branches to the core.
+
+## Shape and lifetime APIs
+
+world.cover is the selected obstacle component's list. world.geometry combines it with registered component-owned shapes. Use world.set_geometry(self, shapes) for weapon-created territory/live barriers and world.clear_geometry(self) when releasing it. The host also releases a component's registrations on replacement/close. Geometry does not have to belong to the obstacle mix channel.
+
+Cover subclasses may override overlaps_circle(position, radius), overlaps_segment(start, end), blocks_body(body), blocks_projectile(projectile), on_contact(world, body, normal), damage(world, amount) and draw(graphics, surface, world). Their rect is a broad-phase bound, not necessarily a solid rectangle. Always query the methods instead of assuming rectangle collision. Projectiles use blocks_projectile plus overlaps_circle; rays use world.segment_blocked. A racetrack can return False from blocks_projectile while remaining solid to bodies. Component-specific responses, such as reflecting an enemy at a live tail, belong in the shape callback.
+
+ObstaclesBase.update(world, dt) runs once per active step after actor/projectile motion; use it for gravity wells, crossing hazards and moving geometry. draw_floor(graphics, surface, world) paints terrain underneath shapes and must be simulation-free. move_body provides bounded substeps and shape-contact normals without deciding jumping/ricochet policy; safe_position accepts body= for shape filtering. Keep all lifecycle cleanup and procedural rules in the owning Pak.
+
+A shape that fully handles its collision response may return True from on_contact; the resolver then suppresses that contact normal in Motion. This prevents caller AI from applying a second reflection. Default contacts return no handled result and preserve neutral normal reporting.

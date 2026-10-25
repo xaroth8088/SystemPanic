@@ -30,7 +30,7 @@ class StarBastionPilot(PilotBase):
         candidates += sorted(range(16, WIDTH - 15, 8), key=lambda x: abs(x - p.pos.x))
         for x in candidates:
             point = Vec(x, y)
-            if not any(w.health > 0 and circle_rect(point, p.radius + 2, w.rect) for w in world.cover):
+            if not any(w.health > 0 and w.blocks_body(p) and w.overlaps_circle(point, p.radius + 2) for w in world.geometry):
                 p.pos = point
                 return
 

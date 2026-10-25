@@ -6,7 +6,7 @@ from system_panic.pak_api import PilotBase
 
 
 class NeonBreachPilot(PilotBase):
-    controls = 'Left / right: perimeter slide. Up / down: change edge'
+    controls = 'Left / right: perimeter slide. Up / down: unused'
     special = 'X: magnetic corner burst'
 
     def init(self):
@@ -61,10 +61,6 @@ class NeonBreachPilot(PilotBase):
     def move(self, world, dt, control, special):
         w, h = WIDTH - 48, HEIGHT - 48
         self._boost = max(0., self._boost - dt)
-        edge = control.y if abs(control.y) > .5 else 0
-        if edge and not self._edge_y:
-            self._distance += (w + h) / 2 * (1 if edge > 0 else -1)
-        self._edge_y = edge
         if special:
             self._boost = .5
             self._distance += 70
@@ -84,4 +80,4 @@ class NeonBreachPilot(PilotBase):
         return -math.degrees(entity.angle) - 90
 
     def demo_controls(self, world):
-        return Controls(.85, -1 if int(world.time * 2) % 13 == 0 else 0, True, int(world.time * 3) % 11 == 0)
+        return Controls(.85, 0, True, int(world.time * 3) % 11 == 0)

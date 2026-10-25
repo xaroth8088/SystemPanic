@@ -130,7 +130,7 @@ class WorldTests(unittest.TestCase):
             self.assertTrue(all(type(e).__module__ == type(world.component("enemy")).__module__ for e in world.enemies))
             self.assertEqual(world.projectiles, [])
             self.assertGreaterEqual(world.player.invulnerable, 1.5)
-            self.assertFalse(any(circle_rect(world.player.pos, 12, c.rect) for c in world.cover))
+            self.assertFalse(any(c.blocks_body(world.player) and c.overlaps_circle(world.player.pos, 12) for c in world.geometry))
 
     def test_enabled_filter_coherent_mode_and_locked_channels(self):
         prefs = Preferences(enabled=["sky_forge", "phase_garden"], mix_mode="coherent")

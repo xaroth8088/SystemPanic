@@ -1,14 +1,14 @@
 {
   "id": "star_bastion",
   "name": "Star Bastion",
-  "subtitle": "BOTTOM LINE / FORMATIONS",
+  "subtitle": "BOTTOM LINE / SALVO",
   "color": [
     126,
     189,
     255
   ],
-  "description": "Defend the bottom line with left/right movement, barrel rolls and twin salvos against diving formations.",
-  "version": "1.1.0",
+  "description": "Move horizontally along the bottom. Non-wrapping salvos gain strength from falling supply cells.",
+  "version": "1.2.0",
   "order": 10,
   "authoring": {
     "inspired_by": "Space Invaders",

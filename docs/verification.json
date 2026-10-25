@@ -16,7 +16,7 @@
       },
       "health": 100,
       "score": 2100,
-      "seconds": 8.73
+      "seconds": 11.98
     },
     {
       "pak": "void_drifter",
@@ -32,7 +32,7 @@
       },
       "health": 100,
       "score": 2820,
-      "seconds": 11.75
+      "seconds": 11.4
     },
     {
       "pak": "iron_circuit",
@@ -48,7 +48,7 @@
       },
       "health": 100,
       "score": 2100,
-      "seconds": 12.35
+      "seconds": 9.6
     },
     {
       "pak": "sky_forge",
@@ -64,7 +64,7 @@
       },
       "health": 100,
       "score": 2100,
-      "seconds": 9.12
+      "seconds": 7.27
     },
     {
       "pak": "phase_garden",
@@ -80,7 +80,7 @@
       },
       "health": 100,
       "score": 2100,
-      "seconds": 7.45
+      "seconds": 8.62
     },
     {
       "pak": "orbit_keeper",
@@ -96,7 +96,7 @@
       },
       "health": 100,
       "score": 2100,
-      "seconds": 24.35
+      "seconds": 19.08
     },
     {
       "pak": "neon_breach",
@@ -112,7 +112,7 @@
       },
       "health": 100,
       "score": 2100,
-      "seconds": 18.65
+      "seconds": 18.03
     },
     {
       "pak": "maze_muncher",
@@ -128,7 +128,7 @@
       },
       "health": 100,
       "score": 2100,
-      "seconds": 15.83
+      "seconds": 37.75
     },
     {
       "pak": "burrow_patrol",
@@ -144,7 +144,7 @@
       },
       "health": 100,
       "score": 2100,
-      "seconds": 11.62
+      "seconds": 45.15
     },
     {
       "pak": "vector_coil",
@@ -160,7 +160,7 @@
       },
       "health": 100,
       "score": 2100,
-      "seconds": 94.33
+      "seconds": 44.97
     },
     {
       "pak": "star_bastion",
@@ -870,10 +870,12 @@
   "date": "2026-10-24",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 95,
+    "passed": 113,
     "failed": 0,
-    "seconds": 230.218,
-    "command": "python -B -m unittest discover -s tests -v"
+    "seconds": 324.517,
+    "command": "python -B -m unittest discover -s tests -v",
+    "new_powerup_mechanics_tests": 18,
+    "ui_tests_after_help_update": 5
   },
   "local_studio": [
     {
@@ -957,18 +959,19 @@
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "70bf57438c86c87e6141a0d371eda8407e595cbaec150a6785eb3c1336b94d0f",
-    "total_bytes": 59199776,
+    "sha256": "d1504e98cb36ae2c9c6d099fa128a94fddb53e774f6e46015f77cae10ad544d3",
+    "total_bytes": 59248860,
     "archive": "dist/SystemPanic-Windows-x64.zip",
     "archive_test_passed": true,
-    "archive_sha256": "db35ac7d6786423ca4ee8c5b16ec682e3d4776094b3376706f5742f69ce3b758",
-    "archive_bytes": 38117197,
-    "external_pak_files_match_source": 293
+    "archive_sha256": "9dfc738e59fdf2ac12e3c546c5232cfc0ae3edfb77d332df613ef727b764f805",
+    "archive_bytes": 38141411,
+    "external_pak_files_match_source": 306,
+    "powerup_helpers_shipped": 12
   },
   "limitations": [
-    "The fresh solo pass samples three cleared levels at relaxed difficulty, seed 24. The separate longer balance probe records Maze defeat at level eight and Vector reaching level ten within 300 seconds; human balance testing remains.",
-    "Ineffective or awkward mixed combinations are intentionally allowed until a periodic shuffle; opening-level clears are not required of every combination.",
-    "All 20,736 gameplay mixes had stable-update smoke checks; 144 presentation pairs were tested separately. The full 2,985,984 six-role space was not playtested.",
+    "Fresh solo gameplay samples clear three levels per Pak at relaxed difficulty and seed 24; long-run powerup/difficulty balance still needs human playtesting.",
+    "The source/frozen collectible probe uses controlled enemy-death and pickup fixtures; it is not a human playtest.",
+    "Awkward mixed combinations are intentionally allowed until a periodic shuffle; all 20,736 gameplay mixes had stable-update smoke checks and 144 presentation pairs were tested separately.",
     "Native SDL virtual controls ran alongside a connected PS4 controller; its physical buttons were not operated.",
     "Custom controller button remapping is not implemented; compatible pads use SDL mappings."
   ],
@@ -1081,7 +1084,7 @@
     "external_code_and_helpers_executed": true,
     "partial_only_mix_executed": true,
     "wheel_external_layout_verified": true,
-    "executable_sha256": "70bf57438c86c87e6141a0d371eda8407e595cbaec150a6785eb3c1336b94d0f"
+    "executable_sha256": "d1504e98cb36ae2c9c6d099fa128a94fddb53e774f6e46015f77cae10ad544d3"
   },
   "wheel_install_check": {
     "fresh_prefix_install": true,
@@ -1094,7 +1097,7 @@
     "obsolete_arena_helper_absent": true,
     "frames": 240,
     "exit_code": 0,
-    "wheel_sha256": "4c36e8ac155aaf1669ab540fed86b0b38d86d1dd1fb71c0c7018509316803671"
+    "wheel_sha256": "2f319114a83db3d9f0b2cba5993abfe798ef036067f6f7ccd97b8ac505a00723"
   },
   "dynamic_paks": {
     "api_version": 4,
@@ -1134,7 +1137,12 @@
     "level_lifecycle_callbacks": true,
     "optional_pilot_aim_direction": true,
     "optional_pilot_status": true,
-    "pak_owned_obstacle_durability": true
+    "pak_owned_obstacle_durability": true,
+    "powerup_base": true,
+    "weapon_local_powerup_factories": true,
+    "shape_collision_protocol": true,
+    "component_owned_geometry": true,
+    "obstacle_active_update": true
   },
   "rule_boundary_checks": {
     "custom_rules_tests": 12,
@@ -1641,7 +1649,7 @@
       {
         "pak": "maze_muncher",
         "inspiration": "Pac-Man",
-        "mechanics": "buffered turns, short single-target bites, energized contact special, impervious maze walls"
+        "mechanics": "buffered turns, forward dash/contact recoil, energized special, permanent maze"
       },
       {
         "pak": "burrow_patrol",
@@ -1651,12 +1659,12 @@
       {
         "pak": "vector_coil",
         "inspiration": "Qix / Tron",
-        "mechanics": "right-angle movement, pilot-following closed-tail captures, impervious posts; no beams or passive damage"
+        "mechanics": "closed-tail captures, owned solid territory and enemy-blocking live lines"
       },
       {
         "pak": "star_bastion",
         "inspiration": "Space Invaders",
-        "mechanics": "bottom-aligned horizontal movement, barrel rolls, twin wrapping salvos, formations/dives"
+        "mechanics": "bottom-aligned horizontal movement, non-wrapping salvos, formations/dives"
       },
       {
         "pak": "tide_hopper",
@@ -1714,7 +1722,74 @@
     "max_seconds": 4.983333333333333,
     "failures": []
   },
-  "balance_probe": {
+  "mechanic_refinement": {
+    "pilot_following_tail": true,
+    "separate_drawing_cursor": false,
+    "loop_closure_required": true,
+    "full_enemy_circle_containment": true,
+    "no_vector_projectiles_or_passive_damage": true,
+    "maze_energized_contact_special_retained": true,
+    "impervious_obstacle_providers": [
+      "signal_runner",
+      "phase_garden",
+      "sky_forge",
+      "maze_muncher",
+      "vector_coil"
+    ],
+    "star_bastion_horizontal_only": true,
+    "star_bastion_y": 456,
+    "ineffective_mix_shuffle_continuation_tested": true,
+    "screenshots_inspected": [
+      "iron_circuit-arrangement-1",
+      "iron_circuit-arrangement-3",
+      "sky_forge-arrangement-3",
+      "void-gravity-comet",
+      "vector-carved-territory",
+      "powerup-help",
+      "updated-library",
+      "frozen/sky_forge-picked"
+    ],
+    "changed_runtime_ide_errors": 0,
+    "maze_attack": "short_forward_dash_with_mutual_knockback",
+    "maze_dash_base_damage": 20,
+    "maze_dash_base_seconds": 0.14,
+    "maze_dash_speed": 460,
+    "maze_dash_base_recovery_seconds": 0.62,
+    "vector_carved_regions_are_solid": true,
+    "vector_live_lines_bounce_enemies": true,
+    "vector_geometry_owned_by_weapon": true,
+    "vector_boundary_remains_walkable": true,
+    "neon_vertical_input_ignored": true,
+    "burrow_base_reach": 145,
+    "burrow_max_upgraded_reach": 300,
+    "star_bolts_screen_wrap": false,
+    "phase_base_chain_targets": 2,
+    "phase_upgraded_max_targets": 5,
+    "orbit_glaives_return_from_offscreen": true,
+    "orbit_discrete_radii": [
+      70,
+      115,
+      160,
+      205
+    ],
+    "white_pilot_dot_removed": true,
+    "sky_pilot_collision_radius": 22,
+    "sky_display_size": 44,
+    "sky_layout_families": 5,
+    "iron_track_families": 4,
+    "iron_rails_pass_projectiles": true,
+    "void_black_holes_pull": [
+      "pilot",
+      "enemies",
+      "projectiles",
+      "powerups",
+      "comets"
+    ],
+    "void_crossing_comets": true,
+    "void_comet_lifetime_bound_seconds": 12
+  },
+  "historical_balance_probe_before_powerups": {
+    "commit": "9c9dde3",
     "target_levels": 12,
     "seconds_limit": 300,
     "seed": 24,
@@ -1741,30 +1816,269 @@
     ],
     "purpose": "Observe reduced-attack balance; this is not a requirement to survive twelve levels."
   },
-  "mechanic_refinement": {
-    "pilot_following_tail": true,
-    "separate_drawing_cursor": false,
-    "loop_closure_required": true,
-    "full_enemy_circle_containment": true,
-    "no_vector_projectiles_or_passive_damage": true,
-    "maze_bite_damage": 16,
-    "maze_bite_max_range": 70,
-    "maze_bite_targets_per_attack": 1,
-    "maze_bite_cooldown_seconds": 0.48,
-    "maze_energized_contact_special_retained": true,
-    "impervious_obstacle_providers": [
-      "maze_muncher",
-      "vector_coil"
+  "powerups": {
+    "spawn_every_destroyed_enemies": 10,
+    "spawn_at_dead_enemy_position": true,
+    "motion_pickup_expiry_owned_by_pak": true,
+    "base_class": "PowerupBase",
+    "factory": "WeaponBase.create_powerup",
+    "count": "World.powerups_collected",
+    "count_retained_across_weapon_and_level_changes": true,
+    "drops_retain_their_original_subclass": true,
+    "shipped_drop_active_lifetime_seconds": 50,
+    "weapon_local_helpers": 12,
+    "every_weapon_upgrade_measurably_improves": true,
+    "icons_reuse_original_local_generated_art": true,
+    "source": {
+      "runs": [
+        {
+          "pak": "signal_runner",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SignalRunnerPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "void_drifter",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VoidDrifterPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "iron_circuit",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "IronCircuitPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "sky_forge",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SkyForgePowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "phase_garden",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "PhaseGardenPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "orbit_keeper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "OrbitKeeperPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "neon_breach",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "NeonBreachPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "maze_muncher",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "MazeMuncherPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "burrow_patrol",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "BurrowPatrolPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "vector_coil",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VectorCoilPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "star_bastion",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "StarBastionPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "tide_hopper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "TideHopperPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        }
+      ],
+      "all_paks": 12,
+      "kill_interval": 10,
+      "shared_pickup_counter": true
+    },
+    "frozen": {
+      "runs": [
+        {
+          "pak": "signal_runner",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SignalRunnerPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "void_drifter",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VoidDrifterPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "iron_circuit",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "IronCircuitPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "sky_forge",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SkyForgePowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "phase_garden",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "PhaseGardenPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "orbit_keeper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "OrbitKeeperPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "neon_breach",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "NeonBreachPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "maze_muncher",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "MazeMuncherPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "burrow_patrol",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "BurrowPatrolPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "vector_coil",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VectorCoilPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "star_bastion",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "StarBastionPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "tide_hopper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "TideHopperPowerup",
+          "collected_once": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        }
+      ],
+      "all_paks": 12,
+      "kill_interval": 10,
+      "shared_pickup_counter": true
+    }
+  },
+  "platform_reachability": {
+    "routes_tested": 114,
+    "failures": [],
+    "seeds": [
+      0,
+      24,
+      101
     ],
-    "star_bastion_horizontal_only": true,
-    "star_bastion_y": 456,
-    "ineffective_mix_shuffle_continuation_tested": true,
-    "screenshots_inspected": [
-      "vector-open-tail",
-      "vector-closed-tail",
-      "maze-short-bite",
-      "bastion-bottom"
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
     ],
-    "changed_runtime_ide_errors": 0
+    "actual_pilot_physics": true,
+    "ordinary_double_jumps_only": true,
+    "special_leap_used": false,
+    "timed_input_search": true,
+    "tool": "tools/verify_platforms.py"
   }
 }

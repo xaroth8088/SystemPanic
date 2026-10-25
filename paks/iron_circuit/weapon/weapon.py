@@ -1,6 +1,7 @@
 """IronCircuit: Pak-owned trigger cadence and weapon behavior."""
 from system_panic.model import normalized, unit
 from system_panic.pak_api import WeaponBase
+from .powerup import IronCircuitPowerup
 from .projectile import Ricochet
 
 
@@ -31,5 +32,12 @@ class IronCircuitWeapon(WeaponBase):
 
     def fire(self, world, direction):
         self.shot_sound.play(volume=.3)
-        for offset in (-.20, 0, .20):
+        count = 3 + 2 * min(3, world.powerups_collected // 2)
+        for offset in ((i - (count-1)/2) * .2 for i in range(count)):
             world.projectiles.append(Ricochet(world, self, direction.rotate_rad(offset)))
+
+    def create_powerup(self,world,position):
+        return IronCircuitPowerup(position,self.sprite(world),world.pak("weapon").color)
+
+    def on_powerup(self,world,count):
+        world.burst(world.player.pos,world.pak("weapon").color,12)

@@ -4,4 +4,4 @@ Read [this Pak](../AGENTS.md), [Pak contracts](../../AGENTS.md) and [public ABCs
 
 This folder owns its component code, helpers and generated assets. Use explicit ABC callbacks, local handle names and private timing/state. Do not import another Pak's module or move content rules into core. Drawing and asset selection cannot change simulation/RNG. Copy the entire role folder when making a partial. Assets are generated outside the game; provenance is recorded in assets/manifest.json.
 
-Perimeter distance drives the four-edge paddle; vertical input edges switch sides and the special adds a corner burst. Movement/body orientation stay local.
+Perimeter distance drives the four-edge paddle using left/right only. Vertical input is ignored, including held/edge changes; the special still adds a corner burst. Movement/body orientation stay local.

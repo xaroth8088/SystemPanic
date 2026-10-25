@@ -48,7 +48,7 @@ def main():
                     assert 0 < rect.left < rect.right < WIDTH and 0 < rect.top < rect.bottom < HEIGHT
                     assert obstacle.health == obstacle.max_health > 0
                 for body in (world.player, *world.enemies):
-                    assert not any(circle_rect(body.pos, body.radius, c.rect) for c in world.cover)
+                    assert not any(c.blocks_body(body) and c.overlaps_circle(body.pos, body.radius) for c in world.geometry)
                 # Exercise advanced AI/attack patterns as well as factory stat queries.
                 for _ in range(60):
                     world.advance(1 / 60, autopilot(world))

@@ -126,7 +126,7 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(len(world.projectiles),1)
         self.assertIsNot(world.projectiles[0],ball)
 
-    def test_maze_buffers_turns_and_bite_hits_only_one_near_target_once(self):
+    def test_maze_buffers_turns_and_dash_bounces_both_bodies_on_one_hit(self):
         world=self.world('maze_muncher')
         pilot=world.component('pilot')
         world.player.pos=Vec(100,100)
@@ -135,20 +135,21 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(world.player.vel.y,0)
         for _ in range(20):pilot.update(world,FIXED_DT,Controls(y=1))
         self.assertGreater(world.player.vel.y,0)
+        world.player.pos=Vec(200,200)
+        world.player.angle=0
         enemy=world.enemies[0]
-        enemy.pos=world.player.pos+Vec(40,0)
+        enemy.pos=Vec(240,200)
         enemy.health=enemy.max_health=100
-        second=world.spawn_enemy(world.player.pos+Vec(55,0))
-        far=world.spawn_enemy(world.player.pos+Vec(200,0))
-        second.health=far.health=100
+        second=world.spawn_enemy(Vec(300,200))
+        second.health=100
         weapon=world.component('weapon')
-        weapon.update(world,FIXED_DT,Controls(fire=True))
-        bite=world.projectiles[0]
-        for _ in range(60):bite.update(world,FIXED_DT)
-        self.assertEqual(enemy.health,84)
+        for _ in range(30):weapon.update(world,FIXED_DT,Controls(fire=True))
+        self.assertEqual(enemy.health,80)
         self.assertEqual(second.health,100)
-        self.assertEqual(far.health,100)
-        self.assertFalse(bite.alive)
+        self.assertGreater(enemy.pos.x,240)
+        self.assertLess(world.player.pos.x,200)
+        self.assertLess(world.player.vel.x,0)
+        self.assertFalse(world.projectiles)
 
     def test_maze_can_escape_cover_not_aligned_to_its_turn_grid(self):
         world=self.world('maze_muncher')
@@ -168,7 +169,7 @@ class ExpansionTests(unittest.TestCase):
         world.component('pilot').update(world,.05,Controls(x=1))
         self.assertLess(wall.health,36)
         enemy=world.enemies[0]
-        enemy.pos=Vec(500,200)
+        enemy.pos=world.player.pos+Vec(100,0)
         enemy.health=enemy.max_health=80
         weapon=world.component('weapon')
         for _ in range(26):weapon.update(world,.05,Controls(fire=True))
@@ -215,6 +216,8 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(weapon._points,[])
         weapon.update(world,FIXED_DT,Controls(fire=True))
         weapon.on_shuffle(world,frozenset({'background'}))
+        self.assertTrue(weapon._points)
+        weapon.on_shuffle(world,frozenset({'pilot'}))
         self.assertEqual(weapon._points,[])
         weapon.update(world,FIXED_DT,Controls(fire=True))
         weapon.on_level_start(world)

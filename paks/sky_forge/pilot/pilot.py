@@ -20,7 +20,7 @@ class SkyForgePilot(PilotBase):
         self._grounded = False
 
     def create(self, world, position):
-        return Pilot(pos=Vec(position), health=100, max_health=100, radius=11, angle=-math.pi / 2)
+        return Pilot(pos=Vec(position), health=100, max_health=100, radius=22, angle=-math.pi / 2)
 
     def on_level_start(self, world):
         # Recovery and arrival protection are this pilot's rules, not host defaults.
@@ -68,7 +68,7 @@ class SkyForgePilot(PilotBase):
         p.vel.y = min(460, p.vel.y + 820 * dt)
         if control.x:
             p.angle = 0 if control.x > 0 else math.pi
-        motion = world.move_body(p, p.vel * dt, 12, bounds=pygame.Rect(10, 10, WIDTH - 20, HEIGHT - 20))
+        motion = world.move_body(p, p.vel * dt, p.radius, bounds=pygame.Rect(10, 10, WIDTH - 20, HEIGHT - 20))
         if motion.blocked_y:
             p.vel.y = 0
         if motion.landed:

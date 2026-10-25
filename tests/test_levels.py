@@ -9,7 +9,7 @@ os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "1")
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from system_panic.model import Vec, Controls, WIDTH, HEIGHT, FIXED_DT, circle_rect
+from system_panic.model import Vec, Controls, WIDTH, HEIGHT, FIXED_DT, circle_rect, Cover
 from system_panic.paks import get_catalog
 from system_panic.preferences import Preferences
 from system_panic.world import World
@@ -119,7 +119,7 @@ class LevelTests(unittest.TestCase):
                             self.assertTrue(0 < rect.left < rect.right < WIDTH)
                             self.assertTrue(0 < rect.top < rect.bottom < HEIGHT)
                             self.assertEqual(obstacle.health, obstacle.max_health)
-                        self.assertFalse(any(a.rect.colliderect(b.rect) for i, a in enumerate(first) for b in first[i + 1:]))
+                        self.assertFalse(any(a.rect.colliderect(b.rect) for i, a in enumerate(first) for b in first[i + 1:] if type(a) is Cover and type(b) is Cover))
                 self.assertEqual(len(set(signatures)), len(signatures))
 
     def test_level_clear_rebuilds_destroyed_obstacles_in_solo_and_locked_mixes(self):
@@ -156,7 +156,7 @@ class LevelTests(unittest.TestCase):
                     self.assertTrue(all(c is not old_c for c in world.cover for old_c in old))
                     self.assertEqual(len(world.enemies), 2)
                     for body in (world.player, *world.enemies):
-                        self.assertFalse(any(circle_rect(body.pos, body.radius, c.rect) for c in world.cover))
+                        self.assertFalse(any(c.blocks_body(body) and c.overlaps_circle(body.pos, body.radius) for c in world.geometry))
 
     def test_unrelated_shuffle_preserves_layout_and_damage_but_level_change_does_not(self):
         world = World(Preferences(shuffle_channels=["music", "background"]), 24)

@@ -1,14 +1,14 @@
 {
   "id": "neon_breach",
   "name": "Neon Breach",
-  "subtitle": "PERIMETER / PINBALL",
+  "subtitle": "PERIMETER / MULTIBALL",
   "color": [
     255,
     148,
     91
   ],
-  "description": "Circle the perimeter and bank an accelerating plasma ball through brick drones.",
-  "version": "1.0.0",
+  "description": "Slide the perimeter with left/right; vertical input is unused. Bouncing bonus balls strengthen multiball.",
+  "version": "1.2.0",
   "order": 6,
   "authoring": {
     "inspired_by": "Breakout",

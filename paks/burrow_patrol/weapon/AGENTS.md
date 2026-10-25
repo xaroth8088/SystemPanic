@@ -9,3 +9,5 @@ Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and 
 A held pressure tether maintains target identity, pumps gradual damage and pops after sufficient pressure. Misses still draw a pressure stream. PressureLine is visual-only; targeting/damage stays in the weapon update.
 
 Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.
+
+Powerups: BurrowPatrolPowerup digs toward the pilot in discrete steps. Tether reach is min(300,145+18n); out-of-range targets cannot take damage or keep a target lock. Pressure grows at .85+.08n and gradual damage is 7+2n per second. Miss visuals end at the same reach. Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.

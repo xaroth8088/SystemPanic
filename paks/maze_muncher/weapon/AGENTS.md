@@ -6,4 +6,6 @@ This folder owns its component code, helpers and generated assets. Use explicit 
 
 Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.
 
-Normal fire emits a short 70-pixel directional bite for 16 damage, at most once to one target per bite, every .48 seconds. Solid cover blocks its line of sight. The .16-second visual expires and cannot damage again; no screen-wide waves or wall damage. The pilot retains its energized contact special.
+Normal fire is now a forward contact dash with mutual knockback; see the current formula below. No wave or projectile is launched.
+
+Powerups: MazeMuncherPowerup is a stationary power pellet. Normal attacks are short forward lunges, not waves/projectiles: 460 px/s for .14+min(.08,.008n) seconds, 20+5n damage, recovery max(.3,.62/(1+.035n)). One swept hit knocks both bodies apart and ends the lunge. The pilot retains its energized contact special. Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.

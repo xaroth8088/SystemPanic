@@ -5,3 +5,5 @@ Read [Pak contracts](../AGENTS.md). Complete API 4 Pak inspired by Space Invader
 Defend the lower sky, barrel-roll out of trouble and cut through diving formations.
 
 Each role folder is independently copyable as a partial Pak. Level number controls local difficulty; procedural obstacles use a separate seeded RNG. Keyboard/gamepad share Controls. Preserve +1 initial enemy progression and the core's existing transitions.
+
+Current package behavior: Move horizontally along the bottom. Non-wrapping salvos gain strength from falling supply cells. The weapon folder owns powerup.py and its upgrade formulas; the engine owns the tenth-kill cadence and shared pickup count.

@@ -9,3 +9,5 @@ aim(world) selects this weapon's assisted/facing direction locally. The host pro
 Use pilot aim_direction before assistance. Outbound speed is 600 so constrained pilots and radial fire reach distant targets; the .55-second return behavior stays local. Do not silently home outgoing shots away from explicit pilot intent.
 
 Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.
+
+Powerups: OrbitKeeperPowerup orbits a slowly approaching center. Glaives do not expire at viewport edges: they turn home after their local outbound timer. Damage 28+5n, launch speed 600+min(160,20n), outbound .55+min(.25,.025n). Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.

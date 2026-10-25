@@ -9,3 +9,5 @@ aim(world) selects this weapon's assisted/facing direction locally. The host pro
 Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.
 
 Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.
+
+Powerups: IronCircuitPowerup rolls/bounces against geometry. Damage 19+4n, pellet count 3+2*min(3,floor(n/2)), ricochet budget 4+floor(n/3). Rails use projectile filters and never stop shots. Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.

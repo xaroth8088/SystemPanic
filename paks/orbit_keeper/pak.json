@@ -1,14 +1,14 @@
 {
   "id": "orbit_keeper",
   "name": "Orbit Keeper",
-  "subtitle": "ORBIT / RETURN",
+  "subtitle": "RING STEPS / GLAIVE",
   "color": [
     242,
     225,
     112
   ],
-  "description": "Hold the orbit. Returning glaives cut through circling sentinels.",
-  "version": "1.0.0",
+  "description": "Step between orbital rings and toggle radial fire. Glaives return from offscreen; orbiting cores upgrade them.",
+  "version": "1.2.0",
   "order": 5,
   "authoring": {
     "atlas_column": 5
