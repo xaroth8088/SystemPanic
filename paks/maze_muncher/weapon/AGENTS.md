@@ -6,4 +6,4 @@ This folder owns its component code, helpers and generated assets. Use explicit 
 
 Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.
 
-Directional chomp waves expand across the field, tracking their own hit IDs/obstacle objects so each wave hits once. Drawing only shows the advancing arc.
+Normal fire emits a short 70-pixel directional bite for 16 damage, at most once to one target per bite, every .48 seconds. Solid cover blocks its line of sight. The .16-second visual expires and cannot damage again; no screen-wide waves or wall damage. The pilot retains its energized contact special.

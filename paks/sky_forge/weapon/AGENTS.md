@@ -7,3 +7,5 @@ Load local handles in `init()`; their attribute names are private choices. Insta
 aim(world) selects this weapon's assisted/facing direction locally. The host provides no aiming method or firing gate.
 
 Bombs capture whether guidance is allowed at launch. Explicit pilot aim (such as inward/outward Orbit Keeper) disables nearest-target reacquisition so the pilot's choice remains visible.
+
+Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.

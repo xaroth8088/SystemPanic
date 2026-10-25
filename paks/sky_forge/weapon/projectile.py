@@ -29,7 +29,7 @@ class Bomb(ProjectileBase):
         for obstacle in world.cover:
             if obstacle.health <= 0 or not circle_rect(self.pos, self.radius, obstacle.rect):
                 continue
-            obstacle.health -= self._damage
+            world.hit_cover(obstacle, self._damage)
             self.explode(world)
             self.alive = False
             return
@@ -49,7 +49,7 @@ class Bomb(ProjectileBase):
                 world.hit_enemy(enemy, self._damage * .7)
         for obstacle in world.cover:
             if circle_rect(self.pos, 85, obstacle.rect):
-                obstacle.health -= self._damage
+                world.hit_cover(obstacle, self._damage)
         world.burst(self.pos, world.pak("weapon").color, 20)
         world.shake = max(world.shake, 3)
 

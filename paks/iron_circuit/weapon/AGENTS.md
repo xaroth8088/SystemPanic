@@ -7,3 +7,5 @@ Load local handles in `init()`; their attribute names are private choices. Insta
 aim(world) selects this weapon's assisted/facing direction locally. The host provides no aiming method or firing gate.
 
 Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.
+
+Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.

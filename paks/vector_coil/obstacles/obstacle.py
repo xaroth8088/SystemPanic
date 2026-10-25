@@ -6,6 +6,9 @@ from system_panic.pak_api import ObstaclesBase
 class VectorCoilObstacles(ObstaclesBase):
     def init(self): self.art=self.load_asset("obstacles_sheet.png")
     def sprite(self,world,entity=None): return self.art
+    def take_damage(self,world,obstacle,damage):
+        return 0.  # These walls are geometry, not destructible targets.
+
     def build(self,world):
         rng=random.Random(f"{world.seed}:vector_coil:obstacles:{world.wave}")
         # Capacitor posts and interrupted rails invite right-angle trail circuits.

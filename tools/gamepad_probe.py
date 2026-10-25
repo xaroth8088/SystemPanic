@@ -124,6 +124,26 @@ def exercise(app, output):
         assert pad.identity in app.gamepads.devices
         app.gamepads.select(pad.identity)
         tick(2)
+        # Exercise real SDL polling at shallow/full travel and with D-pad buttons.
+        for x, y, buttons in ((1,0,(RIGHT,)),(-1,0,(LEFT,)),(0,1,(DOWN,)),(0,-1,(UP,)),
+                              (1,1,(RIGHT,DOWN)),(-1,-1,(LEFT,UP)),(1,-1,(RIGHT,UP)),(-1,1,(LEFT,DOWN))):
+            pad.axis(0, x * 12000)
+            pad.axis(1, y * 12000)
+            tick()
+            shallow = app.gamepads.poll(app.prefs.gamepad_deadzone)
+            pad.axis(0, x * 32000)
+            pad.axis(1, y * 32000)
+            tick()
+            full = app.gamepads.poll(app.prefs.gamepad_deadzone)
+            assert shallow.controls == full.controls and shallow.menu == full.menu
+            pad.neutral()
+            tick()
+            for button in buttons: pad.button(button, True)
+            tick()
+            digital = app.gamepads.poll(app.prefs.gamepad_deadzone)
+            assert shallow.controls == digital.controls and shallow.menu == digital.menu
+            pad.neutral()
+            tick()
         walk("settings")
         press(A)
         assert app.route == "settings"
@@ -181,7 +201,7 @@ def exercise(app, output):
             walk("abandon")
             press(A)
             assert app.route == "home"
-            runs.append({"pak": pak, "analog_movement": True, "trigger_fire": True, "special": True, "pause_resume": True})
+            runs.append({"pak": pak, "stick_movement": True, "trigger_fire": True, "special": True, "pause_resume": True})
         walk("solo:signal_runner")
         press(A)
         tick(100)
@@ -221,6 +241,7 @@ def exercise(app, output):
         press(A)
         assert app.route == "game" and app.world.solo == "signal_runner" and app.world.score == 0
         return {"native_sdl_virtual_controller": True, "physical_controllers_seen": physical_count,
+                "stick_dpad_identical_directions": 8, "stick_magnitude_has_no_effect": True,
                 "gamepad_only_menu_paths": True, "preferences_saved": True, "nested_back": True,
                 "pak_selection": True, "solo_inputs": runs, "disconnect_pauses": True,
                 "reconnect_requires_neutral": True, "focus_loss_guard": True, "outcome_retry": True, "steps": steps}

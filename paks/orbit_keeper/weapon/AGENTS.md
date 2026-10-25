@@ -7,3 +7,5 @@ Load local handles in `init()`; their attribute names are private choices. Insta
 aim(world) selects this weapon's assisted/facing direction locally. The host provides no aiming method or firing gate.
 
 Use pilot aim_direction before assistance. Outbound speed is 600 so constrained pilots and radial fire reach distant targets; the .55-second return behavior stays local. Do not silently home outgoing shots away from explicit pilot intent.
+
+Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.

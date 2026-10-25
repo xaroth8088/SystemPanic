@@ -33,7 +33,7 @@ class PlasmaBall(ProjectileBase):
                 self.vel[axis]*=-1
         for wall in world.cover:
             if wall.health>0 and circle_rect(self.pos,self.radius,wall.rect):
-                wall.health-=34
+                world.hit_cover(wall,34)
                 if old.x<wall.rect.left or old.x>wall.rect.right: self.vel.x*=-1
                 else: self.vel.y*=-1
                 self.pos=old

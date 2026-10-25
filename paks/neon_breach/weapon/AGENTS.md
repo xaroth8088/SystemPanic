@@ -7,3 +7,5 @@ This folder owns its component code, helpers and generated assets. Use explicit 
 Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.
 
 Up to two accelerating plasma pinballs reflect from bounds/cover/targets/paddle. Guidance uses bounded angular turn rate, including a 180-degree reversal. Prune ball references against world.projectiles after host cleanup.
+
+Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.

@@ -6,7 +6,7 @@ from system_panic.pak_api import PilotBase
 
 
 class StarBastionPilot(PilotBase):
-    controls = 'Left / right: bank. Up / down: altitude'
+    controls = 'Left / right: move along the bottom'
     special = 'X: barrel roll across the firing line'
 
     def init(self):
@@ -20,15 +20,29 @@ class StarBastionPilot(PilotBase):
         return self.art
 
     def create(self, world, position):
-        return Pilot(pos=Vec(position), health=100, max_health=100, radius=11, angle=-math.pi / 2)
+        return Pilot(pos=Vec(position.x, HEIGHT - 24), health=100, max_health=100, radius=11, angle=-math.pi / 2)
+
+    def settle(self, world):
+        # Search only this lane: arbitrary mixed cover must not lift the ship.
+        p = world.player
+        y = HEIGHT - 24
+        candidates = [max(p.radius, min(WIDTH - p.radius, p.pos.x))]
+        candidates += sorted(range(16, WIDTH - 15, 8), key=lambda x: abs(x - p.pos.x))
+        for x in candidates:
+            point = Vec(x, y)
+            if not any(w.health > 0 and circle_rect(point, p.radius + 2, w.rect) for w in world.cover):
+                p.pos = point
+                return
 
     def on_level_start(self, world):
         if world.wave > 1:
             world.player.health = min(world.player.max_health, world.player.health + 15)
         world.player.invulnerable = max(world.player.invulnerable, 2.)
+        self.settle(world)
 
     def on_shuffle(self, world, changed):
         world.player.invulnerable = max(world.player.invulnerable, 1.5)
+        self.settle(world)
 
     def take_damage(self, world, damage):
         applied = world.apply_damage(world.player, damage)
@@ -56,11 +70,13 @@ class StarBastionPilot(PilotBase):
         p = world.player
         self._roll = max(0.,self._roll-dt)
         if special: self._roll = .4
-        p.vel = Vec(control.x * (570 if self._roll else 270),control.y * 165)
+        p.pos.y = HEIGHT - 24
+        p.vel = Vec(control.x * (570 if self._roll else 270), 0)
         world.move_body(p,p.vel*dt,p.radius,bounds=pygame.Rect(12,HEIGHT//2-20,WIDTH-24,HEIGHT//2+8))
+        p.pos.y = HEIGHT - 24
         p.angle = -math.pi/2
 
     def demo_controls(self, world):
         if not world.enemies: return Controls(fire=True)
         target = min(world.enemies,key=lambda e:e.pos.distance_squared_to(world.player.pos))
-        return Controls(max(-1,min(1,(target.pos.x-world.player.pos.x)/120)),.3,True,int(world.time*3)%11==0)
+        return Controls(max(-1,min(1,(target.pos.x-world.player.pos.x)/120)),0,True,int(world.time*3)%11==0)

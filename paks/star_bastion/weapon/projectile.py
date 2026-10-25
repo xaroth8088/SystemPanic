@@ -30,7 +30,7 @@ class SalvoBolt(ProjectileBase):
             self.pos.y%=HEIGHT
         for wall in world.cover:
             if wall.health>0 and circle_rect(self.pos,self.radius,wall.rect):
-                wall.health-=23
+                world.hit_cover(wall,23)
                 self.alive=False
                 return
         for enemy in targets:

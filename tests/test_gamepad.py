@@ -76,19 +76,26 @@ class GamepadTests(unittest.TestCase):
         self.app.focus = next(i for i, b in enumerate(self.app.buttons) if b.id == id)
         self.app.keyboard_focus = True
 
-    def test_radial_deadzone_rescales_analog_and_limits_diagonals(self):
+    def test_stick_and_dpad_produce_identical_digital_controls_and_menu_steps(self):
         self.assertEqual(stick(.1, -.1, .18), (0., 0.))
-        self.assertAlmostEqual(stick(.59, 0, .18)[0], .5)
+        self.assertEqual(stick(.19, 0, .18), (1., 0.))
+        self.assertEqual(stick(.59, 0, .18), stick(1, 0, .18))
         self.assertAlmostEqual(math.hypot(*stick(1, 1, .18)), 1)
-        self.pad.axes.update({0: -32768, 1: 32767})
-        frame = self.devices.poll()
-        self.assertLess(frame.controls.x, 0)
-        self.assertGreater(frame.controls.y, 0)
-        self.assertAlmostEqual(math.hypot(frame.controls.x, frame.controls.y), 1)
-        self.pad.buttons.update((UP, RIGHT))
-        frame = self.devices.poll()
-        self.assertGreater(frame.controls.x, 0)
-        self.assertLess(frame.controls.y, 0)
+        directions = ((1,0,{RIGHT}),(-1,0,{LEFT}),(0,1,{DOWN}),(0,-1,{UP}),
+                      (1,1,{DOWN,RIGHT}),(-1,-1,{UP,LEFT}),(1,-1,{UP,RIGHT}),(-1,1,{DOWN,LEFT}))
+        for x,y,buttons in directions:
+            self.pad.axes.clear()
+            self.pad.buttons = buttons
+            digital = self.devices.poll()
+            self.pad.buttons.clear()
+            for magnitude in (.2,.6,1):
+                self.pad.axes = {0:int(x*32767*magnitude),1:int(y*32767*magnitude)}
+                analog = self.devices.poll()
+                self.assertEqual(analog.controls,digital.controls)
+                self.assertEqual(analog.menu,digital.menu)
+                stick_repeat,pad_repeat=MenuRepeat(),MenuRepeat()
+                for _ in range(100):
+                    self.assertEqual(stick_repeat.update(*analog.menu,1/60),pad_repeat.update(*digital.menu,1/60))
 
     def test_trigger_face_and_shoulder_map_to_neutral_pak_controls(self):
         self.pad.axes[5] = 20000

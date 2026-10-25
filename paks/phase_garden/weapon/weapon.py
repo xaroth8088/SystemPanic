@@ -44,4 +44,4 @@ class PhaseGardenWeapon(WeaponBase):
             remaining.remove(target)
         for wall in world.cover:
             if circle_rect(world.player.pos, 150, wall.rect):
-                wall.health -= 15
+                world.hit_cover(wall, 15)

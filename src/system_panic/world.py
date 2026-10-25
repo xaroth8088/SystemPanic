@@ -320,6 +320,12 @@ class World:
     def hit_player(self, damage):
         return self.component("pilot").take_damage(self, damage)
 
+    def hit_cover(self, obstacle, damage):
+        """Dispatch to the obstacle provider; durability is a Pak policy."""
+        if obstacle.health > 0:
+            return self.component("obstacles").take_damage(self, obstacle, damage)
+        return 0.
+
     @staticmethod
     def apply_damage(body: Body, damage: float) -> float:
         """A neutral primitive. Paks decide hit policy, effects and recovery windows."""

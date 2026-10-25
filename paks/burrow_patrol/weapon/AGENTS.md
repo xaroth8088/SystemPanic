@@ -7,3 +7,5 @@ This folder owns its component code, helpers and generated assets. Use explicit 
 Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.
 
 A held pressure tether maintains target identity, pumps gradual damage and pops after sufficient pressure. Misses still draw a pressure stream. PressureLine is visual-only; targeting/damage stays in the weapon update.
+
+Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.

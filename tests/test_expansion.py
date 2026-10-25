@@ -126,7 +126,7 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(len(world.projectiles),1)
         self.assertIsNot(world.projectiles[0],ball)
 
-    def test_maze_buffers_turns_and_chomp_wave_hits_each_target_once(self):
+    def test_maze_buffers_turns_and_bite_hits_only_one_near_target_once(self):
         world=self.world('maze_muncher')
         pilot=world.component('pilot')
         world.player.pos=Vec(100,100)
@@ -136,13 +136,19 @@ class ExpansionTests(unittest.TestCase):
         for _ in range(20):pilot.update(world,FIXED_DT,Controls(y=1))
         self.assertGreater(world.player.vel.y,0)
         enemy=world.enemies[0]
-        enemy.pos=world.player.pos+Vec(100,0)
+        enemy.pos=world.player.pos+Vec(40,0)
         enemy.health=enemy.max_health=100
+        second=world.spawn_enemy(world.player.pos+Vec(55,0))
+        far=world.spawn_enemy(world.player.pos+Vec(200,0))
+        second.health=far.health=100
         weapon=world.component('weapon')
         weapon.update(world,FIXED_DT,Controls(fire=True))
-        wave=world.projectiles[0]
-        for _ in range(60):wave.update(world,FIXED_DT)
-        self.assertEqual(enemy.health,73)
+        bite=world.projectiles[0]
+        for _ in range(60):bite.update(world,FIXED_DT)
+        self.assertEqual(enemy.health,84)
+        self.assertEqual(second.health,100)
+        self.assertEqual(far.health,100)
+        self.assertFalse(bite.alive)
 
     def test_maze_can_escape_cover_not_aligned_to_its_turn_grid(self):
         world=self.world('maze_muncher')
@@ -169,30 +175,133 @@ class ExpansionTests(unittest.TestCase):
         self.assertEqual(enemy.health,0)
         self.assertTrue(world.effects)
 
-    def test_vector_trail_damages_contacts_and_prism_is_a_scheduled_visual(self):
+    def test_vector_only_captures_fully_enclosed_enemies_after_tail_closes(self):
+        world=self.world('vector_coil')
+        inside=world.enemies[0]
+        inside.pos=Vec(260,260)
+        outside=world.spawn_enemy(Vec(400,260))
+        boundary=world.spawn_enemy(Vec(315,260))
+        on_tail=world.spawn_enemy(Vec(260,200))
+        original={e.id:e.health for e in world.enemies}
+        weapon=world.component('weapon')
+        for position in ((200,200),(320,200),(320,320),(200,320)):
+            world.player.pos=Vec(position)
+            weapon.update(world,FIXED_DT,Controls(fire=True))
+        self.assertEqual({e.id:e.health for e in world.enemies},original)
+        world.player.pos=Vec(200,190)  # Cross the starting edge, not just a vertex.
+        weapon.update(world,FIXED_DT,Controls(fire=True))
+        self.assertEqual(inside.health,0)
+        for enemy in (outside,boundary,on_tail):
+            self.assertEqual(enemy.health,original[enemy.id])
+        self.assertFalse(world.projectiles)
+        self.assertEqual(len(world.effects),1)
+        self.assertTrue(weapon._visual.captured)
+        world.remove_dead()
+        self.assertEqual(world.kills,1)
+        world.remove_dead()
+        self.assertEqual(world.kills,1)
+
+    def test_vector_tail_reset_and_straight_retracing_cannot_capture(self):
+        world=self.world('vector_coil')
+        enemy=world.enemies[0]
+        enemy.pos=Vec(260,200)
+        health=enemy.health
+        weapon=world.component('weapon')
+        for position in ((200,200),(320,200),(200,200),(320,200)):
+            world.player.pos=Vec(position)
+            weapon.update(world,FIXED_DT,Controls(fire=True))
+        self.assertEqual(enemy.health,health)
+        weapon.update(world,FIXED_DT,Controls())
+        self.assertEqual(weapon._points,[])
+        weapon.update(world,FIXED_DT,Controls(fire=True))
+        weapon.on_shuffle(world,frozenset({'background'}))
+        self.assertEqual(weapon._points,[])
+        weapon.update(world,FIXED_DT,Controls(fire=True))
+        weapon.on_level_start(world)
+        self.assertEqual(weapon._points,[])
+
+    def test_awkward_horizontal_pilot_and_capture_weapon_can_shuffle_out_normally(self):
+        world=World(Preferences(enabled=['star_bastion','vector_coil'],shuffle_channels=['weapon']),24)
+        world.mix.update(pilot='star_bastion',weapon='vector_coil')
+        world.component('pilot')
+        world.component('weapon')
+        world.cover=[]
+        world.phase='active'
+        world.shuffle_timer=.1
+        held=Controls(x=1,fire=True)
+        for _ in range(60):world.step(FIXED_DT,held)
+        self.assertEqual(world.mix['pilot'],'star_bastion')
+        self.assertEqual(world.mix['weapon'],'star_bastion')
+        self.assertEqual(world.shuffle_count,1)
+        self.assertEqual(world.phase,'active')
+        self.assertTrue(world.projectiles)
+        self.assertEqual(world.player.pos.y,HEIGHT-24)
+
+    def test_vector_loop_geometry_handles_concave_shapes_and_both_windings(self):
+        world=self.world('vector_coil')
+        weapon=world.component('weapon')
+        module=sys.modules[type(weapon).__module__]
+        polygon=[Vec(p) for p in ((100,100),(300,100),(300,180),(180,180),(180,300),(100,300))]
+        body=world.enemies[0]
+        body.radius=10
+        for shape in (polygon,list(reversed(polygon))):
+            body.pos=Vec(140,240)
+            self.assertTrue(module.contains_body(shape,body))
+            body.pos=Vec(240,240)
+            self.assertFalse(module.contains_body(shape,body))
+            body.pos=Vec(175,240)
+            self.assertFalse(module.contains_body(shape,body))
+
+    def test_vector_pilot_trail_has_no_passive_contact_damage(self):
         world=self.world('vector_coil')
         enemy=world.enemies[0]
         enemy.pos=Vec(245,200)
         health=enemy.health
-        pilot=world.component('pilot')
-        for _ in range(60):pilot.update(world,FIXED_DT,Controls(x=1))
-        self.assertLess(enemy.health,health)
-        self.assertEqual(len(world.effects),1)
-        weapon=world.component('weapon')
-        weapon.update(world,FIXED_DT,Controls(fire=True))
-        self.assertEqual(len(world.effects),2)
+        for _ in range(60):world.component('pilot').update(world,FIXED_DT,Controls(x=1))
+        self.assertEqual(enemy.health,health)
         self.assertFalse(world.projectiles)
+        self.assertFalse(world.effects)
 
-    def test_bastion_stays_in_lower_sky_and_roll_changes_speed(self):
-        world=self.world('star_bastion')
-        world.player.pos=Vec(400,300)
+    def test_bastion_starts_at_bottom_ignores_vertical_input_and_rolls_horizontally(self):
+        world=World(Preferences(),24,solo='star_bastion')
         pilot=world.component('pilot')
+        self.assertEqual(world.player.pos.y,HEIGHT-24)
+        world.cover=[]
+        before=world.player.pos.copy()
+        for direction in (-1,1):
+            for _ in range(100):pilot.update(world,FIXED_DT,Controls(y=direction))
+            self.assertEqual(world.player.pos,before)
+            self.assertEqual(world.player.vel.y,0)
         pilot.update(world,.05,Controls(x=1))
         speed=world.player.vel.x
-        pilot.update(world,.05,Controls(x=1,special=True))
+        pilot.update(world,.05,Controls(x=1,y=-1,special=True))
         self.assertGreater(world.player.vel.x,speed)
-        for _ in range(100):pilot.update(world,FIXED_DT,Controls(y=-1))
-        self.assertGreaterEqual(world.player.pos.y,HEIGHT//2-20+world.player.radius)
+        self.assertEqual(world.player.pos.y,HEIGHT-24)
+        world.cover=[Cover(Rect(int(world.player.pos.x)-20,HEIGHT-44,40,40),36,36)]
+        pilot.on_shuffle(world,frozenset({'obstacles'}))
+        self.assertEqual(world.player.pos.y,HEIGHT-24)
+        from system_panic.model import circle_rect
+        self.assertFalse(circle_rect(world.player.pos,world.player.radius,world.cover[0].rect))
+
+    def test_pak_obstacle_policy_protects_impervious_cover_from_shots_and_digging(self):
+        for provider,impervious in (('maze_muncher',True),('vector_coil',True),('star_bastion',False)):
+            world=self.world('signal_runner')
+            world.mix['obstacles']=provider
+            world.component('obstacles')
+            wall=Cover(Rect(230,188,30,25),36,36)
+            world.cover=[wall]
+            enemy=world.enemies[0]
+            enemy.pos=Vec(500,200)
+            weapon=world.component('weapon')
+            weapon.update(world,FIXED_DT,Controls(fire=True))
+            for _ in range(10):world.update_projectiles(FIXED_DT)
+            self.assertEqual(wall.health==36,impervious)
+            world.mix['pilot']='burrow_patrol'
+            pilot=world.component('pilot')
+            world.player.pos=Vec(210,200)
+            before=wall.health
+            pilot.update(world,.05,Controls(x=1,special=True))
+            self.assertEqual(wall.health==before,impervious)
 
     def test_hops_travel_over_time_and_harpoon_reels_its_target(self):
         world=self.world('tide_hopper')

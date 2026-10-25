@@ -193,6 +193,16 @@ class ObstaclesBase(SpriteComponent):
         [] is valid. A private seeded RNG keeps layouts independent of combat history.
         """
 
+    def take_damage(self, world: World, obstacle: Cover, damage: float) -> float:
+        """Own obstacle durability. Override to return zero for impervious geometry.
+
+        The default preserves raw-damage behavior for existing API 4 components.
+        Attackers call world.hit_cover rather than writing obstacle health.
+        """
+        applied = min(max(0., obstacle.health), max(0., damage))
+        obstacle.health -= applied
+        return applied
+
     def draw(self, graphics: Graphics, surface: Surface, world: World, obstacle: Cover) -> None:
         """Default generic obstacle presentation; override for a Pak's own style."""
         graphics.draw_obstacle(surface, world, obstacle)

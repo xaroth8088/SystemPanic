@@ -5,302 +5,194 @@
     {
       "pak": "signal_runner",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
-      "health": 80.95,
-      "score": 27300,
-      "seconds": 68.85
+      "health": 100,
+      "score": 2100,
+      "seconds": 8.73
     },
     {
       "pak": "void_drifter",
       "phase": "active",
-      "wave": 13,
-      "kills": 234,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 18,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
       "health": 100,
-      "score": 36660,
-      "seconds": 131.7
+      "score": 2820,
+      "seconds": 11.75
     },
     {
       "pak": "iron_circuit",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
-      "health": 66.93,
-      "score": 27300,
-      "seconds": 101.18
+      "health": 100,
+      "score": 2100,
+      "seconds": 12.35
     },
     {
       "pak": "sky_forge",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
       "health": 100,
-      "score": 27300,
-      "seconds": 64.57
+      "score": 2100,
+      "seconds": 9.12
     },
     {
       "pak": "phase_garden",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
-      "health": 83.01,
-      "score": 27300,
-      "seconds": 49.18
+      "health": 100,
+      "score": 2100,
+      "seconds": 7.45
     },
     {
       "pak": "orbit_keeper",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
-      "health": 64.46,
-      "score": 27300,
-      "seconds": 204.65
+      "health": 100,
+      "score": 2100,
+      "seconds": 24.35
     },
     {
       "pak": "neon_breach",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
       "health": 100,
-      "score": 27300,
-      "seconds": 122.27
+      "score": 2100,
+      "seconds": 18.65
     },
     {
       "pak": "maze_muncher",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
-      "health": 84.89,
-      "score": 27300,
-      "seconds": 42.32
+      "health": 100,
+      "score": 2100,
+      "seconds": 15.83
     },
     {
       "pak": "burrow_patrol",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
-      "health": 40.07,
-      "score": 27300,
-      "seconds": 111.27
+      "health": 100,
+      "score": 2100,
+      "seconds": 11.62
     },
     {
       "pak": "vector_coil",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
       "health": 100,
-      "score": 27300,
-      "seconds": 77.42
+      "score": 2100,
+      "seconds": 94.33
     },
     {
       "pak": "star_bastion",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
       "health": 100,
-      "score": 27300,
-      "seconds": 78.53
+      "score": 2100,
+      "seconds": 11.68
     },
     {
       "pak": "tide_hopper",
       "phase": "active",
-      "wave": 13,
-      "kills": 78,
-      "cleared_levels": 12,
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
       "initial_enemies_per_level": {
         "1": 1,
         "2": 2,
         "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "10": 10,
-        "11": 11,
-        "12": 12,
-        "13": 13
+        "4": 4
       },
       "health": 100,
-      "score": 27300,
-      "seconds": 106.22
+      "score": 2100,
+      "seconds": 11.62
     }
   ],
   "assets": [
@@ -978,20 +870,10 @@
   "date": "2026-10-24",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 90,
+    "passed": 95,
     "failed": 0,
-    "seconds": 237.556,
+    "seconds": 230.218,
     "command": "python -B -m unittest discover -s tests -v"
-  },
-  "compatibility": {
-    "combinations": 20736,
-    "opening_wave_cleared": 20736,
-    "difficulty": "relaxed",
-    "presentation_pairs_checked": 144,
-    "full_mix_space": 2985984,
-    "seed": 24,
-    "max_seconds": 55.68333333333333,
-    "failures": []
   },
   "local_studio": [
     {
@@ -1075,17 +957,18 @@
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "dda09f188f9f498fc4bf27512520b70192076c5604b932d58f11a565c874b06b",
-    "total_bytes": 59193036,
+    "sha256": "70bf57438c86c87e6141a0d371eda8407e595cbaec150a6785eb3c1336b94d0f",
+    "total_bytes": 59199776,
     "archive": "dist/SystemPanic-Windows-x64.zip",
     "archive_test_passed": true,
-    "archive_sha256": "c10a2614fc92d60c8e556b425399f5aa1d7a7b6c71dc30ca0727121c7e62a1d8",
-    "archive_bytes": 38115906,
+    "archive_sha256": "db35ac7d6786423ca4ee8c5b16ec682e3d4776094b3376706f5742f69ce3b758",
+    "archive_bytes": 38117197,
     "external_pak_files_match_source": 293
   },
   "limitations": [
-    "Automated controls used relaxed difficulty and seed 24; human balance testing remains.",
-    "Opening-level gameplay combinations and presentation pairs were tested separately; the entire 2,985,984 six-role space was not playtested.",
+    "The fresh solo pass samples three cleared levels at relaxed difficulty, seed 24. The separate longer balance probe records Maze defeat at level eight and Vector reaching level ten within 300 seconds; human balance testing remains.",
+    "Ineffective or awkward mixed combinations are intentionally allowed until a periodic shuffle; opening-level clears are not required of every combination.",
+    "All 20,736 gameplay mixes had stable-update smoke checks; 144 presentation pairs were tested separately. The full 2,985,984 six-role space was not playtested.",
     "Native SDL virtual controls ran alongside a connected PS4 controller; its physical buttons were not operated.",
     "Custom controller button remapping is not implemented; compatible pads use SDL mappings."
   ],
@@ -1098,7 +981,7 @@
     "rendered_screens_checked": true
   },
   "progression": "endless_plus_one",
-  "target_levels": 12,
+  "target_levels": 3,
   "progression_checks": {
     "first_enemy_count": 1,
     "enemies_added_each_level": 1,
@@ -1198,7 +1081,7 @@
     "external_code_and_helpers_executed": true,
     "partial_only_mix_executed": true,
     "wheel_external_layout_verified": true,
-    "executable_sha256": "dda09f188f9f498fc4bf27512520b70192076c5604b932d58f11a565c874b06b"
+    "executable_sha256": "70bf57438c86c87e6141a0d371eda8407e595cbaec150a6785eb3c1336b94d0f"
   },
   "wheel_install_check": {
     "fresh_prefix_install": true,
@@ -1211,7 +1094,7 @@
     "obsolete_arena_helper_absent": true,
     "frames": 240,
     "exit_code": 0,
-    "wheel_sha256": "3be1540678bc6165f62d1f8b9bb93461cbd67550e26f7b2eb9a85c13901cfe7e"
+    "wheel_sha256": "4c36e8ac155aaf1669ab540fed86b0b38d86d1dd1fb71c0c7018509316803671"
   },
   "dynamic_paks": {
     "api_version": 4,
@@ -1250,7 +1133,8 @@
     "pak_owned_protection_healing_rewards": true,
     "level_lifecycle_callbacks": true,
     "optional_pilot_aim_direction": true,
-    "optional_pilot_status": true
+    "optional_pilot_status": true,
+    "pak_owned_obstacle_durability": true
   },
   "rule_boundary_checks": {
     "custom_rules_tests": 12,
@@ -1521,7 +1405,6 @@
         "unique_layouts": 30
       }
     ],
-    "layout_gallery_inspected": true,
     "level_clear_screen_inspected": true,
     "solo_and_locked_regeneration_tests": true,
     "unchanged_provider_damage_preserved_on_presentation_swap": true
@@ -1532,7 +1415,6 @@
     "gameplay_and_all_menus": true,
     "input_tests": 16,
     "spatial_focus_and_paging": true,
-    "radial_deadzone_preference": true,
     "active_disconnect_pauses": true,
     "neutral_gate_for_route_focus_device_changes": true,
     "held_gameplay_resumes_after_pak_and_level_transitions": true,
@@ -1543,6 +1425,8 @@
     "source": {
       "native_sdl_virtual_controller": true,
       "physical_controllers_seen": 1,
+      "stick_dpad_identical_directions": 8,
+      "stick_magnitude_has_no_effect": true,
       "gamepad_only_menu_paths": true,
       "preferences_saved": true,
       "nested_back": true,
@@ -1550,84 +1434,84 @@
       "solo_inputs": [
         {
           "pak": "signal_runner",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "void_drifter",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "iron_circuit",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "sky_forge",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "phase_garden",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "orbit_keeper",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "neon_breach",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "maze_muncher",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "burrow_patrol",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "vector_coil",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "star_bastion",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "tide_hopper",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
@@ -1637,11 +1521,13 @@
       "reconnect_requires_neutral": true,
       "focus_loss_guard": true,
       "outcome_retry": true,
-      "steps": 2105
+      "steps": 2149
     },
     "frozen": {
       "native_sdl_virtual_controller": true,
       "physical_controllers_seen": 1,
+      "stick_dpad_identical_directions": 8,
+      "stick_magnitude_has_no_effect": true,
       "gamepad_only_menu_paths": true,
       "preferences_saved": true,
       "nested_back": true,
@@ -1649,84 +1535,84 @@
       "solo_inputs": [
         {
           "pak": "signal_runner",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "void_drifter",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "iron_circuit",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "sky_forge",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "phase_garden",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "orbit_keeper",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "neon_breach",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "maze_muncher",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "burrow_patrol",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "vector_coil",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "star_bastion",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
         },
         {
           "pak": "tide_hopper",
-          "analog_movement": true,
+          "stick_movement": true,
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
@@ -1736,10 +1622,13 @@
       "reconnect_requires_neutral": true,
       "focus_loss_guard": true,
       "outcome_retry": true,
-      "steps": 2105
+      "steps": 2149
     },
     "reconnect_with_other_device_verified": true,
-    "opening_index_distinguished_from_instance_id": true
+    "opening_index_distinguished_from_instance_id": true,
+    "digital_deadzone_preference": true,
+    "stick_and_dpad_identical": true,
+    "analog_movement_scaling": false
   },
   "classic_expansion": {
     "complete_paks_added": 6,
@@ -1752,7 +1641,7 @@
       {
         "pak": "maze_muncher",
         "inspiration": "Pac-Man",
-        "mechanics": "buffered cardinal turns, energized chomps, chase/scatter crabs"
+        "mechanics": "buffered turns, short single-target bites, energized contact special, impervious maze walls"
       },
       {
         "pak": "burrow_patrol",
@@ -1762,12 +1651,12 @@
       {
         "pak": "vector_coil",
         "inspiration": "Qix / Tron",
-        "mechanics": "right-angle movement, damaging trails, sweeping prism cross"
+        "mechanics": "right-angle movement, pilot-following closed-tail captures, impervious posts; no beams or passive damage"
       },
       {
         "pak": "star_bastion",
         "inspiration": "Space Invaders",
-        "mechanics": "lower-sky banking, twin wrapping salvos, formations/dives"
+        "mechanics": "bottom-aligned horizontal movement, barrel rolls, twin wrapping salvos, formations/dives"
       },
       {
         "pak": "tide_hopper",
@@ -1785,10 +1674,97 @@
     "orbit_special_toggles_radial_fire": true,
     "both_orbit_mode_screens_inspected": true,
     "expansion_library_and_gameplay_screens_inspected": true,
-    "expansion_tests": 11,
+    "expansion_tests": 16,
     "ide_core_errors": 0,
     "ide_test_diagnostics": [
       "tests/test_expansion.py:20: dynamic pygame.Rect export not resolved by IDE; runtime test passes"
     ]
+  },
+  "historical_compatibility_before_refinement": {
+    "commit": "fd0369c",
+    "superseded_balance_contract": true,
+    "combinations": 20736,
+    "opening_wave_cleared": 20736,
+    "difficulty": "relaxed",
+    "presentation_pairs_checked": 144,
+    "full_mix_space": 2985984,
+    "seed": 24,
+    "max_seconds": 55.68333333333333,
+    "failures": []
+  },
+  "compatibility": {
+    "mode": "stable_updates_in_unit_matrix",
+    "combinations": 20736,
+    "simulation_steps_per_mix": 20,
+    "fixed_dt": 0.008333333333333333,
+    "failures": [],
+    "presentation_pairs_checked": 144,
+    "universal_level_clear_required": false,
+    "intentionally_ineffective_mixes_allowed": true
+  },
+  "targeted_compatibility": {
+    "combinations": 4,
+    "opening_wave_cleared": 1,
+    "difficulty": "relaxed",
+    "mode": "stability",
+    "seconds_per_mix": 5.0,
+    "presentation_pairs_checked": 144,
+    "full_mix_space": 2985984,
+    "seed": 24,
+    "max_seconds": 4.983333333333333,
+    "failures": []
+  },
+  "balance_probe": {
+    "target_levels": 12,
+    "seconds_limit": 300,
+    "seed": 24,
+    "difficulty": "relaxed",
+    "runs": [
+      {
+        "pak": "maze_muncher",
+        "phase": "dead",
+        "wave": 8,
+        "kills": 30,
+        "health": 0.0,
+        "seconds": 57.17,
+        "cleared_levels": 7
+      },
+      {
+        "pak": "vector_coil",
+        "phase": "active",
+        "wave": 10,
+        "kills": 45,
+        "health": 64.05,
+        "seconds": 299.98,
+        "cleared_levels": 9
+      }
+    ],
+    "purpose": "Observe reduced-attack balance; this is not a requirement to survive twelve levels."
+  },
+  "mechanic_refinement": {
+    "pilot_following_tail": true,
+    "separate_drawing_cursor": false,
+    "loop_closure_required": true,
+    "full_enemy_circle_containment": true,
+    "no_vector_projectiles_or_passive_damage": true,
+    "maze_bite_damage": 16,
+    "maze_bite_max_range": 70,
+    "maze_bite_targets_per_attack": 1,
+    "maze_bite_cooldown_seconds": 0.48,
+    "maze_energized_contact_special_retained": true,
+    "impervious_obstacle_providers": [
+      "maze_muncher",
+      "vector_coil"
+    ],
+    "star_bastion_horizontal_only": true,
+    "star_bastion_y": 456,
+    "ineffective_mix_shuffle_continuation_tested": true,
+    "screenshots_inspected": [
+      "vector-open-tail",
+      "vector-closed-tail",
+      "maze-short-bite",
+      "bastion-bottom"
+    ],
+    "changed_runtime_ide_errors": 0
   }
 }

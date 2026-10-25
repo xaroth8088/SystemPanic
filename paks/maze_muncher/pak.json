@@ -1,14 +1,14 @@
 {
   "id": "maze_muncher",
   "name": "Maze Muncher",
-  "subtitle": "BUFFERED TURNS / CHOMP",
+  "subtitle": "BUFFERED TURNS / CLOSE BITE",
   "color": [
     255,
     215,
     87
   ],
-  "description": "Buffer cardinal turns, energize your jaws and send expanding chomps through a chasing maze.",
-  "version": "1.0.0",
+  "description": "Navigate permanent maze walls. Bite one nearby enemy at a time; energize your jaws for the contact-chomp special.",
+  "version": "1.1.0",
   "order": 7,
   "authoring": {
     "inspired_by": "Pac-Man",

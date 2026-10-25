@@ -1,14 +1,14 @@
 {
   "id": "vector_coil",
   "name": "Vector Coil",
-  "subtitle": "TRAIL / ROTARY PRISM",
+  "subtitle": "TRAIL / LOOP CAPTURE",
   "color": [
     185,
     246,
     66
   ],
-  "description": "Carve glowing trails with right-angle turns and sweep the field with a rotating laser cross.",
-  "version": "1.0.0",
+  "description": "Hold Fire to draw a tail behind the pilot. Cross your own tail to close a loop and capture fully enclosed enemies. Release Fire to reset the tail.",
+  "version": "1.1.0",
   "order": 9,
   "authoring": {
     "inspired_by": "Qix and Tron",

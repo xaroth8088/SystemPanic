@@ -15,8 +15,8 @@ Content is dynamically loaded from external folders. All twelve shipped Paks use
 - Desktop Python/Pygame keeps installation modest and the game offline.
 - API 4 is defined by PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase and ObstaclesBase. Component classes and their assets live together in role folders. Frozen catalog definitions create fresh, run-owned instances. Mutable handles/counters belong to those instances and engine state belongs to World.
 - Catalogs are discovered before preferences and passed through runtime services. Library rescans replace catalogs outside active runs. UI pagination and empty/invalid-install handling are part of the contract; do not assume six installed entries.
-- Shared state across shuffles is deliberately small. Health, score, wave, entity positions and enemy health survive; movement/AI-specific transient state is reinitialized.
-- All weapons can reach enemies across the screen; destructible cover and safe relocation prevent incompatible mixtures from trapping the player.
+- Shared state across shuffles is deliberately small. Health, score, wave, shared positions and enemy health survive; a Pak may constrain its adopted position to its locomotion domain. Movement/AI-specific transient state is reinitialized.
+- Complete Paks work alone. Awkward or ineffective mixed combinations are acceptable until a periodic swap; do not grant restricted pilots extra movement or force every weapon to reach every enemy. Obstacle durability belongs to its Pak, including impervious geometry.
 
 ## Delivery state
 Delivered implementation on `codex/revival`: twelve complete Paks, solo/coherent/component modes, endless +1 enemy progression, local preferences and high scores, UI/help/credits, protected shuffles and original audiovisual assets. Historical prototypes are preserved under `legacy`.
@@ -27,6 +27,6 @@ See [verification memory](../tests/AGENTS.md) and `docs/verification.json` for e
 
 Level refinement: Paks now own spawn/aim/difficulty, protection/healing/rewards and defeat feedback. Layouts procedurally regenerate each level (also solo/locked), with separate seeded RNGs and distinct Pak shapes. Enemy difficulty includes new tactics as well as numerical scaling; shared +1 progression and transitions retain their contract.
 
-The six additional Paks use original AI artwork/audio and classic-inspired mechanics: Breakout (perimeter paddle/multiball), Pac-Man (buffered turns/chomp/chase-scatter), Dig Dug (excavation/inflation), Qix/Tron (right-angle trails/prism beams), Space Invaders (banking/salvos/formations), Frogger (lane hopping/traffic/harpoons). Each is complete and its six components can be copied independently. No game-specific rules were added to the host.
+The six additional Paks use original AI artwork/audio and classic-inspired mechanics: Breakout (perimeter paddle/multiball), Pac-Man (buffered turns/chomp/chase-scatter), Dig Dug (excavation/inflation), Qix/Tron (right-angle movement/closed-tail captures), Space Invaders (bottom-line horizontal movement/salvos/formations), Frogger (lane hopping/traffic/harpoons). Each is complete and its six components can be copied independently. No game-specific rules were added to the host.
 
 Orbit Keeper's special also toggles explicit inward/outward radial fire. Optional PilotBase.aim_direction/status queries are additive to API 4; weapons decide how to respect pilot intent and the shell displays the status string. Nearest-target assistance and guided flight must not override an explicit pilot direction. Glaive outbound speed is now 600 so radial fire and constrained mixed pilots can reach the arena edge. Demo input policies were updated to line up radial shots and avoid crowds; they use ordinary controls only.

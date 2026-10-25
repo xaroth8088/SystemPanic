@@ -1,4 +1,4 @@
-"""Play every gameplay mixture and separately render/stream every scenery/music pair."""
+"""Check mix stability and presentation pairs; optionally demand opening-level clears."""
 import argparse
 import itertools
 import json
@@ -25,7 +25,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pak-dir", type=Path, action="append", help="Explicit Pak roots instead of default locations")
     parser.add_argument("--case-file", type=Path, help="Replay mixes from a previous compatibility report's failures")
+    parser.add_argument("--require-clear", action="store_true", help="Optional balance probe: fail if any tested mix cannot clear")
+    parser.add_argument("--seconds", type=float, help="Active sample duration per mix (default 1s, or 60s with --require-clear)")
     args = parser.parse_args()
+    seconds = args.seconds if args.seconds is not None else (60 if args.require_clear else 1)
+    if not math.isfinite(seconds) or seconds <= 0:
+        parser.error("--seconds must be finite and positive")
     catalog = discover(args.pak_dir)
     if catalog.missing(catalog.by_id):
         parser.error("The installed mix does not cover all six component channels")
@@ -47,17 +52,23 @@ def main():
         world.enemies.clear()
         world.wave = 0
         world.start_wave()
-        for frame in range(60 * 60):
+        world.phase = "active"  # Sample gameplay, not the initial introduction.
+        for frame in range(max(1, math.ceil(seconds * 60))):
             world.advance(1 / 60, autopilot(world))
             world.drain_events()
+            bodies = (world.player, *world.enemies)
+            if not all(math.isfinite(value) for body in bodies for value in (body.pos.x, body.pos.y, body.health)):
+                failures.append({"mix":world.mix.copy(),"reason":"nonfinite body state"})
+                break
             if world.wave > 1 or world.phase == "dead":
                 break
         maximum = max(maximum, frame / 60)
         if world.wave > 1:
             completed += 1
-        else:
+        elif args.require_clear:
             failures.append({"mix":world.mix, "phase":world.phase, "health":world.player.health,
                              "remaining":len(world.enemies), "kills":world.kills})
+        world.close()
         if index % 216 == 0:
             print(f"{index}/{total} checked; {len(failures)} failures", flush=True)
     output = ROOT / ("output/verification/compatibility-replay.json" if args.case_file else "output/verification/compatibility.json")
@@ -79,12 +90,13 @@ def main():
         app.quit()
         pygame.quit()
     report = {"combinations":total, "opening_wave_cleared":completed, "difficulty":"relaxed",
+              "mode":"require_clear" if args.require_clear else "stability", "seconds_per_mix":seconds,
               "presentation_pairs_checked":pairs, "full_mix_space":math.prod(len(catalog.providers(c)) for c in CHANNELS),
               "seed":24, "max_seconds":maximum, "failures":failures}
     output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({key: value for key, value in report.items() if key != "failures"}), flush=True)
     if failures:
-        raise SystemExit("Some combinations stalled or died; see compatibility.json")
+        raise SystemExit("Some combinations failed the requested check; see compatibility report")
 
 
 if __name__ == "__main__":

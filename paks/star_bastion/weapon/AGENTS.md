@@ -7,3 +7,5 @@ This folder owns its component code, helpers and generated assets. Use explicit 
 Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.
 
 Twin salvo bolts optionally guide, wrap once, damage cover/targets and expire locally. Explicit pilot direction disables guidance; side offsets are perpendicular to the selected firing vector.
+
+Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.

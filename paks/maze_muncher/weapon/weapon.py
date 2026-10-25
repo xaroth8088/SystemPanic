@@ -2,7 +2,7 @@
 import math
 from system_panic.model import normalized,unit
 from system_panic.pak_api import WeaponBase
-from .projectile import ChompWave
+from .projectile import ChompBite
 
 class MazeMuncherWeapon(WeaponBase):
     def init(self):
@@ -26,4 +26,4 @@ class MazeMuncherWeapon(WeaponBase):
         if control.fire and self._remaining<=0:
             self._remaining=.48
             self.sound.play(volume=.35)
-            world.projectiles.append(ChompWave(world,self,self.aim(world)))
+            world.projectiles.append(ChompBite(world,self,self.aim(world)))

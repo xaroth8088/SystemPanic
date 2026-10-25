@@ -1,46 +1,91 @@
-"""Vector Coil: unique weapon logic and device-independent held input."""
-import math
-from system_panic.model import normalized,unit
+"""Hold fire and draw a closed tail with the pilot to capture enclosed enemies."""
+from system_panic.model import normalized, unit
 from system_panic.pak_api import WeaponBase
-from .projectile import PrismCross
+from .tail import TailImage, area, contains_body, intersection
+
 
 class VectorCoilWeapon(WeaponBase):
     def init(self):
-        self.art=self.load_asset("weapon_sheet.png")
-        self.sound=self.load_asset("shot.ogg")
-        self._remaining=0.
-        self._beam=None
+        self.art = self.load_asset("weapon_sheet.png")
+        self.sound = self.load_asset("shot.ogg")
+        self._points = []
+        self._visual = None
 
-    def sprite(self,world,entity=None): return self.art
+    def sprite(self, world, entity=None):
+        return self.art
 
-    def aim(self,world):
-        intent=world.component("pilot").aim_direction(world)
-        if intent is not None: return normalized(intent)
-        targets=[enemy for enemy in world.enemies if enemy.health>0]
-        if world.prefs.aim_assist and targets:
-            target=min(targets,key=lambda e:e.pos.distance_squared_to(world.player.pos))
-            return normalized(target.pos-world.player.pos)
-        return unit(world.player.angle)
+    def aim(self, world):
+        # Compatibility query for authors; capture has no projectile aiming policy.
+        intent = world.component("pilot").aim_direction(world)
+        return normalized(intent) if intent is not None else unit(world.player.angle)
 
-    def update(self,world,dt,control):
-        self._remaining=max(0.,self._remaining-dt)
-        if not control.fire: return
-        direction=self.aim(world)
-        base=math.atan2(direction.y,direction.x)+world.time*1.65
-        origin=world.player.pos
-        ends=[origin+unit(base+i*math.pi/2)*1000 for i in range(4)]
-        for enemy in world.enemies:
-            delta=enemy.pos-origin
-            if any(0<delta.dot(normalized(end-origin))<1000 and abs(delta.cross(normalized(end-origin)))<enemy.radius+5 for end in ends):
-                world.hit_enemy(enemy,220*dt)
-        for wall in world.cover:
-            if any(wall.rect.clipline(origin,end) for end in ends): wall.health-=65*dt
-        if self._beam is None or not self._beam.alive:
-            self._beam=PrismCross(self)
-            world.effects.append(self._beam)
-        self._beam.start=origin.copy()
-        self._beam.ends=ends
-        self._beam.remaining=.05
-        if self._remaining<=0:
-            self._remaining=.3
-            self.sound.play(volume=.23)
+    def reset(self):
+        self._points.clear()
+        if self._visual:
+            self._visual.points = []
+            self._visual.captured = []
+            self._visual.flash = 0.
+            self._visual.alive = False
+        self._visual = None
+
+    def on_level_start(self, world):
+        self.reset()
+
+    def on_shuffle(self, world, changed):
+        self.reset()
+
+    def deactivate(self, world):
+        self.reset()
+
+    def update(self, world, dt, control):
+        if not control.fire:
+            self._points.clear()
+            if self._visual:
+                self._visual.points = []
+            return
+        position = world.player.pos.copy()
+        if not self._points or position.distance_to(self._points[-1]) > 160:
+            self._points = [position]
+        elif position.distance_squared_to(self._points[-1]) > .01:
+            start = self._points[-1]
+            closed = None
+            crossings = []
+            for index in range(len(self._points) - 2):
+                crossing = intersection(start, position, self._points[index], self._points[index + 1])
+                if crossing is not None:
+                    polygon = [crossing] + self._points[index + 1:]
+                    if area(polygon) >= 900:
+                        crossings.append((start.distance_squared_to(crossing), polygon))
+            if crossings:
+                closed = min(crossings, key=lambda item: item[0])[1]
+            if closed:
+                for enemy in tuple(world.enemies):
+                    if enemy.health > 0 and contains_body(closed, enemy):
+                        world.hit_enemy(enemy, enemy.health)
+                self.sound.play(volume=.45)
+                self._points = [position]
+            else:
+                if len(self._points) > 1:
+                    before, after = start - self._points[-2], position - start
+                    if abs(before.cross(after)) < .001 and before.dot(after) > 0:
+                        self._points[-1] = position
+                    else:
+                        self._points.append(position)
+                else:
+                    self._points.append(position)
+                self._points = self._points[-512:]
+                # A bounded tail still permits a circuit of the whole arena.
+                while len(self._points) > 2 and sum(a.distance_to(b) for a, b in zip(self._points, self._points[1:])) > 6000:
+                    self._points.pop(0)
+            if closed:
+                self.show(world)
+                self._visual.captured = [p.copy() for p in closed]
+                self._visual.flash = .5
+        self.show(world)
+
+    def show(self, world):
+        if self._visual is None or not self._visual.alive:
+            self._visual = TailImage()
+            world.effects.append(self._visual)
+        self._visual.points = [p.copy() for p in self._points]
+        self._visual.remaining = max(.05, self._visual.flash)

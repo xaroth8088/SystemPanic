@@ -33,7 +33,7 @@ class Glaive(ProjectileBase):
         for obstacle in world.cover:
             if obstacle.health <= 0 or not circle_rect(self.pos, self.radius, obstacle.rect):
                 continue
-            obstacle.health -= self._damage
+            world.hit_cover(obstacle, self._damage)
             self.alive = False
             return
         for enemy in world.enemies:

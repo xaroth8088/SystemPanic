@@ -22,12 +22,13 @@ BUTTONS = (A, B, X, START, BACK, LB, RB, UP, DOWN, LEFT, RIGHT)
 
 
 def stick(x: float, y: float, deadzone: float) -> tuple[float, float]:
-    """Radial deadzone with rescaled travel and a unit-circle maximum."""
+    """Eight digital directions, matching the D-pad at every accepted deflection."""
+    x = (1 if x > 0 else -1) if abs(x) > deadzone else 0
+    y = (1 if y > 0 else -1) if abs(y) > deadzone else 0
     length = math.hypot(x, y)
-    if length <= deadzone:
+    if not length:
         return 0., 0.
-    scale = min(1., (length - deadzone) / (1 - deadzone)) / length
-    return x * scale, y * scale
+    return x / length, y / length
 
 
 @dataclass
@@ -156,13 +157,13 @@ class Gamepads:
         fire = A in buttons or trigger > .25
         special = X in buttons or LB in buttons
         pressed = buttons - self._previous
-        activity = bool(pressed or fire != self._last_fire or (any(movement) and math.dist(axes, self._last_axes) > .06))
-        self._previous, self._last_axes, self._last_fire = buttons, axes, fire
+        activity = bool(pressed or fire != self._last_fire or (any(movement) and movement != self._last_axes))
+        self._previous, self._last_axes, self._last_fire = buttons, movement, fire
         if not self._armed:
             if not buttons and not fire and movement == (0., 0.):
                 self._armed = True
             return PadFrame()
-        return PadFrame(Controls(*movement, fire, special), pressed, digital if any(digital) else axes, activity)
+        return PadFrame(Controls(*movement, fire, special), pressed, movement, activity)
 
     def gameplay(self, frame: PadFrame) -> Controls:
         # A menu command may have blocked input AFTER this frame was sampled.

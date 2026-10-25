@@ -40,7 +40,7 @@ class TideHopperEnemy(EnemyBase):
         if motion.normals:
             # Traffic can break through a blocked road rather than park forever.
             for wall in world.cover:
-                if circle_rect(previous+normalized(enemy.vel)*35,enemy.radius+4,wall.rect): wall.health-=55*dt
+                if circle_rect(previous+normalized(enemy.vel)*35,enemy.radius+4,wall.rect): world.hit_cover(wall,55*dt)
         enemy.pos.x%=WIDTH
         enemy.pos.y=max(enemy.radius,min(HEIGHT-enemy.radius,enemy.pos.y))
 

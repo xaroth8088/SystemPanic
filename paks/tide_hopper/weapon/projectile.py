@@ -38,7 +38,7 @@ class Harpoon(ProjectileBase):
         if not self.returning:
             for wall in world.cover:
                 if wall.health>0 and circle_rect(self.pos,self.radius,wall.rect):
-                    wall.health-=40
+                    world.hit_cover(wall,40)
                     self.returning=True
                     return
             for enemy in world.enemies:

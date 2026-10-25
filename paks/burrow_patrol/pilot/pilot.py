@@ -60,7 +60,7 @@ class BurrowPatrolPilot(PilotBase):
         if special:
             self._boost = .8
             for wall in world.cover:
-                if circle_rect(p.pos,75,wall.rect): wall.health -= 75
+                if circle_rect(p.pos,75,wall.rect): world.hit_cover(wall, 75)
             for enemy in world.enemies:
                 if enemy.pos.distance_to(p.pos)<75+enemy.radius:
                     world.hit_enemy(enemy,38)
@@ -73,7 +73,7 @@ class BurrowPatrolPilot(PilotBase):
         if direction.length_squared():
             p.angle = math.atan2(direction.y,direction.x)
             for wall in world.cover:
-                if circle_rect(p.pos + direction * 22,16,wall.rect): wall.health -= 135 * dt
+                if circle_rect(p.pos + direction * 22,16,wall.rect): world.hit_cover(wall, 135 * dt)
         world.move_body(p,p.vel * dt,p.radius)
 
     def sprite_angle(self, world, entity):

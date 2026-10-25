@@ -30,15 +30,15 @@ Source also runs on Linux/macOS with Python 3.12+ and Pygame; the standalone bui
 | Phase Garden | Rhythmic step-dashes and blinking through cover | Four-target chain lightning | Teleporting spectral flowers |
 | Orbit Keeper | Angular/radial movement; special reverses, shields and toggles inward/outward fire | Radially directed returning glaives | Circling sentinels |
 | Neon Breach | Perimeter paddle sliding and magnetic corner bursts | Accelerating, bouncing multiball | Moving brick drones |
-| Maze Muncher | Buffered cardinal turns and energized contact chomps | Expanding directional chomp waves | Chase/scatter maze crabs |
+| Maze Muncher | Buffered cardinal turns and energized contact chomps | Short, single-target bites | Chase/scatter maze crabs |
 | Burrow Patrol | Cardinal digging and a close-range drill burst | Pressure tether that inflates and pops targets | Armored burrowing worms |
-| Vector Coil | Continuous right-angle movement leaving damaging trails | Sweeping four-arm prism laser | Reflecting vector sparks |
-| Star Bastion | Lower-sky banking and barrel rolls | Twin wrapping, guided salvo bolts | Sweeping formations with later diving attacks |
+| Vector Coil | Continuous right-angle movement and shielded reversals | Draw a tail; close loops to capture enclosed enemies | Reflecting vector sparks |
+| Star Bastion | Horizontal movement along the bottom and barrel rolls | Twin wrapping, guided salvo bolts | Sweeping formations with later diving attacks |
 | Tide Hopper | Discrete lane hops and long ferry leaps | Catch-and-reel harpoons | Wrapping traffic with later lane interception |
 
 The additional six use original designs inspired by classic mechanics: **Neon Breach → Breakout**, **Maze Muncher → Pac-Man**, **Burrow Patrol → Dig Dug**, **Vector Coil → Qix / Tron**, **Star Bastion → Space Invaders**, and **Tide Hopper → Frogger**. They retain System Panic's endless combat objective and mixable components. Each owns its code, procedural layouts, original AI sprites, soundtrack and effects.
 
-Each Pak has its own procedural arena geometry, original generated sprites and soundtrack. Obstacles regenerate every level, and enemies gain speed, damage and more advanced tactics as levels rise. All cover can be destroyed and every weapon can reach each enemy family. Shared engine state survives a shuffle; opaque movement/AI state does not.
+Each Pak has its own procedural arena geometry, original generated sprites and soundtrack. Obstacles regenerate every level, and enemies gain speed, damage and more advanced tactics as levels rise. Maze walls and capacitor posts are impervious; other obstacle Paks may choose different durability. Awkward or ineffective component combinations are allowed to persist until the next shuffle. Shared engine state survives a shuffle; opaque movement/AI state does not.
 
 ## Dynamic Paks
 
@@ -64,7 +64,7 @@ python tools/new_pak.py paks/my_weapon --components weapon
 - **F11:** fullscreen.
 - **Mouse, or Tab / arrows + Enter:** menus. Enter from the library starts the selected mix.
 
-SDL-mapped gamepads work in gameplay and every menu, with hot-plug detection. Open **Preferences → Gamepad / Input** for the connected controller, stick deadzone and button guide. Xbox / PlayStation button positions:
+SDL-mapped gamepads work in gameplay and every menu, with hot-plug detection. The stick selects the same eight digital directions as the D-pad: any accepted deflection has the same movement speed and steering; there is no analog movement. Open **Preferences → Gamepad / Input** for the connected controller, stick deadzone and button guide. Xbox / PlayStation button positions:
 
 | Control | Action |
 |---|---|
@@ -99,7 +99,7 @@ python tools/verify.py
 python tools/compatibility.py
 ```
 
-`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` plays an opening level in every eligible pilot/enemy/weapon/obstacle gameplay mixture (**20,736** with the twelve shipped Paks) and separately renders/streams all **144** background/music pairs using a fixed seed and relaxed difficulty. Automated gameplay checks complement human balance testing.
+`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` checks stable gameplay updates in every eligible pilot/enemy/weapon/obstacle mixture (**20,736** with the twelve shipped Paks) and separately renders/streams all **144** background/music pairs using a fixed seed and relaxed difficulty. `--require-clear` optionally probes opening-level balance; some mixes are deliberately ineffective until a shuffle and need not clear. Automated gameplay checks complement human balance testing.
 
 ## Original AI asset pipeline
 
