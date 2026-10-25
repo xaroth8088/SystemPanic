@@ -6,9 +6,9 @@ System Panic is about adapting when familiar arcade rules change in an ongoing b
 Flow clarification (2026-10-24): periodic randomization uses only a quarter-second visual glitch and automatically resumes. Level completion has a separate one-second "level cleared" message before the next level. Do not append a readiness screen or glitch to that level change; the initial new-run introduction is separate.
 
 ## Launch scope
-Six Paks share arena coordinates, damage, rewards and level objectives, but own distinct locomotion, weapon, enemy behavior and arena layout. Progression is always endless: level one starts with one enemy, level two with two, and so on until defeat. No scripted elite waves, finale, finite-run toggle or level cap. The short level-cleared message, score, death and restart remain.
+Twelve Paks share arena coordinates, damage, rewards and level objectives, but own distinct locomotion, weapon, enemy behavior and arena layout. Progression is always endless: level one starts with one enemy, level two with two, and so on until defeat. No scripted elite waves, finale, finite-run toggle or level cap. The short level-cleared message, score, death and restart remain.
 
-Content is dynamically loaded from external folders. The six launch Paks use the same manifest API as added Paks. Complete Paks support solo/coherent play; partial Paks supply any subset of six components for remix. Asset-only partials may inherit installed behavior. The enabled pool needs all six channels, but can be made entirely from complementary partial Paks. See [the format guide](paks.md).
+Content is dynamically loaded from external folders. All twelve shipped Paks use the same manifest API as added Paks. Complete Paks support solo/coherent play; partial Paks supply any subset of six components for remix. Asset-only partials may inherit installed behavior. The enabled pool needs all six channels, but can be made entirely from complementary partial Paks. See [the format guide](paks.md).
 
 ## Architectural choices
 - New implementation, historical source archived under `legacy/`.
@@ -19,10 +19,14 @@ Content is dynamically loaded from external folders. The six launch Paks use the
 - All weapons can reach enemies across the screen; destructible cover and safe relocation prevent incompatible mixtures from trapping the player.
 
 ## Delivery state
-Delivered implementation on `codex/revival`: six complete Paks, solo/coherent/component modes, endless +1 enemy progression, local preferences and high scores, UI/help/credits, protected shuffles and original audiovisual assets. Historical prototypes are preserved under `legacy`.
+Delivered implementation on `codex/revival`: twelve complete Paks, solo/coherent/component modes, endless +1 enemy progression, local preferences and high scores, UI/help/credits, protected shuffles and original audiovisual assets. Historical prototypes are preserved under `legacy`.
 
-Stable Audio 3 is installed separately under ignored `.asset-tools`, with a pinned official Windows LiteRT backend and dependency lock. Six soundtracks and six effects were generated locally and mastered for production. Fresh music and SFX were also generated through the local studio API with Hugging Face downloads disabled. The studio is loopback-only; the game never calls it.
+Stable Audio 3 is installed separately under ignored `.asset-tools`, with a pinned official Windows LiteRT backend and dependency lock. Twelve soundtracks and eighteen effects were generated locally and mastered for production. The expansion adds six original AI sprite sheets and eighteen local audio generations. Fresh music and SFX were also generated through the local studio API with Hugging Face downloads disabled. The studio is loopback-only; the game never calls it.
 
 See [verification memory](../tests/AGENTS.md) and `docs/verification.json` for evidence. Input supports keyboard/mouse and SDL-mapped gamepads, including every menu. Preferences include a deadzone/controller page; custom remapping remains future work. Automated runs establish playability, not final human balance. No online catalog was built.
 
 Level refinement: Paks now own spawn/aim/difficulty, protection/healing/rewards and defeat feedback. Layouts procedurally regenerate each level (also solo/locked), with separate seeded RNGs and distinct Pak shapes. Enemy difficulty includes new tactics as well as numerical scaling; shared +1 progression and transitions retain their contract.
+
+The six additional Paks use original AI artwork/audio and classic-inspired mechanics: Breakout (perimeter paddle/multiball), Pac-Man (buffered turns/chomp/chase-scatter), Dig Dug (excavation/inflation), Qix/Tron (right-angle trails/prism beams), Space Invaders (banking/salvos/formations), Frogger (lane hopping/traffic/harpoons). Each is complete and its six components can be copied independently. No game-specific rules were added to the host.
+
+Orbit Keeper's special also toggles explicit inward/outward radial fire. Optional PilotBase.aim_direction/status queries are additive to API 4; weapons decide how to respect pilot intent and the shell displays the status string. Nearest-target assistance and guided flight must not override an explicit pilot direction. Glaive outbound speed is now 600 so radial fire and constrained mixed pilots can reach the arena edge. Demo input policies were updated to line up radial shots and avoid crowds; they use ordinary controls only.

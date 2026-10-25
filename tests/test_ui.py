@@ -30,6 +30,12 @@ class UITests(unittest.TestCase):
 
     def click(self, id):
         self.app.draw()
+        for _ in range((len(self.app.catalog.paks)+5)//6):
+            if any(b.id==id for b in self.app.buttons): break
+            next_page=next((b for b in self.app.buttons if b.id=="library_page:next"),None)
+            if next_page is None: break
+            self.app.activate(next_page)
+            self.app.draw()
         button = next(b for b in self.app.buttons if b.id == id)
         self.app.handle_event(pygame.event.Event(pygame.MOUSEBUTTONDOWN, button=1, pos=button.rect.center))
 

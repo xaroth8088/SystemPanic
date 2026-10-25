@@ -7,7 +7,7 @@ from system_panic.pak_api import ProjectileBase
 
 class Glaive(ProjectileBase):
     def __init__(self, world, weapon, direction):
-        super().__init__(world.player.pos + direction * 19, direction * 430, 7)
+        super().__init__(world.player.pos + direction * 19, direction * 600, 7)
         self._weapon = weapon
         self._remaining = 3.
         self._damage = 28

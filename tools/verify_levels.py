@@ -61,7 +61,7 @@ def main():
 
     with tempfile.TemporaryDirectory(dir=output) as temporary:
         app = App(Path(temporary), 24, catalog)
-        gallery = pygame.Surface((1440, 6 * 264))
+        gallery = pygame.Surface((1440, len(catalog.complete_ids()) * 264))
         gallery.fill((9, 16, 25))
         font = pygame.font.Font(None, 23)
         for row, pak in enumerate(catalog.paks):

@@ -148,12 +148,177 @@
         "12": 12,
         "13": 13
       },
-      "health": 72.87,
+      "health": 64.46,
       "score": 27300,
-      "seconds": 145.83
+      "seconds": 204.65
+    },
+    {
+      "pak": "neon_breach",
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 100,
+      "score": 27300,
+      "seconds": 122.27
+    },
+    {
+      "pak": "maze_muncher",
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 84.89,
+      "score": 27300,
+      "seconds": 42.32
+    },
+    {
+      "pak": "burrow_patrol",
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 40.07,
+      "score": 27300,
+      "seconds": 111.27
+    },
+    {
+      "pak": "vector_coil",
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 100,
+      "score": 27300,
+      "seconds": 77.42
+    },
+    {
+      "pak": "star_bastion",
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 100,
+      "score": 27300,
+      "seconds": 78.53
+    },
+    {
+      "pak": "tide_hopper",
+      "phase": "active",
+      "wave": 13,
+      "kills": 78,
+      "cleared_levels": 12,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "health": 100,
+      "score": 27300,
+      "seconds": 106.22
     }
   ],
   "assets": [
+    {
+      "file": "assets/audio/production/burrow_patrol.ogg",
+      "bytes": 347445,
+      "sha256": "d2cfdcb03feb17ae588c2cf5be666f317463f664781707a0b124d862528fb592"
+    },
+    {
+      "file": "assets/audio/production/burrow_patrol_shot.ogg",
+      "bytes": 18982,
+      "sha256": "3a222693fe156a24cc155fcd09fcc36693d54880fce2e3c088035c727f0ae473"
+    },
+    {
+      "file": "assets/audio/production/burrow_patrol_special.ogg",
+      "bytes": 28176,
+      "sha256": "1c32b710b49614bc809b725354337824b209ad1265bd3c9ec19c93ee26dc60ab"
+    },
     {
       "file": "assets/audio/production/clear.ogg",
       "bytes": 25337,
@@ -173,6 +338,36 @@
       "file": "assets/audio/production/iron_circuit.ogg",
       "bytes": 428838,
       "sha256": "a88e1355f502f92bf9bc81862f88a97004c59d291bb5c7253c192ae04bb27449"
+    },
+    {
+      "file": "assets/audio/production/maze_muncher.ogg",
+      "bytes": 376165,
+      "sha256": "1808051b06c520be651ae8b3cdbe59e6bf8111dc367de44b1082486947f2bb0c"
+    },
+    {
+      "file": "assets/audio/production/maze_muncher_shot.ogg",
+      "bytes": 20545,
+      "sha256": "13cfe0ca3ffe8efe8cd96258af4a39b7f13c706afb68c07ee2338f00313b4416"
+    },
+    {
+      "file": "assets/audio/production/maze_muncher_special.ogg",
+      "bytes": 28718,
+      "sha256": "c7759e78006c8629d9b1fd09c9040189ed256312498dd12b03612b6cb304e181"
+    },
+    {
+      "file": "assets/audio/production/neon_breach.ogg",
+      "bytes": 375233,
+      "sha256": "adbedb6ea6ab7d3e1e9ebe9a7ad7356976a6cfbf372431eeba9c630e1af100e2"
+    },
+    {
+      "file": "assets/audio/production/neon_breach_shot.ogg",
+      "bytes": 19681,
+      "sha256": "77e109ba4e24bd19065a9d7e8af33550835a70574ae1e03424d7fe870210f286"
+    },
+    {
+      "file": "assets/audio/production/neon_breach_special.ogg",
+      "bytes": 28051,
+      "sha256": "c0ba3208e45b3c2182c6734c0d79c18c422405a8108b2c072b6239217472b18c"
     },
     {
       "file": "assets/audio/production/orbit_keeper.ogg",
@@ -210,9 +405,69 @@
       "sha256": "992b1de09191256f20d5adf68d9f554e561cff241dd2a0cc5d1c2118182bcd24"
     },
     {
+      "file": "assets/audio/production/star_bastion.ogg",
+      "bytes": 355955,
+      "sha256": "9a8a118f6ad9f2eedbda64689caadb2a2131b9ce2740ab60332e81a2571c42f8"
+    },
+    {
+      "file": "assets/audio/production/star_bastion_shot.ogg",
+      "bytes": 19646,
+      "sha256": "aaa0e3052a99d6b5999d6fbeac3b588e29312a7a7e6d3ee2f05293736b4f5a59"
+    },
+    {
+      "file": "assets/audio/production/star_bastion_special.ogg",
+      "bytes": 28250,
+      "sha256": "9c55895b31080c298ccc810a8c2d02b6c10fdfec9548ee0b00d19da439db071e"
+    },
+    {
+      "file": "assets/audio/production/tide_hopper.ogg",
+      "bytes": 360094,
+      "sha256": "54edaede9a08cc617924e5149b3d562af147a06ad0feed63686a20434ceaaf42"
+    },
+    {
+      "file": "assets/audio/production/tide_hopper_shot.ogg",
+      "bytes": 18635,
+      "sha256": "8fe166aecb31b5363ceca6d7ebb6b528b79df16593bc88309cb811132ab1dd59"
+    },
+    {
+      "file": "assets/audio/production/tide_hopper_special.ogg",
+      "bytes": 27075,
+      "sha256": "a69056b2955b71c9c75e60e9379361b94f5f81600fadc61d3f3be6f9e5b452ab"
+    },
+    {
+      "file": "assets/audio/production/vector_coil.ogg",
+      "bytes": 350584,
+      "sha256": "f8bca5c64ce2e4e535d8bb8408e41b241e4a3946f3d2cb0523fcac49cca7690f"
+    },
+    {
+      "file": "assets/audio/production/vector_coil_shot.ogg",
+      "bytes": 19517,
+      "sha256": "597c72634abcdb60629f8a7d89ee5dcf94cb5dfaede5ad9205e6fbc8ffea3d11"
+    },
+    {
+      "file": "assets/audio/production/vector_coil_special.ogg",
+      "bytes": 27866,
+      "sha256": "9e0a7ef584aeb87c85baf1ad3b55a8973bbc25189f5e3b75c449ca2fd7b42b36"
+    },
+    {
       "file": "assets/audio/production/void_drifter.ogg",
       "bytes": 482064,
       "sha256": "018711f6d5e3501b8400f78c16690dbb5f85c8fdcc41b21abd007419e8d53f91"
+    },
+    {
+      "file": "assets/images/burrow_patrol-source.png",
+      "bytes": 1672802,
+      "sha256": "031064212b99ea6a6c32fd20846911cf90af836c2446ba71edd45f999c9727e2"
+    },
+    {
+      "file": "assets/images/maze_muncher-source.png",
+      "bytes": 1274517,
+      "sha256": "5908d2b23c2db622650b182b539b1cf6c4fcb8fff61fadc8e546c71683bfc453"
+    },
+    {
+      "file": "assets/images/neon_breach-source.png",
+      "bytes": 1155501,
+      "sha256": "7012bcb9826bdb8ebc5beb513b19f46ab3320fdcc1a4b1a39183fa560da8eba5"
     },
     {
       "file": "assets/images/sprites-source.png",
@@ -220,9 +475,64 @@
       "sha256": "21da7a4462b6c653d61204df78782c6a015eebe18150f51859c569f8de2404fb"
     },
     {
+      "file": "assets/images/star_bastion-source.png",
+      "bytes": 1141353,
+      "sha256": "8e3af1d81b86493f27c35e8a0e64631778d19e5449bb3e0f61b41504f3cdad53"
+    },
+    {
+      "file": "assets/images/tide_hopper-source.png",
+      "bytes": 1552935,
+      "sha256": "f1bbfbeb221fb886714c9bc4d23e059c157ddd31f32a4abc9513492e934dc3cd"
+    },
+    {
       "file": "assets/images/title.png",
       "bytes": 2352934,
       "sha256": "d5fa5fbb7753fb569bf22d0509425066c89b03b39d689de69c64509d4c958506"
+    },
+    {
+      "file": "assets/images/vector_coil-source.png",
+      "bytes": 887484,
+      "sha256": "5baaa6fe9ae1578da786172e364263a15ae556d4a29b530954577f34f8f51e20"
+    },
+    {
+      "file": "paks/burrow_patrol/background/background_image.png",
+      "bytes": 140147,
+      "sha256": "299021a19b3464e136f59880a9890fecc75e61fbef85f161fef22917cab01590"
+    },
+    {
+      "file": "paks/burrow_patrol/enemy/enemy_sheet.png",
+      "bytes": 490942,
+      "sha256": "c02836c640c6254599a43b5723645668b3aaf602d604651bcd952fb935f68273"
+    },
+    {
+      "file": "paks/burrow_patrol/music/music.ogg",
+      "bytes": 347445,
+      "sha256": "d2cfdcb03feb17ae588c2cf5be666f317463f664781707a0b124d862528fb592"
+    },
+    {
+      "file": "paks/burrow_patrol/obstacles/obstacles_sheet.png",
+      "bytes": 446131,
+      "sha256": "a8981d5d82b3904816fdd3e7fa4094aadf68d3bf0280f8e9f472ef6548a6f44a"
+    },
+    {
+      "file": "paks/burrow_patrol/pilot/pilot_sheet.png",
+      "bytes": 411136,
+      "sha256": "81cb55f8fcb6100295a2ece7bfbfb80f0c525aed4cce3bb7d33cbd5730bbe45a"
+    },
+    {
+      "file": "paks/burrow_patrol/pilot/special.ogg",
+      "bytes": 28176,
+      "sha256": "1c32b710b49614bc809b725354337824b209ad1265bd3c9ec19c93ee26dc60ab"
+    },
+    {
+      "file": "paks/burrow_patrol/weapon/shot.ogg",
+      "bytes": 18982,
+      "sha256": "3a222693fe156a24cc155fcd09fcc36693d54880fce2e3c088035c727f0ae473"
+    },
+    {
+      "file": "paks/burrow_patrol/weapon/weapon_sheet.png",
+      "bytes": 322128,
+      "sha256": "11e681e98da1aea555cca5ea144c714ed5c8518e0e7ab08db93fc8890bfcb1fd"
     },
     {
       "file": "paks/iron_circuit/background/background_image.png",
@@ -263,6 +573,86 @@
       "file": "paks/iron_circuit/weapon/weapon_sheet.png",
       "bytes": 41534,
       "sha256": "cd5799935a634cb2145fa2077a62e613e03c062a598c049b08eb9a841ce7d83e"
+    },
+    {
+      "file": "paks/maze_muncher/background/background_image.png",
+      "bytes": 157419,
+      "sha256": "89d1eecd574afc487fbf2b8b408708f56ea3a6d60df473eef271092220c2c949"
+    },
+    {
+      "file": "paks/maze_muncher/enemy/enemy_sheet.png",
+      "bytes": 319273,
+      "sha256": "9bcdabc2c2f0d6d8cd81ddeef4fcefd88672941b46af3dde3aeb1c6a3f825169"
+    },
+    {
+      "file": "paks/maze_muncher/music/music.ogg",
+      "bytes": 376165,
+      "sha256": "1808051b06c520be651ae8b3cdbe59e6bf8111dc367de44b1082486947f2bb0c"
+    },
+    {
+      "file": "paks/maze_muncher/obstacles/obstacles_sheet.png",
+      "bytes": 441951,
+      "sha256": "556182c09e5eab58b7ffefafd2f29c8f4c2e2007050c3c3c2d2c928f38f812c4"
+    },
+    {
+      "file": "paks/maze_muncher/pilot/pilot_sheet.png",
+      "bytes": 326873,
+      "sha256": "0d3a7cbbb4a8d38451d22da2b4792b1a9dd4f156d2439f1f2df762d4f3e80ca0"
+    },
+    {
+      "file": "paks/maze_muncher/pilot/special.ogg",
+      "bytes": 28718,
+      "sha256": "c7759e78006c8629d9b1fd09c9040189ed256312498dd12b03612b6cb304e181"
+    },
+    {
+      "file": "paks/maze_muncher/weapon/shot.ogg",
+      "bytes": 20545,
+      "sha256": "13cfe0ca3ffe8efe8cd96258af4a39b7f13c706afb68c07ee2338f00313b4416"
+    },
+    {
+      "file": "paks/maze_muncher/weapon/weapon_sheet.png",
+      "bytes": 167290,
+      "sha256": "3008a4778f9dfdb2fecb81639de124b94c68315b032e096d27be92dee28df7f1"
+    },
+    {
+      "file": "paks/neon_breach/background/background_image.png",
+      "bytes": 155561,
+      "sha256": "a523c3db3e4cbc033377eec79d25025d73fddec383fa616facf65d98f4e5fc11"
+    },
+    {
+      "file": "paks/neon_breach/enemy/enemy_sheet.png",
+      "bytes": 329131,
+      "sha256": "ce9b363d4678f3f174b81a51b1e33c89e191d88d780aa08df92d77a36800caba"
+    },
+    {
+      "file": "paks/neon_breach/music/music.ogg",
+      "bytes": 375233,
+      "sha256": "adbedb6ea6ab7d3e1e9ebe9a7ad7356976a6cfbf372431eeba9c630e1af100e2"
+    },
+    {
+      "file": "paks/neon_breach/obstacles/obstacles_sheet.png",
+      "bytes": 313989,
+      "sha256": "f2e01afa5ea0a7f5122c32aa03630691f7bfeeec3eab54e45ffc2d27b24f04e6"
+    },
+    {
+      "file": "paks/neon_breach/pilot/pilot_sheet.png",
+      "bytes": 198021,
+      "sha256": "82a450794728a654dfdac1fed9c194264936e6ae796835485bb822e4347dd522"
+    },
+    {
+      "file": "paks/neon_breach/pilot/special.ogg",
+      "bytes": 28051,
+      "sha256": "c0ba3208e45b3c2182c6734c0d79c18c422405a8108b2c072b6239217472b18c"
+    },
+    {
+      "file": "paks/neon_breach/weapon/shot.ogg",
+      "bytes": 19681,
+      "sha256": "77e109ba4e24bd19065a9d7e8af33550835a70574ae1e03424d7fe870210f286"
+    },
+    {
+      "file": "paks/neon_breach/weapon/weapon_sheet.png",
+      "bytes": 230541,
+      "sha256": "76597d9230864910f1450abd3213790bf6fc95ba5dc148665f82a4b62153eda0"
     },
     {
       "file": "paks/orbit_keeper/background/background_image.png",
@@ -425,6 +815,126 @@
       "sha256": "478c0ab7fa50fddd12de9f325580eb9d502cbe9a92199b1d576391c1ba899b0b"
     },
     {
+      "file": "paks/star_bastion/background/background_image.png",
+      "bytes": 155004,
+      "sha256": "c85ba1c8e834c85b52db4ad8ea46a822a5d1370940cea27a0583170f2cc2439d"
+    },
+    {
+      "file": "paks/star_bastion/enemy/enemy_sheet.png",
+      "bytes": 355585,
+      "sha256": "4f8d2e8dc159a35711af4b26d342a6245f1cba9d3ed61284108f1bbab9c3c6eb"
+    },
+    {
+      "file": "paks/star_bastion/music/music.ogg",
+      "bytes": 355955,
+      "sha256": "9a8a118f6ad9f2eedbda64689caadb2a2131b9ce2740ab60332e81a2571c42f8"
+    },
+    {
+      "file": "paks/star_bastion/obstacles/obstacles_sheet.png",
+      "bytes": 424536,
+      "sha256": "744737a4b9e15d93221ee2d7b90dab5dbe859557d1b04eacf992b0d9c0c0d7bc"
+    },
+    {
+      "file": "paks/star_bastion/pilot/pilot_sheet.png",
+      "bytes": 259602,
+      "sha256": "bea18b91571fc569eb161a75ce358c7d017be2fde2b4bec04f91953541464bef"
+    },
+    {
+      "file": "paks/star_bastion/pilot/special.ogg",
+      "bytes": 28250,
+      "sha256": "9c55895b31080c298ccc810a8c2d02b6c10fdfec9548ee0b00d19da439db071e"
+    },
+    {
+      "file": "paks/star_bastion/weapon/shot.ogg",
+      "bytes": 19646,
+      "sha256": "aaa0e3052a99d6b5999d6fbeac3b588e29312a7a7e6d3ee2f05293736b4f5a59"
+    },
+    {
+      "file": "paks/star_bastion/weapon/weapon_sheet.png",
+      "bytes": 39878,
+      "sha256": "7522c905e95b00d5a6562318200e451871cb43b02b81593a262d8afb5b8ad527"
+    },
+    {
+      "file": "paks/tide_hopper/background/background_image.png",
+      "bytes": 146584,
+      "sha256": "5494a1c486520006c7842c29fe58ac3255cccf2d7f10975ada60435f3c0a8e79"
+    },
+    {
+      "file": "paks/tide_hopper/enemy/enemy_sheet.png",
+      "bytes": 437023,
+      "sha256": "70273cfcffb2f34d7f3b60db4525ce09b4ec4a2ea01c3637c239ee65a207eb42"
+    },
+    {
+      "file": "paks/tide_hopper/music/music.ogg",
+      "bytes": 360094,
+      "sha256": "54edaede9a08cc617924e5149b3d562af147a06ad0feed63686a20434ceaaf42"
+    },
+    {
+      "file": "paks/tide_hopper/obstacles/obstacles_sheet.png",
+      "bytes": 486393,
+      "sha256": "a8efcaa50757ec672ee4626919ca34f4dd1de3b917964de9a186be4fd133edbc"
+    },
+    {
+      "file": "paks/tide_hopper/pilot/pilot_sheet.png",
+      "bytes": 300203,
+      "sha256": "ef0236bb0498bb1763831052320475dd793d84fc8da43979ea54bd0ade2a89c1"
+    },
+    {
+      "file": "paks/tide_hopper/pilot/special.ogg",
+      "bytes": 27075,
+      "sha256": "a69056b2955b71c9c75e60e9379361b94f5f81600fadc61d3f3be6f9e5b452ab"
+    },
+    {
+      "file": "paks/tide_hopper/weapon/shot.ogg",
+      "bytes": 18635,
+      "sha256": "8fe166aecb31b5363ceca6d7ebb6b528b79df16593bc88309cb811132ab1dd59"
+    },
+    {
+      "file": "paks/tide_hopper/weapon/weapon_sheet.png",
+      "bytes": 295853,
+      "sha256": "32dde5ab3bc29e5ea618d5bab898e31228add142b34fa31732a256ede32e0b2f"
+    },
+    {
+      "file": "paks/vector_coil/background/background_image.png",
+      "bytes": 110617,
+      "sha256": "47b4cb5b746dd0e753d449a6b1a6113025c89f8bbd21e14391eb432f694927f6"
+    },
+    {
+      "file": "paks/vector_coil/enemy/enemy_sheet.png",
+      "bytes": 250220,
+      "sha256": "73efe68172d5df019f79126dc78230bfb673963a713c90d356b8041978f8ab8c"
+    },
+    {
+      "file": "paks/vector_coil/music/music.ogg",
+      "bytes": 350584,
+      "sha256": "f8bca5c64ce2e4e535d8bb8408e41b241e4a3946f3d2cb0523fcac49cca7690f"
+    },
+    {
+      "file": "paks/vector_coil/obstacles/obstacles_sheet.png",
+      "bytes": 188825,
+      "sha256": "5e8a445e829e5d789c92a63b50072f7a759b1dda505406cdf646ddd793bd70a3"
+    },
+    {
+      "file": "paks/vector_coil/pilot/pilot_sheet.png",
+      "bytes": 203338,
+      "sha256": "55269299b4a3ea7e11ea6fdf8abed613dedaf397f10747136dc310b1a5cdc208"
+    },
+    {
+      "file": "paks/vector_coil/pilot/special.ogg",
+      "bytes": 27866,
+      "sha256": "9e0a7ef584aeb87c85baf1ad3b55a8973bbc25189f5e3b75c449ca2fd7b42b36"
+    },
+    {
+      "file": "paks/vector_coil/weapon/shot.ogg",
+      "bytes": 19517,
+      "sha256": "597c72634abcdb60629f8a7d89ee5dcf94cb5dfaede5ad9205e6fbc8ffea3d11"
+    },
+    {
+      "file": "paks/vector_coil/weapon/weapon_sheet.png",
+      "bytes": 148135,
+      "sha256": "b2109f150970e82969401703ec0f74cd91c6c6a27639fb9a58719b8d04e18d75"
+    },
+    {
       "file": "paks/void_drifter/background/background_image.png",
       "bytes": 655845,
       "sha256": "19cc4b8b97cd6de270b68ac7b13dc2ce38efe225bc907c54f8f3042053853f07"
@@ -468,17 +978,19 @@
   "date": "2026-10-24",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 79,
-    "failed": 0
+    "passed": 90,
+    "failed": 0,
+    "seconds": 237.556,
+    "command": "python -B -m unittest discover -s tests -v"
   },
   "compatibility": {
-    "combinations": 1296,
-    "opening_wave_cleared": 1296,
+    "combinations": 20736,
+    "opening_wave_cleared": 20736,
     "difficulty": "relaxed",
-    "presentation_pairs_checked": 36,
-    "full_mix_space": 46656,
+    "presentation_pairs_checked": 144,
+    "full_mix_space": 2985984,
     "seed": 24,
-    "max_seconds": 13.666666666666666,
+    "max_seconds": 55.68333333333333,
     "failures": []
   },
   "local_studio": [
@@ -501,7 +1013,22 @@
   ],
   "packaged_checks": [
     {
+      "pak": "burrow_patrol",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
       "pak": "iron_circuit",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "maze_muncher",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "neon_breach",
       "frames": 240,
       "exit_code": 0
     },
@@ -526,6 +1053,21 @@
       "exit_code": 0
     },
     {
+      "pak": "star_bastion",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "tide_hopper",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "pak": "vector_coil",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
       "pak": "void_drifter",
       "frames": 240,
       "exit_code": 0
@@ -533,16 +1075,18 @@
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "bfdc0551dd090140176cc1b32d13f0d09f32ab4619df7593c399b1a2dc3c1633",
-    "total_bytes": 48324181,
+    "sha256": "dda09f188f9f498fc4bf27512520b70192076c5604b932d58f11a565c874b06b",
+    "total_bytes": 59193036,
     "archive": "dist/SystemPanic-Windows-x64.zip",
     "archive_test_passed": true,
-    "archive_sha256": "701e612a40d871614904528e8af1d3a7a5e9c497c53aa8d38f7e962f9046f140"
+    "archive_sha256": "c10a2614fc92d60c8e556b425399f5aa1d7a7b6c71dc30ca0727121c7e62a1d8",
+    "archive_bytes": 38115906,
+    "external_pak_files_match_source": 293
   },
   "limitations": [
     "Automated controls used relaxed difficulty and seed 24; human balance testing remains.",
-    "Desktop Computer Use launch approval timed out; no claim of a human playtest.",
-    "Gamepad verification uses native SDL virtual controllers; no physical device/driver was available.",
+    "Opening-level gameplay combinations and presentation pairs were tested separately; the entire 2,985,984 six-role space was not playtested.",
+    "Native SDL virtual controls ran alongside a connected PS4 controller; its physical buttons were not operated.",
     "Custom controller button remapping is not implemented; compatible pads use SDL mappings."
   ],
   "transition_flow": {
@@ -566,7 +1110,22 @@
   "distribution_checks": {
     "checks": [
       {
+        "check": "burrow_patrol",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
         "check": "iron_circuit",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "maze_muncher",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "neon_breach",
         "frames": 240,
         "exit_code": 0
       },
@@ -587,6 +1146,21 @@
       },
       {
         "check": "sky_forge",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "star_bastion",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "tide_hopper",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "vector_coil",
         "frames": 240,
         "exit_code": 0
       },
@@ -624,24 +1198,24 @@
     "external_code_and_helpers_executed": true,
     "partial_only_mix_executed": true,
     "wheel_external_layout_verified": true,
-    "executable_sha256": "bfdc0551dd090140176cc1b32d13f0d09f32ab4619df7593c399b1a2dc3c1633"
+    "executable_sha256": "dda09f188f9f498fc4bf27512520b70192076c5604b932d58f11a565c874b06b"
   },
   "wheel_install_check": {
     "fresh_prefix_install": true,
     "api_version": 4,
-    "paks_discovered": 6,
-    "component_folders": 36,
+    "paks_discovered": 12,
+    "component_folders": 72,
     "local_projectile_helpers_loaded": true,
     "assets_loaded": true,
     "procedural_level_regeneration": true,
     "obsolete_arena_helper_absent": true,
     "frames": 240,
     "exit_code": 0,
-    "wheel_sha256": "dc999c69b17858f3aabf0a7d16dc83ef188b0dc098cea0ee2be674041d8aae5e"
+    "wheel_sha256": "3be1540678bc6165f62d1f8b9bb93461cbd67550e26f7b2eb9a85c13901cfe7e"
   },
   "dynamic_paks": {
     "api_version": 4,
-    "external_launch_paks": 6,
+    "external_launch_paks": 12,
     "partial_components_supported": true,
     "asset_only_inheritance_supported": true,
     "partial_only_mix_supported": true,
@@ -658,7 +1232,7 @@
       "background",
       "obstacles"
     ],
-    "component_folders": 36,
+    "component_folders": 72,
     "public_abc_contract": true,
     "author_owned_asset_attribute_names": true,
     "per_world_component_instances": true,
@@ -674,7 +1248,9 @@
     "core_world_ide_diagnostics": 0,
     "pak_owned_spawn_aim_difficulty": true,
     "pak_owned_protection_healing_rewards": true,
-    "level_lifecycle_callbacks": true
+    "level_lifecycle_callbacks": true,
+    "optional_pilot_aim_direction": true,
+    "optional_pilot_status": true
   },
   "rule_boundary_checks": {
     "custom_rules_tests": 12,
@@ -701,11 +1277,12 @@
       "return_after"
     ],
     "no_host_heal_protection_bonus_aim_or_difficulty": true,
-    "pak_defined_initial_spawn_position": true
+    "pak_defined_initial_spawn_position": true,
+    "explicit_direction_owned_by_pilot_and_weapons": true
   },
   "procedural_levels": {
-    "procedural_cases": 180,
-    "enemies_placed": 5190,
+    "procedural_cases": 360,
+    "enemies_placed": 10380,
     "separate_layout_rng": true,
     "geometry_and_spawn_safety": true,
     "advanced_ai_seconds_per_case": 1,
@@ -828,6 +1405,120 @@
           101
         ],
         "unique_layouts": 30
+      },
+      {
+        "pak": "neon_breach",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "maze_muncher",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "burrow_patrol",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "vector_coil",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "star_bastion",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "tide_hopper",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
       }
     ],
     "layout_gallery_inspected": true,
@@ -851,12 +1542,12 @@
     "ide_errors": 0,
     "source": {
       "native_sdl_virtual_controller": true,
-      "physical_controllers_seen": 0,
+      "physical_controllers_seen": 1,
       "gamepad_only_menu_paths": true,
       "preferences_saved": true,
       "nested_back": true,
       "pak_selection": true,
-      "all_six_solo_inputs": [
+      "solo_inputs": [
         {
           "pak": "signal_runner",
           "analog_movement": true,
@@ -898,22 +1589,64 @@
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
+        },
+        {
+          "pak": "neon_breach",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "maze_muncher",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "burrow_patrol",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "vector_coil",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "star_bastion",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "tide_hopper",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
         }
       ],
       "disconnect_pauses": true,
       "reconnect_requires_neutral": true,
       "focus_loss_guard": true,
       "outcome_retry": true,
-      "steps": 1136
+      "steps": 2105
     },
     "frozen": {
       "native_sdl_virtual_controller": true,
-      "physical_controllers_seen": 0,
+      "physical_controllers_seen": 1,
       "gamepad_only_menu_paths": true,
       "preferences_saved": true,
       "nested_back": true,
       "pak_selection": true,
-      "all_six_solo_inputs": [
+      "solo_inputs": [
         {
           "pak": "signal_runner",
           "analog_movement": true,
@@ -955,13 +1688,107 @@
           "trigger_fire": true,
           "special": true,
           "pause_resume": true
+        },
+        {
+          "pak": "neon_breach",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "maze_muncher",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "burrow_patrol",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "vector_coil",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "star_bastion",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "tide_hopper",
+          "analog_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
         }
       ],
       "disconnect_pauses": true,
       "reconnect_requires_neutral": true,
       "focus_loss_guard": true,
       "outcome_retry": true,
-      "steps": 1136
-    }
+      "steps": 2105
+    },
+    "reconnect_with_other_device_verified": true,
+    "opening_index_distinguished_from_instance_id": true
+  },
+  "classic_expansion": {
+    "complete_paks_added": 6,
+    "paks": [
+      {
+        "pak": "neon_breach",
+        "inspiration": "Breakout",
+        "mechanics": "perimeter paddle, accelerating multiball, brick drones"
+      },
+      {
+        "pak": "maze_muncher",
+        "inspiration": "Pac-Man",
+        "mechanics": "buffered cardinal turns, energized chomps, chase/scatter crabs"
+      },
+      {
+        "pak": "burrow_patrol",
+        "inspiration": "Dig Dug",
+        "mechanics": "digging, excavation, pressure inflation, burrowing worms"
+      },
+      {
+        "pak": "vector_coil",
+        "inspiration": "Qix / Tron",
+        "mechanics": "right-angle movement, damaging trails, sweeping prism cross"
+      },
+      {
+        "pak": "star_bastion",
+        "inspiration": "Space Invaders",
+        "mechanics": "lower-sky banking, twin wrapping salvos, formations/dives"
+      },
+      {
+        "pak": "tide_hopper",
+        "inspiration": "Frogger",
+        "mechanics": "lane hops, long leaps, catch-and-reel harpoons, traffic"
+      }
+    ],
+    "separate_image_generations": 6,
+    "local_audio_generations_added": 18,
+    "total_local_audio_jobs": 30,
+    "local_asset_exports": 96,
+    "manifest_hashes_checked": 176,
+    "component_copy_independence_tested": true,
+    "procedural_layouts_and_difficulty": true,
+    "orbit_special_toggles_radial_fire": true,
+    "both_orbit_mode_screens_inspected": true,
+    "expansion_library_and_gameplay_screens_inspected": true,
+    "expansion_tests": 11,
+    "ide_core_errors": 0,
+    "ide_test_diagnostics": [
+      "tests/test_expansion.py:20: dynamic pygame.Rect export not resolved by IDE; runtime test passes"
+    ]
   }
 }

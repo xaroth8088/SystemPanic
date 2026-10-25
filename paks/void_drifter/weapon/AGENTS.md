@@ -5,3 +5,5 @@ Read [this Pak's memory](../AGENTS.md) and [public ABCs](../../../src/system_pan
 Load local handles in `init()`; their attribute names are private choices. Instances belong to one run. Use explicit lifecycle callbacks for setup/cleanup. Rendering cannot advance gameplay. The host schedules projectile/effect callbacks once; do not also advance them from the component update. Local helper modules and assets can be copied as partial components. Preserve asset provenance.
 
 aim(world) selects this weapon's assisted/facing direction locally. The host provides no aiming method or firing gate.
+
+Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.

@@ -1,0 +1,26 @@
+{
+  "id": "neon_breach",
+  "name": "Neon Breach",
+  "subtitle": "PERIMETER / PINBALL",
+  "color": [
+    255,
+    148,
+    91
+  ],
+  "description": "Circle the perimeter and bank an accelerating plasma ball through brick drones.",
+  "version": "1.0.0",
+  "order": 6,
+  "authoring": {
+    "inspired_by": "Breakout",
+    "sheet_source": "assets/images/neon_breach-source.png"
+  },
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ]
+}

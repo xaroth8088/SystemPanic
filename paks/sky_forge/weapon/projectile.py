@@ -11,13 +11,14 @@ class Bomb(ProjectileBase):
         self._weapon = weapon
         self._remaining = 3.
         self._damage = 58
+        self._guided = world.prefs.aim_assist and world.component("pilot").aim_direction(world) is None
 
     def update(self, world, dt):
         self._remaining -= dt
         if self._remaining <= 0:
             self.alive = False
             return
-        if world.prefs.aim_assist and world.enemies:
+        if self._guided and world.enemies:
             target = min(world.enemies, key=lambda enemy: enemy.pos.distance_squared_to(self.pos))
             desired = normalized(target.pos - self.pos) * 380
             self.vel = self.vel.lerp(desired, min(1, dt * 2.2))

@@ -1,8 +1,8 @@
 # System Panic
 
-**Six worlds. One unstable system.**
+**Twelve worlds. One unstable system.**
 
-An offline arcade game about adapting as its rules change around you. Play any of six complete Paks alone, shuffle whole Paks together, or independently remix their pilots, enemies, weapons, music, backgrounds and obstacles. Survive an endless sequence of levels: start with one enemy, then face two, three, and one more with every cleared level. The run ends when you are defeated.
+An offline arcade game about adapting as its rules change around you. Play any of twelve complete Paks alone, shuffle whole Paks together, or independently remix their pilots, enemies, weapons, music, backgrounds and obstacles. Survive an endless sequence of levels: start with one enemy, then face two, three, and one more with every cleared level. The run ends when you are defeated.
 
 This is a fresh implementation. The 2017 game and unfinished 2025 rewrite are preserved under [`legacy/`](legacy/AGENTS.md); the revival does not import their code or assets.
 
@@ -19,7 +19,7 @@ python play.py
 
 Source also runs on Linux/macOS with Python 3.12+ and Pygame; the standalone build targets Windows x64.
 
-## The six Paks
+## The twelve Paks
 
 | Pak | Movement | Weapon | Opposition |
 |---|---|---|---|
@@ -28,13 +28,21 @@ Source also runs on Linux/macOS with Python 3.12+ and Pygame; the standalone bui
 | Iron Circuit | Constant driving, steering and overdrive ramming | Ricocheting scattershot | Aimed gun turrets |
 | Sky Forge | Gravity, double jumping and rising forge leap | Seeking explosive fireballs | Hopping forge crawlers |
 | Phase Garden | Rhythmic step-dashes and blinking through cover | Four-target chain lightning | Teleporting spectral flowers |
-| Orbit Keeper | Angular/radial orbital movement and shield reversal | Returning glaives | Circling sentinels |
+| Orbit Keeper | Angular/radial movement; special reverses, shields and toggles inward/outward fire | Radially directed returning glaives | Circling sentinels |
+| Neon Breach | Perimeter paddle sliding and magnetic corner bursts | Accelerating, bouncing multiball | Moving brick drones |
+| Maze Muncher | Buffered cardinal turns and energized contact chomps | Expanding directional chomp waves | Chase/scatter maze crabs |
+| Burrow Patrol | Cardinal digging and a close-range drill burst | Pressure tether that inflates and pops targets | Armored burrowing worms |
+| Vector Coil | Continuous right-angle movement leaving damaging trails | Sweeping four-arm prism laser | Reflecting vector sparks |
+| Star Bastion | Lower-sky banking and barrel rolls | Twin wrapping, guided salvo bolts | Sweeping formations with later diving attacks |
+| Tide Hopper | Discrete lane hops and long ferry leaps | Catch-and-reel harpoons | Wrapping traffic with later lane interception |
+
+The additional six use original designs inspired by classic mechanics: **Neon Breach → Breakout**, **Maze Muncher → Pac-Man**, **Burrow Patrol → Dig Dug**, **Vector Coil → Qix / Tron**, **Star Bastion → Space Invaders**, and **Tide Hopper → Frogger**. They retain System Panic's endless combat objective and mixable components. Each owns its code, procedural layouts, original AI sprites, soundtrack and effects.
 
 Each Pak has its own procedural arena geometry, original generated sprites and soundtrack. Obstacles regenerate every level, and enemies gain speed, damage and more advanced tactics as levels rise. All cover can be destroyed and every weapon can reach each enemy family. Shared engine state survives a shuffle; opaque movement/AI state does not.
 
 ## Dynamic Paks
 
-The six launch Paks are ordinary external folders under [`paks/`](paks/AGENTS.md), separate from the game engine. Each contains `pak.json` and six component folders with code and local assets. Classes subclass the discoverable ABCs in `system_panic.pak_api`; handles such as `self.spritesheet` are private author choices. Add a Pak folder and choose **Rescan Paks** in the library; no registry change or executable rebuild is needed. Use **Pak status** for installation locations and skipped-Pak errors. The library supports more than six Paks with pagination.
+The twelve Paks are ordinary external folders under [`paks/`](paks/AGENTS.md), separate from the game engine. Each contains `pak.json` and six component folders with code and local assets. Classes subclass the discoverable ABCs in `system_panic.pak_api`; handles such as `self.spritesheet` are private author choices. Add a Pak folder and choose **Rescan Paks** in the library; no registry change or executable rebuild is needed. Use **Pak status** for installation locations and skipped-Pak errors. The library supports more than six Paks with pagination.
 
 The Windows build loads `paks/` beside its executable and `%LOCALAPPDATA%/SystemPanic/paks`. A source checkout uses project-root `paks/` plus the same user location. Complete Paks can run alone; partial Paks can supply any subset of the six component types. Asset-only partial Paks can inherit installed behavior and add their own sprites. Complementary partial Paks can form a playable mix without a complete Pak.
 
@@ -91,7 +99,7 @@ python tools/verify.py
 python tools/compatibility.py
 ```
 
-`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` plays an opening level in every eligible pilot/enemy/weapon/obstacle gameplay mixture (**1,296** with the launch set) and separately renders/streams all **36** background/music pairs using a fixed seed and relaxed difficulty. Automated gameplay checks complement human balance testing.
+`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` plays an opening level in every eligible pilot/enemy/weapon/obstacle gameplay mixture (**20,736** with the twelve shipped Paks) and separately renders/streams all **144** background/music pairs using a fixed seed and relaxed difficulty. Automated gameplay checks complement human balance testing.
 
 ## Original AI asset pipeline
 

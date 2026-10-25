@@ -1,0 +1,26 @@
+{
+  "id": "burrow_patrol",
+  "name": "Burrow Patrol",
+  "subtitle": "EXCAVATE / INFLATE",
+  "color": [
+    108,
+    225,
+    163
+  ],
+  "description": "Drill through the rock veins and inflate burrowing worms with a pressure tether.",
+  "version": "1.0.0",
+  "order": 8,
+  "authoring": {
+    "inspired_by": "Dig Dug",
+    "sheet_source": "assets/images/burrow_patrol-source.png"
+  },
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ]
+}

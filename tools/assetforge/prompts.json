@@ -1,16 +1,244 @@
 {
   "jobs": [
-    {"id":"signal_runner","kind":"music","model":"small-music","duration":32,"seed":311,"prompt":"Instrumental arcade game loop, 128 BPM, precise punchy electronic drums, warm analog bass, bright syncopated arpeggios, melodic cyberpunk synthwave, clean mix, energetic but not harsh, no vocals, no speech, consistent groove for looping."},
-    {"id":"void_drifter","kind":"music","model":"small-music","duration":32,"seed":312,"prompt":"Instrumental space arcade music, 112 BPM, weightless analog synth arpeggios, deep sub bass, crisp broken beat, mysterious starlit atmosphere, minimal melodic motifs, no vocals, no speech, steady seamless game loop."},
-    {"id":"iron_circuit","kind":"music","model":"small-music","duration":32,"seed":313,"prompt":"Instrumental retro futuristic racing game music, 140 BPM, driving distorted synth bass, pulsing electronic kick and snare, electric lead synth riff, industrial percussion, exhilarating clean groove, no vocals, no speech, loopable."},
-    {"id":"sky_forge","kind":"music","model":"small-music","duration":32,"seed":314,"prompt":"Instrumental fantasy arcade platform game soundtrack, 120 BPM, sparkling plucked synth melodies, warm bell arpeggios, bouncy drums, heroic playful energy, airy pads, polished modern chiptune arrangement, no vocals, no speech, loopable groove."},
-    {"id":"phase_garden","kind":"music","model":"small-music","duration":32,"seed":315,"prompt":"Instrumental dreamlike arcade maze music, 118 BPM, glassy FM bells, soft acid bass, intricate light breakbeat, mysterious lush digital garden atmosphere, gentle sparkling arpeggios, no vocals, no speech, consistent loop."},
-    {"id":"orbit_keeper","kind":"music","model":"small-music","duration":32,"seed":316,"prompt":"Instrumental circular-motion arcade game music, 126 BPM, hypnotic sequenced modular synth, rich chords, tight electronic drums, optimistic futuristic melody, polished spacious mix, rhythmic orbiting arpeggios, no vocals, no speech, loopable."},
-    {"id":"shot","kind":"sfx","model":"small-sfx","duration":1,"seed":411,"prompt":"One single short clean retro science fiction laser blaster shot, bright electronic pew with a fast downward pitch sweep, isolated sound effect on silence, dry, no music, no voice."},
-    {"id":"impact","kind":"sfx","model":"small-sfx","duration":1,"seed":412,"prompt":"One single short punchy arcade robot explosion, crunchy digital impact followed by sparkling debris, isolated video game sound effect on silence, no music, no voice."},
-    {"id":"shuffle","kind":"sfx","model":"small-sfx","duration":2,"seed":413,"prompt":"Brief futuristic computer system malfunction then reboot, digital stutter glitch and descending static followed by a bright rising confirmation tone, isolated science fiction video game transition sound effect, no music, no voice."},
-    {"id":"hurt","kind":"sfx","model":"small-sfx","duration":1,"seed":414,"prompt":"One short low electronic arcade damage warning, descending distorted digital beep, isolated video game sound effect, dry, no music, no voice."},
-    {"id":"clear","kind":"sfx","model":"small-sfx","duration":2,"seed":415,"prompt":"Short triumphant arcade level complete chime, three bright rising electronic bell tones with a sparkling finish, isolated video game sound effect, no background music, no speech."},
-    {"id":"select","kind":"sfx","model":"small-sfx","duration":1,"seed":416,"prompt":"Single short soft futuristic interface confirmation click, tiny bright digital blip, isolated video game menu sound effect on silence, no music, no speech."}
+    {
+      "id": "signal_runner",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 311,
+      "prompt": "Instrumental arcade game loop, 128 BPM, precise punchy electronic drums, warm analog bass, bright syncopated arpeggios, melodic cyberpunk synthwave, clean mix, energetic but not harsh, no vocals, no speech, consistent groove for looping."
+    },
+    {
+      "id": "void_drifter",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 312,
+      "prompt": "Instrumental space arcade music, 112 BPM, weightless analog synth arpeggios, deep sub bass, crisp broken beat, mysterious starlit atmosphere, minimal melodic motifs, no vocals, no speech, steady seamless game loop."
+    },
+    {
+      "id": "iron_circuit",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 313,
+      "prompt": "Instrumental retro futuristic racing game music, 140 BPM, driving distorted synth bass, pulsing electronic kick and snare, electric lead synth riff, industrial percussion, exhilarating clean groove, no vocals, no speech, loopable."
+    },
+    {
+      "id": "sky_forge",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 314,
+      "prompt": "Instrumental fantasy arcade platform game soundtrack, 120 BPM, sparkling plucked synth melodies, warm bell arpeggios, bouncy drums, heroic playful energy, airy pads, polished modern chiptune arrangement, no vocals, no speech, loopable groove."
+    },
+    {
+      "id": "phase_garden",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 315,
+      "prompt": "Instrumental dreamlike arcade maze music, 118 BPM, glassy FM bells, soft acid bass, intricate light breakbeat, mysterious lush digital garden atmosphere, gentle sparkling arpeggios, no vocals, no speech, consistent loop."
+    },
+    {
+      "id": "orbit_keeper",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 316,
+      "prompt": "Instrumental circular-motion arcade game music, 126 BPM, hypnotic sequenced modular synth, rich chords, tight electronic drums, optimistic futuristic melody, polished spacious mix, rhythmic orbiting arpeggios, no vocals, no speech, loopable."
+    },
+    {
+      "id": "shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 411,
+      "prompt": "One single short clean retro science fiction laser blaster shot, bright electronic pew with a fast downward pitch sweep, isolated sound effect on silence, dry, no music, no voice."
+    },
+    {
+      "id": "impact",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 412,
+      "prompt": "One single short punchy arcade robot explosion, crunchy digital impact followed by sparkling debris, isolated video game sound effect on silence, no music, no voice."
+    },
+    {
+      "id": "shuffle",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 2,
+      "seed": 413,
+      "prompt": "Brief futuristic computer system malfunction then reboot, digital stutter glitch and descending static followed by a bright rising confirmation tone, isolated science fiction video game transition sound effect, no music, no voice."
+    },
+    {
+      "id": "hurt",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 414,
+      "prompt": "One short low electronic arcade damage warning, descending distorted digital beep, isolated video game sound effect, dry, no music, no voice."
+    },
+    {
+      "id": "clear",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 2,
+      "seed": 415,
+      "prompt": "Short triumphant arcade level complete chime, three bright rising electronic bell tones with a sparkling finish, isolated video game sound effect, no background music, no speech."
+    },
+    {
+      "id": "select",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 416,
+      "prompt": "Single short soft futuristic interface confirmation click, tiny bright digital blip, isolated video game menu sound effect on silence, no music, no speech."
+    },
+    {
+      "id": "neon_breach",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 24,
+      "seed": 710,
+      "prompt": "Instrumental upbeat 1980s brick breaking arcade loop, 136 BPM, punchy FM mallet bass, crystalline plucked chords, lively electronic drums, original catchy melody, no vocals or speech. Seamless consistent groove."
+    },
+    {
+      "id": "neon_breach_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.8,
+      "seed": 711,
+      "prompt": "bright glass pinball launch with a resonant metallic ping, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "neon_breach_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1.2,
+      "seed": 712,
+      "prompt": "magnetic sci fi paddle dash whoosh, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "maze_muncher",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 24,
+      "seed": 713,
+      "prompt": "Instrumental playful maze chase arcade loop, 122 BPM, syncopated square wave bass, little marimba synth runs, quirky electronic funk and crisp handclaps, original melody, no vocals or speech. Seamless consistent groove."
+    },
+    {
+      "id": "maze_muncher_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.8,
+      "seed": 714,
+      "prompt": "short cartoon electronic mechanical chomp with a sparkling pop, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "maze_muncher_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1.2,
+      "seed": 715,
+      "prompt": "ascending playful arcade energy power-up trill, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "burrow_patrol",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 24,
+      "seed": 716,
+      "prompt": "Instrumental underground mining arcade loop, 108 BPM, rubbery synth bass, brushed industrial percussion, bubbling glass tones, warm adventurous cavern atmosphere, original melody, no vocals or speech. Seamless consistent groove."
+    },
+    {
+      "id": "burrow_patrol_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.8,
+      "seed": 717,
+      "prompt": "pneumatic air pump puff followed by a rubber bubble pop, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "burrow_patrol_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1.2,
+      "seed": 718,
+      "prompt": "short powerful underground drilling burst and crystal crunch, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "vector_coil",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 24,
+      "seed": 719,
+      "prompt": "Instrumental vector arcade electronic loop, 146 BPM, minimalist geometric sequencer patterns, acid arpeggios, sharp electro drums and pulsing laser-like synths, original music, no vocals or speech. Seamless consistent groove."
+    },
+    {
+      "id": "vector_coil_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.8,
+      "seed": 720,
+      "prompt": "crisp four-tone laser prism zap, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "vector_coil_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1.2,
+      "seed": 721,
+      "prompt": "short geometric electronic reversal stutter and energy shield hum, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "star_bastion",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 24,
+      "seed": 722,
+      "prompt": "Instrumental vintage space formation arcade loop, 132 BPM, martial electronic drums, bright heroic chiptune lead, cosmic organ chords, strong steady bassline, original melody, no vocals or speech. Seamless consistent groove."
+    },
+    {
+      "id": "star_bastion_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.8,
+      "seed": 723,
+      "prompt": "two tight vintage sci fi laser pulses, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "star_bastion_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1.2,
+      "seed": 724,
+      "prompt": "short spaceship barrel roll engine swoosh, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "tide_hopper",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 24,
+      "seed": 725,
+      "prompt": "Instrumental breezy canal hopping arcade loop, 116 BPM, plucky tropical FM keys, bouncy synth bass, skipping electronic percussion, playful aquatic atmosphere, original melody, no vocals or speech. Seamless consistent groove."
+    },
+    {
+      "id": "tide_hopper_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.8,
+      "seed": 726,
+      "prompt": "spring-loaded metallic harpoon launch with a little wet splash, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "tide_hopper_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1.2,
+      "seed": 727,
+      "prompt": "quick springy frog hop across water with a digital chirp, isolated game sound effect on silence, no music or speech."
+    }
   ]
 }

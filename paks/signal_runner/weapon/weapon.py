@@ -20,6 +20,9 @@ class SignalRunnerWeapon(WeaponBase):
             self.fire(world, self.aim(world))
 
     def aim(self, world):
+        intent = world.component("pilot").aim_direction(world)
+        if intent is not None:
+            return normalized(intent)
         targets = [enemy for enemy in world.enemies if enemy.health > 0]
         if world.prefs.aim_assist and targets:
             target = min(targets, key=lambda e: e.pos.distance_squared_to(world.player.pos))

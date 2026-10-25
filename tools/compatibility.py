@@ -24,6 +24,7 @@ from system_panic.world import World
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pak-dir", type=Path, action="append", help="Explicit Pak roots instead of default locations")
+    parser.add_argument("--case-file", type=Path, help="Replay mixes from a previous compatibility report's failures")
     args = parser.parse_args()
     catalog = discover(args.pak_dir)
     if catalog.missing(catalog.by_id):
@@ -33,7 +34,12 @@ def main():
     maximum = 0
     pools = [catalog.providers(channel) for channel in GAMEPLAY_CHANNELS]
     total = math.prod(map(len, pools))
-    for index, combo in enumerate(itertools.product(*pools), 1):
+    combinations = itertools.product(*pools)
+    if args.case_file:
+        previous = json.loads(args.case_file.read_text(encoding="utf-8"))
+        combinations = [tuple(case["mix"][channel] for channel in GAMEPLAY_CHANNELS) for case in previous["failures"]]
+        total = len(combinations)
+    for index, combo in enumerate(combinations, 1):
         world = World(Preferences(difficulty="relaxed", shuffle_channels=[], enabled=list(catalog.by_id)), seed=24, catalog=catalog)
         world.mix.update(zip(GAMEPLAY_CHANNELS, combo))
         world.cover = world.component("obstacles").build(world)
@@ -54,7 +60,7 @@ def main():
                              "remaining":len(world.enemies), "kills":world.kills})
         if index % 216 == 0:
             print(f"{index}/{total} checked; {len(failures)} failures", flush=True)
-    output = ROOT / "output/verification/compatibility.json"
+    output = ROOT / ("output/verification/compatibility-replay.json" if args.case_file else "output/verification/compatibility.json")
     output.parent.mkdir(parents=True, exist_ok=True)
     pairs = 0
     with tempfile.TemporaryDirectory(dir=output.parent) as temporary:

@@ -1,0 +1,26 @@
+{
+  "id": "maze_muncher",
+  "name": "Maze Muncher",
+  "subtitle": "BUFFERED TURNS / CHOMP",
+  "color": [
+    255,
+    215,
+    87
+  ],
+  "description": "Buffer cardinal turns, energize your jaws and send expanding chomps through a chasing maze.",
+  "version": "1.0.0",
+  "order": 7,
+  "authoring": {
+    "inspired_by": "Pac-Man",
+    "sheet_source": "assets/images/maze_muncher-source.png"
+  },
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ]
+}

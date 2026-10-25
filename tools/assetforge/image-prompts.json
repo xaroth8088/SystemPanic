@@ -35,6 +35,84 @@
       "file": "assets/images/title.png",
       "transparent_background": false,
       "prompt": "Use case: stylized-concept. Asset type: original title-screen background illustration for System Panic, a retro arcade game where six different game worlds remix. Landscape 1536x1024. Polished dark pixel-art illustration with rich tiny pixel detail: an abandoned futuristic arcade control room, one imposing old CRT cabinet toward the lower left-center, screen glowing brilliant cyan with a fractured six-way energy portal inside. Tiny fragments of six worlds emerge from the portal: purple spacecraft, amber racing circuit, coral floating fortress, mint spectral garden, golden orbital machinery. Deep midnight navy/teal background, cyan phosphor glow, faint lavender amber accents, restrained scanline texture, cinematic moody lighting, dimensional and atmospheric. Keep the top half and far right half dark and quiet, no large bright objects in the right half because game menu cards will overlay that area. Strong visual focal point in lower left quadrant, generous empty negative space across top for a title added by the game. High quality pixel art, readable restrained composition, no words, no lettering, no logo, no watermark."
+    },
+    {
+      "id": "neon_breach_sprites",
+      "file": "assets/images/neon_breach-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: production game sprite sheet. Create ONE square 1024x1024 original arcade sprite atlas on a genuinely transparent background, exactly 2 columns by 2 rows, each object centered completely within its own 512x512 cell with very generous empty margins. No text, labels, frames, checkerboard or watermark. Crisp expressive 16-bit inspired illustrated pixel-art silhouettes, dark outlines, luminous highlights, restrained detailed shading, readable when reduced to 40 pixels. Top-left is the player; top-right is the enemy; bottom-left is the weapon projectile/emitter; bottom-right is a destructible obstacle. These are ORIGINAL designs, not existing game characters or copied sprites. Palette coral orange, ice white, cobalt. Player: sleek elongated robotic energy paddle with a little central cockpit, viewed top-down. Enemy: angry articulated rectangular neon brick drone with a single eye. Weapon: brilliant faceted white-orange plasma pinball. Obstacle: cobalt and coral modular glass brick. Theme: futuristic pinball brick-breaking arcade.",
+      "actual_geometry": {
+        "columns": 2,
+        "rows": 2,
+        "width": 1280,
+        "height": 1280,
+        "extraction": "alpha components grouped by quadrant, preserving objects extending beyond nominal cell boundaries"
+      }
+    },
+    {
+      "id": "maze_muncher_sprites",
+      "file": "assets/images/maze_muncher-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: production game sprite sheet. Create ONE square 1024x1024 original arcade sprite atlas on a genuinely transparent background, exactly 2 columns by 2 rows, each object centered completely within its own 512x512 cell with very generous empty margins. No text, labels, frames, checkerboard or watermark. Crisp expressive 16-bit inspired illustrated pixel-art silhouettes, dark outlines, luminous highlights, restrained detailed shading, readable when reduced to 40 pixels. Top-left is the player; top-right is the enemy; bottom-left is the weapon projectile/emitter; bottom-right is a destructible obstacle. These are ORIGINAL designs, not existing game characters or copied sprites. Palette warm amber, teal and cherry red. Player: charming amber scarab robot with a large mechanical jaw, NOT a yellow circle. Enemy: red teal-plated maze crab with glowing eyes, NOT a ghost. Weapon: cyan crescent shock-chomp energy mouth. Obstacle: ornate teal labyrinth stone hedge with gold edges. Theme: whimsical maze pursuit.",
+      "actual_geometry": {
+        "columns": 2,
+        "rows": 2,
+        "width": 1280,
+        "height": 1280,
+        "extraction": "alpha components grouped by quadrant, preserving objects extending beyond nominal cell boundaries"
+      }
+    },
+    {
+      "id": "burrow_patrol_sprites",
+      "file": "assets/images/burrow_patrol-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: production game sprite sheet. Create ONE square 1024x1024 original arcade sprite atlas on a genuinely transparent background, exactly 2 columns by 2 rows, each object centered completely within its own 512x512 cell with very generous empty margins. No text, labels, frames, checkerboard or watermark. Crisp expressive 16-bit inspired illustrated pixel-art silhouettes, dark outlines, luminous highlights, restrained detailed shading, readable when reduced to 40 pixels. Top-left is the player; top-right is the enemy; bottom-left is the weapon projectile/emitter; bottom-right is a destructible obstacle. These are ORIGINAL designs, not existing game characters or copied sprites. Palette copper, emerald, lavender. Player: small mole-shaped mining robot wearing a white miner helmet and copper drill arms. Enemy: magenta armored segmented burrowing worm with gem eyes. Weapon: translucent inflated lavender pressure bubble inside copper rings. Obstacle: angular emerald crystalline cave boulder. Theme: underground pneumatic excavation.",
+      "actual_geometry": {
+        "columns": 2,
+        "rows": 2,
+        "width": 1280,
+        "height": 1280,
+        "extraction": "alpha components grouped by quadrant, preserving objects extending beyond nominal cell boundaries"
+      }
+    },
+    {
+      "id": "vector_coil_sprites",
+      "file": "assets/images/vector_coil-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: production game sprite sheet. Create ONE square 1024x1024 original arcade sprite atlas on a genuinely transparent background, exactly 2 columns by 2 rows, each object centered completely within its own 512x512 cell with very generous empty margins. No text, labels, frames, checkerboard or watermark. Crisp expressive 16-bit inspired illustrated pixel-art silhouettes, dark outlines, luminous highlights, restrained detailed shading, readable when reduced to 40 pixels. Top-left is the player; top-right is the enemy; bottom-left is the weapon projectile/emitter; bottom-right is a destructible obstacle. These are ORIGINAL designs, not existing game characters or copied sprites. Palette electric chartreuse, blue and hot pink. Player: top-down futuristic triangular hovercycle with a luminous blue trail nozzle. Enemy: asymmetric hot-pink wireframe star spark with a bright core. Weapon: chartreuse prism core with four short laser arms. Obstacle: dark geometric capacitor post traced in neon green. Theme: clean geometric vector arcade.",
+      "actual_geometry": {
+        "columns": 2,
+        "rows": 2,
+        "width": 1280,
+        "height": 1280,
+        "extraction": "alpha components grouped by quadrant, preserving objects extending beyond nominal cell boundaries"
+      }
+    },
+    {
+      "id": "star_bastion_sprites",
+      "file": "assets/images/star_bastion-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: production game sprite sheet. Create ONE square 1024x1024 original arcade sprite atlas on a genuinely transparent background, exactly 2 columns by 2 rows, each object centered completely within its own 512x512 cell with very generous empty margins. No text, labels, frames, checkerboard or watermark. Crisp expressive 16-bit inspired illustrated pixel-art silhouettes, dark outlines, luminous highlights, restrained detailed shading, readable when reduced to 40 pixels. Top-left is the player; top-right is the enemy; bottom-left is the weapon projectile/emitter; bottom-right is a destructible obstacle. These are ORIGINAL designs, not existing game characters or copied sprites. Palette ice blue, vermilion, brass. Player: original small ice-blue hammerhead starfighter pointing upwards with twin engines. Enemy: brass and red crab-moth invader spacecraft with angular wings. Weapon: two narrow bright orange plasma bolts aligned vertically. Obstacle: chunky blue armored bunker module. Theme: vintage formation space defense.",
+      "actual_geometry": {
+        "columns": 2,
+        "rows": 2,
+        "width": 1280,
+        "height": 1280,
+        "extraction": "alpha components grouped by quadrant, preserving objects extending beyond nominal cell boundaries"
+      }
+    },
+    {
+      "id": "tide_hopper_sprites",
+      "file": "assets/images/tide_hopper-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: production game sprite sheet. Create ONE square 1024x1024 original arcade sprite atlas on a genuinely transparent background, exactly 2 columns by 2 rows, each object centered completely within its own 512x512 cell with very generous empty margins. No text, labels, frames, checkerboard or watermark. Crisp expressive 16-bit inspired illustrated pixel-art silhouettes, dark outlines, luminous highlights, restrained detailed shading, readable when reduced to 40 pixels. Top-left is the player; top-right is the enemy; bottom-left is the weapon projectile/emitter; bottom-right is a destructible obstacle. These are ORIGINAL designs, not existing game characters or copied sprites. Palette aquamarine, coral, reed green. Player: endearing mechanical amphibious frog courier with cyan goggles viewed from above. Enemy: orange armored miniature tugboat vehicle with crab claws. Weapon: bright cyan harpoon with a coiled silver tether. Obstacle: irregular mossy green lily-stone canal island. Theme: perilous canal-crossing arcade.",
+      "actual_geometry": {
+        "columns": 2,
+        "rows": 2,
+        "width": 1280,
+        "height": 1280,
+        "extraction": "alpha components grouped by quadrant, preserving objects extending beyond nominal cell boundaries"
+      }
     }
   ]
 }

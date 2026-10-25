@@ -286,5 +286,293 @@
     "source": "assets/audio/production/shot.ogg",
     "operation": "Unmodified copy into component folder",
     "sha256": "63ba06e9538ef1e956cbb14e378ba849e1225df4497a5ad0b3a94ef6fb11e396"
+  },
+  {
+    "file": "paks/burrow_patrol/pilot/pilot_sheet.png",
+    "source": "assets/images/burrow_patrol-source.png",
+    "operation": "Lossless alpha-island crop for pilot; bounds (65, 125, 600, 450)",
+    "sha256": "81cb55f8fcb6100295a2ece7bfbfb80f0c525aed4cce3bb7d33cbd5730bbe45a"
+  },
+  {
+    "file": "paks/burrow_patrol/enemy/enemy_sheet.png",
+    "source": "assets/images/burrow_patrol-source.png",
+    "operation": "Lossless alpha-island crop for enemy; bounds (667, 50, 562, 565)",
+    "sha256": "c02836c640c6254599a43b5723645668b3aaf602d604651bcd952fb935f68273"
+  },
+  {
+    "file": "paks/burrow_patrol/weapon/weapon_sheet.png",
+    "source": "assets/images/burrow_patrol-source.png",
+    "operation": "Lossless alpha-island crop for weapon; bounds (54, 728, 591, 386)",
+    "sha256": "11e681e98da1aea555cca5ea144c714ed5c8518e0e7ab08db93fc8890bfcb1fd"
+  },
+  {
+    "file": "paks/burrow_patrol/obstacles/obstacles_sheet.png",
+    "source": "assets/images/burrow_patrol-source.png",
+    "operation": "Lossless alpha-island crop for obstacles; bounds (664, 671, 572, 533)",
+    "sha256": "a8981d5d82b3904816fdd3e7fa4094aadf68d3bf0280f8e9f472ef6548a6f44a"
+  },
+  {
+    "file": "paks/burrow_patrol/background/background_image.png",
+    "source": "assets/images/burrow_patrol-source.png",
+    "operation": "Prepared 960x480 decorative mosaic from extracted AI obstacle sprite",
+    "sha256": "299021a19b3464e136f59880a9890fecc75e61fbef85f161fef22917cab01590"
+  },
+  {
+    "file": "paks/burrow_patrol/music/music.ogg",
+    "source": "assets/audio/production/burrow_patrol.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "d2cfdcb03feb17ae588c2cf5be666f317463f664781707a0b124d862528fb592"
+  },
+  {
+    "file": "paks/burrow_patrol/weapon/shot.ogg",
+    "source": "assets/audio/production/burrow_patrol_shot.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "3a222693fe156a24cc155fcd09fcc36693d54880fce2e3c088035c727f0ae473"
+  },
+  {
+    "file": "paks/burrow_patrol/pilot/special.ogg",
+    "source": "assets/audio/production/burrow_patrol_special.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "1c32b710b49614bc809b725354337824b209ad1265bd3c9ec19c93ee26dc60ab"
+  },
+  {
+    "file": "paks/maze_muncher/pilot/pilot_sheet.png",
+    "source": "assets/images/maze_muncher-source.png",
+    "operation": "Lossless alpha-island crop for pilot; bounds (39, 125, 576, 441)",
+    "sha256": "0d3a7cbbb4a8d38451d22da2b4792b1a9dd4f156d2439f1f2df762d4f3e80ca0"
+  },
+  {
+    "file": "paks/maze_muncher/enemy/enemy_sheet.png",
+    "source": "assets/images/maze_muncher-source.png",
+    "operation": "Lossless alpha-island crop for enemy; bounds (651, 170, 571, 371)",
+    "sha256": "9bcdabc2c2f0d6d8cd81ddeef4fcefd88672941b46af3dde3aeb1c6a3f825169"
+  },
+  {
+    "file": "paks/maze_muncher/weapon/weapon_sheet.png",
+    "source": "assets/images/maze_muncher-source.png",
+    "operation": "Lossless alpha-island crop for weapon; bounds (133, 767, 404, 354)",
+    "sha256": "3008a4778f9dfdb2fecb81639de124b94c68315b032e096d27be92dee28df7f1"
+  },
+  {
+    "file": "paks/maze_muncher/obstacles/obstacles_sheet.png",
+    "source": "assets/images/maze_muncher-source.png",
+    "operation": "Lossless alpha-island crop for obstacles; bounds (676, 666, 514, 521)",
+    "sha256": "556182c09e5eab58b7ffefafd2f29c8f4c2e2007050c3c3c2d2c928f38f812c4"
+  },
+  {
+    "file": "paks/maze_muncher/background/background_image.png",
+    "source": "assets/images/maze_muncher-source.png",
+    "operation": "Prepared 960x480 decorative mosaic from extracted AI obstacle sprite",
+    "sha256": "89d1eecd574afc487fbf2b8b408708f56ea3a6d60df473eef271092220c2c949"
+  },
+  {
+    "file": "paks/maze_muncher/music/music.ogg",
+    "source": "assets/audio/production/maze_muncher.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "1808051b06c520be651ae8b3cdbe59e6bf8111dc367de44b1082486947f2bb0c"
+  },
+  {
+    "file": "paks/maze_muncher/weapon/shot.ogg",
+    "source": "assets/audio/production/maze_muncher_shot.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "13cfe0ca3ffe8efe8cd96258af4a39b7f13c706afb68c07ee2338f00313b4416"
+  },
+  {
+    "file": "paks/maze_muncher/pilot/special.ogg",
+    "source": "assets/audio/production/maze_muncher_special.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "c7759e78006c8629d9b1fd09c9040189ed256312498dd12b03612b6cb304e181"
+  },
+  {
+    "file": "paks/neon_breach/pilot/pilot_sheet.png",
+    "source": "assets/images/neon_breach-source.png",
+    "operation": "Lossless alpha-island crop for pilot; bounds (14, 261, 602, 211)",
+    "sha256": "82a450794728a654dfdac1fed9c194264936e6ae796835485bb822e4347dd522"
+  },
+  {
+    "file": "paks/neon_breach/enemy/enemy_sheet.png",
+    "source": "assets/images/neon_breach-source.png",
+    "operation": "Lossless alpha-island crop for enemy; bounds (701, 143, 518, 405)",
+    "sha256": "ce9b363d4678f3f174b81a51b1e33c89e191d88d780aa08df92d77a36800caba"
+  },
+  {
+    "file": "paks/neon_breach/weapon/weapon_sheet.png",
+    "source": "assets/images/neon_breach-source.png",
+    "operation": "Lossless alpha-island crop for weapon; bounds (160, 773, 338, 369)",
+    "sha256": "76597d9230864910f1450abd3213790bf6fc95ba5dc148665f82a4b62153eda0"
+  },
+  {
+    "file": "paks/neon_breach/obstacles/obstacles_sheet.png",
+    "source": "assets/images/neon_breach-source.png",
+    "operation": "Lossless alpha-island crop for obstacles; bounds (691, 782, 507, 337)",
+    "sha256": "f2e01afa5ea0a7f5122c32aa03630691f7bfeeec3eab54e45ffc2d27b24f04e6"
+  },
+  {
+    "file": "paks/neon_breach/background/background_image.png",
+    "source": "assets/images/neon_breach-source.png",
+    "operation": "Prepared 960x480 decorative mosaic from extracted AI obstacle sprite",
+    "sha256": "a523c3db3e4cbc033377eec79d25025d73fddec383fa616facf65d98f4e5fc11"
+  },
+  {
+    "file": "paks/neon_breach/music/music.ogg",
+    "source": "assets/audio/production/neon_breach.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "adbedb6ea6ab7d3e1e9ebe9a7ad7356976a6cfbf372431eeba9c630e1af100e2"
+  },
+  {
+    "file": "paks/neon_breach/weapon/shot.ogg",
+    "source": "assets/audio/production/neon_breach_shot.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "77e109ba4e24bd19065a9d7e8af33550835a70574ae1e03424d7fe870210f286"
+  },
+  {
+    "file": "paks/neon_breach/pilot/special.ogg",
+    "source": "assets/audio/production/neon_breach_special.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "c0ba3208e45b3c2182c6734c0d79c18c422405a8108b2c072b6239217472b18c"
+  },
+  {
+    "file": "paks/star_bastion/pilot/pilot_sheet.png",
+    "source": "assets/images/star_bastion-source.png",
+    "operation": "Lossless alpha-island crop for pilot; bounds (88, 64, 451, 516)",
+    "sha256": "bea18b91571fc569eb161a75ce358c7d017be2fde2b4bec04f91953541464bef"
+  },
+  {
+    "file": "paks/star_bastion/enemy/enemy_sheet.png",
+    "source": "assets/images/star_bastion-source.png",
+    "operation": "Lossless alpha-island crop for enemy; bounds (637, 105, 605, 432)",
+    "sha256": "4f8d2e8dc159a35711af4b26d342a6245f1cba9d3ed61284108f1bbab9c3c6eb"
+  },
+  {
+    "file": "paks/star_bastion/weapon/weapon_sheet.png",
+    "source": "assets/images/star_bastion-source.png",
+    "operation": "Lossless alpha-island crop for weapon; bounds (285, 684, 59, 479)",
+    "sha256": "7522c905e95b00d5a6562318200e451871cb43b02b81593a262d8afb5b8ad527"
+  },
+  {
+    "file": "paks/star_bastion/obstacles/obstacles_sheet.png",
+    "source": "assets/images/star_bastion-source.png",
+    "operation": "Lossless alpha-island crop for obstacles; bounds (659, 708, 562, 436)",
+    "sha256": "744737a4b9e15d93221ee2d7b90dab5dbe859557d1b04eacf992b0d9c0c0d7bc"
+  },
+  {
+    "file": "paks/star_bastion/background/background_image.png",
+    "source": "assets/images/star_bastion-source.png",
+    "operation": "Prepared 960x480 decorative mosaic from extracted AI obstacle sprite",
+    "sha256": "c85ba1c8e834c85b52db4ad8ea46a822a5d1370940cea27a0583170f2cc2439d"
+  },
+  {
+    "file": "paks/star_bastion/music/music.ogg",
+    "source": "assets/audio/production/star_bastion.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "9a8a118f6ad9f2eedbda64689caadb2a2131b9ce2740ab60332e81a2571c42f8"
+  },
+  {
+    "file": "paks/star_bastion/weapon/shot.ogg",
+    "source": "assets/audio/production/star_bastion_shot.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "aaa0e3052a99d6b5999d6fbeac3b588e29312a7a7e6d3ee2f05293736b4f5a59"
+  },
+  {
+    "file": "paks/star_bastion/pilot/special.ogg",
+    "source": "assets/audio/production/star_bastion_special.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "9c55895b31080c298ccc810a8c2d02b6c10fdfec9548ee0b00d19da439db071e"
+  },
+  {
+    "file": "paks/tide_hopper/pilot/pilot_sheet.png",
+    "source": "assets/images/tide_hopper-source.png",
+    "operation": "Lossless alpha-island crop for pilot; bounds (106, 116, 422, 433)",
+    "sha256": "ef0236bb0498bb1763831052320475dd793d84fc8da43979ea54bd0ade2a89c1"
+  },
+  {
+    "file": "paks/tide_hopper/enemy/enemy_sheet.png",
+    "source": "assets/images/tide_hopper-source.png",
+    "operation": "Lossless alpha-island crop for enemy; bounds (657, 24, 562, 572)",
+    "sha256": "70273cfcffb2f34d7f3b60db4525ce09b4ec4a2ea01c3637c239ee65a207eb42"
+  },
+  {
+    "file": "paks/tide_hopper/weapon/weapon_sheet.png",
+    "source": "assets/images/tide_hopper-source.png",
+    "operation": "Lossless alpha-island crop for weapon; bounds (56, 715, 564, 459)",
+    "sha256": "32dde5ab3bc29e5ea618d5bab898e31228add142b34fa31732a256ede32e0b2f"
+  },
+  {
+    "file": "paks/tide_hopper/obstacles/obstacles_sheet.png",
+    "source": "assets/images/tide_hopper-source.png",
+    "operation": "Lossless alpha-island crop for obstacles; bounds (668, 656, 570, 562)",
+    "sha256": "a8efcaa50757ec672ee4626919ca34f4dd1de3b917964de9a186be4fd133edbc"
+  },
+  {
+    "file": "paks/tide_hopper/background/background_image.png",
+    "source": "assets/images/tide_hopper-source.png",
+    "operation": "Prepared 960x480 decorative mosaic from extracted AI obstacle sprite",
+    "sha256": "5494a1c486520006c7842c29fe58ac3255cccf2d7f10975ada60435f3c0a8e79"
+  },
+  {
+    "file": "paks/tide_hopper/music/music.ogg",
+    "source": "assets/audio/production/tide_hopper.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "54edaede9a08cc617924e5149b3d562af147a06ad0feed63686a20434ceaaf42"
+  },
+  {
+    "file": "paks/tide_hopper/weapon/shot.ogg",
+    "source": "assets/audio/production/tide_hopper_shot.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "8fe166aecb31b5363ceca6d7ebb6b528b79df16593bc88309cb811132ab1dd59"
+  },
+  {
+    "file": "paks/tide_hopper/pilot/special.ogg",
+    "source": "assets/audio/production/tide_hopper_special.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "a69056b2955b71c9c75e60e9379361b94f5f81600fadc61d3f3be6f9e5b452ab"
+  },
+  {
+    "file": "paks/vector_coil/pilot/pilot_sheet.png",
+    "source": "assets/images/vector_coil-source.png",
+    "operation": "Lossless alpha-island crop for pilot; bounds (125, 67, 429, 540)",
+    "sha256": "55269299b4a3ea7e11ea6fdf8abed613dedaf397f10747136dc310b1a5cdc208"
+  },
+  {
+    "file": "paks/vector_coil/enemy/enemy_sheet.png",
+    "source": "assets/images/vector_coil-source.png",
+    "operation": "Lossless alpha-island crop for enemy; bounds (695, 55, 488, 529)",
+    "sha256": "73efe68172d5df019f79126dc78230bfb673963a713c90d356b8041978f8ab8c"
+  },
+  {
+    "file": "paks/vector_coil/weapon/weapon_sheet.png",
+    "source": "assets/images/vector_coil-source.png",
+    "operation": "Lossless alpha-island crop for weapon; bounds (103, 704, 472, 450)",
+    "sha256": "b2109f150970e82969401703ec0f74cd91c6c6a27639fb9a58719b8d04e18d75"
+  },
+  {
+    "file": "paks/vector_coil/obstacles/obstacles_sheet.png",
+    "source": "assets/images/vector_coil-source.png",
+    "operation": "Lossless alpha-island crop for obstacles; bounds (773, 667, 335, 519)",
+    "sha256": "5e8a445e829e5d789c92a63b50072f7a759b1dda505406cdf646ddd793bd70a3"
+  },
+  {
+    "file": "paks/vector_coil/background/background_image.png",
+    "source": "assets/images/vector_coil-source.png",
+    "operation": "Prepared 960x480 decorative mosaic from extracted AI obstacle sprite",
+    "sha256": "47b4cb5b746dd0e753d449a6b1a6113025c89f8bbd21e14391eb432f694927f6"
+  },
+  {
+    "file": "paks/vector_coil/music/music.ogg",
+    "source": "assets/audio/production/vector_coil.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "f8bca5c64ce2e4e535d8bb8408e41b241e4a3946f3d2cb0523fcac49cca7690f"
+  },
+  {
+    "file": "paks/vector_coil/weapon/shot.ogg",
+    "source": "assets/audio/production/vector_coil_shot.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "597c72634abcdb60629f8a7d89ee5dcf94cb5dfaede5ad9205e6fbc8ffea3d11"
+  },
+  {
+    "file": "paks/vector_coil/pilot/special.ogg",
+    "source": "assets/audio/production/vector_coil_special.ogg",
+    "operation": "Unmodified mastered original local Stable Audio 3 output",
+    "sha256": "9e0a7ef584aeb87c85baf1ad3b55a8973bbc25189f5e3b75c449ca2fd7b42b36"
   }
 ]

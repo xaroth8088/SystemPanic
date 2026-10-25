@@ -81,11 +81,13 @@ class Gamepads:
             if self.backend is None or not self.backend.is_controller(index):
                 return
             device = self.backend.Controller(index)
-            if device.id in self.devices:
+            # Controller.id is an opening index, not SDL's hot-plug instance ID.
+            identity = device.as_joystick().get_instance_id()
+            if identity in self.devices:
                 return
-            self.devices[device.id] = device
+            self.devices[identity] = device
             if self.active_id is None:
-                self.select(device.id)
+                self.select(identity)
             if announce:
                 self.notices.append(DeviceNotice(f"Gamepad connected: {device.name}"))
         except pygame.error as exc:

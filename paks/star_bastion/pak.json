@@ -1,0 +1,26 @@
+{
+  "id": "star_bastion",
+  "name": "Star Bastion",
+  "subtitle": "BANK / TWIN SALVO",
+  "color": [
+    126,
+    189,
+    255
+  ],
+  "description": "Defend the lower sky, barrel-roll out of trouble and cut through diving formations.",
+  "version": "1.0.0",
+  "order": 10,
+  "authoring": {
+    "inspired_by": "Space Invaders",
+    "sheet_source": "assets/images/star_bastion-source.png"
+  },
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ]
+}

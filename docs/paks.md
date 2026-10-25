@@ -214,3 +214,9 @@ class MyObstacles(ObstaclesBase):
 ```
 
 Return new objects on each build. Keep generation bounded, leave broad passages and margins, and ensure no draw/preview method advances RNG. Copy local helper modules along with their component folder when authoring partial Paks. Run python tools/verify_levels.py to check the launch layouts across seeds/levels and render a comparison gallery.
+
+## Optional firing intent and state hints
+
+PilotBase.aim_direction(world) defaults to None. A pilot may instead return its deliberate firing vector, such as Orbit Keeper's inward/outward mode. Weapons should query it before their ordinary aim-assist/facing selection; guided projectiles should preserve deliberate direction instead of silently reacquiring a different target. This is an additive API 4 query, not a host aiming policy. PilotBase.status(world) defaults to an empty string and can describe live state in the keyboard/gamepad footer. Neither query may mutate simulation or RNG.
+
+The six expansion folders provide additional authoring examples: a persistent multiball pool in neon_breach/weapon, buffered turns with off-grid obstacle escape in maze_muncher/pilot, drilling and inflation in burrow_patrol, scheduled trail/prism visuals in vector_coil, formation and dive behavior in star_bastion, and timed hops/catch-and-reel flight in tide_hopper. Persistent component references to scheduled objects must account for the host clearing projectiles at level/swap transitions; prune references that are no longer registered before launching again.

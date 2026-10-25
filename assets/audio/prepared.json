@@ -6,6 +6,30 @@
     "sha256": "13f1a42764c4dfa7f9dc296dca1be97428976112ebb67b90ddc5b3cc0635b3dd"
   },
   {
+    "file": "assets/audio/production/burrow_patrol.ogg",
+    "source": "assets/audio/local/burrow_patrol.wav",
+    "operation": "peak normalized; music loop crossfade",
+    "seconds": 23.82,
+    "sample_rate": 44100,
+    "sha256": "d2cfdcb03feb17ae588c2cf5be666f317463f664781707a0b124d862528fb592"
+  },
+  {
+    "file": "assets/audio/production/burrow_patrol_shot.ogg",
+    "source": "assets/audio/local/burrow_patrol_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.8,
+    "sample_rate": 44100,
+    "sha256": "3a222693fe156a24cc155fcd09fcc36693d54880fce2e3c088035c727f0ae473"
+  },
+  {
+    "file": "assets/audio/production/burrow_patrol_special.ogg",
+    "source": "assets/audio/local/burrow_patrol_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 1.2,
+    "sample_rate": 44100,
+    "sha256": "1c32b710b49614bc809b725354337824b209ad1265bd3c9ec19c93ee26dc60ab"
+  },
+  {
     "file": "assets/audio/production/clear.ogg",
     "source": "assets/audio/local/clear.wav",
     "operation": "trimmed, faded and peak normalized",
@@ -36,6 +60,54 @@
     "seconds": 31.82,
     "sample_rate": 44100,
     "sha256": "a88e1355f502f92bf9bc81862f88a97004c59d291bb5c7253c192ae04bb27449"
+  },
+  {
+    "file": "assets/audio/production/maze_muncher.ogg",
+    "source": "assets/audio/local/maze_muncher.wav",
+    "operation": "peak normalized; music loop crossfade",
+    "seconds": 23.82,
+    "sample_rate": 44100,
+    "sha256": "1808051b06c520be651ae8b3cdbe59e6bf8111dc367de44b1082486947f2bb0c"
+  },
+  {
+    "file": "assets/audio/production/maze_muncher_shot.ogg",
+    "source": "assets/audio/local/maze_muncher_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.8,
+    "sample_rate": 44100,
+    "sha256": "13cfe0ca3ffe8efe8cd96258af4a39b7f13c706afb68c07ee2338f00313b4416"
+  },
+  {
+    "file": "assets/audio/production/maze_muncher_special.ogg",
+    "source": "assets/audio/local/maze_muncher_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 1.2,
+    "sample_rate": 44100,
+    "sha256": "c7759e78006c8629d9b1fd09c9040189ed256312498dd12b03612b6cb304e181"
+  },
+  {
+    "file": "assets/audio/production/neon_breach.ogg",
+    "source": "assets/audio/local/neon_breach.wav",
+    "operation": "peak normalized; music loop crossfade",
+    "seconds": 23.82,
+    "sample_rate": 44100,
+    "sha256": "adbedb6ea6ab7d3e1e9ebe9a7ad7356976a6cfbf372431eeba9c630e1af100e2"
+  },
+  {
+    "file": "assets/audio/production/neon_breach_shot.ogg",
+    "source": "assets/audio/local/neon_breach_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.8,
+    "sample_rate": 44100,
+    "sha256": "77e109ba4e24bd19065a9d7e8af33550835a70574ae1e03424d7fe870210f286"
+  },
+  {
+    "file": "assets/audio/production/neon_breach_special.ogg",
+    "source": "assets/audio/local/neon_breach_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 1.2,
+    "sample_rate": 44100,
+    "sha256": "c0ba3208e45b3c2182c6734c0d79c18c422405a8108b2c072b6239217472b18c"
   },
   {
     "file": "assets/audio/production/orbit_keeper.ogg",
@@ -92,6 +164,78 @@
     "seconds": 31.82,
     "sample_rate": 44100,
     "sha256": "992b1de09191256f20d5adf68d9f554e561cff241dd2a0cc5d1c2118182bcd24"
+  },
+  {
+    "file": "assets/audio/production/star_bastion.ogg",
+    "source": "assets/audio/local/star_bastion.wav",
+    "operation": "peak normalized; music loop crossfade",
+    "seconds": 23.82,
+    "sample_rate": 44100,
+    "sha256": "9a8a118f6ad9f2eedbda64689caadb2a2131b9ce2740ab60332e81a2571c42f8"
+  },
+  {
+    "file": "assets/audio/production/star_bastion_shot.ogg",
+    "source": "assets/audio/local/star_bastion_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.8,
+    "sample_rate": 44100,
+    "sha256": "aaa0e3052a99d6b5999d6fbeac3b588e29312a7a7e6d3ee2f05293736b4f5a59"
+  },
+  {
+    "file": "assets/audio/production/star_bastion_special.ogg",
+    "source": "assets/audio/local/star_bastion_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 1.2,
+    "sample_rate": 44100,
+    "sha256": "9c55895b31080c298ccc810a8c2d02b6c10fdfec9548ee0b00d19da439db071e"
+  },
+  {
+    "file": "assets/audio/production/tide_hopper.ogg",
+    "source": "assets/audio/local/tide_hopper.wav",
+    "operation": "peak normalized; music loop crossfade",
+    "seconds": 23.82,
+    "sample_rate": 44100,
+    "sha256": "54edaede9a08cc617924e5149b3d562af147a06ad0feed63686a20434ceaaf42"
+  },
+  {
+    "file": "assets/audio/production/tide_hopper_shot.ogg",
+    "source": "assets/audio/local/tide_hopper_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.8,
+    "sample_rate": 44100,
+    "sha256": "8fe166aecb31b5363ceca6d7ebb6b528b79df16593bc88309cb811132ab1dd59"
+  },
+  {
+    "file": "assets/audio/production/tide_hopper_special.ogg",
+    "source": "assets/audio/local/tide_hopper_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 1.2,
+    "sample_rate": 44100,
+    "sha256": "a69056b2955b71c9c75e60e9379361b94f5f81600fadc61d3f3be6f9e5b452ab"
+  },
+  {
+    "file": "assets/audio/production/vector_coil.ogg",
+    "source": "assets/audio/local/vector_coil.wav",
+    "operation": "peak normalized; music loop crossfade",
+    "seconds": 23.82,
+    "sample_rate": 44100,
+    "sha256": "f8bca5c64ce2e4e535d8bb8408e41b241e4a3946f3d2cb0523fcac49cca7690f"
+  },
+  {
+    "file": "assets/audio/production/vector_coil_shot.ogg",
+    "source": "assets/audio/local/vector_coil_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.8,
+    "sample_rate": 44100,
+    "sha256": "597c72634abcdb60629f8a7d89ee5dcf94cb5dfaede5ad9205e6fbc8ffea3d11"
+  },
+  {
+    "file": "assets/audio/production/vector_coil_special.ogg",
+    "source": "assets/audio/local/vector_coil_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 1.2,
+    "sample_rate": 44100,
+    "sha256": "9e0a7ef584aeb87c85baf1ad3b55a8973bbc25189f5e3b75c449ca2fd7b42b36"
   },
   {
     "file": "assets/audio/production/void_drifter.ogg",

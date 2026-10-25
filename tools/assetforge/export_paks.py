@@ -47,7 +47,10 @@ def main():
             shutil.copyfile(source_audio, target)
             records.append({"file":target.relative_to(ROOT).as_posix(), "source":source_audio.relative_to(ROOT).as_posix(),
                             "operation":"Unmodified copy into component folder", "sha256":hashlib.sha256(target.read_bytes()).hexdigest()})
-    (ROOT / "assets/pak-exports.json").write_text(json.dumps(records, indent=2) + "\n", encoding="utf-8")
+    record_path = ROOT / "assets/pak-exports.json"
+    previous = json.loads(record_path.read_text(encoding="utf-8")) if record_path.exists() else []
+    replaced = {record["file"] for record in records}
+    record_path.write_text(json.dumps([record for record in previous if record["file"] not in replaced] + records, indent=2) + "\n", encoding="utf-8")
     print(f"Exported {len(records)} original Pak assets")
 
 

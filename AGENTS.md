@@ -7,7 +7,7 @@ This is the entry point to the project's agent wiki. Read the relevant linked pa
 - Game content is discovered from external Pak folders, never imported from a fixed content registry. The public ABCs in `src/system_panic/pak_api.py` define the API; each component folder owns its class and local assets. The core owns loading, scheduling, neutral primitives and shared run flow. Gameplay rules belong to Paks; no family/splitting/cooldown or projectile-feature traits are interpreted by the host. Asset-only partial Paks may inherit installed component behavior.
 - Progression is always endless: level one starts with one enemy, and each new level adds exactly one initial enemy. There is no finale, level cap, finite-run preference or scripted boss-wave replacement. Pak-specific mid-level spawning (such as asteroid fragments) remains part of that Pak's mechanics.
 - The platform arena is one Pak, not the overall design direction.
-- Six launch Paks: Signal Runner, Void Drifter, Iron Circuit, Sky Forge, Phase Garden, Orbit Keeper.
+- Twelve complete Paks. Original six: Signal Runner, Void Drifter, Iron Circuit, Sky Forge, Phase Garden, Orbit Keeper. Classic-inspired expansion: Neon Breach, Maze Muncher, Burrow Patrol, Vector Coil, Star Bastion, Tide Hopper.
 - Players can select enabled Paks, solo/coherent/component remix, shuffle interval, difficulty, effects, fullscreen and audio levels. No online catalog.
 - Original generated art and audio are produced by development tools, never generated or downloaded by the game.
 

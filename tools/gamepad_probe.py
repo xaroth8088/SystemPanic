@@ -95,6 +95,10 @@ def exercise(app, output):
     def walk(target_id):
         """Use directional buttons only, never assign UI focus or call button actions."""
         app.draw()
+        for _ in range((len(app.catalog.paks)+5)//6):
+            if any(b.id==target_id for b in app.buttons): break
+            if not any(b.id=="library_page:next" for b in app.buttons): break
+            press(RB)
         target = next(i for i, b in enumerate(app.buttons) if b.id == target_id)
         start = app.focus if app.keyboard_focus else app.preferred_focus()
         pending, paths = [start], {start: []}
@@ -188,12 +192,16 @@ def exercise(app, output):
         replacement = VirtualPad()
         pad = replacement
         pad.button(A, True)
+        tick()  # Open the replacement before selecting the test device among other pads.
+        app.gamepads.select(pad.identity)
         tick(12)
         assert app.route == "pause", "Reconnecting held confirm must not resume"
         pad.neutral()
         tick()
         press(START)
-        assert app.route == "game"
+        assert app.route == "game", (app.route,physical_count,app.window_focused,app.gamepads.active_id,pad.identity,
+                                      app.gamepads._armed,app.gamepads._previous,
+                                      [(id,d.name,d.attached(),d.get_axis(0),d.get_axis(1),d.get_axis(5)) for id,d in app.gamepads.devices.items()])
         app.handle_event(pygame.event.Event(pygame.WINDOWFOCUSLOST))
         pad.button(A, True)
         tick(12)
@@ -214,7 +222,7 @@ def exercise(app, output):
         assert app.route == "game" and app.world.solo == "signal_runner" and app.world.score == 0
         return {"native_sdl_virtual_controller": True, "physical_controllers_seen": physical_count,
                 "gamepad_only_menu_paths": True, "preferences_saved": True, "nested_back": True,
-                "pak_selection": True, "all_six_solo_inputs": runs, "disconnect_pauses": True,
+                "pak_selection": True, "solo_inputs": runs, "disconnect_pauses": True,
                 "reconnect_requires_neutral": True, "focus_loss_guard": True, "outcome_retry": True, "steps": steps}
     finally:
         app.audio.play_asset = original_play

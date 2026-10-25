@@ -428,6 +428,9 @@ class App:
         self.button("pause", (1075, 25, 165, 36), "START / PAUSE" if self.input_device == "gamepad" else "ESC / PAUSE", lambda: self.navigate("pause"), size=13)
         g.text(self.canvas, timer, (1235, 758), 13, CYAN, mono=True, anchor="topright")
         hint = "STICK / D-PAD: movement    RT/A: fire    X/LB: special" if self.input_device == "gamepad" else w.component("pilot").controls + "    SPACE: fire    " + w.component("pilot").special
+        status = w.component("pilot").status(w)
+        if status:
+            hint += "    /    " + status
         g.fit_text(self.canvas, hint, (40, 759), 970, 14, MUTED)
         if w.phase in ("ready", "clear"):
             rect = pygame.Rect(365, 353, 550, 118)

@@ -1,0 +1,26 @@
+{
+  "id": "tide_hopper",
+  "name": "Tide Hopper",
+  "subtitle": "HOP / HARPOON",
+  "color": [
+    66,
+    231,
+    207
+  ],
+  "description": "Hop between canal lanes and reel traffic drones out of their crossing patterns.",
+  "version": "1.0.0",
+  "order": 11,
+  "authoring": {
+    "inspired_by": "Frogger",
+    "sheet_source": "assets/images/tide_hopper-source.png"
+  },
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ]
+}

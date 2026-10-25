@@ -1,0 +1,26 @@
+{
+  "id": "vector_coil",
+  "name": "Vector Coil",
+  "subtitle": "TRAIL / ROTARY PRISM",
+  "color": [
+    185,
+    246,
+    66
+  ],
+  "description": "Carve glowing trails with right-angle turns and sweep the field with a rotating laser cross.",
+  "version": "1.0.0",
+  "order": 9,
+  "authoring": {
+    "inspired_by": "Qix and Tron",
+    "sheet_source": "assets/images/vector_coil-source.png"
+  },
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ]
+}

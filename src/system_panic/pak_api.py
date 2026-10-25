@@ -86,6 +86,18 @@ class PilotBase(SpriteComponent):
     def update(self, world: World, dt: float, control: Controls) -> None:
         """Own movement, input edges, abilities and their private timing/state."""
 
+    def aim_direction(self, world: World) -> Vec | None:
+        """Optional explicit firing direction for weapons to respect; None leaves them free.
+
+        This query must not advance state. The pilot owns its intent; each weapon
+        chooses how to use it. No host targeting policy is implied.
+        """
+        return None
+
+    def status(self, world: World) -> str:
+        """Optional live pilot-state hint for either input device; never advance state."""
+        return ""
+
     def on_contact(self, world: World, enemy: Enemy, dt: float) -> None:
         """Optional response to overlapping an enemy; no built-in ram/dash behavior."""
 

@@ -32,7 +32,7 @@ def main():
             app.quit()
             pygame.quit()
         (output / "source.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    print("Source: native controller UI, six solo games, disconnect/reconnect and focus checks passed.", flush=True)
+    print("Source: native controller UI, all solo games, disconnect/reconnect and focus checks passed.", flush=True)
     if args.frozen:
         with tempfile.TemporaryDirectory(dir=output) as directory:
             temporary = Path(directory)
@@ -68,7 +68,7 @@ App.run = _verify_input
                 error_file = output / "frozen-error.log"
                 raise AssertionError((result.returncode, error_file.read_text(encoding="utf-8") if error_file.exists() else result.stderr.decode(errors="replace")))
             report = json.loads((output / "frozen.json").read_text(encoding="utf-8"))
-            assert report["native_sdl_virtual_controller"] and len(report["all_six_solo_inputs"]) == 6
+            assert report["native_sdl_virtual_controller"] and len(report["solo_inputs"]) == len(app.catalog.complete_ids())
         print("Frozen: same native controller checks passed through the packaged SDL backend.", flush=True)
 
 

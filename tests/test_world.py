@@ -95,7 +95,7 @@ class WorldTests(unittest.TestCase):
                 self.assertEqual(set(world.mix.values()), {pak.id})
                 self.assertEqual(world.shuffle_count, 0)
 
-    def test_all_1296_component_mixes_update_and_fire_safely(self):
+    def test_all_component_mixes_update_and_fire_safely(self):
         for combo in itertools.product(PAKS, repeat=4):
             world = World(Preferences(shuffle_channels=[]), seed=3)
             world.mix.update({channel: pak.id for channel, pak in zip(GAMEPLAY_CHANNELS, combo)})

@@ -25,13 +25,16 @@ TEMP.mkdir(parents=True, exist_ok=True)
 
 class FakePad:
     def __init__(self, identity=41):
-        self.id, self.name = identity, f"Test pad {identity}"
+        self.id, self.name = identity + 1000, f"Test pad {identity}"
+        self._instance_id = identity
         self.axes, self.buttons, self.present = {}, set(), True
         self.closes = 0
 
     def get_axis(self, axis): return self.axes.get(axis, 0)
     def get_button(self, button): return button in self.buttons
     def attached(self): return self.present
+    def as_joystick(self): return self
+    def get_instance_id(self): return self._instance_id
     def quit(self): self.closes += 1
 
 
@@ -258,12 +261,13 @@ class GamepadTests(unittest.TestCase):
         self.app.catalog = Catalog((*catalog.paks, extra), catalog.issues, catalog.roots)
         self.app.graphics.catalog = self.app.catalog
         self.app.draw()
-        self.press(RB)
-        self.assertEqual(self.app.library_page, 1)
+        last_page=len(catalog.paks)//6
+        for _ in range(last_page): self.press(RB)
+        self.assertEqual(self.app.library_page, last_page)
         self.assertIn("solo:extra", [b.id for b in self.app.buttons])
         self.assertLess(self.app.focus, len(self.app.buttons))
         self.press(LB)
-        self.assertEqual(self.app.library_page, 0)
+        self.assertEqual(self.app.library_page, last_page-1)
 
     def test_incomplete_library_defaults_to_status_instead_of_quit(self):
         catalog = self.app.catalog

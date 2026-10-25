@@ -33,8 +33,13 @@ Read [the root wiki](../../AGENTS.md), [loader memory](paks/AGENTS.md) and [Pak 
 
 ## Controllers and menu input
 - input_devices.py owns SDL mapped-controller lifetime and raw-input normalization, never gameplay. App combines keyboard/gamepad values into unchanged Controls, so API 4 and Pak behavior stay device-independent.
-- Use SDL instance IDs for removals; device indices only for opening. Last meaningful pad activity selects it. Duplicate JOY events must not cause duplicate controller actions. Missing/unmapped/failed controller backends leave keyboard/mouse available.
+- Use SDL instance IDs for removals; device indices only for opening. Pygame Controller.id is the opening index: obtain the stable identity with device.as_joystick().get_instance_id(), including after reconnect while other devices remain. Last meaningful pad activity selects it. Duplicate JOY events must not cause duplicate controller actions. Missing/unmapped/failed controller backends leave keyboard/mouse available.
 - Movement uses a radial rescaled deadzone (saved/clamped gamepad_deadzone). Menu focus is spatial with directional wrap, .55/.35 stick hysteresis and bounded repeat. Select/back/pause/page buttons act on edges. All visible widgets must be directionally reachable.
 - Route, focus and active-device changes require neutral controller input. This prevents held confirm/fire, stuck navigation and reconnect activation. Do not rearm on a Pak shuffle/level change: held gameplay must resume automatically after the established transition.
 - Active controller loss pauses/suspends a run, even when another pad remains. Reconnection does not resume. Window focus loss suppresses controller actions until focus returns and controls are released. Devices close on Quit and bounded run completion.
 - App.page_history handles nested input/help/preferences pages and returns to pause. Hints follow the last input device; Preferences → Gamepad / Input shows bindings, controller selection and immediate deadzone adjustment.
+
+## Additive API 4 pilot queries
+- PilotBase.aim_direction(world) defaults to None; each weapon decides direction/assistance. Shipped weapons prioritize a supplied vector; homing shots preserve explicit intent. Orbit's radial toggle lives only in its pilot, never in host fields/branches.
+- PilotBase.status(world) defaults to an empty string; the shell appends live pilot state to either input-device footer. Querying aim/status cannot advance gameplay/RNG.
+- The catalog now has twelve complete Paks. Host discovery, menus and scheduling remain generic. New mechanics and difficulty/layout rules live entirely in their role folders. Keep QA and gallery counts derived from the discovered providers.
