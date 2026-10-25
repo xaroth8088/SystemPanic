@@ -8,7 +8,7 @@ from typing import Callable, Literal, overload
 from pygame.rect import Rect
 
 from .model import (WIDTH, HEIGHT, FIXED_DT, Vec, Controls, Pilot, Enemy,
-                    Body, Motion, Particle, normalized, unit, circle_rect)
+                    Body, Motion, Particle, unit, circle_rect)
 from .paks import get_catalog, CHANNELS
 from .preferences import Preferences
 from .pak_api import ComponentBase, PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase, ObstaclesBase, ProjectileBase, EffectBase
@@ -118,10 +118,6 @@ class World:
         self._part_sources.clear()
 
     @property
-    def factor(self):
-        return {"relaxed": .70, "standard": 1., "intense": 1.28}[self.prefs.difficulty]
-
-    @property
     def can_shuffle(self):
         if self.solo:
             return False
@@ -144,12 +140,11 @@ class World:
                 if initial or channel in self.prefs.shuffle_channels:
                     self.mix[channel] = self.choose(channel, self.mix.get(channel))
         self.component("pilot")
-        if old_mix.get("obstacles") != self.mix["obstacles"]:
-            self.cover = self.component("obstacles").build()
+        if not initial and old_mix.get("obstacles") != self.mix["obstacles"]:
+            self.cover = self.component("obstacles").build(self)
         for channel in CHANNELS:
             self.component(channel)
         self.player.pos = self.safe_position(self.player.pos, self.player.radius + 2)
-        self.player.invulnerable = max(1.5, self.player.invulnerable)
         if old_mix.get("enemy") != self.mix["enemy"]:
             adopted = []
             for old in self.enemies:
@@ -161,20 +156,23 @@ class World:
         elif old_mix.get("obstacles") != self.mix["obstacles"]:
             for enemy in self.enemies:
                 enemy.pos = self.safe_position(enemy.pos, enemy.radius)
-        # Clear both teams' shots: the new rules begin from a readable state.
+        # Scheduled objects cannot outlive the rules that created them across a swap.
         self.projectiles.clear()
         self.shuffle_timer = float(self.prefs.shuffle_seconds)
         if not initial:
+            changed = frozenset(channel for channel in CHANNELS if old_mix.get(channel) != self.mix[channel])
+            for channel in CHANNELS:
+                self.component(channel).on_shuffle(self, changed)
             self.shuffle_count += 1
             self.transition = SWAP_GLITCH_SECONDS
             self.suspend()
             self.events.append("shuffle")
 
-    def safe_position(self, desired, radius: float = 14., avoid_player=False):
+    def safe_position(self, desired, radius: float = 14., *, away_from: Vec | None = None, clearance: float = 0.):
         def valid(pos):
             return (radius <= pos.x <= WIDTH - radius and radius <= pos.y <= HEIGHT - radius
                     and not any(circle_rect(pos, radius + 2, wall.rect) for wall in self.cover)
-                    and (not avoid_player or pos.distance_to(self.player.pos) > 160))
+                    and (away_from is None or pos.distance_to(away_from) > clearance))
         pos = Vec(max(radius, min(WIDTH - radius, desired.x)),
                   max(radius, min(HEIGHT - radius, desired.y)))
         if valid(pos):
@@ -196,13 +194,12 @@ class World:
     def start_wave(self):
         self.wave += 1
         self.projectiles.clear()
-        self.player.health = min(self.player.max_health, self.player.health + (0 if self.wave == 1 else 15))
-        self.player.invulnerable = 2.
-        count = self.wave
-        for _ in range(count):
-            pos = self.safe_position(Vec(self.rng.uniform(25, WIDTH - 25),
-                                         self.rng.uniform(25, HEIGHT - 25)), avoid_player=True)
-            self.spawn_enemy(pos)
+        self.cover = self.component("obstacles").build(self)
+        self.player.pos = self.safe_position(self.player.pos, self.player.radius + 2)
+        for channel in CHANNELS:
+            self.component(channel).on_level_start(self)
+        for _ in range(self.wave):
+            self.spawn_enemy(self.component("enemy").spawn_position(self))
         # Only a new run has an introduction. Later levels resume directly
         # after their cleared message, without a second readiness pause.
         self.phase = "ready" if self.wave == 1 else "active"
@@ -267,13 +264,14 @@ class World:
         self.remove_dead()
         if player.health <= 0:
             self.phase = "dead"
+            self.component("pilot").on_death(self)
             self.suspend()
-            self.burst(player.pos, self.pak("pilot").color, 35)
         elif not self.enemies:
             self.phase = "clear"
             self.phase_timer = LEVEL_CLEAR_SECONDS
+            for channel in CHANNELS:
+                self.component(channel).on_level_complete(self)
             self.suspend()
-            self.score += 250 * self.wave
             self.events.append("clear")
 
     def move_body(self, body, displacement, radius: float, *, bounds: Rect | None = Rect(0, 0, WIDTH, HEIGHT)) -> Motion:
@@ -301,12 +299,6 @@ class World:
                     normals.append(normal)
                     body.pos[axis] = max(low, min(high, body.pos[axis]))
         return Motion(tuple(normals))
-
-    def aim(self):
-        if self.prefs.aim_assist and self.enemies:
-            target = min(self.enemies, key=lambda e: e.pos.distance_squared_to(self.player.pos))
-            return normalized(target.pos - self.player.pos)
-        return unit(self.player.angle)
 
     def update_enemies(self, dt):
         for enemy in tuple(self.enemies):

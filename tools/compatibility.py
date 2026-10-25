@@ -36,7 +36,7 @@ def main():
     for index, combo in enumerate(itertools.product(*pools), 1):
         world = World(Preferences(difficulty="relaxed", shuffle_channels=[], enabled=list(catalog.by_id)), seed=24, catalog=catalog)
         world.mix.update(zip(GAMEPLAY_CHANNELS, combo))
-        world.cover = world.component("obstacles").build()
+        world.cover = world.component("obstacles").build(world)
         world.player.pos = world.safe_position(Vec(480, 240), 13)
         world.enemies.clear()
         world.wave = 0

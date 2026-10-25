@@ -13,9 +13,9 @@ import pygame
 
 from .audio import Audio
 from .graphics import Graphics, BG, PANEL, EDGE, TEXT, MUTED, CYAN, DIM
-from .model import WIDTH, HEIGHT, Vec, Controls, normalized
+from .model import WIDTH, HEIGHT, Controls
 from .paks import discover, CHANNELS
-from .preferences import Preferences, PreferenceStore
+from .preferences import PreferenceStore
 from .world import World
 
 SIZE = (1280, 800)
@@ -300,7 +300,7 @@ class App:
         g.text(self.canvas, "Saved locally. Gameplay changes apply to the next run.", (80, 158), 17, MUTED)
         self.setting(210, "Shuffle style", "Component remix includes partial Paks; coherent uses complete Paks.", "mix_mode", ["remix", "coherent"], ["COMPONENT REMIX", "COHERENT PAKS"])
         self.setting(292, "Time between changes", "A protected transition gives you time to read the new rules.", "shuffle_seconds", [5, 8, 12, 20, 30], ["5 SECONDS", "8 SECONDS", "12 SECONDS", "20 SECONDS", "30 SECONDS"])
-        self.setting(374, "Challenge", "Relaxed reduces damage and enemy speed.", "difficulty", ["relaxed", "standard", "intense"])
+        self.setting(374, "Challenge", "Paks tune attacks and movement to this setting.", "difficulty", ["relaxed", "standard", "intense"])
         g.text(self.canvas, "Endless progression", (80, 456), 21, TEXT, True)
         g.text(self.canvas, "Start with one enemy. Each cleared level adds one more.", (80, 487), 15, MUTED)
         g.text(self.canvas, "1, 2, 3... ENEMIES", (1200, 480), 16, CYAN, mono=True, anchor="midright")
@@ -323,7 +323,7 @@ class App:
         self.header("HOW TO PLAY")
         self.button("back", (1100, 25, 140, 34), "<  BACK", self.back, size=13)
         g.text(self.canvas, "Adapt. Survive. Keep going.", (80, 108), 35, TEXT, True)
-        g.wrapped(self.canvas, "Hold SPACE to fire. Aim assistance targets the nearest enemy. X uses your pilot's special. Destroy cover to open a route. Level one starts with one enemy; each cleared level adds one more and restores 15 health. Levels continue until you are defeated.", (80, 166), 1100, 18)
+        g.wrapped(self.canvas, "Your selected pilot and weapon define movement, specials and attacks; see their controls in the HUD. Level one starts with one enemy; each cleared level adds one more. Paks scale enemy behavior and rebuild their obstacle layouts as levels rise. Play continues until defeat.", (80, 166), 1100, 18)
         pilots = [p for p in self.catalog.paks if "pilot" in p.components]
         start = self.page_controls("help_page", len(pilots), 702, 80, 1060)
         for index, pak in enumerate(pilots[start:start + 6]):
@@ -361,7 +361,7 @@ class App:
         g.text(self.canvas, f"{len(w.enemies):02d} HOSTILES", (700, 98), 15, MUTED, mono=True)
         g.text(self.canvas, "HULL", (968, 98), 12, MUTED, mono=True)
         pygame.draw.rect(self.canvas, EDGE, (1020, 100, 170, 12), border_radius=3)
-        pygame.draw.rect(self.canvas, CYAN if w.player.health > 30 else (255, 119, 137), (1020, 100, max(0, 170 * w.player.health / w.player.max_health), 12), border_radius=3)
+        pygame.draw.rect(self.canvas, CYAN if w.player.health / w.player.max_health > .3 else (255, 119, 137), (1020, 100, max(0, 170 * w.player.health / w.player.max_health), 12), border_radius=3)
         g.text(self.canvas, f"{math.ceil(w.player.health):03d}", (1238, 94), 17, TEXT, mono=True, anchor="topright")
         g.draw_world(self.arena_surface, w, self.prefs.reduced_motion)
         frame = pygame.transform.scale(self.arena_surface, VIEWPORT.size)
@@ -385,7 +385,7 @@ class App:
             self.canvas.blit(overlay, rect)
             text = f"LEVEL {w.wave:02d} / GET READY" if w.phase == "ready" else f"LEVEL {w.wave:02d} CLEARED"
             g.text(self.canvas, text, (640, 389), 32, TEXT, True, True, "center")
-            subtitle = "+15 HULL NEXT LEVEL" if w.phase == "clear" else "HOLD SPACE TO FIRE / X FOR SPECIAL"
+            subtitle = "NEXT LEVEL INCOMING" if w.phase == "clear" else "HOLD SPACE TO FIRE / X FOR SPECIAL"
             g.text(self.canvas, subtitle, (640, 435), 14, CYAN, mono=True, anchor="center")
 
     def draw_overlay(self, outcome=False):
@@ -538,18 +538,7 @@ class App:
 
 def autopilot(world):
     """Deterministic QA/demo input, using exactly the same player controls."""
-    p = world.player
-    if not world.enemies:
-        return Controls(fire=True)
-    target = min(world.enemies, key=lambda e: e.pos.distance_squared_to(p.pos))
-    delta = target.pos - p.pos
-    vector = normalized(delta)
-    special = int(world.time * 3) % 11 == 0
-    controls = world.component("pilot").demo_controls(world)
-    if controls is not None:
-        return controls
-    movement = vector if delta.length() > 210 else Vec(-vector.y, vector.x)
-    return Controls(movement.x, movement.y, True, special)
+    return world.component("pilot").demo_controls(world) or Controls()
 
 
 def main():

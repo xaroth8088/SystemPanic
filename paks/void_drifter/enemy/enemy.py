@@ -1,8 +1,9 @@
-"""Void Drifter: local enemy state, spawn rules, contacts and death behavior."""
+"""VoidDrifter: level-scaled AI, attacks, spawn policy and rewards belong here."""
 from dataclasses import dataclass
 import math
 from system_panic.model import Vec, WIDTH, HEIGHT, Enemy, normalized, unit
 from system_panic.pak_api import EnemyBase
+from .tactics import difficulty, spawn_position, pursue
 
 
 @dataclass
@@ -19,10 +20,13 @@ class VoidDrifterEnemy(EnemyBase):
     def sprite(self, world, entity=None):
         return self.creatures
 
+    def spawn_position(self, world):
+        return spawn_position(world)
+
     def create(self, world, identity, position):
         health = 30 + world.wave * 3
         return Asteroid(id=identity, pos=Vec(position), health=health, max_health=health,
-                          radius=14, timer=world.rng.uniform(.6, 2), angle=world.rng.uniform(0, math.tau))
+                      radius=14, timer=world.rng.uniform(.6, 2), angle=world.rng.uniform(0, math.tau))
 
     def create_fragment(self, world, identity, position):
         enemy = self.create(world, identity, position)
@@ -32,24 +36,31 @@ class VoidDrifterEnemy(EnemyBase):
         enemy.fragment = True
         return enemy
 
+    def move_speed(self, world):
+        return (48 + 150 * (1 - math.exp(-(world.wave - 1) / 38))) * difficulty(world)
+
     def advance_enemy(self, world, enemy, dt):
         enemy.age += dt
-        enemy.timer -= dt
-        toward = normalized(world.player.pos - enemy.pos)
-        speed = (45 + world.wave * 3) * world.factor
-        enemy.angle += .12 * dt
-        enemy.vel = unit(enemy.angle) * speed * .8 + toward * speed * .3
-        motion = world.move_body(enemy, enemy.vel * dt, enemy.radius, bounds=None)
-        enemy.pos.x %= WIDTH
-        enemy.pos.y %= HEIGHT
-        if motion.blocked_y:
-            enemy.vel.y = 0
+        enemy.angle += (.12 + .25 * (1 - math.exp(-(world.wave - 1) / 30))) * dt
+        lead = min(.6, max(0, world.wave - 4) * .02)
+        toward = normalized(world.player.pos + world.player.vel * lead - enemy.pos)
+        # Fragments become quicker hunters; intact rocks retain their drifting inertia.
+        pursuit = .3 + .35 * (1 - math.exp(-(world.wave - 1) / 25))
+        direction = unit(enemy.angle) * .8 + toward * pursuit
+        speed = self.move_speed(world) * direction.length() * (1.15 if enemy.fragment else 1.)
+        pursue(world, enemy, direction, speed, dt, avoid=world.wave >= 6, wrap=True)
 
     def sprite_angle(self, world, entity):
         return -math.degrees(entity.angle)
 
+    def contact_damage(self, world):
+        return (13 + .6 * (world.wave - 1) ** .7) * difficulty(world)
+
     def on_contact(self, world, enemy, dt):
-        world.hit_player(13 * world.factor)
+        world.hit_player(self.contact_damage(world))
+
+    def on_level_complete(self, world):
+        world.score += 250 * world.wave
 
     def take_damage(self, world, enemy, damage):
         applied = world.apply_damage(enemy, damage)

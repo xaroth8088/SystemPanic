@@ -23,9 +23,9 @@
         "12": 12,
         "13": 13
       },
-      "health": 87.7,
+      "health": 80.95,
       "score": 27300,
-      "seconds": 65.17
+      "seconds": 68.85
     },
     {
       "pak": "void_drifter",
@@ -50,7 +50,7 @@
       },
       "health": 100,
       "score": 36660,
-      "seconds": 127.27
+      "seconds": 131.7
     },
     {
       "pak": "iron_circuit",
@@ -73,9 +73,9 @@
         "12": 12,
         "13": 13
       },
-      "health": 100,
+      "health": 66.93,
       "score": 27300,
-      "seconds": 90.0
+      "seconds": 101.18
     },
     {
       "pak": "sky_forge",
@@ -100,7 +100,7 @@
       },
       "health": 100,
       "score": 27300,
-      "seconds": 60.38
+      "seconds": 64.57
     },
     {
       "pak": "phase_garden",
@@ -123,9 +123,9 @@
         "12": 12,
         "13": 13
       },
-      "health": 100,
+      "health": 83.01,
       "score": 27300,
-      "seconds": 48.6
+      "seconds": 49.18
     },
     {
       "pak": "orbit_keeper",
@@ -148,9 +148,9 @@
         "12": 12,
         "13": 13
       },
-      "health": 98.2,
+      "health": 72.87,
       "score": 27300,
-      "seconds": 137.58
+      "seconds": 145.83
     }
   ],
   "assets": [
@@ -468,7 +468,7 @@
   "date": "2026-10-24",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 54,
+    "passed": 63,
     "failed": 0
   },
   "compatibility": {
@@ -478,7 +478,7 @@
     "presentation_pairs_checked": 36,
     "full_mix_space": 46656,
     "seed": 24,
-    "max_seconds": 13.6,
+    "max_seconds": 13.666666666666666,
     "failures": []
   },
   "local_studio": [
@@ -533,10 +533,11 @@
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "c73391aaee1ebfaf3276baed541db6cc9f9f4bb9b9820c71e544a59b70b30e69",
-    "total_bytes": 47732158,
+    "sha256": "2293e72ee16d3b5bc32efc69689d2bde6f08c8fb20d730f460766727a7c3b9dc",
+    "total_bytes": 47765122,
     "archive": "dist/SystemPanic-Windows-x64.zip",
-    "archive_test_passed": true
+    "archive_test_passed": true,
+    "archive_sha256": "53d1d58bfdecb00c4ec6be9a1cd14a2634e1ded0b2f6fa2f23fc80db9d711874"
   },
   "limitations": [
     "Automated controls used relaxed difficulty and seed 24; human balance testing remains.",
@@ -622,21 +623,23 @@
     "external_code_and_helpers_executed": true,
     "partial_only_mix_executed": true,
     "wheel_external_layout_verified": true,
-    "executable_sha256": "c73391aaee1ebfaf3276baed541db6cc9f9f4bb9b9820c71e544a59b70b30e69"
+    "executable_sha256": "2293e72ee16d3b5bc32efc69689d2bde6f08c8fb20d730f460766727a7c3b9dc"
   },
   "wheel_install_check": {
     "fresh_prefix_install": true,
-    "api_version": 3,
+    "api_version": 4,
     "paks_discovered": 6,
     "component_folders": 36,
     "local_projectile_helpers_loaded": true,
     "assets_loaded": true,
+    "procedural_level_regeneration": true,
+    "obsolete_arena_helper_absent": true,
     "frames": 240,
     "exit_code": 0,
-    "wheel_sha256": "a0d55179f843cbba67bd44adafdbedb9f6d73800c20c2bba262d482027a41abd"
+    "wheel_sha256": "a80a95372c6f944bf65375b938aff8e9552ce46cd35267f937359e038c40169b"
   },
   "dynamic_paks": {
-    "api_version": 3,
+    "api_version": 4,
     "external_launch_paks": 6,
     "partial_components_supported": true,
     "asset_only_inheritance_supported": true,
@@ -667,10 +670,13 @@
     "pak_owned_combat_rules": true,
     "trait_driven_host_removed": true,
     "pak_owned_projectiles_and_effects": true,
-    "core_world_ide_diagnostics": 0
+    "core_world_ide_diagnostics": 0,
+    "pak_owned_spawn_aim_difficulty": true,
+    "pak_owned_protection_healing_rewards": true,
+    "level_lifecycle_callbacks": true
   },
   "rule_boundary_checks": {
-    "custom_rules_tests": 9,
+    "custom_rules_tests": 12,
     "raw_input_delivery": true,
     "pak_factories_and_local_actor_state": true,
     "arbitrary_death_children_and_rewards": true,
@@ -692,6 +698,140 @@
       "homing",
       "blast",
       "return_after"
-    ]
+    ],
+    "no_host_heal_protection_bonus_aim_or_difficulty": true,
+    "pak_defined_initial_spawn_position": true
+  },
+  "procedural_levels": {
+    "procedural_cases": 180,
+    "enemies_placed": 5190,
+    "separate_layout_rng": true,
+    "geometry_and_spawn_safety": true,
+    "advanced_ai_seconds_per_case": 1,
+    "gallery_levels": [
+      1,
+      2,
+      12
+    ],
+    "paks": [
+      {
+        "pak": "signal_runner",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "void_drifter",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "iron_circuit",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "sky_forge",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "phase_garden",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "orbit_keeper",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      }
+    ],
+    "layout_gallery_inspected": true,
+    "level_clear_screen_inspected": true,
+    "solo_and_locked_regeneration_tests": true,
+    "unchanged_provider_damage_preserved_on_presentation_swap": true
   }
 }

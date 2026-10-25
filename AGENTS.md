@@ -25,3 +25,5 @@ This is the entry point to the project's agent wiki. Read the relevant linked pa
 - Use `python play.py`, `python -m unittest discover -s tests -v`, and `python tools/verify.py` from the root. Windows `run.bat` manages a local environment.
 - Before claiming completion, run meaningful tests and inspect rendered screens. Record exact evidence and remaining limitations in the wiki.
 - Do not fabricate asset provenance or mark pending generation as delivered.
+
+- Every level regenerates obstacle geometry, including solo play and locked obstacle channels. Paks own procedural layout rules and level-based difficulty, including spawn/aim/protection/healing/reward policy. See API 4 and the nearby runtime/Pak memories.

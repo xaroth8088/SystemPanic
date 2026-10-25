@@ -1,4 +1,4 @@
-"""Public Pak API 3. Paks own rules; the host supplies scheduling and primitives.
+"""Public Pak API 4. Paks own rules; the host supplies scheduling and primitives.
 
 Only the documented methods/properties below form the contract. Names used to
 store loaded handles, animation timers or other private state are author-owned.
@@ -39,6 +39,15 @@ class ComponentBase(ABC):
 
     def deactivate(self, world: World) -> None:
         """Called before replacement/end of run; the engine also stops owned sounds."""
+
+    def on_level_start(self, world: World) -> None:
+        """New level number/geometry are ready, before initial enemies are spawned."""
+
+    def on_level_complete(self, world: World) -> None:
+        """Own level rewards/recovery; called once before the cleared intermission."""
+
+    def on_shuffle(self, world: World, changed: frozenset[str]) -> None:
+        """All new components/geometry are ready; own any swap protection/reaction."""
 
     def suspend(self) -> None:
         """Stop owned voices on pause, focus loss, transitions or defeat."""
@@ -84,12 +93,19 @@ class PilotBase(SpriteComponent):
         """Override for shields, recovery, feedback, etc.; default applies raw damage."""
         return world.apply_damage(world.player, damage)
 
+    def on_death(self, world: World) -> None:
+        """Optional pilot defeat effects. The host does not prescribe a death burst."""
+
     def demo_controls(self, world: World) -> Controls | None:
         """Optional ordinary-input policy used only by the QA/demo runner."""
         return None
 
 
 class EnemyBase(SpriteComponent):
+    @abstractmethod
+    def spawn_position(self, world: World) -> Vec:
+        """Choose an initial enemy position, including any distance/safety policy."""
+
     @abstractmethod
     def create(self, world: World, identity: int, position: Vec) -> Enemy:
         """Own spawn stats/state. Return this identity, including on component adoption."""
@@ -158,8 +174,12 @@ class BackgroundBase(ComponentBase):
 
 class ObstaclesBase(SpriteComponent):
     @abstractmethod
-    def build(self) -> list[Cover]:
-        """Return fresh destructible collision geometry; [] is a valid open field."""
+    def build(self, world: World) -> list[Cover]:
+        """Fresh geometry each level/provider change; use seed/wave for procedural rules.
+
+        Called after wave increments, before actor placement. Keep generation bounded;
+        [] is valid. A private seeded RNG keeps layouts independent of combat history.
+        """
 
     def draw(self, graphics: Graphics, surface: Surface, world: World, obstacle: Cover) -> None:
         """Default generic obstacle presentation; override for a Pak's own style."""

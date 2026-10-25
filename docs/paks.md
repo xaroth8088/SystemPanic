@@ -1,6 +1,6 @@
 # Building a Pak: component folders and ABCs
 
-Paks are external folders. Their layout is the first guide to the API: each component keeps its Python class and assets together. The six shipped games are complete, working examples of API 3.
+Paks are external folders. Their layout is the first guide to the API: each component keeps its Python class and assets together. The six shipped games are complete, working examples of API 4.
 
 ## Start with something runnable
 
@@ -50,11 +50,11 @@ Import base classes from system_panic.pak_api. Their abstract methods have docst
 | Folder | Base class | Required methods |
 |---|---|---|
 | pilot | PilotBase | create(world, position), update(world, dt, control), sprite(world, entity=None) |
-| enemy | EnemyBase | create(world, identity, position), advance_enemy(world, enemy, dt), sprite(world, entity=None) |
+| enemy | EnemyBase | spawn_position(world), create(world, identity, position), advance_enemy(world, enemy, dt), sprite(world, entity=None) |
 | weapon | WeaponBase | update(world, dt, control), sprite(world, entity=None) |
 | music | MusicBase | track(world=None) |
 | background | BackgroundBase | draw(surface, world) |
-| obstacles | ObstaclesBase | build(), sprite(world, entity=None) |
+| obstacles | ObstaclesBase | build(world), sprite(world, entity=None) |
 
 Override init(self) to load local asset handles and initialize private state. The engine owns construction. Use activate(world) for setup that needs engine-owned state, deactivate(world) for replacement/end-of-run cleanup, and suspend() for optional pause behavior (call super().suspend() to retain sound cleanup). PilotBase also offers demo_controls(world) for an optional ordinary-input QA policy. preview() provides an optional library thumbnail.
 
@@ -106,9 +106,9 @@ SoundAsset.play(loop=True) keeps a single loop active until stop(). Playback fol
 
 PilotBase.create() chooses the body's stats and update() receives raw held Controls on every active step. The Pak decides input edges, movement, abilities, hit handling and recovery timing. WeaponBase.update() likewise owns all triggering, cadence, charge and burst logic. There is no host cooldown property or automatic firing gate.
 
-EnemyBase.create() receives the host's unique identity and a suggested position, and returns an Enemy body with Pak-owned stats/state. The Pak advances its own AI clocks. Override take_damage(), on_contact() and on_death() for armor, contact attacks, rewards, transformations and child spawns. These hooks have neutral/no-op defaults: the host does not classify families or infer splitting. The shipped Void Drifter's on_death() creates its two fragment bodies itself.
+EnemyBase.spawn_position(world) chooses initial placement, including any distance from the player. EnemyBase.create() receives the host's unique identity and a suggested position, and returns an Enemy body with Pak-owned stats/state. The Pak advances its own AI clocks. Override take_damage(), on_contact() and on_death() for armor, contact attacks, rewards, transformations and child spawns. These hooks have neutral/no-op defaults: the host does not classify families or infer splitting. The shipped Void Drifter's on_death() creates its two fragment bodies itself.
 
-The core Body/Pilot/Enemy data has only common physical/health state. A Pak can subclass Enemy for its own per-entity fields, as the shipped Paks do. Host swaps preserve identity, position and shared health while the new Pak's factory creates clean local state. Obstacle constructors provide their own health/max_health; build() returns fresh Cover objects and [] is valid.
+The core Body/Pilot/Enemy data has only common physical/health state. A Pak can subclass Enemy for its own per-entity fields, as the shipped Paks do. Host swaps preserve identity, position and shared health while the new Pak's factory creates clean local state. Obstacle constructors provide their own health/max_health; build(world) returns fresh Cover objects and [] is valid.
 
 BackgroundBase.draw() owns scenery without collision geometry. MusicBase owns the independently selected track. Both are separate shuffle channels, alongside pilot, enemy, weapon and obstacles. Drawing, sprite selection and track selection must not advance gameplay or consume gameplay RNG. See the shipped background and music classes for complete examples.
 
@@ -116,7 +116,7 @@ Import state and geometry helpers from system_panic.model: Body, Pilot, Enemy, C
 
 world.apply_damage(body, amount) is a neutral health/protection primitive. world.hit_player() and hit_enemy() dispatch to the selected Pak's take_damage() policy. Spawn extra enemies with world.spawn_enemy(position, factory=your_factory); the factory has the same (world, identity, position) signature as EnemyBase.create(). The host registers identities and calls on_death() once after removing dead bodies. The Pak chooses any rewards/child counts.
 
-world.component("pilot") and other literal component names provide typed IDE return values. world.pak(channel) supplies display metadata. The host owns shared run state, fixed-step scheduling, user preferences, the required endless +1 initial-enemy progression and established transition/level-clear flow. Initial spawn/swap protection and the shared cleared-level heal/bonus remain run rules.
+world.component("pilot") and other literal component names provide typed IDE return values. world.pak(channel) supplies display metadata. The host owns shared run state, fixed-step scheduling, user preferences, the required endless +1 initial-enemy progression and established transition/level-clear flow. Paks own spawn/swap protection, level healing/bonuses, aiming and difficulty interpretation. The host has no factor or aim policy; safe_position accepts optional away_from/clearance geometry constraints chosen by the caller.
 
 ### Projectiles and visual effects
 
@@ -126,13 +126,13 @@ The six Paks implement piercing, ricochet, homing, area damage and returning fli
 
 Visual-only transients can implement EffectBase.update(dt) and draw(graphics, surface, world) and join world.effects. The host schedules them, including during intermissions. Gameplay effects must instead run in active component/projectile updates. Phase Garden owns its lightning visual in weapon/arc.py. Graphics.render_sprite() is a reusable image/frame sizing primitive; it does not infer the shot's behavior.
 
-Every run receives fresh component instances. Instances stay alive while their component remains selected; a replacement receives clean private state. Different worlds never share private counters or sound handles. Background/music swaps preserve locked pilot/enemy instances and obstacle state.
+Every run receives fresh component instances. Instances stay alive while their component remains selected; a replacement receives clean private state. Different worlds never share private counters or sound handles. Background/music swaps preserve locked pilot/enemy instances and obstacle state. Every new level replaces obstacle geometry even when its provider is locked or playing solo.
 
 ## Manifest and class discovery
 
 ```json
 {
-  "api_version": 3,
+  "api_version": 4,
   "id": "my_pak",
   "version": "1.0.0",
   "name": "My Pak",
@@ -155,7 +155,7 @@ For a weapon artwork variant, create only weapon/weapon_sheet.png plus a manifes
 
 ```json
 {
-  "api_version": 3,
+  "api_version": 4,
   "id": "alternate_pulse",
   "version": "1.0.0",
   "name": "Alternate Pulse",
@@ -179,6 +179,36 @@ The Windows build discovers paks/ beside SystemPanic.exe and %LOCALAPPDATA%/Syst
 
 Use --pak-dir PATH (repeatable) to replace default roots, --list-paks to inspect discovery, and --solo ID to launch a complete Pak. These switches also work on the Windows executable. Source verification tools accept --pak-dir as well.
 
-API 1 flat modules and API 2 trait-driven components are superseded by API 3. Move firing gates into WeaponBase.update(), actor stats into create(), enemy death behavior into on_death(), and flight/hit logic into Pak projectile classes. Pilot input/ability clocks and per-enemy state are local too. Folder conventions and asset handles are retained. All six supplied Paks are migrated examples. Old arena/pilot shuffle preferences migrate to the corresponding new channels on load.
+API 1 flat modules, API 2 trait-driven components and API 3 are superseded by API 4. API 3 authors must add EnemyBase.spawn_position(world), change ObstaclesBase.build() to build(world), and move any reliance on world.factor/world.aim into their components. Use the optional lifecycle hooks below for protection/rewards. Move firing gates into WeaponBase.update(), actor stats into create(), enemy death behavior into on_death(), and flight/hit logic into Pak projectile classes. Pilot input/ability clocks and per-enemy state are local too. Folder conventions and asset handles are retained. All six supplied Paks are migrated examples. Old arena/pilot shuffle preferences migrate to the corresponding new channels on load.
 
 Keep weapons able to reach all enemy families and cover destructible. Check complete Paks solo and partial Paks in eligible mixes. The compatibility runner tests all pilot/enemy/weapon/obstacle gameplay combinations plus all background/music presentation pairs; it reports these separately. Pak code is trusted local Python, with the normal permissions of the game process. The game does not fetch Paks or install arbitrary dependencies.
+
+## Levels, procedural layouts and difficulty
+
+All components optionally receive on_level_start(world), on_level_complete(world) and on_shuffle(world, changed). changed is a frozenset of replaced channel names; unchanged components receive it too. These callbacks default to no action. PilotBase.on_death(world) optionally supplies defeat effects. No automatic healing, protection or score bonus is applied by the host.
+
+At level arrival, the host increments world.wave, clears old projectiles, calls obstacles.build(world), repairs the pilot's geometric overlap, invokes all on_level_start callbacks, then creates exactly world.wave initial enemies using spawn_position/create. The new layout replaces all damaged/destroyed cover; locked components retain their instances and private state. A changed obstacle provider also builds for the current level during a periodic shuffle. Unrelated presentation swaps preserve the existing cover.
+
+When enemies are gone, on_level_complete callbacks run once before the one-second clear screen. The six shipped pilots restore 15 health on the following level and grant arrival/swap protection; the selected enemy component awards the level bonus. These are editable Pak choices. The host still owns endless +1 initial enemy counts and transition timing.
+
+Use world.wave (the current one-based level), world.seed, world.prefs.difficulty and world.player state directly in local rules. Spawn factories and active updates see the current level; cached stats must be refreshed deliberately when needed. Shipped enemies increase health/contact damage and differentiate their tactics: interception/flanking swarms, hunting asteroid fragments, predictive/fan turrets, faster ricocheting crawler dashes, closer/predictive phantom teleports and pursuing sentinel formations. Movement and firing approach readable limits; count, health and damage continue growing.
+
+Obstacle generation should use a private seeded RNG rather than consume world.rng (which drives combat). Here is a complete asset-free obstacle component:
+
+```python
+import random
+from pygame import Rect
+from system_panic.model import Cover
+from system_panic.pak_api import ObstaclesBase
+
+
+class MyObstacles(ObstaclesBase):
+    def sprite(self, world, entity=None):
+        return None
+
+    def build(self, world):
+        rng = random.Random(f"{world.seed}:my_obstacles:{world.wave}")
+        return [Cover(Rect(rng.randint(180, 300), 140, 40, 100), 36, 36)]
+```
+
+Return new objects on each build. Keep generation bounded, leave broad passages and margins, and ensure no draw/preview method advances RNG. Copy local helper modules along with their component folder when authoring partial Paks. Run python tools/verify_levels.py to check the launch layouts across seeds/levels and render a comparison gallery.

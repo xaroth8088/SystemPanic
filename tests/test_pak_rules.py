@@ -89,6 +89,7 @@ class TinyPilot(PilotBase):
 from system_panic.pak_api import EnemyBase
 from system_panic.model import Enemy, Vec
 class BuddingEnemy(EnemyBase):
+    def spawn_position(self, world): return Vec(100, 100)
     def sprite(self, world, entity=None): return None
     def create(self, world, identity, position):
         enemy = Enemy(id=identity, pos=Vec(position), health=7, max_health=7, radius=8)
@@ -129,6 +130,73 @@ class BuddingEnemy(EnemyBase):
         self.assertEqual((world.score, world.kills), (710, 4))
         self.assertFalse(hasattr(EnemyBase, "family"))
         self.assertFalse(hasattr(EnemyBase, "splits"))
+
+    def test_host_adds_no_heal_protection_or_defeat_effect_to_a_custom_pilot(self):
+        world = self.game("pilot", '''
+from system_panic.pak_api import PilotBase
+from system_panic.model import Pilot, Vec
+class BarePilot(PilotBase):
+    def sprite(self, world, entity=None): return None
+    def create(self, world, position): return Pilot(pos=Vec(position), health=17, max_health=17)
+    def update(self, world, dt, control): pass
+''')
+        self.assertEqual(world.player.invulnerable, 0)
+        world.player.health = 6
+        world.shuffle()
+        self.assertEqual(world.player.invulnerable, 0)
+        world.enemies.clear()
+        world.start_wave()
+        self.assertEqual((world.player.health, world.player.invulnerable), (6, 0))
+        world.player.health, world.phase, world.transition = 0, "active", 0
+        world.step(FIXED_DT, Controls())
+        self.assertEqual(world.phase, "dead")
+        self.assertFalse(world.particles)
+        self.assertFalse(hasattr(world, "factor"))
+        self.assertFalse(hasattr(world, "aim"))
+
+    def test_enemy_owns_spawn_policy_and_level_rewards_once(self):
+        world = self.game("enemy", '''
+from system_panic.pak_api import EnemyBase
+from system_panic.model import Enemy, Vec
+class QuietEnemy(EnemyBase):
+    def init(self): self.starts = []; self.clears = []
+    def sprite(self, world, entity=None): return None
+    def spawn_position(self, world): return Vec(50, 50)
+    def create(self, world, identity, position): return Enemy(id=identity, pos=Vec(position))
+    def advance_enemy(self, world, enemy, dt): pass
+    def on_level_start(self, world): self.starts.append(world.wave)
+    def on_level_complete(self, world):
+        self.clears.append(world.wave)
+        world.score += 11
+''')
+        part = world.component("enemy")
+        self.assertEqual(world.enemies[0].pos, Vec(50, 50))
+        world.enemies[0].health, world.phase = 0, "active"
+        world.step(FIXED_DT, Controls())
+        self.assertEqual((world.phase, world.score, part.clears), ("clear", 11, [1]))
+        for _ in range(125):
+            world.step(FIXED_DT, Controls())
+        self.assertEqual((world.wave, part.starts, world.score), (2, [1, 2], 11))
+        self.assertEqual([e.pos for e in world.enemies], [Vec(50, 50), Vec(50, 50)])
+
+    def test_component_level_hooks_are_optional_and_weapon_selects_aim(self):
+        world = self.game("weapon", '''
+from system_panic.pak_api import WeaponBase
+from system_panic.model import Vec
+class OwnAim(WeaponBase):
+    def init(self): self.aimed = []; self.started = []
+    def sprite(self, world, entity=None): return None
+    def on_level_start(self, world): self.started.append(world.wave)
+    def on_shuffle(self, world, changed): self.aimed.append(changed)
+    def update(self, world, dt, control):
+        if control.fire: world.player.angle = 2.1
+''')
+        world.phase = "active"
+        world.step(FIXED_DT, Controls(fire=True))
+        self.assertEqual(world.player.angle, 2.1)
+        world.shuffle()
+        self.assertEqual(world.component("weapon").started, [1])
+        self.assertEqual(world.component("weapon").aimed, [frozenset()])
 
     def test_host_does_not_move_expire_bounce_or_classify_a_custom_projectile(self):
         class Teleport(ProjectileBase):

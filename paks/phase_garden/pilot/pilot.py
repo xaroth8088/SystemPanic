@@ -20,6 +20,18 @@ class PhaseGardenPilot(PilotBase):
     def create(self, world, position):
         return Pilot(pos=Vec(position), health=100, max_health=100, radius=11, angle=-math.pi / 2)
 
+    def on_level_start(self, world):
+        # Recovery and arrival protection are this pilot's rules, not host defaults.
+        if world.wave > 1:
+            world.player.health = min(world.player.max_health, world.player.health + 15)
+        world.player.invulnerable = max(world.player.invulnerable, 2.)
+
+    def on_shuffle(self, world, changed):
+        world.player.invulnerable = max(world.player.invulnerable, 1.5)
+
+    def on_death(self, world):
+        world.burst(world.player.pos, world.pak("pilot").color, 35)
+
     def sprite(self, world, entity=None):
         return self.spritesheet
 
@@ -66,3 +78,14 @@ class PhaseGardenPilot(PilotBase):
             world.events.append("hurt")
             world.burst(world.player.pos, (255, 110, 130), 14)
         return applied
+
+    def demo_controls(self, world):
+        # Ordinary-input QA policy, kept with this pilot's movement rules.
+        from system_panic.model import Controls, normalized
+        if not world.enemies:
+            return Controls(fire=True)
+        target = min(world.enemies, key=lambda e: e.pos.distance_squared_to(world.player.pos))
+        delta = target.pos - world.player.pos
+        direction = normalized(delta)
+        movement = direction if delta.length() > 210 else Vec(-direction.y, direction.x)
+        return Controls(movement.x, movement.y, True, int(world.time * 3) % 11 == 0)

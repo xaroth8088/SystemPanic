@@ -5,9 +5,10 @@ from system_panic.pak_api import ProjectileBase
 
 
 class HostileShot(ProjectileBase):
-    def __init__(self, position, velocity):
+    def __init__(self, position, velocity, damage):
         super().__init__(position, velocity, 5)
         self._remaining = 7.
+        self._damage = damage
 
     def update(self, world, dt):
         self._remaining -= dt
@@ -19,7 +20,7 @@ class HostileShot(ProjectileBase):
             self.alive = False
             return
         if self.pos.distance_to(world.player.pos) < world.player.radius + self.radius:
-            world.hit_player(12 * world.factor)
+            world.hit_player(self._damage)
             self.alive = False
 
     def draw(self, graphics, surface, world):

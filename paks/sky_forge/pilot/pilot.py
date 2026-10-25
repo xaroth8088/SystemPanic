@@ -22,6 +22,18 @@ class SkyForgePilot(PilotBase):
     def create(self, world, position):
         return Pilot(pos=Vec(position), health=100, max_health=100, radius=11, angle=-math.pi / 2)
 
+    def on_level_start(self, world):
+        # Recovery and arrival protection are this pilot's rules, not host defaults.
+        if world.wave > 1:
+            world.player.health = min(world.player.max_health, world.player.health + 15)
+        world.player.invulnerable = max(world.player.invulnerable, 2.)
+
+    def on_shuffle(self, world, changed):
+        world.player.invulnerable = max(world.player.invulnerable, 1.5)
+
+    def on_death(self, world):
+        world.burst(world.player.pos, world.pak("pilot").color, 35)
+
     def sprite(self, world, entity=None):
         return self.spritesheet
 
@@ -63,6 +75,8 @@ class SkyForgePilot(PilotBase):
             self._jumps, self._grounded = 0, True
 
     def demo_controls(self, world):
+        if not world.enemies:
+            return Controls(fire=True)
         p = world.player
         target = min(world.enemies, key=lambda e: e.pos.distance_squared_to(p.pos))
         delta = target.pos - p.pos

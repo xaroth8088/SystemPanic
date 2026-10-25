@@ -1,4 +1,4 @@
-"""Discover API 2 component folders and concrete ABC implementations."""
+"""Discover API 4 component folders and concrete ABC implementations."""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -20,7 +20,7 @@ from .model import Pak, ComponentSpec, CHANNELS
 from ..pak_api import ComponentBase, PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase, ObstaclesBase, ImageAsset, SoundAsset, SpriteFrame
 from ..resources import pak_roots
 
-API_VERSION = 3
+API_VERSION = 4
 BASES = dict(zip(CHANNELS, (PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase, ObstaclesBase)))
 FILENAMES = {c: c + ".py" for c in CHANNELS} | {"obstacles":"obstacle.py"}
 _generation = itertools.count()

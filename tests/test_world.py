@@ -99,10 +99,10 @@ class WorldTests(unittest.TestCase):
         for combo in itertools.product(PAKS, repeat=4):
             world = World(Preferences(shuffle_channels=[]), seed=3)
             world.mix.update({channel: pak.id for channel, pak in zip(GAMEPLAY_CHANNELS, combo)})
-            world.cover = world.component("obstacles").build()
+            world.cover = world.component("obstacles").build(world)
             world.player.pos = world.safe_position(world.player.pos, 13)
             world.enemies.clear()
-            world.spawn_enemy(world.safe_position(Vec(700, 220), avoid_player=True))
+            world.spawn_enemy(world.safe_position(Vec(700, 220), away_from=world.player.pos, clearance=160))
             world.phase = "active"
             initial_health = sum(e.health for e in world.enemies) + sum(c.health for c in world.cover)
             for _ in range(20):

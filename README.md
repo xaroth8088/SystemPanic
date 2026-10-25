@@ -30,7 +30,7 @@ Source also runs on Linux/macOS with Python 3.12+ and Pygame; the standalone bui
 | Phase Garden | Rhythmic step-dashes and blinking through cover | Four-target chain lightning | Teleporting spectral flowers |
 | Orbit Keeper | Angular/radial orbital movement and shield reversal | Returning glaives | Circling sentinels |
 
-Each Pak has its own arena geometry, original generated sprites and soundtrack. All cover can be destroyed and every weapon can reach each enemy family. Shared engine state survives a shuffle; opaque movement/AI state does not.
+Each Pak has its own procedural arena geometry, original generated sprites and soundtrack. Obstacles regenerate every level, and enemies gain speed, damage and more advanced tactics as levels rise. All cover can be destroyed and every weapon can reach each enemy family. Shared engine state survives a shuffle; opaque movement/AI state does not.
 
 ## Dynamic Paks
 
