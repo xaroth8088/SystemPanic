@@ -537,9 +537,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.73,
+      "seconds_to_generate": 6.42,
+      "inference_duration": 1,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "neon_breach_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 711,
+          "prompt": "bright glass pinball launch with a resonant metallic ping, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.73,
+          "file": "assets/audio/local/neon_breach_shot.wav",
+          "sha256": "58ae493659a9af1ed4f02ddf2b99d8144658e8030550f42194f128dfe3f797f3"
+        },
+        {
+          "id": "neon_breach_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 711,
+          "prompt": "bright glass pinball launch with a resonant metallic ping, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 6.17,
+          "inference_duration": 1,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/neon_breach_shot.wav",
+          "sha256": "f5bedcd6c88c53094b34234e2b12d4cf1582875572afc08d71de0526debebda9"
+        }
+      ],
       "file": "assets/audio/local/neon_breach_shot.wav",
-      "sha256": "58ae493659a9af1ed4f02ddf2b99d8144658e8030550f42194f128dfe3f797f3"
+      "sha256": "872e28bae3498b1cd4be5660c3c18e6e38f99083dc70daad15244859e29d074f"
     },
     {
       "id": "neon_breach_special",
@@ -555,9 +597,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.69,
+      "seconds_to_generate": 6.67,
+      "inference_duration": 2,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "neon_breach_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 712,
+          "prompt": "magnetic sci fi paddle dash whoosh, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.69,
+          "file": "assets/audio/local/neon_breach_special.wav",
+          "sha256": "bb33aa99d498233550d7e921a2142b1670c5c033b0f1964c24d3c3b283bdc137"
+        },
+        {
+          "id": "neon_breach_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 712,
+          "prompt": "magnetic sci fi paddle dash whoosh, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 6.56,
+          "inference_duration": 2,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/neon_breach_special.wav",
+          "sha256": "849b62b81fbced82622307487c4f45faad648bae3794ab90b92b3d1c95a0517a"
+        }
+      ],
       "file": "assets/audio/local/neon_breach_special.wav",
-      "sha256": "bb33aa99d498233550d7e921a2142b1670c5c033b0f1964c24d3c3b283bdc137"
+      "sha256": "911888462c7c0944a98a12def25411237c1a5b8d26385ed2427201a235a53865"
     },
     {
       "id": "maze_muncher",
@@ -591,9 +675,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.64,
+      "seconds_to_generate": 6.16,
+      "inference_duration": 1,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "maze_muncher_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 714,
+          "prompt": "short cartoon electronic mechanical chomp with a sparkling pop, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.64,
+          "file": "assets/audio/local/maze_muncher_shot.wav",
+          "sha256": "567fa6bd9d375b6c311ba0be6207ee0893b7a28718a2f1709b3a98d6cac85773"
+        },
+        {
+          "id": "maze_muncher_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 714,
+          "prompt": "short cartoon electronic mechanical chomp with a sparkling pop, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 6.05,
+          "inference_duration": 1,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/maze_muncher_shot.wav",
+          "sha256": "bd5e678b14c7e1e23bbac7d24870fb4e4c63ee4c953900842483075682e01ee2"
+        }
+      ],
       "file": "assets/audio/local/maze_muncher_shot.wav",
-      "sha256": "567fa6bd9d375b6c311ba0be6207ee0893b7a28718a2f1709b3a98d6cac85773"
+      "sha256": "bf61310177e6d23e6fd55eca1b1a9124bff7e70ee18b1057ed181b69e092c8dc"
     },
     {
       "id": "maze_muncher_special",
@@ -609,9 +735,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.69,
+      "seconds_to_generate": 6.84,
+      "inference_duration": 2,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "maze_muncher_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 715,
+          "prompt": "ascending playful arcade energy power-up trill, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.69,
+          "file": "assets/audio/local/maze_muncher_special.wav",
+          "sha256": "b69edaae8034aae2fb6a9211bc78abdcd966fd950713c827aa3e1c79a057b646"
+        },
+        {
+          "id": "maze_muncher_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 715,
+          "prompt": "ascending playful arcade energy power-up trill, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 5.59,
+          "inference_duration": 2,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/maze_muncher_special.wav",
+          "sha256": "41d88dbe029905a2fdad5292107add185a59621be7d462cb37fb41f843d57adf"
+        }
+      ],
       "file": "assets/audio/local/maze_muncher_special.wav",
-      "sha256": "b69edaae8034aae2fb6a9211bc78abdcd966fd950713c827aa3e1c79a057b646"
+      "sha256": "502ab2c34348822887dea681c23d4b3ab69cd22d287987d2ba6c225810f13abd"
     },
     {
       "id": "burrow_patrol",
@@ -645,9 +813,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.89,
+      "seconds_to_generate": 6.16,
+      "inference_duration": 1,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "burrow_patrol_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 717,
+          "prompt": "pneumatic air pump puff followed by a rubber bubble pop, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.89,
+          "file": "assets/audio/local/burrow_patrol_shot.wav",
+          "sha256": "75923c5571ca1a26b114f7de9c07cadd16e96e8478b264b0a8f337a6ccb2fb08"
+        },
+        {
+          "id": "burrow_patrol_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 717,
+          "prompt": "pneumatic air pump puff followed by a rubber bubble pop, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 6.06,
+          "inference_duration": 1,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/burrow_patrol_shot.wav",
+          "sha256": "b4dc94980f0bd8b5033e80f31d3ddb8409129e683c108b9ab935a04d1463d4a9"
+        }
+      ],
       "file": "assets/audio/local/burrow_patrol_shot.wav",
-      "sha256": "75923c5571ca1a26b114f7de9c07cadd16e96e8478b264b0a8f337a6ccb2fb08"
+      "sha256": "0b106caa1dbda2d288a1a781c864f5d1d3a018903e95f65609537d31900cbd1c"
     },
     {
       "id": "burrow_patrol_special",
@@ -663,9 +873,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.78,
+      "seconds_to_generate": 6.59,
+      "inference_duration": 2,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "burrow_patrol_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 718,
+          "prompt": "short powerful underground drilling burst and crystal crunch, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.78,
+          "file": "assets/audio/local/burrow_patrol_special.wav",
+          "sha256": "282cc84aa3c8d7f1bd6122fb7295cff73c9bd5c4001ea2d93beabac555325191"
+        },
+        {
+          "id": "burrow_patrol_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 718,
+          "prompt": "short powerful underground drilling burst and crystal crunch, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 6.42,
+          "inference_duration": 2,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/burrow_patrol_special.wav",
+          "sha256": "e1dccb820e746986e8c0034ea23920caa74139c0650bbfca2105557b1959c292"
+        }
+      ],
       "file": "assets/audio/local/burrow_patrol_special.wav",
-      "sha256": "282cc84aa3c8d7f1bd6122fb7295cff73c9bd5c4001ea2d93beabac555325191"
+      "sha256": "d0ce8e6e40934ae04b7dc90379773ee473559e30e1d9e859643333ba1c830cf2"
     },
     {
       "id": "vector_coil",
@@ -699,9 +951,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.55,
+      "seconds_to_generate": 6.36,
+      "inference_duration": 1,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "vector_coil_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 720,
+          "prompt": "crisp four-tone laser prism zap, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.55,
+          "file": "assets/audio/local/vector_coil_shot.wav",
+          "sha256": "a36b9c0a956f38a3ef25566f3d0f6edf26ed402650d22494bd0715b1c4e76e83"
+        },
+        {
+          "id": "vector_coil_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 720,
+          "prompt": "crisp four-tone laser prism zap, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 5.66,
+          "inference_duration": 1,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/vector_coil_shot.wav",
+          "sha256": "b83e8a84163c0b529c9b092df8b1ad4959a7b33abd8c59ffc28ec652623d920f"
+        }
+      ],
       "file": "assets/audio/local/vector_coil_shot.wav",
-      "sha256": "a36b9c0a956f38a3ef25566f3d0f6edf26ed402650d22494bd0715b1c4e76e83"
+      "sha256": "615966edd446999f84caf2f202732b27515a5e8b590c95e867ceeb2a61b55001"
     },
     {
       "id": "vector_coil_special",
@@ -717,9 +1011,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.92,
+      "seconds_to_generate": 6.48,
+      "inference_duration": 2,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "vector_coil_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 721,
+          "prompt": "short geometric electronic reversal stutter and energy shield hum, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.92,
+          "file": "assets/audio/local/vector_coil_special.wav",
+          "sha256": "5030a4324b1d20d8f960a6bd4818a8dd699397b7b2d08b482ac7be2f2b4009c0"
+        },
+        {
+          "id": "vector_coil_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 721,
+          "prompt": "short geometric electronic reversal stutter and energy shield hum, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 6.52,
+          "inference_duration": 2,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/vector_coil_special.wav",
+          "sha256": "06423f608d10ef31fa359f3a550151235678592c641c3ef278796fce8b254e01"
+        }
+      ],
       "file": "assets/audio/local/vector_coil_special.wav",
-      "sha256": "5030a4324b1d20d8f960a6bd4818a8dd699397b7b2d08b482ac7be2f2b4009c0"
+      "sha256": "d38ff4cc8aa559739a248f9ec935875bed1f8743da74b8a7ba08290d3ec05ac1"
     },
     {
       "id": "star_bastion",
@@ -753,9 +1089,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.77,
+      "seconds_to_generate": 7.05,
+      "inference_duration": 1,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "star_bastion_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 723,
+          "prompt": "two tight vintage sci fi laser pulses, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.77,
+          "file": "assets/audio/local/star_bastion_shot.wav",
+          "sha256": "936621f82492edd202a76043062e316abd45e7a032c985652d4c6676006da807"
+        },
+        {
+          "id": "star_bastion_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 723,
+          "prompt": "two tight vintage sci fi laser pulses, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 6.22,
+          "inference_duration": 1,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/star_bastion_shot.wav",
+          "sha256": "390bf62e46700ed02b0b68f3bf6b24820453797ea35e9b20c356b488be2017f4"
+        }
+      ],
       "file": "assets/audio/local/star_bastion_shot.wav",
-      "sha256": "936621f82492edd202a76043062e316abd45e7a032c985652d4c6676006da807"
+      "sha256": "cb43e8bdc1363f91df3369a61b6d44b9b92be061621dc6eb20e0aaf0c8dceb3f"
     },
     {
       "id": "star_bastion_special",
@@ -771,9 +1149,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.61,
+      "seconds_to_generate": 6.8,
+      "inference_duration": 2,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "star_bastion_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 724,
+          "prompt": "short spaceship barrel roll engine swoosh, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.61,
+          "file": "assets/audio/local/star_bastion_special.wav",
+          "sha256": "0730b267f0286a1444bb50fe48d5845411514a372f649472830baf762277ff9d"
+        },
+        {
+          "id": "star_bastion_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 724,
+          "prompt": "short spaceship barrel roll engine swoosh, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 5.74,
+          "inference_duration": 2,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/star_bastion_special.wav",
+          "sha256": "a0d978ee4e94e7954d22b156765e08d6034bce5ae26175c0999506579180f5cb"
+        }
+      ],
       "file": "assets/audio/local/star_bastion_special.wav",
-      "sha256": "0730b267f0286a1444bb50fe48d5845411514a372f649472830baf762277ff9d"
+      "sha256": "78e25ade0d454095f7d7d5332341c78a3f307af0e6565217f6a06c21624d7c44"
     },
     {
       "id": "tide_hopper",
@@ -807,9 +1227,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.58,
+      "seconds_to_generate": 6.83,
+      "inference_duration": 1,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "tide_hopper_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 726,
+          "prompt": "spring-loaded metallic harpoon launch with a little wet splash, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.58,
+          "file": "assets/audio/local/tide_hopper_shot.wav",
+          "sha256": "7ada125056a830f649754cda528ff01036f64a28b49ca6839941afaad80650ff"
+        },
+        {
+          "id": "tide_hopper_shot",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 0.8,
+          "seed": 726,
+          "prompt": "spring-loaded metallic harpoon launch with a little wet splash, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 6.12,
+          "inference_duration": 1,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/tide_hopper_shot.wav",
+          "sha256": "8f726c3b23e7199ae5ac3dae6af8310aee01821e00646f94910bc9fef24ca278"
+        }
+      ],
       "file": "assets/audio/local/tide_hopper_shot.wav",
-      "sha256": "7ada125056a830f649754cda528ff01036f64a28b49ca6839941afaad80650ff"
+      "sha256": "0b2c662a965409d270be7a567adac2888cb7529f7d4ddc3dff82606320dcd2ba"
     },
     {
       "id": "tide_hopper_special",
@@ -825,9 +1287,51 @@
       "model_repository": "stabilityai/stable-audio-3-optimized",
       "status": "generated",
       "offline": true,
-      "seconds_to_generate": 4.62,
+      "seconds_to_generate": 6.05,
+      "inference_duration": 2,
+      "output_processing": "Whole-second inference; full source retained for onset trimming in mastering",
+      "previous_generations": [
+        {
+          "id": "tide_hopper_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 727,
+          "prompt": "quick springy frog hop across water with a digital chirp, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 4.62,
+          "file": "assets/audio/local/tide_hopper_special.wav",
+          "sha256": "03ce9c017f4ed318f355923ba570e795ecf0503b96b65b894af981bd56478bab"
+        },
+        {
+          "id": "tide_hopper_special",
+          "kind": "sfx",
+          "model": "small-sfx",
+          "duration": 1.2,
+          "seed": 727,
+          "prompt": "quick springy frog hop across water with a digital chirp, isolated game sound effect on silence, no music or speech.",
+          "provider": "Stable Audio 3 local LiteRT",
+          "backend": "CPU / XNNPACK / w8a8",
+          "repository": "https://github.com/Stability-AI/stable-audio-3",
+          "revision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+          "model_repository": "stabilityai/stable-audio-3-optimized",
+          "status": "generated",
+          "offline": true,
+          "seconds_to_generate": 5.66,
+          "inference_duration": 2,
+          "output_processing": "Whole-second inference; PCM trimmed to requested duration",
+          "file": "assets/audio/local/tide_hopper_special.wav",
+          "sha256": "54485baaccb048c29269999ad9e39774a9f69a13eee34f1e37c5ef5569a83180"
+        }
+      ],
       "file": "assets/audio/local/tide_hopper_special.wav",
-      "sha256": "03ce9c017f4ed318f355923ba570e795ecf0503b96b65b894af981bd56478bab"
+      "sha256": "ff6ac8e3774c01e8dabee794233c832c3418c381a5b8febeabf0675f95c5a1dd"
     },
     {
       "file": "assets/audio/select.wav",
@@ -849,18 +1353,18 @@
       "file": "assets/audio/production/burrow_patrol_shot.ogg",
       "source": "assets/audio/local/burrow_patrol_shot.wav",
       "operation": "trimmed, faded and peak normalized",
-      "seconds": 0.8,
+      "seconds": 0.185,
       "sample_rate": 44100,
-      "sha256": "3a222693fe156a24cc155fcd09fcc36693d54880fce2e3c088035c727f0ae473",
+      "sha256": "b8605815320b7c7277a3bc4a8d289f1173e954963a409537bc52f1ee86aef125",
       "status": "derived"
     },
     {
       "file": "assets/audio/production/burrow_patrol_special.ogg",
       "source": "assets/audio/local/burrow_patrol_special.wav",
       "operation": "trimmed, faded and peak normalized",
-      "seconds": 1.2,
+      "seconds": 0.912,
       "sample_rate": 44100,
-      "sha256": "1c32b710b49614bc809b725354337824b209ad1265bd3c9ec19c93ee26dc60ab",
+      "sha256": "d5d9d5e40a7676944be5f61d1ebe7d2a0c82bacb8afc3bbbdaa48041e8bef271",
       "status": "derived"
     },
     {
@@ -912,18 +1416,18 @@
       "file": "assets/audio/production/maze_muncher_shot.ogg",
       "source": "assets/audio/local/maze_muncher_shot.wav",
       "operation": "trimmed, faded and peak normalized",
-      "seconds": 0.8,
+      "seconds": 0.069,
       "sample_rate": 44100,
-      "sha256": "13cfe0ca3ffe8efe8cd96258af4a39b7f13c706afb68c07ee2338f00313b4416",
+      "sha256": "bb17c28984f0e21787446f972b3b2168bcc4c380755df8801fac14f7fec7c06b",
       "status": "derived"
     },
     {
       "file": "assets/audio/production/maze_muncher_special.ogg",
       "source": "assets/audio/local/maze_muncher_special.wav",
       "operation": "trimmed, faded and peak normalized",
-      "seconds": 1.2,
+      "seconds": 0.887,
       "sample_rate": 44100,
-      "sha256": "c7759e78006c8629d9b1fd09c9040189ed256312498dd12b03612b6cb304e181",
+      "sha256": "6d56612353b76047616466f32934f22c514f04ca390ae04903515f27c396acdf",
       "status": "derived"
     },
     {
@@ -939,9 +1443,9 @@
       "file": "assets/audio/production/neon_breach_shot.ogg",
       "source": "assets/audio/local/neon_breach_shot.wav",
       "operation": "trimmed, faded and peak normalized",
-      "seconds": 0.8,
+      "seconds": 0.343,
       "sample_rate": 44100,
-      "sha256": "77e109ba4e24bd19065a9d7e8af33550835a70574ae1e03424d7fe870210f286",
+      "sha256": "631118e54b1ee9d40d8e78d9e5403c652069dff214fc0267c880c55279323dff",
       "status": "derived"
     },
     {
@@ -950,7 +1454,7 @@
       "operation": "trimmed, faded and peak normalized",
       "seconds": 1.2,
       "sample_rate": 44100,
-      "sha256": "c0ba3208e45b3c2182c6734c0d79c18c422405a8108b2c072b6239217472b18c",
+      "sha256": "bac39b616ceae500032030a5ade105300ae7a1067a9a439b82d7cbdbe5442992",
       "status": "derived"
     },
     {
@@ -1029,9 +1533,9 @@
       "file": "assets/audio/production/star_bastion_shot.ogg",
       "source": "assets/audio/local/star_bastion_shot.wav",
       "operation": "trimmed, faded and peak normalized",
-      "seconds": 0.8,
+      "seconds": 0.274,
       "sample_rate": 44100,
-      "sha256": "aaa0e3052a99d6b5999d6fbeac3b588e29312a7a7e6d3ee2f05293736b4f5a59",
+      "sha256": "bd03709c09ae90c425b953e0c8ded0c65cfca4c70eb571ef9c67f8a9b4e397de",
       "status": "derived"
     },
     {
@@ -1040,7 +1544,7 @@
       "operation": "trimmed, faded and peak normalized",
       "seconds": 1.2,
       "sample_rate": 44100,
-      "sha256": "9c55895b31080c298ccc810a8c2d02b6c10fdfec9548ee0b00d19da439db071e",
+      "sha256": "94a2d0bbb5ba9ea2e4450f28d347973e3d531b2b018c0a27b88a84917ba5717e",
       "status": "derived"
     },
     {
@@ -1056,18 +1560,18 @@
       "file": "assets/audio/production/tide_hopper_shot.ogg",
       "source": "assets/audio/local/tide_hopper_shot.wav",
       "operation": "trimmed, faded and peak normalized",
-      "seconds": 0.8,
+      "seconds": 0.292,
       "sample_rate": 44100,
-      "sha256": "8fe166aecb31b5363ceca6d7ebb6b528b79df16593bc88309cb811132ab1dd59",
+      "sha256": "44b6f11ee0926ebe94466a25463bd2ca2eade10d95caf056a7b6e6bfe8aa5621",
       "status": "derived"
     },
     {
       "file": "assets/audio/production/tide_hopper_special.ogg",
       "source": "assets/audio/local/tide_hopper_special.wav",
       "operation": "trimmed, faded and peak normalized",
-      "seconds": 1.2,
+      "seconds": 0.955,
       "sample_rate": 44100,
-      "sha256": "a69056b2955b71c9c75e60e9379361b94f5f81600fadc61d3f3be6f9e5b452ab",
+      "sha256": "b648ab668d4242ad7fb0a31480a80facfd98db597913d7a1d8ad3675ee2f9936",
       "status": "derived"
     },
     {
@@ -1083,9 +1587,9 @@
       "file": "assets/audio/production/vector_coil_shot.ogg",
       "source": "assets/audio/local/vector_coil_shot.wav",
       "operation": "trimmed, faded and peak normalized",
-      "seconds": 0.8,
+      "seconds": 0.273,
       "sample_rate": 44100,
-      "sha256": "597c72634abcdb60629f8a7d89ee5dcf94cb5dfaede5ad9205e6fbc8ffea3d11",
+      "sha256": "f0aa881343241e6dbf73c800d2b860c2a7ba62b5451cc0e5225d8f076d0c30aa",
       "status": "derived"
     },
     {
@@ -1094,7 +1598,7 @@
       "operation": "trimmed, faded and peak normalized",
       "seconds": 1.2,
       "sample_rate": 44100,
-      "sha256": "9e0a7ef584aeb87c85baf1ad3b55a8973bbc25189f5e3b75c449ca2fd7b42b36",
+      "sha256": "f1a36f145239cfeef8a11084ccc0051408ab9e9c4cc41f5a038e725576b46602",
       "status": "derived"
     },
     {
@@ -1488,14 +1992,14 @@
       "file": "paks/burrow_patrol/weapon/shot.ogg",
       "source": "assets/audio/production/burrow_patrol_shot.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "3a222693fe156a24cc155fcd09fcc36693d54880fce2e3c088035c727f0ae473",
+      "sha256": "b8605815320b7c7277a3bc4a8d289f1173e954963a409537bc52f1ee86aef125",
       "status": "derived"
     },
     {
       "file": "paks/burrow_patrol/pilot/special.ogg",
       "source": "assets/audio/production/burrow_patrol_special.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "1c32b710b49614bc809b725354337824b209ad1265bd3c9ec19c93ee26dc60ab",
+      "sha256": "d5d9d5e40a7676944be5f61d1ebe7d2a0c82bacb8afc3bbbdaa48041e8bef271",
       "status": "derived"
     },
     {
@@ -1544,14 +2048,14 @@
       "file": "paks/maze_muncher/weapon/shot.ogg",
       "source": "assets/audio/production/maze_muncher_shot.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "13cfe0ca3ffe8efe8cd96258af4a39b7f13c706afb68c07ee2338f00313b4416",
+      "sha256": "bb17c28984f0e21787446f972b3b2168bcc4c380755df8801fac14f7fec7c06b",
       "status": "derived"
     },
     {
       "file": "paks/maze_muncher/pilot/special.ogg",
       "source": "assets/audio/production/maze_muncher_special.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "c7759e78006c8629d9b1fd09c9040189ed256312498dd12b03612b6cb304e181",
+      "sha256": "6d56612353b76047616466f32934f22c514f04ca390ae04903515f27c396acdf",
       "status": "derived"
     },
     {
@@ -1600,14 +2104,14 @@
       "file": "paks/neon_breach/weapon/shot.ogg",
       "source": "assets/audio/production/neon_breach_shot.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "77e109ba4e24bd19065a9d7e8af33550835a70574ae1e03424d7fe870210f286",
+      "sha256": "631118e54b1ee9d40d8e78d9e5403c652069dff214fc0267c880c55279323dff",
       "status": "derived"
     },
     {
       "file": "paks/neon_breach/pilot/special.ogg",
       "source": "assets/audio/production/neon_breach_special.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "c0ba3208e45b3c2182c6734c0d79c18c422405a8108b2c072b6239217472b18c",
+      "sha256": "bac39b616ceae500032030a5ade105300ae7a1067a9a439b82d7cbdbe5442992",
       "status": "derived"
     },
     {
@@ -1656,14 +2160,14 @@
       "file": "paks/star_bastion/weapon/shot.ogg",
       "source": "assets/audio/production/star_bastion_shot.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "aaa0e3052a99d6b5999d6fbeac3b588e29312a7a7e6d3ee2f05293736b4f5a59",
+      "sha256": "bd03709c09ae90c425b953e0c8ded0c65cfca4c70eb571ef9c67f8a9b4e397de",
       "status": "derived"
     },
     {
       "file": "paks/star_bastion/pilot/special.ogg",
       "source": "assets/audio/production/star_bastion_special.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "9c55895b31080c298ccc810a8c2d02b6c10fdfec9548ee0b00d19da439db071e",
+      "sha256": "94a2d0bbb5ba9ea2e4450f28d347973e3d531b2b018c0a27b88a84917ba5717e",
       "status": "derived"
     },
     {
@@ -1712,14 +2216,14 @@
       "file": "paks/tide_hopper/weapon/shot.ogg",
       "source": "assets/audio/production/tide_hopper_shot.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "8fe166aecb31b5363ceca6d7ebb6b528b79df16593bc88309cb811132ab1dd59",
+      "sha256": "44b6f11ee0926ebe94466a25463bd2ca2eade10d95caf056a7b6e6bfe8aa5621",
       "status": "derived"
     },
     {
       "file": "paks/tide_hopper/pilot/special.ogg",
       "source": "assets/audio/production/tide_hopper_special.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "a69056b2955b71c9c75e60e9379361b94f5f81600fadc61d3f3be6f9e5b452ab",
+      "sha256": "b648ab668d4242ad7fb0a31480a80facfd98db597913d7a1d8ad3675ee2f9936",
       "status": "derived"
     },
     {
@@ -1768,14 +2272,14 @@
       "file": "paks/vector_coil/weapon/shot.ogg",
       "source": "assets/audio/production/vector_coil_shot.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "597c72634abcdb60629f8a7d89ee5dcf94cb5dfaede5ad9205e6fbc8ffea3d11",
+      "sha256": "f0aa881343241e6dbf73c800d2b860c2a7ba62b5451cc0e5225d8f076d0c30aa",
       "status": "derived"
     },
     {
       "file": "paks/vector_coil/pilot/special.ogg",
       "source": "assets/audio/production/vector_coil_special.ogg",
       "operation": "Unmodified mastered original local Stable Audio 3 output",
-      "sha256": "9e0a7ef584aeb87c85baf1ad3b55a8973bbc25189f5e3b75c449ca2fd7b42b36",
+      "sha256": "f1a36f145239cfeef8a11084ccc0051408ab9e9c4cc41f5a038e725576b46602",
       "status": "derived"
     }
   ]

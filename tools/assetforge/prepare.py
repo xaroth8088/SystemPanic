@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+import argparse
 import json
 import shutil
 import subprocess
@@ -18,13 +19,18 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--job", nargs="+", help="Master only these jobs; retain all other outputs and records")
+    args = parser.parse_args(argv)
     audio = ROOT / "assets/audio"
-    records = json.loads((audio / "generation.json").read_text())
+    records = json.loads((audio / "generation.json").read_text(encoding="utf-8"))
     local_records = audio / "local/generation.json"
     if local_records.is_file():
-        records.update(json.loads(local_records.read_text()))
-    derivatives = []
+        records.update(json.loads(local_records.read_text(encoding="utf-8")))
+    record_path = audio / "prepared.json"
+    previous = json.loads(record_path.read_text(encoding="utf-8")) if args.job and record_path.exists() else []
+    derivatives = {entry["file"]:entry for entry in previous}
     production = audio / "production"
     production.mkdir(exist_ok=True)
     # The final public generation job hit quota. Use a short portion of the
@@ -36,10 +42,15 @@ def main():
         start = max(0, int(np.argmax(energy[:int(sr * .8)])) - int(sr * .04))
         clip = data[start:start + int(sr * .12)]
         sf.write(select, clip, sr, subtype="PCM_16")
-    derivatives.append({"file":"assets/audio/select.wav", "source":"assets/audio/clear.wav",
-                        "operation":"120ms excerpt around the first chime transient", "sha256":digest(select)})
+    derivatives["assets/audio/select.wav"] = {"file":"assets/audio/select.wav", "source":"assets/audio/clear.wav",
+                        "operation":"120ms excerpt around the first chime transient", "sha256":digest(select)}
     sources = {path.stem:path for path in audio.glob("*.wav")}
     sources.update({path.stem:path for path in (audio / "local").glob("*.wav")})
+    if args.job:
+        unknown = set(args.job) - sources.keys()
+        if unknown:
+            parser.error("Unknown jobs: " + ", ".join(sorted(unknown)))
+        sources = {name:path for name, path in sources.items() if name in args.job}
     for path in sorted(sources.values(), key=lambda path: path.stem):
         data, sr = sf.read(path, always_2d=True)
         is_music = path.stem in {job["id"] for job in records.values() if job.get("kind") == "music"}
@@ -58,8 +69,8 @@ def main():
                 start = max(0, int(active[0]) - int(sr * .012))
                 end = min(len(data), int(active[-1]) + int(sr * .035))
                 data = data[start:end]
-            if path.stem == "shot":
-                data = data[:int(sr * .24)]
+            target_seconds = .24 if path.stem == "shot" else records[path.stem]["duration"]
+            data = data[:round(sr * target_seconds)]
             fade = min(int(sr * .015), len(data) // 4)
             if fade:
                 data[:fade] *= np.linspace(0, 1, fade)[:, None]
@@ -82,11 +93,13 @@ def main():
         # later WAV-only mastering run cannot accidentally play an older OGG.
         alternate = output.with_suffix(".wav" if output.suffix == ".ogg" else ".ogg")
         alternate.unlink(missing_ok=True)
-        derivatives.append({"file":str(output.relative_to(ROOT)).replace("\\", "/"),
+        relative = output.relative_to(ROOT).as_posix()
+        derivatives.pop(alternate.relative_to(ROOT).as_posix(), None)
+        derivatives[relative] = {"file":relative,
                             "source":str(path.relative_to(ROOT)).replace("\\", "/"),
                             "operation":"peak normalized; music loop crossfade" if is_music else "trimmed, faded and peak normalized",
-                            "seconds":round(len(data) / sr, 3), "sample_rate":sr, "sha256":digest(output)})
-    (audio / "prepared.json").write_text(json.dumps(derivatives, indent=2) + "\n")
+                            "seconds":round(len(data) / sr, 3), "sample_rate":sr, "sha256":digest(output)}
+    record_path.write_text(json.dumps(list(derivatives.values()), indent=2) + "\n", encoding="utf-8")
     print("Prepared", len(derivatives), "production audio assets/derivatives")
 
 
