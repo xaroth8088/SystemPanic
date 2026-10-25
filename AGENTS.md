@@ -8,7 +8,7 @@ This is the entry point to the project's agent wiki. Read the relevant linked pa
 - Progression is always endless: level one starts with one enemy, and each new level adds exactly one initial enemy. There is no finale, level cap, finite-run preference or scripted boss-wave replacement. Pak-specific mid-level spawning (such as asteroid fragments) remains part of that Pak's mechanics.
 - The platform arena is one Pak, not the overall design direction.
 - Twelve complete Paks. Original six: Signal Runner, Void Drifter, Iron Circuit, Sky Forge, Phase Garden, Orbit Keeper. Classic-inspired expansion: Neon Breach, Maze Muncher, Burrow Patrol, Vector Coil, Star Bastion, Tide Hopper.
-- Players can select enabled Paks, solo/coherent/component remix, shuffle interval, difficulty, effects, fullscreen and audio levels. No online catalog.
+- Players can select enabled Paks, solo/coherent/component remix, shuffle interval, difficulty, effects, fullscreen, rendering output resolution and audio levels. No online catalog.
 - Original generated art and audio are produced by development tools, never generated or downloaded by the game.
 
 ## Wiki

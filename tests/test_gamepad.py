@@ -168,7 +168,7 @@ class GamepadTests(unittest.TestCase):
 
     def test_directions_reach_every_visible_button_on_every_screen(self):
         self.app.start()
-        for route in ("home", "settings", "controls", "help", "credits", "paks", "pause", "outcome"):
+        for route in ("home", "settings", "display", "controls", "help", "credits", "paks", "pause", "outcome"):
             with self.subTest(route=route):
                 self.app.navigate(route)
                 self.app.draw()

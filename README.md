@@ -102,7 +102,7 @@ The library's **Enabled** buttons control the remix pool. **Play Solo** starts a
 
 Periodic randomization pauses for a quarter-second screen glitch, then resumes automatically. Clearing a level instead shows a one-second **Level Cleared** message before the next level starts, without another readiness screen. The initial ready introduction appears only when starting a new run.
 
-Preferences include coherent/component shuffle, 5–30 second intervals, component locks, three difficulty levels, audio levels, aim assistance, reduced motion and fullscreen. Progression is always endless; older finite-run settings are ignored. Gameplay changes apply to the next run; audio/display changes apply immediately. Preferences and best score save to `%LOCALAPPDATA%/SystemPanic/preferences.json` on Windows, or the platform's user data directory elsewhere.
+Preferences include coherent/component shuffle, 5–30 second intervals, component locks, three difficulty levels, audio levels, aim assistance, reduced motion and fullscreen. Music and effects buttons adjust by **5 percentage points**. **Preferences → Display** selects windowed/fullscreen output and a saved rendering resolution, from 960 × 600 through 3840 × 2160. Automatic keeps a 1280 × 800 window or the desktop resolution in fullscreen. Scaling preserves the aspect ratio and field of view; it does not change the gamefield or simulation resolution. Progression is always endless; older finite-run settings are ignored. Gameplay changes apply to the next run; audio/display changes apply immediately. Preferences and best score save to `%LOCALAPPDATA%/SystemPanic/preferences.json` on Windows, or the platform's user data directory elsewhere.
 
 ```sh
 python play.py --solo void_drifter --seed 24

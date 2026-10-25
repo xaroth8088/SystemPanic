@@ -148,6 +148,27 @@ def exercise(app, output):
         press(A)
         assert app.route == "settings"
         snapshot("settings")
+        walk("music-")
+        before_volume = app.prefs.music
+        press(A)
+        assert app.prefs.music == round(max(0, before_volume-.05), 2)
+        walk("effects+")
+        before_volume = app.prefs.effects
+        press(A)
+        assert app.prefs.effects == round(min(1, before_volume+.05), 2)
+        walk("display")
+        press(A)
+        assert app.route == "display"
+        walk("resolution:1280x720")
+        press(A)
+        assert app.window.get_size() == (1280, 720)
+        assert app.canvas.get_size() == (1280, 800) and app.arena_surface.get_size() == (960, 480)
+        assert app.store.load().render_resolution == "1280x720"
+        snapshot("display")
+        walk("resolution:auto")
+        press(A)
+        press(B)
+        assert app.route == "settings"
         walk("controls")
         press(A)
         assert app.route == "controls"
@@ -241,6 +262,7 @@ def exercise(app, output):
         press(A)
         assert app.route == "game" and app.world.solo == "signal_runner" and app.world.score == 0
         return {"native_sdl_virtual_controller": True, "physical_controllers_seen": physical_count,
+                "display_resolution_ui": True, "fixed_internal_surfaces": True, "five_percent_volume_controls": True,
                 "stick_dpad_identical_directions": 8, "stick_magnitude_has_no_effect": True,
                 "gamepad_only_menu_paths": True, "preferences_saved": True, "nested_back": True,
                 "pak_selection": True, "solo_inputs": runs, "disconnect_pauses": True,

@@ -10,6 +10,9 @@ import tempfile
 from .paks import get_catalog, CHANNELS
 from .resources import data_root
 
+RENDER_RESOLUTIONS = ("auto", "960x600", "1024x768", "1280x720", "1280x800", "1600x900",
+                      "1600x1000", "1920x1080", "1920x1200", "2560x1440", "2560x1600", "3840x2160")
+
 
 @dataclass
 class Preferences:
@@ -22,6 +25,7 @@ class Preferences:
     effects: float = .65
     reduced_motion: bool = False
     fullscreen: bool = False
+    render_resolution: str = "auto"
     aim_assist: bool = True
     gamepad_deadzone: float = .18
     shuffle_channels: list[str] = field(default_factory=lambda: list(CHANNELS))
@@ -48,6 +52,9 @@ class Preferences:
         for name in ("reduced_motion", "fullscreen", "aim_assist"):
             if type(raw.get(name)) is bool:
                 setattr(result, name, raw[name])
+        val = raw.get("render_resolution")
+        if type(val) is str and val in RENDER_RESOLUTIONS:
+            result.render_resolution = val
         for name in ("music", "effects"):
             val = raw.get(name)
             if type(val) in (int, float) and math.isfinite(val):

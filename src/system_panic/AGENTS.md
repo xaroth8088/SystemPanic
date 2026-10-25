@@ -54,3 +54,9 @@ Read [the root wiki](../../AGENTS.md), [loader memory](paks/AGENTS.md) and [Pak 
 - ObstaclesBase.update schedules dynamic hazards after body/projectile motion. draw_floor is read-only terrain presentation. PowerupBase and all geometry/weapon/obstacle helpers remain external Pak code. The renderer no longer draws a white position dot beneath pilots; Sky Forge chooses a 22px collision radius to match its 44px sprite.
 
 A shape that fully handles its collision response may return True from on_contact; the resolver then suppresses that contact normal in Motion. This prevents caller AI from applying a second reflection. Default contacts return no handled result and preserve neutral normal reporting.
+
+
+## Display output and volume preferences
+- render_resolution is a validated preset string; auto preserves legacy behavior (1280x800 window, desktop fullscreen). Preferences → Display applies output-size/mode changes immediately and saves them. Unsupported modes fall back to automatic windowed output with feedback. F11 retains the chosen output preset while toggling mode.
+- Never resize the 1280x800 logical UI canvas, 960x480 arena surface, World coordinates or fixed timestep when changing output. Only the display surface changes. presentation_rect is the single integer letterbox transform used by both blitting and pointer inversion; preserve black-bar rejection and scaled mouse/controller navigation.
+- Music/effects controls use VOLUME_STEP=.05 and clamp to 0–1, preserving existing saved values. These changes live only in shell/preferences, never in Paks. The display page participates in nested back history, controller spatial focus and the --screen QA option.

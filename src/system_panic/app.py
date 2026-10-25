@@ -16,11 +16,12 @@ from .graphics import Graphics, BG, PANEL, EDGE, TEXT, MUTED, CYAN, DIM
 from .input_devices import Gamepads, MenuRepeat, spatial_focus, A, B, START, BACK, LB, RB
 from .model import WIDTH, HEIGHT, Controls
 from .paks import discover, CHANNELS
-from .preferences import PreferenceStore
+from .preferences import PreferenceStore, RENDER_RESOLUTIONS
 from .world import World
 
 SIZE = (1280, 800)
 VIEWPORT = pygame.Rect(32, 136, 1216, 608)
+VOLUME_STEP = .05
 
 
 @dataclass
@@ -69,7 +70,7 @@ class App:
         self.library_page = 0
         self.help_page = 0
         self.status_page = 0
-        if self.prefs.fullscreen:
+        if self.prefs.fullscreen or self.prefs.render_resolution != "auto":
             self.apply_display()
         self.menu_music()
 
@@ -114,13 +115,18 @@ class App:
 
     def apply_display(self):
         try:
-            if self.prefs.fullscreen:
-                self.window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+            if self.prefs.render_resolution == "auto":
+                size = (0, 0) if self.prefs.fullscreen else SIZE
             else:
-                self.window = pygame.display.set_mode(SIZE, pygame.RESIZABLE)
-        except pygame.error:
+                width, height = map(int, self.prefs.render_resolution.split("x"))
+                size = (width, height)
+            flags = pygame.FULLSCREEN if self.prefs.fullscreen else pygame.RESIZABLE
+            self.window = pygame.display.set_mode(size, flags)
+        except (pygame.error, ValueError):
             self.prefs.fullscreen = False
+            self.prefs.render_resolution = "auto"
             self.window = pygame.display.set_mode(SIZE, pygame.RESIZABLE)
+            self.notify("That display mode is unavailable. Restored automatic windowed output.")
 
     def save(self):
         if not self.store.save(self.prefs):
@@ -189,9 +195,15 @@ class App:
             self.prefs.mix_mode = "remix"
             self.notify("Coherent shuffle needs an enabled complete Pak. Partial Paks use component remix.")
         self.audio.set_volumes()
-        if name == "fullscreen":
+        if name in ("fullscreen", "render_resolution"):
             self.apply_display()
         self.save()
+
+    def set_render_resolution(self, value):
+        if value in RENDER_RESOLUTIONS:
+            self.prefs.render_resolution = value
+            self.apply_display()
+            self.save()
 
     def volume(self, name, amount):
         setattr(self.prefs, name, round(max(0, min(1, getattr(self.prefs, name) + amount)), 2))
@@ -327,12 +339,33 @@ class App:
         self.button("assist", (830, 582, 370, 36), "AIM ASSIST: " + ("ON" if self.prefs.aim_assist else "OFF"), lambda: self.cycle("aim_assist", [True, False]), size=13)
         for name, label, x in (("music", "MUSIC", 80), ("effects", "EFFECTS", 440)):
             g.text(self.canvas, f"{label}  {getattr(self.prefs, name):.0%}", (x, 653), 13, MUTED, mono=True)
-            self.button(name + "-", (x + 150, 644, 43, 36), "-", lambda n=name: self.volume(n, -.1))
-            self.button(name + "+", (x + 201, 644, 43, 36), "+", lambda n=name: self.volume(n, .1))
+            self.button(name + "-", (x + 150, 644, 43, 36), "-", lambda n=name: self.volume(n, -VOLUME_STEP))
+            self.button(name + "+", (x + 201, 644, 43, 36), "+", lambda n=name: self.volume(n, VOLUME_STEP))
         self.button("motion", (830, 644, 175, 36), "MOTION: " + ("REDUCED" if self.prefs.reduced_motion else "FULL"), lambda: self.cycle("reduced_motion", [False, True]), size=12)
-        self.button("display", (1020, 644, 180, 36), "FULLSCREEN" if self.prefs.fullscreen else "WINDOWED", lambda: self.cycle("fullscreen", [False, True]), size=12)
+        self.button("display", (1020, 644, 180, 36), "DISPLAY  >", lambda: self.open_page("display"), size=12)
         g.wrapped(self.canvas, "Turn Paks on or off in the library. In component remix, unchecked channels keep their starting Pak. Coherent mode swaps the whole Pak.", (80, 704), 700, 15)
         self.button("controls", (830, 703, 370, 36), "GAMEPAD / INPUT  >", lambda: self.open_page("controls"), size=14)
+
+    def draw_display(self):
+        g = self.graphics
+        self.header("DISPLAY")
+        self.button("back", (1100, 25, 140, 34), "<  BACK", self.back, size=13)
+        g.text(self.canvas, "Choose the output size.", (80, 107), 35, TEXT, True)
+        g.text(self.canvas, "Display changes apply immediately and are saved locally.", (80, 158), 17, MUTED)
+        self.setting(210, "Display mode", "F11 also switches between windowed and fullscreen.",
+                     "fullscreen", [False, True], ["WINDOWED", "FULLSCREEN"])
+        g.text(self.canvas, "Rendering resolution", (80, 310), 21, TEXT, True)
+        g.text(self.canvas, "The field of view stays the same at every output size.", (80, 345), 16, MUTED)
+        for index, resolution in enumerate(RENDER_RESOLUTIONS):
+            x, y = 80 + index % 3 * 380, 389 + index // 3 * 62
+            selected = self.prefs.render_resolution == resolution
+            label = "AUTOMATIC" if resolution == "auto" else resolution.replace("x", " x ")
+            self.button("resolution:" + resolution, (x, y, 360, 46), ("[x] " if selected else "") + label,
+                        lambda value=resolution: self.set_render_resolution(value), accent=CYAN if selected else MUTED, size=17)
+        width, height = self.window.get_size()
+        g.text(self.canvas, f"CURRENT OUTPUT  {width} x {height}", (80, 666), 15, CYAN, mono=True)
+        g.text(self.canvas, "Aspect ratio is preserved; some output sizes add black bars.", (80, 704), 16, MUTED)
+        g.text(self.canvas, "Automatic uses a 1280 x 800 window or the desktop size in fullscreen.", (80, 737), 15, MUTED)
 
     def draw_controls(self):
         g = self.graphics
@@ -477,6 +510,8 @@ class App:
             self.draw_controls()
         elif self.route == "help":
             self.draw_help()
+        elif self.route == "display":
+            self.draw_display()
         elif self.route == "paks":
             self.draw_pak_status()
         elif self.route == "credits":
@@ -497,19 +532,22 @@ class App:
             self.graphics.text(self.canvas, self.toast, (640, 102), 15, TEXT, anchor="center")
         self.present()
 
-    def present(self):
+    def presentation_rect(self):
         width, height = self.window.get_size()
         scale = min(width / SIZE[0], height / SIZE[1])
         size = (max(1, int(SIZE[0] * scale)), max(1, int(SIZE[1] * scale)))
+        return pygame.Rect((width - size[0]) // 2, (height - size[1]) // 2, *size)
+
+    def present(self):
+        target = self.presentation_rect()
         self.window.fill(BG)
-        self.window.blit(pygame.transform.smoothscale(self.canvas, size), ((width - size[0]) // 2, (height - size[1]) // 2))
+        self.window.blit(pygame.transform.smoothscale(self.canvas, target.size), target)
         pygame.display.flip()
 
     def map_pointer(self, pos):
-        width, height = self.window.get_size()
-        scale = min(width / SIZE[0], height / SIZE[1])
-        return ((pos[0] - (width - SIZE[0] * scale) / 2) / scale,
-                (pos[1] - (height - SIZE[1] * scale) / 2) / scale)
+        target = self.presentation_rect()
+        return ((pos[0] - target.x) * SIZE[0] / target.width,
+                (pos[1] - target.y) * SIZE[1] / target.height)
 
     def activate(self, button):
         self.audio.play("select")
@@ -534,7 +572,7 @@ class App:
             self.navigate("pause")
         elif self.route == "pause":
             self.navigate("game")
-        elif self.route in ("settings", "controls", "help", "credits", "paks"):
+        elif self.route in ("settings", "display", "controls", "help", "credits", "paks"):
             self.back()
         elif self.route == "outcome":
             self.home()
@@ -691,7 +729,7 @@ def main():
     parser.add_argument("--headless", action="store_true")
     parser.add_argument("--frames", type=int)
     parser.add_argument("--screenshot", type=Path)
-    parser.add_argument("--screen", choices=("home", "settings", "controls", "help", "credits", "paks", "game"), default="home")
+    parser.add_argument("--screen", choices=("home", "settings", "display", "controls", "help", "credits", "paks", "game"), default="home")
     parser.add_argument("--demo", action="store_true", help="QA/demo controls; no gameplay advantages")
     args = parser.parse_args()
     catalog = discover(args.pak_dir)

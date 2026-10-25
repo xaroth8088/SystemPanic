@@ -5,13 +5,25 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from system_panic.preferences import Preferences, PreferenceStore
+from system_panic.preferences import Preferences, PreferenceStore, RENDER_RESOLUTIONS
 
 TEMP_ROOT = Path(__file__).resolve().parents[1] / "output" / "test-temp"
 TEMP_ROOT.mkdir(parents=True, exist_ok=True)
 
 
 class PreferenceTests(unittest.TestCase):
+    def test_output_resolution_is_validated_and_persists_without_changing_old_profiles(self):
+        self.assertEqual(Preferences.from_dict({}).render_resolution,"auto")
+        for value in RENDER_RESOLUTIONS:
+            self.assertEqual(Preferences.from_dict({"render_resolution":value}).render_resolution,value)
+        for invalid in (None,True,{},[],"1x1","99999x99999","1920X1080"):
+            self.assertEqual(Preferences.from_dict({"render_resolution":invalid}).render_resolution,"auto")
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as temp:
+            store=PreferenceStore(Path(temp))
+            prefs=Preferences(render_resolution="1920x1080",music=.5,effects=.7)
+            self.assertTrue(store.save(prefs))
+            self.assertEqual(store.load(),prefs)
+
     def test_old_arena_and_pilot_locks_migrate_to_six_channels(self):
         prefs = Preferences.from_dict({"shuffle_channels":["pilot", "arena"]})
         self.assertEqual(prefs.shuffle_channels, ["pilot", "music", "background", "obstacles"])

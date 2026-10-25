@@ -870,12 +870,16 @@
   "date": "2026-10-24",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 113,
+    "passed": 117,
     "failed": 0,
-    "seconds": 324.517,
-    "command": "python -B -m unittest discover -s tests -v",
-    "new_powerup_mechanics_tests": 18,
-    "ui_tests_after_help_update": 5
+    "seconds": 23.118,
+    "scope": "All tests except the unchanged exhaustive gameplay-mix smoke matrix",
+    "excluded_tests": [
+      "test_world.WorldTests.test_all_component_mixes_update_and_fire_safely"
+    ],
+    "ui_tests": 9,
+    "preference_tests": 6,
+    "gamepad_tests": 16
   },
   "local_studio": [
     {
@@ -959,12 +963,12 @@
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "d1504e98cb36ae2c9c6d099fa128a94fddb53e774f6e46015f77cae10ad544d3",
-    "total_bytes": 59248860,
+    "sha256": "144a057d44ba7b9d349527628e16664af5351631d70ebcea3ec4d8e04bc5fbdf",
+    "total_bytes": 59250523,
     "archive": "dist/SystemPanic-Windows-x64.zip",
     "archive_test_passed": true,
-    "archive_sha256": "9dfc738e59fdf2ac12e3c546c5232cfc0ae3edfb77d332df613ef727b764f805",
-    "archive_bytes": 38141411,
+    "archive_sha256": "5f12194208226e9a2b9c8b54306e19ca5b36f758c9c48afcbebd3129dc25d965",
+    "archive_bytes": 38143040,
     "external_pak_files_match_source": 306,
     "powerup_helpers_shipped": 12
   },
@@ -1084,7 +1088,7 @@
     "external_code_and_helpers_executed": true,
     "partial_only_mix_executed": true,
     "wheel_external_layout_verified": true,
-    "executable_sha256": "d1504e98cb36ae2c9c6d099fa128a94fddb53e774f6e46015f77cae10ad544d3"
+    "executable_sha256": "144a057d44ba7b9d349527628e16664af5351631d70ebcea3ec4d8e04bc5fbdf"
   },
   "wheel_install_check": {
     "fresh_prefix_install": true,
@@ -1097,7 +1101,7 @@
     "obsolete_arena_helper_absent": true,
     "frames": 240,
     "exit_code": 0,
-    "wheel_sha256": "2f319114a83db3d9f0b2cba5993abfe798ef036067f6f7ccd97b8ac505a00723"
+    "wheel_sha256": "c15cb8788abe3b656a5927fcb7f06863a13336f42160536947c1e589a0a43795"
   },
   "dynamic_paks": {
     "api_version": 4,
@@ -1433,6 +1437,9 @@
     "source": {
       "native_sdl_virtual_controller": true,
       "physical_controllers_seen": 1,
+      "display_resolution_ui": true,
+      "fixed_internal_surfaces": true,
+      "five_percent_volume_controls": true,
       "stick_dpad_identical_directions": 8,
       "stick_magnitude_has_no_effect": true,
       "gamepad_only_menu_paths": true,
@@ -1529,11 +1536,14 @@
       "reconnect_requires_neutral": true,
       "focus_loss_guard": true,
       "outcome_retry": true,
-      "steps": 2149
+      "steps": 2191
     },
     "frozen": {
       "native_sdl_virtual_controller": true,
       "physical_controllers_seen": 1,
+      "display_resolution_ui": true,
+      "fixed_internal_surfaces": true,
+      "five_percent_volume_controls": true,
       "stick_dpad_identical_directions": 8,
       "stick_magnitude_has_no_effect": true,
       "gamepad_only_menu_paths": true,
@@ -1630,7 +1640,7 @@
       "reconnect_requires_neutral": true,
       "focus_loss_guard": true,
       "outcome_retry": true,
-      "steps": 2149
+      "steps": 2191
     },
     "reconnect_with_other_device_verified": true,
     "opening_index_distinguished_from_instance_id": true,
@@ -1708,7 +1718,8 @@
     "failures": [],
     "presentation_pairs_checked": 144,
     "universal_level_clear_required": false,
-    "intentionally_ineffective_mixes_allowed": true
+    "intentionally_ineffective_mixes_allowed": true,
+    "verified_at_commit": "7146672"
   },
   "targeted_compatibility": {
     "combinations": 4,
@@ -2080,5 +2091,170 @@
     "special_leap_used": false,
     "timed_input_search": true,
     "tool": "tools/verify_platforms.py"
+  },
+  "previous_full_unit_tests": {
+    "commit": "7146672",
+    "passed": 113,
+    "failed": 0,
+    "seconds": 324.517,
+    "command": "python -B -m unittest discover -s tests -v",
+    "new_powerup_mechanics_tests": 18,
+    "ui_tests_after_help_update": 5
+  },
+  "display_and_volume": {
+    "preference": "render_resolution",
+    "default": "auto",
+    "presets": [
+      "auto",
+      "960x600",
+      "1024x768",
+      "1280x720",
+      "1280x800",
+      "1600x900",
+      "1600x1000",
+      "1920x1080",
+      "1920x1200",
+      "2560x1440",
+      "2560x1600",
+      "3840x2160"
+    ],
+    "applies_immediately": true,
+    "saved_and_restored": true,
+    "windowed_and_fullscreen": true,
+    "unsupported_mode_windowed_auto_fallback_tested": true,
+    "fixed_ui_size": [
+      1280,
+      800
+    ],
+    "fixed_gamefield_size": [
+      960,
+      480
+    ],
+    "same_world_and_rng_during_output_changes": true,
+    "shared_letterbox_and_pointer_transform": true,
+    "mouse_and_controller_navigation_tested": true,
+    "five_physical_output_sizes": [
+      {
+        "selected": "960x600",
+        "actual": [
+          960,
+          600
+        ],
+        "letterbox": [
+          0,
+          0,
+          960,
+          600
+        ],
+        "ui_size": [
+          1280,
+          800
+        ],
+        "arena_size": [
+          960,
+          480
+        ],
+        "world_state_unchanged": true
+      },
+      {
+        "selected": "1280x720",
+        "actual": [
+          1280,
+          720
+        ],
+        "letterbox": [
+          64,
+          0,
+          1152,
+          720
+        ],
+        "ui_size": [
+          1280,
+          800
+        ],
+        "arena_size": [
+          960,
+          480
+        ],
+        "world_state_unchanged": true
+      },
+      {
+        "selected": "1024x768",
+        "actual": [
+          1024,
+          768
+        ],
+        "letterbox": [
+          0,
+          64,
+          1024,
+          640
+        ],
+        "ui_size": [
+          1280,
+          800
+        ],
+        "arena_size": [
+          960,
+          480
+        ],
+        "world_state_unchanged": true
+      },
+      {
+        "selected": "1920x1080",
+        "actual": [
+          1920,
+          1080
+        ],
+        "letterbox": [
+          96,
+          0,
+          1728,
+          1080
+        ],
+        "ui_size": [
+          1280,
+          800
+        ],
+        "arena_size": [
+          960,
+          480
+        ],
+        "world_state_unchanged": true
+      },
+      {
+        "selected": "3840x2160",
+        "actual": [
+          3840,
+          2160
+        ],
+        "letterbox": [
+          192,
+          0,
+          3456,
+          2160
+        ],
+        "ui_size": [
+          1280,
+          800
+        ],
+        "arena_size": [
+          960,
+          480
+        ],
+        "world_state_unchanged": true
+      }
+    ],
+    "volume_step_percentage_points": 5,
+    "volume_clamped_to_endpoints": true,
+    "music_and_effects_persisted": true,
+    "screenshots_inspected": [
+      "display-1280x720",
+      "display-1024x768",
+      "settings-volumes"
+    ],
+    "ide_errors": 0,
+    "fullscreen_driver_hardware_tested": false,
+    "tests_use_sdl_dummy_and_virtual_controller": true
   }
 }
