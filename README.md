@@ -2,7 +2,7 @@
 
 **Twelve worlds. One unstable system.**
 
-An offline arcade game about adapting as its rules change around you. Play any of twelve complete Paks alone, shuffle whole Paks together, or independently remix their pilots, enemies, weapons, music, backgrounds and obstacles. Survive an endless sequence of levels: start with one enemy, then face two, three, and one more with every cleared level. The run ends when you are defeated.
+An offline arcade game about adapting as its rules change around you. Play any of twelve complete Paks alone, shuffle whole Paks together, or build a static Remix by choosing its pilot, enemies, weapon, music, background and obstacles. Survive an endless sequence of levels: start with one enemy, then face two, three, and one more with every cleared level. The run ends when you are defeated.
 
 This is a fresh implementation. The 2017 game and unfinished 2025 rewrite remain available in Git history; see [prototype history and credits](docs/history.md).
 
@@ -98,7 +98,11 @@ SDL-mapped gamepads work in gameplay and every menu, with hot-plug detection. Th
 
 An active controller disconnect pauses the run. After connecting, resuming or changing screens, release the stick/buttons before the next action; held menu confirmation cannot fire or select again. Periodic Pak glitches and level changes resume held gameplay input automatically. Keyboard/mouse remain available, and hints follow the last input used. Compatible devices use the [SDL mapping exposed by Pygame](https://www.pygame.org/docs/ref/sdl2_controller.html); arbitrary unmapped joysticks need an SDL mapping. Custom button remapping is not included.
 
-The library's **Enabled** buttons control the remix pool. **Play Solo** starts a complete Pak with every component locked to it. Partial Paks show **Mix Only** and contribute only their declared components. The enabled mix must cover pilot, enemy, weapon, music, background and obstacles. Coherent shuffle selects complete Paks; component remix also includes partial Paks.
+The library's **Start Main Game** uses the **Enabled** Paks as its shuffle pool. **Play Solo** starts a complete Pak with every component locked to it. Partial Paks show **Mix Only** and contribute only their declared components. The enabled mix must cover pilot, enemy, weapon, music, background and obstacles. Coherent shuffle selects complete Paks; component remix also includes partial Paks.
+
+Choose **Remix / Build & Play** to select one installed Pak for each of the six components and play with those providers fixed for the entire run. Remix can use Paks outside the main game's enabled pool, including partial Paks for the components they supply. Levels still add enemies and regenerate terrain normally. Some combinations may be awkward or ineffective.
+
+Use **Save As New** and **Saved Remixes** to keep favorite combinations; open a favorite to play, rename or delete it. Keyboard users can type names; mouse and gamepad users can use the on-screen keys. During a run, pause and choose **Save Current Mix** to capture the active six Pak choices without leaving the paused run. A favorite starts a fresh game at level one; it does not restore score, health, upgrades, terrain or progress. Favorites save locally in `remixes.json` beside `preferences.json`. If a required Pak is removed, the favorite stays available for renaming, deletion or component replacement, and cannot start until all six choices are available.
 
 Periodic randomization pauses for a quarter-second screen glitch, then resumes automatically. Clearing a level instead shows a one-second **Level Cleared** message before the next level starts, without another readiness screen. The initial ready introduction appears only when starting a new run.
 

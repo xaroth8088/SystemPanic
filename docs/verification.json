@@ -870,16 +870,17 @@
   "date": "2026-10-25",
   "branch": "codex/revival",
   "unit_tests": {
-    "passed": 121,
+    "passed": 146,
     "failed": 0,
-    "seconds": 31.611,
-    "scope": "All tests except the unchanged exhaustive gameplay-mix smoke matrix",
-    "excluded_tests": [
-      "test_world.WorldTests.test_all_component_mixes_update_and_fire_safely"
-    ],
+    "seconds": 346.844,
+    "scope": "Full source suite including the 20,736 gameplay-mix stable-update matrix",
+    "excluded_tests": [],
     "ui_tests": 9,
     "preference_tests": 6,
-    "gamepad_tests": 16
+    "gamepad_tests": 16,
+    "remix_ui_tests": 10,
+    "remix_persistence_tests": 8,
+    "static_remix_world_tests": 6
   },
   "local_studio": [
     {
@@ -963,12 +964,12 @@
   ],
   "windows_build": {
     "file": "dist/SystemPanic/SystemPanic.exe",
-    "sha256": "514f0be57217707a7b7778a1061ec25f99471520d23c73e3148f87a75f88af63",
-    "total_bytes": 59146615,
+    "sha256": "95b78535afe7068c8ab12240b6992179190994f6e0fb4026b54a589f6997db6e",
+    "total_bytes": 59163366,
     "archive": "dist/SystemPanic-Windows-x64.zip",
     "archive_test_passed": true,
-    "archive_sha256": "c5564eaf5882b4376be8d9182befb3302eedc6b42444354cb3a3abfba6c12a6d",
-    "archive_bytes": 38021066,
+    "archive_sha256": "743343cdf13c1caadf60a5fb299185f42d674ff5cf3e31036167d5eb30892f96",
+    "archive_bytes": 38036854,
     "external_pak_files_match_source": 306,
     "powerup_helpers_shipped": 12
   },
@@ -1083,25 +1084,57 @@
         "check": "invalid_pak_isolated",
         "frames": 1,
         "exit_code": 0
+      },
+      {
+        "check": "static_remix_builder",
+        "frames": 1,
+        "exit_code": 0
+      },
+      {
+        "check": "static_remix_favorites_and_frozen_scheduling",
+        "frames": 240,
+        "exit_code": 0
       }
     ],
     "external_code_and_helpers_executed": true,
     "partial_only_mix_executed": true,
+    "static_remix_favorites_and_scheduling": {
+      "mix": {
+        "pilot": "signal_runner",
+        "enemy": "void_drifter",
+        "weapon": "iron_circuit",
+        "music": "sky_forge",
+        "background": "phase_garden",
+        "obstacles": "orbit_keeper"
+      },
+      "manual_shuffle_unchanged": true,
+      "expired_timer_unchanged": true,
+      "shuffle_count": 0,
+      "active_seconds": 1.483,
+      "phase": "active",
+      "live_mix_saved_without_advancing_run": true,
+      "main_game_can_still_shuffle": true,
+      "favorite_save_rename_load": true,
+      "favorite_delete": true
+    },
     "wheel_external_layout_verified": true,
-    "executable_sha256": "514f0be57217707a7b7778a1061ec25f99471520d23c73e3148f87a75f88af63"
+    "executable_sha256": "95b78535afe7068c8ab12240b6992179190994f6e0fb4026b54a589f6997db6e"
   },
   "wheel_install_check": {
     "fresh_prefix_install": true,
     "api_version": 4,
+    "method": "pip install --no-deps --no-compile --prefix <temporary prefix> <wheel>",
+    "prefix_lifetime": "Temporary isolated prefix, removed after verification",
+    "installed_world_module_path_asserted": true,
     "paks_discovered": 12,
-    "component_folders": 72,
-    "local_projectile_helpers_loaded": true,
-    "assets_loaded": true,
-    "procedural_level_regeneration": true,
-    "obsolete_arena_helper_absent": true,
     "frames": 240,
+    "fixed_mix_preserved": true,
+    "shuffle_count": 0,
+    "pause_snapshot_persisted": true,
+    "screenshot": "output/remix-verification/installed-wheel-remix.png",
     "exit_code": 0,
-    "wheel_sha256": "d2de23d0800f91fc2ceb501f018cf9372a87cd44610a2e0a98aedba39415160f"
+    "wheel_sha256": "be09c9e53ab1a228b19cc7944972d3e02f85001e2db800ddf903285552300e6d",
+    "external_pak_files_match_source": 306
   },
   "dynamic_paks": {
     "api_version": 4,
@@ -2311,5 +2344,75 @@
       "soundfile"
     ],
     "mastering_dependencies_load_in_development_environment": true
+  },
+  "static_remix": {
+    "date": "2026-10-25",
+    "source_report": "output/remix-verification/report.json",
+    "release_report": "output/remix-verification/release.json",
+    "source": {
+      "mix": {
+        "pilot": "signal_runner",
+        "enemy": "void_drifter",
+        "weapon": "iron_circuit",
+        "music": "sky_forge",
+        "background": "phase_garden",
+        "obstacles": "orbit_keeper"
+      },
+      "manual_shuffle_unchanged": true,
+      "expired_timer_unchanged": true,
+      "shuffle_count": 0,
+      "active_seconds": 1.483,
+      "phase": "active",
+      "live_mix_saved_without_advancing_run": true,
+      "main_game_can_still_shuffle": true,
+      "favorite_save_rename_load": true,
+      "favorite_delete": true
+    },
+    "frozen": {
+      "mix": {
+        "pilot": "signal_runner",
+        "enemy": "void_drifter",
+        "weapon": "iron_circuit",
+        "music": "sky_forge",
+        "background": "phase_garden",
+        "obstacles": "orbit_keeper"
+      },
+      "manual_shuffle_unchanged": true,
+      "expired_timer_unchanged": true,
+      "shuffle_count": 0,
+      "active_seconds": 1.483,
+      "phase": "active",
+      "live_mix_saved_without_advancing_run": true,
+      "main_game_can_still_shuffle": true,
+      "favorite_save_rename_load": true,
+      "favorite_delete": true
+    },
+    "new_tests": 24,
+    "favorite_store": "remixes.json",
+    "favorite_schema_version": 1,
+    "maximum_name_characters": 48,
+    "exact_six_providers": true,
+    "independent_of_enabled_shuffle_pool": true,
+    "missing_provider_favorites_retained": true,
+    "failed_writes_preserve_collection_and_disk": true,
+    "save_as_new_preserves_original": true,
+    "static_retry_preserves_mapping": true,
+    "endless_levels_and_regenerated_terrain": true,
+    "favorites_are_session_saves": false,
+    "keyboard_text_and_gamepad_screen_keys": true,
+    "all_menu_controls_spatially_reachable": true,
+    "screenshots_inspected": [
+      "home",
+      "static-remix-favorite",
+      "static-remix-providers",
+      "static-remix-name",
+      "static-remix-saved",
+      "static-remix-delete",
+      "pause",
+      "static-remix-pause-save",
+      "static-remix-gameplay"
+    ],
+    "source_and_frozen_screens_inspected": true,
+    "physical_controller_operation_tested": false
   }
 }

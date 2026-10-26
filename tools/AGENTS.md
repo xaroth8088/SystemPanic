@@ -1,6 +1,7 @@
 # Tooling memory
 
 - `verify.py`: bounded samples of all installed complete endless solo runs (12 cleared levels by default), verifying +1 initial enemy per level and continued play, plus UI screenshots and asset hashes. The QA stopping point is not a game finish.
+- Static Remix verification in `verify.py` captures builder/provider/favorite/naming/delete/gameplay screens and pause saving. It checks exact snapshots, favorite CRUD, inert manual/expired-timer shuffles and unchanged main-mode shuffling. `verify_distribution.py` reuses this probe through a temporary external Pak observer in the frozen executable; no test instrumentation is bundled.
 - `compatibility.py`: stability checks for every pilot/enemy/weapon/obstacle gameplay mix (12^4 with the shipped set), plus rendering/streaming every background/music pair (12^2). --require-clear is an optional balance probe. The report distinguishes these checks from the full six-channel mix space.
 - `build.py`: Windows folder build with production assets. Rebuild after runtime changes and smoke-test the executable from a different working directory.
 - Windows builds copy discovered content folders to external `paks/` beside the executable. Never compile/import launch Pak modules into the engine. `setup.py` preserves the same external folder hierarchy for Python installations. Check a newly added Pak against an already built executable, partial-only mixes, and no-Pak startup.

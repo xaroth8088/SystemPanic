@@ -9,6 +9,7 @@ This is the entry point to the project's agent wiki. Read the relevant linked pa
 - The platform arena is one Pak, not the overall design direction.
 - Twelve complete Paks. Original six: Signal Runner, Void Drifter, Iron Circuit, Sky Forge, Phase Garden, Orbit Keeper. Classic-inspired expansion: Neon Breach, Maze Muncher, Burrow Patrol, Vector Coil, Star Bastion, Tide Hopper.
 - Players can select enabled Paks, solo/coherent/component remix, shuffle interval, difficulty, effects, fullscreen, rendering output resolution and audio levels. No online catalog.
+- Static Remix lets players choose all six providers and manage named local favorites, including mixes captured from pause during a main-game run. See [runtime memory](src/system_panic/AGENTS.md) for persistence and mode boundaries.
 - Original generated art and audio are produced by development tools, never generated or downloaded by the game.
 
 ## Wiki

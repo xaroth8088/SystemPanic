@@ -6,6 +6,8 @@ Gamepads in input_devices.py use SDL's mapped controller API, distinguish connec
 
 Level n starts with n normal enemies. Play continues until defeat, with no finite-run toggle or finale. Existing health/speed scaling and Pak-specific fragments remain. Periodic swaps pause for a 0.25s visual glitch and resume held controls. Level clears show their message for one second and enter the next level directly; only a new run has the initial introduction.
 
+Static Remix is a separate library entry. `remix_ui.py` owns the six-component builder, provider picker, favorite menus and naming keyboard; it uses the shell's buttons, spatial focus, neutral gates and page history. `World(..., fixed_mix=...)` validates and copies an exact mapping using installed providers independently of the main enabled pool. It bypasses random provider selection and both scheduled and explicit shuffles. The same level flow, procedural geometry and Pak callbacks apply; retry preserves the fixed mapping.
+
 ## Definitions and instances
 
 Content lives under external paks/<id>/ folders. Each role folder contains its class and assets: pilot, enemy, weapon, music, background and obstacles. The public contract is six ABCs in system_panic.pak_api. See [the complete guide and examples](paks.md).
@@ -39,6 +41,8 @@ ImageAsset handles decode lazily and can select SpriteFrame rectangles from grid
 Core resources resolve from checkout/frozen/Python installation locations. Pak assets resolve inside their component folder (or an explicit installed-provider override). Windows builds keep all Pak folders beside the executable; wheels preserve them as external data under share/system-panic/paks. No credentials, generation service or network call is needed to play.
 
 Preferences validate IDs/types, repair provider coverage, clamp values and save atomically. Schema 2 migrates old arena locks to background/obstacles and old pilot locks to music. Corrupt files recover to defaults; unavailable content shows an incomplete library rather than crashing. Source tests use temporary directories under output/test-temp.
+
+`remixes.py` stores named favorites with stable IDs in a separate atomic `remixes.json` file in the same data directory. Every record contains exactly six provider IDs and a normalized name of up to 48 characters. Loading retains structurally valid records when their Paks disappear, without substituting providers. Failed writes leave both the previous on-disk file and visible collection intact. The pause save action copies `world.mix` into a pending name editor; save/cancel returns to pause without advancing simulation. Favorites contain provider choices only, and launch fresh runs with the current challenge/preferences.
 
 Compatibility checks exercise all 1,296 gameplay-component mixtures and independently render/stream all 36 background/music pairs in the launch set. These are reported separately from the 46,656 possible six-channel selections. Headless checks establish behavior, not final human balance.
 

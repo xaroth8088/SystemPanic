@@ -11,6 +11,7 @@ from .model import (WIDTH, HEIGHT, FIXED_DT, Vec, Controls, Pilot, Enemy,
                     Body, Motion, Particle, unit, circle_rect)
 from .paks import get_catalog, CHANNELS
 from .preferences import Preferences
+from .remixes import validate_mix
 from .pak_api import ComponentBase, PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase, ObstaclesBase, ProjectileBase, EffectBase, PowerupBase
 
 SWAP_GLITCH_SECONDS = .25
@@ -19,13 +20,18 @@ EnemyFactory = Callable[["World", int, Vec], Enemy]
 
 
 class World:
-    def __init__(self, prefs: Preferences, seed: int = 0, solo: str | None = None, catalog=None, audio=None):
+    def __init__(self, prefs: Preferences, seed: int = 0, solo: str | None = None, catalog=None, audio=None,
+                 *, fixed_mix: dict[str, str] | None = None):
         self.catalog = catalog if catalog is not None else get_catalog()
         self.prefs = Preferences.from_dict(vars(prefs), self.catalog)
+        if solo is not None and fixed_mix is not None:
+            raise ValueError("Choose either solo play or a fixed Remix")
+        self.fixed_mix = validate_mix(fixed_mix, self.catalog) if fixed_mix is not None else None
         if solo is not None and solo not in self.catalog.complete_ids():
             raise ValueError("Solo play requires an installed complete Pak")
         self.solo = solo
-        self.enabled = [self.solo] if self.solo else self.prefs.enabled.copy()
+        self.enabled = (list(dict.fromkeys(self.fixed_mix.values())) if self.fixed_mix is not None else
+                        [self.solo] if self.solo else self.prefs.enabled.copy())
         missing = self.catalog.missing(self.enabled)
         if missing:
             raise ValueError("The installed mix is missing: " + ", ".join(missing))
@@ -125,7 +131,7 @@ class World:
 
     @property
     def can_shuffle(self):
-        if self.solo:
+        if self.solo or self.fixed_mix is not None:
             return False
         if self.prefs.mix_mode == "coherent":
             return len(self.catalog.complete_ids(self.enabled)) > 1
@@ -137,8 +143,12 @@ class World:
         return self.rng.choice(choices)
 
     def shuffle(self, initial=False):
+        if self.fixed_mix is not None and not initial:
+            return
         old_mix = self.mix.copy()
-        if self.solo or self.prefs.mix_mode == "coherent":
+        if self.fixed_mix is not None:
+            self.mix = self.fixed_mix.copy()
+        elif self.solo or self.prefs.mix_mode == "coherent":
             selected = self.solo or self.choose(previous=self.mix.get("pilot"))
             self.mix = {channel: selected for channel in CHANNELS}
         else:

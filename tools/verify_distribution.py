@@ -94,6 +94,46 @@ COMPONENT = ProbeWeapon
         (broken / "pak.json").write_text('{"api_version":99}')
         run("invalid_pak_isolated", "--pak-dir", partials, "--screen", "paks", "--screenshot", output / "issues.png", frames=1)
 
+        run("static_remix_builder", "--screen", "remix", "--screenshot", output / "static-remix-builder.png", frames=1)
+        # Observer code is loaded from temporary external content, never bundled in the game.
+        remix_paks = temp / "remix-paks"
+        shutil.copytree(ROOT / "paks", remix_paks, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+        pilot = remix_paks / "signal_runner/pilot"
+        shutil.copyfile(ROOT / "tools/verify.py", pilot / "_remix_probe.py")
+        remix_output = output / "static-remix"
+        remix_output.mkdir(exist_ok=True)
+        hook = f'''
+from ._remix_probe import verify_static_remix
+from system_panic.app import App
+from pathlib import Path
+import json
+import pygame
+import traceback
+
+def _verify_remix(self, *args, **kwargs):
+    try:
+        self.start()
+        self.navigate("pause")
+        report = verify_static_remix(self, Path({str(remix_output)!r}))
+        Path({str(remix_output / "report.json")!r}).write_text(json.dumps(report, indent=2), encoding="utf-8")
+    except Exception:
+        Path({str(remix_output / "error.log")!r}).write_text(traceback.format_exc(), encoding="utf-8")
+        raise SystemExit(1)
+    finally:
+        self.quit()
+        pygame.quit()
+App.run = _verify_remix
+'''
+        entry = pilot / "pilot.py"
+        entry.write_text(entry.read_text(encoding="utf-8") + hook, encoding="utf-8")
+        run("static_remix_favorites_and_frozen_scheduling", "--pak-dir", remix_paks,
+            "--data-dir", temp / "remix-profile")
+        remix_report = json.loads((remix_output / "report.json").read_text(encoding="utf-8"))
+        assert (remix_report["favorite_save_rename_load"] and remix_report["favorite_delete"]
+                and remix_report["live_mix_saved_without_advancing_run"]
+                and remix_report["manual_shuffle_unchanged"] and remix_report["expired_timer_unchanged"]
+                and remix_report["main_game_can_still_shuffle"] and remix_report["shuffle_count"] == 0)
+
     wheel = ROOT / "dist/system_panic-0.1.0-py3-none-any.whl"
     with zipfile.ZipFile(wheel) as bundle:
         names = bundle.namelist()
@@ -104,6 +144,7 @@ COMPONENT = ProbeWeapon
         assert len([name for name in names if "/data/share/system-panic/paks/" in name and name.endswith("/pak.json")]) == expected_paks
         assert bundle.testzip() is None
     report = {"checks":records, "external_code_and_helpers_executed":True, "partial_only_mix_executed":True,
+              "static_remix_favorites_and_scheduling":remix_report,
               "wheel_external_layout_verified":True, "executable_sha256":hashlib.sha256(exe.read_bytes()).hexdigest()}
     (output / "report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print("Frozen drop-in/partial/empty-install checks and external wheel layout passed.")
