@@ -27,7 +27,7 @@ def main():
                 "notes":["All revival artwork and audio originate from AI generation for this project.",
                          "Initial cloud outputs are retained. When local outputs exist, production mastering prefers them.",
                          "The original cloud menu-click fallback is retained as a documented derivative; local select supersedes it for production.",
-                         "Historical assets under legacy are not used or packaged.",
+                         "Removed prototype assets remain in Git history only; historical credits are in docs/history.md.",
                          "Music is peak-normalized, crossfaded into loops and encoded as Vorbis outside the runtime."],
                 "assets":entries}
     for entry in entries:

@@ -4,7 +4,7 @@
 
 An offline arcade game about adapting as its rules change around you. Play any of twelve complete Paks alone, shuffle whole Paks together, or independently remix their pilots, enemies, weapons, music, backgrounds and obstacles. Survive an endless sequence of levels: start with one enemy, then face two, three, and one more with every cleared level. The run ends when you are defeated.
 
-This is a fresh implementation. The 2017 game and unfinished 2025 rewrite are preserved under [`legacy/`](legacy/AGENTS.md); the revival does not import their code or assets.
+This is a fresh implementation. The 2017 game and unfinished 2025 rewrite remain available in Git history; see [prototype history and credits](docs/history.md).
 
 ## Play on Windows
 
@@ -112,7 +112,7 @@ python play.py --headless --demo --frames 480 --solo sky_forge --seed 24 --scree
 
 ## Development and agent memory
 
-Start at [`AGENTS.md`](AGENTS.md). Linked wiki pages live beside the runtime, Paks, tests, asset tools and historical code. See [`docs/architecture.md`](docs/architecture.md) for engine architecture and [`docs/paks.md`](docs/paks.md) for the Pak format and callback interface.
+Start at [`AGENTS.md`](AGENTS.md). Linked wiki pages live beside the runtime, Paks, tests and asset tools. See [`docs/architecture.md`](docs/architecture.md) for engine architecture, [`docs/paks.md`](docs/paks.md) for the Pak format and callback interface, and [`docs/history.md`](docs/history.md) for the removed prototypes.
 
 ```sh
 python -m unittest discover -s tests -v
@@ -153,8 +153,8 @@ python tools/build.py
 
 The build packages only the active runtime, production assets and license. Historical prototypes, source WAVs, generation code, credentials and development environments are excluded. Assets resolve independently of the current working directory.
 
-The current input UI uses keyboard and mouse. Gamepad support, remappable controls and an online catalog are outside this version's scope.
+The input UI supports keyboard, mouse and SDL-mapped gamepads. Custom remapping and an online catalog remain outside this version's scope.
 
 ## Credits
 
-Concept: Geoffrey Benson. Inspiration: *ROM CHECK FAIL* by Farbs. Revival code uses the repository's MIT license. Generated asset provenance is recorded in the manifest. Historical prototypes retain their credits in `legacy/README.md`.
+Concept: Geoffrey Benson. Inspiration: *ROM CHECK FAIL* by Farbs. Revival code uses the repository's MIT license. Generated asset provenance is recorded in the manifest. Historical asset credits are preserved in [prototype history](docs/history.md).

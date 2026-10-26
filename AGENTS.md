@@ -17,10 +17,10 @@ This is the entry point to the project's agent wiki. Read the relevant linked pa
 - [Pak authoring and compatibility](paks/AGENTS.md)
 - [Asset generation and provenance](tools/assetforge/AGENTS.md)
 - [Verification](tests/AGENTS.md)
-- [Historical prototypes](legacy/AGENTS.md)
+- [Project history and prototype credits](docs/history.md)
 
 ## Working conventions
-- Active implementation is `src/system_panic`; do not import from `legacy`.
+- Active implementation is `src/system_panic`; removed prototypes and their assets remain in Git history only. See [project history](docs/history.md).
 - Python 3.12+, Pygame, fixed simulation step, seeded local RNG. No mandatory network or generation credentials at runtime.
 - Use `python play.py`, `python -m unittest discover -s tests -v`, and `python tools/verify.py` from the root. Windows `run.bat` manages a local environment.
 - Before claiming completion, run meaningful tests and inspect rendered screens. Record exact evidence and remaining limitations in the wiki.

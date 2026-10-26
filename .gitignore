@@ -1,12 +1,3 @@
-/disabled/**
-!/disabled/enemies/
-!/disabled/enemies/README.md
-!/disabled/platforms/
-!/disabled/platforms/README.md
-!/disabled/players/
-!/disabled/players/README.md
-
-
 ####### Python gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -11,7 +11,7 @@ Twelve Paks share arena coordinates, damage, rewards and level objectives, but o
 Content is dynamically loaded from external folders. All twelve shipped Paks use the same manifest API as added Paks. Complete Paks support solo/coherent play; partial Paks supply any subset of six components for remix. Asset-only partials may inherit installed behavior. The enabled pool needs all six channels, but can be made entirely from complementary partial Paks. See [the format guide](paks.md).
 
 ## Architectural choices
-- New implementation, historical source archived under `legacy/`.
+- New implementation; the removed historical source and assets remain in Git history. See [prototype history and credits](history.md).
 - Desktop Python/Pygame keeps installation modest and the game offline.
 - API 4 is defined by PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase and ObstaclesBase. Component classes and their assets live together in role folders. Frozen catalog definitions create fresh, run-owned instances. Mutable handles/counters belong to those instances and engine state belongs to World.
 - Catalogs are discovered before preferences and passed through runtime services. Library rescans replace catalogs outside active runs. UI pagination and empty/invalid-install handling are part of the contract; do not assume six installed entries.
@@ -19,7 +19,7 @@ Content is dynamically loaded from external folders. All twelve shipped Paks use
 - Complete Paks work alone. Awkward or ineffective mixed combinations are acceptable until a periodic swap; do not grant restricted pilots extra movement or force every weapon to reach every enemy. Obstacle durability belongs to its Pak, including impervious geometry.
 
 ## Delivery state
-Delivered implementation on `codex/revival`: twelve complete Paks, solo/coherent/component modes, endless +1 enemy progression, local preferences and high scores, UI/help/credits, protected shuffles and original audiovisual assets. Historical prototypes are preserved under `legacy`.
+Delivered implementation on `codex/revival`: twelve complete Paks, solo/coherent/component modes, endless +1 enemy progression, local preferences and high scores, UI/help/credits, protected shuffles and original audiovisual assets. The obsolete 2017/2025 prototypes and their unused media were removed from the working tree on 2026-10-25; Git history retains them, and [historical credits](history.md) remain in the current documentation.
 
 Stable Audio 3 is installed separately under ignored `.asset-tools`, with a pinned official Windows LiteRT backend and dependency lock. Twelve soundtracks and eighteen effects were generated locally and mastered for production. The expansion adds six original AI sprite sheets and eighteen local audio generations. Fresh music and SFX were also generated through the local studio API with Hugging Face downloads disabled. The studio is loopback-only; the game never calls it.
 
