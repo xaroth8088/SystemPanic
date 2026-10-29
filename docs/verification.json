@@ -3851,7 +3851,7 @@
       "zip_sha256": "f2e822409cd47699ed52d33100a05ef95e8f8795080d957eb0b0be0b7a03fe88"
     }
   },
-  "latest_snapshot": "buggy_navigation_performance",
+  "latest_snapshot": "living_recover_turn_fold",
   "resource_charge_refinement": {
     "date": "2026-10-26",
     "unit_tests": {
@@ -7961,6 +7961,115 @@
       "Actual 4K SDL dummy App presentation still costs about 27-31ms per frame on this machine, separately from the repaired navigation. This is CPU scaling/presentation overhead, not a physical display FPS measurement or a 60FPS guarantee.",
       "The affected matrix is a twenty-step stability check, not a claim that all mixed mechanics can clear.",
       "Physical display/controller/speaker quality and final human balance were not retested for this navigation-only change."
+    ]
+  },
+  "living_arcade_expansion": {
+    "date": "2026-10-28",
+    "evidence": "docs/living-arcade.json",
+    "complete_paks": 24,
+    "unit_tests": {
+      "standard_passed": 361,
+      "standard_seconds": 242.921,
+      "failures": 0,
+      "errors": 0,
+      "exhaustive_method_run_separately": true,
+      "unique_methods": 362
+    },
+    "gameplay_combinations": 331776,
+    "new_solo_samples": 36,
+    "all_new_solo_samples_clear_six": true,
+    "frozen_checks": 31,
+    "provenance_records": 452,
+    "packaging": {
+      "source_pak_files": 632,
+      "windows_matches_source": true,
+      "wheel_matches_source": true,
+      "zip_matches_source": true,
+      "zip_crc": true,
+      "executable_sha256": "f9581f3092a53fd061abbdfb98b03e9efd80029f31b001d1b25922ae58d8072e",
+      "wheel_sha256": "c71b2a3d5bc43ff29efd8a2f80313f299367a343593f961bdaa121a07a58ed5b",
+      "zip_sha256": "ad364a09cbf91173c1abc6cb12caf5dba7e900358811b8904a1e9eddea2e7dcd"
+    },
+    "limitations": [
+      "Ordinary digital-input bots and staged rendering are not human balance approval.",
+      "SDL dummy and virtual-controller checks do not establish physical display, controller, or speaker quality.",
+      "Music energy/decoding checks do not establish subjective musical quality; Kiln special is a sustained bellows effect.",
+      "The short exhaustive matrix covers four gameplay channels, not every six-channel gameplay/presentation tuple.",
+      "Longer remix cases verify finite state and cleanup; defeat/ineffective combinations are permitted.",
+      "Wheel dependency isolation uses the existing Python/Pygame runtime and an extracted installation; no global install.",
+      "No external Pak-specific gameplay rule or mandatory generation/network dependency was added to the host."
+    ]
+  },
+  "living_playtest_refinement": {
+    "date": "2026-10-28",
+    "evidence": "docs/living-playtest.json",
+    "unit_tests": {
+      "standard_passed": 386,
+      "standard_seconds": 261.829,
+      "failures": 0,
+      "errors": 0,
+      "exhaustive_method_run_separately": true,
+      "unique_methods": 387
+    },
+    "gameplay_combinations": 331776,
+    "new_solo_samples": 36,
+    "new_solo_clear_six": 35,
+    "new_solo_defeats": 1,
+    "frozen_checks": 31,
+    "provenance_records": 478,
+    "packaging": {
+      "source_pak_files": 633,
+      "windows_matches_source": true,
+      "wheel_matches_source": true,
+      "zip_matches_source": true,
+      "zip_crc": true,
+      "executable_sha256": "f9581f3092a53fd061abbdfb98b03e9efd80029f31b001d1b25922ae58d8072e",
+      "wheel_sha256": "b8a2be61bcdc5ee77abc09040a971f959fea2d0f1ef7281d7cfa209942e052ee",
+      "zip_sha256": "4e2f4c8972b8c166f7198cc5cbf4932a1e51dbccdfc812cb25974bc009307ff3"
+    },
+    "limitations": [
+      "Scripted ordinary digital-input samples and staged fixtures are not human balance approval.",
+      "One Storm Loom six-level sample ends in a legitimate defeat after five clears; longer Storm samples also include defeats. No sampled stall is accepted.",
+      "SDL dummy presentation and virtual controllers do not establish physical display, controller or speaker quality.",
+      "The exhaustive matrix covers four gameplay channels for twenty fixed steps; it is a stability check rather than proof that every mix can clear.",
+      "Directional source grids, source-pixel conservation and actual small-size renders are checked; art quality still benefits from human review.",
+      "The isolated wheel uses existing Python/Pygame dependencies with host imports and external content from the extracted installation.",
+      "No named gameplay policy, API change, runtime generation or mandatory network dependency was added to the host."
+    ]
+  },
+  "living_recover_turn_fold": {
+    "date": "2026-10-28",
+    "evidence": "docs/living-refinements.json",
+    "unit_tests": {
+      "standard_passed": 402,
+      "standard_seconds": 260.072,
+      "failures": 0,
+      "errors": 0,
+      "exhaustive_method_run_separately": true,
+      "unique_methods": 403
+    },
+    "affected_gameplay_combinations": 40320,
+    "complete_paks": 24,
+    "new_solo_samples": 36,
+    "new_solo_clear_six": 35,
+    "new_solo_defeats": 1,
+    "frozen_checks": 31,
+    "packaging": {
+      "source_pak_files": 634,
+      "windows_matches_source": true,
+      "wheel_matches_source": true,
+      "zip_matches_source": true,
+      "zip_crc": true,
+      "executable_sha256": "f9581f3092a53fd061abbdfb98b03e9efd80029f31b001d1b25922ae58d8072e",
+      "wheel_sha256": "f5f13c753b3469d825e629835954ccb1d47581531d3ce83bcc2f8ddc61754b01",
+      "zip_sha256": "8448e5e186109e063381a343d19265fa800cbb93ca89f712b860fa022b59c007"
+    },
+    "limitations": [
+      "Ordinary digital-control bots, staged fixtures and dummy rendering do not establish human balance or physical display/controller/speaker quality.",
+      "The matrix covers every combination containing either changed weapon or the changed obstacle provider for twenty fixed steps; unaffected combinations retain the prior snapshot.",
+      "Longer mixed samples verify finite state and lifecycle; awkward combinations and legitimate defeats are allowed.",
+      "Wheel isolation uses existing Python/Pygame dependencies, with host imports and external content from the extracted installation.",
+      "No new generated raster/audio assets or generation/network runtime dependencies were added."
     ]
   }
 }

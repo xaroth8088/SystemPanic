@@ -559,6 +559,174 @@
       "duration": 1,
       "seed": 2846,
       "prompt": "A single short retro arcade game over death sound. Bright 8-bit square-wave notes tumble rapidly down in pitch, a descending chiptune arpeggio collapsing into a low digital power-down zap, then a clean quick decay to silence. Playful classic video game synthesizer sound effect, crisp and compact, no drums, no background music, no voice, no speech."
+    },
+    {
+      "id": "canopy_capers",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 6100,
+      "prompt": "Instrumental playful treetop arcade music, 118 BPM, woody marimba and plucked strings, springy warm bass, crisp light drums, luminous forest melody, no vocals or speech, consistent groove without faded outro, loopable.",
+      "loop_region": [
+        0,
+        29.6
+      ]
+    },
+    {
+      "id": "canopy_capers_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6101,
+      "prompt": "One short soft woody boot stomp with springy boing rebound and sparkling leaf rattle, isolated dry game effect on silence, no music no voice."
+    },
+    {
+      "id": "canopy_capers_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6102,
+      "prompt": "One short airy leaf swoosh and high wooden flute chirp for a floating jump, isolated game effect on silence, no music no voice."
+    },
+    {
+      "id": "rime_rink",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 6110,
+      "prompt": "Instrumental ice rink arcade music, 126 BPM, crystalline electric piano, icy bell arpeggios, rubbery synth bass and tight skating breakbeat, graceful energetic bright tune, no vocals or speech, consistent groove without faded outro, loopable.",
+      "loop_region": [
+        0,
+        30.4
+      ]
+    },
+    {
+      "id": "rime_rink_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6111,
+      "prompt": "One short polished curling stone scrape and bright ice clink, compact punchy game effect on silence, no music no voice."
+    },
+    {
+      "id": "rime_rink_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6112,
+      "prompt": "One short icy skate braking shhh with crisp crystalline shimmer, isolated dry game effect on silence, no music no voice."
+    },
+    {
+      "id": "storm_loom",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 6120,
+      "prompt": "Instrumental wind workshop arcade music, 132 BPM, silk-like plucked harp arpeggios, airy flutes, deep elastic bass and syncopated electronic drums, soaring intricate melody, no vocals or speech, consistent groove without faded outro, loopable.",
+      "loop_region": [
+        0,
+        28.5
+      ]
+    },
+    {
+      "id": "storm_loom_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6121,
+      "prompt": "One short silk thread zip and metallic harpoon twang, taut bright percussive game effect on silence, no music no voice."
+    },
+    {
+      "id": "storm_loom_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6122,
+      "prompt": "One short soft whoosh of a kite turning followed by a brass click, isolated dry game effect on silence, no music no voice."
+    },
+    {
+      "id": "kiln_derby",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 6130,
+      "prompt": "Instrumental ceramic furnace racing music, 138 BPM, warm overdriven clavinet, clay percussion, deep bouncy synth bass and fast tight drums, hot mischievous arcade melody, no vocals or speech, consistent groove without faded outro, loopable.",
+      "loop_region": [
+        0,
+        27.5
+      ]
+    },
+    {
+      "id": "kiln_derby_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6131,
+      "prompt": "One short molten ceramic plop and brittle fired-clay click, compact tactile game shot effect on silence, no music no voice."
+    },
+    {
+      "id": "kiln_derby_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6132,
+      "prompt": "One short bellows exhale with ceramic wheel chirp, compact arcade boost effect on silence, no music no voice."
+    },
+    {
+      "id": "paper_pilgrimage",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 6140,
+      "prompt": "Instrumental origami flight arcade music, 112 BPM, delicate koto-like plucked synth, warm piano, airy pads and intricate light percussion, adventurous whimsical melody, no vocals or speech, consistent groove without faded outro, loopable.",
+      "loop_region": [
+        0,
+        27.6
+      ]
+    },
+    {
+      "id": "paper_pilgrimage_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6141,
+      "prompt": "One short sharp folded paper flick and airy spinning swish, isolated dry game effect on silence, no music no voice."
+    },
+    {
+      "id": "paper_pilgrimage_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6142,
+      "prompt": "One short crisp paper fold snap followed by a gentle airy flutter, isolated dry game effect on silence, no music no voice."
+    },
+    {
+      "id": "ferric_ferry",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 6150,
+      "prompt": "Instrumental magnetic harbor arcade music, 122 BPM, rounded analog synth bass, resonant metallic mallet chords, pulsating arpeggios and crisp electro drums, buoyant strange nautical melody, no vocals or speech, consistent groove without faded outro, loopable.",
+      "loop_region": [
+        0,
+        31.5
+      ]
+    },
+    {
+      "id": "ferric_ferry_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6151,
+      "prompt": "One short magnetic coil zap with tiny metallic chime and downward hum, isolated dry arcade effect on silence, no music no voice."
+    },
+    {
+      "id": "ferric_ferry_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 6152,
+      "prompt": "One short soft magnetic polarity thunk and rising electronic whirr, isolated dry game effect on silence, no music no voice."
     }
   ]
 }

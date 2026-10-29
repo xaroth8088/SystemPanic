@@ -1,0 +1,63 @@
+{
+  "api_version": 4,
+  "id": "canopy_capers",
+  "name": "Canopy Capers",
+  "subtitle": "LEAP / STOMP / REBOUND",
+  "version": "1.0.0",
+  "order": 18,
+  "color": [
+    183,
+    235,
+    103
+  ],
+  "description": "Press the primary button to double jump. Land on enemies for automatic momentum-scaled stomps; beetles climb the living platform network.",
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "concept": "physical descending stomps and living canopy platforms",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "sheet_source": "assets/images/canopy_capers-source.png",
+    "component_grids": {
+      "pilot": [
+        2,
+        4
+      ],
+      "enemy": [
+        2,
+        4
+      ],
+      "weapon": [
+        4,
+        1
+      ],
+      "obstacles": [
+        4,
+        1
+      ]
+    },
+    "source_row_edges": [
+      0,
+      425,
+      720,
+      1018,
+      1254
+    ],
+    "component_sources": {
+      "pilot": "assets/images/canopy_capers-pilot-facings-source.png",
+      "enemy": "assets/images/canopy_capers-enemy-facings-source.png"
+    },
+    "component_snapshots": {
+      "pilot": "assets/images/canopy_capers-pilot-living-facing-reference.png",
+      "enemy": "assets/images/canopy_capers-enemy-living-facing-reference.png"
+    }
+  }
+}

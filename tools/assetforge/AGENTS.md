@@ -1,5 +1,17 @@
 # Asset generation memory
 
+## Living playtest direction and rail art (2026-10-28)
+
+The six new Paks now have twelve actual actor turnaround sources: two Canopy sheets at2x4 and ten freely moving actors at8x4 (336 actor poses total). The twelve prior rows are preserved as exact input snapshots; source images, exact built-in imagegen prompts and measured whole-subject extraction are recorded by living-facing-prompts.json and export_living_facings.py. Rear-quarter Rime crab and Kiln golem drafts were corrected before delivery. Canopy beetle source columns differ by row; explicit source_columns losslessly normalizes them to East/West. Runtime selects actual poses and uses no in-plane rotation or mirroring substitutes. Alpha-zero RGB in generated sources is discarded outside owned silhouettes during routine extraction; original sources remain unchanged.
+
+Ferric's retired orbital icon is preserved separately. A new original four-frame grounded induction-rail source and prompt are exported by export_living_rail.py. Current24 role sheets contain384 frames. The old row exporter respects component_sources/component_grids, preserving these actor/rail overrides. Historical96-row conservation tests use exact archived sheets; new tests verify all336 facing subjects, visible glow ownership, actual bearing selection and source pixels. Provenance now covers478 records. No runtime generation or new network dependency is introduced.
+
+## Living Arcade media (2026-10-28)
+
+Six original built-in imagegen atlases in assets/images/<pak>-source.png supply Canopy Capers, Rime Rink, Storm Loom, Kiln Derby, Paper Pilgrimage and Ferric Ferry. Exact prompts are tools/assetforge/living-prompts.json. Originals stay unchanged; export_living.py writes 24 component-local four-frame sheets (96 frames), six derived scenery mosaics, eighteen local audio copies and six copies of the existing shared pickup chime. Extraction must preserve whole substantial alpha subjects even where generated animation rows/columns overlap; nominal quarter cuts or broad row bands can clip antennae and needles. Measured source rectangles and hashes belong in the existing provenance ledgers. Legacy exporters skip the [4,4] authoring grid.
+
+Eighteen new Stable Audio 3 jobs used the existing pinned local CPU/XNNPACK/w8a8 backend and cached weights offline: six 32-second music sources and twelve whole-second effect sources. Keep source/model/seed hashes and original PCM. The generated tracks contain faded tails, so prompts.json declares measured source loop regions: Canopy[0,29.6], Rime[0,30.4], Storm[0,28.5], Kiln[0,27.5], Paper[0,27.6], Ferric[0,31.5]. Existing 0.18-second cyclic mastering yields 29.42/30.22/28.32/27.32/27.42/31.32-second OGGs. The new encoded four-second join energy checks pass; they do not establish subjective musical quality or physical speaker listening. Runtime loads only prepared local files.
+
 This folder is a development pipeline; nothing here is imported by the game. No third-party art/music from the legacy prototypes is shipped in the revival.
 
 ## Providers
@@ -75,3 +87,9 @@ export_facings.py accepts measured source_row_edges and --pak for a targeted exi
 
 ## Shared arcade defeat sound (2026-10-28)
 game_over is a new actual local Stable Audio 3 small-sfx generation, seed 2846, one-second inference, offline CPU/XNNPACK/w8a8 at pinned revision 77e0398c26f7d22d801ec1bb036307e8b231f741. local.py generate --job game_over --offline completed; the prompt and original WAV hash are in prompts.json and audio/local/generation.json. prepare.py --job game_over trimmed onset, faded, normalized and encoded a .554s OGG; manifest.py registers source and derivative (356 current asset records). Runtime only loads the production sound through the effects bus. Windows and wheel include it explicitly; no generation dependency is added to the game.
+
+## Living playtest direction and rail art (2026-10-28)
+
+Twelve new original actor sources replace the initial Living Arcade single-bearing rows. Canopy pilot/enemy use two facings and four phases; the other ten actors use eight bearings and four phases (336 poses). These are actual upright directional images selected by the roles, with zero runtime rotation/mirroring. Canopy enemy source columns vary by row and are explicitly normalized in living-facing-prompts.json. The Rime and Kiln rear views were regenerated before delivery; discarded drafts are not claimed as delivered sources.
+
+export_living_facings.py preserves each significant-alpha subject, visible glow and exclusive two-pixel RGBA fringe without resampling. Exact source bounds, destination cells, prompts, reference inputs and hashes are recorded. The twelve exact prior input rows remain archived as living-facing-reference images; component_snapshots preserves their historical provenance. New Ferric rail art has its own four-pose original, prompt and lossless exporter, plus an archived old weapon input. export_living.py preserves all component_sources overrides. Current Living role sheets contain384 frames, and the manifest verifies478 asset records. See [playtest evidence](../../docs/living-playtest.json) for visual inspection and limits.

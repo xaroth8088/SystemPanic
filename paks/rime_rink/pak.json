@@ -1,0 +1,63 @@
+{
+  "api_version": 4,
+  "id": "rime_rink",
+  "name": "Rime Rink",
+  "subtitle": "GLIDE / BANK / CRUSH",
+  "version": "1.0.0",
+  "order": 19,
+  "color": [
+    132,
+    215,
+    255
+  ],
+  "description": "Carve across a frozen workshop. Throw heavy curling stones and skate over them to recover ammunition; bank shots, brake on heated grates, and lure enemies into moving ice presses.",
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "concept": "inertia, curling-stone impulses and heated braking lanes",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "sheet_source": "assets/images/rime_rink-source.png",
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ],
+      "enemy": [
+        8,
+        4
+      ],
+      "weapon": [
+        4,
+        1
+      ],
+      "obstacles": [
+        4,
+        1
+      ]
+    },
+    "source_row_edges": [
+      0,
+      323,
+      640,
+      940,
+      1254
+    ],
+    "component_sources": {
+      "pilot": "assets/images/rime_rink-pilot-facings-source.png",
+      "enemy": "assets/images/rime_rink-enemy-facings-source.png"
+    },
+    "component_snapshots": {
+      "pilot": "assets/images/rime_rink-pilot-living-facing-reference.png",
+      "enemy": "assets/images/rime_rink-enemy-living-facing-reference.png"
+    }
+  }
+}

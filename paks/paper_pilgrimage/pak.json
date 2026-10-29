@@ -1,0 +1,63 @@
+{
+  "api_version": 4,
+  "id": "paper_pilgrimage",
+  "version": "1.0.0",
+  "name": "Paper Pilgrimage",
+  "subtitle": "FOLD / CUT / RETURN",
+  "description": "Glide through paired fold doors. Hold fire to fold a paper blade around the pilot, then release to unfold a cutting fan and catch its return. Shots open moving shutters for everyone.",
+  "color": [
+    177,
+    205,
+    248
+  ],
+  "order": 22,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "concept": "origami flight, transported momentum and returning folds",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "sheet_source": "assets/images/paper_pilgrimage-source.png",
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ],
+      "enemy": [
+        8,
+        4
+      ],
+      "weapon": [
+        4,
+        1
+      ],
+      "obstacles": [
+        4,
+        1
+      ]
+    },
+    "source_row_edges": [
+      0,
+      358,
+      641,
+      920,
+      1254
+    ],
+    "component_sources": {
+      "pilot": "assets/images/paper_pilgrimage-pilot-facings-source.png",
+      "enemy": "assets/images/paper_pilgrimage-enemy-facings-source.png"
+    },
+    "component_snapshots": {
+      "pilot": "assets/images/paper_pilgrimage-pilot-living-facing-reference.png",
+      "enemy": "assets/images/paper_pilgrimage-enemy-living-facing-reference.png"
+    }
+  }
+}

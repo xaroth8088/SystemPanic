@@ -1,0 +1,5 @@
+# Rime terrain
+
+Private seed/run-level RNG creates two moving70x48 presses and two nonblocking warm strips, with broad passages and local offsets/phases. Warm strips apply4/s drag to both pilot and enemy velocity. Presses oscillate82px on horizontal tracks at.9 angular speed. Build positions include the seeded phase, so spawn safety sees the actual initial geometry and the first tick moves at most1px rather than teleporting across an actor. Actual overlap relocates an actor safely outside the moving rectangle, applies outward velocity and damage (pilot9+.35*wave, enemy24+1.2*wave), with.7s per-press/body cooldown. Dead identities are pruned. Only currently active presses have collision/danger; there are no delayed danger previews.
+
+Geometry is impervious and regenerated every level. Body/projectile filters are independent; warm strips pass both, presses block both. Tests verify equal two-team warmth, two-team press damage/escape/cooldown, projectile-only collision filters, fresh deterministic layouts and unchanged combat RNG.

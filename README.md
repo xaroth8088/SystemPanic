@@ -1,6 +1,6 @@
 # System Panic
 
-An offline arcade game about adapting as its rules change around you. Play any of eighteen complete Paks alone, mix their components, or build a static Remix by choosing its pilot, enemies, weapon, music, background and obstacles. Survive an endless sequence of levels: start with one enemy, then face two, three, and one more with every cleared level. The run ends when you are defeated.
+An offline arcade game about adapting as its rules change around you. Play any of twenty-four complete Paks alone, mix their components, or build a static Remix by choosing its pilot, enemies, weapon, music, background and obstacles. Survive an endless sequence of levels: start with one enemy, then face two, three, and one more with every cleared level. The run ends when you are defeated.
 
 This is a fresh implementation. The 2017 game and unfinished 2025 rewrite remain available in Git history; see [prototype history and credits](docs/history.md).
 
@@ -17,7 +17,7 @@ python play.py
 
 Source also runs on Linux/macOS with Python 3.12+ and Pygame; the standalone build targets Windows x64.
 
-## The eighteen Paks
+## The twenty-four Paks
 
 | Pak | Movement | Weapon | Opposition |
 |---|---|---|---|
@@ -39,6 +39,12 @@ Source also runs on Linux/macOS with Python 3.12+ and Pygame; the standalone bui
 | Bloom Siege | Botanical scuttling and protected burrow hops | Refill at pools that move each level; leave the pool to plant and water | Weevils stalk, lock their target and rush through your garden |
 | Echo Vault | Movement with a two-second positional rewind | Record volleys that repeat from their original locations and directions | Chronoguards predict movement, leave active danger zones and blink to flanks |
 | Tidal Choir | Buoyant swimming, ballast dives and pressure shielding | Charge at least 0.6s; bubbles rebound with energy loss before their timed burst | Cuttlefish space themselves, lock jet charges and leave active ink hazards |
+| Canopy Capers | Primary button jumps; gravity, double jumps and a leaf glide | Automatic descending stomps scale with relative impact speed and build rebound chains | Lantern beetles plan physical routes up/down spring branches and collapsing leaves |
+| Rime Rink | Inertial skating with a deliberate carve brake | Throw finite curling stones, then skate over them to recover ammunition | Ice crabs skid through warm braking strips and moving crushers |
+| Storm Loom | Drifting kite flight with an anchor stance | Throw and reel a harpoon; release to snap its taut, damaging thread | Shoot turbines to rotate solid gates and powerful jet lanes; wall impacts hurt both sides |
+| Kiln Derby | Ceramic racing with a draft dash | Pressure strengthens molten marbles; release cools the nozzle before it locks | Furnaces rotate between slag volleys; shooting hot slag creates protective ceramic cover |
+| Paper Pilgrimage | Glide and commit to a folded dart | Fold paper around the pilot while charging, then release a blade that cuts, unfolds and returns | Paper mantises dart through paired fold gates and shot-open moving shutters |
+| Ferric Ferry | Magnetic tug momentum and a reversing repel pulse | Plant two terminals, energize their fixed induction rail, then release a sweeping armature | Rivet skiffs bank through reversible magnetic fields and projectile-transparent rails |
 
 The classic-inspired six use original designs based on familiar arcade mechanics: **Neon Breach → Breakout**, **Maze Muncher → Pac-Man**, **Burrow Patrol → Dig Dug**, **Vector Coil → Qix / Tron**, **Star Bastion → Space Invaders**, and **Tide Hopper → Frogger**. They retain System Panic's endless combat objective and mixable components. Each owns its code, procedural layouts, original AI sprites, soundtrack and effects.
 
@@ -68,6 +74,12 @@ Every **ten enemies destroyed**, the engine asks the active weapon Pak to create
 | Bloom Siege | Nearby magnetic collection | Watering can capacity (+2 nectar per pickup, up to 24) |
 | Echo Vault | Nearby magnetic collection | Echo damage and repeat count |
 | Tidal Choir | Nearby magnetic collection | Powered burst size and damage; minimum charge stays 0.6s |
+| Canopy Capers | Nearby attraction | Stronger stomps and higher rebounds |
+| Rime Rink | Nearby attraction | Stone damage, faster throws and up to two extra recoverable stones |
+| Storm Loom | Nearby attraction | Harpoon, reel and snap damage |
+| Kiln Derby | Nearby attraction | Marble damage and rebound count |
+| Paper Pilgrimage | Nearby attraction | Blade damage and unfolding reach |
+| Ferric Ferry | Nearby attraction | Stronger/wider armatures and longer charge capacity (1.2 to 2.4 seconds) |
 
 Vector's filled regions and live enemy-blocking lines are owned by its weapon component. Filled regions retain a walkable boundary, survive unrelated swaps for their remaining lifetime, and fade after 22 active seconds. Weapon replacement or a new level clears them. The pilot's attacks remain device-independent.
 

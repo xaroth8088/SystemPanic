@@ -1,0 +1,144 @@
+{
+  "provider": "OpenAI built-in imagegen",
+  "jobs": [
+    {
+      "id": "canopy_capers_pilot_facings",
+      "pak": "canopy_capers",
+      "role": "pilot",
+      "columns": 2,
+      "rows": 4,
+      "file": "assets/images/canopy_capers-pilot-facings-source.png",
+      "reference_file": "assets/images/canopy_capers-pilot-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing side-view walking/jumping courier identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same mint-green acorn courier with amber goggles, layered green leaf cap/scarf, oversized golden spring boots. TRUE TRANSPARENT background. EXACTLY TWO columns and FOUR rows =8 individual sprites. Column1 faces EAST (screen right); column2 faces WEST (screen left). Rows are four successive run/jump animation poses. Both are actual side views. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px."
+    },
+    {
+      "id": "canopy_capers_enemy_facings",
+      "pak": "canopy_capers",
+      "role": "enemy",
+      "columns": 2,
+      "rows": 4,
+      "file": "assets/images/canopy_capers-enemy-facings-source.png",
+      "reference_file": "assets/images/canopy_capers-enemy-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing side-view walking beetle identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same round magenta chestnut beetle with gold shell back, green leaf marking, tiny feet and antennae. TRUE TRANSPARENT background. EXACTLY TWO columns and FOUR rows =8 individual sprites. Column1 faces EAST (screen right); column2 faces WEST (screen left). Rows are four successive run/jump animation poses. Both are actual side views. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px.",
+      "source_columns": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "measured_order_note": "Delivered source rows0/3 faceWest,East; rows1/2 East,West. Lossless per-row cell reordering normalizes runtimecolumnsEast,West."
+    },
+    {
+      "id": "rime_rink_pilot_facings",
+      "pak": "rime_rink",
+      "role": "pilot",
+      "columns": 8,
+      "rows": 4,
+      "file": "assets/images/rime_rink-pilot-facings-source.png",
+      "reference_file": "assets/images/rime_rink-pilot-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing skating automaton identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same sapphire-blue round penguin-like ice courier robot with orange visor, crystal crest and ice skates. TRUE TRANSPARENT background. EXACTLY EIGHT columns and FOUR rows =32 individual sprites. Fixed column order from left to right: EAST (screen right), SOUTHEAST, SOUTH (toward viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Each row is one of four consecutive locomotion/wingbeat animation poses. Every row repeats the same eight compass bearings in that order. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px."
+    },
+    {
+      "id": "rime_rink_enemy_facings",
+      "pak": "rime_rink",
+      "role": "enemy",
+      "columns": 8,
+      "rows": 4,
+      "file": "assets/images/rime_rink-enemy-facings-source.png",
+      "reference_file": "assets/images/rime_rink-enemy-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing scuttling ice crab identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same chunky crimson ice crab robot with pale crystalline claws, white ice crystals and gold eyes. TRUE TRANSPARENT background. EXACTLY EIGHT columns and FOUR rows =32 individual sprites. Fixed column order from left to right: EAST (screen right), SOUTHEAST, SOUTH (toward viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Each row is one of four consecutive locomotion/wingbeat animation poses. Every row repeats the same eight compass bearings in that order. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px. CRITICAL DIRECTION CORRECTION: The last attempt did not show proper rear quarter views. Columns6,7,8 (NORTHWEST,NORTH,NORTHEAST) MUST show the REAR of the creature. For all three rear columns HIDE ALL eyes/front face/visor and show the back shell/lid/plates instead. Column1 East: head/front to screen right. Column2 Southeast: front toward lower right. Column3 South: full front facing viewer. Column4 Southwest: front toward lower left. Column5 West: head/front left. Column6 Northwest: REAR LEFT view, back shell, no eyes. Column7 North: FULL BACK, rear shell, no eyes. Column8 Northeast: REAR RIGHT view, back shell, no eyes. Do not replace the two back diagonals with front diagonals. Maintain an upright fixed-camera 2.5D turn-around, NOT flat image rotation. Strict8columnsx4rows. Transparent."
+    },
+    {
+      "id": "storm_loom_pilot_facings",
+      "pak": "storm_loom",
+      "role": "pilot",
+      "columns": 8,
+      "rows": 4,
+      "file": "assets/images/storm_loom-pilot-facings-source.png",
+      "reference_file": "assets/images/storm_loom-pilot-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing suspended kite courier identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same tiny brass and turquoise flying weaver automaton suspended under a diamond indigo silk kite, crescent embroidery, turquoise scarf. TRUE TRANSPARENT background. EXACTLY EIGHT columns and FOUR rows =32 individual sprites. Fixed column order from left to right: EAST (screen right), SOUTHEAST, SOUTH (toward viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Each row is one of four consecutive locomotion/wingbeat animation poses. Every row repeats the same eight compass bearings in that order. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px."
+    },
+    {
+      "id": "storm_loom_enemy_facings",
+      "pak": "storm_loom",
+      "role": "enemy",
+      "columns": 8,
+      "rows": 4,
+      "file": "assets/images/storm_loom-enemy-facings-source.png",
+      "reference_file": "assets/images/storm_loom-enemy-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing flying thunder moth identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same violet thunder moth with cream lightning/crescent wing markings, gold feathery antennae, turquoise jewel body. TRUE TRANSPARENT background. EXACTLY EIGHT columns and FOUR rows =32 individual sprites. Fixed column order from left to right: EAST (screen right), SOUTHEAST, SOUTH (toward viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Each row is one of four consecutive locomotion/wingbeat animation poses. Every row repeats the same eight compass bearings in that order. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px."
+    },
+    {
+      "id": "kiln_derby_pilot_facings",
+      "pak": "kiln_derby",
+      "role": "pilot",
+      "columns": 8,
+      "rows": 4,
+      "file": "assets/images/kiln_derby-pilot-facings-source.png",
+      "reference_file": "assets/images/kiln_derby-pilot-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing ceramic wheeled racer identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same orange glazed ceramic salamander racer with blue kiln goggles on small basalt roller wheels, turquoise glaze markings. TRUE TRANSPARENT background. EXACTLY EIGHT columns and FOUR rows =32 individual sprites. Fixed column order from left to right: EAST (screen right), SOUTHEAST, SOUTH (toward viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Each row is one of four consecutive locomotion/wingbeat animation poses. Every row repeats the same eight compass bearings in that order. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px."
+    },
+    {
+      "id": "kiln_derby_enemy_facings",
+      "pak": "kiln_derby",
+      "role": "enemy",
+      "columns": 8,
+      "rows": 4,
+      "file": "assets/images/kiln_derby-enemy-facings-source.png",
+      "reference_file": "assets/images/kiln_derby-enemy-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing upright running pot golem identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same squat upright charcoal pot golem with red-hot cracks, copper pot lid head, bronze loop handles and stubby limbs. TRUE TRANSPARENT background. EXACTLY EIGHT columns and FOUR rows =32 individual sprites. Fixed column order from left to right: EAST (screen right), SOUTHEAST, SOUTH (toward viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Each row is one of four consecutive locomotion/wingbeat animation poses. Every row repeats the same eight compass bearings in that order. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px. CRITICAL DIRECTION CORRECTION: The last attempt did not show proper rear quarter views. Columns6,7,8 (NORTHWEST,NORTH,NORTHEAST) MUST show the REAR of the creature. For all three rear columns HIDE ALL eyes/front face/visor and show the back shell/lid/plates instead. Column1 East: head/front to screen right. Column2 Southeast: front toward lower right. Column3 South: full front facing viewer. Column4 Southwest: front toward lower left. Column5 West: head/front left. Column6 Northwest: REAR LEFT view, back shell, no eyes. Column7 North: FULL BACK, rear shell, no eyes. Column8 Northeast: REAR RIGHT view, back shell, no eyes. Do not replace the two back diagonals with front diagonals. Maintain an upright fixed-camera 2.5D turn-around, NOT flat image rotation. Strict8columnsx4rows. Transparent."
+    },
+    {
+      "id": "paper_pilgrimage_pilot_facings",
+      "pak": "paper_pilgrimage",
+      "role": "pilot",
+      "columns": 8,
+      "rows": 4,
+      "file": "assets/images/paper_pilgrimage-pilot-facings-source.png",
+      "reference_file": "assets/images/paper_pilgrimage-pilot-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing flying origami swallow identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same cream folded-paper swallow glider, deep indigo wings with gold flourishes, vermilion paper scarf, sharp origami folds. TRUE TRANSPARENT background. EXACTLY EIGHT columns and FOUR rows =32 individual sprites. Fixed column order from left to right: EAST (screen right), SOUTHEAST, SOUTH (toward viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Each row is one of four consecutive locomotion/wingbeat animation poses. Every row repeats the same eight compass bearings in that order. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px."
+    },
+    {
+      "id": "paper_pilgrimage_enemy_facings",
+      "pak": "paper_pilgrimage",
+      "role": "enemy",
+      "columns": 8,
+      "rows": 4,
+      "file": "assets/images/paper_pilgrimage-enemy-facings-source.png",
+      "reference_file": "assets/images/paper_pilgrimage-enemy-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing upright paper mantis identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same emerald origami mantis with indigo crease edges, gold eye discs, antennae and four paper legs. TRUE TRANSPARENT background. EXACTLY EIGHT columns and FOUR rows =32 individual sprites. Fixed column order from left to right: EAST (screen right), SOUTHEAST, SOUTH (toward viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Each row is one of four consecutive locomotion/wingbeat animation poses. Every row repeats the same eight compass bearings in that order. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px."
+    },
+    {
+      "id": "ferric_ferry_pilot_facings",
+      "pak": "ferric_ferry",
+      "role": "pilot",
+      "columns": 8,
+      "rows": 4,
+      "file": "assets/images/ferric_ferry-pilot-facings-source.png",
+      "reference_file": "assets/images/ferric_ferry-pilot-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing magnetic hovering tugboat identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same small ivory violet brass magnetic tugboat robot with amber porthole eyes, red/cyan horseshoe-magnet prow and cyan hover wake. TRUE TRANSPARENT background. EXACTLY EIGHT columns and FOUR rows =32 individual sprites. Fixed column order from left to right: EAST (screen right), SOUTHEAST, SOUTH (toward viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Each row is one of four consecutive locomotion/wingbeat animation poses. Every row repeats the same eight compass bearings in that order. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px."
+    },
+    {
+      "id": "ferric_ferry_enemy_facings",
+      "pak": "ferric_ferry",
+      "role": "enemy",
+      "columns": 8,
+      "rows": 4,
+      "file": "assets/images/ferric_ferry-enemy-facings-source.png",
+      "reference_file": "assets/images/ferric_ferry-enemy-living-facing-reference.png",
+      "prompt": "Use case: stylized-concept. Reference image: existing mechanical horseshoe-crab drone identity and materials; it is a reference for identity, not a required arrangement. Create a production GAME SPRITESHEET of that same copper and red magnet horseshoe-crab drone with graphite shell plates, rivets, glowing amber eyes, red horseshoe-magnet claws. TRUE TRANSPARENT background. EXACTLY EIGHT columns and FOUR rows =32 individual sprites. Fixed column order from left to right: EAST (screen right), SOUTHEAST, SOUTH (toward viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Each row is one of four consecutive locomotion/wingbeat animation poses. Every row repeats the same eight compass bearings in that order. This is actual character/vehicle turnaround, not rotation of a flat picture. Keep the fixed overhead/isometric 2.5D camera and upper-left light in every cell; turn the subject around its world vertical axis. Head/feet/body remain upright on screen, do NOT tumble or rotate sprites in the picture plane. South shows front, North shows back surfaces and no front face; East/West show corresponding side views. For the moth, kite and swallow, direction is the subject's nose/face/travel bearing, with coherent visible top surfaces and wing flex; no mirrored pasted lighting. For upright creatures feet remain below heads at every bearing. Preserve exact colors, features, proportions and polished hand-painted arcade style of the reference. Same fixed scale for all poses, generous transparent margins around EACH FULL sprite. Strict equal cell grid and isolated silhouettes; no touching/overlapping cells, no cropped antennae/scarves/wings. NO text, letters, labels, borders, ground, diagrams, shadows outside sprite or extra objects. Readable at44px."
+    }
+  ]
+}

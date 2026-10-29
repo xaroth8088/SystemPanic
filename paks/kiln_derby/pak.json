@@ -1,0 +1,62 @@
+{
+  "id": "kiln_derby",
+  "name": "Kiln Derby",
+  "subtitle": "PRESSURE / COOL / REBOUND",
+  "color": [
+    255,
+    183,
+    112
+  ],
+  "description": "Race and fire pressure-heated marbles through a foundry. Furnaces turn between slag volleys; shoot hot slag into protective ceramic cover, or break the furnaces and blocks.",
+  "version": "1.0.0",
+  "order": 21,
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "animation_grid": [
+      4,
+      4
+    ],
+    "sheet_source": "assets/images/kiln_derby-source.png",
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ],
+      "enemy": [
+        8,
+        4
+      ],
+      "weapon": [
+        4,
+        1
+      ],
+      "obstacles": [
+        4,
+        1
+      ]
+    },
+    "source_row_edges": [
+      0,
+      320,
+      631,
+      930,
+      1254
+    ],
+    "component_sources": {
+      "pilot": "assets/images/kiln_derby-pilot-facings-source.png",
+      "enemy": "assets/images/kiln_derby-enemy-facings-source.png"
+    },
+    "component_snapshots": {
+      "pilot": "assets/images/kiln_derby-pilot-living-facing-reference.png",
+      "enemy": "assets/images/kiln_derby-enemy-living-facing-reference.png"
+    }
+  }
+}

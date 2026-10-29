@@ -1,0 +1,62 @@
+{
+  "id": "storm_loom",
+  "name": "Storm Loom",
+  "subtitle": "REEL / SNAP / SAIL",
+  "color": [
+    151,
+    227,
+    255
+  ],
+  "description": "Reel and snap harpoon threads while shot-rotated solid wind gates send both sides riding powerful jet lanes into dangerous walls.",
+  "version": "1.0.0",
+  "order": 20,
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "animation_grid": [
+      4,
+      4
+    ],
+    "sheet_source": "assets/images/storm_loom-source.png",
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ],
+      "enemy": [
+        8,
+        4
+      ],
+      "weapon": [
+        4,
+        1
+      ],
+      "obstacles": [
+        4,
+        1
+      ]
+    },
+    "source_row_edges": [
+      0,
+      352,
+      620,
+      874,
+      1254
+    ],
+    "component_sources": {
+      "pilot": "assets/images/storm_loom-pilot-facings-source.png",
+      "enemy": "assets/images/storm_loom-enemy-facings-source.png"
+    },
+    "component_snapshots": {
+      "pilot": "assets/images/storm_loom-pilot-living-facing-reference.png",
+      "enemy": "assets/images/storm_loom-enemy-living-facing-reference.png"
+    }
+  }
+}

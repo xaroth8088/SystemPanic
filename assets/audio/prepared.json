@@ -564,5 +564,173 @@
     "seconds": 0.554,
     "sample_rate": 44100,
     "sha256": "c32fa336bd174968f0a726d598c58cc1c648b5b8de77a3ee7310d367c5202b68"
+  },
+  {
+    "file": "assets/audio/production/canopy_capers.ogg",
+    "source": "assets/audio/local/canopy_capers.wav",
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 29.42,
+    "sample_rate": 44100,
+    "sha256": "1a17e37f682d2913ae65009fc6cbbde207e5bb5fa86b87ae5da6c68c074ecb02",
+    "loop_region_seconds": [
+      0,
+      29.6
+    ]
+  },
+  {
+    "file": "assets/audio/production/canopy_capers_shot.ogg",
+    "source": "assets/audio/local/canopy_capers_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.631,
+    "sample_rate": 44100,
+    "sha256": "e20fc93632ef2001698719c87d733062b2235a95c6522b1e4492ead94cbd4912"
+  },
+  {
+    "file": "assets/audio/production/canopy_capers_special.ogg",
+    "source": "assets/audio/local/canopy_capers_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.276,
+    "sample_rate": 44100,
+    "sha256": "018ace702c1f39a56d1efd5d44e0ee961638e23a155c02b8430b20aecf283a87"
+  },
+  {
+    "file": "assets/audio/production/ferric_ferry.ogg",
+    "source": "assets/audio/local/ferric_ferry.wav",
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 31.32,
+    "sample_rate": 44100,
+    "sha256": "2c99fa3de152342e24861e1aa2996c73696dc0d71ece456da3fe938a2b61f37b",
+    "loop_region_seconds": [
+      0,
+      31.5
+    ]
+  },
+  {
+    "file": "assets/audio/production/ferric_ferry_shot.ogg",
+    "source": "assets/audio/local/ferric_ferry_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.22,
+    "sample_rate": 44100,
+    "sha256": "ee92f94515e8c565068cfe0485a6fe9e860558b6810cf7f6ab963fd537c63bf4"
+  },
+  {
+    "file": "assets/audio/production/ferric_ferry_special.ogg",
+    "source": "assets/audio/local/ferric_ferry_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.239,
+    "sample_rate": 44100,
+    "sha256": "2c0b40502fd1091f81510867a93c66a82f7ef7283cddbb706e9e6707fd072f63"
+  },
+  {
+    "file": "assets/audio/production/kiln_derby.ogg",
+    "source": "assets/audio/local/kiln_derby.wav",
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 27.32,
+    "sample_rate": 44100,
+    "sha256": "10e161d4fd6f28170d94c0d0563ff3b07e70ac4a0b075f915f52bbe3be37f16a",
+    "loop_region_seconds": [
+      0,
+      27.5
+    ]
+  },
+  {
+    "file": "assets/audio/production/kiln_derby_shot.ogg",
+    "source": "assets/audio/local/kiln_derby_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.093,
+    "sample_rate": 44100,
+    "sha256": "07abbd7ec69fecc1123c71beb0da6ba022d7855d5d143bca78f000ababa08ce4"
+  },
+  {
+    "file": "assets/audio/production/kiln_derby_special.ogg",
+    "source": "assets/audio/local/kiln_derby_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.648,
+    "sample_rate": 44100,
+    "sha256": "36092b140d923bf4cf71aa6d21d0b33d95d69200c21f4ccb0deedbee89135260"
+  },
+  {
+    "file": "assets/audio/production/paper_pilgrimage.ogg",
+    "source": "assets/audio/local/paper_pilgrimage.wav",
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 27.42,
+    "sample_rate": 44100,
+    "sha256": "eedcb3408b1dd1c9c2c2aa024a419f6fdf16cad86c679f93a523458dfcc63cb8",
+    "loop_region_seconds": [
+      0,
+      27.6
+    ]
+  },
+  {
+    "file": "assets/audio/production/paper_pilgrimage_shot.ogg",
+    "source": "assets/audio/local/paper_pilgrimage_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.337,
+    "sample_rate": 44100,
+    "sha256": "9c382c4c45542d52edbb8a2bcf20fb724dfbdf241338aff100275fd66950bb8b"
+  },
+  {
+    "file": "assets/audio/production/paper_pilgrimage_special.ogg",
+    "source": "assets/audio/local/paper_pilgrimage_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.421,
+    "sample_rate": 44100,
+    "sha256": "ccf03a57062c171f14c59aaf4a0437294764eb0f1b7a0a9c0b4122726ae6731d"
+  },
+  {
+    "file": "assets/audio/production/rime_rink.ogg",
+    "source": "assets/audio/local/rime_rink.wav",
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 30.22,
+    "sample_rate": 44100,
+    "sha256": "5e8db620ad2d5e7625f0f716416e4c64f1962fd9468c8fadd425b7ce26756efd",
+    "loop_region_seconds": [
+      0,
+      30.4
+    ]
+  },
+  {
+    "file": "assets/audio/production/rime_rink_shot.ogg",
+    "source": "assets/audio/local/rime_rink_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.892,
+    "sample_rate": 44100,
+    "sha256": "0789672435fba918a6411befad21d14a119b405badeadc79752b1579b79d4ff6"
+  },
+  {
+    "file": "assets/audio/production/rime_rink_special.ogg",
+    "source": "assets/audio/local/rime_rink_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.498,
+    "sample_rate": 44100,
+    "sha256": "1aca658f62cd602fb1f3dc165f98d79f61c111e5af1352a234113d8cfd23e32c"
+  },
+  {
+    "file": "assets/audio/production/storm_loom.ogg",
+    "source": "assets/audio/local/storm_loom.wav",
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 28.32,
+    "sample_rate": 44100,
+    "sha256": "79ef9827575fa0baa2aaf58eabd322060163194c7eac50bc6af1ab26287821f0",
+    "loop_region_seconds": [
+      0,
+      28.5
+    ]
+  },
+  {
+    "file": "assets/audio/production/storm_loom_shot.ogg",
+    "source": "assets/audio/local/storm_loom_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.243,
+    "sample_rate": 44100,
+    "sha256": "890863f56a235995d0434d352b48c8bd9addcc95b875c7704156cd3f0120ca18"
+  },
+  {
+    "file": "assets/audio/production/storm_loom_special.ogg",
+    "source": "assets/audio/local/storm_loom_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.426,
+    "sample_rate": 44100,
+    "sha256": "7eff4828c8d3f86ef22b233c5a0eaa3b0e6b48541118ce5c3f42272565ca04ae"
   }
 ]

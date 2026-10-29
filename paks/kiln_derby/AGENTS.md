@@ -1,0 +1,7 @@
+# Kiln Derby
+
+A complete independent API 4 Pak: a draft-dashing ceramic racer, kiln golems, pressure/temperature marbles, refractory scenery, music and a slag foundry. Read [Pak contracts](../AGENTS.md) and the nearby role memories.
+
+The playtest revision removes ambient suction/blast pushes. Breakable furnaces eject rolling hot slag that knocks and harms either actor. Between volleys each furnace smoothly turns one seeded clockwise/counterclockwise quarter-turn, changing the next volley's actual lane; its stationary base keeps turning safe for nearby actors. Shooting a hot chunk immediately cools it into real projectile-blocking protective ceramic cover; cooled blocks can be destroyed. Furnaces and material are bounded, regenerate cleanly each level and remain inside the obstacle role. See [obstacle memory](obstacles/AGENTS.md) for exact timing, collision filters and measured launch/cover outcomes.
+
+Hold fire to increase marble pressure; release cools the nozzle before lockout. Hot marbles rebound and lose heat, while cold ones shatter. Upgrades strengthen damage/rebounds. The racer and golem use actual eight-bearing/four-phase sprites with upright fixed-camera poses. No named host rule or sibling-private-state coupling is needed. Fresh evidence is in [verification memory](../../tests/AGENTS.md) and output/obstacle-redesign; physical hardware and human balance remain separate.

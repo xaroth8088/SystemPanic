@@ -1,5 +1,13 @@
 # Tooling memory
 
+## Living Arcade verification
+
+The playtest revision adds verify_living_playtest.py for84 actual bearing selections across12 actor roles,44/88px pose inspection and six real level-six gameplay scenes. verify_living.py reads each role's authoring grid; it no longer assumes4x1. --allow-defeats retains legitimate dead samples as balance evidence while continuing to reject time-limit stalls. Canopy/terrain/induction owner probes record physical route occupancy, jet transport, gate passability, slag knockback/cover and planted-rail behavior; old orbit/ambient-wind evidence remains historical.
+
+`verify_living.py --mode solo` records the six new Paks across three seeds and relaxed/standard difficulties using only ordinary digital demo Controls, checks exact initial counts, and renders six gameplay scenes/a gallery. `--mode mixes` exercises all 6^4 new gameplay combinations plus 512 old/new cases for six seconds with hold/release cycles, upgrades and swaps, then all discovered presentation pairs. `--mode media` audits 24 four-frame sheets, twelve distinct effects and 100ms encoded music windows around a four-second cyclic join. Reports retain actual failures/defeats; these are bounded automation checks, not human balance or physical audio/display approval.
+
+The native gamepad probe observes delivered raw fire at WeaponBase.update. It cannot require every weapon to emit a projectile or shot sound in an arbitrary twelve-frame input window: contact stomps need a real descending collision and some charged attacks need release. Combat behavior has focused Pak tests. Existing legacy aim/speed helpers are author-owned, not ABC requirements; newer launch/progression tests use the public update/factory/contact contract instead.
+
 - `verify.py`: bounded samples of all installed complete endless solo runs (12 cleared levels by default), verifying +1 initial enemy per level and continued play, plus UI screenshots and asset hashes. The QA stopping point is not a game finish.
 - Static Remix verification in `verify.py` captures builder/provider/favorite/naming/delete/gameplay screens and pause saving. It checks exact snapshots, favorite CRUD, inert manual/expired-timer shuffles and unchanged main-mode shuffling. `verify_distribution.py` reuses this probe through a temporary external Pak observer in the frozen executable; no test instrumentation is bundled.
 - `compatibility.py`: stability checks for every pilot/enemy/weapon/obstacle gameplay mix (18^4 with the shipped set), plus rendering/streaming every background/music pair (18^2). --require-clear is an optional balance probe. The report distinguishes these checks from the full six-channel mix space.
@@ -57,3 +65,9 @@ verify_tail_navigation.py replays tests/cases/iron-maze-tail.json at 1/8/20 init
 
 ## Menu refinement verification (2026-10-28)
 verify_menu_refinement.py captures the requested copy removals, compact settings, four-card saved Remixes with all six providers, missing/flagged records, second-page navigation and Void effect detail/gameplay. It asserts no mix_mode field/window slogan, provider labels, drawing without simulation/RNG changes and frozen decorative animation in reduced motion. It reports cold/warm effect draw timings. verify.py and the frozen distribution observer reuse this helper with temporary profiles. Other lists retain six-card pagination. No user favorites or exclusion records are used.
+
+## Living playtest probes (2026-10-28)
+
+verify_living_playtest.py renders all twelve actor roles at84 supported bearings at44/88px, checks zero rotation/mirroring and no RNG mutation, and captures six actual level-six scenes. verify_living.py derives frame counts from authoring grids; --allow-defeats records legitimate solo defeats while still rejecting stalled samples. Its default remains strict. Tests and rendered evidence now exercise Canopy primary jumps, actual platform routes and momentum damage, physical Storm gates/jet impacts, Kiln slag cooling/cover, and planted Ferric induction rails. Initial ambient-bellows/orbiting-mote snapshots remain historical. See [current evidence](../docs/living-playtest.json).
+
+verify_matrix.py can select changed weapon/obstacle providers through --weapons and --obstacles (union of matches). It retains the original unit assertions and full product indices, splits selected indices disjointly across workers, and counts fresh worlds. --output keeps new filtered reports separate from earlier full matrices. A selected sweep reports disjoint_selected_coverage; disjoint_full_coverage is true only for the complete product. Rime/Paper weapons plus Kiln obstacles select40,320 of331,776 combinations.

@@ -150,19 +150,27 @@ class PowerupTests(unittest.TestCase):
 
     def test_each_damage_weapon_improves_at_higher_pickup_count(self):
         for pak in get_catalog().complete_ids():
-            if pak in ("vector_coil","bloom_siege"):continue  # Bloom upgrades can capacity, not damage.
+            if pak in ("vector_coil","bloom_siege","canopy_capers"):continue  # Contact stomp has a swept-input upgrade test; Bloom upgrades capacity.
             damage=[]
             for count in (0,5):
                 world=self.world(pak)
                 world.powerups_collected=count
                 world.player.angle=0
                 enemy=world.spawn_enemy(Vec(300,200))
-                enemy.pos=world.player.pos+world.component("weapon").aim(world)*100
+                weapon=world.component("weapon")
+                aim=getattr(weapon,"aim",None)
+                enemy.pos=world.player.pos+(aim(world) if aim is not None else Vec(1,0))*100
                 enemy.health=enemy.max_health=10000
+                if pak=='ferric_ferry':
+                    # A grounded rail needs two actual placements bracketing
+                    # the target; aiming/holding alone cannot create a circuit.
+                    weapon.update(world,FIXED_DT,Controls(fire=True))
+                    weapon.update(world,FIXED_DT,Controls())
+                    world.player.pos+=Vec(200,0)
                 # Charged/recorded weapons need both held and released input;
                 # upgrades must improve a complete attack cycle, not just .4s
                 # of a permanently held trigger.
-                charged = pak in ('void_drifter','sky_forge','pulse_abbey','scrap_ballet','glasswake','bloom_siege','echo_vault','tidal_choir')
+                charged = pak in ('void_drifter','sky_forge','pulse_abbey','scrap_ballet','glasswake','bloom_siege','echo_vault','tidal_choir','storm_loom','kiln_derby','paper_pilgrimage','ferric_ferry')
                 for frame in range(720 if charged else 48):
                     world.component("weapon").update(world,FIXED_DT,Controls(fire=frame%180<144 if charged else True))
                     world.update_projectiles(FIXED_DT)

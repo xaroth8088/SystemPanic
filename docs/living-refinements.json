@@ -1,0 +1,3866 @@
+{
+  "date": "2026-10-28",
+  "revision": "Recoverable stones, rotating furnaces and paper folding charge",
+  "previous_snapshot": "docs/living-playtest.json",
+  "complete_paks": 24,
+  "host_gameplay_or_api_changes": false,
+  "new_generated_media": false,
+  "changes": {
+    "rime_rink": "Finite physical stones; pilot contact recovers ammunition; no timed refill",
+    "kiln_derby": "Furnaces turn between volleys and hold their new emission heading while firing",
+    "paper_pilgrimage": "Weapon-owned paper folding charge animation follows the active pilot"
+  },
+  "focused_evidence": {
+    "rime": {
+      "ordinary_eight_level_samples": [
+        {
+          "difficulty": "relaxed",
+          "seed": 0,
+          "seconds": 66.27,
+          "wave": 9,
+          "phase": "active",
+          "health": 94.92,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "recovered_stones": 21,
+          "empty_stock_frames": 1423,
+          "peak_loans": 6,
+          "stock": 6
+        },
+        {
+          "difficulty": "relaxed",
+          "seed": 24,
+          "seconds": 85.88,
+          "wave": 9,
+          "phase": "active",
+          "health": 70.57,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "recovered_stones": 25,
+          "empty_stock_frames": 1470,
+          "peak_loans": 5,
+          "stock": 5
+        },
+        {
+          "difficulty": "relaxed",
+          "seed": 73,
+          "seconds": 68.93,
+          "wave": 9,
+          "phase": "active",
+          "health": 71.15,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "recovered_stones": 22,
+          "empty_stock_frames": 1150,
+          "peak_loans": 6,
+          "stock": 6
+        },
+        {
+          "difficulty": "relaxed",
+          "seed": 2026,
+          "seconds": 99.22,
+          "wave": 9,
+          "phase": "active",
+          "health": 89.28,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "recovered_stones": 28,
+          "empty_stock_frames": 2036,
+          "peak_loans": 6,
+          "stock": 6
+        },
+        {
+          "difficulty": "standard",
+          "seed": 0,
+          "seconds": 83.0,
+          "wave": 9,
+          "phase": "active",
+          "health": 87.41,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "recovered_stones": 22,
+          "empty_stock_frames": 1220,
+          "peak_loans": 6,
+          "stock": 6
+        },
+        {
+          "difficulty": "standard",
+          "seed": 24,
+          "seconds": 106.1,
+          "wave": 9,
+          "phase": "active",
+          "health": 36.41,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "recovered_stones": 35,
+          "empty_stock_frames": 1337,
+          "peak_loans": 5,
+          "stock": 6
+        },
+        {
+          "difficulty": "standard",
+          "seed": 73,
+          "seconds": 67.07,
+          "wave": 9,
+          "phase": "active",
+          "health": 84.43,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "recovered_stones": 26,
+          "empty_stock_frames": 1216,
+          "peak_loans": 6,
+          "stock": 5
+        },
+        {
+          "difficulty": "standard",
+          "seed": 2026,
+          "seconds": 71.02,
+          "wave": 9,
+          "phase": "active",
+          "health": 100,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "recovered_stones": 28,
+          "empty_stock_frames": 1122,
+          "peak_loans": 6,
+          "stock": 6
+        }
+      ],
+      "actual_rendered_recovery": {
+        "caught": {
+          "frame": 1126,
+          "level": 4,
+          "stock": 2,
+          "loans": 2,
+          "recovered": 7,
+          "player": [
+            539.8125452535371,
+            370.14890942994487
+          ],
+          "particles": 11
+        },
+        "spent": {
+          "frame": 1485,
+          "level": 4,
+          "stock": 0,
+          "loans": 4,
+          "resting": 1
+        }
+      }
+    },
+    "kiln": {
+      "capture_scope": "staged obstacle-only updates through actual App rendering; normal media and no arena annotation",
+      "solo_scope": "ordinary Pak demo digital Controls; no stat/damage advantage; target8 cleared levels",
+      "captures": {
+        "volley-1": {
+          "seconds": 0.375,
+          "heading_degrees": 0.0,
+          "volley": 1,
+          "hot_chunks": 2,
+          "cold_chunks": 0
+        },
+        "turn-45": {
+          "seconds": 2.3583,
+          "heading_degrees": 44.6141,
+          "volley": 1,
+          "hot_chunks": 0,
+          "cold_chunks": 3
+        },
+        "volley-2": {
+          "seconds": 4.075,
+          "heading_degrees": 90.0,
+          "volley": 2,
+          "hot_chunks": 2,
+          "cold_chunks": 3
+        },
+        "turn-135": {
+          "seconds": 6.0583,
+          "heading_degrees": 134.6141,
+          "volley": 2,
+          "hot_chunks": 0,
+          "cold_chunks": 6
+        },
+        "volley-3": {
+          "seconds": 7.775,
+          "heading_degrees": 180.0,
+          "volley": 3,
+          "hot_chunks": 2,
+          "cold_chunks": 6
+        }
+      },
+      "actual_launches": [
+        {
+          "volley": 1,
+          "seconds": 0.0083,
+          "position": [
+            532.5,
+            240.0
+          ],
+          "velocity": [
+            300.0,
+            0.0
+          ],
+          "heading": 0.0
+        },
+        {
+          "volley": 1,
+          "seconds": 0.3667,
+          "position": [
+            532.5,
+            240.0
+          ],
+          "velocity": [
+            300.0,
+            0.0
+          ],
+          "heading": 0.0
+        },
+        {
+          "volley": 1,
+          "seconds": 0.725,
+          "position": [
+            532.5,
+            240.0
+          ],
+          "velocity": [
+            300.0,
+            0.0
+          ],
+          "heading": 0.0
+        },
+        {
+          "volley": 2,
+          "seconds": 3.7083,
+          "position": [
+            480.0,
+            292.5
+          ],
+          "velocity": [
+            1.8369701987210297e-14,
+            300.0
+          ],
+          "heading": 90.0
+        },
+        {
+          "volley": 2,
+          "seconds": 4.0667,
+          "position": [
+            480.0,
+            292.5
+          ],
+          "velocity": [
+            1.8369701987210297e-14,
+            300.0
+          ],
+          "heading": 90.0
+        },
+        {
+          "volley": 2,
+          "seconds": 4.425,
+          "position": [
+            480.0,
+            292.5
+          ],
+          "velocity": [
+            1.8369701987210297e-14,
+            300.0
+          ],
+          "heading": 90.0
+        },
+        {
+          "volley": 3,
+          "seconds": 7.4083,
+          "position": [
+            427.5,
+            240.0
+          ],
+          "velocity": [
+            -300.0,
+            3.6739403974420595e-14
+          ],
+          "heading": 180.0
+        },
+        {
+          "volley": 3,
+          "seconds": 7.7667,
+          "position": [
+            427.5,
+            240.0
+          ],
+          "velocity": [
+            -300.0,
+            3.6739403974420595e-14
+          ],
+          "heading": 180.0
+        }
+      ],
+      "solo_runs": [
+        {
+          "seed": 24,
+          "difficulty": "relaxed",
+          "seconds": 46.667,
+          "wave": 9,
+          "phase": "active",
+          "health": 100,
+          "kills": 36,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "peak_cover": 11,
+          "peak_slag": 8,
+          "turn_observed": true
+        },
+        {
+          "seed": 73,
+          "difficulty": "relaxed",
+          "seconds": 49.183,
+          "wave": 9,
+          "phase": "active",
+          "health": 100,
+          "kills": 36,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "peak_cover": 11,
+          "peak_slag": 8,
+          "turn_observed": true
+        },
+        {
+          "seed": 2026,
+          "difficulty": "relaxed",
+          "seconds": 44.7,
+          "wave": 9,
+          "phase": "active",
+          "health": 100,
+          "kills": 36,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "peak_cover": 11,
+          "peak_slag": 8,
+          "turn_observed": true
+        },
+        {
+          "seed": 24,
+          "difficulty": "standard",
+          "seconds": 50.5,
+          "wave": 9,
+          "phase": "active",
+          "health": 100,
+          "kills": 36,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "peak_cover": 11,
+          "peak_slag": 8,
+          "turn_observed": true
+        },
+        {
+          "seed": 73,
+          "difficulty": "standard",
+          "seconds": 51.8,
+          "wave": 9,
+          "phase": "active",
+          "health": 100,
+          "kills": 36,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "peak_cover": 11,
+          "peak_slag": 8,
+          "turn_observed": true
+        },
+        {
+          "seed": 2026,
+          "difficulty": "standard",
+          "seconds": 42.9,
+          "wave": 9,
+          "phase": "active",
+          "health": 100,
+          "kills": 36,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "peak_cover": 11,
+          "peak_slag": 8,
+          "turn_observed": true
+        }
+      ],
+      "limits": [
+        "SDL dummy rendering/audio; no physical display/controller or human balance claim"
+      ]
+    },
+    "paper": {
+      "stages": [
+        {
+          "frame": 6,
+          "charge": 0.049999999999999996,
+          "stage": 0,
+          "fraction": 0.04545454545454545,
+          "player": [
+            480.0,
+            270.0
+          ],
+          "physical_blades": 0,
+          "files": {
+            "normal": "stage-0-normal.png",
+            "reduced": "stage-0-reduced.png"
+          }
+        },
+        {
+          "frame": 42,
+          "charge": 0.35000000000000026,
+          "stage": 1,
+          "fraction": 0.3181818181818184,
+          "player": [
+            480.0,
+            270.0
+          ],
+          "physical_blades": 0,
+          "files": {
+            "normal": "stage-1-normal.png",
+            "reduced": "stage-1-reduced.png"
+          }
+        },
+        {
+          "frame": 84,
+          "charge": 0.7,
+          "stage": 2,
+          "fraction": 0.6363636363636362,
+          "player": [
+            480.0,
+            270.0
+          ],
+          "physical_blades": 0,
+          "files": {
+            "normal": "stage-2-normal.png",
+            "reduced": "stage-2-reduced.png"
+          }
+        },
+        {
+          "frame": 134,
+          "charge": 1.1,
+          "stage": 3,
+          "fraction": 1.0,
+          "player": [
+            480.0,
+            270.0
+          ],
+          "physical_blades": 0,
+          "files": {
+            "normal": "stage-3-normal.png",
+            "reduced": "stage-3-reduced.png"
+          }
+        }
+      ],
+      "actual_input": "Held fire through fixed-step World.step; release creates the normal blade",
+      "stages_file": "stages.png",
+      "release_file": "released.png",
+      "foreign_pilot_file": "foreign-top-edge.png",
+      "release_removes_display": true,
+      "physical_blades_after_release": 1,
+      "drawing_preserves_state_and_rng": true,
+      "generated_media": false,
+      "local_art_sha256": "bd5cc7dada441e0cc6904da780463977df536393e2f74b202e71506d328c4a9f",
+      "limits": "Staged SDL dummy views; not a human playtest or physical display benchmark"
+    }
+  },
+  "unit_tests": {
+    "standard_passed": 402,
+    "standard_seconds": 260.072,
+    "failures": 0,
+    "errors": 0,
+    "exhaustive_method_run_separately": true,
+    "unique_methods": 403
+  },
+  "affected_gameplay_matrix": {
+    "command": "python tools/verify_matrix.py",
+    "tests": 1,
+    "workers": 8,
+    "combinations": 40320,
+    "fixed_steps_per_mix": 20,
+    "seconds": 362.349,
+    "passed": true,
+    "exit_code": 0,
+    "fresh_gameplay_instances": true,
+    "worlds_created": 40320,
+    "disjoint_full_coverage": false,
+    "disjoint_selected_coverage": true,
+    "full_product_combinations": 331776,
+    "results": [
+      {
+        "worker": 0,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 3456,
+        "fixed_steps_per_mix": 20,
+        "seconds": 98.204,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 3456,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 1,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 3456,
+        "fixed_steps_per_mix": 20,
+        "seconds": 98.347,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 3456,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 2,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 3456,
+        "fixed_steps_per_mix": 20,
+        "seconds": 116.037,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 3456,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 3,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 3456,
+        "fixed_steps_per_mix": 20,
+        "seconds": 101.307,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 3456,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 4,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 3456,
+        "fixed_steps_per_mix": 20,
+        "seconds": 100.788,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 3456,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 5,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 16128,
+        "fixed_steps_per_mix": 20,
+        "seconds": 358.406,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 16128,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 6,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 3456,
+        "fixed_steps_per_mix": 20,
+        "seconds": 99.291,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 3456,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 7,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 3456,
+        "fixed_steps_per_mix": 20,
+        "seconds": 111.651,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 3456,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      }
+    ],
+    "selected_roles": {
+      "weapons": [
+        "rime_rink",
+        "paper_pilgrimage"
+      ],
+      "obstacles": [
+        "kiln_derby"
+      ]
+    },
+    "scope": "Original unittest assertions, all selected product indices, disjoint worker partitions; cached read-only PNG decoding"
+  },
+  "new_solo": {
+    "samples": 36,
+    "clear_six": 35,
+    "defeats": [
+      {
+        "pak": "storm_loom",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "dead",
+        "cleared_levels": 5,
+        "seconds": 44.633,
+        "health": 0.0,
+        "kills": 20,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6
+        },
+        "first_clear_seconds": 2.867,
+        "max_projectiles": 1
+      }
+    ],
+    "stalls": 0,
+    "runs": [
+      {
+        "pak": "canopy_capers",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 39.833,
+        "health": 94.76,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.783,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "canopy_capers",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 47.317,
+        "health": 75.66,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.767,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "canopy_capers",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 38.65,
+        "health": 84.65,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.783,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "canopy_capers",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 49.767,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.783,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "canopy_capers",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 50.833,
+        "health": 64.73,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.767,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "canopy_capers",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 46.583,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.783,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 55.25,
+        "health": 62.92,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.1,
+        "max_projectiles": 5
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 43.683,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 1.833,
+        "max_projectiles": 5
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 56.7,
+        "health": 81.81,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.167,
+        "max_projectiles": 5
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 72.583,
+        "health": 96.38,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.1,
+        "max_projectiles": 5
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 38.533,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 1.833,
+        "max_projectiles": 5
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 50.283,
+        "health": 88.97,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.167,
+        "max_projectiles": 5
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 31.017,
+        "health": 86.96,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.183,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "dead",
+        "cleared_levels": 5,
+        "seconds": 44.633,
+        "health": 0.0,
+        "kills": 20,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6
+        },
+        "first_clear_seconds": 2.867,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 34.417,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.883,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 28.633,
+        "health": 74.9,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.2,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 40.267,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.867,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 28.117,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 0,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.85,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 31.6,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.8,
+        "max_projectiles": 14
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 32.9,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 0,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.85,
+        "max_projectiles": 12
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 31.6,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.7,
+        "max_projectiles": 12
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 36.6,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.767,
+        "max_projectiles": 13
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 35.517,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.817,
+        "max_projectiles": 12
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 30.333,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.667,
+        "max_projectiles": 15
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 37.717,
+        "health": 89.97,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.35,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 33.667,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.317,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 33.55,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.317,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 34.55,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.35,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 36.717,
+        "health": 94.5,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.3,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 33.5,
+        "health": 81.4,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.567,
+        "max_projectiles": 3
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 65.05,
+        "health": 94.98,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 5.433,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 69.95,
+        "health": 110,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.917,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 65.05,
+        "health": 110,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 5.533,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 66.5,
+        "health": 79.8,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.817,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 71.35,
+        "health": 110,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 5.5,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 55.4,
+        "health": 110,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 5.483,
+        "max_projectiles": 1
+      }
+    ]
+  },
+  "longer_mixes": {
+    "new_gameplay_combinations": 1296,
+    "sampled_old_new_combinations": 512,
+    "seconds_per_case": 6,
+    "swaps": 512,
+    "max_projectiles": 37,
+    "finite_state": true,
+    "close_cleans_geometry": true,
+    "presentation_pairs_checked": 576,
+    "read_only_render": true,
+    "local_music_streams": true
+  },
+  "frozen_distribution": {
+    "checks": [
+      {
+        "check": "bloom_siege",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "burrow_patrol",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "canopy_capers",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "echo_vault",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "ferric_ferry",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "glasswake",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "iron_circuit",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "kiln_derby",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "maze_muncher",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "neon_breach",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "orbit_keeper",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "paper_pilgrimage",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "phase_garden",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "pulse_abbey",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "rime_rink",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "scrap_ballet",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "signal_runner",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "sky_forge",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "star_bastion",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "storm_loom",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "tidal_choir",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "tide_hopper",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "vector_coil",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "void_drifter",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "drop_in_after_build",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "partial_only_mix",
+        "frames": 240,
+        "exit_code": 0
+      },
+      {
+        "check": "partial_library",
+        "frames": 1,
+        "exit_code": 0
+      },
+      {
+        "check": "empty_install",
+        "frames": 1,
+        "exit_code": 0
+      },
+      {
+        "check": "invalid_pak_isolated",
+        "frames": 1,
+        "exit_code": 0
+      },
+      {
+        "check": "static_remix_builder",
+        "frames": 1,
+        "exit_code": 0
+      },
+      {
+        "check": "static_remix_favorites_and_frozen_scheduling",
+        "frames": 240,
+        "exit_code": 0
+      }
+    ],
+    "external_code_and_helpers_executed": true,
+    "partial_only_mix_executed": true,
+    "static_remix_favorites_and_scheduling": {
+      "mix": {
+        "pilot": "signal_runner",
+        "enemy": "void_drifter",
+        "weapon": "iron_circuit",
+        "music": "sky_forge",
+        "background": "phase_garden",
+        "obstacles": "orbit_keeper"
+      },
+      "manual_shuffle_unchanged": true,
+      "expired_timer_unchanged": true,
+      "shuffle_count": 0,
+      "active_seconds": 2.433,
+      "phase": "clear",
+      "live_mix_saved_without_advancing_run": true,
+      "main_game_can_still_shuffle": true,
+      "favorite_save_rename_load": true,
+      "favorite_delete": true,
+      "flagged_combinations": {
+        "exact_normal_mix": {
+          "pilot": "paper_pilgrimage",
+          "enemy": "pulse_abbey",
+          "weapon": "canopy_capers",
+          "music": "orbit_keeper",
+          "background": "neon_breach",
+          "obstacles": "orbit_keeper"
+        },
+        "recovery_mix": {
+          "pilot": "phase_garden",
+          "enemy": "ferric_ferry",
+          "weapon": "vector_coil",
+          "music": "signal_runner",
+          "background": "bloom_siege",
+          "obstacles": "bloom_siege"
+        },
+        "normal_progress_retained": true,
+        "static_remix_returns_home": true,
+        "solo_returns_home": true,
+        "remove_persists": true,
+        "disk_failure_excluded_in_memory_and_retried": true,
+        "paused_world_unchanged": true,
+        "synthetic_dialog_probe": {
+          "fps": 4,
+          "seconds": 1.25
+        }
+      },
+      "menu_refinement": {
+        "saved_components_listed": true,
+        "missing_and_flagged_components_listed": true,
+        "saved_cards_per_page": 4,
+        "pagination": true,
+        "obsolete_style_absent": true,
+        "draw_preserves_simulation": true,
+        "reduced_motion_static": true,
+        "effect_draw_ms_max": 6.383300002198666,
+        "warm_effect_draw_ms_mean": 0.24047221813816577
+      },
+      "run_feedback": {
+        "hull_endpoints_and_midpoint_rendered": true,
+        "zero_hull_arena_grayscale": true,
+        "hud_keeps_color": true,
+        "death_freezes_gameplay_and_rng": true,
+        "death_waits_for_input_release": true,
+        "generated_death_sound_decodes": true,
+        "echo_active_bursts_and_blinks_rendered": true,
+        "cleaned_layouts_rendered": true
+      },
+      "tidal_ink": {
+        "hidden_until_active": true,
+        "filled_damage_area": true,
+        "charge_wake_rendered": true,
+        "render_preserves_simulation_and_rng": true,
+        "reduced_motion_steady": true,
+        "warm_draw_ms_mean": 0.1668140004039742,
+        "solo_samples": [
+          {
+            "seed": 24,
+            "wave": 8,
+            "phase": "active",
+            "seconds": 60.47,
+            "peak_ink": 7,
+            "initial_enemy_counts": {
+              "1": 1,
+              "2": 2,
+              "3": 3,
+              "4": 4,
+              "5": 5,
+              "6": 6,
+              "7": 7,
+              "8": 8
+            }
+          },
+          {
+            "seed": 73,
+            "wave": 8,
+            "phase": "active",
+            "seconds": 75.67,
+            "peak_ink": 7,
+            "initial_enemy_counts": {
+              "1": 1,
+              "2": 2,
+              "3": 3,
+              "4": 4,
+              "5": 5,
+              "6": 6,
+              "7": 7,
+              "8": 8
+            }
+          },
+          {
+            "seed": 2026,
+            "wave": 8,
+            "phase": "active",
+            "seconds": 81.37,
+            "peak_ink": 7,
+            "initial_enemy_counts": {
+              "1": 1,
+              "2": 2,
+              "3": 3,
+              "4": 4,
+              "5": 5,
+              "6": 6,
+              "7": 7,
+              "8": 8
+            }
+          }
+        ]
+      }
+    },
+    "wheel_external_layout_verified": true,
+    "executable_sha256": "f9581f3092a53fd061abbdfb98b03e9efd80029f31b001d1b25922ae58d8072e"
+  },
+  "gamepad": {
+    "source": {
+      "native_sdl_virtual_controller": true,
+      "physical_controllers_seen": 1,
+      "display_resolution_ui": true,
+      "fixed_internal_surfaces": true,
+      "five_percent_volume_controls": true,
+      "stick_dpad_identical_directions": 8,
+      "stick_magnitude_has_no_effect": true,
+      "gamepad_only_menu_paths": true,
+      "preferences_saved": true,
+      "nested_back": true,
+      "pak_selection": true,
+      "solo_inputs": [
+        {
+          "pak": "signal_runner",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "void_drifter",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "iron_circuit",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "sky_forge",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "phase_garden",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "orbit_keeper",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "neon_breach",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "maze_muncher",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "burrow_patrol",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "vector_coil",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "star_bastion",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "tide_hopper",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "pulse_abbey",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "scrap_ballet",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "glasswake",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "bloom_siege",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "echo_vault",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "tidal_choir",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "canopy_capers",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "rime_rink",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "storm_loom",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "kiln_derby",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "paper_pilgrimage",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "ferric_ferry",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        }
+      ],
+      "disconnect_pauses": true,
+      "reconnect_requires_neutral": true,
+      "focus_loss_guard": true,
+      "outcome_retry": true,
+      "steps": 4227
+    },
+    "frozen": {
+      "native_sdl_virtual_controller": true,
+      "physical_controllers_seen": 1,
+      "display_resolution_ui": true,
+      "fixed_internal_surfaces": true,
+      "five_percent_volume_controls": true,
+      "stick_dpad_identical_directions": 8,
+      "stick_magnitude_has_no_effect": true,
+      "gamepad_only_menu_paths": true,
+      "preferences_saved": true,
+      "nested_back": true,
+      "pak_selection": true,
+      "solo_inputs": [
+        {
+          "pak": "signal_runner",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "void_drifter",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "iron_circuit",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "sky_forge",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "phase_garden",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "orbit_keeper",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "neon_breach",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "maze_muncher",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "burrow_patrol",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "vector_coil",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "star_bastion",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "tide_hopper",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "pulse_abbey",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "scrap_ballet",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "glasswake",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "bloom_siege",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "echo_vault",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "tidal_choir",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "canopy_capers",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "rime_rink",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "storm_loom",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "kiln_derby",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "paper_pilgrimage",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        },
+        {
+          "pak": "ferric_ferry",
+          "stick_movement": true,
+          "trigger_fire": true,
+          "special": true,
+          "pause_resume": true
+        }
+      ],
+      "disconnect_pauses": true,
+      "reconnect_requires_neutral": true,
+      "focus_loss_guard": true,
+      "outcome_retry": true,
+      "steps": 4227
+    }
+  },
+  "powerups": {
+    "source": {
+      "runs": [
+        {
+          "pak": "signal_runner",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SignalRunnerPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "void_drifter",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VoidDrifterPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "iron_circuit",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "IronCircuitPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "sky_forge",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SkyForgePowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "phase_garden",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "PhaseGardenPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "orbit_keeper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "OrbitKeeperPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "neon_breach",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "NeonBreachPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "maze_muncher",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "MazeMuncherPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "burrow_patrol",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "BurrowPatrolPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "vector_coil",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VectorCoilPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "star_bastion",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "StarBastionPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "tide_hopper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "TideHopperPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "pulse_abbey",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "scrap_ballet",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "glasswake",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "bloom_siege",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "echo_vault",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "tidal_choir",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "canopy_capers",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "rime_rink",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "storm_loom",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "kiln_derby",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "paper_pilgrimage",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "ferric_ferry",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        }
+      ],
+      "all_paks": 24,
+      "kill_interval": 10,
+      "shared_pickup_counter": true
+    },
+    "frozen": {
+      "runs": [
+        {
+          "pak": "signal_runner",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SignalRunnerPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "void_drifter",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VoidDrifterPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "iron_circuit",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "IronCircuitPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "sky_forge",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SkyForgePowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "phase_garden",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "PhaseGardenPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "orbit_keeper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "OrbitKeeperPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "neon_breach",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "NeonBreachPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "maze_muncher",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "MazeMuncherPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "burrow_patrol",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "BurrowPatrolPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "vector_coil",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VectorCoilPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "star_bastion",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "StarBastionPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "tide_hopper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "TideHopperPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "pulse_abbey",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "scrap_ballet",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "glasswake",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "bloom_siege",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "echo_vault",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "tidal_choir",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "canopy_capers",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "rime_rink",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "storm_loom",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "kiln_derby",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "paper_pilgrimage",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "ferric_ferry",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        }
+      ],
+      "all_paks": 24,
+      "kill_interval": 10,
+      "shared_pickup_counter": true
+    }
+  },
+  "provenance_records": 478,
+  "packaging": {
+    "source_pak_files": 634,
+    "windows_matches_source": true,
+    "wheel_matches_source": true,
+    "zip_matches_source": true,
+    "zip_crc": true,
+    "executable_sha256": "f9581f3092a53fd061abbdfb98b03e9efd80029f31b001d1b25922ae58d8072e",
+    "wheel_sha256": "f5f13c753b3469d825e629835954ccb1d47581531d3ce83bcc2f8ddc61754b01",
+    "zip_sha256": "8448e5e186109e063381a343d19265fa800cbb93ca89f712b860fa022b59c007"
+  },
+  "wheel_installation": {
+    "wheel": "E:\\GitHub\\SystemPanic\\dist\\system_panic-0.1.0-py3-none-any.whl",
+    "wheel_sha256": "f5f13c753b3469d825e629835954ccb1d47581531d3ce83bcc2f8ddc61754b01",
+    "expected_packaging_sha256": "f5f13c753b3469d825e629835954ccb1d47581531d3ce83bcc2f8ddc61754b01",
+    "wheel_hash_stable_after_extraction": true,
+    "source_pak_files": 634,
+    "wheel_exact_pak_file_set": true,
+    "wheel_additional_root_authoring_guide_matches_source": true,
+    "folder_matches_all_source_paks": true,
+    "extracted_install_matches_all_source_paks": true,
+    "source_host_modules": 19,
+    "all_host_modules_match_source": true,
+    "no_stale_ferric_mote": true,
+    "wheel_crc": true,
+    "prefix": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix",
+    "extraction": "Safe .data/data prefix mapping; no global pip install"
+  },
+  "isolated_wheel": {
+    "runtime": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+    "python_executable": "E:\\GitHub\\SystemPanic\\.venv\\Scripts\\python.exe",
+    "pygame": "2.6.1",
+    "package_file": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\__init__.py",
+    "prefix": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix",
+    "pak_roots": [
+      "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks",
+      "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\wheel-profiles-ilpfqq3w\\local\\SystemPanic\\paks"
+    ],
+    "asset_root": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic",
+    "complete_paks": 24,
+    "issues": [],
+    "profiles": "temporary under output/living-refinements-wheel and removed after run; no real user profiles",
+    "wheel_sha256": "f5f13c753b3469d825e629835954ccb1d47581531d3ce83bcc2f8ddc61754b01",
+    "wheel_hash_stable_after_runtime": true,
+    "input": "ordinary eight-direction Pak demo Controls; no gameplay advantages",
+    "frames_each": 240,
+    "total_frames": 5760,
+    "elapsed_seconds": 73.109,
+    "host_hashes": [
+      {
+        "file": "system_panic/__init__.py",
+        "sha256": "6982e98619c6ee76a2d8af0884601d5911d3ec4d6f23a14d21bbb2924efff24e",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/app.py",
+        "sha256": "0199da912ba9c7865404ac4e61d3d9a60749c0fee21a6c227bfe432fba62f0d2",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/audio.py",
+        "sha256": "fd725d7ea9ccb9aaf5185767be6816eb514ce6343be882af6621d3b8c3042351",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/combination_ui.py",
+        "sha256": "a93591bcbdede4712acec4260213968438a72ed759f42d5304162ac5781757e4",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/combinations.py",
+        "sha256": "46b1060028775b03951067e816d6143c07559b01fba229ff73edb9b68131d175",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/graphics.py",
+        "sha256": "e2149126e7ef831ddbb5d5f42d1722965a9ce3baf87ca71ab0b5986c66179af0",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/input_devices.py",
+        "sha256": "8bfc0789da31580c903685a2deeef67f0800b13706cb3fb9cf2863e2406138e0",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/model.py",
+        "sha256": "3595fee71dbf686d872b24cb60182ae082df88c8ecbee91ff42bf541e53930aa",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/pak_api.py",
+        "sha256": "e07b2e2dc59cbf88c5b2f5069fbc381134236664a57281b12993f0872cfbeb6a",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/pak_assets.py",
+        "sha256": "1a3e04c275b41b0515e42a57b3efaa0b6ecdd9144f950160f01a7720d012ed77",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/paks/__init__.py",
+        "sha256": "69bba75cb96dfec906a8b4090a1ac11a564de402b0a21ea05dd22610b130a525",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/paks/model.py",
+        "sha256": "c3fc6caeea13c46ffb5edadaedb76758d02da98c6cc81448293527d1e3904676",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/paks/registry.py",
+        "sha256": "389a9f429b444eb52ba3f1fd590df1d9abef11480901cfef4fff1bc7bf565a36",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/preferences.py",
+        "sha256": "f9aeaeb4fe3fbed3fd6212c70b54edbd3e468618a02b45fe10b9504910eba344",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/remix_ui.py",
+        "sha256": "e4c75169476098bab778f0192b3a38c7d5b2bc35a36c6f0ab6053a785efd5dba",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/remixes.py",
+        "sha256": "25a6af2cccc5fed32b8995db900e3641ad7702acb52b079147cae60837e9392f",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/resources.py",
+        "sha256": "cb84abc2f1409ce2d72986a0ce3de58d9f6d2779563e748e825cf8ba29d1b179",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/run_feedback.py",
+        "sha256": "69aeaf341e808c22f7950b4c59107fd1968f78c073d33fb27c335f181fb00557",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/world.py",
+        "sha256": "e0b69336d07a5f9b3fa544938b5e774581e54f1fe515e3195be73e2ae6b1844f",
+        "matches_checkout_source": true
+      }
+    ],
+    "imported_host_modules": {
+      "system_panic": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\__init__.py",
+      "system_panic.resources": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\resources.py",
+      "system_panic.pak_assets": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\pak_assets.py",
+      "system_panic.model": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\model.py",
+      "system_panic.pak_api": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\pak_api.py",
+      "system_panic.paks.model": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\paks\\model.py",
+      "system_panic.paks.registry": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\paks\\registry.py",
+      "system_panic.paks": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\paks\\__init__.py",
+      "system_panic.audio": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\audio.py",
+      "system_panic.remixes": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\remixes.py",
+      "system_panic.combinations": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\combinations.py",
+      "system_panic.graphics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\graphics.py",
+      "system_panic.combination_ui": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\combination_ui.py",
+      "system_panic.input_devices": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\input_devices.py",
+      "system_panic.preferences": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\preferences.py",
+      "system_panic.remix_ui": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\remix_ui.py",
+      "system_panic.run_feedback": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\run_feedback.py",
+      "system_panic.world": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\world.py",
+      "system_panic.app": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\system_panic\\app.py"
+    },
+    "imported_pak_modules": {
+      "_system_panic_pak_e706493b23c7adeb_0.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\pilot\\pilot.py",
+      "_system_panic_pak_e706493b23c7adeb_0.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\enemy\\enemy.py",
+      "_system_panic_pak_e706493b23c7adeb_0.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\enemy\\hazards.py",
+      "_system_panic_pak_e706493b23c7adeb_0.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\weapon\\weapon.py",
+      "_system_panic_pak_e706493b23c7adeb_0.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\weapon\\powerup.py",
+      "_system_panic_pak_e706493b23c7adeb_0.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\weapon\\readout.py",
+      "_system_panic_pak_e706493b23c7adeb_0.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\music\\music.py",
+      "_system_panic_pak_e706493b23c7adeb_0.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\background\\background.py",
+      "_system_panic_pak_e706493b23c7adeb_0.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\obstacles\\obstacle.py",
+      "_system_panic_pak_d52969d7305c8e15_1.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\pilot\\pilot.py",
+      "_system_panic_pak_d52969d7305c8e15_1.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\enemy\\enemy.py",
+      "_system_panic_pak_d52969d7305c8e15_1.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\enemy\\tactics.py",
+      "_system_panic_pak_d52969d7305c8e15_1.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\weapon\\weapon.py",
+      "_system_panic_pak_d52969d7305c8e15_1.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\weapon\\powerup.py",
+      "_system_panic_pak_d52969d7305c8e15_1.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\weapon\\projectile.py",
+      "_system_panic_pak_d52969d7305c8e15_1.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\music\\music.py",
+      "_system_panic_pak_d52969d7305c8e15_1.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\background\\background.py",
+      "_system_panic_pak_d52969d7305c8e15_1.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\obstacles\\obstacle.py",
+      "_system_panic_pak_a773e5aca7aa6555_2.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\pilot\\pilot.py",
+      "_system_panic_pak_a773e5aca7aa6555_2.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\enemy\\enemy.py",
+      "_system_panic_pak_a773e5aca7aa6555_2.enemy.navigation": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\enemy\\navigation.py",
+      "_system_panic_pak_a773e5aca7aa6555_2.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\weapon\\weapon.py",
+      "_system_panic_pak_a773e5aca7aa6555_2.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\weapon\\powerup.py",
+      "_system_panic_pak_a773e5aca7aa6555_2.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\music\\music.py",
+      "_system_panic_pak_a773e5aca7aa6555_2.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\background\\background.py",
+      "_system_panic_pak_a773e5aca7aa6555_2.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\obstacles\\obstacle.py",
+      "_system_panic_pak_cfa6e906f650c045_3.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\pilot\\pilot.py",
+      "_system_panic_pak_cfa6e906f650c045_3.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\enemy\\enemy.py",
+      "_system_panic_pak_cfa6e906f650c045_3.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\enemy\\hazards.py",
+      "_system_panic_pak_cfa6e906f650c045_3.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\weapon\\weapon.py",
+      "_system_panic_pak_cfa6e906f650c045_3.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\weapon\\powerup.py",
+      "_system_panic_pak_cfa6e906f650c045_3.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\weapon\\readout.py",
+      "_system_panic_pak_cfa6e906f650c045_3.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\music\\music.py",
+      "_system_panic_pak_cfa6e906f650c045_3.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\background\\background.py",
+      "_system_panic_pak_cfa6e906f650c045_3.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\obstacles\\obstacle.py",
+      "_system_panic_pak_168fc280d756adec_4.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\pilot\\pilot.py",
+      "_system_panic_pak_168fc280d756adec_4.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\enemy\\enemy.py",
+      "_system_panic_pak_168fc280d756adec_4.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\weapon\\weapon.py",
+      "_system_panic_pak_168fc280d756adec_4.weapon.rail": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\weapon\\rail.py",
+      "_system_panic_pak_168fc280d756adec_4.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\weapon\\powerup.py",
+      "_system_panic_pak_168fc280d756adec_4.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\music\\music.py",
+      "_system_panic_pak_168fc280d756adec_4.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\background\\background.py",
+      "_system_panic_pak_168fc280d756adec_4.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\obstacles\\obstacle.py",
+      "_system_panic_pak_b8bbeb63fa87b441_5.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\pilot\\pilot.py",
+      "_system_panic_pak_b8bbeb63fa87b441_5.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\enemy\\enemy.py",
+      "_system_panic_pak_b8bbeb63fa87b441_5.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\enemy\\hazards.py",
+      "_system_panic_pak_b8bbeb63fa87b441_5.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\weapon\\weapon.py",
+      "_system_panic_pak_b8bbeb63fa87b441_5.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\weapon\\powerup.py",
+      "_system_panic_pak_b8bbeb63fa87b441_5.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\weapon\\readout.py",
+      "_system_panic_pak_b8bbeb63fa87b441_5.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\music\\music.py",
+      "_system_panic_pak_b8bbeb63fa87b441_5.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\background\\background.py",
+      "_system_panic_pak_b8bbeb63fa87b441_5.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\obstacles\\obstacle.py",
+      "_system_panic_pak_b6f6391c8a8d2907_6.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\pilot\\pilot.py",
+      "_system_panic_pak_b6f6391c8a8d2907_6.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\enemy\\enemy.py",
+      "_system_panic_pak_b6f6391c8a8d2907_6.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\enemy\\tactics.py",
+      "_system_panic_pak_b6f6391c8a8d2907_6.enemy.bullet": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\enemy\\bullet.py",
+      "_system_panic_pak_b6f6391c8a8d2907_6.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\weapon\\weapon.py",
+      "_system_panic_pak_b6f6391c8a8d2907_6.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\weapon\\powerup.py",
+      "_system_panic_pak_b6f6391c8a8d2907_6.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\weapon\\projectile.py",
+      "_system_panic_pak_b6f6391c8a8d2907_6.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\music\\music.py",
+      "_system_panic_pak_b6f6391c8a8d2907_6.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\background\\background.py",
+      "_system_panic_pak_b6f6391c8a8d2907_6.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\obstacles\\obstacle.py",
+      "_system_panic_pak_3544441273440ced_7.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\pilot\\pilot.py",
+      "_system_panic_pak_3544441273440ced_7.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\enemy\\enemy.py",
+      "_system_panic_pak_3544441273440ced_7.enemy.ash": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\enemy\\ash.py",
+      "_system_panic_pak_3544441273440ced_7.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\weapon\\weapon.py",
+      "_system_panic_pak_3544441273440ced_7.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\weapon\\powerup.py",
+      "_system_panic_pak_3544441273440ced_7.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\music\\music.py",
+      "_system_panic_pak_3544441273440ced_7.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\background\\background.py",
+      "_system_panic_pak_3544441273440ced_7.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\obstacles\\obstacle.py",
+      "_system_panic_pak_d9851a5f47729a78_8.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\pilot\\pilot.py",
+      "_system_panic_pak_d9851a5f47729a78_8.pilot.navigation": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\pilot\\navigation.py",
+      "_system_panic_pak_d9851a5f47729a78_8.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\enemy\\enemy.py",
+      "_system_panic_pak_d9851a5f47729a78_8.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\enemy\\tactics.py",
+      "_system_panic_pak_d9851a5f47729a78_8.enemy.navigation": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\enemy\\navigation.py",
+      "_system_panic_pak_d9851a5f47729a78_8.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\weapon\\weapon.py",
+      "_system_panic_pak_d9851a5f47729a78_8.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\weapon\\powerup.py",
+      "_system_panic_pak_d9851a5f47729a78_8.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\weapon\\projectile.py",
+      "_system_panic_pak_d9851a5f47729a78_8.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\music\\music.py",
+      "_system_panic_pak_d9851a5f47729a78_8.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\background\\background.py",
+      "_system_panic_pak_d9851a5f47729a78_8.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\obstacles\\obstacle.py",
+      "_system_panic_pak_8475cc0493313d26_9.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\pilot\\pilot.py",
+      "_system_panic_pak_8475cc0493313d26_9.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\enemy\\enemy.py",
+      "_system_panic_pak_8475cc0493313d26_9.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\enemy\\tactics.py",
+      "_system_panic_pak_8475cc0493313d26_9.enemy.bullet": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\enemy\\bullet.py",
+      "_system_panic_pak_8475cc0493313d26_9.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\weapon\\weapon.py",
+      "_system_panic_pak_8475cc0493313d26_9.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\weapon\\powerup.py",
+      "_system_panic_pak_8475cc0493313d26_9.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\weapon\\projectile.py",
+      "_system_panic_pak_8475cc0493313d26_9.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\music\\music.py",
+      "_system_panic_pak_8475cc0493313d26_9.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\background\\background.py",
+      "_system_panic_pak_8475cc0493313d26_9.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\obstacles\\obstacle.py",
+      "_system_panic_pak_0297aa34bb627541_10.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\pilot\\pilot.py",
+      "_system_panic_pak_0297aa34bb627541_10.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\enemy\\enemy.py",
+      "_system_panic_pak_0297aa34bb627541_10.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\enemy\\tactics.py",
+      "_system_panic_pak_0297aa34bb627541_10.enemy.bullet": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\enemy\\bullet.py",
+      "_system_panic_pak_0297aa34bb627541_10.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\weapon\\weapon.py",
+      "_system_panic_pak_0297aa34bb627541_10.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\weapon\\powerup.py",
+      "_system_panic_pak_0297aa34bb627541_10.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\weapon\\projectile.py",
+      "_system_panic_pak_0297aa34bb627541_10.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\weapon\\readout.py",
+      "_system_panic_pak_0297aa34bb627541_10.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\music\\music.py",
+      "_system_panic_pak_0297aa34bb627541_10.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\background\\background.py",
+      "_system_panic_pak_0297aa34bb627541_10.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\obstacles\\obstacle.py",
+      "_system_panic_pak_68d8d5d17a5f6407_11.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\pilot\\pilot.py",
+      "_system_panic_pak_68d8d5d17a5f6407_11.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\enemy\\enemy.py",
+      "_system_panic_pak_68d8d5d17a5f6407_11.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\weapon\\weapon.py",
+      "_system_panic_pak_68d8d5d17a5f6407_11.weapon.blade": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\weapon\\blade.py",
+      "_system_panic_pak_68d8d5d17a5f6407_11.weapon.folding": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\weapon\\folding.py",
+      "_system_panic_pak_68d8d5d17a5f6407_11.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\weapon\\powerup.py",
+      "_system_panic_pak_68d8d5d17a5f6407_11.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\music\\music.py",
+      "_system_panic_pak_68d8d5d17a5f6407_11.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\background\\background.py",
+      "_system_panic_pak_68d8d5d17a5f6407_11.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\obstacles\\obstacle.py",
+      "_system_panic_pak_07cf9289ce290db6_12.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\pilot\\pilot.py",
+      "_system_panic_pak_07cf9289ce290db6_12.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\enemy\\enemy.py",
+      "_system_panic_pak_07cf9289ce290db6_12.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\enemy\\tactics.py",
+      "_system_panic_pak_07cf9289ce290db6_12.enemy.bullet": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\enemy\\bullet.py",
+      "_system_panic_pak_07cf9289ce290db6_12.enemy.telegraph": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\enemy\\telegraph.py",
+      "_system_panic_pak_07cf9289ce290db6_12.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\weapon\\weapon.py",
+      "_system_panic_pak_07cf9289ce290db6_12.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\weapon\\powerup.py",
+      "_system_panic_pak_07cf9289ce290db6_12.weapon.arc": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\weapon\\arc.py",
+      "_system_panic_pak_07cf9289ce290db6_12.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\weapon\\readout.py",
+      "_system_panic_pak_07cf9289ce290db6_12.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\music\\music.py",
+      "_system_panic_pak_07cf9289ce290db6_12.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\background\\background.py",
+      "_system_panic_pak_07cf9289ce290db6_12.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\obstacles\\obstacle.py",
+      "_system_panic_pak_227bbbf60c5a6798_13.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\pilot\\pilot.py",
+      "_system_panic_pak_227bbbf60c5a6798_13.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\enemy\\enemy.py",
+      "_system_panic_pak_227bbbf60c5a6798_13.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\enemy\\hazards.py",
+      "_system_panic_pak_227bbbf60c5a6798_13.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\weapon\\weapon.py",
+      "_system_panic_pak_227bbbf60c5a6798_13.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\weapon\\powerup.py",
+      "_system_panic_pak_227bbbf60c5a6798_13.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\weapon\\readout.py",
+      "_system_panic_pak_227bbbf60c5a6798_13.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\music\\music.py",
+      "_system_panic_pak_227bbbf60c5a6798_13.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\background\\background.py",
+      "_system_panic_pak_227bbbf60c5a6798_13.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\obstacles\\obstacle.py",
+      "_system_panic_pak_a41c3d0b78ced106_14.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\pilot\\pilot.py",
+      "_system_panic_pak_a41c3d0b78ced106_14.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\enemy\\enemy.py",
+      "_system_panic_pak_a41c3d0b78ced106_14.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\weapon\\weapon.py",
+      "_system_panic_pak_a41c3d0b78ced106_14.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\weapon\\powerup.py",
+      "_system_panic_pak_a41c3d0b78ced106_14.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\music\\music.py",
+      "_system_panic_pak_a41c3d0b78ced106_14.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\background\\background.py",
+      "_system_panic_pak_a41c3d0b78ced106_14.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\obstacles\\obstacle.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_15.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\pilot\\pilot.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_15.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\enemy\\enemy.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_15.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\enemy\\hazards.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_15.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\weapon\\weapon.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_15.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\weapon\\powerup.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_15.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\weapon\\readout.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_15.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\music\\music.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_15.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\background\\background.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_15.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\obstacles\\obstacle.py",
+      "_system_panic_pak_91d4354165ac40be_16.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\pilot\\pilot.py",
+      "_system_panic_pak_91d4354165ac40be_16.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\enemy\\enemy.py",
+      "_system_panic_pak_91d4354165ac40be_16.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\enemy\\tactics.py",
+      "_system_panic_pak_91d4354165ac40be_16.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\weapon\\weapon.py",
+      "_system_panic_pak_91d4354165ac40be_16.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\weapon\\powerup.py",
+      "_system_panic_pak_91d4354165ac40be_16.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\weapon\\projectile.py",
+      "_system_panic_pak_91d4354165ac40be_16.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\music\\music.py",
+      "_system_panic_pak_91d4354165ac40be_16.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\background\\background.py",
+      "_system_panic_pak_91d4354165ac40be_16.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\obstacles\\obstacle.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\pilot\\pilot.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\enemy\\enemy.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\enemy\\tactics.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.enemy.physics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\enemy\\physics.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\enemy\\hazards.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\weapon\\weapon.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\weapon\\powerup.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\weapon\\projectile.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\weapon\\readout.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\music\\music.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\background\\background.py",
+      "_system_panic_pak_6f5f8f38890c056a_17.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\obstacles\\obstacle.py",
+      "_system_panic_pak_25c49f03359ed8db_18.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\pilot\\pilot.py",
+      "_system_panic_pak_25c49f03359ed8db_18.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\enemy\\enemy.py",
+      "_system_panic_pak_25c49f03359ed8db_18.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\enemy\\tactics.py",
+      "_system_panic_pak_25c49f03359ed8db_18.enemy.bullet": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\enemy\\bullet.py",
+      "_system_panic_pak_25c49f03359ed8db_18.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\weapon\\weapon.py",
+      "_system_panic_pak_25c49f03359ed8db_18.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\weapon\\powerup.py",
+      "_system_panic_pak_25c49f03359ed8db_18.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\weapon\\projectile.py",
+      "_system_panic_pak_25c49f03359ed8db_18.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\music\\music.py",
+      "_system_panic_pak_25c49f03359ed8db_18.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\background\\background.py",
+      "_system_panic_pak_25c49f03359ed8db_18.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\obstacles\\obstacle.py",
+      "_system_panic_pak_95cd9763bfced651_19.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\pilot\\pilot.py",
+      "_system_panic_pak_95cd9763bfced651_19.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\enemy\\enemy.py",
+      "_system_panic_pak_95cd9763bfced651_19.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\weapon\\weapon.py",
+      "_system_panic_pak_95cd9763bfced651_19.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\weapon\\powerup.py",
+      "_system_panic_pak_95cd9763bfced651_19.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\music\\music.py",
+      "_system_panic_pak_95cd9763bfced651_19.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\background\\background.py",
+      "_system_panic_pak_95cd9763bfced651_19.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\obstacles\\obstacle.py",
+      "_system_panic_pak_9a4b684e9a71a68f_20.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\pilot\\pilot.py",
+      "_system_panic_pak_9a4b684e9a71a68f_20.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\enemy\\enemy.py",
+      "_system_panic_pak_9a4b684e9a71a68f_20.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\enemy\\hazards.py",
+      "_system_panic_pak_9a4b684e9a71a68f_20.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\weapon\\weapon.py",
+      "_system_panic_pak_9a4b684e9a71a68f_20.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\weapon\\powerup.py",
+      "_system_panic_pak_9a4b684e9a71a68f_20.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\weapon\\readout.py",
+      "_system_panic_pak_9a4b684e9a71a68f_20.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\music\\music.py",
+      "_system_panic_pak_9a4b684e9a71a68f_20.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\background\\background.py",
+      "_system_panic_pak_9a4b684e9a71a68f_20.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\obstacles\\obstacle.py",
+      "_system_panic_pak_ad94949c70661d50_21.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\pilot\\pilot.py",
+      "_system_panic_pak_ad94949c70661d50_21.pilot.grid": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\pilot\\grid.py",
+      "_system_panic_pak_ad94949c70661d50_21.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\enemy\\enemy.py",
+      "_system_panic_pak_ad94949c70661d50_21.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\enemy\\tactics.py",
+      "_system_panic_pak_ad94949c70661d50_21.enemy.grid": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\enemy\\grid.py",
+      "_system_panic_pak_ad94949c70661d50_21.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\weapon\\weapon.py",
+      "_system_panic_pak_ad94949c70661d50_21.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\weapon\\powerup.py",
+      "_system_panic_pak_ad94949c70661d50_21.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\weapon\\projectile.py",
+      "_system_panic_pak_ad94949c70661d50_21.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\music\\music.py",
+      "_system_panic_pak_ad94949c70661d50_21.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\background\\background.py",
+      "_system_panic_pak_ad94949c70661d50_21.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\obstacles\\obstacle.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\pilot\\pilot.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.pilot.navigation": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\pilot\\navigation.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\enemy\\enemy.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\enemy\\tactics.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\weapon\\weapon.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\weapon\\powerup.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.weapon.geometry": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\weapon\\geometry.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.weapon.tail": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\weapon\\tail.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.weapon.network": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\weapon\\network.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\music\\music.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\background\\background.py",
+      "_system_panic_pak_dfae032285c4d1ed_22.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\obstacles\\obstacle.py",
+      "_system_panic_pak_d929944cd34bc36f_23.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\pilot\\pilot.py",
+      "_system_panic_pak_d929944cd34bc36f_23.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\enemy\\enemy.py",
+      "_system_panic_pak_d929944cd34bc36f_23.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\enemy\\tactics.py",
+      "_system_panic_pak_d929944cd34bc36f_23.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\weapon\\weapon.py",
+      "_system_panic_pak_d929944cd34bc36f_23.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\weapon\\powerup.py",
+      "_system_panic_pak_d929944cd34bc36f_23.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\weapon\\projectile.py",
+      "_system_panic_pak_d929944cd34bc36f_23.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\weapon\\readout.py",
+      "_system_panic_pak_d929944cd34bc36f_23.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\music\\music.py",
+      "_system_panic_pak_d929944cd34bc36f_23.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\background\\background.py",
+      "_system_panic_pak_d929944cd34bc36f_23.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\obstacles\\obstacle.py",
+      "_system_panic_pak_d929944cd34bc36f_23.obstacles.visuals": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\obstacles\\visuals.py",
+      "_system_panic_pak_e706493b23c7adeb_24.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\pilot\\pilot.py",
+      "_system_panic_pak_e706493b23c7adeb_24.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\enemy\\enemy.py",
+      "_system_panic_pak_e706493b23c7adeb_24.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\enemy\\hazards.py",
+      "_system_panic_pak_e706493b23c7adeb_24.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\weapon\\weapon.py",
+      "_system_panic_pak_e706493b23c7adeb_24.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\weapon\\powerup.py",
+      "_system_panic_pak_e706493b23c7adeb_24.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\weapon\\readout.py",
+      "_system_panic_pak_e706493b23c7adeb_24.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\music\\music.py",
+      "_system_panic_pak_e706493b23c7adeb_24.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\background\\background.py",
+      "_system_panic_pak_e706493b23c7adeb_24.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege\\obstacles\\obstacle.py",
+      "_system_panic_pak_d52969d7305c8e15_25.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\pilot\\pilot.py",
+      "_system_panic_pak_d52969d7305c8e15_25.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\enemy\\enemy.py",
+      "_system_panic_pak_d52969d7305c8e15_25.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\enemy\\tactics.py",
+      "_system_panic_pak_d52969d7305c8e15_25.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\weapon\\weapon.py",
+      "_system_panic_pak_d52969d7305c8e15_25.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\weapon\\powerup.py",
+      "_system_panic_pak_d52969d7305c8e15_25.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\weapon\\projectile.py",
+      "_system_panic_pak_d52969d7305c8e15_25.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\music\\music.py",
+      "_system_panic_pak_d52969d7305c8e15_25.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\background\\background.py",
+      "_system_panic_pak_d52969d7305c8e15_25.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol\\obstacles\\obstacle.py",
+      "_system_panic_pak_a773e5aca7aa6555_26.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\pilot\\pilot.py",
+      "_system_panic_pak_a773e5aca7aa6555_26.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\enemy\\enemy.py",
+      "_system_panic_pak_a773e5aca7aa6555_26.enemy.navigation": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\enemy\\navigation.py",
+      "_system_panic_pak_a773e5aca7aa6555_26.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\weapon\\weapon.py",
+      "_system_panic_pak_a773e5aca7aa6555_26.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\weapon\\powerup.py",
+      "_system_panic_pak_a773e5aca7aa6555_26.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\music\\music.py",
+      "_system_panic_pak_a773e5aca7aa6555_26.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\background\\background.py",
+      "_system_panic_pak_a773e5aca7aa6555_26.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers\\obstacles\\obstacle.py",
+      "_system_panic_pak_cfa6e906f650c045_27.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\pilot\\pilot.py",
+      "_system_panic_pak_cfa6e906f650c045_27.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\enemy\\enemy.py",
+      "_system_panic_pak_cfa6e906f650c045_27.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\enemy\\hazards.py",
+      "_system_panic_pak_cfa6e906f650c045_27.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\weapon\\weapon.py",
+      "_system_panic_pak_cfa6e906f650c045_27.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\weapon\\powerup.py",
+      "_system_panic_pak_cfa6e906f650c045_27.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\weapon\\readout.py",
+      "_system_panic_pak_cfa6e906f650c045_27.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\music\\music.py",
+      "_system_panic_pak_cfa6e906f650c045_27.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\background\\background.py",
+      "_system_panic_pak_cfa6e906f650c045_27.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault\\obstacles\\obstacle.py",
+      "_system_panic_pak_168fc280d756adec_28.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\pilot\\pilot.py",
+      "_system_panic_pak_168fc280d756adec_28.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\enemy\\enemy.py",
+      "_system_panic_pak_168fc280d756adec_28.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\weapon\\weapon.py",
+      "_system_panic_pak_168fc280d756adec_28.weapon.rail": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\weapon\\rail.py",
+      "_system_panic_pak_168fc280d756adec_28.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\weapon\\powerup.py",
+      "_system_panic_pak_168fc280d756adec_28.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\music\\music.py",
+      "_system_panic_pak_168fc280d756adec_28.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\background\\background.py",
+      "_system_panic_pak_168fc280d756adec_28.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry\\obstacles\\obstacle.py",
+      "_system_panic_pak_b8bbeb63fa87b441_29.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\pilot\\pilot.py",
+      "_system_panic_pak_b8bbeb63fa87b441_29.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\enemy\\enemy.py",
+      "_system_panic_pak_b8bbeb63fa87b441_29.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\enemy\\hazards.py",
+      "_system_panic_pak_b8bbeb63fa87b441_29.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\weapon\\weapon.py",
+      "_system_panic_pak_b8bbeb63fa87b441_29.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\weapon\\powerup.py",
+      "_system_panic_pak_b8bbeb63fa87b441_29.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\weapon\\readout.py",
+      "_system_panic_pak_b8bbeb63fa87b441_29.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\music\\music.py",
+      "_system_panic_pak_b8bbeb63fa87b441_29.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\background\\background.py",
+      "_system_panic_pak_b8bbeb63fa87b441_29.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake\\obstacles\\obstacle.py",
+      "_system_panic_pak_b6f6391c8a8d2907_30.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\pilot\\pilot.py",
+      "_system_panic_pak_b6f6391c8a8d2907_30.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\enemy\\enemy.py",
+      "_system_panic_pak_b6f6391c8a8d2907_30.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\enemy\\tactics.py",
+      "_system_panic_pak_b6f6391c8a8d2907_30.enemy.bullet": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\enemy\\bullet.py",
+      "_system_panic_pak_b6f6391c8a8d2907_30.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\weapon\\weapon.py",
+      "_system_panic_pak_b6f6391c8a8d2907_30.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\weapon\\powerup.py",
+      "_system_panic_pak_b6f6391c8a8d2907_30.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\weapon\\projectile.py",
+      "_system_panic_pak_b6f6391c8a8d2907_30.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\music\\music.py",
+      "_system_panic_pak_b6f6391c8a8d2907_30.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\background\\background.py",
+      "_system_panic_pak_b6f6391c8a8d2907_30.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit\\obstacles\\obstacle.py",
+      "_system_panic_pak_3544441273440ced_31.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\pilot\\pilot.py",
+      "_system_panic_pak_3544441273440ced_31.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\enemy\\enemy.py",
+      "_system_panic_pak_3544441273440ced_31.enemy.ash": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\enemy\\ash.py",
+      "_system_panic_pak_3544441273440ced_31.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\weapon\\weapon.py",
+      "_system_panic_pak_3544441273440ced_31.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\weapon\\powerup.py",
+      "_system_panic_pak_3544441273440ced_31.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\music\\music.py",
+      "_system_panic_pak_3544441273440ced_31.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\background\\background.py",
+      "_system_panic_pak_3544441273440ced_31.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby\\obstacles\\obstacle.py",
+      "_system_panic_pak_d9851a5f47729a78_32.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\pilot\\pilot.py",
+      "_system_panic_pak_d9851a5f47729a78_32.pilot.navigation": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\pilot\\navigation.py",
+      "_system_panic_pak_d9851a5f47729a78_32.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\enemy\\enemy.py",
+      "_system_panic_pak_d9851a5f47729a78_32.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\enemy\\tactics.py",
+      "_system_panic_pak_d9851a5f47729a78_32.enemy.navigation": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\enemy\\navigation.py",
+      "_system_panic_pak_d9851a5f47729a78_32.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\weapon\\weapon.py",
+      "_system_panic_pak_d9851a5f47729a78_32.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\weapon\\powerup.py",
+      "_system_panic_pak_d9851a5f47729a78_32.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\weapon\\projectile.py",
+      "_system_panic_pak_d9851a5f47729a78_32.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\music\\music.py",
+      "_system_panic_pak_d9851a5f47729a78_32.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\background\\background.py",
+      "_system_panic_pak_d9851a5f47729a78_32.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher\\obstacles\\obstacle.py",
+      "_system_panic_pak_8475cc0493313d26_33.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\pilot\\pilot.py",
+      "_system_panic_pak_8475cc0493313d26_33.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\enemy\\enemy.py",
+      "_system_panic_pak_8475cc0493313d26_33.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\enemy\\tactics.py",
+      "_system_panic_pak_8475cc0493313d26_33.enemy.bullet": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\enemy\\bullet.py",
+      "_system_panic_pak_8475cc0493313d26_33.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\weapon\\weapon.py",
+      "_system_panic_pak_8475cc0493313d26_33.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\weapon\\powerup.py",
+      "_system_panic_pak_8475cc0493313d26_33.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\weapon\\projectile.py",
+      "_system_panic_pak_8475cc0493313d26_33.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\music\\music.py",
+      "_system_panic_pak_8475cc0493313d26_33.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\background\\background.py",
+      "_system_panic_pak_8475cc0493313d26_33.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach\\obstacles\\obstacle.py",
+      "_system_panic_pak_0297aa34bb627541_34.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\pilot\\pilot.py",
+      "_system_panic_pak_0297aa34bb627541_34.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\enemy\\enemy.py",
+      "_system_panic_pak_0297aa34bb627541_34.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\enemy\\tactics.py",
+      "_system_panic_pak_0297aa34bb627541_34.enemy.bullet": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\enemy\\bullet.py",
+      "_system_panic_pak_0297aa34bb627541_34.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\weapon\\weapon.py",
+      "_system_panic_pak_0297aa34bb627541_34.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\weapon\\powerup.py",
+      "_system_panic_pak_0297aa34bb627541_34.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\weapon\\projectile.py",
+      "_system_panic_pak_0297aa34bb627541_34.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\weapon\\readout.py",
+      "_system_panic_pak_0297aa34bb627541_34.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\music\\music.py",
+      "_system_panic_pak_0297aa34bb627541_34.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\background\\background.py",
+      "_system_panic_pak_0297aa34bb627541_34.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper\\obstacles\\obstacle.py",
+      "_system_panic_pak_68d8d5d17a5f6407_35.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\pilot\\pilot.py",
+      "_system_panic_pak_68d8d5d17a5f6407_35.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\enemy\\enemy.py",
+      "_system_panic_pak_68d8d5d17a5f6407_35.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\weapon\\weapon.py",
+      "_system_panic_pak_68d8d5d17a5f6407_35.weapon.blade": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\weapon\\blade.py",
+      "_system_panic_pak_68d8d5d17a5f6407_35.weapon.folding": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\weapon\\folding.py",
+      "_system_panic_pak_68d8d5d17a5f6407_35.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\weapon\\powerup.py",
+      "_system_panic_pak_68d8d5d17a5f6407_35.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\music\\music.py",
+      "_system_panic_pak_68d8d5d17a5f6407_35.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\background\\background.py",
+      "_system_panic_pak_68d8d5d17a5f6407_35.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage\\obstacles\\obstacle.py",
+      "_system_panic_pak_07cf9289ce290db6_36.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\pilot\\pilot.py",
+      "_system_panic_pak_07cf9289ce290db6_36.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\enemy\\enemy.py",
+      "_system_panic_pak_07cf9289ce290db6_36.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\enemy\\tactics.py",
+      "_system_panic_pak_07cf9289ce290db6_36.enemy.bullet": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\enemy\\bullet.py",
+      "_system_panic_pak_07cf9289ce290db6_36.enemy.telegraph": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\enemy\\telegraph.py",
+      "_system_panic_pak_07cf9289ce290db6_36.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\weapon\\weapon.py",
+      "_system_panic_pak_07cf9289ce290db6_36.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\weapon\\powerup.py",
+      "_system_panic_pak_07cf9289ce290db6_36.weapon.arc": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\weapon\\arc.py",
+      "_system_panic_pak_07cf9289ce290db6_36.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\weapon\\readout.py",
+      "_system_panic_pak_07cf9289ce290db6_36.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\music\\music.py",
+      "_system_panic_pak_07cf9289ce290db6_36.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\background\\background.py",
+      "_system_panic_pak_07cf9289ce290db6_36.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden\\obstacles\\obstacle.py",
+      "_system_panic_pak_227bbbf60c5a6798_37.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\pilot\\pilot.py",
+      "_system_panic_pak_227bbbf60c5a6798_37.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\enemy\\enemy.py",
+      "_system_panic_pak_227bbbf60c5a6798_37.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\enemy\\hazards.py",
+      "_system_panic_pak_227bbbf60c5a6798_37.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\weapon\\weapon.py",
+      "_system_panic_pak_227bbbf60c5a6798_37.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\weapon\\powerup.py",
+      "_system_panic_pak_227bbbf60c5a6798_37.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\weapon\\readout.py",
+      "_system_panic_pak_227bbbf60c5a6798_37.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\music\\music.py",
+      "_system_panic_pak_227bbbf60c5a6798_37.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\background\\background.py",
+      "_system_panic_pak_227bbbf60c5a6798_37.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey\\obstacles\\obstacle.py",
+      "_system_panic_pak_a41c3d0b78ced106_38.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\pilot\\pilot.py",
+      "_system_panic_pak_a41c3d0b78ced106_38.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\enemy\\enemy.py",
+      "_system_panic_pak_a41c3d0b78ced106_38.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\weapon\\weapon.py",
+      "_system_panic_pak_a41c3d0b78ced106_38.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\weapon\\powerup.py",
+      "_system_panic_pak_a41c3d0b78ced106_38.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\music\\music.py",
+      "_system_panic_pak_a41c3d0b78ced106_38.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\background\\background.py",
+      "_system_panic_pak_a41c3d0b78ced106_38.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink\\obstacles\\obstacle.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_39.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\pilot\\pilot.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_39.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\enemy\\enemy.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_39.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\enemy\\hazards.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_39.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\weapon\\weapon.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_39.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\weapon\\powerup.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_39.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\weapon\\readout.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_39.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\music\\music.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_39.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\background\\background.py",
+      "_system_panic_pak_04f9b52e5a6e59f4_39.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet\\obstacles\\obstacle.py",
+      "_system_panic_pak_91d4354165ac40be_40.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\pilot\\pilot.py",
+      "_system_panic_pak_91d4354165ac40be_40.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\enemy\\enemy.py",
+      "_system_panic_pak_91d4354165ac40be_40.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\enemy\\tactics.py",
+      "_system_panic_pak_91d4354165ac40be_40.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\weapon\\weapon.py",
+      "_system_panic_pak_91d4354165ac40be_40.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\weapon\\powerup.py",
+      "_system_panic_pak_91d4354165ac40be_40.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\weapon\\projectile.py",
+      "_system_panic_pak_91d4354165ac40be_40.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\music\\music.py",
+      "_system_panic_pak_91d4354165ac40be_40.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\background\\background.py",
+      "_system_panic_pak_91d4354165ac40be_40.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner\\obstacles\\obstacle.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\pilot\\pilot.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\enemy\\enemy.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\enemy\\tactics.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.enemy.physics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\enemy\\physics.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\enemy\\hazards.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\weapon\\weapon.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\weapon\\powerup.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\weapon\\projectile.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\weapon\\readout.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\music\\music.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\background\\background.py",
+      "_system_panic_pak_6f5f8f38890c056a_41.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge\\obstacles\\obstacle.py",
+      "_system_panic_pak_25c49f03359ed8db_42.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\pilot\\pilot.py",
+      "_system_panic_pak_25c49f03359ed8db_42.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\enemy\\enemy.py",
+      "_system_panic_pak_25c49f03359ed8db_42.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\enemy\\tactics.py",
+      "_system_panic_pak_25c49f03359ed8db_42.enemy.bullet": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\enemy\\bullet.py",
+      "_system_panic_pak_25c49f03359ed8db_42.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\weapon\\weapon.py",
+      "_system_panic_pak_25c49f03359ed8db_42.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\weapon\\powerup.py",
+      "_system_panic_pak_25c49f03359ed8db_42.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\weapon\\projectile.py",
+      "_system_panic_pak_25c49f03359ed8db_42.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\music\\music.py",
+      "_system_panic_pak_25c49f03359ed8db_42.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\background\\background.py",
+      "_system_panic_pak_25c49f03359ed8db_42.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion\\obstacles\\obstacle.py",
+      "_system_panic_pak_95cd9763bfced651_43.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\pilot\\pilot.py",
+      "_system_panic_pak_95cd9763bfced651_43.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\enemy\\enemy.py",
+      "_system_panic_pak_95cd9763bfced651_43.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\weapon\\weapon.py",
+      "_system_panic_pak_95cd9763bfced651_43.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\weapon\\powerup.py",
+      "_system_panic_pak_95cd9763bfced651_43.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\music\\music.py",
+      "_system_panic_pak_95cd9763bfced651_43.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\background\\background.py",
+      "_system_panic_pak_95cd9763bfced651_43.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom\\obstacles\\obstacle.py",
+      "_system_panic_pak_9a4b684e9a71a68f_44.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\pilot\\pilot.py",
+      "_system_panic_pak_9a4b684e9a71a68f_44.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\enemy\\enemy.py",
+      "_system_panic_pak_9a4b684e9a71a68f_44.enemy.hazards": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\enemy\\hazards.py",
+      "_system_panic_pak_9a4b684e9a71a68f_44.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\weapon\\weapon.py",
+      "_system_panic_pak_9a4b684e9a71a68f_44.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\weapon\\powerup.py",
+      "_system_panic_pak_9a4b684e9a71a68f_44.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\weapon\\readout.py",
+      "_system_panic_pak_9a4b684e9a71a68f_44.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\music\\music.py",
+      "_system_panic_pak_9a4b684e9a71a68f_44.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\background\\background.py",
+      "_system_panic_pak_9a4b684e9a71a68f_44.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir\\obstacles\\obstacle.py",
+      "_system_panic_pak_ad94949c70661d50_45.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\pilot\\pilot.py",
+      "_system_panic_pak_ad94949c70661d50_45.pilot.grid": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\pilot\\grid.py",
+      "_system_panic_pak_ad94949c70661d50_45.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\enemy\\enemy.py",
+      "_system_panic_pak_ad94949c70661d50_45.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\enemy\\tactics.py",
+      "_system_panic_pak_ad94949c70661d50_45.enemy.grid": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\enemy\\grid.py",
+      "_system_panic_pak_ad94949c70661d50_45.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\weapon\\weapon.py",
+      "_system_panic_pak_ad94949c70661d50_45.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\weapon\\powerup.py",
+      "_system_panic_pak_ad94949c70661d50_45.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\weapon\\projectile.py",
+      "_system_panic_pak_ad94949c70661d50_45.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\music\\music.py",
+      "_system_panic_pak_ad94949c70661d50_45.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\background\\background.py",
+      "_system_panic_pak_ad94949c70661d50_45.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper\\obstacles\\obstacle.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\pilot\\pilot.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.pilot.navigation": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\pilot\\navigation.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\enemy\\enemy.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\enemy\\tactics.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\weapon\\weapon.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\weapon\\powerup.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.weapon.geometry": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\weapon\\geometry.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.weapon.tail": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\weapon\\tail.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.weapon.network": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\weapon\\network.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\music\\music.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\background\\background.py",
+      "_system_panic_pak_dfae032285c4d1ed_46.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil\\obstacles\\obstacle.py",
+      "_system_panic_pak_d929944cd34bc36f_47.pilot": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\pilot\\pilot.py",
+      "_system_panic_pak_d929944cd34bc36f_47.enemy": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\enemy\\enemy.py",
+      "_system_panic_pak_d929944cd34bc36f_47.enemy.tactics": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\enemy\\tactics.py",
+      "_system_panic_pak_d929944cd34bc36f_47.weapon": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\weapon\\weapon.py",
+      "_system_panic_pak_d929944cd34bc36f_47.weapon.powerup": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\weapon\\powerup.py",
+      "_system_panic_pak_d929944cd34bc36f_47.weapon.projectile": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\weapon\\projectile.py",
+      "_system_panic_pak_d929944cd34bc36f_47.weapon.readout": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\weapon\\readout.py",
+      "_system_panic_pak_d929944cd34bc36f_47.music": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\music\\music.py",
+      "_system_panic_pak_d929944cd34bc36f_47.background": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\background\\background.py",
+      "_system_panic_pak_d929944cd34bc36f_47.obstacles": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\obstacles\\obstacle.py",
+      "_system_panic_pak_d929944cd34bc36f_47.obstacles.visuals": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter\\obstacles\\visuals.py"
+    },
+    "runs": [
+      {
+        "pak": "signal_runner",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\signal_runner",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.6004,
+        "peak_projectiles": 3
+      },
+      {
+        "pak": "void_drifter",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\void_drifter",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 2,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 3.514,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "iron_circuit",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 4.8195,
+        "peak_projectiles": 11
+      },
+      {
+        "pak": "sky_forge",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\sky_forge",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 4.1268,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "phase_garden",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\phase_garden",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.3788,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "orbit_keeper",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper",
+        "frames": 240,
+        "phase": "clear",
+        "route": "game",
+        "wave": 1,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.7583,
+        "elapsed_seconds": 3.3428,
+        "peak_projectiles": 4
+      },
+      {
+        "pak": "neon_breach",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\neon_breach",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 3.3386,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "maze_muncher",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 4.2032,
+        "peak_projectiles": 0
+      },
+      {
+        "pak": "burrow_patrol",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 3.3129,
+        "peak_projectiles": 0
+      },
+      {
+        "pak": "vector_coil",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\vector_coil",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 3.4063,
+        "peak_projectiles": 0
+      },
+      {
+        "pak": "star_bastion",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\star_bastion",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 3.5872,
+        "peak_projectiles": 7
+      },
+      {
+        "pak": "tide_hopper",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 1.8003,
+        "peak_projectiles": 1
+      },
+      {
+        "pak": "pulse_abbey",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 1.6094,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "scrap_ballet",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 1.5773,
+        "peak_projectiles": 21
+      },
+      {
+        "pak": "glasswake",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\glasswake",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 1.5112,
+        "peak_projectiles": 3
+      },
+      {
+        "pak": "bloom_siege",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 87.0,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 1.3402,
+        "peak_projectiles": 1
+      },
+      {
+        "pak": "echo_vault",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\echo_vault",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 1.4826,
+        "peak_projectiles": 9
+      },
+      {
+        "pak": "tidal_choir",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 1.5761,
+        "peak_projectiles": 3
+      },
+      {
+        "pak": "canopy_capers",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.8197,
+        "peak_projectiles": 0
+      },
+      {
+        "pak": "rime_rink",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\rime_rink",
+        "frames": 240,
+        "phase": "clear",
+        "route": "game",
+        "wave": 1,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.6,
+        "elapsed_seconds": 3.444,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "storm_loom",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\storm_loom",
+        "frames": 240,
+        "phase": "clear",
+        "route": "game",
+        "wave": 1,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.7,
+        "elapsed_seconds": 3.5843,
+        "peak_projectiles": 1
+      },
+      {
+        "pak": "kiln_derby",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.4455,
+        "peak_projectiles": 5
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.2063,
+        "peak_projectiles": 1
+      },
+      {
+        "pak": "ferric_ferry",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-refinements-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry",
+        "frames": 240,
+        "phase": "clear",
+        "route": "game",
+        "wave": 1,
+        "kills": 1,
+        "health": 110,
+        "simulation_seconds": 2.3167,
+        "elapsed_seconds": 3.2657,
+        "peak_projectiles": 1
+      }
+    ],
+    "limits": [
+      "short code/discovery/draw smoke only, not balance or exhaustive remix coverage",
+      "SDL dummy video/audio do not establish physical display/speaker quality",
+      "existing project Python/pygame supply dependencies; sys.prefix points to extracted install",
+      "short render samples do not establish human gameplay balance"
+    ]
+  },
+  "tested_runtime_hashes": {
+    "paks/rime_rink/weapon/powerup.py": "613e9b68a1f718aeabe82e29adc6c88f599c751aaacbb95be87be7bdd1eb7161",
+    "paks/rime_rink/weapon/weapon.py": "121d7beabcba9ee0bd6ebe5b43feebc026a569d7d1246f93ddf73d9171264947",
+    "paks/kiln_derby/obstacles/obstacle.py": "f46407feff5a6ff216813b2ff40aa247d02272ce4184cbfd99d230d37c0c55cb",
+    "paks/paper_pilgrimage/weapon/blade.py": "9800cceed3744d28edae7c9f62f10f8d096e5c851d65489e9f670258b3d337d4",
+    "paks/paper_pilgrimage/weapon/folding.py": "31b14d4421bcfb6c8602d25eac2c704ea1a16df706dc314853c1bc93385d9cd2",
+    "paks/paper_pilgrimage/weapon/powerup.py": "cc07872d82b32310725b0fa8e00ac5bad560dd36da015c002690a81d2d7277dc",
+    "paks/paper_pilgrimage/weapon/weapon.py": "fdb974b80f569546843c09fa4403a513e1531ff72f7cfa653ef5ce679732bc1e"
+  },
+  "source_hashes": {
+    "paks/rime_rink/AGENTS.md": "44f68e2af1ae43423a19c9bafc134e845c97b195e9f395710d7e42012cf432d4",
+    "paks/rime_rink/background/AGENTS.md": "96fcc4030e05cd1b9f57d6e9c84c020daf4825b53592bb4845878c7d91a5536f",
+    "paks/rime_rink/background/background.py": "4ad621f9d63e65341e4fe2b493acd6dd59e9ad81f668b1b4c7fe2ef45e46686c",
+    "paks/rime_rink/background/background_image.png": "8546b344a735a1e813cd49781926f5678dc225816615bf66e4ccaf1c655a59ce",
+    "paks/rime_rink/enemy/AGENTS.md": "79627ef5bb3fd1f61f6eb35d2d08d7d5e88354fe41ca20e9deec88d6dba908d9",
+    "paks/rime_rink/enemy/enemy.py": "ca853f85179982234e4f237bcba7ebf8e1dfd1da988bfc68ea649df337331761",
+    "paks/rime_rink/enemy/enemy_sheet.png": "637523b369b4b1bc25d0586f5a7507e4ed2a46200dc3c4ecc40c223ebffc9516",
+    "paks/rime_rink/music/AGENTS.md": "0cc94272c5ce7267b4e7542ef2f27c2b7ac5da00a7e0b2837e53d7f6fe291a40",
+    "paks/rime_rink/music/music.ogg": "5e8db620ad2d5e7625f0f716416e4c64f1962fd9468c8fadd425b7ce26756efd",
+    "paks/rime_rink/music/music.py": "8ecf7b9f6a4c999ef7488db9d71f7d1e49d456f6533c29df76d9ee48ed7e8531",
+    "paks/rime_rink/obstacles/AGENTS.md": "29b68254ba1ad1d0234ff2bd03f6353b92f59d3efa57cc359c0434e60d4efa4d",
+    "paks/rime_rink/obstacles/obstacle.py": "2519dd5a0c34c594a2761a2965c9c042c6d701ebfda6e32168ae685c8f8ef6b9",
+    "paks/rime_rink/obstacles/obstacles_sheet.png": "2afc2065b8e3ed749415bcf653033f42ee7730a97b93c32ae7c6829cec2b9d56",
+    "paks/rime_rink/pak.json": "df757667ce54a22ccc70684f87e3c7e2c6c2cb44fd46f0a807e795a5e301d49a",
+    "paks/rime_rink/pilot/AGENTS.md": "451c83b298256355d8987bc9d281b88433f104a66b1302e7cf52c7c9c1ef8aa6",
+    "paks/rime_rink/pilot/pilot.py": "3c172ca0ceb15c8ff456e56f3986e2888dbfcb6653f1093af1a707ff852f52e7",
+    "paks/rime_rink/pilot/pilot_sheet.png": "443210e73e235546e6eb7e8329d83cd7365a363ea9fffd5ddcd0b33aa2d5a3a6",
+    "paks/rime_rink/pilot/special.ogg": "1aca658f62cd602fb1f3dc165f98d79f61c111e5af1352a234113d8cfd23e32c",
+    "paks/rime_rink/weapon/AGENTS.md": "06c9193eaa188f94c8e754bbdd37b15b9130511f8e81bbfc8ee018b35316c6a5",
+    "paks/rime_rink/weapon/pickup.ogg": "ce9c936411c9ebf6b80056ad6a09fd4e77802dbeeea55853774311f6205f47c9",
+    "paks/rime_rink/weapon/powerup.py": "613e9b68a1f718aeabe82e29adc6c88f599c751aaacbb95be87be7bdd1eb7161",
+    "paks/rime_rink/weapon/shot.ogg": "0789672435fba918a6411befad21d14a119b405badeadc79752b1579b79d4ff6",
+    "paks/rime_rink/weapon/weapon.py": "121d7beabcba9ee0bd6ebe5b43feebc026a569d7d1246f93ddf73d9171264947",
+    "paks/rime_rink/weapon/weapon_sheet.png": "0c8e29c1c1eeb663efe430af266566340a209f7d8aa030db28e13cdd91ba7744",
+    "paks/kiln_derby/AGENTS.md": "eecc97179333ac894feecf36d6fbd850ca5f0d526da01a50569eff6bd39a3f6f",
+    "paks/kiln_derby/background/AGENTS.md": "d8f654a0a3d1245211ea707f99ea83e9ec51cf2d979c123b3e890a86bf74f523",
+    "paks/kiln_derby/background/background.py": "731e309de21c3fba8b35b40d4ad99346d9d930bb995cb34bbf45ccd6c6431583",
+    "paks/kiln_derby/background/background_image.png": "b51c39bb01582a3a2e1f9174cd3e573bc2e565c957ecc7e0106269c00c63d788",
+    "paks/kiln_derby/enemy/AGENTS.md": "c17fb003a6288eec48826fe7ddb3da64302d73f9b8f2daa1049075ff6fffd45b",
+    "paks/kiln_derby/enemy/ash.py": "786e2f947e9f2bf0fd313817031a224efad4e6401ba5246ed622b7d9f31f2c44",
+    "paks/kiln_derby/enemy/enemy.py": "ba1bb1d545d679815a66cb65be9a2125c18886755af3cda78d4c6e94307dd74a",
+    "paks/kiln_derby/enemy/enemy_sheet.png": "b397bb2512cf648d91e9bb9ea00e497e30867e35f5d4bc035b0e3fde0e21420b",
+    "paks/kiln_derby/music/AGENTS.md": "f96df8d02fd16790ed689c512a41d48006df4fad44861082e187d80e8b3d22ad",
+    "paks/kiln_derby/music/music.ogg": "10e161d4fd6f28170d94c0d0563ff3b07e70ac4a0b075f915f52bbe3be37f16a",
+    "paks/kiln_derby/music/music.py": "5cdfdf65c682769cbf5f004115af0b2efdf99e819ae713577150fafdbd31d0de",
+    "paks/kiln_derby/obstacles/AGENTS.md": "526dbc7dbc0665bc0cbec98087dcb7df1bead222336aa6a3e17729ffdc23ee4f",
+    "paks/kiln_derby/obstacles/obstacle.py": "f46407feff5a6ff216813b2ff40aa247d02272ce4184cbfd99d230d37c0c55cb",
+    "paks/kiln_derby/obstacles/obstacles_sheet.png": "d4ce67264673dd9c8d60e0db2a780d1c5d852e336f864218f7826a221bb5fe44",
+    "paks/kiln_derby/pak.json": "0476a775a928e125dba049b6ffbbe7795137a2e3457b687be63f17a14abb6e30",
+    "paks/kiln_derby/pilot/AGENTS.md": "4de4d0cee34ffc77b7a3fe81f7572bef7ef69de825c2b85acb4db1a47debfa83",
+    "paks/kiln_derby/pilot/pilot.py": "fbfa1cfcfd3de56e407fc4361498ce7d9899b34c02b38dfe067be09dbda48ab2",
+    "paks/kiln_derby/pilot/pilot_sheet.png": "14d777d62aab18f8c3da7b494c0f3b9b90812cfacbdfe38101cc249eafeb072b",
+    "paks/kiln_derby/pilot/special.ogg": "36092b140d923bf4cf71aa6d21d0b33d95d69200c21f4ccb0deedbee89135260",
+    "paks/kiln_derby/weapon/AGENTS.md": "3752850e83a03e42aefeae469ef5e734df0f8ec5772cd5e6278ff9e6e99b2dbd",
+    "paks/kiln_derby/weapon/pickup.ogg": "ce9c936411c9ebf6b80056ad6a09fd4e77802dbeeea55853774311f6205f47c9",
+    "paks/kiln_derby/weapon/powerup.py": "2e6678133824110bcc9595cb5e26a56227059134ed84271b014e9b143029107d",
+    "paks/kiln_derby/weapon/shot.ogg": "07abbd7ec69fecc1123c71beb0da6ba022d7855d5d143bca78f000ababa08ce4",
+    "paks/kiln_derby/weapon/weapon.py": "c4137c7352b72312b24b1a539af038baeb70576b2bb5a6bd761c6fd7ab9ed429",
+    "paks/kiln_derby/weapon/weapon_sheet.png": "17f7122a10fdb40a52007faa60187032bfce0bfc314bf1a2febe6c3a33c22270",
+    "paks/paper_pilgrimage/AGENTS.md": "8e4fa6bd7a500002f0c4bd3dd38ce58ba698ad8cd2301ba3ee38280cf2f5b4fe",
+    "paks/paper_pilgrimage/background/AGENTS.md": "4ba177aee67bf023e8a50ec03e7402180774a516b1b884dca7f31eccb4cd0d24",
+    "paks/paper_pilgrimage/background/background.py": "b54508b55b708d14a8dce884cbd735a837363966f448b52fb4bea2a305854610",
+    "paks/paper_pilgrimage/background/background_image.png": "2ed880f980266cc345b4e6c6c8e02b98a13df1d20ac091af6f02bbe1db8be3c2",
+    "paks/paper_pilgrimage/enemy/AGENTS.md": "9c4479656bb47149feb9d68507d421e12635fb3c3577ab55f0b4b659b598dfb5",
+    "paks/paper_pilgrimage/enemy/enemy.py": "79f07696b32dfb898fce22cee1fb94a0e54231546aef1fc8f4e19cbc489db51c",
+    "paks/paper_pilgrimage/enemy/enemy_sheet.png": "2b4e1c1a761cb89da8617ee2b26b920b8ced8e6ec390edfead7bf59ae15a5da6",
+    "paks/paper_pilgrimage/music/AGENTS.md": "b6b3498c483124e2b9a330dab1402a33742dd76885e3e26619eb5384c6fd4bc0",
+    "paks/paper_pilgrimage/music/music.ogg": "eedcb3408b1dd1c9c2c2aa024a419f6fdf16cad86c679f93a523458dfcc63cb8",
+    "paks/paper_pilgrimage/music/music.py": "2a7a4926761bbd214609ac7f2beb06959b8a36bc5706982811ca8f3dde285d48",
+    "paks/paper_pilgrimage/obstacles/AGENTS.md": "c80579cd64bdc905d9c92a735f255210444a483920de8e6fcd376544854a4e5e",
+    "paks/paper_pilgrimage/obstacles/obstacle.py": "f81f1a5d75abecbf6ae84fe7331ce1a4b8ecf17a5f779a3493da27148dee79e5",
+    "paks/paper_pilgrimage/obstacles/obstacles_sheet.png": "172624b2f6dfb25d6398c259f7a4789a447db31a695deed1d6e2bda700305629",
+    "paks/paper_pilgrimage/pak.json": "4210b78c37ec52799ff6c95cebc0ebe0514daef144ab77ae21a46422dc4bbd28",
+    "paks/paper_pilgrimage/pilot/AGENTS.md": "d12d46859b10895ae0d255fc051400f242faaf039ae6c24f42b74458e8d85260",
+    "paks/paper_pilgrimage/pilot/pilot.py": "09e9b24f37173d656c4cba6a3d1a9282fb741a37c950bcc43b625155cf1da7cb",
+    "paks/paper_pilgrimage/pilot/pilot_sheet.png": "2f6b674f557ba7d315b97cad58b8054a8e617a3e5e72c563aacccf10a1095a0b",
+    "paks/paper_pilgrimage/pilot/special.ogg": "ccf03a57062c171f14c59aaf4a0437294764eb0f1b7a0a9c0b4122726ae6731d",
+    "paks/paper_pilgrimage/weapon/AGENTS.md": "8310ecc2241fc3b761b20d5e3daf0d6c6c7a4b3b607390fabb73ce7549fc7626",
+    "paks/paper_pilgrimage/weapon/blade.py": "9800cceed3744d28edae7c9f62f10f8d096e5c851d65489e9f670258b3d337d4",
+    "paks/paper_pilgrimage/weapon/folding.py": "31b14d4421bcfb6c8602d25eac2c704ea1a16df706dc314853c1bc93385d9cd2",
+    "paks/paper_pilgrimage/weapon/pickup.ogg": "ce9c936411c9ebf6b80056ad6a09fd4e77802dbeeea55853774311f6205f47c9",
+    "paks/paper_pilgrimage/weapon/powerup.py": "cc07872d82b32310725b0fa8e00ac5bad560dd36da015c002690a81d2d7277dc",
+    "paks/paper_pilgrimage/weapon/shot.ogg": "9c382c4c45542d52edbb8a2bcf20fb724dfbdf241338aff100275fd66950bb8b",
+    "paks/paper_pilgrimage/weapon/weapon.py": "fdb974b80f569546843c09fa4403a513e1531ff72f7cfa653ef5ce679732bc1e",
+    "paks/paper_pilgrimage/weapon/weapon_sheet.png": "bd5cc7dada441e0cc6904da780463977df536393e2f74b202e71506d328c4a9f"
+  },
+  "inspected": [
+    "output/rime-recovery/spent-stones.png",
+    "output/rime-recovery/physical-recovery.png",
+    "output/kiln-turning/gallery.png",
+    "output/paper-charge/stages.png",
+    "output/paper-charge/released.png",
+    "output/paper-charge/foreign-top-edge.png",
+    "output/living-refinements-wheel/gallery.png"
+  ],
+  "commands": [
+    "unittest discover: all methods except separately executed exhaustive mix method; output/living-refinements/unit.log",
+    ".venv/Scripts/python.exe tools/verify_matrix.py --workers 8 --weapons rime_rink paper_pilgrimage --obstacles kiln_derby --output output/living-refinements/matrix.json",
+    ".venv/Scripts/python.exe tools/verify_living.py --mode solo --allow-defeats --output output/living-refinements",
+    ".venv/Scripts/python.exe tools/verify_living.py --mode mixes --output output/living-refinements",
+    ".venv/Scripts/python.exe tools/verify_gamepad.py --frozen",
+    ".venv/Scripts/python.exe tools/verify_powerups.py --frozen",
+    ".venv/Scripts/python.exe tools/package_release.py",
+    ".venv/Scripts/python.exe tools/verify_distribution.py",
+    ".venv/Scripts/python.exe output/living-refinements-wheel/probe.py"
+  ],
+  "limitations": [
+    "Ordinary digital-control bots, staged fixtures and dummy rendering do not establish human balance or physical display/controller/speaker quality.",
+    "The matrix covers every combination containing either changed weapon or the changed obstacle provider for twenty fixed steps; unaffected combinations retain the prior snapshot.",
+    "Longer mixed samples verify finite state and lifecycle; awkward combinations and legitimate defeats are allowed.",
+    "Wheel isolation uses existing Python/Pygame dependencies, with host imports and external content from the extracted installation.",
+    "No new generated raster/audio assets or generation/network runtime dependencies were added."
+  ]
+}

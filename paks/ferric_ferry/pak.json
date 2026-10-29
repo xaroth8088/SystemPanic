@@ -1,0 +1,65 @@
+{
+  "api_version": 4,
+  "id": "ferric_ferry",
+  "version": "1.0.0",
+  "name": "Ferric Ferry",
+  "subtitle": "COIL / SLING / REVERSE",
+  "description": "Plant two grounded terminals. Hold to energize their fixed induction rail, then release a sweeping armature; move to rewire your next attack.",
+  "color": [
+    250,
+    170,
+    123
+  ],
+  "order": 23,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "concept": "inertial towing, coil salvos and reversible shared fields",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "sheet_source": "assets/images/ferric_ferry-source.png",
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ],
+      "enemy": [
+        8,
+        4
+      ],
+      "weapon": [
+        4,
+        1
+      ],
+      "obstacles": [
+        4,
+        1
+      ]
+    },
+    "source_row_edges": [
+      0,
+      327,
+      617,
+      895,
+      1254
+    ],
+    "component_sources": {
+      "pilot": "assets/images/ferric_ferry-pilot-facings-source.png",
+      "enemy": "assets/images/ferric_ferry-enemy-facings-source.png",
+      "weapon": "assets/images/ferric_ferry-rail-weapon-source.png"
+    },
+    "component_snapshots": {
+      "pilot": "assets/images/ferric_ferry-pilot-living-facing-reference.png",
+      "enemy": "assets/images/ferric_ferry-enemy-living-facing-reference.png",
+      "weapon": "assets/images/ferric_ferry-weapon-living-rail-reference.png"
+    }
+  }
+}

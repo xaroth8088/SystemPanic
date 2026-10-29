@@ -1,6 +1,6 @@
 # Building a Pak: component folders and ABCs
 
-Paks are external folders. Their layout is the first guide to the API: each component keeps its Python class and assets together. The six shipped games are complete, working examples of API 4.
+Paks are external folders. Their layout is the first guide to the API: each component keeps its Python class and assets together. The twenty-four shipped games are complete, working examples of API 4.
 
 ## Start with something runnable
 
@@ -181,7 +181,7 @@ The Windows build discovers paks/ beside SystemPanic.exe and %LOCALAPPDATA%/Syst
 
 Use --pak-dir PATH (repeatable) to replace default roots, --list-paks to inspect discovery, and --solo ID to launch a complete Pak. These switches also work on the Windows executable. Source verification tools accept --pak-dir as well.
 
-API 1 flat modules, API 2 trait-driven components and API 3 are superseded by API 4. API 3 authors must add EnemyBase.spawn_position(world), change ObstaclesBase.build() to build(world), and move any reliance on world.factor/world.aim into their components. Use the optional lifecycle hooks below for protection/rewards. Move firing gates into WeaponBase.update(), actor stats into create(), enemy death behavior into on_death(), and flight/hit logic into Pak projectile classes. Pilot input/ability clocks and per-enemy state are local too. Folder conventions and asset handles are retained. All eighteen supplied Paks are migrated examples. Old arena/pilot shuffle preferences migrate to the corresponding new channels on load.
+API 1 flat modules, API 2 trait-driven components and API 3 are superseded by API 4. API 3 authors must add EnemyBase.spawn_position(world), change ObstaclesBase.build() to build(world), and move any reliance on world.factor/world.aim into their components. Use the optional lifecycle hooks below for protection/rewards. Move firing gates into WeaponBase.update(), actor stats into create(), enemy death behavior into on_death(), and flight/hit logic into Pak projectile classes. Pilot input/ability clocks and per-enemy state are local too. Folder conventions and asset handles are retained. All twenty-four supplied Paks are working examples. Old arena/pilot shuffle preferences migrate to the corresponding new channels on load.
 
 Complete Paks must be independently playable, but awkward or ineffective component mixes are allowed until the next shuffle. Cover may be impervious. Check complete Paks solo and partial Paks in eligible mixes. The compatibility runner checks stability in all pilot/enemy/weapon/obstacle combinations plus all background/music presentation pairs; it reports these separately. --require-clear is an optional balance probe, not a requirement for all mixes. Pak code is trusted local Python, with the normal permissions of the game process. The game does not fetch Paks or install arbitrary dependencies.
 
@@ -243,7 +243,7 @@ def on_powerup(self, world, count):
 # In the weapon's own attack logic: damage = 16 + 4 * world.powerups_collected
 ```
 
-All eighteen supplied folders provide local motion and upgrade policies. The README records the current mapping. Do not add upgrade formulas or pickup movement branches to the core.
+All twenty-four supplied folders provide local motion and upgrade policies. The README records the current mapping. Do not add upgrade formulas or pickup movement branches to the core.
 
 ## Shape and lifetime APIs
 

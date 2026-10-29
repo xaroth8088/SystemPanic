@@ -1,0 +1,3483 @@
+{
+  "date": "2026-10-28",
+  "expansion": "Living Arcade",
+  "complete_paks": 24,
+  "new_paks": [
+    "canopy_capers",
+    "rime_rink",
+    "storm_loom",
+    "kiln_derby",
+    "paper_pilgrimage",
+    "ferric_ferry"
+  ],
+  "runtime": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+  "pygame": "2.6.1",
+  "host_gameplay_or_api_changes": false,
+  "unit_tests": {
+    "standard_passed": 361,
+    "standard_seconds": 242.921,
+    "failures": 0,
+    "errors": 0,
+    "exhaustive_method_run_separately": true,
+    "unique_methods": 362
+  },
+  "exhaustive_gameplay_matrix": {
+    "command": "python tools/verify_matrix.py",
+    "tests": 1,
+    "workers": 8,
+    "combinations": 331776,
+    "fixed_steps_per_mix": 20,
+    "seconds": 1320.911,
+    "passed": true,
+    "exit_code": 0,
+    "fresh_gameplay_instances": true,
+    "worlds_created": 331776,
+    "disjoint_full_coverage": true,
+    "results": [
+      {
+        "worker": 0,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 41472,
+        "fixed_steps_per_mix": 20,
+        "seconds": 1108.66,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 41472,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 1,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 41472,
+        "fixed_steps_per_mix": 20,
+        "seconds": 1106.662,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 41472,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 2,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 41472,
+        "fixed_steps_per_mix": 20,
+        "seconds": 1317.756,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 41472,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 3,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 41472,
+        "fixed_steps_per_mix": 20,
+        "seconds": 1146.593,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 41472,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 4,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 41472,
+        "fixed_steps_per_mix": 20,
+        "seconds": 1122.49,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 41472,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 5,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 41472,
+        "fixed_steps_per_mix": 20,
+        "seconds": 1133.594,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 41472,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 6,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 41472,
+        "fixed_steps_per_mix": 20,
+        "seconds": 1123.012,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 41472,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      },
+      {
+        "worker": 7,
+        "workers": 8,
+        "tests": 1,
+        "combinations": 41472,
+        "fixed_steps_per_mix": 20,
+        "seconds": 1274.693,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 41472,
+        "decode_cache": {
+          "hits": 0,
+          "misses": 0
+        },
+        "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+      }
+    ],
+    "scope": "Original unittest assertions and full product space, disjoint worker partitions; cached read-only PNG decoding"
+  },
+  "standard_solo_runs": [
+    {
+      "pak": "signal_runner",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 15.0
+    },
+    {
+      "pak": "void_drifter",
+      "phase": "active",
+      "wave": 4,
+      "kills": 18,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2820,
+      "seconds": 24.1
+    },
+    {
+      "pak": "iron_circuit",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 11.17
+    },
+    {
+      "pak": "sky_forge",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 17.65
+    },
+    {
+      "pak": "phase_garden",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 11.53
+    },
+    {
+      "pak": "orbit_keeper",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 23.15
+    },
+    {
+      "pak": "neon_breach",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 27.03
+    },
+    {
+      "pak": "maze_muncher",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 14.27
+    },
+    {
+      "pak": "burrow_patrol",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 27.27
+    },
+    {
+      "pak": "vector_coil",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 54.75
+    },
+    {
+      "pak": "star_bastion",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 22.37
+    },
+    {
+      "pak": "tide_hopper",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 13.35
+    },
+    {
+      "pak": "pulse_abbey",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 1962,
+      "seconds": 13.07
+    },
+    {
+      "pak": "scrap_ballet",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 99.39,
+      "score": 1962,
+      "seconds": 12.4
+    },
+    {
+      "pak": "glasswake",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 1962,
+      "seconds": 19.02
+    },
+    {
+      "pak": "bloom_siege",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 70.55,
+      "score": 1962,
+      "seconds": 25.05
+    },
+    {
+      "pak": "echo_vault",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 1962,
+      "seconds": 11.7
+    },
+    {
+      "pak": "tidal_choir",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 1962,
+      "seconds": 20.33
+    },
+    {
+      "pak": "canopy_capers",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2250,
+      "seconds": 14.45
+    },
+    {
+      "pak": "rime_rink",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2100,
+      "seconds": 14.5
+    },
+    {
+      "pak": "storm_loom",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 1980,
+      "seconds": 15.12
+    },
+    {
+      "pak": "kiln_derby",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2040,
+      "seconds": 11.3
+    },
+    {
+      "pak": "paper_pilgrimage",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 100,
+      "score": 2040,
+      "seconds": 10.9
+    },
+    {
+      "pak": "ferric_ferry",
+      "phase": "active",
+      "wave": 4,
+      "kills": 6,
+      "cleared_levels": 3,
+      "initial_enemies_per_level": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "health": 110,
+      "score": 2160,
+      "seconds": 13.07
+    }
+  ],
+  "six_level_solo": {
+    "target": 6,
+    "input": "ordinary digital Controls via Pak demo policies",
+    "runs": [
+      {
+        "pak": "canopy_capers",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 38.417,
+        "health": 79.82,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.85,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "canopy_capers",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 33.783,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 6.567,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "canopy_capers",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 41.833,
+        "health": 94.76,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.433,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "canopy_capers",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 38.517,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.85,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "canopy_capers",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 34.333,
+        "health": 71.64,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 5.583,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "canopy_capers",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 37.933,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 8.4,
+        "max_projectiles": 0
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 36.133,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.067,
+        "max_projectiles": 6
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 45.883,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 1.85,
+        "max_projectiles": 6
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 38.717,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 0,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.2,
+        "max_projectiles": 4
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 35.7,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.067,
+        "max_projectiles": 5
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 35.3,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 1.85,
+        "max_projectiles": 5
+      },
+      {
+        "pak": "rime_rink",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 41.35,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.183,
+        "max_projectiles": 5
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 40.183,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.867,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 42.867,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.867,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 44.2,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.867,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 38.817,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.867,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 42.033,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.867,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "storm_loom",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 40.083,
+        "health": 97.4,
+        "kills": 21,
+        "upgrades": 0,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.867,
+        "max_projectiles": 1
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 30.367,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.517,
+        "max_projectiles": 15
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 37.717,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 0,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.85,
+        "max_projectiles": 17
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 32.85,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 0,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.783,
+        "max_projectiles": 15
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 31.667,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 0,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.483,
+        "max_projectiles": 15
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 31.783,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.817,
+        "max_projectiles": 16
+      },
+      {
+        "pak": "kiln_derby",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 32.117,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 0,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.75,
+        "max_projectiles": 15
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 37.717,
+        "health": 89.97,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.35,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 33.667,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.317,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 33.55,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 3.317,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 34.55,
+        "health": 100,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.35,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 36.717,
+        "health": 94.5,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.3,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 33.5,
+        "health": 81.4,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.567,
+        "max_projectiles": 2
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 33.467,
+        "health": 110,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.567,
+        "max_projectiles": 9
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "relaxed",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 35.9,
+        "health": 110,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.6,
+        "max_projectiles": 9
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "relaxed",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 40.95,
+        "health": 110,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.6,
+        "max_projectiles": 9
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "standard",
+        "seed": 24,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 33.6,
+        "health": 110,
+        "kills": 21,
+        "upgrades": 1,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.567,
+        "max_projectiles": 9
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "standard",
+        "seed": 73,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 38.417,
+        "health": 110,
+        "kills": 21,
+        "upgrades": 2,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.6,
+        "max_projectiles": 8
+      },
+      {
+        "pak": "ferric_ferry",
+        "difficulty": "standard",
+        "seed": 2026,
+        "phase": "active",
+        "cleared_levels": 6,
+        "seconds": 36.767,
+        "health": 110,
+        "kills": 21,
+        "upgrades": 0,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "first_clear_seconds": 2.6,
+        "max_projectiles": 9
+      }
+    ]
+  },
+  "longer_mixes": {
+    "new_gameplay_combinations": 1296,
+    "sampled_old_new_combinations": 512,
+    "seconds_per_case": 6,
+    "swaps": 512,
+    "max_projectiles": 29,
+    "finite_state": true,
+    "close_cleans_geometry": true,
+    "presentation_pairs_checked": 576,
+    "read_only_render": true,
+    "local_music_streams": true
+  },
+  "procedural": {
+    "procedural_cases": 720,
+    "enemies_placed": 20760,
+    "separate_layout_rng": true,
+    "geometry_and_spawn_safety": true,
+    "advanced_ai_seconds_per_case": 1,
+    "gallery_levels": [
+      1,
+      2,
+      12
+    ],
+    "paks": [
+      {
+        "pak": "signal_runner",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "void_drifter",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "iron_circuit",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "sky_forge",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "phase_garden",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "orbit_keeper",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "neon_breach",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "maze_muncher",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "burrow_patrol",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "vector_coil",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "star_bastion",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "tide_hopper",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "pulse_abbey",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "scrap_ballet",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "glasswake",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "bloom_siege",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "echo_vault",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "tidal_choir",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "canopy_capers",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "rime_rink",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "storm_loom",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "kiln_derby",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      },
+      {
+        "pak": "ferric_ferry",
+        "seeds": [
+          0,
+          3,
+          24,
+          101,
+          997
+        ],
+        "levels": [
+          1,
+          2,
+          7,
+          12,
+          50,
+          101
+        ],
+        "unique_layouts": 30
+      }
+    ]
+  },
+  "media": {
+    "paks": [
+      {
+        "pak": "canopy_capers",
+        "images": {
+          "pilot": {
+            "size": [
+              1332,
+              333
+            ],
+            "distinct_frames": 4
+          },
+          "enemy": {
+            "size": [
+              1132,
+              283
+            ],
+            "distinct_frames": 4
+          },
+          "weapon": {
+            "size": [
+              1128,
+              282
+            ],
+            "distinct_frames": 4
+          },
+          "obstacles": {
+            "size": [
+              1244,
+              311
+            ],
+            "distinct_frames": 4
+          }
+        },
+        "effects": {
+          "pilot": {
+            "seconds": 0.2758503401360544,
+            "tail_to_peak_rms": 0.025496809787005744,
+            "sha256": "018ace702c1f39a56d1efd5d44e0ee961638e23a155c02b8430b20aecf283a87"
+          },
+          "weapon": {
+            "seconds": 0.6308616780045352,
+            "tail_to_peak_rms": 0.07527698687310126,
+            "sha256": "e20fc93632ef2001698719c87d733062b2235a95c6522b1e4492ead94cbd4912"
+          }
+        },
+        "music": {
+          "seconds": 29.42,
+          "minimum_four_second_join_to_peak_rms": 0.1223039911926682,
+          "endpoint_step": 0.004015084356069565
+        }
+      },
+      {
+        "pak": "rime_rink",
+        "images": {
+          "pilot": {
+            "size": [
+              1184,
+              296
+            ],
+            "distinct_frames": 4
+          },
+          "enemy": {
+            "size": [
+              1308,
+              327
+            ],
+            "distinct_frames": 4
+          },
+          "weapon": {
+            "size": [
+              1140,
+              285
+            ],
+            "distinct_frames": 4
+          },
+          "obstacles": {
+            "size": [
+              1172,
+              293
+            ],
+            "distinct_frames": 4
+          }
+        },
+        "effects": {
+          "pilot": {
+            "seconds": 0.49784580498866216,
+            "tail_to_peak_rms": 0.16623806623690798,
+            "sha256": "1aca658f62cd602fb1f3dc165f98d79f61c111e5af1352a234113d8cfd23e32c"
+          },
+          "weapon": {
+            "seconds": 0.8915192743764172,
+            "tail_to_peak_rms": 0.060736708403491685,
+            "sha256": "0789672435fba918a6411befad21d14a119b405badeadc79752b1579b79d4ff6"
+          }
+        },
+        "music": {
+          "seconds": 30.22,
+          "minimum_four_second_join_to_peak_rms": 0.1508946334076484,
+          "endpoint_step": 0.03489673137664795
+        }
+      },
+      {
+        "pak": "storm_loom",
+        "images": {
+          "pilot": {
+            "size": [
+              1328,
+              332
+            ],
+            "distinct_frames": 4
+          },
+          "enemy": {
+            "size": [
+              1436,
+              359
+            ],
+            "distinct_frames": 4
+          },
+          "weapon": {
+            "size": [
+              1220,
+              305
+            ],
+            "distinct_frames": 4
+          },
+          "obstacles": {
+            "size": [
+              1496,
+              374
+            ],
+            "distinct_frames": 4
+          }
+        },
+        "effects": {
+          "pilot": {
+            "seconds": 0.425578231292517,
+            "tail_to_peak_rms": 0.19745432339121444,
+            "sha256": "7eff4828c8d3f86ef22b233c5a0eaa3b0e6b48541118ce5c3f42272565ca04ae"
+          },
+          "weapon": {
+            "seconds": 0.24276643990929705,
+            "tail_to_peak_rms": 0.0322093269733042,
+            "sha256": "890863f56a235995d0434d352b48c8bd9addcc95b875c7704156cd3f0120ca18"
+          }
+        },
+        "music": {
+          "seconds": 28.32,
+          "minimum_four_second_join_to_peak_rms": 0.17405285549928162,
+          "endpoint_step": 0.0077764131128787994
+        }
+      },
+      {
+        "pak": "kiln_derby",
+        "images": {
+          "pilot": {
+            "size": [
+              1180,
+              295
+            ],
+            "distinct_frames": 4
+          },
+          "enemy": {
+            "size": [
+              1200,
+              300
+            ],
+            "distinct_frames": 4
+          },
+          "weapon": {
+            "size": [
+              1080,
+              270
+            ],
+            "distinct_frames": 4
+          },
+          "obstacles": {
+            "size": [
+              1264,
+              316
+            ],
+            "distinct_frames": 4
+          }
+        },
+        "effects": {
+          "pilot": {
+            "seconds": 0.6484580498866214,
+            "tail_to_peak_rms": 0.8647495255947049,
+            "sha256": "36092b140d923bf4cf71aa6d21d0b33d95d69200c21f4ccb0deedbee89135260"
+          },
+          "weapon": {
+            "seconds": 0.09285714285714286,
+            "tail_to_peak_rms": 0.019204961481835446,
+            "sha256": "07abbd7ec69fecc1123c71beb0da6ba022d7855d5d143bca78f000ababa08ce4"
+          }
+        },
+        "music": {
+          "seconds": 27.32,
+          "minimum_four_second_join_to_peak_rms": 0.1096722602402211,
+          "endpoint_step": 0.0070075057446956635
+        }
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "images": {
+          "pilot": {
+            "size": [
+              1372,
+              343
+            ],
+            "distinct_frames": 4
+          },
+          "enemy": {
+            "size": [
+              1212,
+              303
+            ],
+            "distinct_frames": 4
+          },
+          "weapon": {
+            "size": [
+              1104,
+              276
+            ],
+            "distinct_frames": 4
+          },
+          "obstacles": {
+            "size": [
+              1224,
+              306
+            ],
+            "distinct_frames": 4
+          }
+        },
+        "effects": {
+          "pilot": {
+            "seconds": 0.42095238095238097,
+            "tail_to_peak_rms": 0.10770509469909896,
+            "sha256": "ccf03a57062c171f14c59aaf4a0437294764eb0f1b7a0a9c0b4122726ae6731d"
+          },
+          "weapon": {
+            "seconds": 0.33687074829931973,
+            "tail_to_peak_rms": 0.05528953635171944,
+            "sha256": "9c382c4c45542d52edbb8a2bcf20fb724dfbdf241338aff100275fd66950bb8b"
+          }
+        },
+        "music": {
+          "seconds": 27.42,
+          "minimum_four_second_join_to_peak_rms": 0.13843556816207153,
+          "endpoint_step": 0.005190170370042324
+        }
+      },
+      {
+        "pak": "ferric_ferry",
+        "images": {
+          "pilot": {
+            "size": [
+              1144,
+              286
+            ],
+            "distinct_frames": 4
+          },
+          "enemy": {
+            "size": [
+              1256,
+              314
+            ],
+            "distinct_frames": 4
+          },
+          "weapon": {
+            "size": [
+              916,
+              229
+            ],
+            "distinct_frames": 4
+          },
+          "obstacles": {
+            "size": [
+              1244,
+              311
+            ],
+            "distinct_frames": 4
+          }
+        },
+        "effects": {
+          "pilot": {
+            "seconds": 0.23891156462585034,
+            "tail_to_peak_rms": 0.046733432373580595,
+            "sha256": "2c0b40502fd1091f81510867a93c66a82f7ef7283cddbb706e9e6707fd072f63"
+          },
+          "weapon": {
+            "seconds": 0.21965986394557824,
+            "tail_to_peak_rms": 0.026028413296358237,
+            "sha256": "ee92f94515e8c565068cfe0485a6fe9e860558b6810cf7f6ab963fd537c63bf4"
+          }
+        },
+        "music": {
+          "seconds": 31.32,
+          "minimum_four_second_join_to_peak_rms": 0.24914384285605942,
+          "endpoint_step": 0.009139493107795715
+        }
+      }
+    ],
+    "role_sheets": 24,
+    "frames": 96,
+    "distinct_specials": 6,
+    "distinct_shots": 6,
+    "limits": "Decode, animation and cyclic energy checks; no physical speaker listening claim."
+  },
+  "provenance_records": 452,
+  "controller": {
+    "source_steps": 4227,
+    "frozen_steps": 4227,
+    "paks_each": 24,
+    "native_sdl_virtual_pad": true,
+    "input_delivery_observed_at_public_weapon_update": true
+  },
+  "source_frozen_pickups": {
+    "source": {
+      "runs": [
+        {
+          "pak": "signal_runner",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SignalRunnerPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "void_drifter",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VoidDrifterPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "iron_circuit",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "IronCircuitPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "sky_forge",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SkyForgePowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "phase_garden",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "PhaseGardenPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "orbit_keeper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "OrbitKeeperPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "neon_breach",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "NeonBreachPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "maze_muncher",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "MazeMuncherPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "burrow_patrol",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "BurrowPatrolPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "vector_coil",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VectorCoilPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "star_bastion",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "StarBastionPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "tide_hopper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "TideHopperPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "pulse_abbey",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "scrap_ballet",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "glasswake",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "bloom_siege",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "echo_vault",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "tidal_choir",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "canopy_capers",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "rime_rink",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "storm_loom",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "kiln_derby",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "paper_pilgrimage",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "ferric_ferry",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        }
+      ],
+      "all_paks": 24,
+      "kill_interval": 10,
+      "shared_pickup_counter": true
+    },
+    "frozen": {
+      "runs": [
+        {
+          "pak": "signal_runner",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SignalRunnerPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "void_drifter",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VoidDrifterPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "iron_circuit",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "IronCircuitPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "sky_forge",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "SkyForgePowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "phase_garden",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "PhaseGardenPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "orbit_keeper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "OrbitKeeperPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "neon_breach",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "NeonBreachPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "maze_muncher",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "MazeMuncherPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "burrow_patrol",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "BurrowPatrolPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "vector_coil",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "VectorCoilPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "star_bastion",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "StarBastionPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "tide_hopper",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "TideHopperPowerup",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "pulse_abbey",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "scrap_ballet",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "glasswake",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "bloom_siege",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "echo_vault",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "tidal_choir",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "canopy_capers",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "rime_rink",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "storm_loom",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "kiln_derby",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "paper_pilgrimage",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        },
+        {
+          "pak": "ferric_ferry",
+          "tenth_kill_drop": true,
+          "exact_death_position": true,
+          "pak_subclass": "Upgrade",
+          "collected_once": true,
+          "local_chime_once": true,
+          "mixer_available": true,
+          "upgrade_survives_weapon_and_level_changes": true,
+          "read_only_render": true
+        }
+      ],
+      "all_paks": 24,
+      "kill_interval": 10,
+      "shared_pickup_counter": true
+    }
+  },
+  "frozen_checks": [
+    {
+      "check": "bloom_siege",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "burrow_patrol",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "canopy_capers",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "echo_vault",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "ferric_ferry",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "glasswake",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "iron_circuit",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "kiln_derby",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "maze_muncher",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "neon_breach",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "orbit_keeper",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "paper_pilgrimage",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "phase_garden",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "pulse_abbey",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "rime_rink",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "scrap_ballet",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "signal_runner",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "sky_forge",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "star_bastion",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "storm_loom",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "tidal_choir",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "tide_hopper",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "vector_coil",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "void_drifter",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "drop_in_after_build",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "partial_only_mix",
+      "frames": 240,
+      "exit_code": 0
+    },
+    {
+      "check": "partial_library",
+      "frames": 1,
+      "exit_code": 0
+    },
+    {
+      "check": "empty_install",
+      "frames": 1,
+      "exit_code": 0
+    },
+    {
+      "check": "invalid_pak_isolated",
+      "frames": 1,
+      "exit_code": 0
+    },
+    {
+      "check": "static_remix_builder",
+      "frames": 1,
+      "exit_code": 0
+    },
+    {
+      "check": "static_remix_favorites_and_frozen_scheduling",
+      "frames": 240,
+      "exit_code": 0
+    }
+  ],
+  "isolated_wheel": {
+    "runtime": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+    "python_executable": "E:\\GitHub\\SystemPanic\\.venv\\Scripts\\python.exe",
+    "pygame": "2.6.1",
+    "package_file": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\__init__.py",
+    "prefix": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix",
+    "pak_roots": [
+      "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks",
+      "E:\\GitHub\\SystemPanic\\output\\living-wheel\\wheel-profiles-rl33u28k\\local\\SystemPanic\\paks"
+    ],
+    "asset_root": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic",
+    "complete_paks": 24,
+    "issues": [],
+    "profiles": "temporary under output/living-wheel and removed after run; no real user profiles",
+    "input": "ordinary eight-direction Pak demo Controls; no gameplay advantages",
+    "frames_each": 240,
+    "total_frames": 5760,
+    "elapsed_seconds": 70.227,
+    "host_hashes": [
+      {
+        "file": "system_panic/__init__.py",
+        "sha256": "6982e98619c6ee76a2d8af0884601d5911d3ec4d6f23a14d21bbb2924efff24e",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/app.py",
+        "sha256": "0199da912ba9c7865404ac4e61d3d9a60749c0fee21a6c227bfe432fba62f0d2",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/audio.py",
+        "sha256": "fd725d7ea9ccb9aaf5185767be6816eb514ce6343be882af6621d3b8c3042351",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/combination_ui.py",
+        "sha256": "a93591bcbdede4712acec4260213968438a72ed759f42d5304162ac5781757e4",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/combinations.py",
+        "sha256": "46b1060028775b03951067e816d6143c07559b01fba229ff73edb9b68131d175",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/graphics.py",
+        "sha256": "e2149126e7ef831ddbb5d5f42d1722965a9ce3baf87ca71ab0b5986c66179af0",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/input_devices.py",
+        "sha256": "8bfc0789da31580c903685a2deeef67f0800b13706cb3fb9cf2863e2406138e0",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/model.py",
+        "sha256": "3595fee71dbf686d872b24cb60182ae082df88c8ecbee91ff42bf541e53930aa",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/pak_api.py",
+        "sha256": "e07b2e2dc59cbf88c5b2f5069fbc381134236664a57281b12993f0872cfbeb6a",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/pak_assets.py",
+        "sha256": "1a3e04c275b41b0515e42a57b3efaa0b6ecdd9144f950160f01a7720d012ed77",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/paks/__init__.py",
+        "sha256": "69bba75cb96dfec906a8b4090a1ac11a564de402b0a21ea05dd22610b130a525",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/paks/model.py",
+        "sha256": "c3fc6caeea13c46ffb5edadaedb76758d02da98c6cc81448293527d1e3904676",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/paks/registry.py",
+        "sha256": "389a9f429b444eb52ba3f1fd590df1d9abef11480901cfef4fff1bc7bf565a36",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/preferences.py",
+        "sha256": "f9aeaeb4fe3fbed3fd6212c70b54edbd3e468618a02b45fe10b9504910eba344",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/remix_ui.py",
+        "sha256": "e4c75169476098bab778f0192b3a38c7d5b2bc35a36c6f0ab6053a785efd5dba",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/remixes.py",
+        "sha256": "25a6af2cccc5fed32b8995db900e3641ad7702acb52b079147cae60837e9392f",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/resources.py",
+        "sha256": "cb84abc2f1409ce2d72986a0ce3de58d9f6d2779563e748e825cf8ba29d1b179",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/run_feedback.py",
+        "sha256": "69aeaf341e808c22f7950b4c59107fd1968f78c073d33fb27c335f181fb00557",
+        "matches_checkout_source": true
+      },
+      {
+        "file": "system_panic/world.py",
+        "sha256": "e0b69336d07a5f9b3fa544938b5e774581e54f1fe515e3195be73e2ae6b1844f",
+        "matches_checkout_source": true
+      }
+    ],
+    "imported_host_modules": {
+      "system_panic": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\__init__.py",
+      "system_panic.resources": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\resources.py",
+      "system_panic.pak_assets": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\pak_assets.py",
+      "system_panic.model": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\model.py",
+      "system_panic.pak_api": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\pak_api.py",
+      "system_panic.paks.model": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\paks\\model.py",
+      "system_panic.paks.registry": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\paks\\registry.py",
+      "system_panic.paks": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\paks\\__init__.py",
+      "system_panic.audio": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\audio.py",
+      "system_panic.remixes": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\remixes.py",
+      "system_panic.combinations": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\combinations.py",
+      "system_panic.graphics": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\graphics.py",
+      "system_panic.combination_ui": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\combination_ui.py",
+      "system_panic.input_devices": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\input_devices.py",
+      "system_panic.preferences": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\preferences.py",
+      "system_panic.remix_ui": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\remix_ui.py",
+      "system_panic.run_feedback": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\run_feedback.py",
+      "system_panic.world": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\world.py",
+      "system_panic.app": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\system_panic\\app.py"
+    },
+    "runs": [
+      {
+        "pak": "signal_runner",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\signal_runner",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.7083,
+        "peak_projectiles": 3
+      },
+      {
+        "pak": "void_drifter",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\void_drifter",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 2,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 3.3635,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "iron_circuit",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\iron_circuit",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 4.4574,
+        "peak_projectiles": 11
+      },
+      {
+        "pak": "sky_forge",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\sky_forge",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 4.0912,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "phase_garden",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\phase_garden",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.3246,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "orbit_keeper",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\orbit_keeper",
+        "frames": 240,
+        "phase": "clear",
+        "route": "game",
+        "wave": 1,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.7583,
+        "elapsed_seconds": 3.2681,
+        "peak_projectiles": 4
+      },
+      {
+        "pak": "neon_breach",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\neon_breach",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 3.2662,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "maze_muncher",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\maze_muncher",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 4.1847,
+        "peak_projectiles": 0
+      },
+      {
+        "pak": "burrow_patrol",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\burrow_patrol",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 3.3948,
+        "peak_projectiles": 0
+      },
+      {
+        "pak": "vector_coil",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\vector_coil",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 3.4039,
+        "peak_projectiles": 0
+      },
+      {
+        "pak": "star_bastion",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\star_bastion",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 3.3055,
+        "peak_projectiles": 7
+      },
+      {
+        "pak": "tide_hopper",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\tide_hopper",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 1.6131,
+        "peak_projectiles": 1
+      },
+      {
+        "pak": "pulse_abbey",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\pulse_abbey",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 1.3905,
+        "peak_projectiles": 2
+      },
+      {
+        "pak": "scrap_ballet",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\scrap_ballet",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 1.4601,
+        "peak_projectiles": 21
+      },
+      {
+        "pak": "glasswake",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\glasswake",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 1.4293,
+        "peak_projectiles": 3
+      },
+      {
+        "pak": "bloom_siege",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\bloom_siege",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 87.0,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 1.3529,
+        "peak_projectiles": 1
+      },
+      {
+        "pak": "echo_vault",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\echo_vault",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 1.4124,
+        "peak_projectiles": 9
+      },
+      {
+        "pak": "tidal_choir",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\tidal_choir",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 1,
+        "kills": 0,
+        "health": 100,
+        "simulation_seconds": 2.4917,
+        "elapsed_seconds": 1.4642,
+        "peak_projectiles": 3
+      },
+      {
+        "pak": "canopy_capers",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\canopy_capers",
+        "frames": 240,
+        "phase": "clear",
+        "route": "game",
+        "wave": 1,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 2.3583,
+        "elapsed_seconds": 3.3001,
+        "peak_projectiles": 0
+      },
+      {
+        "pak": "rime_rink",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\rime_rink",
+        "frames": 240,
+        "phase": "clear",
+        "route": "game",
+        "wave": 1,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.5667,
+        "elapsed_seconds": 3.2372,
+        "peak_projectiles": 3
+      },
+      {
+        "pak": "storm_loom",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\storm_loom",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.3149,
+        "peak_projectiles": 1
+      },
+      {
+        "pak": "kiln_derby",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\kiln_derby",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.4585,
+        "peak_projectiles": 4
+      },
+      {
+        "pak": "paper_pilgrimage",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\paper_pilgrimage",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 100,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.3638,
+        "peak_projectiles": 1
+      },
+      {
+        "pak": "ferric_ferry",
+        "directory": "E:\\GitHub\\SystemPanic\\output\\living-wheel\\prefix\\share\\system-panic\\paks\\ferric_ferry",
+        "frames": 240,
+        "phase": "active",
+        "route": "game",
+        "wave": 2,
+        "kills": 1,
+        "health": 110,
+        "simulation_seconds": 1.4833,
+        "elapsed_seconds": 3.1745,
+        "peak_projectiles": 3
+      }
+    ],
+    "limits": [
+      "short code/discovery/draw smoke only, not balance or exhaustive remix coverage",
+      "SDL dummy video/audio do not establish physical display/speaker quality",
+      "existing project Python/pygame supply dependencies; sys.prefix points to extracted install",
+      "short render samples do not establish human gameplay balance"
+    ],
+    "wheel_sha256": "c71b2a3d5bc43ff29efd8a2f80313f299367a343593f961bdaa121a07a58ed5b",
+    "install_method": "safe wheel extraction with .data/data relocated to prefix; pip --target previously failed Windows metadata rename (WinError5)",
+    "extracted_entries": 667,
+    "temporary_profiles_removed": true,
+    "final_media": true,
+    "source_matching_pak_files": 632,
+    "additional_source_matching_pak_root_files": [
+      "share/system-panic/paks/AGENTS.md"
+    ],
+    "gallery_inspected": true,
+    "commands": [
+      ".venv\\Scripts\\python.exe -m pip install --no-index --disable-pip-version-check --no-deps --target output/living-wheel/prefix dist/system_panic-0.1.0-py3-none-any.whl (initial attempt failed temporary metadata rename; safe extraction used)",
+      ".venv\\Scripts\\python.exe - (zipfile extraction: CRC/destination validation, .data/data -> prefix; final wheel SHA and632 Pak content byte comparisons)",
+      "E:\\GitHub\\SystemPanic\\.venv\\Scripts\\python.exe -I E:\\GitHub\\SystemPanic\\output\\living-wheel\\probe.py (working directory output/living-wheel; final release rerun)"
+    ]
+  },
+  "packaging": {
+    "source_pak_files": 632,
+    "windows_matches_source": true,
+    "wheel_matches_source": true,
+    "zip_matches_source": true,
+    "zip_crc": true,
+    "executable_sha256": "f9581f3092a53fd061abbdfb98b03e9efd80029f31b001d1b25922ae58d8072e",
+    "wheel_sha256": "c71b2a3d5bc43ff29efd8a2f80313f299367a343593f961bdaa121a07a58ed5b",
+    "zip_sha256": "ad364a09cbf91173c1abc6cb12caf5dba7e900358811b8904a1e9eddea2e7dcd"
+  },
+  "host_modules_identical_to_wheel": 19,
+  "new_role_source_hashes": {
+    "paks/canopy_capers/pak.json": "9a7398e8d85936dd6a0fc326b07722c5fda4f411136ddfbb26198312a7f49da1",
+    "paks/canopy_capers/background/background.py": "66221e093b15ee79c16849634f7cef1cdfc3630b8fc7c1edc280ddf142916004",
+    "paks/canopy_capers/background/background_image.png": "d3c097a67cd80e06f6079fc2392f900d930c9b9619bdd643ca91121e1b34140e",
+    "paks/canopy_capers/enemy/enemy.py": "1cf19294d8ff5a5f0a6f5b98457fb63fa9221132256617d3a64c5932d90d59ad",
+    "paks/canopy_capers/enemy/enemy_sheet.png": "9d818a70378d2fc90fdbff6a1b6ff25484f75f7a9828d0cfea5702cabbfd3cf5",
+    "paks/canopy_capers/music/music.ogg": "1a17e37f682d2913ae65009fc6cbbde207e5bb5fa86b87ae5da6c68c074ecb02",
+    "paks/canopy_capers/music/music.py": "8ecf7b9f6a4c999ef7488db9d71f7d1e49d456f6533c29df76d9ee48ed7e8531",
+    "paks/canopy_capers/obstacles/obstacle.py": "fcc7255e9826249ac286ec4a8ef39e28628f1df80d4998540513916f3896314d",
+    "paks/canopy_capers/obstacles/obstacles_sheet.png": "4a7840d2f11da46d254250e0c242931f61b74dc7d1652037ba8cb107ce2c37b9",
+    "paks/canopy_capers/pilot/pilot.py": "69bdb48b729ec804c0bd69685ffa393c6c1fbe87e2a826f50c2bceee87096a17",
+    "paks/canopy_capers/pilot/pilot_sheet.png": "bc5f2989483e2892afbc70775a4d14ac5c4cf827191815a0f53f0aa52782b72a",
+    "paks/canopy_capers/pilot/special.ogg": "018ace702c1f39a56d1efd5d44e0ee961638e23a155c02b8430b20aecf283a87",
+    "paks/canopy_capers/weapon/pickup.ogg": "ce9c936411c9ebf6b80056ad6a09fd4e77802dbeeea55853774311f6205f47c9",
+    "paks/canopy_capers/weapon/powerup.py": "613e9b68a1f718aeabe82e29adc6c88f599c751aaacbb95be87be7bdd1eb7161",
+    "paks/canopy_capers/weapon/shot.ogg": "e20fc93632ef2001698719c87d733062b2235a95c6522b1e4492ead94cbd4912",
+    "paks/canopy_capers/weapon/weapon.py": "f4ce8f0172a9057e8262381afe76b2684468b5075c932ff71c96e09c03d9bfe0",
+    "paks/canopy_capers/weapon/weapon_sheet.png": "e0fbab4b8d929722f6151bf64b4abfc54b8ab9b7a0994b5c0fa000f81934566f",
+    "paks/rime_rink/pak.json": "b1699fd944eb2a6883ab1171dbd0f5416ff087e8c6c88ca4240d7867c719a01d",
+    "paks/rime_rink/background/background.py": "4ad621f9d63e65341e4fe2b493acd6dd59e9ad81f668b1b4c7fe2ef45e46686c",
+    "paks/rime_rink/background/background_image.png": "8546b344a735a1e813cd49781926f5678dc225816615bf66e4ccaf1c655a59ce",
+    "paks/rime_rink/enemy/enemy.py": "9b6f4c45217e5563c964caa809509345f42b94b7727039e1b8deda6fb769c9d8",
+    "paks/rime_rink/enemy/enemy_sheet.png": "72a905bc2fc6be1cd4702833a7a1cf14bb63dde5674e7570d038c6faeda9ca4a",
+    "paks/rime_rink/music/music.ogg": "5e8db620ad2d5e7625f0f716416e4c64f1962fd9468c8fadd425b7ce26756efd",
+    "paks/rime_rink/music/music.py": "8ecf7b9f6a4c999ef7488db9d71f7d1e49d456f6533c29df76d9ee48ed7e8531",
+    "paks/rime_rink/obstacles/obstacle.py": "2519dd5a0c34c594a2761a2965c9c042c6d701ebfda6e32168ae685c8f8ef6b9",
+    "paks/rime_rink/obstacles/obstacles_sheet.png": "2afc2065b8e3ed749415bcf653033f42ee7730a97b93c32ae7c6829cec2b9d56",
+    "paks/rime_rink/pilot/pilot.py": "26675d6360b00d2666c4e1d12640b47e02d0c293172b4a7d86d44fadac5ddbef",
+    "paks/rime_rink/pilot/pilot_sheet.png": "65d5957ef655bf8bec5eff19b8d5b8c2f94cc2fa76ff42af9aa8563cf5f7f26f",
+    "paks/rime_rink/pilot/special.ogg": "1aca658f62cd602fb1f3dc165f98d79f61c111e5af1352a234113d8cfd23e32c",
+    "paks/rime_rink/weapon/pickup.ogg": "ce9c936411c9ebf6b80056ad6a09fd4e77802dbeeea55853774311f6205f47c9",
+    "paks/rime_rink/weapon/powerup.py": "613e9b68a1f718aeabe82e29adc6c88f599c751aaacbb95be87be7bdd1eb7161",
+    "paks/rime_rink/weapon/shot.ogg": "0789672435fba918a6411befad21d14a119b405badeadc79752b1579b79d4ff6",
+    "paks/rime_rink/weapon/weapon.py": "0ef3ca17d3b2a56725cdba5cb769510d52f61146c6ea679bc68c2eb9b95a7a5f",
+    "paks/rime_rink/weapon/weapon_sheet.png": "0c8e29c1c1eeb663efe430af266566340a209f7d8aa030db28e13cdd91ba7744",
+    "paks/storm_loom/pak.json": "0fb9c4b5f94c5657b92ff3ce778dc28b30607939c3ebd47a3a67e2e85d026a05",
+    "paks/storm_loom/background/background.py": "a221070a77ec58b5e0429521fd0eced7080646608b9408c182fcfb97a844e8ea",
+    "paks/storm_loom/background/background_image.png": "39e383083173920ef26f0c44cd747048124c72b66b9196cb36ca9099f03499dc",
+    "paks/storm_loom/enemy/enemy.py": "9ae57175a2bbc47803cd7dc8f3ea4cece9abf64fefc9f68445e32c578cc334b2",
+    "paks/storm_loom/enemy/enemy_sheet.png": "f88070085ab9640bea34a9570005837802ec242491e31a88c60a59519a1670ca",
+    "paks/storm_loom/music/music.ogg": "79ef9827575fa0baa2aaf58eabd322060163194c7eac50bc6af1ab26287821f0",
+    "paks/storm_loom/music/music.py": "7d5aa6adbdf42cb394503bda0186255cf05eeb7fb7d45f918be3e4c7ca19222b",
+    "paks/storm_loom/obstacles/obstacle.py": "903fb0b12bc426a39339568d06df4b3bf05eb52725696f973531e564e8657726",
+    "paks/storm_loom/obstacles/obstacles_sheet.png": "67ac19236e7f5a91048fc784b2068a558782357b37103416b004632a390f373f",
+    "paks/storm_loom/pilot/pilot.py": "51b549679ef56f1cf54d8ee41e2de57bfbfe6bb279cf076be45897b4247be9ab",
+    "paks/storm_loom/pilot/pilot_sheet.png": "a338d4cbcb133e8b68a3660f1d210bff9836690af2d15824836f5b376753ba7b",
+    "paks/storm_loom/pilot/special.ogg": "7eff4828c8d3f86ef22b233c5a0eaa3b0e6b48541118ce5c3f42272565ca04ae",
+    "paks/storm_loom/weapon/pickup.ogg": "ce9c936411c9ebf6b80056ad6a09fd4e77802dbeeea55853774311f6205f47c9",
+    "paks/storm_loom/weapon/powerup.py": "2e6678133824110bcc9595cb5e26a56227059134ed84271b014e9b143029107d",
+    "paks/storm_loom/weapon/shot.ogg": "890863f56a235995d0434d352b48c8bd9addcc95b875c7704156cd3f0120ca18",
+    "paks/storm_loom/weapon/weapon.py": "692cab7419c364f7987ee25d9182f5b649a6a4178e5de6124c308669a4bfd2b3",
+    "paks/storm_loom/weapon/weapon_sheet.png": "ddccf68573842740587de124d1c0880cee95de0d97c55ee26473d9acb32f0803",
+    "paks/kiln_derby/pak.json": "8af042218dbc8b41d063202e3e53888ecac043cb76c18a83a8f85be1342d9950",
+    "paks/kiln_derby/background/background.py": "731e309de21c3fba8b35b40d4ad99346d9d930bb995cb34bbf45ccd6c6431583",
+    "paks/kiln_derby/background/background_image.png": "b51c39bb01582a3a2e1f9174cd3e573bc2e565c957ecc7e0106269c00c63d788",
+    "paks/kiln_derby/enemy/ash.py": "786e2f947e9f2bf0fd313817031a224efad4e6401ba5246ed622b7d9f31f2c44",
+    "paks/kiln_derby/enemy/enemy.py": "1dfb4c9914e34707a8b35a3e40f1bcb60958116bc58d731b2eb4cef6b5b42127",
+    "paks/kiln_derby/enemy/enemy_sheet.png": "f19427cf07329cb6d7a76ccc5899cf98aafcd8e2cde553671da32982122433e5",
+    "paks/kiln_derby/music/music.ogg": "10e161d4fd6f28170d94c0d0563ff3b07e70ac4a0b075f915f52bbe3be37f16a",
+    "paks/kiln_derby/music/music.py": "5cdfdf65c682769cbf5f004115af0b2efdf99e819ae713577150fafdbd31d0de",
+    "paks/kiln_derby/obstacles/obstacle.py": "6138fbb72eefdb2461b7699ecbd68c7c24c19dcc6eb4188f1e787607b299082e",
+    "paks/kiln_derby/obstacles/obstacles_sheet.png": "d4ce67264673dd9c8d60e0db2a780d1c5d852e336f864218f7826a221bb5fe44",
+    "paks/kiln_derby/pilot/pilot.py": "3cdc9c0962e2f43eb4e4f491845ff27a1b337325019e1ee4e991067603748830",
+    "paks/kiln_derby/pilot/pilot_sheet.png": "ab875a800b82bd56a97f07e829fb542ef4944dd101312569839a541252327a5f",
+    "paks/kiln_derby/pilot/special.ogg": "36092b140d923bf4cf71aa6d21d0b33d95d69200c21f4ccb0deedbee89135260",
+    "paks/kiln_derby/weapon/pickup.ogg": "ce9c936411c9ebf6b80056ad6a09fd4e77802dbeeea55853774311f6205f47c9",
+    "paks/kiln_derby/weapon/powerup.py": "2e6678133824110bcc9595cb5e26a56227059134ed84271b014e9b143029107d",
+    "paks/kiln_derby/weapon/shot.ogg": "07abbd7ec69fecc1123c71beb0da6ba022d7855d5d143bca78f000ababa08ce4",
+    "paks/kiln_derby/weapon/weapon.py": "c4137c7352b72312b24b1a539af038baeb70576b2bb5a6bd761c6fd7ab9ed429",
+    "paks/kiln_derby/weapon/weapon_sheet.png": "17f7122a10fdb40a52007faa60187032bfce0bfc314bf1a2febe6c3a33c22270",
+    "paks/paper_pilgrimage/pak.json": "481772df3e6da01d6afe58899a4cf38cfb49dd4984f04bb3a2e8af9749e5229e",
+    "paks/paper_pilgrimage/background/background.py": "b54508b55b708d14a8dce884cbd735a837363966f448b52fb4bea2a305854610",
+    "paks/paper_pilgrimage/background/background_image.png": "2ed880f980266cc345b4e6c6c8e02b98a13df1d20ac091af6f02bbe1db8be3c2",
+    "paks/paper_pilgrimage/enemy/enemy.py": "ab50572f5c60abd882f0bf8ba5d761ce4597c7d3efb8c913d31ade54dd885559",
+    "paks/paper_pilgrimage/enemy/enemy_sheet.png": "60ff24ca2ee5d741d70c7a927f60ea099ff04cff5d10de47b2624daca88afdfc",
+    "paks/paper_pilgrimage/music/music.ogg": "eedcb3408b1dd1c9c2c2aa024a419f6fdf16cad86c679f93a523458dfcc63cb8",
+    "paks/paper_pilgrimage/music/music.py": "2a7a4926761bbd214609ac7f2beb06959b8a36bc5706982811ca8f3dde285d48",
+    "paks/paper_pilgrimage/obstacles/obstacle.py": "f81f1a5d75abecbf6ae84fe7331ce1a4b8ecf17a5f779a3493da27148dee79e5",
+    "paks/paper_pilgrimage/obstacles/obstacles_sheet.png": "172624b2f6dfb25d6398c259f7a4789a447db31a695deed1d6e2bda700305629",
+    "paks/paper_pilgrimage/pilot/pilot.py": "d777da289efaac854eebc24fddf231005076cd6ae6520c7834c5cfa87ebe5157",
+    "paks/paper_pilgrimage/pilot/pilot_sheet.png": "bd62e0db5d090cabab3ae393dffc2798bb2a7ee80c94e3533db91137bbf3a072",
+    "paks/paper_pilgrimage/pilot/special.ogg": "ccf03a57062c171f14c59aaf4a0437294764eb0f1b7a0a9c0b4122726ae6731d",
+    "paks/paper_pilgrimage/weapon/blade.py": "9800cceed3744d28edae7c9f62f10f8d096e5c851d65489e9f670258b3d337d4",
+    "paks/paper_pilgrimage/weapon/pickup.ogg": "ce9c936411c9ebf6b80056ad6a09fd4e77802dbeeea55853774311f6205f47c9",
+    "paks/paper_pilgrimage/weapon/powerup.py": "cc07872d82b32310725b0fa8e00ac5bad560dd36da015c002690a81d2d7277dc",
+    "paks/paper_pilgrimage/weapon/shot.ogg": "9c382c4c45542d52edbb8a2bcf20fb724dfbdf241338aff100275fd66950bb8b",
+    "paks/paper_pilgrimage/weapon/weapon.py": "7b624f8441f143b0a4350a5524a6cc2af945e78ffa9a0596816c4bca6c6554dc",
+    "paks/paper_pilgrimage/weapon/weapon_sheet.png": "bd5cc7dada441e0cc6904da780463977df536393e2f74b202e71506d328c4a9f",
+    "paks/ferric_ferry/pak.json": "cc4994312846889597ac002d962693256d09c7df3dd6b002ea84bcb2809a3aef",
+    "paks/ferric_ferry/background/background.py": "55e86e00f353f3c087aa75bbca68cd475f8d84068c1dd5063cd05b01efb2e704",
+    "paks/ferric_ferry/background/background_image.png": "71b618305751fa73213c4dd4956728e2990514cefb7feca927f0fbfe49e7e878",
+    "paks/ferric_ferry/enemy/enemy.py": "f26979e7311c0b292962069bfb3a7788e5e44f3a4c7c0c47fd10474eaf4f2808",
+    "paks/ferric_ferry/enemy/enemy_sheet.png": "0b105e8ea66cb5a0d764ceb3aa1dec895cd68a55b4c4bd0942cad12e1506b6ce",
+    "paks/ferric_ferry/music/music.ogg": "2c99fa3de152342e24861e1aa2996c73696dc0d71ece456da3fe938a2b61f37b",
+    "paks/ferric_ferry/music/music.py": "2d0be7d196cfe487006c02ad3564d94591b58fec23b356d99a04f9672788aed3",
+    "paks/ferric_ferry/obstacles/obstacle.py": "1a643425f7e1c8e1bfa786cc7b73824f075191224e638f7a848b0a29652d9ddc",
+    "paks/ferric_ferry/obstacles/obstacles_sheet.png": "b56c85c4e784bce0dfcc86f88bb923404d1b8b9834566311e881f22df7cb5c27",
+    "paks/ferric_ferry/pilot/pilot.py": "20bdb472b63d5e73cee18048260602f5289d151789ef0368c5e329290c7a73ce",
+    "paks/ferric_ferry/pilot/pilot_sheet.png": "1fddfe0de17ecc6b7664f6411ac3b14379fe57ef3aa5cbc079f94121bf35548b",
+    "paks/ferric_ferry/pilot/special.ogg": "2c0b40502fd1091f81510867a93c66a82f7ef7283cddbb706e9e6707fd072f63",
+    "paks/ferric_ferry/weapon/mote.py": "7aa115e7ed02008ad3cff3a958aa6810d11aae39460961898ebfcebb2e163a5e",
+    "paks/ferric_ferry/weapon/pickup.ogg": "ce9c936411c9ebf6b80056ad6a09fd4e77802dbeeea55853774311f6205f47c9",
+    "paks/ferric_ferry/weapon/powerup.py": "b44d56f9fd1010423496c1002c0c54441b22660b2be1612c8c4ef2106f865424",
+    "paks/ferric_ferry/weapon/shot.ogg": "ee92f94515e8c565068cfe0485a6fe9e860558b6810cf7f6ab963fd537c63bf4",
+    "paks/ferric_ferry/weapon/weapon.py": "a10f2fc21f126f8f247be8ba13a8249fae718adafd03b34a1a0c40b3972fa5ec",
+    "paks/ferric_ferry/weapon/weapon_sheet.png": "d6e239ffdbcf541863de571bfa116c5a7d4d54bb052aaa24708d6339d13ea196"
+  },
+  "inspected": [
+    "output/living-final/gallery.png",
+    "output/living-final/canopy_capers.png",
+    "output/living-final/storm_loom.png",
+    "output/canopy-rime/stomp-contact.png",
+    "output/paper-ferric/active-gallery.png",
+    "output/new-expansion/kiln_derby-review.png",
+    "output/living-wheel/gallery.png",
+    "corrected Paper enemy antenna and Storm full windmill/needle sheets"
+  ],
+  "commands": [
+    ".venv/Scripts/python.exe tools/verify_matrix.py --workers 8",
+    "unittest discover: every method except separately executed exhaustive matrix; see output/living-unit-delivery.log",
+    ".venv/Scripts/python.exe tools/verify.py --levels 3 --seconds 120 --output output/living-delivery",
+    ".venv/Scripts/python.exe tools/verify_living.py --mode solo --output output/living-final",
+    ".venv/Scripts/python.exe tools/verify_living.py --mode mixes --output output/living-final",
+    ".venv/Scripts/python.exe tools/verify_living.py --mode media --output output/living-final",
+    ".venv/Scripts/python.exe tools/verify_levels.py",
+    ".venv/Scripts/python.exe tools/verify_gamepad.py --frozen",
+    ".venv/Scripts/python.exe tools/verify_powerups.py --frozen",
+    ".venv/Scripts/python.exe tools/package_release.py",
+    ".venv/Scripts/python.exe tools/verify_distribution.py",
+    ".venv/Scripts/python.exe tools/assetforge/manifest.py"
+  ],
+  "limitations": [
+    "Ordinary digital-input bots and staged rendering are not human balance approval.",
+    "SDL dummy and virtual-controller checks do not establish physical display, controller, or speaker quality.",
+    "Music energy/decoding checks do not establish subjective musical quality; Kiln special is a sustained bellows effect.",
+    "The short exhaustive matrix covers four gameplay channels, not every six-channel gameplay/presentation tuple.",
+    "Longer remix cases verify finite state and cleanup; defeat/ineffective combinations are permitted.",
+    "Wheel dependency isolation uses the existing Python/Pygame runtime and an extracted installation; no global install.",
+    "No external Pak-specific gameplay rule or mandatory generation/network dependency was added to the host."
+  ]
+}

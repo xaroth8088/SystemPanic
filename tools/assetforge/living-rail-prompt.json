@@ -1,0 +1,8 @@
+{
+  "id": "ferric_ferry_rail_weapon",
+  "file": "assets/images/ferric_ferry-rail-weapon-source.png",
+  "columns": 4,
+  "rows": 1,
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: original production arcade WEAPON spritesheet on TRUE TRANSPARENT background. Exactly FOUR equally spaced columns and ONE row, four separate centered compact icons. Same object identity/scale every frame: a small U-shaped magnetic induction rail assembly, two grounded copper fork terminals joined by a short dark graphite track, with a single violet/cyan luminous rectangular armature riding between them. This is a placed electrical rail weapon, NOT orbiting spheres, a boat, a bullet gun or a swinging object. Frames left to right: idle grounded rail, gathering violet energy at new terminal, bright cyan armature travelling along rail, violet discharge sparks and copper afterglow. Each icon must be a coherent connected compact assembly (track joins both terminals); generous transparent padding, no touching adjacent cells, no cropped sparks. Polished hand-painted 2D/isometric arcade art with readable golden copper, violet crystal, cyan light, dark graphite; match System Panic's whimsical detailed game art. No words, labels, borders, grid lines, ground, logos or extra props. Readable at24px. Wide horizontal overall image."
+}
