@@ -3,7 +3,7 @@ import json
 import os
 from array import array
 import math
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import unittest
 import wave
 
@@ -33,11 +33,11 @@ class AssetTests(unittest.TestCase):
     def test_every_recorded_source_and_derivative_has_its_recorded_hash(self):
         manifest = json.loads((ROOT / "assets/manifest.json").read_text())
         for entry in manifest["assets"]:
-            path = ROOT / entry["file"]
+            path = ROOT / PureWindowsPath(entry["file"]).as_posix()
             self.assertTrue(path.is_file(), entry["file"])
             self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), entry["sha256"], entry["file"])
             if entry.get("operation", "").startswith("Unmodified"):
-                self.assertEqual(path.read_bytes(), (ROOT / entry["source"]).read_bytes(), entry["file"])
+                self.assertEqual(path.read_bytes(), (ROOT / PureWindowsPath(entry["source"]).as_posix()).read_bytes(), entry["file"])
         local = json.loads((ROOT / "assets/audio/local/generation.json").read_text())
         jobs = json.loads((ROOT / "tools/assetforge/prompts.json").read_text())["jobs"]
         self.assertEqual(set(local), {job["id"] for job in jobs})

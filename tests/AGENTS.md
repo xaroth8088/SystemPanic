@@ -8,11 +8,13 @@ Fresh local evidence: 413 regressions pass in 196.227s, including eleven new run
 
 See [the local release checkpoint](../docs/releases/v0.1.0-verification.json) for source fingerprints, longer remix/presentation results and limits. These local packages precede the clean tagged hosted build; final asset identity is recorded by the GitHub Release BUILDINFO/checksums and Actions run. No physical controller/speaker/display or new human balance approval is implied. CI runs Windows/Linux regressions; extended/tag validation adds the exhaustive and longer-remix checks, and release verification exercises the freshly extracted ZIP plus an isolated wheel installation.
 
+Release asset verification interprets legacy manifest file/source strings through PureWindowsPath and normalizes separators before joining the checkout root, preserving provenance bytes and strict hashes across platforms; all three Windows asset tests pass, with the hosted Linux rerun pending.
+
 Use real simulation tests for solo play, all pairings/full component combinations, shuffle state preservation, preferences validation/persistence, projectile ownership, damage, endless level progression, death/restart and menu input. Run with SDL dummy video/audio in automation. Do not require network or asset generation for tests.
 
 `tools/verify.py` should produce reproducible screenshots and a machine-readable report. Inspect the screenshots in addition to checking assertions. Record exact results here after running. Interactive playtesting remains distinct from headless simulation.
 
-Earlier verification snapshots below describe previous implementations. The newest snapshot at the end supersedes their finite ending, Pak counts, test counts and hardware availability.
+Earlier verification snapshots below describe previous implementations. The newest relevant dated snapshot supersedes their finite ending, Pak counts, test counts and hardware availability.
 
 ## Verified 2026-10-24
 - Python 3.12.1 / Pygame 2.6.1: 17 tests pass, including local asset hashes and decoding all twelve production audio files.
@@ -309,3 +311,4 @@ All eight dedicated Rime samples (relaxed/standard, seeds0/24/73/2026) clear eig
 Inspected Rime spent-stone and physical-catch App renders, Kiln0/45/90/135/180-degree firing/turning renders, and normal/reduced Paper folding stages, release and foreign-pilot views. Source/frozen native SDL controller checks and all24 collectible/upgrade-retention checks pass. All31 frozen distribution checks pass. Final affected-matrix coverage, longer remixes/solo samples, installed-wheel smoke, package hashes and exact limits are recorded in [living-refinements.json](../docs/living-refinements.json). Previous sections describe their own historical snapshots. Ordinary-control bots and SDL dummy renders do not establish human balance or physical hardware quality.
 
 All40,320 combinations containing either changed weapon or Kiln obstacles pass twenty fixed steps in fresh worlds across eight disjoint workers (362.349s). The remaining291,456 combinations retain the previous full-matrix evidence; no host or other role runtime changed. Longer verification repeats all1,296 new gameplay combinations plus512 old/new six-second samples with512 swaps, finite state, geometry cleanup and peak37 scheduled objects. All576 presentation pairs remain read-only and stream local music. Of36 six-level solo samples,35 clear six into seven and the unchanged Storm relaxed seed73 ends in defeat after five clears; none stalls. The isolated wheel renders24 Paks×240 App frames (5,760 total), with19 matching host modules and458 imported Pak modules resolving only inside the extracted prefix. All634 Pak-tree files match source/folder/wheel/extraction, ZIP matches source with clean CRC, and the existing executable is unchanged. Verified478 existing asset hashes; no new generated media. The exact tested runtime hashes remain unchanged after all checks.
+
