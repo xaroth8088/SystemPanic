@@ -5,7 +5,7 @@ from system_panic.model import Cover
 from system_panic.pak_api import ObstaclesBase
 class VectorCoilObstacles(ObstaclesBase):
     def init(self): self.art=self.load_asset("obstacles_sheet.png")
-    def sprite(self,world,entity=None): return self.art
+    def sprite(self,world,entity=None): return self.art.frame(int((world.time if world else 0)*8)%4,columns=4)
     def take_damage(self,world,obstacle,damage):
         return 0.  # These walls are geometry, not destructible targets.
 

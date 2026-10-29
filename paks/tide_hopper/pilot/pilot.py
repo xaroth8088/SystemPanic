@@ -3,11 +3,12 @@ import math
 import pygame
 from system_panic.model import Pilot, Vec, Controls, WIDTH, HEIGHT, unit, normalized, circle_rect
 from system_panic.pak_api import PilotBase
+from .grid import nearest,clear,passage
 
 
 class TideHopperPilot(PilotBase):
     controls = 'Arrows / WASD: lane hops (hold to repeat)'
-    special = 'X: long protected ferry hop'
+    special = 'X: long ferry hop'
 
     def init(self):
         self.art = self.load_asset("pilot_sheet.png")
@@ -18,13 +19,24 @@ class TideHopperPilot(PilotBase):
         self._landing = None
         self._travel = 0.
 
-    def sprite(self, world, entity=None):
-        return self.art
+    def sprite(self,world,entity=None):
+        actor=entity if entity is not None else (world.player if world is not None else None)
+        angle=actor.angle if actor is not None else 0.
+        facing=int((angle+math.tau/8)%math.tau/(math.tau/4))
+        phase=int((world.time if world is not None else 0)*8)%4
+        return self.art.frame(phase*4+facing,columns=4,rows=4)
+
+    def sprite_angle(self,world,entity):return 0.
+
+    def sprite_flip_x(self,world,entity):return False
+
+
 
     def create(self, world, position):
         return Pilot(pos=Vec(position), health=100, max_health=100, radius=11, angle=-math.pi / 2)
 
     def on_level_start(self, world):
+        world.player.pos=nearest(world,world.player,world.player.pos)
         if world.wave > 1:
             world.player.health = min(world.player.max_health, world.player.health + 15)
         world.player.invulnerable = max(world.player.invulnerable, 2.)
@@ -51,7 +63,6 @@ class TideHopperPilot(PilotBase):
         self._previous_special = control.special
         if special:
             self._special_remaining = 2.8
-            world.player.invulnerable = max(world.player.invulnerable, .65)
             self.sound.play(volume=.65)
         self.move(world, dt, control, special)
 
@@ -62,25 +73,40 @@ class TideHopperPilot(PilotBase):
             delta = self._landing-p.pos
             step = min(delta.length(),720*dt)
             p.vel = normalized(delta)*720 if delta.length_squared() else Vec()
-            world.move_body(p,normalized(delta)*step,p.radius)
+            motion=world.move_body(p,normalized(delta)*step,p.radius)
             self._travel -= dt
-            if delta.length()<3 or self._travel<=0:
+            if delta.length()<=step and not motion.normals:p.pos=self._landing.copy()
+            if delta.length()<=step or self._travel<=0 or motion.normals:
                 self._landing = None
         else:
             p.vel = Vec()
             if self._hop_remaining<=0 and max(abs(control.x),abs(control.y))>.2:
                 direction = Vec(1 if control.x>0 else -1,0) if abs(control.x)>abs(control.y) else Vec(0,1 if control.y>0 else -1)
-                distance = 112 if special else 48
-                self._landing = world.safe_position(p.pos+direction*distance,p.radius)
-                self._travel = .22 if special else .11
+                distance = 96 if special else 48
+                origin=nearest(world,p,p.pos)
+                destination=origin+direction*distance
+                if not (p.radius<=destination.x<=WIDTH-p.radius and p.radius<=destination.y<=HEIGHT-p.radius):return
+                if not clear(world,p,destination) or not passage(world,p,p.pos,destination):return
+                self._landing = destination
+                self._travel = .24 if special else .13
                 self._hop_remaining = .17
                 p.angle = math.atan2(direction.y,direction.x)
-                p.invulnerable = max(p.invulnerable,.08)
 
-    def sprite_angle(self, world, entity):
-        return -math.degrees(entity.angle) - 90
+    def draw(self,graphics,surface,world,*,reduced_motion=False):
+        p=world.player
+        if world.phase!='active' or world.transition>0 or p.invulnerable<=0 or int(world.time*12)%2 or reduced_motion:
+            image=graphics.component_sprite(world,'pilot',p,44)
+            surface.blit(image,image.get_rect(center=p.pos))
 
-    def demo_controls(self, world):
+
+    def demo_controls(self,world):
+        from system_panic.model import Controls
+        control=self._demo_controls(world) or Controls()
+        control.x=int(control.x>.2)-int(control.x<-.2)
+        control.y=int(control.y>.2)-int(control.y<-.2)
+        return control
+
+    def _demo_controls(self, world):
         if not world.enemies:return Controls(fire=True)
         target = min(world.enemies,key=lambda e:e.pos.distance_squared_to(world.player.pos))
         delta = target.pos-world.player.pos

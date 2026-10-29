@@ -3,6 +3,7 @@ import math
 import pygame
 from system_panic.model import Pilot, Vec, Controls, WIDTH, HEIGHT, unit, normalized, circle_rect
 from system_panic.pak_api import PilotBase
+from .navigation import Route
 
 
 class VectorCoilPilot(PilotBase):
@@ -16,16 +17,31 @@ class VectorCoilPilot(PilotBase):
         self._special_remaining = 0.
         self._direction = Vec(1,0)
         self._turn_lock = 0.
+        self._entry_route=Route()
+        self._demo_next=0.
+        self._demo_direction=Vec(1,0)
         self._demo_corner = -1
         self._demo_entry = None
 
-    def sprite(self, world, entity=None):
-        return self.art
+    def sprite(self,world,entity=None):
+        actor=entity if entity is not None else (world.player if world is not None else None)
+        angle=actor.angle if actor is not None else 0.
+        facing=int((angle+math.tau/8)%math.tau/(math.tau/4))
+        phase=int((world.time if world is not None else 0)*8)%4
+        return self.art.frame(phase*4+facing,columns=4,rows=4)
+
+    def sprite_angle(self,world,entity):return 0.
+
+    def sprite_flip_x(self,world,entity):return False
+
+
 
     def create(self, world, position):
         return Pilot(pos=Vec(position), health=100, max_health=100, radius=11, angle=-math.pi / 2)
 
     def on_level_start(self, world):
+        self._demo_corner=-1
+        self._demo_entry=None
         if world.wave > 1:
             world.player.health = min(world.player.max_health, world.player.health + 15)
         world.player.invulnerable = max(world.player.invulnerable, 2.)
@@ -68,20 +84,37 @@ class VectorCoilPilot(PilotBase):
         motion = world.move_body(p,p.vel * dt,p.radius)
         if motion.normals:
             self._direction = self._direction.rotate(90)
-    def sprite_angle(self, world, entity):
-        return -math.degrees(entity.angle) - 90
 
-    def demo_controls(self, world):
+    def demo_controls(self,world):
+        from system_panic.model import Controls
+        control=self._demo_controls(world) or Controls()
+        control.x=int(control.x>.2)-int(control.x<-.2)
+        control.y=int(control.y>.2)-int(control.y<-.2)
+        return control
+
+    def _demo_controls(self, world):
         # Ordinary controls trace the perimeter; no capture or enemy state is edited.
         p = world.player
-        corners = (Vec(40,40), Vec(WIDTH-40,40), Vec(WIDTH-40,HEIGHT-40), Vec(40,HEIGHT-40))
+        corners = (Vec(16,16), Vec(WIDTH-16,16), Vec(WIDTH-16,HEIGHT-16), Vec(16,HEIGHT-16))
         if self._demo_entry is None:
-            self._demo_entry = Vec(40,p.pos.y)
+            # Travel without drawing to the nearest outer corner, then start
+            # a clean circuit. Starting mid-arena creates accidental small loops.
+            self._demo_entry=min(corners,key=lambda c:c.distance_squared_to(p.pos)).copy()
+            self._demo_corner=-1
         target = self._demo_entry if self._demo_corner < 0 else corners[self._demo_corner]
         if p.pos.distance_to(target) < 5:
-            self._demo_corner = (self._demo_corner + 1) % 4
+            self._demo_corner = (corners.index(self._demo_entry)+1)%4 if self._demo_corner<0 else (self._demo_corner + 1) % 4
             target = corners[self._demo_corner]
-        delta = target - p.pos
-        if abs(delta.x) > abs(delta.y):
-            return Controls(1 if delta.x > 0 else -1, 0, True)
-        return Controls(0, 1 if delta.y > 0 else -1, True)
+        if self._demo_corner<0:
+            if world.time>=self._demo_next:
+                self._demo_next=world.time+.008
+                self._demo_direction=self._entry_route.direction(world,target)
+            return Controls(self._demo_direction.x,self._demo_direction.y,False)
+        delta=target-p.pos
+        # Finish each edge before turning; digital diagonal ties otherwise cut
+        # corners and repeatedly miss the intended crossing point.
+        if self._demo_corner in (0,2):
+            if abs(delta.x)>4:return Controls(1 if delta.x>0 else -1,0,True)
+            return Controls(0,1 if delta.y>0 else -1,True)
+        if abs(delta.y)>4:return Controls(0,1 if delta.y>0 else -1,True)
+        return Controls(1 if delta.x>0 else -1,0,True)

@@ -7,11 +7,24 @@
     237,
     175
   ],
-  "description": "Blink through permanent hedges. Two-target lightning grows through collectible phase seeds.",
-  "version": "1.2.0",
+  "description": "Position for finite lightning links and punish a phantom after its marked warp.",
+  "version": "2.0.0",
   "order": 4,
   "authoring": {
-    "atlas_column": 4
+    "animation_grid": [
+      4,
+      4
+    ],
+    "sheet_source": "assets/images/phase_garden-renewal-source.png",
+    "component_sources": {
+      "pilot": "assets/images/phase_garden-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ]
+    }
   },
   "api_version": 4,
   "components": [

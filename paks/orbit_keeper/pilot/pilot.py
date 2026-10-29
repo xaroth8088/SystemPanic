@@ -37,8 +37,11 @@ class OrbitKeeperPilot(PilotBase):
     def on_death(self, world):
         world.burst(world.player.pos, world.pak("pilot").color, 35)
 
-    def sprite(self, world, entity=None):
-        return self.spritesheet
+    def sprite(self,world,entity=None):return self.spritesheet
+
+    def sprite_angle(self,world,entity):return -math.degrees(entity.angle)-90.
+
+    def sprite_flip_x(self,world,entity):return False
 
     def update(self, world, dt, control):
         self._special_remaining = max(0., self._special_remaining - dt)
@@ -85,38 +88,34 @@ class OrbitKeeperPilot(PilotBase):
     def status(self, world):
         return "FIRE OUTWARD" if self._fire_outward else "FIRE INWARD"
 
-    def demo_controls(self, world):
-        if not world.enemies:
-            return Controls(fire=True)
-        p = world.player
-        target = next((e for e in world.enemies if e.id == self._demo_target and e.health > 0), None)
+    def demo_controls(self,world):
+        from system_panic.model import Controls
+        control=self._demo_controls(world) or Controls()
+        control.x=int(control.x>.2)-int(control.x<-.2)
+        control.y=int(control.y>.2)-int(control.y<-.2)
+        return control
+
+    def _demo_controls(self, world):
+        if not world.enemies:return Controls(fire=True)
+        p=world.player
+        target=next((e for e in world.enemies if e.id==self._demo_target and e.health>0),None)
         if target is None:
-            target = min(world.enemies, key=lambda e: e.pos.distance_squared_to(p.pos))
-            self._demo_target = target.id
-        center = Vec(WIDTH / 2, HEIGHT / 2)
-        future = target.pos + target.vel * .25
-        offset = future - center
-        goal_angle = math.atan2(offset.y, offset.x)
-        error = math.atan2(math.sin(goal_angle - p.angle), math.cos(goal_angle - p.angle))
-        steering = max(-.85, min(.85, error * 2.6))
-        desired_radius = max(80, min(215, offset.length() + 110 if offset.length() < 150 else offset.length() - 110))
-        radial = max(-1., min(1., (desired_radius - self._orbit_radius) / 60))
-        outward = target.pos.distance_to(center) >= p.pos.distance_to(center)
-        special = outward != self._fire_outward and self._special_remaining <= 0
-        threats = [enemy.pos + enemy.vel * .25 for enemy in world.enemies if enemy.health > 0]
-        threats += [shot.pos + shot.vel * .25 for shot in world.projectiles if shot.is_threat_to(world, p)]
-        if threats:
-            def option(action):
-                x,y=action
-                radius=max(70,min(215,self._orbit_radius+y*150*.25))
-                destination=center+unit(p.angle+x*2.2*.25)*radius
-                danger=sum(max(0.,55-destination.distance_to(pos))**2 for pos in threats)
-                angle_error=abs(math.atan2(math.sin(goal_angle-(p.angle+x*2.2*.25)),math.cos(goal_angle-(p.angle+x*2.2*.25))))
-                return -danger*2-angle_error*70-abs(radius-desired_radius)*.35
-            steering,radial=max(((steering,radial),(-.9,0),(.9,0),(steering,-1),(steering,1)),key=option)
-            if min(p.pos.distance_to(pos) for pos in threats)<30 and self._special_remaining<=0:
-                special=not self._previous_special
-        return Controls(steering, radial, True, special)
+            target=min(world.enemies,key=lambda e:e.pos.distance_squared_to(p.pos))
+            self._demo_target=target.id
+        center=Vec(WIDTH/2,HEIGHT/2)
+        offset=target.pos+target.vel*.22-center
+        # Digital steering has no analog dead zone: counter-steer around the
+        # desired ray rather than repeatedly falling back to the idle orbit.
+        goal=math.atan2(offset.y,offset.x)+.10
+        error=math.atan2(math.sin(goal-p.angle),math.cos(goal-p.angle))
+        steering=1 if error>0 else -1
+        desired_radius=205. if offset.length()<175 else 70.
+        radial=1 if desired_radius-self._orbit_radius>20 else -1 if self._orbit_radius-desired_radius>20 else 0
+        # Ring selection is edge-triggered, so insert a neutral frame between steps.
+        if self._radial_direction:radial=0
+        outward=offset.length()>=self._orbit_radius
+        special=outward!=self._fire_outward and self._special_remaining<=0
+        return Controls(steering,radial,True,special)
 
     def on_contact(self, world, enemy, dt):
         if self._dash_remaining > 0:

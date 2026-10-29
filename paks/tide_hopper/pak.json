@@ -7,12 +7,25 @@
     231,
     207
   ],
-  "description": "Hop across lanes and reel targets. River-drifting buoys strengthen the harpoon.",
-  "version": "1.2.0",
+  "description": "Hop between lanes, hook traffic, hold to reel, or release to fling it into a collision.",
+  "version": "2.0.0",
   "order": 11,
   "authoring": {
     "inspired_by": "Frogger",
-    "sheet_source": "assets/images/tide_hopper-source.png"
+    "sheet_source": "assets/images/tide_hopper-renewal-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/tide_hopper-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        4,
+        4
+      ]
+    }
   },
   "api_version": 4,
   "components": [

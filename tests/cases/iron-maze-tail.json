@@ -1,0 +1,13 @@
+{
+  "seed": 24,
+  "difficulty": "standard",
+  "aim_assist": true,
+  "mix": {
+    "pilot": "iron_circuit",
+    "enemy": "maze_muncher",
+    "weapon": "vector_coil",
+    "music": "tide_hopper",
+    "background": "phase_garden",
+    "obstacles": "tide_hopper"
+  }
+}

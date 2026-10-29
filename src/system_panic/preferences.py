@@ -18,7 +18,6 @@ RENDER_RESOLUTIONS = ("auto", "960x600", "1024x768", "1280x720", "1280x800", "16
 class Preferences:
     schema_version: int = 2
     enabled: list[str] = field(default_factory=lambda: list(get_catalog().by_id))
-    mix_mode: str = "remix"
     shuffle_seconds: int = 8
     difficulty: str = "standard"
     music: float = .55
@@ -45,8 +44,7 @@ class Preferences:
                     providers = catalog.providers(channel)
                     if providers:
                         result.enabled.append(providers[0])
-        for name, choices in (("mix_mode", ("remix", "coherent")),
-                              ("difficulty", ("relaxed", "standard", "intense"))):
+        for name, choices in (("difficulty", ("relaxed", "standard", "intense")),):
             if raw.get(name) in choices:
                 setattr(result, name, raw[name])
         for name in ("reduced_motion", "fullscreen", "aim_assist"):
@@ -76,8 +74,6 @@ class Preferences:
                 if "pilot" in channels:
                     channels.append("music")
             result.shuffle_channels = [v for v in CHANNELS if v in channels]
-        if result.mix_mode == "coherent" and not catalog.complete_ids(result.enabled):
-            result.mix_mode = "remix"
         return result
 
 

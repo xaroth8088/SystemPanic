@@ -4,10 +4,12 @@ from system_panic.pak_api import WeaponBase
 from .powerup import VectorCoilPowerup
 from .geometry import CarvedArea, LiveLine
 from .tail import TailImage, area, contains_body, intersection
+from . import network
 
 
 class VectorCoilWeapon(WeaponBase):
     def init(self):
+        self.pickup_sound = self.load_asset("pickup.ogg")
         self.art = self.load_asset("weapon_sheet.png")
         self.sound = self.load_asset("shot.ogg")
         self._points = []
@@ -16,7 +18,7 @@ class VectorCoilWeapon(WeaponBase):
         self._line_hits = {}
 
     def sprite(self, world, entity=None):
-        return self.art
+        return self.art.frame(int((world.time if world else 0)*8)%4,columns=4)
 
     def aim(self, world):
         # Compatibility query for authors; capture has no projectile aiming policy.
@@ -48,6 +50,8 @@ class VectorCoilWeapon(WeaponBase):
         self.reset(world)
 
     def update(self, world, dt, control):
+        for region in self._areas:region.remaining-=dt
+        self._areas=[region for region in self._areas if region.remaining>0]
         if not control.fire:
             self._points.clear()
             world.set_geometry(self,self._areas)
@@ -69,6 +73,7 @@ class VectorCoilWeapon(WeaponBase):
                         crossings.append((start.distance_squared_to(crossing), polygon))
             if crossings:
                 closed = min(crossings, key=lambda item: item[0])[1]
+            if closed is None:closed=network.close(self._points,position,self._areas)
             if closed:
                 for enemy in tuple(world.enemies):
                     if enemy.health > 0 and contains_body(closed, enemy):
@@ -82,6 +87,11 @@ class VectorCoilWeapon(WeaponBase):
                 self.sound.play(volume=.45)
                 self._points = [world.player.pos.copy()]
             else:
+                # First contact with an old outline becomes a new drawing anchor.
+                segments=network.edges(self._areas)
+                if segments and network.anchor(self._points[0],segments) is None:
+                    joined=network.contact(start,position,segments)
+                    if joined is not None:self._points=[joined];start=joined
                 if len(self._points) > 1:
                     before, after = start - self._points[-2], position - start
                     if abs(before.cross(after)) < .001 and before.dot(after) > 0:
@@ -102,7 +112,7 @@ class VectorCoilWeapon(WeaponBase):
 
     def show(self, world):
         if self._visual is None or not self._visual.alive:
-            self._visual = TailImage()
+            self._visual = TailImage(self.art)
             world.effects.append(self._visual)
         self._visual.points = [p.copy() for p in self._points]
         self._visual.remaining = max(.05, self._visual.flash)
@@ -111,7 +121,7 @@ class VectorCoilWeapon(WeaponBase):
         world.set_geometry(self,self._areas+live)
 
     def create_powerup(self,world,position):
-        return VectorCoilPowerup(position,self.sprite(world),world.pak("weapon").color)
+        return VectorCoilPowerup(position,self.art,world.pak("weapon").color, self.pickup_sound)
 
     def on_powerup(self,world,count):
         world.burst(world.player.pos,world.pak("weapon").color,12)

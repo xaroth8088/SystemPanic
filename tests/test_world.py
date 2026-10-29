@@ -28,30 +28,28 @@ class CountingShot(ProjectileBase):
 
 class WorldTests(unittest.TestCase):
     def test_periodic_swap_only_freezes_during_glitch_then_accepts_held_input(self):
-        for mode in ("coherent", "remix"):
-            with self.subTest(mode=mode):
-                world = World(Preferences(enabled=["signal_runner", "phase_garden"], mix_mode=mode), seed=9)
-                world.phase = "active"
-                world.shuffle_timer = FIXED_DT / 2
-                held = Controls(x=1, fire=True)
-                world.step(FIXED_DT, held)
-                self.assertEqual(world.shuffle_count, 1)
-                self.assertEqual(world.phase, "active")
-                self.assertAlmostEqual(world.transition, SWAP_GLITCH_SECONDS)
-                position, time = world.player.pos.copy(), world.time
-                enemies = [enemy.pos.copy() for enemy in world.enemies]
-                while world.transition > FIXED_DT + 1e-9:
-                    world.step(FIXED_DT, held)
-                    self.assertEqual(world.player.pos, position)
-                    self.assertEqual([enemy.pos for enemy in world.enemies], enemies)
-                    self.assertEqual(world.time, time)
-                    self.assertEqual(world.phase, "active")
-                world.advance(FIXED_DT * 2, held)
-                self.assertEqual(world.phase, "active")
-                self.assertEqual(world.wave, 1)
-                self.assertGreater(world.time, time)
-                self.assertNotEqual(world.player.pos, position)
-                self.assertTrue(world.projectiles or world.effects)
+        world = World(Preferences(enabled=["signal_runner", "phase_garden"]), seed=9)
+        world.phase = "active"
+        world.shuffle_timer = FIXED_DT / 2
+        held = Controls(x=1, fire=True)
+        world.step(FIXED_DT, held)
+        self.assertEqual(world.shuffle_count, 1)
+        self.assertEqual(world.phase, "active")
+        self.assertAlmostEqual(world.transition, SWAP_GLITCH_SECONDS)
+        position, time = world.player.pos.copy(), world.time
+        enemies = [enemy.pos.copy() for enemy in world.enemies]
+        while world.transition > FIXED_DT + 1e-9:
+            world.step(FIXED_DT, held)
+            self.assertEqual(world.player.pos, position)
+            self.assertEqual([enemy.pos for enemy in world.enemies], enemies)
+            self.assertEqual(world.time, time)
+            self.assertEqual(world.phase, "active")
+        world.advance(FIXED_DT * 2, held)
+        self.assertEqual(world.phase, "active")
+        self.assertEqual(world.wave, 1)
+        self.assertGreater(world.time, time)
+        self.assertNotEqual(world.player.pos, position)
+        self.assertTrue(world.projectiles or world.effects)
 
     def test_level_clear_has_its_own_message_delay_then_direct_action(self):
         world = World(Preferences(), seed=24, solo="signal_runner")
@@ -132,16 +130,15 @@ class WorldTests(unittest.TestCase):
             self.assertGreaterEqual(world.player.invulnerable, 1.5)
             self.assertFalse(any(c.blocks_body(world.player) and c.overlaps_circle(world.player.pos, 12) for c in world.geometry))
 
-    def test_enabled_filter_coherent_mode_and_locked_channels(self):
-        prefs = Preferences(enabled=["sky_forge", "phase_garden"], mix_mode="coherent")
+    def test_enabled_filter_and_locked_channels(self):
+        prefs = Preferences(enabled=["sky_forge", "phase_garden"])
         world = World(prefs, 42)
         for _ in range(10):
             previous = world.mix["pilot"]
             world.shuffle()
-            self.assertEqual(len(set(world.mix.values())), 1)
             self.assertNotEqual(world.mix["pilot"], previous)
-            self.assertIn(world.mix["pilot"], prefs.enabled)
-        prefs.mix_mode = "remix"
+            self.assertTrue(all(provider in prefs.enabled for provider in world.mix.values()))
+        world.close()
         prefs.shuffle_channels = ["weapon"]
         world = World(prefs, 2)
         original = world.mix.copy()

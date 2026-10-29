@@ -1,0 +1,153 @@
+{
+  "date": "2026-10-28",
+  "python": "3.12.1",
+  "pygame": "2.6.1",
+  "commands": [
+    ".venv/Scripts/python.exe -m unittest discover -s tests -p test_combinations.py -v",
+    "unittest.defaultTestLoader.discover(\"tests\"), all cases except WorldTests.test_all_component_mixes_update_and_fire_safely",
+    ".venv/Scripts/python.exe tools/verify_matrix.py --workers 8",
+    ".venv/Scripts/python.exe tools/verify.py --levels 3 --seconds 120 --output output/verification/combinations/regression",
+    ".venv/Scripts/python.exe tools/verify_combinations.py",
+    ".venv/Scripts/python.exe tools/build.py",
+    ".venv/Scripts/python.exe tools/package_release.py",
+    ".venv/Scripts/python.exe tools/verify_distribution.py"
+  ],
+  "standard_tests": {
+    "tests": 283,
+    "seconds": 101.533,
+    "passed": true
+  },
+  "focused_tests": {
+    "tests": 20,
+    "seconds": 16.477,
+    "passed": true
+  },
+  "unique_test_methods_including_separate_matrix": 284,
+  "matrix": {
+    "combinations": 104976,
+    "fixed_steps_per_mix": 20,
+    "seconds": 323.129,
+    "passed": true,
+    "disjoint_full_coverage": true
+  },
+  "solo_smoke": {
+    "paks": 18,
+    "cleared_levels": 3,
+    "initial_enemy_counts": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "all_continued": true
+  },
+  "feature_probe": {
+    "exact_normal_mix": {
+      "pilot": "pulse_abbey",
+      "enemy": "orbit_keeper",
+      "weapon": "neon_breach",
+      "music": "orbit_keeper",
+      "background": "neon_breach",
+      "obstacles": "orbit_keeper"
+    },
+    "recovery_mix": {
+      "pilot": "vector_coil",
+      "enemy": "signal_runner",
+      "weapon": "bloom_siege",
+      "music": "bloom_siege",
+      "background": "sky_forge",
+      "obstacles": "signal_runner"
+    },
+    "normal_progress_retained": true,
+    "static_remix_returns_home": true,
+    "solo_returns_home": true,
+    "remove_persists": true,
+    "disk_failure_excluded_in_memory_and_retried": true,
+    "paused_world_unchanged": true,
+    "synthetic_dialog_probe": {
+      "fps": 4,
+      "seconds": 1.25
+    },
+    "real_wall_clock_probe": {
+      "fps": 7.162041181736795,
+      "slow_seconds": 1.117,
+      "injected_presentation_delay": 0.125,
+      "paused": true
+    }
+  },
+  "frozen": {
+    "checks": 25,
+    "all_passed": true,
+    "feature": {
+      "exact_normal_mix": {
+        "pilot": "pulse_abbey",
+        "enemy": "orbit_keeper",
+        "weapon": "neon_breach",
+        "music": "orbit_keeper",
+        "background": "neon_breach",
+        "obstacles": "orbit_keeper"
+      },
+      "recovery_mix": {
+        "pilot": "vector_coil",
+        "enemy": "signal_runner",
+        "weapon": "bloom_siege",
+        "music": "bloom_siege",
+        "background": "sky_forge",
+        "obstacles": "signal_runner"
+      },
+      "normal_progress_retained": true,
+      "static_remix_returns_home": true,
+      "solo_returns_home": true,
+      "remove_persists": true,
+      "disk_failure_excluded_in_memory_and_retried": true,
+      "paused_world_unchanged": true,
+      "synthetic_dialog_probe": {
+        "fps": 4,
+        "seconds": 1.25
+      }
+    }
+  },
+  "packaging": {
+    "source_pak_files": 493,
+    "windows_matches_source": true,
+    "wheel_matches_source": true,
+    "zip_matches_source": true,
+    "zip_crc": true,
+    "executable_sha256": "869722f92dca6068e7bcea03a36eb8295af8f9dd8875d5d2f92d96e9de2cbbac",
+    "wheel_sha256": "d15a556366552c3344b5a775805bd6b7300e03ce7079b090149b11d0929c4b61",
+    "zip_sha256": "329e6f1f7c87b32c7b070d9381f1febe3b5a5a58a1199f4121309c0045f8cac2"
+  },
+  "wheel_changed_host_modules_match_source": [
+    "app.py",
+    "combination_ui.py",
+    "combinations.py",
+    "world.py",
+    "remixes.py",
+    "remix_ui.py"
+  ],
+  "inspected_renders": [
+    "normal-dialog",
+    "remix-dialog",
+    "disk-error",
+    "settings",
+    "history",
+    "empty",
+    "real-slow-frame",
+    "frozen-normal-dialog"
+  ],
+  "source_sha256": {
+    "app.py": "4a4f6e916c6ff5a7f08010b565a1cbc529b5b769dbcd079341a4ec48670603a2",
+    "combination_ui.py": "a93591bcbdede4712acec4260213968438a72ed759f42d5304162ac5781757e4",
+    "combinations.py": "c6de3efd8991f8e6db6fda2a94b49311acefcdc9969b2d8ddf37c26c478746bc",
+    "world.py": "80c1d0d3fcf27127430aca4b5f8048148772ed941345c2c194d29c7bdae6c203",
+    "remixes.py": "25a6af2cccc5fed32b8995db900e3641ad7702acb52b079147cae60837e9392f",
+    "remix_ui.py": "676818842b0ed9f70a8d70df1c5daca3255ac71ba35cc7c69d2a92d5ba14df32"
+  },
+  "limitations": [
+    "SDL dummy rendering and an injected .125-second delay verify watchdog behavior, not physical-display FPS or human playtesting.",
+    "A hard hang cannot be interrupted until its frame returns to the event loop; exceptions are outside this FPS guard.",
+    "Background machine load can flag an otherwise healthy combination. Exact records persist until the player removes them.",
+    "The 104976-case smoke matrix covers four gameplay providers for twenty steps; six-provider exclusion/selection is covered separately, not by long play of all 18^6 combinations.",
+    "All verification profiles are temporary; user preferences and favorites were not used."
+  ]
+}

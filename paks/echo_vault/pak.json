@@ -1,0 +1,39 @@
+{
+  "id": "echo_vault",
+  "name": "Echo Vault",
+  "subtitle": "RECORD / EVADE / RETURN",
+  "color": [
+    106,
+    202,
+    255
+  ],
+  "description": "Fire records delayed volleys from your past positions. Every shot repeats along its original path. Rewind your route to escape predictive chronoguards.",
+  "version": "1.0.0",
+  "order": 16,
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "concept": "delayed attacks and positional rewind",
+    "sheet_source": "assets/images/echo_vault-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/echo_vault-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ]
+    }
+  }
+}

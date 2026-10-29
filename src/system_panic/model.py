@@ -29,6 +29,10 @@ class Body:
     max_health: float = 1.
     invulnerable: float = 0.
 
+    def overlaps_circle(self, position, radius):
+        """Neutral default body shape; Pak subclasses may supply other shapes."""
+        return self.pos.distance_squared_to(position)<(self.radius+radius)**2
+
 
 @dataclass
 class Pilot(Body):
@@ -48,6 +52,18 @@ class Cover:
 
     def overlaps_circle(self, position, radius):
         return circle_rect(position, radius, self.rect)
+
+    def navigation_key(self):
+        """Optional immutable collision snapshot for local navigation caches.
+
+        Equal keys promise identical circle overlaps for a given radius and
+        conservative rect bounds. Custom shapes opt in with all shape state;
+        None keeps arbitrary queries on the body-local, shape-aware path.
+        Body filtering is always evaluated separately by the caller.
+        """
+        if getattr(self.overlaps_circle, "__func__", None) is Cover.overlaps_circle:
+            return (Cover, tuple(self.rect))
+        return None
 
     def overlaps_segment(self, start, end):
         return bool(self.rect.clipline(start, end))

@@ -46,6 +46,13 @@ class ComponentBase(ABC):
     def on_level_complete(self, world: World) -> None:
         """Own level rewards/recovery; called once before the cleared intermission."""
 
+    def on_enemy_destroyed(self, world: World, enemy: Enemy) -> None:
+        """Once-only removal notification; never emitted for adoption/despawning.
+
+        The shared kill counter is already updated. Components own any response;
+        the host does not prescribe drops, resources, healing or combat rules.
+        """
+
     def on_shuffle(self, world: World, changed: frozenset[str]) -> None:
         """All new components/geometry are ready; own any swap protection/reaction."""
 
@@ -77,6 +84,16 @@ class SpriteComponent(ComponentBase):
 class PilotBase(SpriteComponent):
     controls: str = "Arrows / WASD: move"
     special: str = "X: special"
+
+    def draw(self, graphics: Graphics, surface: Surface, world: World, *, reduced_motion=False) -> None:
+        """Read-only pilot presentation; override for local shape/edge alignment."""
+        import pygame
+        p=world.player
+        if p.invulnerable>0:
+            pygame.draw.circle(surface,world.pak('pilot').color,p.pos,20,1)
+        if world.phase!='active' or world.transition>0 or p.invulnerable<=0 or int(world.time*12)%2 or reduced_motion:
+            image=graphics.component_sprite(world,'pilot',p,44)
+            surface.blit(image,image.get_rect(center=p.pos))
 
     @abstractmethod
     def create(self, world: World, position: Vec) -> Pilot:
@@ -114,6 +131,11 @@ class PilotBase(SpriteComponent):
 
 
 class EnemyBase(SpriteComponent):
+    def draw(self, graphics: Graphics, surface: Surface, world: World, enemy: Enemy, *, reduced_motion=False) -> None:
+        """Read-only body presentation; default retains centered sprite rendering."""
+        image=graphics.component_sprite(world,'enemy',enemy,int(enemy.radius*3.4),rotate=not reduced_motion)
+        surface.blit(image,image.get_rect(center=enemy.pos))
+
     @abstractmethod
     def spawn_position(self, world: World) -> Vec:
         """Choose an initial enemy position, including any distance/safety policy."""
@@ -137,6 +159,13 @@ class EnemyBase(SpriteComponent):
 
 
 class WeaponBase(SpriteComponent):
+    def demo_controls(self, world: World, controls: Controls) -> Controls:
+        """Optionally refine ordinary QA input for a weapon's local interaction.
+
+        The input is the pilot's demo policy. This is never used for live input.
+        """
+        return controls
+
     def create_powerup(self, world: World, position: Vec) -> PowerupBase | None:
         """Factory called at every tenth kill; the returned Pak object owns its behavior."""
         return None

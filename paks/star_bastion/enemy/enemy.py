@@ -11,10 +11,12 @@ class StarBastionBody(Enemy):
     age: float = 0.
     timer: float = 1.
     anchor: Vec = field(default_factory=Vec)
+    state: str = 'formation'
+    target: object = None
 
 class StarBastionEnemy(EnemyBase):
     def init(self): self.art=self.load_asset("enemy_sheet.png")
-    def sprite(self,world,entity=None): return self.art
+    def sprite(self,world,entity=None): return self.art.frame(int((world.time if world else 0)*7+(entity.id if entity else 0))%4,columns=4)
 
     def spawn_position(self,world):
         index=len(world.enemies)
@@ -30,25 +32,30 @@ class StarBastionEnemy(EnemyBase):
         return (42+90*(1-math.exp(-(world.wave-1)/35)))*difficulty(world)
 
     def fire_interval(self, world):
-        return max(.8,3.1/(1+.035*(world.wave-1))/difficulty(world))
+        return max(.55,1.75/(1+.035*(world.wave-1))/difficulty(world))
 
     def advance_enemy(self, world, enemy, dt):
         enemy.age += dt
         enemy.timer -= dt
         speed=self.move_speed(world)
-        # A formation sweep gives way to short predictive dives on later levels.
-        diving=world.wave>=5 and (enemy.age+enemy.id*.4)%6>4.5
-        if diving:
-            direction=normalized(world.player.pos+world.player.vel*.25-enemy.pos)
-            pursue(world,enemy,direction,speed*1.8,dt,avoid=True)
+        if enemy.state=='formation' and enemy.timer<=0:
+            enemy.target=world.player.pos+Vec(world.rng.uniform(-95,95),world.rng.uniform(-28,28))
+            enemy.target.x=max(8,min(WIDTH-8,enemy.target.x));enemy.target.y=max(8,min(HEIGHT-8,enemy.target.y))
+            direction=normalized(enemy.target-enemy.pos)
+            self.shoot(world,enemy,direction,125+100*(1-math.exp(-(world.wave-1)/35)))
+            enemy.state,enemy.timer=('dive',1.15) if world.wave>=4 else ('return',.7)
+            enemy.vel=direction*max(220,speed*2.4)
+        elif enemy.state=='dive' and enemy.timer<=0:
+            enemy.state,enemy.timer='return',1.5
+        elif enemy.state=='return' and enemy.timer<=0:
+            enemy.state,enemy.timer='formation',self.fire_interval(world)
+        if enemy.state=='dive':
+            motion=world.move_body(enemy,enemy.vel*dt,enemy.radius)
+            if motion.normals:enemy.state,enemy.timer='return',1.2
         else:
             target=enemy.anchor+Vec(math.sin(enemy.age*(.5+world.wave*.006)+enemy.id)*120,
                                     math.sin(enemy.age*.4)*18)
             pursue(world,enemy,normalized(target-enemy.pos),min(speed,(target-enemy.pos).length()*2),dt,avoid=True)
-        if enemy.timer<=0:
-            enemy.timer=self.fire_interval(world)
-            direction=normalized(world.player.pos+world.player.vel*min(.4,world.wave*.02)-enemy.pos)
-            self.shoot(world,enemy,direction,125+100*(1-math.exp(-(world.wave-1)/35)))
 
     def contact_damage(self,world):
         return (13+.6*(world.wave-1)**.7)*difficulty(world)
@@ -65,10 +72,15 @@ class StarBastionEnemy(EnemyBase):
         world.events.append("impact")
 
     def take_damage(self, world, enemy, damage):
-        applied=world.apply_damage(enemy,damage)
+        multiplier={'formation':.5,'dive':1.6,'return':1.25}[enemy.state]
+        applied=world.apply_damage(enemy,damage*multiplier)
         if applied: world.burst(enemy.pos,world.pak("enemy").color,2)
         return applied
 
     def shoot(self,world,enemy,direction,speed):
         damage=(12+.5*(world.wave-1)**.7)*difficulty(world)
-        world.projectiles.append(HostileShot(enemy.pos+direction*(enemy.radius+6),direction*speed,damage))
+        count=3 if world.wave<8 else 5
+        for index in range(count):
+            angle=math.atan2(direction.y,direction.x)+(index-(count-1)/2)*.11
+            ray=unit(angle)
+            world.projectiles.append(HostileShot(enemy.pos+ray*(enemy.radius+6),ray*speed,damage))

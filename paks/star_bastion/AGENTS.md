@@ -1,9 +1,13 @@
 # Star Bastion
 
-Read [Pak contracts](../AGENTS.md). Complete API 4 Pak inspired by Space Invaders, using original art/music/effects rather than copied game assets.
+Read [Pak contracts](../AGENTS.md). Complete API 4 Pak with endless +1 initial enemy progression and six independently copyable role folders. No other Pak imports or host feature traits.
 
-Defend the lower sky, barrel-roll out of trouble and cut through diving formations.
+Align your bottom-lane fighter, fire salvos and reload between formation volleys.
 
-Each role folder is independently copyable as a partial Pak. Level number controls local difficulty; procedural obstacles use a separate seeded RNG. Keyboard/gamepad share Controls. Preserve +1 initial enemy progression and the core's existing transitions.
+Weapon: Battery 4+min(4,floor(n/2)) cells. Salvos cost one cell every .32s; empty reload 1.35s. Release with cells remaining for .48s to refill early. Damage 23+4n, 2+min(4,floor(n/3)) bolts. Assistance/guidance stays in a narrow .94-dot forward cone. Bolts expire at screen edges, never wrap.
 
-Current package behavior: Move horizontally along the bottom. Non-wrapping salvos gain strength from falling supply cells. The weapon folder owns powerup.py and its upgrade formulas; the engine owns the tenth-kill cadence and shared pickup count.
+Opposition: Formation armor x.5, dive exposure x1.6, return x1.25. When the attack timer expires it shoots immediately, with no tell/marker state. From level four it also commits to a 1.15s dive, followed by recovery/formation return. No replacement boss waves.
+
+Four-frame pilot/enemy/weapon/terrain rows and an animated collectible use the original source `assets/images/star_bastion-renewal-source.png`. The local scenery, music and effects are installed; exact prompts, source hashes, measured extraction and mastering operations are in the asset ledgers. Generation is development-only.
+
+Read [renewal verification](../../docs/pak-renewal.json) for the current tested checkpoint and limits. QA uses ordinary digital Controls, with no health, resource or damage grants.

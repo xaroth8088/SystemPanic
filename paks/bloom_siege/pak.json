@@ -1,0 +1,39 @@
+{
+  "id": "bloom_siege",
+  "name": "Bloom Siege",
+  "subtitle": "SOW / LURE / BLOOM",
+  "color": [
+    247,
+    143,
+    185
+  ],
+  "description": "Stand still at nectar wells to fill your watering can. Hold Fire to sow and water nearby plants, then release to bloom. Upgrades enlarge the can; dry seeds cannot hurt weevils.",
+  "version": "1.0.0",
+  "order": 15,
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "concept": "growing traps and chain reactions",
+    "sheet_source": "assets/images/bloom_siege-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/bloom_siege-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ]
+    }
+  }
+}

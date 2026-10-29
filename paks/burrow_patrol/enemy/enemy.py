@@ -10,10 +10,14 @@ class BurrowPatrolBody(Enemy):
     age: float = 0.
     timer: float = 1.
     underground: bool = False
+    state: str = 'hunt'
+    target: object = None
 
 class BurrowPatrolEnemy(EnemyBase):
     def init(self): self.art=self.load_asset("enemy_sheet.png")
-    def sprite(self,world,entity=None): return self.art
+    def sprite(self,world,entity=None):
+        if entity is not None and entity.state=='burrow':return self.art.frame(1,columns=4)
+        return self.art.frame(int((world.time if world else 0)*7+(entity.id if entity else 0))%4,columns=4)
 
     def spawn_position(self,world):
         return spawn_position(world)
@@ -29,19 +33,32 @@ class BurrowPatrolEnemy(EnemyBase):
     def advance_enemy(self, world, enemy, dt):
         enemy.age += dt
         enemy.timer -= dt
-        # Worms become armored while burrowing, then emerge and charge.
-        enemy.underground=enemy.age%max(2.,4.5-world.wave*.025)<.9
         lead=min(.55,max(0,world.wave-3)*.02)
         toward=normalized(world.player.pos+world.player.vel*lead-enemy.pos)
-        if enemy.underground:
+        if enemy.state=='hunt' and enemy.timer<=0:
+            enemy.state,enemy.timer='burrow',.9
+        elif enemy.state=='burrow' and enemy.timer<=0:
+            enemy.pos=world.safe_position(enemy.pos,enemy.radius,body=enemy)
+            enemy.target=world.player.pos+world.player.vel*.2
+            enemy.state,enemy.timer='rush',.55
+            enemy.vel=normalized(enemy.target-enemy.pos)*self.move_speed(world)*2.6
+        elif enemy.state=='rush' and enemy.timer<=0:
+            enemy.state,enemy.timer='hunt',max(1.2,2.7-world.wave*.025)
+        enemy.underground=enemy.state=='burrow'
+        if enemy.state=='burrow':
             enemy.vel=toward*self.move_speed(world)*1.35
             enemy.pos+=enemy.vel*dt
             enemy.pos.x=max(16,min(WIDTH-16,enemy.pos.x))
             enemy.pos.y=max(16,min(HEIGHT-16,enemy.pos.y))
-        else:
-            enemy.pos=world.safe_position(enemy.pos,enemy.radius)
+        elif enemy.state=='rush':
+            motion=world.move_body(enemy,enemy.vel*dt,enemy.radius)
+            if motion.normals:enemy.state,enemy.timer='hunt',1.4
+        elif enemy.state=='hunt':
             pursue(world,enemy,toward,self.move_speed(world),dt,avoid=world.wave>=4)
+        else:enemy.vel=Vec()
         enemy.angle=math.atan2(toward.y,toward.x)
+
+    def sprite_angle(self,world,entity):return -math.degrees(entity.angle)
 
     def take_damage(self, world, enemy, damage):
         return world.apply_damage(enemy,damage*(.65 if enemy.underground else 1.))
@@ -50,7 +67,7 @@ class BurrowPatrolEnemy(EnemyBase):
         return (13+.6*(world.wave-1)**.7)*difficulty(world)
 
     def on_contact(self,world,enemy,dt):
-        world.hit_player(self.contact_damage(world))
+        if enemy.state!='burrow':world.hit_player(self.contact_damage(world))
 
     def on_level_complete(self,world):
         world.score+=250*world.wave

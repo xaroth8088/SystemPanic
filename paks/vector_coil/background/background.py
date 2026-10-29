@@ -8,10 +8,10 @@ class VectorCoilBackground(BackgroundBase):
         self._image=None
     def preview(self): return self.art
     def draw(self,surface,world):
-        surface.fill((7,15,23))
+        surface.fill((6, 17, 13))
         if self._image is None:
             self._image=pygame.transform.scale(self.art.surface,(WIDTH,HEIGHT))
-            self._image.set_alpha(15)
+            self._image.set_alpha(7)
         surface.blit(self._image,(0,0))
         accent=tuple(int(c*.12) for c in [185, 246, 66])
         for x in range(0,WIDTH,48): pygame.draw.line(surface,accent,(x,0),(x,HEIGHT))

@@ -100,10 +100,18 @@ COMPONENT = ProbeWeapon
         shutil.copytree(ROOT / "paks", remix_paks, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
         pilot = remix_paks / "signal_runner/pilot"
         shutil.copyfile(ROOT / "tools/verify.py", pilot / "_remix_probe.py")
+        shutil.copyfile(ROOT / "tools/verify_combinations.py", pilot / "_combination_probe.py")
+        shutil.copyfile(ROOT / "tools/verify_menu_refinement.py", pilot / "_menu_probe.py")
+        shutil.copyfile(ROOT / "tools/verify_run_feedback.py", pilot / "_feedback_probe.py")
+        shutil.copyfile(ROOT / "tools/verify_tidal_ink.py", pilot / "_ink_probe.py")
         remix_output = output / "static-remix"
         remix_output.mkdir(exist_ok=True)
         hook = f'''
 from ._remix_probe import verify_static_remix
+from ._combination_probe import verify_combinations
+from ._menu_probe import verify_menu_refinement
+from ._feedback_probe import verify_run_feedback
+from ._ink_probe import verify_tidal_ink
 from system_panic.app import App
 from pathlib import Path
 import json
@@ -115,6 +123,10 @@ def _verify_remix(self, *args, **kwargs):
         self.start()
         self.navigate("pause")
         report = verify_static_remix(self, Path({str(remix_output)!r}))
+        report["flagged_combinations"] = verify_combinations(self, Path({str(remix_output)!r}))
+        report["menu_refinement"] = verify_menu_refinement(self, Path({str(remix_output)!r}))
+        report["run_feedback"] = verify_run_feedback(self, Path({str(remix_output)!r}))
+        report["tidal_ink"] = verify_tidal_ink(self, Path({str(remix_output)!r}))
         Path({str(remix_output / "report.json")!r}).write_text(json.dumps(report, indent=2), encoding="utf-8")
     except Exception:
         Path({str(remix_output / "error.log")!r}).write_text(traceback.format_exc(), encoding="utf-8")
@@ -129,10 +141,17 @@ App.run = _verify_remix
         run("static_remix_favorites_and_frozen_scheduling", "--pak-dir", remix_paks,
             "--data-dir", temp / "remix-profile")
         remix_report = json.loads((remix_output / "report.json").read_text(encoding="utf-8"))
+        assert all(remix_report["run_feedback"].values())
+        assert all(remix_report["tidal_ink"][key] for key in ("hidden_until_active", "filled_damage_area",
+                   "charge_wake_rendered", "render_preserves_simulation_and_rng", "reduced_motion_steady"))
+        assert all(run["wave"] == 8 and run["peak_ink"] > 0 for run in remix_report["tidal_ink"]["solo_samples"])
         assert (remix_report["favorite_save_rename_load"] and remix_report["favorite_delete"]
                 and remix_report["live_mix_saved_without_advancing_run"]
                 and remix_report["manual_shuffle_unchanged"] and remix_report["expired_timer_unchanged"]
                 and remix_report["main_game_can_still_shuffle"] and remix_report["shuffle_count"] == 0)
+        assert all(remix_report["flagged_combinations"][key] for key in (
+            "normal_progress_retained", "static_remix_returns_home", "solo_returns_home",
+            "remove_persists", "disk_failure_excluded_in_memory_and_retried", "paused_world_unchanged"))
 
     wheel = ROOT / "dist/system_panic-0.1.0-py3-none-any.whl"
     with zipfile.ZipFile(wheel) as bundle:

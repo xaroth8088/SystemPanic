@@ -7,11 +7,33 @@
     119,
     137
   ],
-  "description": "Double-jump through permanent, connected platform arrangements. Falling embers strengthen explosive fire.",
-  "version": "1.2.0",
+  "description": "Sweep overhead to push enemies back, or charge a powerful sword throw and recover the blade between rooftop battles.",
+  "version": "2.0.0",
   "order": 3,
   "authoring": {
-    "atlas_column": 3
+    "animation_grid": [
+      4,
+      4
+    ],
+    "sheet_source": "assets/images/sky_forge-renewal-source.png",
+    "component_sources": {
+      "pilot": "assets/images/sky_forge-facing-source.png",
+      "weapon": "assets/images/sky_forge_sword-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        2,
+        4
+      ],
+      "weapon": [
+        4,
+        1
+      ]
+    },
+    "audio_sources": {
+      "weapon/shot.ogg": "assets/audio/production/sky_forge_stab.ogg",
+      "weapon/throw.ogg": "assets/audio/production/sky_forge_throw.ogg"
+    }
   },
   "api_version": 4,
   "components": [

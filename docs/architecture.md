@@ -30,7 +30,7 @@ Shared services provide geometry, asset/audio playback and basic rendering. Shar
 
 ## Partial Paks and discovery
 
-Complete Paks cover all six types and support solo/coherent play. Partial Paks join only their provided pools. Enabled partials can collectively cover the required six types without any complete Pak. Coherent mode uses complete Paks; component remix uses eligible providers per unlocked channel. Automatic swaps require an actual alternative provider.
+Complete Paks cover all six types and support solo play. Partial Paks join only their provided pools. Enabled partials can collectively cover the required six types without any complete Pak. The main game uses eligible providers per unlocked channel; legacy shuffle-style preferences are ignored. Automatic swaps require an actual alternative provider.
 
 A component can inherit an installed provider's class with local filename overrides. It receives a fresh instance, with overridden load_asset() calls resolving locally and other assets staying at the provider. Missing/cyclic dependencies, unsupported APIs, invalid paths, abstract implementations and import/init errors become Pak status issues. Relative helpers use isolated namespaces and fresh-source rescans. Pak code is trusted local Python.
 

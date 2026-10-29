@@ -7,12 +7,25 @@
     215,
     87
   ],
-  "description": "Lunge forward to strike and bounce apart. Fixed power pellets strengthen the dash.",
-  "version": "1.2.0",
+  "description": "Buffer cardinal turns, lunge into a target, and chase stronger backbites through the maze.",
+  "version": "2.0.0",
   "order": 7,
   "authoring": {
     "inspired_by": "Pac-Man",
-    "sheet_source": "assets/images/maze_muncher-source.png"
+    "sheet_source": "assets/images/maze_muncher-renewal-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/maze_muncher-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        4,
+        4
+      ]
+    }
   },
   "api_version": 4,
   "components": [

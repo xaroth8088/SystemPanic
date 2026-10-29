@@ -12,6 +12,8 @@ import tempfile
 import pygame
 
 from .audio import Audio
+from .combination_ui import CombinationMenus
+from .combinations import NoAvailableCombination
 from .graphics import Graphics, BG, PANEL, EDGE, TEXT, MUTED, CYAN, DIM
 from .input_devices import Gamepads, MenuRepeat, spatial_focus, A, B, START, BACK, LB, RB
 from .model import WIDTH, HEIGHT, Controls
@@ -19,6 +21,7 @@ from .paks import discover, CHANNELS
 from .preferences import PreferenceStore, RENDER_RESOLUTIONS
 from .remix_ui import RemixMenus
 from .remixes import validate_mix
+from .run_feedback import GameOverTransition, GAME_OVER_SECONDS, desaturate_hull
 from .world import World
 
 SIZE = (1280, 800)
@@ -34,7 +37,7 @@ class Button:
     action: object
 
 
-class App(RemixMenus):
+class App(RemixMenus, CombinationMenus):
     def __init__(self, data_dir=None, seed=None, catalog=None, gamepads=None):
         self.catalog = catalog if catalog is not None else discover()
         pygame.mixer.pre_init(44100, -16, 2, 512)
@@ -42,10 +45,13 @@ class App(RemixMenus):
         self.store = PreferenceStore(data_dir, self.catalog)
         self.prefs = self.store.load()
         self.init_remixes()
+        self.init_combinations()
         self.window = pygame.display.set_mode(SIZE, pygame.RESIZABLE)
-        pygame.display.set_caption("System Panic — One unstable system.")
+        pygame.display.set_caption("System Panic")
         self.canvas = pygame.Surface(SIZE).convert()
         self.arena_surface = pygame.Surface((WIDTH, HEIGHT)).convert()
+        self.gray_arena = self.arena_surface.copy()
+        self.game_over = GameOverTransition()
         self.graphics = Graphics(self.catalog)
         if self.catalog.paks:
             pak = self.catalog.paks[0]
@@ -67,7 +73,7 @@ class App(RemixMenus):
         self._focus_pending = self.keyboard_focus
         self.pointer = (-100, -100)
         self.elapsed = 0.
-        self.toast = self.store.error or self.remix_store.error
+        self.toast = self.store.error or self.remix_store.error or self.combination_history.error
         self.toast_timer = 6. if self.toast else 0.
         self.recorded = False
         self.library_page = 0
@@ -103,8 +109,8 @@ class App(RemixMenus):
         self.library_page = self.help_page = self.status_page = 0
         self.notify(f"Loaded {len(self.catalog.paks)} Paks; {len(self.catalog.issues)} skipped. Details in Pak status.")
 
-    def page_controls(self, attribute, count, y, left=430, right=1080):
-        pages = max(1, (count + 5) // 6)
+    def page_controls(self, attribute, count, y, left=430, right=1080, per_page=6):
+        pages = max(1, (count + per_page - 1) // per_page)
         page = min(getattr(self, attribute), pages - 1)
         setattr(self, attribute, page)
         if pages > 1:
@@ -118,9 +124,11 @@ class App(RemixMenus):
             self.button(attribute + ":prev", (left, y, 140, 29), "< PREVIOUS", lambda: change(-1), size=12)
             self.button(attribute + ":next", (right, y, 140, 29), "NEXT >", lambda: change(1), size=12)
             self.graphics.text(self.canvas, f"{page + 1} / {pages}", ((left + right + 140) / 2, y + 14), 12, MUTED, mono=True, anchor="center")
-        return page * 6
+        return page * per_page
 
     def apply_display(self):
+        self.performance_watch.reset()
+        self.performance_epoch += 1
         try:
             if self.prefs.render_resolution == "auto":
                 size = (0, 0) if self.prefs.fullscreen else SIZE
@@ -143,6 +151,8 @@ class App(RemixMenus):
         self.toast, self.toast_timer = text, 4.
 
     def navigate(self, route):
+        self.performance_watch.reset()
+        self.performance_epoch += 1
         if self.world and route != "game":
             self.world.suspend()
         self.route, self.focus = route, 0
@@ -166,9 +176,16 @@ class App(RemixMenus):
         if (fixed_mix is None and solo is None and self.catalog.missing(self.prefs.enabled)) or (solo is not None and solo not in self.catalog.complete_ids()):
             self.notify("Enable every component type in the mix, or choose a complete Pak.")
             return
+        try:
+            world = World(self.prefs, self.seed if self.seed is not None else secrets.randbelow(1_000_000), solo,
+                          self.catalog, self.audio, fixed_mix=fixed_mix, blocked_mixes=self.combination_history.keys)
+        except NoAvailableCombination as exc:
+            self.notify(str(exc))
+            return
         if self.world:
             self.world.close()
-        self.world = World(self.prefs, self.seed if self.seed is not None else secrets.randbelow(1_000_000), solo, self.catalog, self.audio, fixed_mix=fixed_mix)
+        self.world = world
+        self.performance_problem = None
         self.recorded = False
         self.page_history.clear()
         self.navigate("game")
@@ -178,6 +195,7 @@ class App(RemixMenus):
         if self.world:
             self.world.close()
         self.world = None
+        self.performance_problem = None
         self.page_history.clear()
         self.navigate("home")
         self.menu_music()
@@ -200,17 +218,11 @@ class App(RemixMenus):
             self.prefs.enabled.remove(pak_id)
         else:
             self.prefs.enabled.append(pak_id)
-        if self.prefs.mix_mode == "coherent" and not self.catalog.complete_ids(self.prefs.enabled):
-            self.prefs.mix_mode = "remix"
-            self.notify("The enabled partial Paks now play together in component remix.")
         self.save()
 
     def cycle(self, name, options):
         current = getattr(self.prefs, name)
         setattr(self.prefs, name, options[(options.index(current) + 1) % len(options)] if current in options else options[0])
-        if name == "mix_mode" and self.prefs.mix_mode == "coherent" and not self.catalog.complete_ids(self.prefs.enabled):
-            self.prefs.mix_mode = "remix"
-            self.notify("Coherent shuffle needs an enabled complete Pak. Partial Paks use component remix.")
         self.audio.set_volumes()
         if name in ("fullscreen", "render_resolution"):
             self.apply_display()
@@ -259,32 +271,26 @@ class App(RemixMenus):
         g = self.graphics
         self.header("PAK LIBRARY")
         self.button("quit", (1140, 25, 100, 34), "QUIT", self.quit, size=13)
-        g.text(self.canvas, f"{len(self.catalog.paks)} PAKS DISCOVERED.", (40, 127), 13, CYAN, True, True)
-        g.text(self.canvas, "ONE UNSTABLE SYSTEM.", (40, 149), 13, MUTED, mono=True)
-        g.text(self.canvas, "SYSTEM", (35, 190), 69, TEXT, True)
-        g.text(self.canvas, "PANIC", (35, 261), 88, CYAN, True)
-        g.wrapped(self.canvas, "The rules will change. Keep moving.", (42, 372), 335, 23, TEXT)
-        g.wrapped(self.canvas, "Play a complete Pak alone, or combine complete and partial Paks in the mix.", (42, 445), 315, 18)
-        mode = "COMPONENT REMIX" if self.prefs.mix_mode == "remix" else "COHERENT SHUFFLE"
-        g.text(self.canvas, f"{len(self.prefs.enabled):02d} / {len(self.catalog.paks):02d} ENABLED   ·   {mode}", (42, 535), 12, CYAN, mono=True)
+        g.text(self.canvas, "SYSTEM", (35, 130), 69, TEXT, True)
+        g.text(self.canvas, "PANIC", (35, 204), 88, CYAN, True)
+        g.wrapped(self.canvas, "Play a complete Pak alone, or combine complete and partial Paks in the mix.", (42, 345), 315, 18)
+        g.text(self.canvas, f"{len(self.prefs.enabled):02d} / {len(self.catalog.paks):02d} ENABLED", (42, 424), 12, CYAN, mono=True)
         missing = self.catalog.missing(self.prefs.enabled)
         if not missing:
-            self.button("start", (40, 563, 340, 51), "START MAIN GAME  >", self.start, filled=True, size=20)
+            self.button("start", (40, 453, 340, 51), "START MAIN GAME  >", self.start, filled=True, size=20)
         else:
-            g.wrapped(self.canvas, "Mix needs: " + ", ".join(missing) + ". Add Paks and rescan.", (42, 574), 335, 17, CYAN)
-        self.button("remix", (40, 628, 340, 44), "REMIX / BUILD & PLAY", self.open_remix, size=17)
-        self.button("settings", (40, 684, 160, 34), "PREFERENCES", lambda: self.open_page("settings"), size=14)
-        self.button("help", (218, 684, 162, 34), "HOW TO PLAY", lambda: self.open_page("help"), size=14)
-        g.text(self.canvas, "BEST", (42, 735), 12, MUTED, mono=True)
-        g.text(self.canvas, f"{self.prefs.high_score:07d}", (94, 726), 24, TEXT, mono=True)
-        self.button("credits", (248, 725, 132, 28), "CREDITS", lambda: self.open_page("credits"), size=12)
-        self.button("rescan", (40, 760, 160, 28), "RESCAN PAKS", self.reload_paks, size=12)
-        self.button("pak-status", (218, 760, 162, 28), f"PAK STATUS ({len(self.catalog.issues)})", lambda: self.open_page("paks"), size=11)
-        g.text(self.canvas, "CHOOSE YOUR MIX", (430, 107), 15, TEXT, True, True)
-        g.text(self.canvas, "PARTIAL PAKS JOIN THE MIX", (1230, 108), 12, MUTED, mono=True, anchor="topright")
+            g.wrapped(self.canvas, "Mix needs: " + ", ".join(missing) + ". Add Paks and rescan.", (42, 464), 335, 17, CYAN)
+        self.button("remix", (40, 518, 340, 44), "REMIX / BUILD & PLAY", self.open_remix, size=17)
+        self.button("settings", (40, 574, 160, 34), "PREFERENCES", lambda: self.open_page("settings"), size=14)
+        self.button("help", (218, 574, 162, 34), "HOW TO PLAY", lambda: self.open_page("help"), size=14)
+        g.text(self.canvas, "BEST", (42, 632), 12, MUTED, mono=True)
+        g.text(self.canvas, f"{self.prefs.high_score:07d}", (94, 623), 24, TEXT, mono=True)
+        self.button("credits", (248, 622, 132, 28), "CREDITS", lambda: self.open_page("credits"), size=12)
+        self.button("rescan", (40, 674, 160, 28), "RESCAN PAKS", self.reload_paks, size=12)
+        self.button("pak-status", (218, 674, 162, 28), f"PAK STATUS ({len(self.catalog.issues)})", lambda: self.open_page("paks"), size=11)
         start = self.page_controls("library_page", len(self.catalog.paks), 714)
         for index, pak in enumerate(self.catalog.paks[start:start + 6]):
-            x, y = 430 + index % 2 * 410, 150 + index // 2 * 190
+            x, y = 430 + index % 2 * 410, 120 + index // 2 * 190
             enabled = pak.id in self.prefs.enabled
             g.panel(self.canvas, (x, y, 390, 174), PANEL,
                     tuple(int(c * .55) for c in pak.color) if enabled else EDGE)
@@ -307,7 +313,6 @@ class App(RemixMenus):
             g.wrapped(self.canvas, "Add Pak folders to a location listed in Pak status, then choose Rescan Paks.", (475, 290), 680, 20)
         hint = "STICK / D-PAD + RT/A + X/LB" if self.input_device == "gamepad" else "ARROWS / WASD + SPACE + X"
         g.text(self.canvas, hint, (430, 771), 12, MUTED, mono=True)
-        g.text(self.canvas, "OFFLINE / ORIGINAL AI ASSETS", (1230, 771), 12, DIM, mono=True, anchor="topright")
 
     def draw_pak_status(self):
         g = self.graphics
@@ -330,8 +335,9 @@ class App(RemixMenus):
 
     def setting(self, y, title, description, name, options, labels=None):
         g = self.graphics
-        g.text(self.canvas, title, (80, y), 21, TEXT, True)
-        g.text(self.canvas, description, (80, y + 31), 15, MUTED)
+        g.text(self.canvas, title, (80, y if description else y + 9), 21, TEXT, True)
+        if description:
+            g.text(self.canvas, description, (80, y + 31), 15, MUTED)
         value = getattr(self.prefs, name)
         label = labels[options.index(value)] if labels and value in options else str(value).upper()
         self.button(name, (830, y + 3, 370, 43), label + "  >", lambda: self.cycle(name, options), size=16)
@@ -341,28 +347,23 @@ class App(RemixMenus):
         g = self.graphics
         self.header("PREFERENCES")
         self.button("back", (1100, 25, 140, 34), "<  BACK", self.back, size=13)
-        g.text(self.canvas, "Tune the instability.", (80, 107), 35, TEXT, True)
-        g.text(self.canvas, "Saved locally. Gameplay changes apply to the next run.", (80, 158), 17, MUTED)
-        self.setting(210, "Shuffle style", "Component remix includes partial Paks; coherent uses complete Paks.", "mix_mode", ["remix", "coherent"], ["COMPONENT REMIX", "COHERENT PAKS"])
-        self.setting(292, "Time between changes", "A protected transition gives you time to read the new rules.", "shuffle_seconds", [5, 8, 12, 20, 30], ["5 SECONDS", "8 SECONDS", "12 SECONDS", "20 SECONDS", "30 SECONDS"])
-        self.setting(374, "Challenge", "Paks tune attacks and movement to this setting.", "difficulty", ["relaxed", "standard", "intense"])
-        g.text(self.canvas, "Endless progression", (80, 456), 21, TEXT, True)
-        g.text(self.canvas, "Start with one enemy. Each cleared level adds one more.", (80, 487), 15, MUTED)
-        g.text(self.canvas, "1, 2, 3... ENEMIES", (1200, 480), 16, CYAN, mono=True, anchor="midright")
-        pygame.draw.line(self.canvas, EDGE, (80, 526), (1200, 526))
-        g.text(self.canvas, "COMPONENTS IN THE SHUFFLE", (80, 553), 12, MUTED, mono=True)
+        g.panel(self.canvas, (60, 112, 1160, 195), PANEL, EDGE)
+        g.panel(self.canvas, (60, 324, 1160, 164), PANEL, EDGE)
+        self.setting(130, "Time between changes", "", "shuffle_seconds", [5, 8, 12, 20, 30], ["5 SECONDS", "8 SECONDS", "12 SECONDS", "20 SECONDS", "30 SECONDS"])
+        self.setting(222, "Challenge", "", "difficulty", ["relaxed", "standard", "intense"])
+        g.text(self.canvas, "COMPONENTS IN THE SHUFFLE", (80, 342), 12, MUTED, mono=True)
         for index, channel in enumerate(CHANNELS):
             enabled = channel in self.prefs.shuffle_channels
-            self.button("channel:" + channel, (80 + index * 123, 582, 115, 36), ("[x] " if enabled else "[ ] ") + channel.upper(), lambda c=channel: self.toggle_channel(c), size=10)
-        self.button("assist", (830, 582, 370, 36), "AIM ASSIST: " + ("ON" if self.prefs.aim_assist else "OFF"), lambda: self.cycle("aim_assist", [True, False]), size=13)
+            self.button("channel:" + channel, (80 + index * 123, 370, 115, 36), ("[x] " if enabled else "[ ] ") + channel.upper(), lambda c=channel: self.toggle_channel(c), size=10)
+        self.button("assist", (830, 370, 370, 36), "AIM ASSIST: " + ("ON" if self.prefs.aim_assist else "OFF"), lambda: self.cycle("aim_assist", [True, False]), size=13)
         for name, label, x in (("music", "MUSIC", 80), ("effects", "EFFECTS", 440)):
-            g.text(self.canvas, f"{label}  {getattr(self.prefs, name):.0%}", (x, 653), 13, MUTED, mono=True)
-            self.button(name + "-", (x + 150, 644, 43, 36), "-", lambda n=name: self.volume(n, -VOLUME_STEP))
-            self.button(name + "+", (x + 201, 644, 43, 36), "+", lambda n=name: self.volume(n, VOLUME_STEP))
-        self.button("motion", (830, 644, 175, 36), "MOTION: " + ("REDUCED" if self.prefs.reduced_motion else "FULL"), lambda: self.cycle("reduced_motion", [False, True]), size=12)
-        self.button("display", (1020, 644, 180, 36), "DISPLAY  >", lambda: self.open_page("display"), size=12)
-        g.wrapped(self.canvas, "Turn Paks on or off in the library. In component remix, unchecked channels keep their starting Pak. Coherent mode swaps the whole Pak.", (80, 704), 700, 15)
-        self.button("controls", (830, 703, 370, 36), "GAMEPAD / INPUT  >", lambda: self.open_page("controls"), size=14)
+            g.text(self.canvas, f"{label}  {getattr(self.prefs, name):.0%}", (x, 441), 13, MUTED, mono=True)
+            self.button(name + "-", (x + 150, 432, 43, 36), "-", lambda n=name: self.volume(n, -VOLUME_STEP))
+            self.button(name + "+", (x + 201, 432, 43, 36), "+", lambda n=name: self.volume(n, VOLUME_STEP))
+        self.button("motion", (830, 432, 175, 36), "MOTION: " + ("REDUCED" if self.prefs.reduced_motion else "FULL"), lambda: self.cycle("reduced_motion", [False, True]), size=12)
+        self.button("display", (1020, 432, 180, 36), "DISPLAY  >", lambda: self.open_page("display"), size=12)
+        self.button("controls", (80, 524, 540, 48), "GAMEPAD / INPUT  >", lambda: self.open_page("controls"), size=14)
+        self.button("combinations", (660, 524, 540, 48), "FLAGGED COMBINATIONS  >", lambda: self.open_page("combinations"), size=14)
 
     def draw_display(self):
         g = self.graphics
@@ -422,11 +423,11 @@ class App(RemixMenus):
         self.header("HOW TO PLAY")
         self.button("back", (1100, 25, 140, 34), "<  BACK", self.back, size=13)
         g.text(self.canvas, "Adapt. Survive. Keep going.", (80, 108), 35, TEXT, True)
-        g.wrapped(self.canvas, "Adapt to changing pilots and weapons. Levels add one enemy and regenerate terrain; the run ends on defeat. Every 10 destroyed enemies drops a Pak powerup at the kill site. Collect it to strengthen your current weapon; upgrades carry through swaps. Watch UP in the HUD.", (80, 166), 1100, 18)
+        g.wrapped(self.canvas, "Adapt to changing pilots and weapons. Levels add one enemy and regenerate terrain; the run ends on defeat. Every 10 destroyed enemies drops a Pak powerup at the kill site. Collect it to strengthen your current weapon; upgrades carry through swaps.", (80, 166), 1100, 18)
         pilots = [p for p in self.catalog.paks if "pilot" in p.components]
         start = self.page_controls("help_page", len(pilots), 690, 80, 1060)
         for index, pak in enumerate(pilots[start:start + 6]):
-            x, y = 80 + index % 2 * 575, 280 + index // 2 * 135
+            x, y = 80 + index % 2 * 575, 262 + index // 2 * 135
             image = g.preview(pak.id, 66)
             self.canvas.blit(image, (x, y))
             g.fit_text(self.canvas, pak.name, (x + 80, y), 460, 22, pak.color, True)
@@ -441,23 +442,23 @@ class App(RemixMenus):
         g = self.graphics
         self.header("CREDITS")
         self.button("back", (1100, 25, 140, 34), "<  BACK", self.back, size=13)
-        g.text(self.canvas, "Built to be remixed.", (80, 130), 44, TEXT, True)
+        g.text(self.canvas, "Built to be remixed.", (80, 115), 44, TEXT, True)
         paragraphs = [
             ("CONCEPT", "System Panic by Geoffrey Benson. Inspired by the ever-changing arcade rules of ROM CHECK FAIL by Farbs."),
-            ("ORIGINAL ARTWORK", "Original sprite atlas and title illustration generated for this revival with OpenAI imagegen. No artwork from the historical prototypes is used."),
+            ("ORIGINAL ARTWORK", "Original sprite atlas and title illustration generated for this revival with OpenAI imagegen."),
             ("ORIGINAL MUSIC + SOUND", "Generated with Stability AI Stable Audio 3. Prompt jobs, seeds, processing details and file hashes are kept in the asset manifest."),
-            ("TECHNOLOGY", "Python and Pygame. All gameplay and playback work offline. Asset creation is a separate development workflow."),
-            ("MAKE A PAK", "The project wiki starts at AGENTS.md. Add a complete Pak, preserve the common contracts, then test it alone and in the mix."),
+            ("TECHNOLOGY", "Python and Pygame."),
         ]
-        y = 235
-        for title, paragraph in paragraphs:
-            g.text(self.canvas, title, (80, y), 13, CYAN, True, True)
-            y = g.wrapped(self.canvas, paragraph, (80, y + 27), 1100, 19) + 30
+        for index, (title, paragraph) in enumerate(paragraphs):
+            x, y = 80 + index % 2 * 580, 225 + index // 2 * 215
+            g.panel(self.canvas, (x, y, 540, 185), PANEL, EDGE)
+            g.text(self.canvas, title, (x + 20, y + 20), 13, CYAN, True, True)
+            g.wrapped(self.canvas, paragraph, (x + 20, y + 54), 495, 18)
 
     def draw_game(self):
         g, w = self.graphics, self.world
         pygame.draw.line(self.canvas, EDGE, (40, 78), (1240, 78))
-        g.text(self.canvas, f"LEVEL {w.wave:02d} / ENDLESS", (40, 98), 17, TEXT, True, True)
+        g.text(self.canvas, f"LEVEL {w.wave:02d}", (40, 98), 17, TEXT, True, True)
         g.text(self.canvas, f"SCORE  {w.score:07d}", (340, 98), 17, CYAN, mono=True)
         g.text(self.canvas, f"{len(w.enemies):02d} HOSTILES", (700, 98), 15, MUTED, mono=True)
         g.text(self.canvas, f"UP {w.powerups_collected:02d}", (850, 98), 14, CYAN, mono=True)
@@ -466,6 +467,7 @@ class App(RemixMenus):
         pygame.draw.rect(self.canvas, CYAN if w.player.health / w.player.max_health > .3 else (255, 119, 137), (1020, 100, max(0, 170 * w.player.health / w.player.max_health), 12), border_radius=3)
         g.text(self.canvas, f"{math.ceil(w.player.health):03d}", (1238, 94), 17, TEXT, mono=True, anchor="topright")
         g.draw_world(self.arena_surface, w, self.prefs.reduced_motion)
+        desaturate_hull(self.arena_surface, self.gray_arena, w.player.health, w.player.max_health)
         frame = pygame.transform.scale(self.arena_surface, VIEWPORT.size)
         offset = (0, 0)
         if w.shake and not self.prefs.reduced_motion:
@@ -518,6 +520,15 @@ class App(RemixMenus):
         hint = "A: choose   B: back   START: resume" if self.input_device == "gamepad" and not outcome else "A: choose   B: library" if self.input_device == "gamepad" else "YOUR PAK SELECTION IS SAVED"
         g.text(self.canvas, hint, (640, 624), 12, MUTED, mono=True, anchor="center")
 
+    def draw_game_over(self):
+        progress = min(1., self.game_over.elapsed / GAME_OVER_SECONDS)
+        shade = pygame.Surface(SIZE, pygame.SRCALPHA)
+        shade.fill((4, 10, 18, int(110 + 100 * progress)))
+        self.canvas.blit(shade, (0, 0))
+        self.graphics.text(self.canvas, "GAME OVER", (640, 390), 64, TEXT, True, True, "center")
+        if progress == 1.:
+            self.graphics.text(self.canvas, "RELEASE CONTROLS TO CONTINUE", (640, 453), 14, MUTED, mono=True, anchor="center")
+
     def draw(self):
         self.buttons = []
         self.graphics.backdrop(self.canvas, self.elapsed, art=self.route == "home")
@@ -531,6 +542,10 @@ class App(RemixMenus):
             self.draw_help()
         elif self.route == "display":
             self.draw_display()
+        elif self.route == "combinations":
+            self.draw_combinations()
+        elif self.route == "performance" and self.performance_problem:
+            self.draw_performance()
         elif self.route == "paks":
             self.draw_pak_status()
         elif self.route == "credits":
@@ -545,9 +560,12 @@ class App(RemixMenus):
             self.draw_remix_name()
         elif self.route == "remix-delete":
             self.draw_remix_delete()
-        elif self.route in ("game", "pause", "outcome") and self.world:
+        elif self.route in ("game", "pause", "game-over", "outcome") and self.world:
             self.draw_game()
-            if self.route in ("pause", "outcome"):
+            if self.route == "game-over":
+                self.buttons = []
+                self.draw_game_over()
+            elif self.route in ("pause", "outcome"):
                 self.buttons = []
                 self.draw_overlay(outcome=self.route == "outcome")
         if self._focus_pending and self.buttons:
@@ -558,7 +576,7 @@ class App(RemixMenus):
             pygame.draw.rect(self.canvas, TEXT, self.buttons[self.focus].rect.inflate(6, 6), 1, border_radius=9)
         if self.toast_timer > 0:
             self.graphics.panel(self.canvas, (200, 84, 880, 36), (28, 45, 58), CYAN, 6)
-            self.graphics.text(self.canvas, self.toast, (640, 102), 15, TEXT, anchor="center")
+            self.graphics.fit_text(self.canvas, self.toast, (215, 91), 850, 15, TEXT)
         self.present()
 
     def presentation_rect(self):
@@ -579,13 +597,16 @@ class App(RemixMenus):
                 (pos[1] - target.y) * SIZE[1] / target.height)
 
     def activate(self, button):
+        if self.route == "game-over":
+            return
         self.audio.play("select")
         button.action()
 
     def preferred_focus(self):
         choices = {"home": ("start", "pak-status", "settings"), "pause": ("resume",), "outcome": ("retry",),
                    "remix": ("remix-play", "remix-saved", "back"), "remix-name": ("name-save",),
-                   "remix-delete": ("delete-cancel",)}.get(self.route, ("back",))
+                   "remix-delete": ("delete-cancel",),
+                   "performance": ("performance-continue", "performance-home")}.get(self.route, ("back",))
         return next((i for id in choices for i, button in enumerate(self.buttons) if button.id == id), 0)
 
     def move_focus(self, direction):
@@ -604,8 +625,10 @@ class App(RemixMenus):
         elif self.route == "pause":
             self.navigate("game")
         elif self.route in ("settings", "display", "controls", "help", "credits", "paks",
-                            "remix", "remix-picker", "remix-saved", "remix-name", "remix-delete"):
+                            "remix", "remix-picker", "remix-saved", "remix-name", "remix-delete", "combinations"):
             self.back()
+        elif self.route == "performance":
+            self.dismiss_performance(menu=True)
         elif self.route == "outcome":
             self.home()
 
@@ -617,6 +640,10 @@ class App(RemixMenus):
 
     def pad_input(self, frame, elapsed):
         self.device_notices()
+        if self.route == "game-over":
+            if not frame.neutral:
+                self.game_over.pressed()
+            return
         if not self.window_focused:
             self.gamepads.block()
             self.menu_repeat.block()
@@ -668,6 +695,11 @@ class App(RemixMenus):
             self.menu_repeat.block()
         elif not self.window_focused:
             return
+        elif self.route == "game-over":
+            if event.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN):
+                self.game_over.pressed()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_F11:
+                self.cycle("fullscreen", [False, True])
         elif event.type == pygame.TEXTINPUT and self.route == "remix-name":
             self.input_device = "keyboard"
             self.append_remix_name(event.text)
@@ -707,6 +739,12 @@ class App(RemixMenus):
         self.toast_timer = max(0, self.toast_timer - elapsed)
         frame = self.gamepads.poll(self.prefs.gamepad_deadzone)
         self.pad_input(frame, elapsed)
+        if self.route == "game-over":
+            self.world.update_effects(min(.1, elapsed))
+            neutral = self.window_focused and frame.neutral and not any(pygame.key.get_pressed()) and not any(pygame.mouse.get_pressed())
+            if self.game_over.update(elapsed, neutral):
+                self.navigate("outcome")
+            return
         if self.route == "game" and self.world:
             if controls is None:
                 keys = pygame.key.get_pressed()
@@ -725,25 +763,35 @@ class App(RemixMenus):
                     self.prefs.high_score = max(self.prefs.high_score, self.world.score)
                     self.save()
                     self.recorded = True
-                self.navigate("outcome")
+                self.game_over = GameOverTransition()
+                self.navigate("game-over")
+                self.audio.stop_effects()
+                self.audio.music(None)
+                self.audio.play("game_over")
 
     def quit(self):
         if self.world:
             self.world.close()
         self.gamepads.close()
         self.save()
+        if self.combination_history.dirty:
+            self.combination_history.retry()
         self.running = False
 
     def run(self, frames=None, screenshot=None, demo=False):
         count = 0
+        frame_context = None
         self.draw()
         while self.running and (frames is None or count < frames):
             elapsed = self.clock.tick(120) / 1000 if frames is None else 1 / 60
+            context = self.performance_context()
             for event in pygame.event.get():
                 self.handle_event(event)
             if not self.running:
                 break
-            self.update(elapsed, autopilot(self.world) if demo and self.world else None)
+            self.check_performance(elapsed, frame_context)
+            self.update(elapsed, autopilot(self.world) if demo and self.world and self.route == "game" else None)
+            frame_context = context if context == self.performance_context() else None
             self.draw()
             count += 1
         if screenshot:
@@ -757,7 +805,8 @@ class App(RemixMenus):
 
 def autopilot(world):
     """Deterministic QA/demo input, using exactly the same player controls."""
-    return world.component("pilot").demo_controls(world) or Controls()
+    controls = world.component("pilot").demo_controls(world) or Controls()
+    return world.component("weapon").demo_controls(world, controls)
 
 
 def main():
@@ -770,7 +819,7 @@ def main():
     parser.add_argument("--headless", action="store_true")
     parser.add_argument("--frames", type=int)
     parser.add_argument("--screenshot", type=Path)
-    parser.add_argument("--screen", choices=("home", "settings", "display", "controls", "help", "credits", "paks", "remix", "game"), default="home")
+    parser.add_argument("--screen", choices=("home", "settings", "display", "controls", "help", "credits", "paks", "remix", "combinations", "game"), default="home")
     parser.add_argument("--demo", action="store_true", help="QA/demo controls; no gameplay advantages")
     args = parser.parse_args()
     catalog = discover(args.pak_dir)

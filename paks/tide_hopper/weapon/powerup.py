@@ -6,8 +6,9 @@ from system_panic.pak_api import PowerupBase
 
 
 class TideHopperPowerup(PowerupBase):
-    def __init__(self,position,art,color):
+    def __init__(self,position,art,color,chime=None):
         super().__init__(position,10)
+        self.chime = chime
         self.art,self.color=art,color
         self.age=0.
         self.vel=Vec(75,0)
@@ -21,12 +22,13 @@ class TideHopperPowerup(PowerupBase):
         self.pos.x=(self.pos.x+75*dt)%WIDTH
         self.pos.y+=max(-24,min(24,world.player.pos.y-self.pos.y))*dt
         if self.pos.distance_to(world.player.pos)<=self.radius+world.player.radius+3:
-            world.collect_powerup(self)
+            if world.collect_powerup(self) and self.chime is not None:
+                self.chime.play(volume=.45)
 
     def draw(self,graphics,surface,world):
         radius=12+int(2*math.sin(self.age*5))
         pygame.draw.circle(surface,self.color,self.pos,radius,2)
-        image=graphics.render_sprite(self.art,16,self.color)
+        image=graphics.render_sprite(self.art.frame(int(self.age*8)%4,columns=4),16,self.color)
         surface.blit(image,image.get_rect(center=self.pos))
         pygame.draw.line(surface,(240,245,210),self.pos+Vec(-3,-17),self.pos+Vec(3,-17),2)
         pygame.draw.line(surface,(240,245,210),self.pos+Vec(0,-20),self.pos+Vec(0,-14),2)

@@ -35,7 +35,7 @@ class StaticRemixTests(unittest.TestCase):
             world.close()
 
     def test_exact_selection_ignores_shuffle_preferences_and_copies_the_draft(self):
-        prefs = Preferences(enabled=[self.catalog.paks[-1].id], mix_mode="coherent")
+        prefs = Preferences(enabled=[self.catalog.paks[-1].id])
         original = self.mix.copy()
         with patch.object(World, "choose", side_effect=AssertionError("Fixed mixes cannot roll providers")):
             world = self.world(prefs, fixed_mix=self.mix)
@@ -49,7 +49,6 @@ class StaticRemixTests(unittest.TestCase):
         self.assertEqual(world.mix, original)
         self.assertEqual(world.fixed_mix, original)
         self.assertEqual(prefs.enabled, [self.catalog.paks[-1].id])
-        self.assertEqual(prefs.mix_mode, "coherent")
 
     def test_timer_and_explicit_shuffle_leave_state_and_components_intact(self):
         world = self.world(fixed_mix=self.mix)
@@ -129,17 +128,15 @@ class StaticRemixTests(unittest.TestCase):
         self.assertIsNone(solo.fixed_mix)
         self.assertFalse(solo.can_shuffle)
         self.assertEqual(set(solo.mix.values()), {self.catalog.paks[0].id})
-        for mode in ("coherent", "remix"):
-            with self.subTest(mode=mode):
-                prefs = Preferences(enabled=[pak.id for pak in self.catalog.paks[:2]], mix_mode=mode)
-                world = self.world(prefs)
-                self.assertIsNone(world.fixed_mix)
-                self.assertTrue(world.can_shuffle)
-                old = world.mix.copy()
-                world.shuffle()
-                self.assertNotEqual(world.mix, old)
-                self.assertEqual(world.shuffle_count, 1)
-                self.assertGreater(world.transition, 0)
+        prefs = Preferences(enabled=[pak.id for pak in self.catalog.paks[:2]])
+        world = self.world(prefs)
+        self.assertIsNone(world.fixed_mix)
+        self.assertTrue(world.can_shuffle)
+        old = world.mix.copy()
+        world.shuffle()
+        self.assertNotEqual(world.mix, old)
+        self.assertEqual(world.shuffle_count, 1)
+        self.assertGreater(world.transition, 0)
 
 
 if __name__ == "__main__":

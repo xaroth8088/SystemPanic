@@ -1,7 +1,7 @@
 """Ricochet behavior is local to this Pak, including motion and hit policy."""
 import math
 import pygame
-from system_panic.model import WIDTH, HEIGHT, circle_rect
+from system_panic.model import WIDTH, HEIGHT, Vec, circle_rect
 from system_panic.pak_api import ProjectileBase
 
 
@@ -10,14 +10,23 @@ class Ricochet(ProjectileBase):
         super().__init__(world.player.pos + direction * 19, direction * 440, 4)
         self._weapon = weapon
         self._remaining = 3.
-        self._damage = 19 + 4 * world.powerups_collected
+        momentum=min(1.,world.player.vel.length()/430)
+        self._base_damage = (12+4*world.powerups_collected)*(.5+2.*momentum)
+        self._damage = self._base_damage
+        self._banks=0
         self._bounces_left = 4 + world.powerups_collected // 3
+
+    def bank(self):
+        self._banks+=1
+        self._damage=self._base_damage*(1+min(2.25,self._banks*.75))
+        self._bounces_left-=1
 
     def update(self, world, dt):
         self._remaining -= dt
         if self._remaining <= 0:
             self.alive = False
             return
+        previous=self.pos.copy()
         self.pos += self.vel * dt
         if not (4 <= self.pos.x <= WIDTH - 4 and 4 <= self.pos.y <= HEIGHT - 4):
             if self._bounces_left > 0:
@@ -25,7 +34,7 @@ class Ricochet(ProjectileBase):
                     self.vel.x *= -1
                 if self.pos.y < 4 or self.pos.y > HEIGHT - 4:
                     self.vel.y *= -1
-                self._bounces_left -= 1
+                self.bank()
                 self.pos.x = max(4, min(WIDTH - 4, self.pos.x))
                 self.pos.y = max(4, min(HEIGHT - 4, self.pos.y))
             else:
@@ -36,9 +45,12 @@ class Ricochet(ProjectileBase):
                 continue
             world.hit_cover(obstacle, self._damage)
             if self._bounces_left > 0:
-                self.pos -= self.vel * dt * 2
-                self.vel *= -1
-                self._bounces_left -= 1
+                point=self.pos
+                distances=(abs(point.x-obstacle.rect.left),abs(point.x-obstacle.rect.right),abs(point.y-obstacle.rect.top),abs(point.y-obstacle.rect.bottom))
+                normal=(Vec(-1,0),Vec(1,0),Vec(0,-1),Vec(0,1))[distances.index(min(distances))]
+                if self.vel.dot(normal)<0:self.vel=self.vel.reflect(normal)
+                self.pos=previous
+                self.bank()
                 break
             self.alive = False
             return

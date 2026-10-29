@@ -7,12 +7,25 @@
     246,
     66
   ],
-  "description": "Close a tail to capture enemies and carve solid territory. Enemies bounce off live lines; cells charge them.",
-  "version": "1.2.0",
+  "description": "Close capture loops around hard-hitting sparks that pause, then dart in random directions.",
+  "version": "2.0.0",
   "order": 9,
   "authoring": {
     "inspired_by": "Qix and Tron",
-    "sheet_source": "assets/images/vector_coil-source.png"
+    "sheet_source": "assets/images/vector_coil-renewal-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/vector_coil-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        4,
+        4
+      ]
+    }
   },
   "api_version": 4,
   "components": [

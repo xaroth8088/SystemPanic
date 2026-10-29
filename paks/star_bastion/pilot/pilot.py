@@ -17,7 +17,7 @@ class StarBastionPilot(PilotBase):
         self._roll = 0.
 
     def sprite(self, world, entity=None):
-        return self.art
+        return self.art.frame(int((world.time if world else 0)*8)%4,columns=4)
 
     def create(self, world, position):
         return Pilot(pos=Vec(position.x, HEIGHT - 24), health=100, max_health=100, radius=11, angle=-math.pi / 2)
@@ -76,7 +76,14 @@ class StarBastionPilot(PilotBase):
         p.pos.y = HEIGHT - 24
         p.angle = -math.pi/2
 
-    def demo_controls(self, world):
+    def demo_controls(self,world):
+        from system_panic.model import Controls
+        control=self._demo_controls(world) or Controls()
+        control.x=int(control.x>.2)-int(control.x<-.2)
+        control.y=int(control.y>.2)-int(control.y<-.2)
+        return control
+
+    def _demo_controls(self, world):
         if not world.enemies: return Controls(fire=True)
         target = min(world.enemies,key=lambda e:e.pos.distance_squared_to(world.player.pos))
         return Controls(max(-1,min(1,(target.pos.x-world.player.pos.x)/120)),0,True,int(world.time*3)%11==0)

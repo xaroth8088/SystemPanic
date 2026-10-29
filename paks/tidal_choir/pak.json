@@ -1,0 +1,39 @@
+{
+  "id": "tidal_choir",
+  "name": "Tidal Choir",
+  "subtitle": "DIVE / LIFT / BURST",
+  "color": [
+    103,
+    226,
+    206
+  ],
+  "description": "Steer a buoyant diving bell. Charge a bubble for at least 0.6s, then release to pull and burst around foes. Smaller bubbles are harmless; X dives through danger.",
+  "version": "1.0.0",
+  "order": 17,
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "concept": "buoyancy, entrainment and pressure bursts",
+    "sheet_source": "assets/images/tidal_choir-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/tidal_choir-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ]
+    }
+  }
+}

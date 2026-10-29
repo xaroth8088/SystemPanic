@@ -7,12 +7,16 @@
     189,
     255
   ],
-  "description": "Move horizontally along the bottom. Non-wrapping salvos gain strength from falling supply cells.",
-  "version": "1.2.0",
+  "description": "Line up salvos, reload the battery, and dodge spread volleys as your bunker cells erode.",
+  "version": "2.0.0",
   "order": 10,
   "authoring": {
     "inspired_by": "Space Invaders",
-    "sheet_source": "assets/images/star_bastion-source.png"
+    "sheet_source": "assets/images/star_bastion-renewal-source.png",
+    "animation_grid": [
+      4,
+      4
+    ]
   },
   "api_version": 4,
   "components": [

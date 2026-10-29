@@ -1,0 +1,39 @@
+{
+  "id": "glasswake",
+  "name": "Glasswake",
+  "subtitle": "BANK / REFLECT / COOL",
+  "color": [
+    125,
+    238,
+    232
+  ],
+  "description": "Bank a cutting ray off borders and mirror vanes: every reflection triples its damage. Enemy shots ricochet too. Release before the lens overheats.",
+  "version": "1.0.0",
+  "order": 14,
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "concept": "reflected beams and thermal management",
+    "sheet_source": "assets/images/glasswake-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/glasswake-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ]
+    }
+  }
+}

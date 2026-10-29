@@ -32,8 +32,18 @@ class PhaseGardenPilot(PilotBase):
     def on_death(self, world):
         world.burst(world.player.pos, world.pak("pilot").color, 35)
 
-    def sprite(self, world, entity=None):
-        return self.spritesheet
+    def sprite(self,world,entity=None):
+        actor=entity if entity is not None else (world.player if world is not None else None)
+        angle=actor.angle if actor is not None else 0.
+        facing=int((angle+math.tau/16)%math.tau/(math.tau/8))
+        phase=int((world.time if world is not None else 0)*8)%4
+        return self.spritesheet.frame(phase*8+facing,columns=8,rows=4)
+
+    def sprite_angle(self,world,entity):return 0.
+
+    def sprite_flip_x(self,world,entity):return False
+
+
 
     def update(self, world, dt, control):
         self._special_remaining = max(0., self._special_remaining - dt)
@@ -79,7 +89,14 @@ class PhaseGardenPilot(PilotBase):
             world.burst(world.player.pos, (255, 110, 130), 14)
         return applied
 
-    def demo_controls(self, world):
+    def demo_controls(self,world):
+        from system_panic.model import Controls
+        control=self._demo_controls(world) or Controls()
+        control.x=int(control.x>.2)-int(control.x<-.2)
+        control.y=int(control.y>.2)-int(control.y<-.2)
+        return control
+
+    def _demo_controls(self, world):
         # Ordinary-input QA policy, kept with this pilot's movement rules.
         from system_panic.model import Controls, normalized
         if not world.enemies:

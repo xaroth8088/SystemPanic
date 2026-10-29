@@ -8,11 +8,13 @@ from system_panic.pak_api import ObstaclesBase
 
 class OrbitKeeperObstacles(ObstaclesBase):
 
+    def take_damage(self,world,obstacle,damage):return 0.
+
     def init(self):
         self.blocks = self.load_asset('obstacles_sheet.png')
 
     def sprite(self, world, entity=None):
-        return self.blocks
+        return self.blocks.frame(int((world.time if world else 0)*8)%4,columns=4)
 
     def build(self, world):
         # A local RNG makes the level reproducible without consuming combat randomness.

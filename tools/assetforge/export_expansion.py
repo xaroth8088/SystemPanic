@@ -13,6 +13,9 @@ def main():
     records=[]
     for manifest in sorted((ROOT/'paks').glob('*/pak.json')):
         data=json.loads(manifest.read_text(encoding='utf-8'))
+        # Four-frame row atlases have their own measured-cell exporter. Do not
+        # reinterpret them as this older quadrant layout or overwrite their art.
+        if data.get('authoring',{}).get('animation_grid') == [4,4]:continue
         source_name=data.get('authoring',{}).get('sheet_source')
         if not source_name: continue
         source=ROOT/source_name

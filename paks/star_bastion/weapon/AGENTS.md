@@ -1,13 +1,15 @@
 # Star Bastion: weapon
 
-Read [this Pak](../AGENTS.md), [Pak contracts](../../AGENTS.md) and [public ABCs](../../../src/system_panic/pak_api.py).
+Read [this Pak](../AGENTS.md), [public ABCs](../../../src/system_panic/pak_api.py) and [Pak contracts](../../AGENTS.md). This folder owns all behavior/helpers/assets; copy the whole folder as a partial Pak. No sibling-role private state or other Pak imports. Use public world/body/shape contracts. Drawing and sprite selection cannot change simulation or RNG.
 
-This folder owns its component code, helpers and generated assets. Use explicit ABC callbacks, local handle names and private timing/state. Do not import another Pak's module or move content rules into core. Drawing and asset selection cannot change simulation/RNG. Copy the entire role folder when making a partial. Assets are generated outside the game; provenance is recorded in assets/manifest.json.
+Battery 4+min(4,floor(n/2)) cells. Salvos cost one cell every .32s; empty reload 1.35s. Release with cells remaining for .48s to refill early. Damage 23+4n, 2+min(4,floor(n/3)) bolts. Assistance/guidance stays in a narrow .94-dot forward cone. Bolts expire at screen edges, never wrap.
 
-Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.
+The local sheet has four horizontal animation frames. Pickups capture the raw local ImageAsset and select their own frame when drawn, so provider changes cannot break them. The engine owns tenth-kill scheduling and the persistent collected count; powerup.py owns movement/pickup/expiry and this weapon interprets the count.
 
-Twin salvo bolts optionally guide, wrap once, damage cover/targets and expire locally. Explicit pilot direction disables guidance; side offsets are perpendicular to the selected firing vector.
+Pickup audio: init loads the role-local pickup.ogg. The factory captures its SoundAsset in the drop, alongside the art. powerup.update plays it once at volume .45 only when world.collect_powerup returns True; expired, unregistered and repeated updates stay silent. The originating drop keeps its sound after a weapon/level change. Playback uses the ordinary effects bus and mute/volume settings.
 
-Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.
+Presentation: in-arena control prose and redundant facing indicators are removed; actual attacks, meters and numerical resources remain. See [Pak presentation memory](../../AGENTS.md).
 
-Powerups: StarBastionPowerup falls through bunkers toward the bottom lane. Bolts expire outside the viewport; there is no screen wrap. Damage 23+4n and 2+min(4,floor(n/3)) bolts; the original pair stays in the salvo as extras are added. Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.
+## Quiet presentation and tail routing (2026-10-28)
+
+Fixed top-left heat, speed, charge, energy, battery, nectar and cooldown readouts are removed. This role retains its attacks and existing on-pilot physical/charge/resource feedback where applicable. Empty readout scheduling/helpers were removed when they served no other presentation. Weapon mechanics are unchanged; this supersedes earlier fixed-HUD meter notes.

@@ -7,12 +7,25 @@
     225,
     163
   ],
-  "description": "Dig rock and pump nearby enemies within tether reach. Burrowing cells improve range and pressure.",
-  "version": "1.2.0",
+  "description": "Keep pressure on worms that burrow and rush without warning; recover after each pop.",
+  "version": "2.0.0",
   "order": 8,
   "authoring": {
     "inspired_by": "Dig Dug",
-    "sheet_source": "assets/images/burrow_patrol-source.png"
+    "sheet_source": "assets/images/burrow_patrol-renewal-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/burrow_patrol-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        4,
+        4
+      ]
+    }
   },
   "api_version": 4,
   "components": [

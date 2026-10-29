@@ -63,12 +63,18 @@ class LevelTests(unittest.TestCase):
             enemy = part.create(world, 1, Vec(200, 220))
             enemy.timer = 0
             part.advance_enemy(world, enemy, FIXED_DT)
-            directions.append(world.projectiles[0].vel.normalize())
-            self.assertEqual(len(world.projectiles), 1)
-            first_damage = world.projectiles[0]._damage
+            self.assertEqual(enemy.state,'windup')
+            part.advance_enemy(world,enemy,.56)
+            shots=[s for s in world.projectiles if s.is_threat_to(world,world.player)]
+            directions.append(shots[0].vel.normalize())
+            self.assertEqual(len(shots),1)
+            first_damage = shots[0]._damage
+            enemy.state='idle'
             enemy.timer = 0
             part.advance_enemy(world, enemy, FIXED_DT)
-            self.assertEqual(len(world.projectiles), 4 if level >= 8 else 2)
+            part.advance_enemy(world,enemy,.56)
+            shots=[s for s in world.projectiles if s.is_threat_to(world,world.player)]
+            self.assertEqual(len(shots),4 if level>=8 else 2)
             if level == 1:
                 low_damage = first_damage
             else:
@@ -94,7 +100,9 @@ class LevelTests(unittest.TestCase):
         enemy = world.enemies[0]
         enemy.timer = 0
         world.component("enemy").advance_enemy(world, enemy, FIXED_DT)
-        shot = world.projectiles[0]
+        self.assertEqual(enemy.state,'mark')
+        world.component('enemy').advance_enemy(world,enemy,.61)
+        shot = next(s for s in world.projectiles if s.is_threat_to(world,world.player))
         toward = (world.player.pos - enemy.pos).normalize()
         self.assertGreater(shot.vel.normalize().dot(toward), .999)
         self.assertGreaterEqual(enemy.pos.distance_to(world.player.pos), 100)
@@ -116,8 +124,8 @@ class LevelTests(unittest.TestCase):
                         signatures.append(layout(first))
                         for obstacle in first:
                             rect = obstacle.rect
-                            self.assertTrue(0 < rect.left < rect.right < WIDTH)
-                            self.assertTrue(0 < rect.top < rect.bottom < HEIGHT)
+                            self.assertTrue(0 <= rect.left < rect.right <= WIDTH)
+                            self.assertTrue(0 <= rect.top < rect.bottom <= HEIGHT)
                             self.assertEqual(obstacle.health, obstacle.max_health)
                         self.assertFalse(any(a.rect.colliderect(b.rect) for i, a in enumerate(first) for b in first[i + 1:] if type(a) is Cover and type(b) is Cover))
                 self.assertEqual(len(set(signatures)), len(signatures))

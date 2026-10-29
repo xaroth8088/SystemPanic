@@ -1,13 +1,11 @@
 # Tide Hopper: weapon
 
-Read [this Pak](../AGENTS.md), [Pak contracts](../../AGENTS.md) and [public ABCs](../../../src/system_panic/pak_api.py).
+Read [this Pak](../AGENTS.md), [public ABCs](../../../src/system_panic/pak_api.py) and [Pak contracts](../../AGENTS.md). This folder owns all behavior/helpers/assets; copy the whole folder as a partial Pak. No sibling-role private state or other Pak imports. Use public world/body/shape contracts. Drawing and sprite selection cannot change simulation or RNG.
 
-This folder owns its component code, helpers and generated assets. Use explicit ABC callbacks, local handle names and private timing/state. Do not import another Pak's module or move content rules into core. Drawing and asset selection cannot change simulation/RNG. Copy the entire role folder when making a partial. Assets are generated outside the game; provenance is recorded in assets/manifest.json.
+One hook: 18+4n initial damage, 38+8n reel finish, reel factor 4+.4n. Tow calls move_body on the actual enemy and can damage blocking cover; prolonged blocking releases the hook. Release a held target to fling at 420+200*tension+20n. Body/obstacle impacts deal 32+8n+25*tension to the caught and struck enemy. Flight owns a hit set, fuse and cleanup; enemies remain original world entities and deaths count once.
 
-Prefer a non-None pilot aim_direction over ordinary assistance. Keep aiming and any projectile guidance in this component; the host only schedules it.
+The local sheet has four horizontal animation frames. Pickups capture the raw local ImageAsset and select their own frame when drawn, so provider changes cannot break them. The engine owns tenth-kill scheduling and the persistent collected count; powerup.py owns movement/pickup/expiry and this weapon interprets the count.
 
-One harpoon catches, reels and finishes a target, then can launch again. Missing/removed targets and host projectile cleanup must release the weapon reference. Tether drawing does not move targets.
+Pickup audio: init loads the role-local pickup.ogg. The factory captures its SoundAsset in the drop, alongside the art. powerup.update plays it once at volume .45 only when world.collect_powerup returns True; expired, unregistered and repeated updates stay silent. The originating drop keeps its sound after a weapon/level change. Playback uses the ordinary effects bus and mute/volume settings.
 
-Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.
-
-Powerups: TideHopperPowerup drifts across a river lane. Hook damage 18+4n, finishing damage 38+8n, reel rate 4+.4n; flight/reeling remain projectile-owned. Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.
+Presentation: in-arena control prose and redundant facing indicators are removed; actual attacks, meters and numerical resources remain. See [Pak presentation memory](../../AGENTS.md).

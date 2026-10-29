@@ -71,11 +71,11 @@ class UITests(unittest.TestCase):
 
     def test_solo_button_settings_and_retry(self):
         self.click("settings")
-        self.click("mix_mode")
+        self.click("difficulty")
         self.click("music-")
         self.click("motion")
         self.click("back")
-        self.assertEqual(self.app.prefs.mix_mode, "coherent")
+        self.assertEqual(self.app.prefs.difficulty, "intense")
         self.assertTrue(self.app.prefs.reduced_motion)
         self.assertAlmostEqual(self.app.prefs.music, .50)
         self.click("solo:sky_forge")
@@ -83,6 +83,8 @@ class UITests(unittest.TestCase):
         self.app.world.score = 4321
         self.app.world.phase = "dead"
         self.app.update(.016)
+        self.assertEqual(self.app.route, "game-over")
+        self.app.update(1.4)
         self.assertEqual(self.app.route, "outcome")
         self.assertEqual(self.app.store.load().high_score, 4321)
         self.click("retry")

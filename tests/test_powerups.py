@@ -14,12 +14,62 @@ sys.path.insert(0,str(ROOT/"src"))
 from pygame.rect import Rect
 from system_panic.model import Vec,Controls,Cover,Pilot,FIXED_DT,WIDTH,HEIGHT
 from system_panic.pak_api import PowerupBase
+from system_panic.pak_assets import SoundAsset
 from system_panic.paks import get_catalog
 from system_panic.preferences import Preferences
 from system_panic.world import World
 
 
 class PowerupTests(unittest.TestCase):
+    def test_every_pickup_plays_its_captured_local_chime_once_even_after_a_weapon_swap(self):
+        class Playback:
+            def __init__(self):self.calls=[]
+            def play_asset(self,asset,**options):self.calls.append((asset,options))
+            def stop_asset(self,asset):pass
+        for pak in get_catalog().complete_ids():
+            with self.subTest(pak=pak):
+                audio=Playback()
+                world=World(Preferences(),24,solo=pak,audio=audio)
+                try:
+                    world.cover=[]
+                    world.enemies.clear()
+                    world.player.pos=Vec(200,200)
+                    pickup=world.component('weapon').create_powerup(world,Vec(400,200))
+                    self.assertIsInstance(getattr(pickup,'chime',None),SoundAsset)
+                    self.assertEqual(pickup.chime.path,ROOT/'paks'/pak/'weapon/pickup.ogg')
+                    world.powerups=[pickup]
+                    pickup.update(world,0)
+                    self.assertFalse(audio.calls)
+                    world.mix['weapon']='sky_forge' if pak!='sky_forge' else 'signal_runner'
+                    world.component('weapon')
+                    world.start_wave()
+                    world.cover=[]
+                    pickup.pos=world.player.pos.copy()
+                    if hasattr(pickup,'anchor'):pickup.anchor=pickup.pos.copy()
+                    pickup.update(world,0)
+                    pickup.update(world,0)
+                    self.assertEqual(world.powerups_collected,1)
+                    self.assertEqual(audio.calls,[(pickup.chime,dict(loop=False,volume=.45))])
+                finally:world.close()
+
+    def test_expired_and_unregistered_pickups_do_not_play_a_chime(self):
+        from unittest.mock import patch
+        for pak in get_catalog().complete_ids():
+            with self.subTest(pak=pak):
+                world=self.world(pak)
+                try:
+                    weapon=world.component('weapon')
+                    for expired in (False,True):
+                        pickup=weapon.create_powerup(world,world.player.pos)
+                        self.assertIsInstance(getattr(pickup,'chime',None),SoundAsset)
+                        world.powerups=[pickup] if expired else []
+                        if expired:pickup.age=51
+                        with patch.object(pickup.chime,'play') as play:
+                            pickup.update(world,0)
+                        play.assert_not_called()
+                    self.assertEqual(world.powerups_collected,0)
+                finally:world.close()
+
     def world(self,pak="signal_runner"):
         world=World(Preferences(difficulty="relaxed"),24,solo=pak)
         world.cover=[]
@@ -78,7 +128,7 @@ class PowerupTests(unittest.TestCase):
                 if hasattr(pickup,"anchor"):pickup.anchor=world.player.pos.copy()
                 pickup.update(world,0)
                 self.assertEqual(world.powerups_collected,1)
-        self.assertEqual(len(classes),12)
+        self.assertEqual(len(classes),len(get_catalog().complete_ids()))
 
     def test_pickup_updates_freeze_during_glitch_and_level_clear(self):
         world=self.world("star_bastion")
@@ -100,7 +150,7 @@ class PowerupTests(unittest.TestCase):
 
     def test_each_damage_weapon_improves_at_higher_pickup_count(self):
         for pak in get_catalog().complete_ids():
-            if pak=="vector_coil":continue
+            if pak in ("vector_coil","bloom_siege"):continue  # Bloom upgrades can capacity, not damage.
             damage=[]
             for count in (0,5):
                 world=self.world(pak)
@@ -109,8 +159,12 @@ class PowerupTests(unittest.TestCase):
                 enemy=world.spawn_enemy(Vec(300,200))
                 enemy.pos=world.player.pos+world.component("weapon").aim(world)*100
                 enemy.health=enemy.max_health=10000
-                for _ in range(48):
-                    world.component("weapon").update(world,FIXED_DT,Controls(fire=True))
+                # Charged/recorded weapons need both held and released input;
+                # upgrades must improve a complete attack cycle, not just .4s
+                # of a permanently held trigger.
+                charged = pak in ('void_drifter','sky_forge','pulse_abbey','scrap_ballet','glasswake','bloom_siege','echo_vault','tidal_choir')
+                for frame in range(720 if charged else 48):
+                    world.component("weapon").update(world,FIXED_DT,Controls(fire=frame%180<144 if charged else True))
                     world.update_projectiles(FIXED_DT)
                 damage.append(10000-enemy.health)
             self.assertGreater(damage[1],damage[0],(pak,damage))
@@ -164,7 +218,7 @@ class PowerupTests(unittest.TestCase):
         weapon=world.component("weapon")
         weapon.aim=lambda w:Vec(1,0)
         weapon.update(world,FIXED_DT,Controls(fire=True))
-        for shot in world.projectiles:
+        for shot in [s for s in world.projectiles if type(s).__name__=='SalvoBolt']:
             shot.guided=False
             shot.update(world,.1)
             self.assertFalse(shot.alive)

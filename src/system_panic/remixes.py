@@ -32,7 +32,7 @@ def normalize_name(name: str) -> str:
     return name
 
 
-def _structural_mix(mix) -> dict[str, str]:
+def structural_mix(mix) -> dict[str, str]:
     if not isinstance(mix, dict) or set(mix) != set(CHANNELS):
         raise ValueError("A Remix needs exactly one Pak for each of the six components.")
     if any(not isinstance(mix[channel], str) or not _PAK_ID.fullmatch(mix[channel])
@@ -45,7 +45,7 @@ def mix_issues(mix, catalog=None) -> list[str]:
     """Describe unavailable providers without replacing the player's choices."""
     catalog = catalog if catalog is not None else get_catalog()
     try:
-        mix = _structural_mix(mix)
+        mix = structural_mix(mix)
     except ValueError as exc:
         return [str(exc)]
     issues = []
@@ -60,7 +60,7 @@ def mix_issues(mix, catalog=None) -> list[str]:
 
 def validate_mix(mix, catalog=None) -> dict[str, str]:
     """Copy a complete installed selection, or explain why it cannot be played."""
-    checked = _structural_mix(mix)
+    checked = structural_mix(mix)
     issues = mix_issues(checked, catalog)
     if issues:
         raise ValueError(" ".join(issues))
@@ -73,7 +73,7 @@ def _record(raw) -> Remix:
     identifier = raw.get("id")
     if not isinstance(identifier, str) or not _REMIX_ID.fullmatch(identifier):
         raise ValueError("Invalid saved Remix ID.")
-    return Remix(identifier, normalize_name(raw.get("name")), _structural_mix(raw.get("mix")))
+    return Remix(identifier, normalize_name(raw.get("name")), structural_mix(raw.get("mix")))
 
 
 class RemixStore:

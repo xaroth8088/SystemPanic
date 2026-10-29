@@ -181,7 +181,7 @@ The Windows build discovers paks/ beside SystemPanic.exe and %LOCALAPPDATA%/Syst
 
 Use --pak-dir PATH (repeatable) to replace default roots, --list-paks to inspect discovery, and --solo ID to launch a complete Pak. These switches also work on the Windows executable. Source verification tools accept --pak-dir as well.
 
-API 1 flat modules, API 2 trait-driven components and API 3 are superseded by API 4. API 3 authors must add EnemyBase.spawn_position(world), change ObstaclesBase.build() to build(world), and move any reliance on world.factor/world.aim into their components. Use the optional lifecycle hooks below for protection/rewards. Move firing gates into WeaponBase.update(), actor stats into create(), enemy death behavior into on_death(), and flight/hit logic into Pak projectile classes. Pilot input/ability clocks and per-enemy state are local too. Folder conventions and asset handles are retained. All six supplied Paks are migrated examples. Old arena/pilot shuffle preferences migrate to the corresponding new channels on load.
+API 1 flat modules, API 2 trait-driven components and API 3 are superseded by API 4. API 3 authors must add EnemyBase.spawn_position(world), change ObstaclesBase.build() to build(world), and move any reliance on world.factor/world.aim into their components. Use the optional lifecycle hooks below for protection/rewards. Move firing gates into WeaponBase.update(), actor stats into create(), enemy death behavior into on_death(), and flight/hit logic into Pak projectile classes. Pilot input/ability clocks and per-enemy state are local too. Folder conventions and asset handles are retained. All eighteen supplied Paks are migrated examples. Old arena/pilot shuffle preferences migrate to the corresponding new channels on load.
 
 Complete Paks must be independently playable, but awkward or ineffective component mixes are allowed until the next shuffle. Cover may be impervious. Check complete Paks solo and partial Paks in eligible mixes. The compatibility runner checks stability in all pilot/enemy/weapon/obstacle combinations plus all background/music presentation pairs; it reports these separately. --require-clear is an optional balance probe, not a requirement for all mixes. Pak code is trusted local Python, with the normal permissions of the game process. The game does not fetch Paks or install arbitrary dependencies.
 
@@ -191,7 +191,7 @@ All components optionally receive on_level_start(world), on_level_complete(world
 
 At level arrival, the host increments world.wave, clears old projectiles, calls obstacles.build(world), repairs the pilot's geometric overlap, invokes all on_level_start callbacks, then creates exactly world.wave initial enemies using spawn_position/create. The new layout replaces all damaged/destroyed cover; locked components retain their instances and private state. A changed obstacle provider also builds for the current level during a periodic shuffle. Unrelated presentation swaps preserve the existing cover.
 
-When enemies are gone, on_level_complete callbacks run once before the one-second clear screen. The six shipped pilots restore 15 health on the following level and grant arrival/swap protection; the selected enemy component awards the level bonus. These are editable Pak choices. The host still owns endless +1 initial enemy counts and transition timing.
+When enemies are gone, on_level_complete callbacks run once before the one-second clear screen. Shipped pilots choose per-level recovery and arrival/swap protection; the selected enemy component awards the level bonus. These are editable Pak choices. The host still owns endless +1 initial enemy counts and transition timing.
 
 Use world.wave (the current one-based level), world.seed, world.prefs.difficulty and world.player state directly in local rules. Spawn factories and active updates see the current level; cached stats must be refreshed deliberately when needed. Shipped enemies increase health/contact damage and differentiate their tactics: interception/flanking swarms, hunting asteroid fragments, predictive/fan turrets, faster ricocheting crawler dashes, closer/predictive phantom teleports and pursuing sentinel formations. Movement and firing approach readable limits; count, health and damage continue growing.
 
@@ -243,7 +243,7 @@ def on_powerup(self, world, count):
 # In the weapon's own attack logic: damage = 16 + 4 * world.powerups_collected
 ```
 
-All twelve supplied folders demonstrate distinct motion and upgrade policies. The README records the current mapping. Do not add upgrade formulas or pickup movement branches to the core.
+All eighteen supplied folders provide local motion and upgrade policies. The README records the current mapping. Do not add upgrade formulas or pickup movement branches to the core.
 
 ## Shape and lifetime APIs
 
@@ -254,3 +254,26 @@ Cover subclasses may override overlaps_circle(position, radius), overlaps_segmen
 ObstaclesBase.update(world, dt) runs once per active step after actor/projectile motion; use it for gravity wells, crossing hazards and moving geometry. draw_floor(graphics, surface, world) paints terrain underneath shapes and must be simulation-free. move_body provides bounded substeps and shape-contact normals without deciding jumping/ricochet policy; safe_position accepts body= for shape filtering. Keep all lifecycle cleanup and procedural rules in the owning Pak.
 
 A shape that fully handles its collision response may return True from on_contact; the resolver then suppresses that contact normal in Motion. This prevents caller AI from applying a second reflection. Default contacts return no handled result and preserve neutral normal reporting.
+
+## Original-mechanics examples
+
+The six newest Paks demonstrate release-edge resonance and public-threat parries (Pulse Abbey), inertial orbital salvage (Scrap Ballet), reflected rays with heat recovery (Glasswake), growth and cascading traps (Bloom Siege), delayed recorded volleys and safe positional rewind (Echo Vault), and buoyancy/entraining pressure bubbles (Tidal Choir). Each contains six independently copyable roles and four-frame component spritesheets.
+
+Keep movement/special descriptions in the pilot and firing descriptions in the weapon's own readout. A pilot hint that describes its original weapon becomes misleading in a Remix. Pulse Abbey's weapon owns a gold timing cue so its visual beat remains usable with another pilot/background/obstacle set. Generated music is not a sample-accurate timing source.
+
+Held input is not a universal damage promise: charged weapons may require release. Test full charge/release cycles, pruning of host-cleared persistent objects, per-target hit windows, cold init/preview, geometry cleanup and copied partial roles. Demonstration policies should select the same eight digital directions as keyboard/D-pad, without analog steering or speed advantages. See tools/verify_frontier.py and tools/verify_frontier_mixes.py for reproducible bounded samples.
+
+## Optional destruction notifications and weapon QA input
+ComponentBase.on_enemy_destroyed(world, enemy) receives each removed dead actor once, after the kill counter, tenth-kill powerup check and enemy on_death. Defaults to no action; replacing/adopting/despawning enemies does not emit it. Components choose any reaction locally. Scrap Ballet uses this to create physical salvage for any enemy provider, without asking the host to classify a drop.
+
+WeaponBase.demo_controls(world, controls) may refine the pilot's ordinary QA Controls. Its default returns the supplied object unchanged. This hook applies only to autopilot, never live keyboard/gamepad input. New charge/resource weapons use digital input to collect real scrap, refill actual water and satisfy their charge thresholds. No QA policy may directly grant resources or combat advantages.
+
+Bloom Siege demonstrates independently copied resource geometry: its weapon registers its own nonblocking nectar wells, owns capacity/current water and spends nectar on growth. The obstacle folder contains only root gates. Powerup upgrades need not improve direct damage: Bloom expands can capacity, while plant damage remains a function of nectar spent.
+
+## Arcade feedback (2026-10-26)
+
+Optional presentation callbacks: PilotBase.draw(graphics,surface,world,*,reduced_motion=False) and EnemyBase.draw(graphics,surface,world,enemy,*,reduced_motion=False) default to the prior centered sprite presentation. Override locally for shape/pivot alignment without changing simulation or RNG. A Pilot subclass may override Body.overlaps_circle(position,radius) to describe its contact footprint; the default remains circular. Weapons may use that public query. The nominal radius still supplies existing terrain queries unless a component explicitly chooses another local motion policy.
+
+### Navigation collision snapshots
+
+`navigation_key()` optionally returns a hashable immutable collision snapshot. Equal keys promise identical `overlaps_circle` results for a given radius, with `rect` conservatively bounding the shape. Include all relevant parameters; body filtering remains a separate query. The default opts in only for inherited rectangle overlap and returns `None` for custom queries. Custom segments/polygons can opt in explicitly so another component can share exact sampled navigation graphs across equal recreated shapes. Consumers still call the real overlap methods; they must not turn the bounding rectangle into solid geometry or infer gameplay features from keys.

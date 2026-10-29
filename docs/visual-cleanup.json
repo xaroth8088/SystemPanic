@@ -1,0 +1,470 @@
+{
+  "date": "2026-10-28",
+  "standard": {
+    "count": 292,
+    "seconds": 134.904,
+    "passed": true
+  },
+  "focused": {
+    "count": 9,
+    "seconds": 3.073,
+    "passed": true
+  },
+  "unique_test_methods": 293,
+  "matrix": {
+    "combinations": 104976,
+    "fixed_steps_per_mix": 20,
+    "seconds": 304.431,
+    "passed": true,
+    "disjoint_full_coverage": true
+  },
+  "final_maze_weapon_matrix": {
+    "passed": true,
+    "combinations": 5832,
+    "seconds": 92.9012236999697,
+    "scope": "All gameplay combinations containing the final Maze Muncher weapon after removal of the cooldown readout; original smoke assertions"
+  },
+  "final_playtest_tests": {
+    "count": 19,
+    "seconds": 3.369,
+    "passed": true
+  },
+  "exact_case": {
+    "seed": 24,
+    "difficulty": "standard",
+    "aim_assist": true,
+    "mix": {
+      "pilot": "iron_circuit",
+      "enemy": "maze_muncher",
+      "weapon": "vector_coil",
+      "music": "tide_hopper",
+      "background": "phase_garden",
+      "obstacles": "tide_hopper"
+    }
+  },
+  "short_before": {
+    "case": {
+      "seed": 24,
+      "difficulty": "standard",
+      "aim_assist": true,
+      "mix": {
+        "pilot": "iron_circuit",
+        "enemy": "maze_muncher",
+        "weapon": "vector_coil",
+        "music": "tide_hopper",
+        "background": "phase_garden",
+        "obstacles": "tide_hopper"
+      }
+    },
+    "runs": [
+      {
+        "level": 1,
+        "steps": 240,
+        "mean_ms": 14.579707500282288,
+        "p99_ms": 196.59970002248883,
+        "max_ms": 242.82560002757236,
+        "tail_segments": 239,
+        "enemies": 1,
+        "phase": "active",
+        "state_sha256": "94922a8f00364d509b083e6d9bf934f4eec3862ab174742b1b078a664cba0a74"
+      },
+      {
+        "level": 8,
+        "steps": 240,
+        "mean_ms": 100.57414958331113,
+        "p99_ms": 1231.752600055188,
+        "max_ms": 1292.8583000320941,
+        "tail_segments": 239,
+        "enemies": 8,
+        "phase": "active",
+        "state_sha256": "e2a499a4643389a91310ddb64d0779ead5c94a2661a22c468ccac01432cfb374"
+      },
+      {
+        "level": 20,
+        "steps": 240,
+        "mean_ms": 302.08606291853357,
+        "p99_ms": 3750.9000999853015,
+        "max_ms": 5502.118400007021,
+        "tail_segments": 239,
+        "enemies": 20,
+        "phase": "active",
+        "state_sha256": "7f6333a53a32fa1bc52693d99180badb4ccbc64caa5721b2fb15e9efcd7641f6"
+      }
+    ],
+    "seconds": 2.0,
+    "input": "ordinary Controls(x=1, fire=True), no gameplay grants"
+  },
+  "short_delivered": {
+    "case": {
+      "seed": 24,
+      "difficulty": "standard",
+      "aim_assist": true,
+      "mix": {
+        "pilot": "iron_circuit",
+        "enemy": "maze_muncher",
+        "weapon": "vector_coil",
+        "music": "tide_hopper",
+        "background": "phase_garden",
+        "obstacles": "tide_hopper"
+      }
+    },
+    "runs": [
+      {
+        "level": 1,
+        "steps": 240,
+        "mean_ms": 1.0983041671958442,
+        "p99_ms": 5.866800027433783,
+        "max_ms": 15.363000042270869,
+        "tail_segments": 239,
+        "enemies": 1,
+        "peak_segments": 239,
+        "peak_areas": 0,
+        "phase": "active",
+        "state_sha256": "94922a8f00364d509b083e6d9bf934f4eec3862ab174742b1b078a664cba0a74"
+      },
+      {
+        "level": 8,
+        "steps": 240,
+        "mean_ms": 1.9442779152692917,
+        "p99_ms": 9.984100004658103,
+        "max_ms": 10.88069996330887,
+        "tail_segments": 239,
+        "enemies": 8,
+        "peak_segments": 239,
+        "peak_areas": 0,
+        "phase": "active",
+        "state_sha256": "e2a499a4643389a91310ddb64d0779ead5c94a2661a22c468ccac01432cfb374"
+      },
+      {
+        "level": 20,
+        "steps": 240,
+        "mean_ms": 3.4544604168331716,
+        "p99_ms": 17.704099998809397,
+        "max_ms": 27.653799974359572,
+        "tail_segments": 239,
+        "enemies": 20,
+        "peak_segments": 239,
+        "peak_areas": 0,
+        "phase": "active",
+        "state_sha256": "7f6333a53a32fa1bc52693d99180badb4ccbc64caa5721b2fb15e9efcd7641f6"
+      }
+    ],
+    "seconds": 2.0,
+    "input": "ordinary Controls(x=1, fire=True), no gameplay grants"
+  },
+  "short_states_identical": true,
+  "long_intermediate": {
+    "case": {
+      "seed": 24,
+      "difficulty": "standard",
+      "aim_assist": true,
+      "mix": {
+        "pilot": "iron_circuit",
+        "enemy": "maze_muncher",
+        "weapon": "vector_coil",
+        "music": "tide_hopper",
+        "background": "phase_garden",
+        "obstacles": "tide_hopper"
+      }
+    },
+    "runs": [
+      {
+        "level": 1,
+        "steps": 960,
+        "mean_ms": 9.826227812785268,
+        "p99_ms": 130.67990000126883,
+        "max_ms": 474.133100011386,
+        "tail_segments": 38,
+        "enemies": 1,
+        "peak_segments": 474,
+        "peak_areas": 2,
+        "phase": "active",
+        "state_sha256": "a21ba3fd2312c5457c0616f9d576912e7402c05beba22df4ca62e12ade98f864"
+      },
+      {
+        "level": 8,
+        "steps": 960,
+        "mean_ms": 11.251483750735739,
+        "p99_ms": 136.34369999635965,
+        "max_ms": 365.5787000316195,
+        "tail_segments": 38,
+        "enemies": 6,
+        "peak_segments": 474,
+        "peak_areas": 2,
+        "phase": "active",
+        "state_sha256": "804ebca605d8db9f32c3c62c5b784a0617e01ac0786694fd3ec7817537c5d9b1"
+      },
+      {
+        "level": 20,
+        "steps": 960,
+        "mean_ms": 12.99329697885696,
+        "p99_ms": 136.00769999902695,
+        "max_ms": 376.3376999995671,
+        "tail_segments": 38,
+        "enemies": 13,
+        "peak_segments": 474,
+        "peak_areas": 2,
+        "phase": "active",
+        "state_sha256": "386d73030d57c5a796418e38be1062912d1d54ffc4d31f3a3681ac935a8f36f1"
+      }
+    ],
+    "seconds": 8.0,
+    "input": "ordinary Controls(x=1, fire=True), no gameplay grants"
+  },
+  "long_delivered": {
+    "case": {
+      "seed": 24,
+      "difficulty": "standard",
+      "aim_assist": true,
+      "mix": {
+        "pilot": "iron_circuit",
+        "enemy": "maze_muncher",
+        "weapon": "vector_coil",
+        "music": "tide_hopper",
+        "background": "phase_garden",
+        "obstacles": "tide_hopper"
+      }
+    },
+    "runs": [
+      {
+        "level": 1,
+        "steps": 960,
+        "mean_ms": 3.4722335413486385,
+        "p99_ms": 33.56759995222092,
+        "max_ms": 56.894299981649965,
+        "tail_segments": 38,
+        "enemies": 1,
+        "peak_segments": 474,
+        "peak_areas": 2,
+        "phase": "active",
+        "state_sha256": "a21ba3fd2312c5457c0616f9d576912e7402c05beba22df4ca62e12ade98f864"
+      },
+      {
+        "level": 8,
+        "steps": 960,
+        "mean_ms": 4.497491458278091,
+        "p99_ms": 32.74330002022907,
+        "max_ms": 60.67929998971522,
+        "tail_segments": 38,
+        "enemies": 6,
+        "peak_segments": 474,
+        "peak_areas": 2,
+        "phase": "active",
+        "state_sha256": "804ebca605d8db9f32c3c62c5b784a0617e01ac0786694fd3ec7817537c5d9b1"
+      },
+      {
+        "level": 20,
+        "steps": 960,
+        "mean_ms": 6.424364375804241,
+        "p99_ms": 39.75589998299256,
+        "max_ms": 72.63469998724759,
+        "tail_segments": 38,
+        "enemies": 13,
+        "peak_segments": 474,
+        "peak_areas": 2,
+        "phase": "active",
+        "state_sha256": "386d73030d57c5a796418e38be1062912d1d54ffc4d31f3a3681ac935a8f36f1"
+      }
+    ],
+    "seconds": 8.0,
+    "input": "ordinary Controls(x=1, fire=True), no gameplay grants"
+  },
+  "long_states_identical": true,
+  "source_4k_app": {
+    "case": {
+      "seed": 24,
+      "difficulty": "standard",
+      "aim_assist": true,
+      "mix": {
+        "pilot": "iron_circuit",
+        "enemy": "maze_muncher",
+        "weapon": "vector_coil",
+        "music": "tide_hopper",
+        "background": "phase_garden",
+        "obstacles": "tide_hopper"
+      }
+    },
+    "runs": [
+      {
+        "level": 1,
+        "frames": 180,
+        "phase": "active",
+        "enemies": 1,
+        "kills": 0,
+        "update_ms_mean": 2.2572955562888333,
+        "update_ms_p99": 11.204399983398616,
+        "presentation_ms_mean": 35.2597738891038,
+        "presentation_ms_p99": 48.41290001058951,
+        "graphs": 8,
+        "output_size": [
+          3840,
+          2160
+        ]
+      },
+      {
+        "level": 8,
+        "frames": 180,
+        "phase": "active",
+        "enemies": 8,
+        "kills": 0,
+        "update_ms_mean": 4.674317779588616,
+        "update_ms_p99": 21.320700005162507,
+        "presentation_ms_mean": 36.287794442291165,
+        "presentation_ms_p99": 48.91999997198582,
+        "graphs": 8,
+        "output_size": [
+          3840,
+          2160
+        ]
+      },
+      {
+        "level": 20,
+        "frames": 180,
+        "phase": "active",
+        "enemies": 20,
+        "kills": 0,
+        "update_ms_mean": 7.576648331531841,
+        "update_ms_p99": 32.05139999045059,
+        "presentation_ms_mean": 35.0544149967997,
+        "presentation_ms_p99": 45.97310000099242,
+        "graphs": 8,
+        "output_size": [
+          3840,
+          2160
+        ]
+      }
+    ],
+    "input": "ordinary digital Controls, two fixed steps per 60Hz update; no gameplay grants",
+    "presentation": "actual App.draw/present to a 3840x2160 SDL dummy window; not a physical display benchmark"
+  },
+  "frozen_4k_app": {
+    "case": {
+      "seed": 24,
+      "difficulty": "standard",
+      "aim_assist": true,
+      "mix": {
+        "pilot": "iron_circuit",
+        "enemy": "maze_muncher",
+        "weapon": "vector_coil",
+        "music": "tide_hopper",
+        "background": "phase_garden",
+        "obstacles": "tide_hopper"
+      }
+    },
+    "runs": [
+      {
+        "level": 1,
+        "frames": 180,
+        "phase": "active",
+        "enemies": 1,
+        "kills": 0,
+        "update_ms_mean": 1.922109447574864,
+        "update_ms_p99": 10.330999968573451,
+        "presentation_ms_mean": 32.17667277430236,
+        "presentation_ms_p99": 43.68909995537251,
+        "graphs": 8,
+        "output_size": [
+          3840,
+          2160
+        ]
+      },
+      {
+        "level": 8,
+        "frames": 180,
+        "phase": "active",
+        "enemies": 8,
+        "kills": 0,
+        "update_ms_mean": 4.519664443149749,
+        "update_ms_p99": 22.775600024033338,
+        "presentation_ms_mean": 35.80021888903704,
+        "presentation_ms_p99": 44.57969998475164,
+        "graphs": 8,
+        "output_size": [
+          3840,
+          2160
+        ]
+      },
+      {
+        "level": 20,
+        "frames": 180,
+        "phase": "active",
+        "enemies": 20,
+        "kills": 0,
+        "update_ms_mean": 7.265579445649767,
+        "update_ms_p99": 31.615199986845255,
+        "presentation_ms_mean": 32.55356777679279,
+        "presentation_ms_p99": 45.152599981520325,
+        "graphs": 8,
+        "output_size": [
+          3840,
+          2160
+        ]
+      }
+    ],
+    "input": "ordinary digital Controls, two fixed steps per 60Hz update; no gameplay grants",
+    "presentation": "actual App.draw/present to a 3840x2160 SDL dummy window; not a physical display benchmark"
+  },
+  "solo_smoke": {
+    "paks": 18,
+    "cleared_levels": 3,
+    "continued_at_level": 4
+  },
+  "frozen_checks": 25,
+  "frozen_passed": true,
+  "packaging": {
+    "source_pak_files": 484,
+    "windows_matches_source": true,
+    "wheel_matches_source": true,
+    "zip_matches_source": true,
+    "zip_crc": true,
+    "executable_sha256": "03ad3f2a427a797d80904dfd2070e8a9ca7dba8214b894b4a5c342eb279aaeb1",
+    "wheel_sha256": "d38fd1f21a66857abc33f08cbcbcd4b7a99810b66e8daa56c65e6efe656d79d6",
+    "zip_sha256": "5475bf5d301479d92971585c0c7742d168d91df23795ba07780fb368ee2118a2"
+  },
+  "provenance_entries": 354,
+  "sprite": {
+    "source": "assets/images/maze_muncher-facing-source.png",
+    "source_size": [
+      1262,
+      1246
+    ],
+    "measured_row_edges": [
+      0,
+      316,
+      603,
+      895,
+      1246
+    ],
+    "complete_subjects": 16,
+    "new_generation": false,
+    "source_sha256": "6381b5eebd41c8745a510ea06cb49791376cada98ebff248a3f2df036bc50723",
+    "derivative_sha256": "87422a2e2bced4a483cb84e399708e462e6869132267b6ea8a53a0d02ce7a1ac"
+  },
+  "inspected": [
+    "compact preferences",
+    "16 Maze poses at 44/88px",
+    "charging Sky/Void/Bloom/Maze readouts",
+    "frozen exact mix at level 20"
+  ],
+  "flavor_inventory": "docs/flavor-text.json",
+  "flavor_copy_decision_pending": true,
+  "commands": [
+    "unittest discovery excluding separately-run exhaustive matrix",
+    "python tools/verify_matrix.py --workers 8",
+    "python tools/verify.py --levels 3 --seconds 120 --output output/verification/visual-cleanup",
+    "python tools/verify_tail_navigation.py --label before --seconds 2",
+    "python tools/verify_tail_navigation.py --label delivered --seconds 2",
+    "python tools/verify_tail_navigation.py --label delivered-stress --seconds 8",
+    "python tools/verify_navigation.py --case tests/cases/iron-maze-tail.json --output output/tail-navigation/final-app --frames 180 --frozen",
+    "python tools/verify_visual_cleanup.py",
+    "python tools/build.py",
+    "python tools/package_release.py",
+    "python tools/verify_distribution.py"
+  ],
+  "limits": [
+    "CPU samples use fixed seeds and bounded runs; no universal FPS guarantee or physical-display/human balance claim.",
+    "The long baseline is an intermediate build after the initial navigation fix; it isolates remaining polygon/network costs.",
+    "Full short-matrix assertions cover four gameplay providers for twenty steps, not long play of every six-role mix.",
+    "Existing user profiles/favorites/blocked combinations were not modified; re-enabling a previously flagged mix remains a player action."
+  ]
+}

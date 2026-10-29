@@ -11,6 +11,8 @@ from .bullet import HostileShot
 class Sentinel(Enemy):
     age: float = 0.
     timer: float = 0.
+    state: str = 'guard'
+    target: object = None
 
 
 class OrbitKeeperEnemy(EnemyBase):
@@ -18,7 +20,9 @@ class OrbitKeeperEnemy(EnemyBase):
         self.creatures = self.load_asset('enemy_sheet.png')
 
     def sprite(self, world, entity=None):
-        return self.creatures
+        if entity is not None and entity.state in ('aim','open'):
+            return self.creatures.frame(1 if entity.state=='aim' else 2,columns=4)
+        return self.creatures.frame(int((world.time if world else 0)*7+(entity.id if entity else 0))%4,columns=4)
 
     def spawn_position(self, world):
         return spawn_position(world)
@@ -32,7 +36,7 @@ class OrbitKeeperEnemy(EnemyBase):
         return (.42 + .85 * (1 - math.exp(-(world.wave - 1) / 38))) * math.sqrt(difficulty(world))
 
     def fire_interval(self, world):
-        return max(.8, 2.7 / (1 + .028 * (world.wave - 1)) / difficulty(world))
+        return max(1.7, 2.7 / (1 + .028 * (world.wave - 1)) / difficulty(world))
 
     def shot_speed(self, world):
         return (120 + 140 * (1 - math.exp(-(world.wave - 1) / 35))) * math.sqrt(difficulty(world))
@@ -48,12 +52,18 @@ class OrbitKeeperEnemy(EnemyBase):
         target = center + unit(enemy.angle) * radius
         delta = target - enemy.pos
         speed = min(120 + 80 * (1 - math.exp(-(world.wave - 1) / 40)), delta.length() * 1.5)
+        speed*=0 if enemy.state=='aim' else .45 if enemy.state=='open' else 1
         pursue(world, enemy, normalized(delta), speed, dt, avoid=world.wave >= 5)
-        if enemy.timer <= 0:
-            enemy.timer = self.fire_interval(world)
+        if enemy.state=='guard' and enemy.timer<=0:
             lead = min(.5, max(0, world.wave - 4) * .018)
-            toward = normalized(world.player.pos + world.player.vel * lead - enemy.pos)
+            enemy.target=world.player.pos+world.player.vel*lead
+            enemy.state,enemy.timer='aim',.5
+        elif enemy.state=='aim' and enemy.timer<=0:
+            toward=normalized(enemy.target-enemy.pos)
             self.shoot(world, enemy, toward, self.shot_speed(world))
+            enemy.state,enemy.timer='open',.85
+        elif enemy.state=='open' and enemy.timer<=0:
+            enemy.state,enemy.timer='guard',max(.35,self.fire_interval(world)-1.35)
 
     def sprite_angle(self, world, entity):
         return -math.degrees(entity.angle)
@@ -72,7 +82,7 @@ class OrbitKeeperEnemy(EnemyBase):
         world.score += 250 * world.wave
 
     def take_damage(self, world, enemy, damage):
-        applied = world.apply_damage(enemy, damage)
+        applied = world.apply_damage(enemy, damage*(1.4 if enemy.state=='open' else .8 if enemy.state=='aim' else .55))
         if applied:
             world.burst(enemy.pos, world.pak("enemy").color, 2)
         return applied

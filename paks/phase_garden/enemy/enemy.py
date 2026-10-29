@@ -5,12 +5,17 @@ from system_panic.model import Vec, WIDTH, HEIGHT, Enemy, normalized, unit
 from system_panic.pak_api import EnemyBase
 from .tactics import difficulty, spawn_position, pursue
 from .bullet import HostileShot
+from .telegraph import RuneCue
 
 
 @dataclass
 class Phantom(Enemy):
     age: float = 0.
     timer: float = 0.
+    state: str = 'drift'
+    destination: object = None
+    target: object = None
+    cue: object = None
 
 
 class PhaseGardenEnemy(EnemyBase):
@@ -18,7 +23,10 @@ class PhaseGardenEnemy(EnemyBase):
         self.creatures = self.load_asset('enemy_sheet.png')
 
     def sprite(self, world, entity=None):
-        return self.creatures
+        if entity is not None:
+            frame=1 if entity.state=='mark' else 2 if entity.state=='exposed' else int((world.time if world else 0)*3+entity.id)%2*3
+            return self.creatures.frame(frame,columns=4)
+        return self.creatures.frame(int((world.time if world else 0)*7+(entity.id if entity else 0))%4,columns=4)
 
     def spawn_position(self, world):
         return spawn_position(world)
@@ -41,18 +49,29 @@ class PhaseGardenEnemy(EnemyBase):
         enemy.age += dt
         enemy.timer -= dt
         toward = normalized(world.player.pos - enemy.pos)
-        pursue(world, enemy, toward, self.move_speed(world), dt, avoid=world.wave >= 5)
-        if enemy.timer <= 0:
-            enemy.timer = self.teleport_interval(world) * world.rng.uniform(.85, 1.15)
+        if enemy.state=='mark':
+            enemy.vel=Vec()
+            if enemy.timer<=0:
+                world.burst(enemy.pos,world.pak('enemy').color,5)
+                enemy.pos=enemy.destination.copy()
+                direction=normalized(enemy.target-enemy.pos)
+                self.shoot(world,enemy,direction,self.shot_speed(world))
+                enemy.state,enemy.timer='exposed',1.15
+        elif enemy.state=='exposed':
+            pursue(world,enemy,toward,self.move_speed(world)*.25,dt,avoid=world.wave>=5)
+            if enemy.timer<=0:enemy.state,enemy.timer='drift',max(.7,self.teleport_interval(world)-1.75)
+        elif enemy.timer<=0:
             lead = min(.5, max(0, world.wave - 4) * .02)
             radius = 100 + 75 * math.exp(-(world.wave - 1) / 35)
             predicted = world.player.pos + world.player.vel * lead
             destination = predicted + unit(world.rng.uniform(0, math.tau)) * radius
-            world.burst(enemy.pos, world.pak("enemy").color, 5)
-            enemy.pos = world.safe_position(destination, enemy.radius, away_from=world.player.pos, clearance=100)
-            # Re-aim AFTER relocation; using the old vector would fire away from the pilot.
-            direction = normalized(predicted - enemy.pos)
-            self.shoot(world, enemy, direction, self.shot_speed(world))
+            enemy.destination=world.safe_position(destination,enemy.radius,away_from=world.player.pos,clearance=100)
+            enemy.target=predicted.copy()
+            enemy.state,enemy.timer,enemy.vel='mark',.6,Vec()
+        else:pursue(world,enemy,toward,self.move_speed(world),dt,avoid=world.wave>=5)
+        if enemy.state!='drift' and (enemy.cue is None or not enemy.cue.alive or enemy.cue not in world.projectiles):
+            enemy.cue=RuneCue(enemy)
+            world.projectiles.append(enemy.cue)
 
     def shoot(self, world, enemy, direction, speed):
         damage = (12 + .5 * (world.wave - 1) ** .7) * difficulty(world)
@@ -62,18 +81,21 @@ class PhaseGardenEnemy(EnemyBase):
         return (13 + .6 * (world.wave - 1) ** .7) * difficulty(world)
 
     def on_contact(self, world, enemy, dt):
+        if enemy.state=='mark':return
         world.hit_player(self.contact_damage(world))
 
     def on_level_complete(self, world):
         world.score += 250 * world.wave
 
     def take_damage(self, world, enemy, damage):
-        applied = world.apply_damage(enemy, damage)
+        multiplier=1.4 if enemy.state=='exposed' else .9 if enemy.state=='mark' else .45
+        applied = world.apply_damage(enemy, damage*multiplier)
         if applied:
             world.burst(enemy.pos, world.pak("enemy").color, 2)
         return applied
 
     def on_death(self, world, enemy):
+        if enemy.cue is not None:enemy.cue.alive=False
         world.score += 100
         world.burst(enemy.pos, world.pak("enemy").color, 9)
         world.events.append("impact")

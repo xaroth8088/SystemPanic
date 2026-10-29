@@ -1,0 +1,39 @@
+{
+  "id": "pulse_abbey",
+  "name": "Pulse Abbey",
+  "subtitle": "LISTEN / CHARGE / RELEASE",
+  "color": [
+    217,
+    181,
+    255
+  ],
+  "description": "Charge at least 0.45s, then release on the gold visual beat for a powerful expanding ring. Short taps fizzle; perfect rings parry hostile fire. Dash through danger.",
+  "version": "1.0.0",
+  "order": 12,
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "concept": "timed resonance and dash parries",
+    "sheet_source": "assets/images/pulse_abbey-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/pulse_abbey-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ]
+    }
+  }
+}

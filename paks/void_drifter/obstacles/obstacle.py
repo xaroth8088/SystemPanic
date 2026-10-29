@@ -4,6 +4,7 @@ import random
 import pygame
 from system_panic.model import Cover, Vec, WIDTH, HEIGHT, normalized
 from system_panic.pak_api import ObstaclesBase
+from .visuals import draw_black_hole, draw_comet
 
 
 class SpaceRock(Cover):
@@ -21,7 +22,7 @@ class SpaceRock(Cover):
 class BlackHole(Cover):
     def __init__(self,position):
         self.pos=Vec(position)
-        self.influence=210.
+        self.influence=170.
         super().__init__(pygame.Rect(self.pos.x-24,self.pos.y-24,48,48),36,36)
 
     def blocks_body(self,body):return False
@@ -29,10 +30,7 @@ class BlackHole(Cover):
     def damage(self,world,amount):return 0.
 
     def draw(self,graphics,surface,world):
-        pygame.draw.circle(surface,(42,34,67),self.pos,int(self.influence),1)
-        pygame.draw.ellipse(surface,(175,118,231),(self.pos.x-38,self.pos.y-16,76,32),3)
-        pygame.draw.circle(surface,(7,4,15),self.pos,21)
-        pygame.draw.circle(surface,(234,168,111),self.pos,23,2)
+        draw_black_hole(surface,world,self.pos)
 
 
 class Comet(Cover):
@@ -47,11 +45,7 @@ class Comet(Cover):
     def overlaps_circle(self,position,radius):return self.pos.distance_squared_to(position)<(radius+12)**2
 
     def draw(self,graphics,surface,world):
-        tail=self.pos-normalized(self.vel)*70
-        pygame.draw.line(surface,(74,98,175),tail,self.pos,9)
-        pygame.draw.line(surface,(119,207,249),tail.lerp(self.pos,.35),self.pos,4)
-        pygame.draw.circle(surface,(240,222,174),self.pos,10)
-        pygame.draw.circle(surface,(130,187,221),self.pos,13,2)
+        draw_comet(surface,world,self)
 
 
 class VoidDrifterObstacles(ObstaclesBase):
@@ -62,7 +56,7 @@ class VoidDrifterObstacles(ObstaclesBase):
         self._next_comet=0.
         self._rng=random.Random(0)
 
-    def sprite(self,world,entity=None):return self.blocks
+    def sprite(self,world,entity=None):return self.blocks.frame(int((world.time if world else 0)*8)%4,columns=4)
 
     def build(self,world):
         rng=random.Random(f"{world.seed}:void_drifter:obstacles:{world.wave}")
@@ -95,12 +89,13 @@ class VoidDrifterObstacles(ObstaclesBase):
                 distance=delta.length()
                 if .01<distance<hole.influence:
                     direction=delta/distance
-                    strength=(1-distance/hole.influence)
-                    drift=direction*(15+120*strength)*dt
+                    strength=(1-distance/hole.influence)**2
+                    # Thrust must decisively beat gravity, even at the horizon.
+                    drift=direction*10*strength*dt
                     if obj is world.player or id(obj) in enemy_ids:
                         world.move_body(obj,drift,obj.radius,bounds=None)
                     else:obj.pos+=drift
-                    obj.vel+=direction*280*strength*dt
+                    obj.vel+=direction*75*strength*dt
                     if distance<23:
                         if obj is world.player:world.hit_player(18*dt)
                         elif id(obj) in enemy_ids:world.hit_enemy(obj,22*dt)

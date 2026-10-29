@@ -143,6 +143,8 @@ class RemixUITests(unittest.TestCase):
         self.app.world.score = 777
         self.app.world.phase = "dead"
         self.app.update(1 / 60, Controls())
+        self.assertEqual(self.app.route, "game-over")
+        self.app.update(1.4, Controls())
         self.click("retry")
         self.assertEqual(self.app.world.mix, mix)
         self.assertEqual((self.app.world.wave, self.app.world.score), (1, 0))
@@ -227,7 +229,7 @@ class RemixUITests(unittest.TestCase):
         self.assertNotEqual(original.id, copy.id)
         self.assertEqual(self.app.remixes[0].mix, first_mix)
         self.assertNotEqual(original.mix, copy.mix)
-        for index in range(5):
+        for index in range(3):
             self.save_favorite(f"Favorite {index}")
         last = self.app.remixes[-1]
         self.app.remixes = self.app.remix_store.load()

@@ -5,7 +5,7 @@ from system_panic.model import Cover
 from system_panic.pak_api import ObstaclesBase
 class BurrowPatrolObstacles(ObstaclesBase):
     def init(self): self.art=self.load_asset("obstacles_sheet.png")
-    def sprite(self,world,entity=None): return self.art
+    def sprite(self,world,entity=None): return self.art.frame(int((world.time if world else 0)*8)%4,columns=4)
     def build(self,world):
         rng=random.Random(f"{world.seed}:burrow_patrol:obstacles:{world.wave}")
         # Rock veins consist of separate clusters rather than sealed walls.

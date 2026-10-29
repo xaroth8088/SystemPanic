@@ -9,10 +9,11 @@ from .tactics import difficulty,spawn_position,pursue
 class VectorCoilBody(Enemy):
     age: float = 0.
     timer: float = 1.
+    state: str = 'drift'
 
 class VectorCoilEnemy(EnemyBase):
     def init(self): self.art=self.load_asset("enemy_sheet.png")
-    def sprite(self,world,entity=None): return self.art
+    def sprite(self,world,entity=None): return self.art.frame(int((world.time if world else 0)*7+(entity.id if entity else 0))%4,columns=4)
 
     def spawn_position(self,world):
         return spawn_position(world)
@@ -28,21 +29,27 @@ class VectorCoilEnemy(EnemyBase):
     def advance_enemy(self, world, enemy, dt):
         enemy.age += dt
         enemy.timer -= dt
+        if enemy.state=='pause':
+            enemy.vel=Vec()
+            if enemy.timer>0:return
+            enemy.state,enemy.timer='dart',.4
+            enemy.vel=unit(world.rng.uniform(0,math.tau))*self.move_speed(world)*3.8
+        elif enemy.state=='dart' and enemy.timer<=0:
+            enemy.state,enemy.timer='drift',world.rng.uniform(1.3,2.7)
+            enemy.vel=normalized(enemy.vel)*self.move_speed(world)
+        elif enemy.state=='drift' and enemy.timer<=0:
+            enemy.state,enemy.timer='pause',world.rng.uniform(.25,.45)
+            enemy.vel=Vec()
+            return
         if enemy.vel.length_squared()<1:
             enemy.vel=unit(enemy.angle)*self.move_speed(world)
-        if enemy.timer<=0:
-            enemy.timer=max(.5,2.1/(1+.04*world.wave))
-            pursuit=min(.7,.12+world.wave*.02)
-            target=normalized(world.player.pos+world.player.vel*.2-enemy.pos)
-            direction=normalized(enemy.vel).lerp(target,pursuit)
-            enemy.vel=normalized(direction)*self.move_speed(world)
         motion=world.move_body(enemy,enemy.vel*dt,enemy.radius)
         for normal in motion.normals:
             if enemy.vel.dot(normal)<0: enemy.vel=enemy.vel.reflect(normal)
         enemy.angle=math.atan2(enemy.vel.y,enemy.vel.x)
 
     def contact_damage(self,world):
-        return (13+.6*(world.wave-1)**.7)*difficulty(world)
+        return (32+1.3*(world.wave-1)**.7)*difficulty(world)
 
     def on_contact(self,world,enemy,dt):
         world.hit_player(self.contact_damage(world))

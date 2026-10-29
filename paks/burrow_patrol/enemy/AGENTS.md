@@ -1,7 +1,11 @@
 # Burrow Patrol: enemy
 
-Read [this Pak](../AGENTS.md), [Pak contracts](../../AGENTS.md) and [public ABCs](../../../src/system_panic/pak_api.py).
+Read [this Pak](../AGENTS.md), [public ABCs](../../../src/system_panic/pak_api.py) and [Pak contracts](../../AGENTS.md). Copy this entire role folder as a partial Pak. Actor factories, local helpers, spawn/difficulty/reward policy and contacts belong here. No private sibling-role state or host feature traits.
 
-This folder owns its component code, helpers and generated assets. Use explicit ABC callbacks, local handle names and private timing/state. Do not import another Pak's module or move content rules into core. Drawing and asset selection cannot change simulation/RNG. Copy the entire role folder when making a partial. Assets are generated outside the game; provenance is recorded in assets/manifest.json.
+Worms hunt, burrow through terrain for .9s with .65 damage armor, safely emerge for .55s, then rush a locked target for .55s. Burrow/emerge contacts are harmless. Safe-position emergence and all cue/phase rules stay here.
 
-Worms have private underground phases: faster burrowing through cover with damage reduction, then safe emergence and pursuit. No underground trait exists in the host.
+The local four-frame sheet selects poses without changing simulation/RNG. Owned transient cues recreate after world cleanup; death clears them. Use actual shape/body/projectile filters for geometry, with rects only as broad-phase metadata.
+
+## Arcade feedback (2026-10-26)
+
+No WormCue or emerge windup is emitted. After the 0.9s underground phase, choose a safe emergence position and immediately rush the locked target for 0.55s. Burrow contacts remain harmless; emerging rush contacts deal normal damage immediately. There is no separate emerge state or cue lifetime.

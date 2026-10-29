@@ -12,8 +12,9 @@ def closest(p,a,b):
 
 
 class TrackRail(Cover):
-    def __init__(self,a,b,color):
+    def __init__(self,a,b,color,art=None):
         self.a,self.b,self.color=a,b,color
+        self.art,self._tiles=art,{}
         left,top=math.floor(min(a.x,b.x)-5),math.floor(min(a.y,b.y)-5)
         super().__init__(pygame.Rect(left,top,math.ceil(max(a.x,b.x)+5)-left+1,math.ceil(max(a.y,b.y)+5)-top+1),36,36)
 
@@ -24,6 +25,17 @@ class TrackRail(Cover):
     def damage(self,world,amount):return 0.
     def draw(self,graphics,surface,world):
         pygame.draw.line(surface,self.color,self.a,self.b,6)
+        if self.art is not None:
+            index=int(world.time*8)%4
+            if index not in self._tiles:
+                frame=self.art.frame(index,columns=4)
+                pixels=self.art.surface.subsurface(frame.rect)
+                bounds=pixels.get_bounding_rect(min_alpha=110)
+                tile=pygame.transform.smoothscale(pixels.subsurface(bounds),(max(1,round(self.a.distance_to(self.b))),6))
+                angle=-math.degrees(math.atan2(self.b.y-self.a.y,self.b.x-self.a.x))
+                self._tiles[index]=pygame.transform.rotate(tile,angle)
+            image=self._tiles[index]
+            surface.blit(image,image.get_rect(center=(self.a+self.b)/2))
         pygame.draw.line(surface,(220,225,230),self.a,self.b,1)
 
 
@@ -33,7 +45,7 @@ class IronCircuitObstacles(ObstaclesBase):
         self.points=[]
         self.width=80
 
-    def sprite(self,world,entity=None):return self.blocks
+    def sprite(self,world,entity=None):return self.blocks.frame(int((world.time if world else 0)*8)%4,columns=4)
     def take_damage(self,world,obstacle,damage):return 0.
 
     def build(self,world):
@@ -57,7 +69,7 @@ class IronCircuitObstacles(ObstaclesBase):
                 distance=min(self.width, self.width/2/max(.5,abs(normal.dot(n2))))
                 border.append(p+normal*distance*side)
             for i,a in enumerate(border):
-                rails.append(TrackRail(a,border[(i+1)%len(border)],(230,95,86) if i%2 else (90,180,210)))
+                rails.append(TrackRail(a,border[(i+1)%len(border)],(230,95,86) if i%2 else (90,180,210),self.blocks))
         return rails
 
     def settle(self,world):

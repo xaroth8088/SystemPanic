@@ -7,12 +7,25 @@
     148,
     91
   ],
-  "description": "Slide the perimeter with left/right; vertical input is unused. Bouncing bonus balls strengthen multiball.",
-  "version": "1.2.0",
+  "description": "Intercept plasma on the perimeter: good paddle returns build power; missed returns drain it.",
+  "version": "2.0.0",
   "order": 6,
   "authoring": {
     "inspired_by": "Breakout",
-    "sheet_source": "assets/images/neon_breach-source.png"
+    "sheet_source": "assets/images/neon_breach-renewal-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/neon_breach-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        4,
+        4
+      ]
+    }
   },
   "api_version": 4,
   "components": [

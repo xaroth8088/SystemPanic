@@ -293,7 +293,7 @@ class OwnAim(WeaponBase):
         for enemy in (first, second):
             enemy.health = enemy.max_health = 100
         world.component("weapon").fire(world, Vec(1, 0))
-        for _ in range(12):
+        for _ in range(28):
             world.update_projectiles(FIXED_DT)
         self.assertLess(first.health, 100)
         self.assertLess(second.health, 100)

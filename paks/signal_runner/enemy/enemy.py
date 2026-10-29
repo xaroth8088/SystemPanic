@@ -10,6 +10,8 @@ from .tactics import difficulty, spawn_position, pursue
 class Swarm(Enemy):
     age: float = 0.
     timer: float = 0.
+    state: str = 'stalk'
+    target: object = None
 
 
 class SignalRunnerEnemy(EnemyBase):
@@ -17,7 +19,9 @@ class SignalRunnerEnemy(EnemyBase):
         self.creatures = self.load_asset('enemy_sheet.png')
 
     def sprite(self, world, entity=None):
-        return self.creatures
+        if entity is not None and entity.state in ('windup','charge','recover'):
+            return self.creatures.frame({'windup':2,'charge':3,'recover':0}[entity.state],columns=4)
+        return self.creatures.frame(int((world.time if world else 0)*7+(entity.id if entity else 0))%4,columns=4)
 
     def spawn_position(self, world):
         return spawn_position(world)
@@ -32,6 +36,29 @@ class SignalRunnerEnemy(EnemyBase):
 
     def advance_enemy(self, world, enemy, dt):
         enemy.age += dt
+        enemy.timer-=dt
+        if enemy.state=='windup':
+            enemy.vel=Vec()
+            if enemy.timer<=0:
+                enemy.state,enemy.timer='charge',.32
+                speed=(300+80*(1-math.exp(-(world.wave-1)/25)))*math.sqrt(difficulty(world))
+                enemy.vel=normalized(enemy.target-enemy.pos)*speed
+        elif enemy.state=='charge':
+            motion=world.move_body(enemy,enemy.vel*dt,enemy.radius)
+            if enemy.timer<=0 or motion.normals:
+                enemy.state,enemy.timer,enemy.vel='recover',.62,Vec()
+        elif enemy.state=='recover':
+            enemy.vel=Vec()
+            if enemy.timer<=0:
+                enemy.state,enemy.timer='stalk',1.1+enemy.id%3*.17
+        else:
+            self.stalk(world,enemy,dt)
+            if enemy.timer<=0 and enemy.pos.distance_to(world.player.pos)<260:
+                enemy.state,enemy.timer='windup',.42
+                enemy.target=world.player.pos+world.player.vel*min(.2,max(0,world.wave-3)*.012)
+                enemy.vel=Vec()
+
+    def stalk(self,world,enemy,dt):
         # Later swarms intercept and flank the pilot's path instead of only chasing.
         lead = min(.5, max(0, world.wave - 3) * .018)
         target = world.player.pos + world.player.vel * lead
@@ -44,6 +71,7 @@ class SignalRunnerEnemy(EnemyBase):
         return (13 + .6 * (world.wave - 1) ** .7) * difficulty(world)
 
     def on_contact(self, world, enemy, dt):
+        if enemy.state in ('windup','recover'):return
         world.hit_player(self.contact_damage(world))
 
     def on_level_complete(self, world):

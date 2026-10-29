@@ -28,10 +28,24 @@ def exercise(app, output):
         app.draw()
         pygame.image.save(app.canvas, output / (pak + "-drop.png"))
         assert before == (world.time, pickup.pos, pickup.age, world.rng.getstate())
-        world.player.pos = pickup.pos.copy()
-        pickup.update(world, 0)
+        played=[]
+        original=app.audio.play_asset
+        def observe(asset,**options):
+            played.append((asset,options))
+            original(asset,**options)
+        app.audio.play_asset=observe
+        try:
+            world.player.pos = pickup.pos.copy()
+            pickup.update(world, 0)
+            pickup.update(world, 0)
+        finally:app.audio.play_asset=original
         assert world.powerups_collected == 1 and not pickup.alive, pak
         assert not world.collect_powerup(pickup), pak
+        assert pickup.chime.path.parent==Path(pickup.art.path).parent, pak
+        assert played==[(pickup.chime,dict(loop=False,volume=.45))], pak
+        if app.audio.available:
+            assert pickup.chime.path in app.audio.asset_sounds, pak
+            assert any(asset is pickup.chime for asset,volume,loop in app.audio.voices.values()), pak
         app.draw()
         pygame.image.save(app.canvas, output / (pak + "-picked.png"))
         world.mix["weapon"] = "signal_runner" if pak != "signal_runner" else "star_bastion"
@@ -41,5 +55,6 @@ def exercise(app, output):
         assert world.powerups_collected == 1, pak
         runs.append({"pak": pak, "tenth_kill_drop": True, "exact_death_position": True,
                      "pak_subclass": type(pickup).__name__, "collected_once": True,
+                     "local_chime_once": True, "mixer_available": app.audio.available,
                      "upgrade_survives_weapon_and_level_changes": True, "read_only_render": True})
     return {"runs": runs, "all_paks": len(runs), "kill_interval": 10, "shared_pickup_counter": True}

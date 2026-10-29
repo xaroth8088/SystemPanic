@@ -1,0 +1,1774 @@
+{
+  "date": "2026-10-26",
+  "status": "complete",
+  "items": [
+    {
+      "request": "Three rotating pilots",
+      "status": "implemented and verified",
+      "result": "Original single-pose Orbit Keeper, Void Drifter and Iron Circuit assets restored byte-for-byte from their original source crops; sprite rotation restored. Movement/abilities and existing gameplay tuning retained."
+    },
+    {
+      "request": "Facing clutter",
+      "status": "implemented and verified",
+      "result": "Shared facing ticks and redundant weapon aiming dots removed."
+    },
+    {
+      "request": "Sky floor alignment",
+      "status": "implemented and verified",
+      "result": "Pilot and crawler physical bounds now meet HEIGHT=480; local crawler drawing aligns alpha feet. Both floor and platform contacts retain their proper body radii."
+    },
+    {
+      "request": "Sky sword",
+      "status": "implemented and verified",
+      "result": "A mirrored 0.22s overhead sweep hits each enemy once and pushes surviving targets 28px through geometry with a 95px/s impulse. Throw/retrieve mechanics persist; dropped-sword arrow removed. The ordinary-input QA recovery route completes deck descents."
+    },
+    {
+      "request": "Control prose",
+      "status": "implemented and verified",
+      "result": "Removed all in-arena control instruction prose at Pak draw sites. Resource meters/numeric nectar and menu/footer help remain."
+    },
+    {
+      "request": "Orbit cover",
+      "status": "implemented and verified",
+      "result": "Obstacles return zero damage and remain indestructible."
+    },
+    {
+      "request": "Neon paddle",
+      "status": "implemented and verified",
+      "result": "Existing sprite rendered as an 84x24 paddle, flush on all four edges. A Pak-owned rectangular contact footprint lets outer-span ball returns work. Original firing assistance retained; border reflections use perpendicular normals."
+    },
+    {
+      "request": "Maze exits",
+      "status": "implemented and verified",
+      "result": "No forced clear center row. Seeded exit height and short east/west stubs join a connected braided maze; actual geometry drives route/wrap queries."
+    },
+    {
+      "request": "Burrow enemies",
+      "status": "implemented and verified",
+      "result": "No attack cues or emergence windup; underground phase transitions immediately to the committed rush."
+    },
+    {
+      "request": "Vector enemies",
+      "status": "implemented and verified",
+      "result": "Base contact damage 32 plus level scaling; drift, 0.25-0.45s pause, then a random-heading 0.4s dart at 3.8x speed."
+    },
+    {
+      "request": "Star enemy fire",
+      "status": "implemented and verified",
+      "result": "Targets scatter within +/-95x28px of player; three spread shots, five from level eight. Formation interval reduced to 1.75s before scaling."
+    },
+    {
+      "request": "Tide movement",
+      "status": "implemented and verified",
+      "result": "Normal/ferry hops grant no invulnerability. Pilot protection circle omitted; existing post-hit and arrival safety remain separate."
+    },
+    {
+      "request": "Bloom damage/radius",
+      "status": "implemented and verified",
+      "result": "Damage is 8+112*growth**2.4; radius 28+70*growth, capped at 98. Cascade reach radius+20. Nectar funding and capacity-only upgrades remain."
+    }
+  ],
+  "architecture": {
+    "pak_rules_local": true,
+    "general_additions": [
+      "Optional PilotBase.draw and EnemyBase.draw callbacks with existing centered defaults",
+      "Body.overlaps_circle default circle; Pak subclasses may define contact footprints"
+    ]
+  },
+  "tests": {
+    "standard": {
+      "tests": 255,
+      "seconds": 119.703,
+      "failures": 0,
+      "errors": 0,
+      "excluded": "104976-mix exhaustive matrix"
+    },
+    "focused_methods": 16,
+    "unique_methods_including_matrix": 256,
+    "full_matrix": {
+      "command": "python tools/verify_matrix.py",
+      "tests": 1,
+      "workers": 8,
+      "combinations": 104976,
+      "fixed_steps_per_mix": 20,
+      "seconds": 556.897,
+      "passed": true,
+      "exit_code": 0,
+      "fresh_gameplay_instances": true,
+      "worlds_created": 104976,
+      "disjoint_full_coverage": true,
+      "results": [
+        {
+          "worker": 0,
+          "workers": 8,
+          "tests": 1,
+          "combinations": 13122,
+          "fixed_steps_per_mix": 20,
+          "seconds": 554.304,
+          "passed": true,
+          "exit_code": 0,
+          "fresh_gameplay_instances": true,
+          "worlds_created": 13122,
+          "decode_cache": {
+            "hits": 0,
+            "misses": 0
+          },
+          "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+        },
+        {
+          "worker": 1,
+          "workers": 8,
+          "tests": 1,
+          "combinations": 13122,
+          "fixed_steps_per_mix": 20,
+          "seconds": 451.075,
+          "passed": true,
+          "exit_code": 0,
+          "fresh_gameplay_instances": true,
+          "worlds_created": 13122,
+          "decode_cache": {
+            "hits": 0,
+            "misses": 0
+          },
+          "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+        },
+        {
+          "worker": 2,
+          "workers": 8,
+          "tests": 1,
+          "combinations": 13122,
+          "fixed_steps_per_mix": 20,
+          "seconds": 554.037,
+          "passed": true,
+          "exit_code": 0,
+          "fresh_gameplay_instances": true,
+          "worlds_created": 13122,
+          "decode_cache": {
+            "hits": 0,
+            "misses": 0
+          },
+          "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+        },
+        {
+          "worker": 3,
+          "workers": 8,
+          "tests": 1,
+          "combinations": 13122,
+          "fixed_steps_per_mix": 20,
+          "seconds": 434.357,
+          "passed": true,
+          "exit_code": 0,
+          "fresh_gameplay_instances": true,
+          "worlds_created": 13122,
+          "decode_cache": {
+            "hits": 0,
+            "misses": 0
+          },
+          "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+        },
+        {
+          "worker": 4,
+          "workers": 8,
+          "tests": 1,
+          "combinations": 13122,
+          "fixed_steps_per_mix": 20,
+          "seconds": 520.571,
+          "passed": true,
+          "exit_code": 0,
+          "fresh_gameplay_instances": true,
+          "worlds_created": 13122,
+          "decode_cache": {
+            "hits": 0,
+            "misses": 0
+          },
+          "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+        },
+        {
+          "worker": 5,
+          "workers": 8,
+          "tests": 1,
+          "combinations": 13122,
+          "fixed_steps_per_mix": 20,
+          "seconds": 443.849,
+          "passed": true,
+          "exit_code": 0,
+          "fresh_gameplay_instances": true,
+          "worlds_created": 13122,
+          "decode_cache": {
+            "hits": 0,
+            "misses": 0
+          },
+          "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+        },
+        {
+          "worker": 6,
+          "workers": 8,
+          "tests": 1,
+          "combinations": 13122,
+          "fixed_steps_per_mix": 20,
+          "seconds": 499.826,
+          "passed": true,
+          "exit_code": 0,
+          "fresh_gameplay_instances": true,
+          "worlds_created": 13122,
+          "decode_cache": {
+            "hits": 0,
+            "misses": 0
+          },
+          "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+        },
+        {
+          "worker": 7,
+          "workers": 8,
+          "tests": 1,
+          "combinations": 13122,
+          "fixed_steps_per_mix": 20,
+          "seconds": 436.734,
+          "passed": true,
+          "exit_code": 0,
+          "fresh_gameplay_instances": true,
+          "worlds_created": 13122,
+          "decode_cache": {
+            "hits": 0,
+            "misses": 0
+          },
+          "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+        }
+      ],
+      "scope": "Original unittest assertions and full product space, disjoint worker partitions; cached read-only PNG decoding"
+    },
+    "final_neon_matrix": {
+      "combinations": 11340,
+      "passed": true,
+      "fixed_steps_per_mix": 20,
+      "seconds": 76.212,
+      "workers": [
+        {
+          "worker": 0,
+          "combinations": 1418,
+          "expected": 1418,
+          "passed": true
+        },
+        {
+          "worker": 1,
+          "combinations": 1418,
+          "expected": 1418,
+          "passed": true
+        },
+        {
+          "worker": 2,
+          "combinations": 1418,
+          "expected": 1418,
+          "passed": true
+        },
+        {
+          "worker": 3,
+          "combinations": 1418,
+          "expected": 1418,
+          "passed": true
+        },
+        {
+          "worker": 4,
+          "combinations": 1417,
+          "expected": 1417,
+          "passed": true
+        },
+        {
+          "worker": 5,
+          "combinations": 1417,
+          "expected": 1417,
+          "passed": true
+        },
+        {
+          "worker": 6,
+          "combinations": 1417,
+          "expected": 1417,
+          "passed": true
+        },
+        {
+          "worker": 7,
+          "combinations": 1417,
+          "expected": 1417,
+          "passed": true
+        }
+      ],
+      "scope": "Every gameplay combination containing the final Neon pilot or weapon; original unittest assertions; fresh worlds; disjoint coverage"
+    },
+    "longer_mixes": {
+      "cases": 656,
+      "all_renewed_pilot_weapon_pairs": 144,
+      "seeded_cross_pak_cases": 512,
+      "frames_per_case": 360,
+      "swaps": 512,
+      "peak_projectiles": 59,
+      "finite_state": true,
+      "owned_geometry_released": true,
+      "scope": "Stability and lifecycle, not a claim that every mix clears"
+    },
+    "integration": "Full matrix ran during integration; the final Neon firing-assistance correction is covered by every affected pilot/weapon mix (11340). The later Sky QA descent policy is separately covered by focused tests and ordinary-input samples; it is outside the raw Controls matrix."
+  },
+  "procedural": {
+    "cases": 540,
+    "safe_placements": 15570,
+    "sky_routes": 114
+  },
+  "solo": {
+    "all_eighteen_three_level_smoke": true,
+    "target_levels": 6,
+    "runs": [
+      {
+        "pak": "maze_muncher",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 68.37,
+        "seconds": 45.57,
+        "kills": 21,
+        "upgrades": 2,
+        "max_projectiles": 0,
+        "max_kill_drought_seconds": 3.68,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "maze_muncher",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 27.84,
+        "seconds": 37.78,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 0,
+        "max_kill_drought_seconds": 3.38,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "burrow_patrol",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 61.48,
+        "kills": 21,
+        "upgrades": 2,
+        "max_projectiles": 0,
+        "max_kill_drought_seconds": 12.57,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "burrow_patrol",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 70.45,
+        "seconds": 57.75,
+        "kills": 21,
+        "upgrades": 2,
+        "max_projectiles": 0,
+        "max_kill_drought_seconds": 10.5,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "vector_coil",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 102.33,
+        "kills": 21,
+        "upgrades": 0,
+        "max_projectiles": 0,
+        "max_kill_drought_seconds": 22.82,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "vector_coil",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 2,
+        "phase": "dead",
+        "health": 0.0,
+        "seconds": 47.32,
+        "kills": 3,
+        "upgrades": 0,
+        "max_projectiles": 0,
+        "max_kill_drought_seconds": 22.82,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      {
+        "pak": "star_bastion",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 47.05,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 23,
+        "max_kill_drought_seconds": 5.65,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "star_bastion",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 47.63,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 21,
+        "max_kill_drought_seconds": 8.52,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "tide_hopper",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 42.8,
+        "kills": 21,
+        "upgrades": 2,
+        "max_projectiles": 1,
+        "max_kill_drought_seconds": 6.45,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "tide_hopper",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 45.4,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 1,
+        "max_kill_drought_seconds": 5.5,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "sky_forge",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 53.18,
+        "seconds": 57.38,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 9,
+        "max_kill_drought_seconds": 11.82,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "sky_forge",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 43.33,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 7,
+        "max_kill_drought_seconds": 6.67,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "neon_breach",
+        "difficulty": "relaxed",
+        "seed": 0,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 90.12,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 12,
+        "max_kill_drought_seconds": 14.25,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "neon_breach",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 86.77,
+        "kills": 21,
+        "upgrades": 2,
+        "max_projectiles": 9,
+        "max_kill_drought_seconds": 9.67,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "neon_breach",
+        "difficulty": "relaxed",
+        "seed": 997,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 69.32,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 8,
+        "max_kill_drought_seconds": 8.25,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "neon_breach",
+        "difficulty": "standard",
+        "seed": 0,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 95.93,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 13,
+        "max_kill_drought_seconds": 8.8,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "neon_breach",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 101.08,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 11,
+        "max_kill_drought_seconds": 8.72,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "neon_breach",
+        "difficulty": "standard",
+        "seed": 997,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 89.47,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 12,
+        "max_kill_drought_seconds": 11.28,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "pulse_abbey",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 32.22,
+        "first_clear_seconds": 2.8,
+        "kills": 21,
+        "upgrades": 2,
+        "max_projectiles": 10,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "pulse_abbey",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 27.03,
+        "first_clear_seconds": 2.78,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 11,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "scrap_ballet",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 98.93,
+        "seconds": 37.58,
+        "first_clear_seconds": 2.87,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 41,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "scrap_ballet",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 52.22,
+        "seconds": 41.07,
+        "first_clear_seconds": 2.85,
+        "kills": 21,
+        "upgrades": 2,
+        "max_projectiles": 42,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "glasswake",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 98.93,
+        "seconds": 50.75,
+        "first_clear_seconds": 7.28,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 16,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "glasswake",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 44.82,
+        "first_clear_seconds": 6.1,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 14,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "bloom_siege",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 5,
+        "phase": "dead",
+        "health": 0.0,
+        "seconds": 57.33,
+        "first_clear_seconds": 6.52,
+        "kills": 20,
+        "upgrades": 2,
+        "max_projectiles": 8,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6
+        }
+      },
+      {
+        "pak": "bloom_siege",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 3,
+        "phase": "dead",
+        "health": 0.0,
+        "seconds": 41.85,
+        "first_clear_seconds": 6.48,
+        "kills": 6,
+        "upgrades": 0,
+        "max_projectiles": 6,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        }
+      },
+      {
+        "pak": "echo_vault",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 29.37,
+        "first_clear_seconds": 2.7,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 22,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "echo_vault",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 94.61,
+        "seconds": 57.73,
+        "first_clear_seconds": 2.72,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 23,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "tidal_choir",
+        "difficulty": "relaxed",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 100,
+        "seconds": 44.27,
+        "first_clear_seconds": 5.92,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 14,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      },
+      {
+        "pak": "tidal_choir",
+        "difficulty": "standard",
+        "seed": 24,
+        "cleared_levels": 6,
+        "phase": "active",
+        "health": 41.91,
+        "seconds": 46.17,
+        "first_clear_seconds": 5.92,
+        "kills": 21,
+        "upgrades": 1,
+        "max_projectiles": 15,
+        "initial_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      }
+    ],
+    "target_clears": 27,
+    "defeats": 3,
+    "stalls": 0,
+    "input": "Ordinary digital Controls; no health, resource or damage grants. Six levels is a QA stopping point; progression remains endless."
+  },
+  "assets": {
+    "provenance_entries": 354,
+    "new_generations": 0,
+    "restored_single_pose_pilots": 3,
+    "remaining_directional_pilot_sheets": 14,
+    "remaining_directional_frames": 344,
+    "media": {
+      "paks": [
+        {
+          "pak": "signal_runner",
+          "images": {
+            "pilot": {
+              "size": [
+                1992,
+                996
+              ],
+              "grid": [
+                8,
+                4
+              ],
+              "frames": 32,
+              "sha256": "da2e9836fccc6d455caf1627970edb0386fed1d9ea7f76995d1a84d2e123303e"
+            },
+            "enemy": {
+              "size": [
+                1092,
+                273
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "67280ad81a3527ff314f9652f5f1735deeb7b5feec0cb2f923975a99af113c08"
+            },
+            "weapon": {
+              "size": [
+                984,
+                246
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "cabc5de532437375767b5ef978c46dd1a759535d49ffcb78e2e19750de6c6a45"
+            },
+            "obstacles": {
+              "size": [
+                1048,
+                262
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "3e372e41ceeda75fa2db7df4a9871e67c11101cf50c6fc65d7a219f27e233bdf"
+            }
+          },
+          "effects": {
+            "pilot": "158bb1962adb171f7fdc967b3c57ec3bca2cb62228b002f32387ae96256433ff",
+            "weapon": "1bd96ce5c42debd4e5eab6edd5d4d17cd022d7f351249be7044495b32124cc6c"
+          },
+          "music": {
+            "seconds": 30.72,
+            "minimum_cyclic_join_to_peak_rms": 0.11739398560077074,
+            "endpoint_step": 0.01691093808040023
+          }
+        },
+        {
+          "pak": "void_drifter",
+          "images": {
+            "pilot": {
+              "size": [
+                220,
+                262
+              ],
+              "grid": [
+                1,
+                1
+              ],
+              "frames": 1,
+              "sha256": "7a3fdafbe252fcd4de9dfcba7fa1888cb1fadecd3887fe66ac41bed89603aa3e"
+            },
+            "enemy": {
+              "size": [
+                1036,
+                259
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "e3fbeb997f40bdcf79359ebaaddb5b8ef0adc3452ec65dddab071666aa172edd"
+            },
+            "weapon": {
+              "size": [
+                1180,
+                295
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "7d24d841dfae7dd457bbc33e8b061d5bf23cf8fbc4ba76e7a4bc6d692bdd2555"
+            },
+            "obstacles": {
+              "size": [
+                1312,
+                328
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "f9d6f63f94fa25722a947aa59e741175f98f1d5361889f990cdd224f97677cb9"
+            }
+          },
+          "effects": {
+            "pilot": "e4391d851f4e75aad0f52be0f91bd5f008ea37d8f2dfa7ceb8b3d2e1ad76f203",
+            "weapon": "a13c6cbf55ad6bf017852992731a486db42ea945d37d063974d58f5173af4a95"
+          },
+          "music": {
+            "seconds": 29.02,
+            "minimum_cyclic_join_to_peak_rms": 0.0879871421270407,
+            "endpoint_step": 0.003639695481979288
+          }
+        },
+        {
+          "pak": "iron_circuit",
+          "images": {
+            "pilot": {
+              "size": [
+                160,
+                233
+              ],
+              "grid": [
+                1,
+                1
+              ],
+              "frames": 1,
+              "sha256": "2282d96c27f12ca1ffab5a0739e8685f67c4068e8f15d3dd922e03a5fdc4337e"
+            },
+            "enemy": {
+              "size": [
+                1160,
+                290
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "bacf354e30429f8c989c3b9c5436b55802271323bd556e6957442e62b8fca043"
+            },
+            "weapon": {
+              "size": [
+                1016,
+                254
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "95dd5364a2d4fb0aecfc28dbb4d0b0b183a9d77c2239f938e00b6a2c8cb3488f"
+            },
+            "obstacles": {
+              "size": [
+                1156,
+                289
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "994f4ee104061ab5d0f8934a2ee9ce88185ae7ada47bd28e2a220fabfea8f8fb"
+            }
+          },
+          "effects": {
+            "pilot": "c5710c5116ff3aad5bb256389a6bf0f9d44070c0cf172b65d5cf9f3a433f5938",
+            "weapon": "975b29c04a41800dbfc4fb105d4dcd2f079281473413dc15fcd96402e3128ecd"
+          },
+          "music": {
+            "seconds": 30.82,
+            "minimum_cyclic_join_to_peak_rms": 0.6346345222236317,
+            "endpoint_step": 0.054638952016830444
+          }
+        },
+        {
+          "pak": "sky_forge",
+          "images": {
+            "pilot": {
+              "size": [
+                836,
+                1672
+              ],
+              "grid": [
+                2,
+                4
+              ],
+              "frames": 8,
+              "sha256": "6b5ce33af645b3444042a71d5500e01ac7d8ed74cb4b35bbfcdcdcd2ae1bb85d"
+            },
+            "enemy": {
+              "size": [
+                2032,
+                508
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "afb77674199d7efd41638e0eeb880a14afb44fd4cc5bd6da73f968bb87976a39"
+            },
+            "weapon": {
+              "size": [
+                2304,
+                576
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "3cb44c3c1302a9a9cb065c9c06ed97bc43d64879f8a7eb4bddbecb65f70706c3"
+            },
+            "obstacles": {
+              "size": [
+                1124,
+                281
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "5b84fdd87ee0dbb417c4c2e7a5a2bf6613ea644c951dbef22fa9685c3d13e117"
+            }
+          },
+          "effects": {
+            "pilot": "0b2c0c64f358bf41eb2938df73fa2e7fefa5ecc55e3eafab8ffcbb8520d4b7b2",
+            "weapon": "0954d0f5ab4337e1c76570b2d646e43635ba38a0a55c8019ee18cd3ad971f71d"
+          },
+          "music": {
+            "seconds": 31.82,
+            "minimum_cyclic_join_to_peak_rms": 0.4141274145658503,
+            "endpoint_step": 0.022410282865166664
+          }
+        },
+        {
+          "pak": "phase_garden",
+          "images": {
+            "pilot": {
+              "size": [
+                2296,
+                1148
+              ],
+              "grid": [
+                8,
+                4
+              ],
+              "frames": 32,
+              "sha256": "d261787c4fbc665c51f05877604658516c681216602110f63f72d7320ab7c70e"
+            },
+            "enemy": {
+              "size": [
+                1240,
+                310
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "a23663491778a8ae0f6b3acbc7f8a9f737e66f1ec2a8d964663fb3dca712795b"
+            },
+            "weapon": {
+              "size": [
+                1204,
+                301
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "42a108312f8d6cc8cabfc1666808f13c3c408c5961319e694e60cbd4074e03cf"
+            },
+            "obstacles": {
+              "size": [
+                1112,
+                278
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "9da18c0a4ec068a674f417ae2004d2857012761a204434b990aa7ac6f492bb65"
+            }
+          },
+          "effects": {
+            "pilot": "e34cb0510ac97cc90d1338b776556d2668b3785efae291a28007b8bd9c4c999c",
+            "weapon": "85721acc15e096cdd6229a0f3ff968c8062fb2034a954f08ac3342f29599b2ed"
+          },
+          "music": {
+            "seconds": 30.72,
+            "minimum_cyclic_join_to_peak_rms": 0.13436511220609654,
+            "endpoint_step": 0.002719528041779995
+          }
+        },
+        {
+          "pak": "orbit_keeper",
+          "images": {
+            "pilot": {
+              "size": [
+                199,
+                205
+              ],
+              "grid": [
+                1,
+                1
+              ],
+              "frames": 1,
+              "sha256": "99bd6d11c1ba11ebcdc54d1ba2adc31ea33eca94b90a82955e57a7121c9a56ba"
+            },
+            "enemy": {
+              "size": [
+                1156,
+                289
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "ad0cfa9e1445f95308e4750d0bddcf945474a2525edadf65f8c5db4393b741ca"
+            },
+            "weapon": {
+              "size": [
+                1088,
+                272
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "1c65e2bfeb657db2aa394ac27d8c80b0b93aba3f1f2dc2b067369ed096cec1b0"
+            },
+            "obstacles": {
+              "size": [
+                1152,
+                288
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "efbe6c7e55fef71420315640df29afa5bcb9691370eb71f67d52522e5760217d"
+            }
+          },
+          "effects": {
+            "pilot": "734592801148c1d7c96063787d8cba1a5049296d48a8b9ee9be38337d759006e",
+            "weapon": "87c9eb67a45598ee2d649a12f501c95153fc8a1c084aea3c103ef9c3cc8e1efd"
+          },
+          "music": {
+            "seconds": 30.32,
+            "minimum_cyclic_join_to_peak_rms": 0.1212865803587767,
+            "endpoint_step": 0.0006596855819225311
+          }
+        },
+        {
+          "pak": "neon_breach",
+          "images": {
+            "pilot": {
+              "size": [
+                1412,
+                1412
+              ],
+              "grid": [
+                4,
+                4
+              ],
+              "frames": 16,
+              "sha256": "078052436bf312ffd087b3507f9e6252506f0d6bc15df911e42c0b3ebc9ac232"
+            },
+            "enemy": {
+              "size": [
+                1044,
+                261
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "9e90426590cab6e20093dd8029f46065d98400a32bc6a00cd88a68df6c4e88c0"
+            },
+            "weapon": {
+              "size": [
+                1072,
+                268
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "7983ef56d519621f232499b1b3fed537b048f4aace530fc15f0a44f4df321712"
+            },
+            "obstacles": {
+              "size": [
+                1084,
+                271
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "2c70ef965e84181e185ffbf6a0c75a045efa797ab3b6eabc459a0244ecbbffe4"
+            }
+          },
+          "effects": {
+            "pilot": "bac39b616ceae500032030a5ade105300ae7a1067a9a439b82d7cbdbe5442992",
+            "weapon": "631118e54b1ee9d40d8e78d9e5403c652069dff214fc0267c880c55279323dff"
+          },
+          "music": {
+            "seconds": 20.62,
+            "minimum_cyclic_join_to_peak_rms": 0.8301164644627472,
+            "endpoint_step": 0.008498139679431915,
+            "minimum_four_second_join_to_interior_rms": 0.5989263436391524
+          }
+        },
+        {
+          "pak": "maze_muncher",
+          "images": {
+            "pilot": {
+              "size": [
+                1396,
+                1396
+              ],
+              "grid": [
+                4,
+                4
+              ],
+              "frames": 16,
+              "sha256": "921495fdbf90914b06d8b7dddd9ccc0ec62d645b4de4cf0f8ac21c1bc160cf85"
+            },
+            "enemy": {
+              "size": [
+                1180,
+                295
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "77fd9bb5490efde021752607887b37aa83b68a3a95ecd6b1586f3280d62bc5c3"
+            },
+            "weapon": {
+              "size": [
+                1068,
+                267
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "28ff7ca9b63f3947a6eb8227f4afc800b693be5c81deca7bfde937e0a2e36292"
+            },
+            "obstacles": {
+              "size": [
+                968,
+                242
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "ee052583c978cb778a4bbb75dc6ebffd5c35e5ad143e48375313f082f4bc3f35"
+            }
+          },
+          "effects": {
+            "pilot": "6d56612353b76047616466f32934f22c514f04ca390ae04903515f27c396acdf",
+            "weapon": "bb17c28984f0e21787446f972b3b2168bcc4c380755df8801fac14f7fec7c06b"
+          },
+          "music": {
+            "seconds": 23.62,
+            "minimum_cyclic_join_to_peak_rms": 0.1277930773381884,
+            "endpoint_step": 0.0007991885067895055
+          }
+        },
+        {
+          "pak": "burrow_patrol",
+          "images": {
+            "pilot": {
+              "size": [
+                1264,
+                1264
+              ],
+              "grid": [
+                4,
+                4
+              ],
+              "frames": 16,
+              "sha256": "176093523c55417c77dc0218b63450a45bbc507afa804852badadffb17f642ce"
+            },
+            "enemy": {
+              "size": [
+                1228,
+                307
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "163dd1c90abe18341b2bafa6b2806b26e2be170adca560817d23a2b632a721e3"
+            },
+            "weapon": {
+              "size": [
+                1188,
+                297
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "778f1b1586c93d673c189799369392da81e07c94a5daeb4cbfbf44588d8aa4cd"
+            },
+            "obstacles": {
+              "size": [
+                1124,
+                281
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "9242aef1b7269d12bc23a3fcdca17ea9766f81100bc1a95401b52f57efdddbe2"
+            }
+          },
+          "effects": {
+            "pilot": "d5d9d5e40a7676944be5f61d1ebe7d2a0c82bacb8afc3bbbdaa48041e8bef271",
+            "weapon": "b8605815320b7c7277a3bc4a8d289f1173e954963a409537bc52f1ee86aef125"
+          },
+          "music": {
+            "seconds": 19.32,
+            "minimum_cyclic_join_to_peak_rms": 0.5238491519488774,
+            "endpoint_step": 0.021756969392299652
+          }
+        },
+        {
+          "pak": "vector_coil",
+          "images": {
+            "pilot": {
+              "size": [
+                1412,
+                1412
+              ],
+              "grid": [
+                4,
+                4
+              ],
+              "frames": 16,
+              "sha256": "05850c9c11233516b17f8a50e55df2959b5c17556ea09ce298dc0895a86a6cd4"
+            },
+            "enemy": {
+              "size": [
+                1148,
+                287
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "43d651c7c6ea996b4b21f8c4ec33583c780a321dd3e2934df48925b0525fb8ad"
+            },
+            "weapon": {
+              "size": [
+                1112,
+                278
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "60cd659382d20fbe56c9e3f169db0ac19829c7dcf0993e3934234bc7a12d05a7"
+            },
+            "obstacles": {
+              "size": [
+                1068,
+                267
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "3e9873de2cccaee06dacabc5db210ff1b1544ad114028cac47c3865fc68b461e"
+            }
+          },
+          "effects": {
+            "pilot": "f1a36f145239cfeef8a11084ccc0051408ab9e9c4cc41f5a038e725576b46602",
+            "weapon": "f0aa881343241e6dbf73c800d2b860c2a7ba62b5451cc0e5225d8f076d0c30aa"
+          },
+          "music": {
+            "seconds": 23.22,
+            "minimum_cyclic_join_to_peak_rms": 0.08190732946739983,
+            "endpoint_step": 0.0005436529900180176
+          }
+        },
+        {
+          "pak": "star_bastion",
+          "images": {
+            "pilot": {
+              "size": [
+                1188,
+                297
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "25173da6a2dfe3e8f8b818ffbfa880f8e744b250d219cb5498e74971c5f6f980"
+            },
+            "enemy": {
+              "size": [
+                1204,
+                301
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "75d146722c8da5128d8010a9f7a55db7f6e310f9006d6485bf79d14b201fc699"
+            },
+            "weapon": {
+              "size": [
+                1128,
+                282
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "85193cfd5447da2c5a349350724d415879ecaec37bbed0b741293a11cce836ff"
+            },
+            "obstacles": {
+              "size": [
+                1116,
+                279
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "1d05c9762e515cb420960b4dee6114d903fdf3c34e96a12a8488a67b6bf3dcc7"
+            }
+          },
+          "effects": {
+            "pilot": "94a2d0bbb5ba9ea2e4450f28d347973e3d531b2b018c0a27b88a84917ba5717e",
+            "weapon": "bd03709c09ae90c425b953e0c8ded0c65cfca4c70eb571ef9c67f8a9b4e397de"
+          },
+          "music": {
+            "seconds": 22.22,
+            "minimum_cyclic_join_to_peak_rms": 0.11325803413252043,
+            "endpoint_step": 0.03617201745510101
+          }
+        },
+        {
+          "pak": "tide_hopper",
+          "images": {
+            "pilot": {
+              "size": [
+                1428,
+                1428
+              ],
+              "grid": [
+                4,
+                4
+              ],
+              "frames": 16,
+              "sha256": "498dc7b9f3d99c575ee6bddc7c72bc6dafc6477dae099082f1e00b9cdf411515"
+            },
+            "enemy": {
+              "size": [
+                1252,
+                313
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "78cca4fde7afc21fc04249feb5cbef1ed8304fb894e755641e31d8961785650f"
+            },
+            "weapon": {
+              "size": [
+                1160,
+                290
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "b81585f758406853eb5d5a40718ac2e5dd3ae9ad36791ef194724487223e6d45"
+            },
+            "obstacles": {
+              "size": [
+                1036,
+                259
+              ],
+              "grid": [
+                4,
+                1
+              ],
+              "frames": 4,
+              "sha256": "0e38f1a6791e5cb0613749e98263e5f9a65283f3e0f6b6d7eae29be06d2ce18d"
+            }
+          },
+          "effects": {
+            "pilot": "b648ab668d4242ad7fb0a31480a80facfd98db597913d7a1d8ad3675ee2f9936",
+            "weapon": "44b6f11ee0926ebe94466a25463bd2ca2eade10d95caf056a7b6e6bfe8aa5621"
+          },
+          "music": {
+            "seconds": 23.12,
+            "minimum_cyclic_join_to_peak_rms": 0.2490364607754473,
+            "endpoint_step": 0.000324491411447525
+          }
+        }
+      ],
+      "role_sheets": 48,
+      "animated_role_sheets": 45,
+      "frames": 303,
+      "unique_special_effects": 12,
+      "unique_attack_effects": 12,
+      "all_encoded_music_joins_above_energy_floor": true,
+      "limit": "Energy and decoding checks do not establish subjective musical quality"
+    }
+  },
+  "presentation": {
+    "inspected": [
+      "output/arcade-feedback/solo/gallery.png",
+      "output/arcade-feedback/final-neon/gallery.png",
+      "output/arcade-feedback/frontier/gallery.png"
+    ],
+    "assertions": "Actual read-only renders verify Sky alpha feet and all four Neon edge extents; pilot tick and dropped-blade arrow draw calls are absent."
+  },
+  "distribution": {
+    "checks": 25,
+    "source_and_frozen_pickups": 18,
+    "source_and_frozen_native_controller_steps": 3155,
+    "fresh_wheel": {
+      "isolated_module": "E:\\GitHub\\SystemPanic\\output\\feedback-installed\\Lib\\site-packages\\system_panic\\__init__.py",
+      "complete_paks": 18,
+      "frames_per_pak": 240,
+      "all_rendered": true
+    },
+    "packaging": {
+      "source_pak_files": 493,
+      "windows_matches_source": true,
+      "wheel_matches_source": true,
+      "zip_matches_source": true,
+      "zip_crc": true,
+      "executable_sha256": "fc611e7e015009d82e3545974ae718c529acab8bbf7bb95af57dd84ed14ec9bd",
+      "wheel_sha256": "ed753e2437f7e0bfc0a46ec35519dcf9ebf0ce5b4837c3d3b80df64044595463",
+      "zip_sha256": "b772564e0c9fe11bbbff005590dbca87e2ed9998740c5f9145d01da67c10284c"
+    }
+  },
+  "limitations": [
+    "Thirty final bot samples are bounded balance observations, not human feel approval. Vector standard seed 24 dies after two clears; Bloom relaxed/standard seed 24 die after five/three.",
+    "The full gameplay matrix samples twenty fixed steps; six-second replacement tests are separate. Ineffective mixed combinations remain allowed.",
+    "Physical controller button operation and speaker listening remain outside the automated evidence."
+  ]
+}

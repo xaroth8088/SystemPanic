@@ -37,7 +37,8 @@ def contains_body(points, body):
 
 
 class TailImage(EffectBase):
-    def __init__(self):
+    def __init__(self,art=None):
+        self.art=art
         self.points = []
         self.captured = []
         self.flash = 0.
@@ -60,3 +61,7 @@ class TailImage(EffectBase):
             pygame.draw.lines(surface, tuple(int(c * .3) for c in color), False, self.points, 7)
             pygame.draw.lines(surface, color, False, self.points, 2)
             pygame.draw.circle(surface, color, self.points[0], 5, 1)
+            if self.art is not None:
+                image=graphics.render_sprite(self.art.frame(int(world.time*8)%4,columns=4),24,color)
+                surface.blit(image,image.get_rect(center=self.points[-1]))
+            pass

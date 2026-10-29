@@ -18,7 +18,7 @@ class VoidDrifterEnemy(EnemyBase):
         self.creatures = self.load_asset('enemy_sheet.png')
 
     def sprite(self, world, entity=None):
-        return self.creatures
+        return self.creatures.frame(int((world.time if world else 0)*7+(entity.id if entity else 0))%4,columns=4)
 
     def spawn_position(self, world):
         return spawn_position(world)

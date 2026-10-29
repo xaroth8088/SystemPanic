@@ -18,8 +18,18 @@ class BurrowPatrolPilot(PilotBase):
         self._demo_kills = -1
         self._demo_progress = 0.
 
-    def sprite(self, world, entity=None):
-        return self.art
+    def sprite(self,world,entity=None):
+        actor=entity if entity is not None else (world.player if world is not None else None)
+        angle=actor.angle if actor is not None else 0.
+        facing=int((angle+math.tau/8)%math.tau/(math.tau/4))
+        phase=int((world.time if world is not None else 0)*8)%4
+        return self.art.frame(phase*4+facing,columns=4,rows=4)
+
+    def sprite_angle(self,world,entity):return 0.
+
+    def sprite_flip_x(self,world,entity):return False
+
+
 
     def create(self, world, position):
         return Pilot(pos=Vec(position), health=100, max_health=100, radius=11, angle=-math.pi / 2)
@@ -76,10 +86,15 @@ class BurrowPatrolPilot(PilotBase):
                 if circle_rect(p.pos + direction * 22,16,wall.rect): world.hit_cover(wall, 135 * dt)
         world.move_body(p,p.vel * dt,p.radius)
 
-    def sprite_angle(self, world, entity):
-        return -math.degrees(entity.angle)
 
-    def demo_controls(self, world):
+    def demo_controls(self,world):
+        from system_panic.model import Controls
+        control=self._demo_controls(world) or Controls()
+        control.x=int(control.x>.2)-int(control.x<-.2)
+        control.y=int(control.y>.2)-int(control.y<-.2)
+        return control
+
+    def _demo_controls(self, world):
         if not world.enemies: return Controls(fire=True)
         p=world.player
         if world.kills!=self._demo_kills:

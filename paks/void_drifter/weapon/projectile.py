@@ -6,12 +6,13 @@ from system_panic.pak_api import ProjectileBase
 
 
 class Lance(ProjectileBase):
-    def __init__(self, world, weapon, direction):
-        super().__init__(world.player.pos + direction * 19, direction * (700 + min(240,20*world.powerups_collected)), 4)
+    def __init__(self, world, weapon, direction, charge=1.15):
+        strength=max(0.,min(1.,(charge-.18)/.97))
+        super().__init__(world.player.pos + direction * 19, direction * (580+330*strength+min(160,12*world.powerups_collected))+world.player.vel*.2,3+3*strength)
         self._weapon = weapon
         self._remaining = 3.
-        self._damage = 42 + 9 * world.powerups_collected
-        self._hits_left = 3 + world.powerups_collected // 2
+        self._damage = 18+58*strength+7*world.powerups_collected
+        self._hits_left = 1+round(3*strength)+world.powerups_collected//2
         self._hit_ids = set()
 
     def update(self, world, dt):
@@ -38,9 +39,8 @@ class Lance(ProjectileBase):
                 continue
             world.hit_enemy(enemy, self._damage)
             self._hit_ids.add(enemy.id)
-            if self._hits_left > 0:
-                self._hits_left -= 1
-            else:
+            self._hits_left-=1
+            if self._hits_left<=0:
                 self.alive = False
                 return
 

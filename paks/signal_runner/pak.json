@@ -7,11 +7,24 @@
     224,
     244
   ],
-  "description": "Dash through permanent partitions. Collect magnetic cells to strengthen pulse fire.",
-  "version": "1.2.0",
+  "description": "Burst pulse fire, venting and locked leech lunges.",
+  "version": "2.0.0",
   "order": 0,
   "authoring": {
-    "atlas_column": 0
+    "animation_grid": [
+      4,
+      4
+    ],
+    "sheet_source": "assets/images/signal_runner-renewal-source.png",
+    "component_sources": {
+      "pilot": "assets/images/signal_runner-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ]
+    }
   },
   "api_version": 4,
   "components": [

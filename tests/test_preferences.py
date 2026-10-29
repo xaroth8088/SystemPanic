@@ -12,6 +12,16 @@ TEMP_ROOT.mkdir(parents=True, exist_ok=True)
 
 
 class PreferenceTests(unittest.TestCase):
+    def test_removed_shuffle_style_is_ignored_and_disappears_on_save(self):
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as temp:
+            store=PreferenceStore(Path(temp))
+            store.path.write_text(json.dumps({"mix_mode":"coherent", "music":.3,
+                                              "shuffle_channels":["weapon"], "shuffle_seconds":12}))
+            prefs=store.load()
+            self.assertFalse(hasattr(prefs,"mix_mode"))
+            self.assertEqual((prefs.music,prefs.shuffle_channels,prefs.shuffle_seconds),(.3,["weapon"],12))
+            self.assertTrue(store.save(prefs))
+            self.assertNotIn("mix_mode",json.loads(store.path.read_text()))
     def test_output_resolution_is_validated_and_persists_without_changing_old_profiles(self):
         self.assertEqual(Preferences.from_dict({}).render_resolution,"auto")
         for value in RENDER_RESOLUTIONS:
@@ -43,7 +53,7 @@ class PreferenceTests(unittest.TestCase):
         self.assertFalse(prefs.fullscreen)
         self.assertEqual(prefs.high_score, 0)
         self.assertEqual(prefs.shuffle_channels, [])
-        self.assertEqual(prefs.mix_mode, "remix")
+        self.assertFalse(hasattr(prefs, "mix_mode"))
 
     def test_atomic_round_trip_and_corruption_recovery(self):
         with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as temp:

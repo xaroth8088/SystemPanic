@@ -1,14 +1,24 @@
 # Design memory
 
+## Pickup chimes (2026-10-26)
+All eighteen shipped powerups now chime once on successful in-game collection, using a captured weapon-local pickup.ogg handle. Drops keep their originating sound after weapon/level changes. Playback follows existing effects volume/mute and unavailable-device behavior. No engine/API rule changed. One original offline Stable Audio 3 source was mastered to 0.45s and copied into eighteen independently copyable weapon folders; provenance is recorded honestly as one generation plus local derivatives. See the pickup_chimes verification snapshot for current package hashes and test results; the renewal section below describes its earlier release checkpoint.
+
+## Initial-twelve renewal (complete, 2026-10-26)
+The first twelve now have distinct combat refinements, twelve fresh original source atlases, 48 local four-frame role sheets (192 frames), animated pickups and separate scenery. Twelve new local effects replace the original six's shared effects; all twelve have distinct attack/special audio. Eleven music loops were remastered with explicit source regions; Sky Forge's healthy master is retained. No renewal-specific gameplay moved into the host. See [per-Pak identities and outcomes](pak-renewal.json) and [the current verification snapshot](verification.json).
+
+Verification covers 219 unique test methods in two commands: 218 standard regressions and the separate unmodified matrix method including all 104,976 gameplay mixes (twenty fixed steps each). Longer compatibility samples cover all 144 renewed pilot/weapon pairs and 512 cross-Pak cases/swaps; all 324 presentation pairs pass separately. All twelve load alone and as six complementary partials. Procedural checks cover 540 cases through level 101, 15,570 safe placements and 114 reachable Sky routes. The 72 twelve-level balance samples record 55 clears, 17 defeats and no stalls; each Pak reaches thirteen in at least one sample. These are ordinary digital-input bots, not a claim of final subjective human balance.
+
+Fresh Windows folder, ZIP and wheel contain the same 471 Pak files, byte-checked with CRC/hashes. All 25 frozen distribution checks, source/frozen collectible retention and native SDL input checks pass. The isolated wheel renders all eighteen Paks. Newer-six protection repeats 36 eight-level samples: 31 clears, five defeats and no stalls. Physical speaker listening and manual hardware button operation remain outside the automated evidence.
+
 ## Identity
 System Panic is about adapting when familiar arcade rules change in an ongoing battle. A brief corruption transition communicates the shuffle. Coherent Paks establish learnable rules; component remix creates surprising combinations. Prefer readable chaos, generous invulnerability on swaps, and understandable controls.
 
 Flow clarification (2026-10-24): periodic randomization uses only a quarter-second visual glitch and automatically resumes. Level completion has a separate one-second "level cleared" message before the next level. Do not append a readiness screen or glitch to that level change; the initial new-run introduction is separate.
 
 ## Launch scope
-Twelve Paks share arena coordinates, damage, rewards and level objectives, but own distinct locomotion, weapon, enemy behavior and arena layout. Progression is always endless: level one starts with one enemy, level two with two, and so on until defeat. No scripted elite waves, finale, finite-run toggle or level cap. The short level-cleared message, score, death and restart remain.
+Eighteen Paks share arena coordinates, damage, rewards and level objectives, but own distinct locomotion, weapon, enemy behavior and arena layout. Progression is always endless: level one starts with one enemy, level two with two, and so on until defeat. No scripted elite waves, finale, finite-run toggle or level cap. The short level-cleared message, score, death and restart remain.
 
-Content is dynamically loaded from external folders. All twelve shipped Paks use the same manifest API as added Paks. Complete Paks support solo/coherent play; partial Paks supply any subset of six components for remix. Asset-only partials may inherit installed behavior. The enabled pool needs all six channels, but can be made entirely from complementary partial Paks. See [the format guide](paks.md).
+Content is dynamically loaded from external folders. All eighteen shipped Paks use the same manifest API as added Paks. Complete Paks support solo/coherent play; partial Paks supply any subset of six components for remix. Asset-only partials may inherit installed behavior. The enabled pool needs all six channels, but can be made entirely from complementary partial Paks. See [the format guide](paks.md).
 
 ## Architectural choices
 - New implementation; the removed historical source and assets remain in Git history. See [prototype history and credits](history.md).
@@ -39,3 +49,45 @@ Latest refinement: every tenth enemy destroyed drops a weapon-local collectible.
 Terrain now includes permanent Signal/Phase/Sky geometry, connected jump arrangements, projectile-transparent oval/chicane racetracks, gravitational wells and crossing comets. Vector closed tails carve solid interiors with walkable borders and enemy-only live-line collisions; the weapon owns their lifetime. Maze normal attacks are forward dash/contact knockbacks, Burrow has finite reach, Orbit uses ring steps and offscreen returning glaives, Neon ignores vertical input, and Star shots expire at bounds. Human balance remains separate from bounded QA samples.
 
 Expansion audio repair: all twelve short launch/special effects were regenerated locally after reproducing faulty fractional-duration conditioning in the pinned LiteRT backend. The generator now requests whole seconds and the mastering tool trims the final effects. Existing music/common effects remain unchanged. Provenance and quality-regression evidence live in [asset generation memory](../tools/assetforge/AGENTS.md).
+
+
+## Original-mechanics expansion (2026-10-26)
+Six new complete external Paks extend the library to eighteen. Pulse Abbey rewards timed charge releases; Scrap Ballet uses momentum and orbiting/slung salvage; Glasswake uses heat-limited reflected rays; Bloom Siege grows and cascades planted traps; Echo Vault repeats recorded attacks and rewinds position; Tidal Choir combines buoyancy, ballast and entraining pressure bubbles. Their six-role code, procedural geometry, animations, sounds and powerups remain inside their Pak folders. The later resource refinement adds optional generic callbacks; Pak-specific resources and rules remain local.
+
+The new assets are original built-in imagegen atlases and offline local Stable Audio 3 generations, with measured extraction rectangles, prompts/seeds and hashes in the existing provenance pipeline. Completion/quality claims must use the newest verification snapshot; bounded demo runs are not human balance approval.
+
+## Resource and charge refinement (2026-10-26)
+Pulse Abbey now requires a real 0.45s charge and recovery; Scrap Ballet collects physical drifting ammo, recovers spent throws and creates debris at enemy deaths. Glasswake beams triple damage per reflection, enemy bolts ricochet, and a remastered source region removes the quiet music outro. Bloom Siege owns a finite watering can and weapon-local nectar wells; only spending water grows plants, and pickups enlarge can capacity. Tidal Choir's sub-30px bubbles cannot pull or hurt enemies regardless of upgrades.
+
+Two generic optional API 4 hooks support once-only destruction notification and weapon QA-input refinement. Combat/resource rules and geometry stay inside independently copied role folders. See [Pak authoring](paks.md), the five Pak memories, and [verification](../tests/AGENTS.md). Fresh evidence is under `resource_charge_refinement` in verification.json; older twelve-level samples predate these rules. All relaxed eight-level samples pass; two standard Bloom samples end in defeat after four/seven clears. Windows/wheel/ZIP have been refreshed and checked.
+
+## Range, pool and rebound refinement (2026-10-26)
+Pulse Abbey now starts with 70-180px charged reach, gains 20px range per pickup (up to 240px bonus), and deals one eighth of gold damage offbeat. Bloom's pool routes change in both axes each level; a pilot must be fully outside the pool before sowing, with a local readout cue. Tidal bubbles rebound from screen edges with 65% retained velocity, then burst on their original fuse. All changes remain inside the owning weapon folders; engine code is unchanged for this refinement.
+
+Latest evidence is `range_pool_rebound_refinement` in verification.json: 183 tests and 25 packaged checks pass. Fresh eight-level bot samples include five Bloom/Tidal defeats and no stalls; see the verification memory for exact seeds and limits. Rendered scenes were inspected, and Windows folder/wheel/ZIP Pak files match source.
+
+## Playtest refinement (2026-10-26)
+Latest work replaces Sky’s grenade with a stab/charged throw/retrieve sword; softens Void gravity; keeps Iron heading on wall hits while actual speed powers plasma; hides Phase reach cues; removes Neon’s faded outro; adds a procedural wrap maze, reusable Vector capture edges, immediate Star volleys and cellular bunkers, and shared-grid Tide traffic with richer canals. Sixteen pilot sheets use only useful facings, including two for Sky. Gameplay remains role-local; no content rule or facing registry moved into the host. See [the detailed ledger](playtest-refinement.json) for fresh verification and limits; earlier renewal and pickup snapshots remain historical.
+
+## Arcade feedback (2026-10-26)
+
+Latest feedback restores three rotating pilot sprites, removes in-arena control prose/facing clutter, aligns Sky feet and Neon's wider paddle, changes Sky melee to an overhead push, randomizes short maze exits, removes Burrow windup, raises Vector danger with paused random darts, adds spread Star volleys, removes Tide movement protection and makes Bloom maturity damage convex with smaller effects. Orbit cover is impervious. The only host additions are general drawing callbacks and a body contact-shape query. See [the current evidence](arcade-feedback.json).
+
+## Moving-mirror navigation performance (2026-10-26)
+
+BUGGY's severe slowdown came from Maze enemy navigation rebuilding a sampled grid for every enemy whenever Glasswake mirrors moved. The Pak-local fix indexes exact rectangle probes, shares filter-compatible snapshots and bounds cache history. Saved providers/controls/mechanics are retained. Source/frozen measurements and equivalence evidence are recorded in [the performance report](buggy-performance.json).
+
+## Combination performance guard (2026-10-28)
+The shell detects active gameplay below 10 FPS for more than one consecutive second, pauses, lists the six providers and persistently excludes that exact combination. Normal runs can recover through a safe reshuffle while preserving progress, or return home; static Remix, solo and exhausted selections return home. Preferences → Flagged Combinations shows measurements/components and can re-enable a record. Favorites remain editable. See [runtime memory](../src/system_panic/AGENTS.md) for attribution, lock/exhaustion and disk-error semantics, [verification memory](../tests/AGENTS.md) for scope/limitations, and [the evidence report](combination-performance.json) for fresh results and rebuilt artifact hashes.
+
+## Quiet presentation, facing repair and live-tail routing (2026-10-28)
+Removed advance attack markers except Phase Garden's teleport destination, fixed top-left weapon meters and the non-setting Endless progression preferences block. Attack rules/timing and on-pilot feedback remain. Maze Muncher's full facing sheet is re-exported from measured uneven source rows, fixing truncated downward frames without new generation. The reported Iron/Maze/Vector/Tide combination now uses explicit collision snapshots and exact indexed segment/polygon/boundary queries, preserving paired simulation state. See visual-cleanup.json for current tests, timings and release hashes; flavor-text.json is the unchanged copy inventory for the user's review.
+
+## Selected UI copy and Void effects (2026-10-28)
+Removed the user's selected library/window/preferences/Remix/help/credits copy. The main HUD now shows LEVEL nn. Shuffle style and mix_mode are removed; old profiles ignore/drop the field and main-game shuffles always mix eligible enabled components subject to locks. Saved Remix cards display all six providers, with missing/flagged status and four-card pagination. Void's well and comet now use cached procedural vector effects with unchanged physics/RNG and reduced-motion support. See menu-refinement.json for current evidence and hashes, and flavor-text.json for the remaining copy plus historical removal choices.
+
+## Defeat and low-hull feedback (2026-10-28)
+Burrow Patrol's fixed pressure HUD bar is removed while its actual tether/inflation remain. Defeat now shows a button-free GAME OVER transition for at least 1.3s with a newly generated arcade sound, then waits for .3s of neutral controls before displaying results. Gameplay freezes and visual effects decay. Below 20% hull, only the arena linearly desaturates to grayscale at zero. Echo Vault's delayed time bursts have a filled active footprint, shock ring and caster connection; flank blinks leave post-teleport residue. Advance attack warnings remain removed. Deleted-copy gaps are closed in library, preferences, help, credits and Remix builder layouts. See run-feedback.json for 300 tests, eighteen solo samples, 25 frozen checks, native controller verification and current artifact hashes.
+
+## Tidal Choir ink clarity (2026-10-28)
+The enemy's old red circle/X is now a filled violet ink cloud with lobes and drifting flecks. Charging enemies show an actual-motion wake, with matching ink droplets at ink-enabled levels. Windup/target warnings remain absent; .6s hidden delay, .8s damage window, 55px radius and AI/damage are unchanged. Both render paths preserve gameplay/RNG, with steady texture under reduced motion. The existing host loads the updated external Pak without a rebuild. See tidal-ink.json for 303 standard tests, source/frozen three-seed seven-level samples, 25 packaged checks and refreshed folder/wheel/ZIP hashes.

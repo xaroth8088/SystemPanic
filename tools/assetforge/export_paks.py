@@ -20,6 +20,8 @@ def main():
     records = []
     for manifest in sorted((ROOT / "paks").glob("*/pak.json")):
         data = json.loads(manifest.read_text(encoding="utf-8"))
+        if data.get('authoring',{}).get('animation_grid') == [4,4]:
+            continue
         column = data.get("authoring", {}).get("atlas_column")
         if column is None:
             continue

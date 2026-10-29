@@ -1,5 +1,6 @@
 """Controller polling, menu reachability and input lifecycle without physical hardware."""
 import math
+import importlib
 from dataclasses import replace
 import os
 from pathlib import Path
@@ -122,13 +123,14 @@ class GamepadTests(unittest.TestCase):
         self.assertEqual(self.app.route, "game")
         self.app.world.phase = "active"
         self.app.world.cover = []
+        Pulse=importlib.import_module(type(self.app.world.component('weapon')).__module__).Pulse
         for _ in range(30): self.tick()
-        self.assertFalse(self.app.world.projectiles)
+        self.assertFalse(any(isinstance(s,Pulse) for s in self.app.world.projectiles))
         self.pad.buttons.clear()
         self.tick()
         self.pad.buttons = {A}
         self.tick()
-        self.assertTrue(self.app.world.projectiles)
+        self.assertTrue(any(isinstance(s,Pulse) for s in self.app.world.projectiles))
         self.pad.buttons.clear()
         self.tick()
         self.pad.buttons = {START}

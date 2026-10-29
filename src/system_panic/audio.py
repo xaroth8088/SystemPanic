@@ -22,7 +22,7 @@ class Audio:
             if not pygame.mixer.get_init():
                 pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
             pygame.mixer.set_num_channels(24)
-            for name in ("shot", "impact", "shuffle", "hurt", "clear", "select"):
+            for name in ("shot", "impact", "shuffle", "hurt", "clear", "select", "game_over"):
                 path = self.find(name)
                 if path:
                     self.sounds[name] = pygame.mixer.Sound(path)
@@ -84,6 +84,11 @@ class Audio:
                 if self.available:
                     pygame.mixer.Channel(index).stop()
                 del self.voices[index]
+
+    def stop_effects(self):
+        if self.available:
+            pygame.mixer.stop()
+        self.voices.clear()
 
     def play(self, name):
         if not self.available or name not in self.sounds:

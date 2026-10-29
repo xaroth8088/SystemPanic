@@ -149,9 +149,7 @@ class Graphics:
         for enemy in world.enemies:
             if enemy.health <= 0:
                 continue
-            size = int(enemy.radius * 3.4)
-            image = self.component_sprite(world, "enemy", enemy, size, rotate=not reduced_motion)
-            surface.blit(image, image.get_rect(center=enemy.pos))
+            world.component('enemy').draw(self,surface,world,enemy,reduced_motion=reduced_motion)
             if enemy.health < enemy.max_health:
                 bar = pygame.Rect(enemy.pos.x - 16, enemy.pos.y - enemy.radius - 10, 32, 3)
                 pygame.draw.rect(surface, (40, 44, 54), bar)
@@ -167,13 +165,7 @@ class Graphics:
                 effect.draw(self, surface, world)
         p = world.player
         if world.phase != "dead":
-            if p.invulnerable > 0:
-                pygame.draw.circle(surface, world.pak("pilot").color, p.pos, 20, 1)
-            image = self.component_sprite(world, "pilot", p, 44)
-            if world.phase != "active" or world.transition > 0 or p.invulnerable <= 0 or int(world.time * 12) % 2 or reduced_motion:
-                surface.blit(image, image.get_rect(center=p.pos))
-            pygame.draw.line(surface, world.pak("pilot").color, p.pos + unit_vec(p.angle) * 19,
-                             p.pos + unit_vec(p.angle) * 24, 2)
+            world.component('pilot').draw(self,surface,world,reduced_motion=reduced_motion)
         for particle in world.particles:
             color = tuple(int(c * max(0, particle.life / particle.maximum)) for c in particle.color)
             pygame.draw.circle(surface, color, particle.pos, max(1, int(particle.size * particle.life / particle.maximum)))

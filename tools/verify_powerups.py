@@ -30,7 +30,8 @@ def main():
             app.quit()
             pygame.quit()
         (output / "source.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    print("Source: all twelve tenth-kill drops, pickups, rendering and retained upgrades passed.", flush=True)
+    source_paks = {run['pak'] for run in report['runs']}
+    print(f"Source: all {len(source_paks)} tenth-kill drops, pickups, rendering and retained upgrades passed.", flush=True)
     if args.frozen:
         with tempfile.TemporaryDirectory(dir=output) as temporary:
             temporary = Path(temporary)
@@ -66,8 +67,8 @@ App.run = _verify_powerups
                 error = output / "frozen-error.log"
                 raise AssertionError(error.read_text(encoding="utf-8") if error.exists() else result.stderr.decode(errors="replace"))
             report = json.loads((output / "frozen.json").read_text(encoding="utf-8"))
-            assert report["all_paks"] == 12
-        print("Frozen: all twelve collectible and upgrade-persistence checks passed.", flush=True)
+            assert {run['pak'] for run in report['runs']} == source_paks
+        print(f"Frozen: all {len(source_paks)} collectible and upgrade-persistence checks passed.", flush=True)
 
 
 if __name__ == "__main__":

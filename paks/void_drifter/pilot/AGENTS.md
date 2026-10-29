@@ -5,3 +5,9 @@ Read [this Pak's memory](../AGENTS.md) and [public ABCs](../../../src/system_pan
 Load local handles in `init()`; their attribute names are private choices. Instances belong to one run. Use explicit lifecycle callbacks for setup/cleanup. Rendering cannot advance gameplay. The host schedules projectile/effect callbacks once; do not also advance them from the component update. Local helper modules and assets can be copied as partial components. Preserve asset provenance.
 
 on_level_start owns the 15-point between-level heal and 2-second protection; on_shuffle owns 1.5-second protection; on_death owns its burst. demo_controls includes the no-enemies intermission case. No host combat policy supplies these defaults.
+
+Facing refinement: the local pilot sheet is 8 columns × 4 animation poses, selected by this role with zero in-plane rotation or mirroring. Columns follow E/SE/S/SW/W/NW/N/NE. Original built-in imagegen source: assets/images/void_drifter-facing-source.png. The exact input snapshot, prompts and measured lossless extraction are registered in the asset ledgers. Only supported movement facings were generated; controls and physics are unchanged by art selection. Pilot QA emits only eight digital directions and ordinary held/released buttons; live movement keeps the same Controls contract.
+
+## Arcade feedback (2026-10-26)
+
+The pilot now uses the original single-pose crop from assets/images/sprites-source.png, restored byte-for-byte with its original provenance. sprite returns the raw ImageAsset; sprite_angle rotates it by -degrees(body.angle)-90. Movement, abilities, acceleration, gravity and weapon formulas were retained. authoring.component_grids.pilot=[1,1] and pilot_rendering=rotated_single preserve this choice through later asset exports.

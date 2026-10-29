@@ -31,8 +31,16 @@ class VoidDrifterPilot(PilotBase):
     def on_death(self, world):
         world.burst(world.player.pos, world.pak("pilot").color, 35)
 
-    def sprite(self, world, entity=None):
-        return self.spritesheet
+    def sprite(self,world,entity=None):return self.spritesheet
+
+    def sprite_angle(self,world,entity):return -math.degrees(entity.angle)-90.
+
+    def sprite_flip_x(self,world,entity):return False
+
+
+
+
+
 
     def update(self, world, dt, control):
         self._special_remaining = max(0., self._special_remaining - dt)
@@ -63,7 +71,14 @@ class VoidDrifterPilot(PilotBase):
         if motion.blocked_y:
             p.vel.y = 0
 
-    def demo_controls(self, world):
+    def demo_controls(self,world):
+        from system_panic.model import Controls
+        control=self._demo_controls(world) or Controls()
+        control.x=int(control.x>.2)-int(control.x<-.2)
+        control.y=int(control.y>.2)-int(control.y<-.2)
+        return control
+
+    def _demo_controls(self, world):
         if not world.enemies:
             return Controls(fire=True)
         p = world.player
@@ -75,8 +90,6 @@ class VoidDrifterPilot(PilotBase):
         diff = (angle - p.angle + math.pi) % math.tau - math.pi
         return Controls(max(-1, min(1, diff * 2)), -1 if delta.length() > 180 else .3, True, special)
 
-    def sprite_angle(self, world, entity):
-        return -math.degrees(entity.angle) - 90
 
     def on_contact(self, world, enemy, dt):
         if self._dash_remaining > 0:

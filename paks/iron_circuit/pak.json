@@ -7,11 +7,25 @@
     184,
     77
   ],
-  "description": "Drive oval and complex tracks. Guardrails block bodies but let shots through. Rolling cells boost scattershot.",
-  "version": "1.2.0",
+  "description": "Drive fast to strengthen plasma; bank it into turret firing and recovery windows.",
+  "version": "2.0.0",
   "order": 2,
   "authoring": {
-    "atlas_column": 2
+    "animation_grid": [
+      4,
+      4
+    ],
+    "sheet_source": "assets/images/iron_circuit-renewal-source.png",
+    "component_sources": {
+      "pilot": "assets/images/sprites-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        1,
+        1
+      ]
+    },
+    "pilot_rendering": "rotated_single"
   },
   "api_version": 4,
   "components": [

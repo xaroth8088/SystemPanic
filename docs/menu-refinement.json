@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-28",
+  "standard": {
+    "tests": 293,
+    "seconds": 111.341,
+    "passed": true
+  },
+  "solo_smoke": {
+    "paks": 18,
+    "cleared_levels": 3,
+    "continued_at": 4
+  },
+  "source_menu_and_effects": {
+    "saved_components_listed": true,
+    "missing_and_flagged_components_listed": true,
+    "saved_cards_per_page": 4,
+    "pagination": true,
+    "obsolete_style_absent": true,
+    "draw_preserves_simulation": true,
+    "reduced_motion_static": true,
+    "effect_draw_ms_max": 2.800700021907687,
+    "warm_effect_draw_ms_mean": 0.13017777948536807
+  },
+  "frozen_menu_and_effects": {
+    "saved_components_listed": true,
+    "missing_and_flagged_components_listed": true,
+    "saved_cards_per_page": 4,
+    "pagination": true,
+    "obsolete_style_absent": true,
+    "draw_preserves_simulation": true,
+    "reduced_motion_static": true,
+    "effect_draw_ms_max": 2.771099971141666,
+    "warm_effect_draw_ms_mean": 0.13814999773684475
+  },
+  "frozen_checks": 25,
+  "packaging": {
+    "source_pak_files": 485,
+    "windows_matches_source": true,
+    "wheel_matches_source": true,
+    "zip_matches_source": true,
+    "zip_crc": true,
+    "executable_sha256": "b57eb745eb71a3e058640dabc08d4cdcf0f8cc67a295192f2575cd9faa64139e",
+    "wheel_sha256": "4a2e700542834b5bdc6bddc2e19ad337f37f77722b1ccdf7d964fa4e8948569a",
+    "zip_sha256": "b40acfc9d1db4c4eaf814964ff476564fe77390e47bae862ea84392f76810fe2"
+  },
+  "changed_host_modules_match_wheel": [
+    "app.py",
+    "preferences.py",
+    "world.py",
+    "combinations.py",
+    "remix_ui.py"
+  ],
+  "removed_copy_fragments": [
+    "PAKS DISCOVERED.",
+    "One unstable system.",
+    "The rules will change. Keep moving.",
+    "Tune the instability.",
+    "Saved locally. Gameplay changes apply to the next run.",
+    "A protected transition gives you time to read the new rules.",
+    "Paks tune attacks and movement to this setting.",
+    "Turn Paks on or off in the library. In component remix, unchecked channels keep their starting Pak. Coherent mode swaps the whole Pak.",
+    "OFFLINE / ORIGINAL AI ASSETS",
+    "Endless levels / fresh terrain each level / current challenge setting",
+    "Choose six components. Your Paks stay fixed for the entire run.",
+    "CHOOSE YOUR MIX",
+    "PARTIAL PAKS JOIN THE MIX",
+    "Watch UP in the HUD.",
+    "No artwork from the historical prototypes is used.",
+    "All gameplay and playback work offline. Asset creation is a separate development workflow.",
+    "MAKE A PAK",
+    "The project wiki starts at AGENTS.md. Add a complete Pak, preserve the common contracts, then test it alone and in the mix."
+  ],
+  "mode_migration": "mix_mode is absent; legacy values are ignored on load and removed on save. Main game uses per-channel enabled providers and locks.",
+  "saved_remixes": "Four cards per page. All six labeled providers remain visible for ordinary, missing and flagged combinations.",
+  "void_effects": "Cached procedural accretion disk, horizon, bent light, dust, tapered ion plumes and faceted comet heads. No simulation rules or asset files changed.",
+  "inspected": [
+    "library",
+    "preferences",
+    "credits",
+    "help",
+    "Remix builder",
+    "four saved mixes",
+    "missing mix on page two",
+    "Void gameplay",
+    "well/comet detail"
+  ],
+  "commands": [
+    "unittest discovery excluding separately-run historical exhaustive gameplay matrix",
+    "python tools/verify_menu_refinement.py",
+    "python tools/verify.py --levels 3 --seconds 120 --output output/verification/menu-refinement/regression",
+    "python tools/build.py",
+    "python tools/package_release.py",
+    "python tools/verify_distribution.py"
+  ],
+  "limits": [
+    "No fresh 104976-case gameplay matrix: this change removes a selection mode and changes presentation; affected selection, exclusions, persistence, solo/partial, UI and controller contracts pass the full standard suite.",
+    "SDL dummy measurements verify effect cost and rendering behavior, not physical-display performance or human visual preference.",
+    "All verification uses temporary profiles; personal favorites and exclusion records are untouched."
+  ]
+}

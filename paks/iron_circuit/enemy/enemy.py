@@ -12,6 +12,8 @@ class Turret(Enemy):
     age: float = 0.
     timer: float = 0.
     volley: int = 0
+    state: str = 'idle'
+    target: object = None
 
 
 class IronCircuitEnemy(EnemyBase):
@@ -19,7 +21,12 @@ class IronCircuitEnemy(EnemyBase):
         self.creatures = self.load_asset('enemy_sheet.png')
 
     def sprite(self, world, entity=None):
-        return self.creatures
+        if entity is not None and entity.state in ('windup','recover'):
+            return self.creatures.frame(2 if entity.state=='windup' else 3,columns=4)
+        return self.creatures.frame(int((world.time if world else 0)*7+(entity.id if entity else 0))%4,columns=4)
+
+    def sprite_angle(self,world,entity):
+        return -math.degrees(entity.angle)-45
 
     def spawn_position(self, world):
         return spawn_position(world)
@@ -42,15 +49,20 @@ class IronCircuitEnemy(EnemyBase):
         travel = min(.65, enemy.pos.distance_to(world.player.pos) / speed)
         lead = travel * min(.75, max(0, world.wave - 3) * .035)
         toward = normalized(world.player.pos + world.player.vel * lead - enemy.pos)
-        enemy.angle = math.atan2(toward.y, toward.x)
-        if enemy.timer <= 0:
-            enemy.timer = self.fire_interval(world)
-            self.shoot(world, enemy, toward, speed)
-            enemy.volley += 1
-            # Telegraphable alternating fans appear only after the player has learned aim.
-            if world.wave >= 8 and enemy.volley % 2 == 0:
-                for offset in (-.16, .16):
-                    self.shoot(world, enemy, toward.rotate_rad(offset), speed * .9)
+        if enemy.state=='windup':toward=normalized(enemy.target-enemy.pos)
+        if enemy.state!='recover':enemy.angle = math.atan2(toward.y, toward.x)
+        if enemy.state=='idle' and enemy.timer<=0:
+            enemy.state,enemy.timer='windup',.55
+            enemy.target=world.player.pos+world.player.vel*lead
+        elif enemy.state=='windup' and enemy.timer<=0:
+            direction=normalized(enemy.target-enemy.pos)
+            self.shoot(world,enemy,direction,speed)
+            enemy.volley+=1
+            if world.wave>=8 and enemy.volley%2==0:
+                for offset in (-.16,.16):self.shoot(world,enemy,direction.rotate_rad(offset),speed*.9)
+            enemy.state,enemy.timer='recover',.7
+        elif enemy.state=='recover' and enemy.timer<=0:
+            enemy.state,enemy.timer='idle',max(.35,self.fire_interval(world)-1.25)
 
     def shoot(self, world, enemy, direction, speed):
         damage = (12 + .5 * (world.wave - 1) ** .7) * difficulty(world)
@@ -66,7 +78,8 @@ class IronCircuitEnemy(EnemyBase):
         world.score += 250 * world.wave
 
     def take_damage(self, world, enemy, damage):
-        applied = world.apply_damage(enemy, damage)
+        multiplier=1.45 if enemy.state=='recover' else .9 if enemy.state=='windup' else .5
+        applied = world.apply_damage(enemy, damage*multiplier)
         if applied:
             world.burst(enemy.pos, world.pak("enemy").color, 2)
         return applied

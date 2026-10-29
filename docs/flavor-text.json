@@ -1,0 +1,409 @@
+{
+  "scope": "Remaining displayed flavor, headings and styled labels after the user-selected removals. Historical removal decisions and unused metadata are separate.",
+  "flavor": [
+    {
+      "id": "F04",
+      "text": "Play your way.",
+      "appears": "Gamepad / Input heading",
+      "source": "src/system_panic/app.py",
+      "line": 388
+    },
+    {
+      "id": "F05",
+      "text": "Adapt. Survive. Keep going.",
+      "appears": "How to Play heading",
+      "source": "src/system_panic/app.py",
+      "line": 420
+    },
+    {
+      "id": "F06",
+      "text": "Built to be remixed.",
+      "appears": "Credits heading",
+      "source": "src/system_panic/app.py",
+      "line": 440
+    },
+    {
+      "id": "F07",
+      "text": "The system can wait.",
+      "appears": "Pause dialog subtitle",
+      "source": "src/system_panic/app.py",
+      "line": 507
+    },
+    {
+      "id": "F08",
+      "text": "SIGNAL LOST",
+      "appears": "Defeat dialog heading",
+      "source": "src/system_panic/app.py",
+      "line": 498
+    }
+  ],
+  "neutral_headings_for_optional_review": [
+    {
+      "id": "H01",
+      "text": "Build your Remix.",
+      "appears": "Static Remix builder heading",
+      "source": "src/system_panic/remix_ui.py",
+      "line": 125
+    },
+    {
+      "id": "H02",
+      "text": "Your favorite combinations.",
+      "appears": "Saved Remixes heading",
+      "source": "src/system_panic/remix_ui.py",
+      "line": 183
+    },
+    {
+      "id": "H03",
+      "text": "Give this mix a name.",
+      "appears": "Save / Rename Remix heading",
+      "source": "src/system_panic/remix_ui.py",
+      "line": 212
+    },
+    {
+      "id": "H04",
+      "text": "Choose your {channel}.",
+      "appears": "Remix provider picker heading",
+      "source": "src/system_panic/remix_ui.py",
+      "line": 162
+    },
+    {
+      "id": "H05",
+      "text": "Choose the output size.",
+      "appears": "Display heading",
+      "source": "src/system_panic/app.py",
+      "line": 367
+    },
+    {
+      "id": "H06",
+      "text": "Review disabled combinations.",
+      "appears": "Flagged Combinations heading",
+      "source": "src/system_panic/combination_ui.py",
+      "line": 101
+    }
+  ],
+  "themed_functional_labels_for_optional_review": [
+    {
+      "id": "L01",
+      "text": "IN THE MIX",
+      "appears": "Enabled Pak cards",
+      "source": "src/system_panic/app.py",
+      "line": 296
+    },
+    {
+      "id": "L05",
+      "text": "HOSTILES",
+      "appears": "Gameplay enemy count and defeat statistics",
+      "source": "src/system_panic/app.py",
+      "line": 457
+    },
+    {
+      "id": "L06",
+      "text": "HULL",
+      "appears": "Gameplay health label",
+      "source": "src/system_panic/app.py",
+      "line": 459
+    },
+    {
+      "id": "L07",
+      "text": "SHIFT / SHIFTS",
+      "appears": "Gameplay shuffle timer and defeat shuffle count",
+      "source": "src/system_panic/app.py",
+      "line": 474
+    },
+    {
+      "id": "L08",
+      "text": "SYSTEM PAUSED",
+      "appears": "Pause dialog heading",
+      "source": "src/system_panic/app.py",
+      "line": 498
+    },
+    {
+      "id": "L09",
+      "text": "NEXT LEVEL INCOMING",
+      "appears": "Level-clear overlay subtitle",
+      "source": "src/system_panic/app.py",
+      "line": 489
+    }
+  ],
+  "pak_taglines": [
+    {
+      "id": "P01",
+      "text": "DASH / PULSE",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/signal_runner/pak.json",
+      "line": 4,
+      "pak": "Signal Runner"
+    },
+    {
+      "id": "P02",
+      "text": "INERTIA / GRAVITY WELLS",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/void_drifter/pak.json",
+      "line": 4,
+      "pak": "Void Drifter"
+    },
+    {
+      "id": "P03",
+      "text": "RACETRACK / RICOCHET",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/iron_circuit/pak.json",
+      "line": 4,
+      "pak": "Iron Circuit"
+    },
+    {
+      "id": "P04",
+      "text": "DOUBLE JUMP / FORGE",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/sky_forge/pak.json",
+      "line": 4,
+      "pak": "Sky Forge"
+    },
+    {
+      "id": "P05",
+      "text": "BLINK / CHAIN ARC",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/phase_garden/pak.json",
+      "line": 4,
+      "pak": "Phase Garden"
+    },
+    {
+      "id": "P06",
+      "text": "RING STEPS / GLAIVE",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/orbit_keeper/pak.json",
+      "line": 4,
+      "pak": "Orbit Keeper"
+    },
+    {
+      "id": "P07",
+      "text": "PERIMETER / MULTIBALL",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/neon_breach/pak.json",
+      "line": 4,
+      "pak": "Neon Breach"
+    },
+    {
+      "id": "P08",
+      "text": "BUFFERED TURNS / DASH",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/maze_muncher/pak.json",
+      "line": 4,
+      "pak": "Maze Muncher"
+    },
+    {
+      "id": "P09",
+      "text": "EXCAVATION / PRESSURE",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/burrow_patrol/pak.json",
+      "line": 4,
+      "pak": "Burrow Patrol"
+    },
+    {
+      "id": "P10",
+      "text": "CARVE / SOLID TERRITORY",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/vector_coil/pak.json",
+      "line": 4,
+      "pak": "Vector Coil"
+    },
+    {
+      "id": "P11",
+      "text": "BOTTOM LINE / SALVO",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/star_bastion/pak.json",
+      "line": 4,
+      "pak": "Star Bastion"
+    },
+    {
+      "id": "P12",
+      "text": "LANE HOPS / HARPOON",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/tide_hopper/pak.json",
+      "line": 4,
+      "pak": "Tide Hopper"
+    },
+    {
+      "id": "P13",
+      "text": "LISTEN / CHARGE / RELEASE",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/pulse_abbey/pak.json",
+      "line": 4,
+      "pak": "Pulse Abbey"
+    },
+    {
+      "id": "P14",
+      "text": "GATHER / ORBIT / SLING",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/scrap_ballet/pak.json",
+      "line": 4,
+      "pak": "Scrap Ballet"
+    },
+    {
+      "id": "P15",
+      "text": "BANK / REFLECT / COOL",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/glasswake/pak.json",
+      "line": 4,
+      "pak": "Glasswake"
+    },
+    {
+      "id": "P16",
+      "text": "SOW / LURE / BLOOM",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/bloom_siege/pak.json",
+      "line": 4,
+      "pak": "Bloom Siege"
+    },
+    {
+      "id": "P17",
+      "text": "RECORD / EVADE / RETURN",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/echo_vault/pak.json",
+      "line": 4,
+      "pak": "Echo Vault"
+    },
+    {
+      "id": "P18",
+      "text": "DIVE / LIFT / BURST",
+      "appears": "Library Pak card; Remix component-provider picker",
+      "source": "paks/tidal_choir/pak.json",
+      "line": 4,
+      "pak": "Tidal Choir"
+    }
+  ],
+  "unused_pak_description_metadata": [
+    {
+      "pak": "Signal Runner",
+      "text": "Burst pulse fire, venting and locked leech lunges.",
+      "source": "paks/signal_runner/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Void Drifter",
+      "text": "Charge a piercing lance, release it, and manage recoil among drifting fragments and gravity hazards.",
+      "source": "paks/void_drifter/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Iron Circuit",
+      "text": "Drive fast to strengthen plasma; bank it into turret firing and recovery windows.",
+      "source": "paks/iron_circuit/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Sky Forge",
+      "text": "Sweep overhead to push enemies back, or charge a powerful sword throw and recover the blade between rooftop battles.",
+      "source": "paks/sky_forge/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Phase Garden",
+      "text": "Position for finite lightning links and punish a phantom after its marked warp.",
+      "source": "paks/phase_garden/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Orbit Keeper",
+      "text": "Choose inward/outward radial attacks and time returning blade catches.",
+      "source": "paks/orbit_keeper/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Neon Breach",
+      "text": "Intercept plasma on the perimeter: good paddle returns build power; missed returns drain it.",
+      "source": "paks/neon_breach/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Maze Muncher",
+      "text": "Buffer cardinal turns, lunge into a target, and chase stronger backbites through the maze.",
+      "source": "paks/maze_muncher/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Burrow Patrol",
+      "text": "Keep pressure on worms that burrow and rush without warning; recover after each pop.",
+      "source": "paks/burrow_patrol/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Vector Coil",
+      "text": "Close capture loops around hard-hitting sparks that pause, then dart in random directions.",
+      "source": "paks/vector_coil/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Star Bastion",
+      "text": "Line up salvos, reload the battery, and dodge spread volleys as your bunker cells erode.",
+      "source": "paks/star_bastion/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Tide Hopper",
+      "text": "Hop between lanes, hook traffic, hold to reel, or release to fling it into a collision.",
+      "source": "paks/tide_hopper/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Pulse Abbey",
+      "text": "Charge at least 0.45s, then release on the gold visual beat for a powerful expanding ring. Short taps fizzle; perfect rings parry hostile fire. Dash through danger.",
+      "source": "paks/pulse_abbey/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Scrap Ballet",
+      "text": "Collect drifting scrap by holding Fire nearby, then release to hurl it. Wrecked tugs spill more salvage; missed throws remain recoverable. X brakes your inertial flight.",
+      "source": "paks/scrap_ballet/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Glasswake",
+      "text": "Bank a cutting ray off borders and mirror vanes: every reflection triples its damage. Enemy shots ricochet too. Release before the lens overheats.",
+      "source": "paks/glasswake/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Bloom Siege",
+      "text": "Stand still at nectar wells to fill your watering can. Hold Fire to sow and water nearby plants, then release to bloom. Upgrades enlarge the can; dry seeds cannot hurt weevils.",
+      "source": "paks/bloom_siege/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Echo Vault",
+      "text": "Fire records delayed volleys from your past positions. Every shot repeats along its original path. Rewind your route to escape predictive chronoguards.",
+      "source": "paks/echo_vault/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    },
+    {
+      "pak": "Tidal Choir",
+      "text": "Steer a buoyant diving bell. Charge a bubble for at least 0.6s, then release to pull and burst around foes. Smaller bubbles are harmless; X dives through danger.",
+      "source": "paks/tidal_choir/pak.json",
+      "appears": "Metadata only; no current app view renders Pak.description"
+    }
+  ],
+  "already_removed_on_request": [
+    "Preferences: Endless progression / Start with one enemy. Each cleared level adds one more. / 1, 2, 3... ENEMIES"
+  ],
+  "gameplay_prose": "No additional in-arena flavor prose is emitted by the shipped weapon readouts. Undrawn legacy cue strings are not user-visible flavor.",
+  "removed_on_request_2026_10_28": [
+    "PAKS DISCOVERED.",
+    "One unstable system.",
+    "The rules will change. Keep moving.",
+    "Tune the instability.",
+    "Saved locally. Gameplay changes apply to the next run.",
+    "A protected transition gives you time to read the new rules.",
+    "Paks tune attacks and movement to this setting.",
+    "Turn Paks on or off in the library. In component remix, unchecked channels keep their starting Pak. Coherent mode swaps the whole Pak.",
+    "OFFLINE / ORIGINAL AI ASSETS",
+    "Endless levels / fresh terrain each level / current challenge setting",
+    "Choose six components. Your Paks stay fixed for the entire run.",
+    "CHOOSE YOUR MIX",
+    "PARTIAL PAKS JOIN THE MIX",
+    "Watch UP in the HUD.",
+    "No artwork from the historical prototypes is used.",
+    "All gameplay and playback work offline. Asset creation is a separate development workflow.",
+    "MAKE A PAK",
+    "The project wiki starts at AGENTS.md. Add a complete Pak, preserve the common contracts, then test it alone and in the mix."
+  ],
+  "shuffle_style_removed": true
+}

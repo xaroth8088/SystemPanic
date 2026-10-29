@@ -1,0 +1,93 @@
+{
+  "provider": "OpenAI built-in imagegen",
+  "status": "planned; register only actual delivered files in image-prompts.json",
+  "jobs": [
+    {
+      "id": "signal_runner",
+      "name": "Signal Runner",
+      "file": "assets/images/signal_runner-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Signal Runner renewal. Create ONE perfectly regular 4-column by 4-row sheet, 16 isolated sprites on true transparent alpha, no labels, no text, no grid lines, no background. Every cell contains exactly one centered sprite and ample clear padding, no sprite crossing cell boundaries. Each ROW is four successive frames of ONE consistent subject, identical scale/pivot/anatomy/materials across that row, subtle readable animation. Row 1: nimble white-and-electric-cyan courier robot with a cobalt visor, compact rounded body, short limbs, animated running/dashing with a short cyan energy scarf. Row 2: hostile crimson and magenta triangular signal-leech drone, three small claw legs and one bright eye, animated scuttling/charging. Row 3: a concentrated cyan radio-energy pulse projectile with a white core and swept electric arcs, pulsing four frames, SAME silhouette and center. Row 4: one chunky modular dark navy radio relay gate/partition block with cyan circuit inlays, four stages of signal-light pulsing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Camera: top-down three-quarter arcade sprite view, fixed camera per row. Match high-quality modern indie arcade art, keep the robot/drone clearly distinct. No scenery or decorative extra objects. Precisely aligned 4x4 cells. Square sheet, transparent outside the sixteen sprites."
+    },
+    {
+      "id": "void_drifter",
+      "name": "Void Drifter",
+      "file": "assets/images/void_drifter-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Void Drifter renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: sleek lavender and white triangular spacecraft pointing UP, compact blue engine nozzles pulsing. Row 2: jagged dark violet asteroid with pink crystalline core and glowing cracks, slowly turning. Row 3: long slender violet-white piercing energy lance pointing RIGHT, controlled plasma shimmering. Row 4: single dark space-ruin crystal island chunk, violet gravity conduits and glowing mineral seams pulsing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites."
+    },
+    {
+      "id": "iron_circuit",
+      "name": "Iron Circuit",
+      "file": "assets/images/iron_circuit-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Iron Circuit renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: armored amber racing hovercar viewed directly top-down pointing UP, black tires and white number-free panels, engine lights pulsing. Row 2: heavy charcoal stationary gun turret with amber optics and a crimson barrel, winding up and firing. Row 3: round hot orange ricochet plasma orb with metallic spinning rings, white-hot center pulsing. Row 4: one modular curved steel racetrack guardrail segment with amber hazard strips, warning lamps cycling. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites."
+    },
+    {
+      "id": "sky_forge",
+      "name": "Sky Forge",
+      "file": "assets/images/sky_forge-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Sky Forge renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: small coral-and-brass armored forge knight seen SIDE-ON facing RIGHT, thick boots and scarf, running/jumping. Row 2: hostile red iron hopping beetle with spring legs and fiery orange belly, crouching then springing. Row 3: heavy round coral fire grenade with iron fins, a bright ember core and short flame wisps, pulsing. Row 4: one floating forge platform block SIDE VIEW, level flat steel top and dark industrial underside, furnace seams glowing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites. Keep ALL sprite silhouettes and flames fully inside their own cells with at least 35px empty transparent margins.",
+      "frame_padding": {
+        "enemy": 1.75
+      }
+    },
+    {
+      "id": "phase_garden",
+      "name": "Phase Garden",
+      "file": "assets/images/phase_garden-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Phase Garden renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: gentle mint spectral gardener spirit with a small leaf crown and translucent trailing tail, floating. Row 2: hostile violet thorn-orchid phantom with luminous yellow eyes and spiked petals, opening and closing. Row 3: bright mint lightning seed mote with branching short arcs, energy cycling. Row 4: one square moonstone hedge block wrapped in dark emerald vines and mint runes, runes pulsing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites."
+    },
+    {
+      "id": "orbit_keeper",
+      "name": "Orbit Keeper",
+      "file": "assets/images/orbit_keeper-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Orbit Keeper renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: gold-and-ivory circular astrolabe guardian drone, central sapphire eye and three short orbiting blades, rotating. Row 2: hostile dark bronze ring sentinel with crimson central gem and small sharp fins, rotating. Row 3: single curved golden crescent glaive with a white blade edge and tiny amber motes, spinning. Row 4: single ancient brass orbital machinery satellite block with concentric inset rings, golden indicator lights cycling. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites."
+    },
+    {
+      "id": "neon_breach",
+      "name": "Neon Breach",
+      "file": "assets/images/neon_breach-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Neon Breach renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: wide horizontal magenta-and-cyan capsule paddle drone with two tiny white eyes and small thrusters, hovering. Row 2: hostile chunky orange brick-armored drone with four stubby legs and a bright red visor, armor lights flashing. Row 3: round pink plasma pinball with a white center and cyan elastic energy bands, bouncing/pulsing. Row 4: one short three-brick navy arcade barrier module with vivid magenta and cyan edges, its neon lights cycling. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites."
+    },
+    {
+      "id": "maze_muncher",
+      "name": "Maze Muncher",
+      "file": "assets/images/maze_muncher-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Maze Muncher renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: round brass clockwork muncher with expressive teal eyes, a mechanical hinged jaw and two stubby feet, chomping while running. Row 2: hostile blue-violet armored crab drone with red eye stalks, sideways scuttling. Row 3: a compact golden gear-shaped chomp spark with a crescent of energy teeth, opening/closing. Row 4: one chunky navy maze elbow block with glowing cobalt and golden line inlays, lamps pulsing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites."
+    },
+    {
+      "id": "burrow_patrol",
+      "name": "Burrow Patrol",
+      "file": "assets/images/burrow_patrol-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Burrow Patrol renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: rust-orange mole miner mech with a round blue headlamp helmet, short drill nose and stout digging claws, digging. Row 2: hostile coiled magenta segmented cave worm with amber ridges and glowing eyes, swelling slightly then relaxing. Row 3: a compact amber pressure jet bubble with a brass nozzle core and short blue rings, pressure pulsing. Row 4: single layered sandstone cave-vein boulder with blue crystals and copper ore seams, crystals glinting. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites."
+    },
+    {
+      "id": "vector_coil",
+      "name": "Vector Coil",
+      "file": "assets/images/vector_coil-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Vector Coil renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: angular lime circuit crawler with triangular silver head, small articulated legs and luminous green circuit traces, stepping. Row 2: hostile violet polygon prism drone with shifting faceted planes and a hot pink eye, tumbling. Row 3: compact square lime induction coil energy sigil with a white diamond center, electric charge cycling. Row 4: one dark cubic wireframe lattice block with lime edges and silver corner nodes, nodes pulsing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites."
+    },
+    {
+      "id": "star_bastion",
+      "name": "Star Bastion",
+      "file": "assets/images/star_bastion-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Star Bastion renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: cobalt-and-white starfighter pointing UP, swept short wings, golden canopy and twin bright engine trails, engines pulsing. Row 2: hostile orange insect starship with sharply segmented bronze wings and red eyes, wing plates opening. Row 3: a compact twin cyan torpedo energy spark with white cores and blue fins, thrusters pulsing. Row 4: one wide silver-blue defense bunker arch module with a clear dark entrance and small amber lamps, lamps cycling. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites."
+    },
+    {
+      "id": "tide_hopper",
+      "name": "Tide Hopper",
+      "file": "assets/images/tide_hopper-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Tide Hopper renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: emerald amphibious frog-shaped diving robot with a round brass diving helmet and big glass eyes, crouching/hopping. Row 2: hostile coral-red canal barge traffic drone pointing LEFT, squat armored hull with amber bridge lights, engine wake pulsing. Row 3: single teal-and-brass harpoon hook pointing RIGHT with short coiled rope and a white glint, glint cycling. Row 4: one chunky dark teal floating canal gate module with brass fittings and luminous emerald warning strips, warning lights cycling. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites."
+    }
+  ]
+}

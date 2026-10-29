@@ -1,0 +1,39 @@
+{
+  "id": "scrap_ballet",
+  "name": "Scrap Ballet",
+  "subtitle": "GATHER / ORBIT / SLING",
+  "color": [
+    255,
+    170,
+    85
+  ],
+  "description": "Collect drifting scrap by holding Fire nearby, then release to hurl it. Wrecked tugs spill more salvage; missed throws remain recoverable. X brakes your inertial flight.",
+  "version": "1.0.0",
+  "order": 13,
+  "api_version": 4,
+  "components": [
+    "pilot",
+    "enemy",
+    "weapon",
+    "music",
+    "background",
+    "obstacles"
+  ],
+  "authoring": {
+    "concept": "inertial flight and orbital salvage",
+    "sheet_source": "assets/images/scrap_ballet-source.png",
+    "animation_grid": [
+      4,
+      4
+    ],
+    "component_sources": {
+      "pilot": "assets/images/scrap_ballet-facing-source.png"
+    },
+    "component_grids": {
+      "pilot": [
+        8,
+        4
+      ]
+    }
+  }
+}

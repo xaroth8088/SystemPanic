@@ -1,0 +1,14 @@
+{
+  "name": "BUGGY",
+  "seed": 24,
+  "difficulty": "standard",
+  "aim_assist": false,
+  "mix": {
+    "pilot": "sky_forge",
+    "enemy": "maze_muncher",
+    "weapon": "tidal_choir",
+    "music": "echo_vault",
+    "background": "sky_forge",
+    "obstacles": "glasswake"
+  }
+}

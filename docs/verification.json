@@ -2414,5 +2414,5553 @@
     ],
     "source_and_frozen_screens_inspected": true,
     "physical_controller_operation_tested": false
+  },
+  "frontier_expansion": {
+    "date": "2026-10-26",
+    "complete_paks": 18,
+    "new_paks": [
+      "bloom_siege",
+      "echo_vault",
+      "glasswake",
+      "pulse_abbey",
+      "scrap_ballet",
+      "tidal_choir"
+    ],
+    "engine_api": 4,
+    "engine_changed": false,
+    "full_unit_snapshot": {
+      "tests": 163,
+      "seconds": 1179.589,
+      "passed": true,
+      "note": "Full run includes the exhaustive 18^4 short gameplay matrix, before final release/QA/readout refinements."
+    },
+    "final_non_matrix_snapshot": {
+      "tests": 169,
+      "seconds": 39.821,
+      "passed": true,
+      "note": "Final run omits only the previously executed exhaustive short matrix; all 19 focused expansion tests are included."
+    },
+    "exhaustive_short_gameplay_mixes": 104976,
+    "steps_per_short_mix": 20,
+    "release_cycle_mixes": {
+      "new_gameplay_combinations": 1296,
+      "sampled_cross_generation_combinations": 256,
+      "seconds_per_case": 4,
+      "mid_cycle_swaps": 256,
+      "finite_state": true,
+      "close_releases_geometry": true,
+      "max_projectiles": 18,
+      "seed": 101
+    },
+    "presentation": {
+      "presentation_pairs_checked": 324,
+      "read_only_render": true,
+      "local_music_streams": true
+    },
+    "procedural_geometry": {
+      "cases": 540,
+      "enemies_placed": 15570,
+      "levels": [
+        1,
+        2,
+        7,
+        12,
+        50,
+        101
+      ]
+    },
+    "solo_three_levels": [
+      {
+        "pak": "signal_runner",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 11.98
+      },
+      {
+        "pak": "void_drifter",
+        "phase": "active",
+        "wave": 4,
+        "kills": 18,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2820,
+        "seconds": 11.4
+      },
+      {
+        "pak": "iron_circuit",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 9.6
+      },
+      {
+        "pak": "sky_forge",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 7.27
+      },
+      {
+        "pak": "phase_garden",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 8.62
+      },
+      {
+        "pak": "orbit_keeper",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 19.08
+      },
+      {
+        "pak": "neon_breach",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 18.03
+      },
+      {
+        "pak": "maze_muncher",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 37.75
+      },
+      {
+        "pak": "burrow_patrol",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 45.15
+      },
+      {
+        "pak": "vector_coil",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 44.97
+      },
+      {
+        "pak": "star_bastion",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 11.68
+      },
+      {
+        "pak": "tide_hopper",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 2100,
+        "seconds": 11.62
+      },
+      {
+        "pak": "pulse_abbey",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 1962,
+        "seconds": 8.93
+      },
+      {
+        "pak": "scrap_ballet",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 1962,
+        "seconds": 16.38
+      },
+      {
+        "pak": "glasswake",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 1962,
+        "seconds": 24.67
+      },
+      {
+        "pak": "bloom_siege",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 1962,
+        "seconds": 14.52
+      },
+      {
+        "pak": "echo_vault",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 1962,
+        "seconds": 11.7
+      },
+      {
+        "pak": "tidal_choir",
+        "phase": "active",
+        "wave": 4,
+        "kills": 6,
+        "cleared_levels": 3,
+        "initial_enemies_per_level": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4
+        },
+        "health": 100,
+        "score": 1962,
+        "seconds": 19.58
+      }
+    ],
+    "new_pak_digital_balance": {
+      "target_cleared_levels": 12,
+      "seconds_limit": 300,
+      "input": "ordinary Pak demo Controls; no gameplay advantages",
+      "runtime": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+      "runs": [
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 37.57,
+          "first_clear_seconds": 2.42,
+          "kills": 78,
+          "upgrades": 3,
+          "max_projectiles": 14,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 40.78,
+          "first_clear_seconds": 2.47,
+          "kills": 78,
+          "upgrades": 4,
+          "max_projectiles": 16,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 43.6,
+          "first_clear_seconds": 2.4,
+          "kills": 78,
+          "upgrades": 7,
+          "max_projectiles": 15,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 37.62,
+          "first_clear_seconds": 2.4,
+          "kills": 78,
+          "upgrades": 3,
+          "max_projectiles": 14,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 41.95,
+          "first_clear_seconds": 2.45,
+          "kills": 78,
+          "upgrades": 5,
+          "max_projectiles": 14,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 40.9,
+          "first_clear_seconds": 2.37,
+          "kills": 78,
+          "upgrades": 3,
+          "max_projectiles": 14,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 81.96,
+          "seconds": 82.32,
+          "first_clear_seconds": 4.55,
+          "kills": 78,
+          "upgrades": 6,
+          "max_projectiles": 21,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 87.42,
+          "seconds": 82.05,
+          "first_clear_seconds": 4.55,
+          "kills": 78,
+          "upgrades": 6,
+          "max_projectiles": 22,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 87.42,
+          "seconds": 75.23,
+          "first_clear_seconds": 2.77,
+          "kills": 78,
+          "upgrades": 5,
+          "max_projectiles": 23,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 64.79,
+          "seconds": 85.4,
+          "first_clear_seconds": 4.55,
+          "kills": 78,
+          "upgrades": 7,
+          "max_projectiles": 21,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 93.59,
+          "seconds": 87.43,
+          "first_clear_seconds": 2.9,
+          "kills": 78,
+          "upgrades": 6,
+          "max_projectiles": 22,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 73.97,
+          "first_clear_seconds": 2.77,
+          "kills": 78,
+          "upgrades": 7,
+          "max_projectiles": 21,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 61.08,
+          "seconds": 106.02,
+          "first_clear_seconds": 7.42,
+          "kills": 78,
+          "upgrades": 7,
+          "max_projectiles": 48,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 70.09,
+          "seconds": 104.83,
+          "first_clear_seconds": 7.25,
+          "kills": 78,
+          "upgrades": 4,
+          "max_projectiles": 45,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 48.95,
+          "seconds": 96.03,
+          "first_clear_seconds": 4.67,
+          "kills": 78,
+          "upgrades": 5,
+          "max_projectiles": 50,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 24.94,
+          "seconds": 123.15,
+          "first_clear_seconds": 5.53,
+          "kills": 78,
+          "upgrades": 5,
+          "max_projectiles": 47,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 10,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 125.4,
+          "first_clear_seconds": 6.1,
+          "kills": 61,
+          "upgrades": 4,
+          "max_projectiles": 46,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 11,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 110.57,
+          "first_clear_seconds": 5.35,
+          "kills": 68,
+          "upgrades": 4,
+          "max_projectiles": 54,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 72.62,
+          "first_clear_seconds": 3.72,
+          "kills": 78,
+          "upgrades": 6,
+          "max_projectiles": 18,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 76.22,
+          "first_clear_seconds": 3.5,
+          "kills": 78,
+          "upgrades": 7,
+          "max_projectiles": 16,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 73.28,
+          "first_clear_seconds": 3.48,
+          "kills": 78,
+          "upgrades": 6,
+          "max_projectiles": 16,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 66.62,
+          "first_clear_seconds": 3.67,
+          "kills": 78,
+          "upgrades": 6,
+          "max_projectiles": 15,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 76.37,
+          "first_clear_seconds": 3.47,
+          "kills": 78,
+          "upgrades": 7,
+          "max_projectiles": 16,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 74.0,
+          "first_clear_seconds": 3.45,
+          "kills": 78,
+          "upgrades": 6,
+          "max_projectiles": 17,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 75.07,
+          "seconds": 103.28,
+          "first_clear_seconds": 2.85,
+          "kills": 78,
+          "upgrades": 2,
+          "max_projectiles": 37,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 94.35,
+          "first_clear_seconds": 2.7,
+          "kills": 78,
+          "upgrades": 5,
+          "max_projectiles": 42,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 115.0,
+          "first_clear_seconds": 2.83,
+          "kills": 78,
+          "upgrades": 5,
+          "max_projectiles": 44,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 93.59,
+          "seconds": 92.7,
+          "first_clear_seconds": 2.85,
+          "kills": 78,
+          "upgrades": 2,
+          "max_projectiles": 40,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 124.98,
+          "first_clear_seconds": 2.72,
+          "kills": 78,
+          "upgrades": 3,
+          "max_projectiles": 51,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 90.61,
+          "seconds": 246.42,
+          "first_clear_seconds": 2.83,
+          "kills": 78,
+          "upgrades": 6,
+          "max_projectiles": 43,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 46.1,
+          "seconds": 148.68,
+          "first_clear_seconds": 3.88,
+          "kills": 78,
+          "upgrades": 7,
+          "max_projectiles": 22,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 78.66,
+          "seconds": 130.53,
+          "first_clear_seconds": 8.35,
+          "kills": 78,
+          "upgrades": 5,
+          "max_projectiles": 22,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 98.21,
+          "seconds": 107.88,
+          "first_clear_seconds": 5.57,
+          "kills": 78,
+          "upgrades": 6,
+          "max_projectiles": 25,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 100,
+          "seconds": 102.45,
+          "first_clear_seconds": 3.87,
+          "kills": 78,
+          "upgrades": 6,
+          "max_projectiles": 23,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 82.42,
+          "first_clear_seconds": 5.57,
+          "kills": 23,
+          "upgrades": 2,
+          "max_projectiles": 15,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 12,
+          "phase": "active",
+          "health": 69.4,
+          "seconds": 139.72,
+          "first_clear_seconds": 5.57,
+          "kills": 78,
+          "upgrades": 7,
+          "max_projectiles": 25,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+            "13": 13
+          }
+        }
+      ]
+    },
+    "older_twelve_level_baseline": {
+      "catalog_size": 12,
+      "identical_to_eighteen_pak_samples": true,
+      "runs": [
+        {
+          "pak": "sky_forge",
+          "wave": 4,
+          "phase": "active",
+          "kills": 9,
+          "health": 100,
+          "seconds": 299.98
+        },
+        {
+          "pak": "orbit_keeper",
+          "wave": 11,
+          "phase": "dead",
+          "kills": 58,
+          "health": 0.0,
+          "seconds": 115.65
+        },
+        {
+          "pak": "maze_muncher",
+          "wave": 8,
+          "phase": "dead",
+          "kills": 29,
+          "health": 0.0,
+          "seconds": 98.12
+        },
+        {
+          "pak": "vector_coil",
+          "wave": 4,
+          "phase": "dead",
+          "kills": 9,
+          "health": 0.0,
+          "seconds": 192.52
+        }
+      ]
+    },
+    "source_and_frozen_gamepad": {
+      "paks": 18,
+      "virtual_sdl": true,
+      "physical_playtest": false,
+      "steps": 3155
+    },
+    "source_and_frozen_collectibles": {
+      "paks": 18,
+      "kill_interval": 10,
+      "passed": true
+    },
+    "frozen_distribution_checks": 25,
+    "isolated_wheel": {
+      "isolated_module": "E:\\GitHub\\SystemPanic\\output\\frontier-delivered-prefix\\Lib\\site-packages\\system_panic\\__init__.py",
+      "complete_paks": 18,
+      "frames_per_pak": 240,
+      "all_rendered": true
+    },
+    "asset_sources_and_derivatives": 260,
+    "new_animation_frames": 96,
+    "new_audio_generations": 18,
+    "ide_errors": 0,
+    "limitations": [
+      "Scripted digital-input samples do not establish final human feel or physical speaker/controller quality.",
+      "Standard Glasswake seeds 24/997 ended after 10/11 clears; standard Tidal Choir seed 24 ended after 6.",
+      "The older Sky Forge/Orbit Keeper/Maze Muncher/Vector Coil twelve-level QA limitations reproduce exactly with only the old twelve Paks installed.",
+      "Short gameplay mixtures and presentation pairs are separate checks; the 18^6 selection space was not exhaustively simulated."
+    ],
+    "final_glass_pilot_matrix": {
+      "pilot": "glasswake",
+      "combinations": 5832,
+      "fixed_steps": 20,
+      "finite_state": true,
+      "alive": true,
+      "seed": 3
+    },
+    "packaging": {
+      "source_pak_files": 450,
+      "windows_matches_source": true,
+      "wheel_matches_source": true,
+      "zip_matches_source": true,
+      "zip_crc": true,
+      "executable_sha256": "60cdfbbc22f4eb9d20bfe934e65e2ab6db37552841fbb72d21fe7d5fcc3bf6c3",
+      "wheel_sha256": "688e1b3cf7b436b36e732eb42fbac2fe14716ae08964ddb7a9e96933a69db25b",
+      "zip_sha256": "f2e822409cd47699ed52d33100a05ef95e8f8795080d957eb0b0be0b7a03fe88"
+    }
+  },
+  "latest_snapshot": "buggy_navigation_performance",
+  "resource_charge_refinement": {
+    "date": "2026-10-26",
+    "unit_tests": {
+      "tests": 179,
+      "failures": 0,
+      "errors": 0,
+      "excluded": "104976-mix exhaustive matrix; running affected-role integration probe separately",
+      "seconds": 45.5
+    },
+    "focused_frontier_contracts": 27,
+    "changes": {
+      "pulse_abbey": {
+        "minimum_charge_seconds": 0.45,
+        "recovery_seconds": 0.3,
+        "short_taps": "no ring, damage or parry"
+      },
+      "scrap_ballet": {
+        "initial_drifting_scrap": [
+          17,
+          28
+        ],
+        "debris_per_kill": 3,
+        "debris_cap": 64,
+        "initial_carry_capacity": 3,
+        "max_carry_capacity": 6,
+        "misses": "recoverable debris",
+        "orbit_contact_damage": false
+      },
+      "glasswake": {
+        "beam_multiplier_per_reflection": 3,
+        "enemy_bolt_ricochets": true,
+        "bolt_seconds": 6,
+        "bolt_bounces": 16,
+        "source_loop_region": [
+          0,
+          30
+        ],
+        "master_seconds": 29.82
+      },
+      "bloom_siege": {
+        "initial_nectar": 0,
+        "initial_can_capacity": 4,
+        "capacity_per_pickup": 2,
+        "max_capacity": 24,
+        "refill_per_second": 2,
+        "nectar_per_full_plant": 1,
+        "passive_growth": false,
+        "wells_owned_by": "weapon",
+        "well_healing": false
+      },
+      "tidal_choir": {
+        "minimum_powered_radius": 30,
+        "minimum_charge_seconds": 0.6,
+        "small_bubbles": "no pull or damage at any upgrade count"
+      }
+    },
+    "solo_samples": {
+      "target_cleared_levels": 8,
+      "seconds_limit": 240,
+      "input": "ordinary Pak demo Controls; no gameplay advantages",
+      "runtime": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+      "runs": [
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 27.6,
+          "first_clear_seconds": 3.0,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 12,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 31.2,
+          "first_clear_seconds": 3.02,
+          "kills": 36,
+          "upgrades": 1,
+          "max_projectiles": 14,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 27.47,
+          "first_clear_seconds": 2.97,
+          "kills": 36,
+          "upgrades": 0,
+          "max_projectiles": 15,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 27.47,
+          "first_clear_seconds": 3.0,
+          "kills": 36,
+          "upgrades": 1,
+          "max_projectiles": 15,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 23.93,
+          "first_clear_seconds": 3.03,
+          "kills": 36,
+          "upgrades": 0,
+          "max_projectiles": 15,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 27.57,
+          "first_clear_seconds": 2.95,
+          "kills": 36,
+          "upgrades": 1,
+          "max_projectiles": 14,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 86.06,
+          "seconds": 70.12,
+          "first_clear_seconds": 4.6,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 49,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 98.67,
+          "seconds": 57.98,
+          "first_clear_seconds": 2.87,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 49,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 88.34,
+          "seconds": 61.03,
+          "first_clear_seconds": 4.15,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 50,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 54.13,
+          "seconds": 63.75,
+          "first_clear_seconds": 4.77,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 49,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 26.13,
+          "seconds": 57.35,
+          "first_clear_seconds": 2.85,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 50,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 44.9,
+          "seconds": 60.47,
+          "first_clear_seconds": 4.18,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 49,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 98.67,
+          "seconds": 55.37,
+          "first_clear_seconds": 7.42,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 36,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 64.4,
+          "first_clear_seconds": 7.28,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 50,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 88.34,
+          "seconds": 52.82,
+          "first_clear_seconds": 4.67,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 40,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 63.5,
+          "first_clear_seconds": 5.53,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 31,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 59.51,
+          "seconds": 64.05,
+          "first_clear_seconds": 6.1,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 53,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 58.78,
+          "first_clear_seconds": 5.35,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 43,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 36.37,
+          "seconds": 83.13,
+          "first_clear_seconds": 6.82,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 10,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 65.23,
+          "seconds": 76.0,
+          "first_clear_seconds": 6.4,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 10,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 65.66,
+          "seconds": 66.4,
+          "first_clear_seconds": 6.5,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 10,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 30.54,
+          "seconds": 69.65,
+          "first_clear_seconds": 6.73,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 10,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 4,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 42.07,
+          "first_clear_seconds": 6.4,
+          "kills": 13,
+          "upgrades": 1,
+          "max_projectiles": 7,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 7,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 54.08,
+          "first_clear_seconds": 6.48,
+          "kills": 29,
+          "upgrades": 2,
+          "max_projectiles": 10,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 94.54,
+          "seconds": 55.13,
+          "first_clear_seconds": 2.85,
+          "kills": 36,
+          "upgrades": 1,
+          "max_projectiles": 28,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 47.28,
+          "first_clear_seconds": 2.7,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 25,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 53.57,
+          "first_clear_seconds": 2.83,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 26,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 49.03,
+          "first_clear_seconds": 2.85,
+          "kills": 36,
+          "upgrades": 1,
+          "max_projectiles": 26,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 94.24,
+          "seconds": 78.97,
+          "first_clear_seconds": 2.72,
+          "kills": 36,
+          "upgrades": 1,
+          "max_projectiles": 27,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 53.25,
+          "first_clear_seconds": 2.83,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 29,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 94.76,
+          "seconds": 72.88,
+          "first_clear_seconds": 3.93,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 18,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 100,
+          "seconds": 86.17,
+          "first_clear_seconds": 5.28,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 16,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 85.66,
+          "seconds": 59.58,
+          "first_clear_seconds": 5.92,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 19,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 92.67,
+          "seconds": 65.28,
+          "first_clear_seconds": 3.93,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 18,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 44.02,
+          "seconds": 86.72,
+          "first_clear_seconds": 5.92,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 19,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 74.09,
+          "seconds": 86.17,
+          "first_clear_seconds": 5.92,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 19,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          }
+        }
+      ]
+    },
+    "shell_smoke": {
+      "complete_paks": 18,
+      "cleared_levels": 3,
+      "all_passed": true
+    },
+    "mixes": {
+      "new_gameplay_combinations": 1296,
+      "sampled_cross_generation_combinations": 256,
+      "seconds_per_case": 4,
+      "mid_cycle_swaps": 256,
+      "finite_state": true,
+      "close_releases_geometry": true,
+      "max_projectiles": 27,
+      "seed": 101,
+      "presentation_pairs_checked": 324,
+      "read_only_render": true,
+      "local_music_streams": true
+    },
+    "rendered": [
+      "output/refinement/gallery.png",
+      "output/refinement-resources/bloom-refill.png",
+      "output/refinement-resources/bloom-watering.png"
+    ],
+    "bloom_resource_input_capture": {
+      "nectar": 3.2491666666666434,
+      "capacity": 4.0,
+      "growth": [
+        0.7508333333333331
+      ],
+      "phase": "active",
+      "health": 87.0,
+      "input": "ordinary digital movement, stationary refill, hold to water; no granted resource",
+      "audio_new": {
+        "seconds": 29.82,
+        "min_seam_rms": 0.05558903679012292,
+        "rms_100ms": [
+          0.11822976819639563,
+          0.097271998155847,
+          0.17075272608113523,
+          0.12210227472993941,
+          0.07851256814482183,
+          0.09100280660376846,
+          0.08313270789449428,
+          0.19385778034622925,
+          0.10175747564819775,
+          0.08378955329423537,
+          0.07340415355729565,
+          0.07933877329558865,
+          0.09344465241175899,
+          0.0888181327907685,
+          0.10925022481558255,
+          0.08962064023135646,
+          0.05558903679012292,
+          0.0858330447905348,
+          0.07629973455621475,
+          0.10995369149027263
+        ],
+        "sha256": "79029edd09d0bbca6f0f8fafde0f6136dc39e3a421123c66254cc44b31653380"
+      }
+    },
+    "source_and_frozen_powerups": {
+      "complete_paks": 18,
+      "all_passed": true
+    },
+    "distribution": {
+      "checks": 25,
+      "all_passed": true,
+      "drop_in_and_partial": true,
+      "static_remix": true
+    },
+    "wheel_install": {
+      "isolated_module": "E:\\GitHub\\SystemPanic\\output\\refinement-wheel-prefix\\Lib\\site-packages\\system_panic\\__init__.py",
+      "complete_paks": 18,
+      "frames_per_pak": 240,
+      "all_rendered": true
+    },
+    "packaging": {
+      "source_pak_files": 450,
+      "windows_matches_source": true,
+      "wheel_matches_source": true,
+      "zip_matches_source": true,
+      "zip_crc": true,
+      "executable_sha256": "a0ec81ce68084badc9fda3998f02da46ba39c087bb757f05964dcf6e5f4d8571",
+      "wheel_sha256": "145d42d2e4e2f1bf2f64d8ce743680830fed66caa17f5eed86500888b6d5e360",
+      "zip_sha256": "9db5df698234d7cd7a39f647462e03b0071cc1a9efb1b2d7608719873e6d1cb5"
+    },
+    "asset_manifest": {
+      "verified_sources_and_derivatives": 260,
+      "compared_shipped_media": 200,
+      "changed_media": [
+        "assets/audio/production/glasswake.ogg",
+        "paks/glasswake/music/music.ogg"
+      ]
+    },
+    "ide": {
+      "runtime_and_pak_files": 10,
+      "errors": 0,
+      "authoring_tool_notes": "IDE interpreter reports numpy/soundfile unavailable for prepare.py; both import and execute successfully in the project .venv used by mastering/tests."
+    },
+    "limitations": [
+      "179 tests passed with the expensive 104976-combination short matrix excluded; 1552 four-second mixed runs and 324 presentation pairs were freshly exercised instead.",
+      "All 18 relaxed samples clear eight levels; 16 of 18 standard samples do. Bloom Siege standard seeds 24 and 997 die after four and seven clears.",
+      "The previous twelve-level expansion snapshot predates these resource/charge rules and is retained as historical evidence.",
+      "Scripted inputs, rendered inspection and decoded audio checks do not establish final human balance or physical speaker/controller quality.",
+      "Foreign curved reflective shapes use approximate Pak-local axis normals; awkward combinations remain permitted."
+    ]
+  },
+  "range_pool_rebound_refinement": {
+    "date": "2026-10-26",
+    "unit_tests": {
+      "tests": 183,
+      "seconds": 45.468,
+      "failures": 0,
+      "errors": 0,
+      "excluded": "104976-mix exhaustive matrix"
+    },
+    "focused_frontier_tests": 31,
+    "red_green": "Four new focused tests first failed against the prior implementation, then all 31 frontier tests passed after the changes.",
+    "pulse_abbey": {
+      "unupgraded_charge_reach_px": [
+        70,
+        180
+      ],
+      "range_per_pickup": 20,
+      "max_range_bonus": 240,
+      "offbeat_to_gold_damage_ratio": 0.125,
+      "gold_damage_multiplier": 1.6,
+      "offbeat_damage_multiplier": 0.2,
+      "minimum_charge_seconds": 0.45,
+      "range_clamped_before_hit_tests": true
+    },
+    "bloom_siege": {
+      "positions": "Private seed/level RNG; left/right X regions with three cycling vertical bands. Both coordinates vary each level, independent of level history and combat RNG. Geometry-safe relocation applies.",
+      "sowing_clearance": "Pilot center must be more than 42 + pilot.radius from every pool center.",
+      "watering_existing_plants_from_nearby_pools": "allowed",
+      "refill": "Fire released and stationary, as before"
+    },
+    "tidal_choir": {
+      "edge_behavior": "Reflect at radius-aware screen bounds; retain 65% velocity. Corner damps once.",
+      "powered_fuse_seconds": 1.35,
+      "harmless_fuse_seconds": 0.65,
+      "bounce_resets_fuse": false
+    },
+    "solo_samples": {
+      "runs": 36,
+      "seed_values": [
+        0,
+        24,
+        997
+      ],
+      "difficulties": [
+        "relaxed",
+        "standard"
+      ],
+      "target_clears": 8,
+      "reached_target": 31,
+      "defeats": [
+        {
+          "pak": "bloom_siege",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 5,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 38.15,
+          "first_clear_seconds": 6.22,
+          "kills": 15,
+          "upgrades": 1,
+          "max_projectiles": 8,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 6,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 56.47,
+          "first_clear_seconds": 6.47,
+          "kills": 26,
+          "upgrades": 2,
+          "max_projectiles": 9,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 7,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 72.05,
+          "first_clear_seconds": 6.47,
+          "kills": 33,
+          "upgrades": 3,
+          "max_projectiles": 11,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 7,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 54.47,
+          "first_clear_seconds": 7.63,
+          "kills": 28,
+          "upgrades": 2,
+          "max_projectiles": 10,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 54.97,
+          "first_clear_seconds": 5.92,
+          "kills": 26,
+          "upgrades": 2,
+          "max_projectiles": 16,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        }
+      ],
+      "stalls": 0,
+      "report": "output/followup/report.json"
+    },
+    "rendered_gallery": "output/followup/gallery.png",
+    "ide": {
+      "files_analyzed": 5,
+      "errors": 0
+    },
+    "distribution": {
+      "checks": 25,
+      "passed": true,
+      "includes": "18 solo launches, drop-in/helpers, partial-only, empty/invalid installs and Static Remix persistence/scheduling"
+    },
+    "packaging": {
+      "source_pak_files": 450,
+      "windows_matches_source": true,
+      "wheel_matches_source": true,
+      "zip_matches_source": true,
+      "zip_crc": true,
+      "executable_sha256": "a0ec81ce68084badc9fda3998f02da46ba39c087bb757f05964dcf6e5f4d8571",
+      "wheel_sha256": "f4279d08349baca7a2d247e7eb138687efa437dba2309d8ff606e94ce2ed35b6",
+      "zip_sha256": "054db1cacd422cbac1cafc0c22ce748199830e4c610d12a4d9e7326db7e86cda"
+    },
+    "limitations": [
+      "The exhaustive 104976-combination matrix was excluded from this 183-test run; no engine or input-device rules changed.",
+      "Five eight-level bot samples ended in defeat: Bloom relaxed seed 24 after five clears, Bloom standard seeds 0/24/997 after six/seven/seven, and Tidal standard seed 24 after six. No stalls.",
+      "Scripted inputs and rendered inspection do not establish final human balance."
+    ]
+  },
+  "initial_twelve_renewal": {
+    "tested_pak_source_sha256": "3b603a0c1ea9ac5be8a63d75417b376d947c957d27311984bc3f982681d6a2bd",
+    "date": "2026-10-26",
+    "scope": "Initial twelve renewed; newer six and user refinements retained",
+    "unit_tests": {
+      "unique_methods": 219,
+      "standard": {
+        "tests": 218,
+        "seconds": 62.117,
+        "failures": 0,
+        "errors": 0,
+        "excluded": "104976-mix exhaustive matrix"
+      },
+      "exhaustive_gameplay_matrix": {
+        "command": "python tools/verify_matrix.py",
+        "tests": 1,
+        "workers": 4,
+        "combinations": 104976,
+        "fixed_steps_per_mix": 20,
+        "seconds": 370.765,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 104976,
+        "disjoint_full_coverage": true,
+        "results": [
+          {
+            "worker": 0,
+            "workers": 4,
+            "tests": 1,
+            "combinations": 26244,
+            "fixed_steps_per_mix": 20,
+            "seconds": 369.18,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 26244,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 1,
+            "workers": 4,
+            "tests": 1,
+            "combinations": 26244,
+            "fixed_steps_per_mix": 20,
+            "seconds": 363.264,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 26244,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 2,
+            "workers": 4,
+            "tests": 1,
+            "combinations": 26244,
+            "fixed_steps_per_mix": 20,
+            "seconds": 369.033,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 26244,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 3,
+            "workers": 4,
+            "tests": 1,
+            "combinations": 26244,
+            "fixed_steps_per_mix": 20,
+            "seconds": 361.759,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 26244,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          }
+        ],
+        "scope": "Original unittest assertions and full product space, disjoint worker partitions; cached read-only PNG decoding"
+      }
+    },
+    "assets": {
+      "source_atlases": 12,
+      "animated_role_sheets": 48,
+      "frames": 192,
+      "new_original_six_effects": 12,
+      "distinct_initial_twelve_attack_effects": 12,
+      "distinct_special_effects": 12,
+      "remastered_music_loops": 11,
+      "retained_healthy_loop": "sky_forge",
+      "provenance_entries": 296,
+      "report": "output/renewal-media.json"
+    },
+    "balance": {
+      "samples": 72,
+      "cleared_twelve": 55,
+      "defeats": 17,
+      "stalls": 0,
+      "seeds": [
+        0,
+        24,
+        997
+      ],
+      "difficulties": [
+        "relaxed",
+        "standard"
+      ],
+      "report": "output/renewal-final/report.json"
+    },
+    "newer_six_regression": {
+      "samples": 36,
+      "eight_level_clears": 31,
+      "defeats": 5,
+      "stalls": 0,
+      "report": "output/frontier/report.json"
+    },
+    "maze_graph_performance": {
+      "runs": [
+        {
+          "shared": false,
+          "enemies": 101,
+          "frames": 12,
+          "seconds": 3.0278,
+          "graphs": 0
+        },
+        {
+          "shared": true,
+          "enemies": 101,
+          "frames": 12,
+          "seconds": 0.1666,
+          "graphs": 1
+        }
+      ],
+      "exact_actor_state_equal": true,
+      "speedup": 18.17406962785114
+    },
+    "compatibility": {
+      "cases": 656,
+      "all_renewed_pilot_weapon_pairs": 144,
+      "seeded_cross_pak_cases": 512,
+      "frames_per_case": 360,
+      "swaps": 512,
+      "peak_projectiles": 57,
+      "finite_state": true,
+      "owned_geometry_released": true,
+      "scope": "Stability and lifecycle, not a claim that every mix clears"
+    },
+    "presentation": {
+      "presentation_pairs_checked": 324,
+      "read_only_render": true,
+      "local_music_streams": true
+    },
+    "procedural": {
+      "cases": 540,
+      "safe_enemy_placements": 15570,
+      "levels": [
+        1,
+        2,
+        7,
+        12,
+        50,
+        101
+      ],
+      "report": "output/verification/levels/report.json"
+    },
+    "sky_platform_routes": {
+      "routes": 114,
+      "failures": 0,
+      "report": "output/renewal-platforms.log"
+    },
+    "independent_installation": {
+      "each_renewed_complete_alone": 12,
+      "each_renewed_as_six_partials": 12,
+      "all_new_assets_local": true
+    },
+    "input": {
+      "source_steps": 3155,
+      "frozen_steps": 3155,
+      "all_eighteen_paks": true,
+      "eight_stick_dpad_directions_identical": true,
+      "report": "output/verification/gamepad",
+      "physical_hardware_buttons_operated": false
+    },
+    "powerups": {
+      "source_paks": 18,
+      "frozen_paks": 18,
+      "exact_tenth_kill_and_retention": true,
+      "report": "output/verification/powerups-integration"
+    },
+    "distribution": {
+      "checks": 25,
+      "passed": true,
+      "report": "output/verification/distribution/report.json"
+    },
+    "packaging": {
+      "source_pak_files": 471,
+      "windows_matches_source": true,
+      "wheel_matches_source": true,
+      "zip_matches_source": true,
+      "zip_crc": true,
+      "executable_sha256": "0202312a5b7d0d13d451f7fb36e0cec6240832d25cc555286cb0fe306990d249",
+      "wheel_sha256": "740faacdf3013a90e731f348d3e525ee21478666252d4701d7eaecaefc0bcac0",
+      "zip_sha256": "300e4a56d54ea17c6466abc8c89cdd6db5a3c963e7b05f89d63f92333eeac0a2"
+    },
+    "isolated_wheel": {
+      "isolated_module": "E:\\GitHub\\SystemPanic\\output\\renewal-installed\\Lib\\site-packages\\system_panic\\__init__.py",
+      "complete_paks": 18,
+      "frames_per_pak": 240,
+      "all_rendered": true
+    },
+    "rendered": {
+      "gallery": "output/renewal-delivery-gallery/gallery.png",
+      "ui": "output/renewal-ui",
+      "inspected": true
+    },
+    "ide": {
+      "files_analyzed": 21,
+      "pak_files_analyzed": 16,
+      "pak_errors": 0,
+      "tool_dependency_resolution_errors": [
+        "numpy",
+        "soundfile"
+      ],
+      "test_harness_dynamic_resolution_errors": 4,
+      "note": "The IDE runtime interpreter lacks optional authoring dependencies; the media tool runs successfully in the task virtual environment. The IDE also cannot statically resolve the harness test module added to sys.path and a dynamic pygame.image.load reference; the worker executions verify those paths."
+    },
+    "limitations": [
+      "Seventeen ordinary bot samples ended in defeat; these are preserved rather than replaced by easier seeds.",
+      "Scripted inputs, rendering and audio energy/decoding checks do not establish subjective human balance or physical speaker/controller quality.",
+      "The full six-channel space is not exhaustively playtested; the matrix covers gameplay roles, with presentation pairs checked separately.",
+      "Energy/decoding checks do not substitute for physical speaker listening. A physical controller was detected, but its buttons were not manually operated.",
+      "The exhaustive gameplay matrix uses twenty fixed simulation steps per mix; 656 longer hold/release cases and 324 presentation pairs are separate checks."
+    ]
+  },
+  "pickup_chimes": {
+    "date": "2026-10-26",
+    "scope": "Pickup audio for all eighteen shipped Paks; no host/API change",
+    "behavior": "Each factory captures a weapon-local SoundAsset; powerup.update plays once at .45 only after collect_powerup returns True. Survives provider/level changes and follows effects volume/mute.",
+    "unit_tests": {
+      "tests": 220,
+      "seconds": 69.649,
+      "failures": 0,
+      "errors": 0,
+      "excluded": "104976-mix exhaustive matrix"
+    },
+    "focused_powerup_tests": 20,
+    "red_proof": "output/pickup-chime-red.log; 36 missing-chime subtest failures before implementation",
+    "source_mixer_cases": 18,
+    "frozen_mixer_cases": 18,
+    "actual_decode_and_voice_allocation": true,
+    "distribution_checks": 25,
+    "media": {
+      "original_generations": 1,
+      "role_local_copies": 18,
+      "provenance_entries": 316,
+      "seconds": 0.45,
+      "peak": 0.8264139294624329,
+      "rms": 0.11633417821521513,
+      "tail_rms": 0.007564499326493818
+    },
+    "packaging": {
+      "source_pak_files": 489,
+      "windows_matches_source": true,
+      "wheel_matches_source": true,
+      "zip_matches_source": true,
+      "zip_crc": true,
+      "executable_sha256": "0202312a5b7d0d13d451f7fb36e0cec6240832d25cc555286cb0fe306990d249",
+      "wheel_sha256": "9955670cb9618d2f4dc2c299d25c7c74d0d19f14f58bdc3622ca7976f209a69f",
+      "zip_sha256": "72cac3ce92d301911ac81170312d6a21e5416aa1f3faf5aa5b09a4cd4ecc8e44"
+    },
+    "render_inspected": "output/verification/powerups-integration/frozen/signal_runner-picked.png",
+    "limitations": [
+      "The 104976-combination gameplay matrix was not repeated for this Pak-owned audio-only change; 220 standard tests and all eighteen source/frozen pickup paths were checked.",
+      "Audio checks use the SDL dummy output backend; physical speaker listening is separate."
+    ]
+  },
+  "playtest_refinement": {
+    "date": "2026-10-26",
+    "status": "complete",
+    "scope": "Latest playtest feedback and movement-specific pilot assets",
+    "architecture": "All new gameplay/assets remain in independently copyable Pak roles; no host/API change in this refinement.",
+    "items": [
+      {
+        "request": "Void: escapable weaker gravity",
+        "status": "implemented and verified",
+        "behavior": "170px influence, squared falloff; maximum 10px/s drift and 75px/s^2 acceleration. Ordinary thrust escapes offsets 0/1/20/60 within two seconds."
+      },
+      {
+        "request": "Iron: heading, acceleration and speed-powered shots",
+        "status": "implemented and verified",
+        "behavior": "Wall contact retains heading. Automatic acceleration caps at 340 normally or 430 in overdrive. Resolved displacement determines momentum, excluding stationary wall pushing."
+      },
+      {
+        "request": "Sky: stab, charged throw and physical sword recovery",
+        "status": "implemented and verified",
+        "behavior": "Tap stabs; charge at least .55s to throw the single powerful blade, then collect it before attacking again. Persistent ownership survives locked-weapon projectile cleanup, terrain and level changes safely."
+      },
+      {
+        "request": "Phase: hidden attack radius",
+        "status": "implemented and verified",
+        "behavior": "No reach circle, numerical radius or range-miss cue; finite mechanical reach remains."
+      },
+      {
+        "request": "Neon: continuous music loop",
+        "status": "implemented and verified",
+        "behavior": "Preserved generated WAV; [0,20.8] source region omits the fade, producing a 20.62s cyclic master. Full join/interior RMS floor 0.5989263436391524."
+      },
+      {
+        "request": "Maze: generated maze and wrap tunnels",
+        "status": "implemented and verified",
+        "behavior": "Seeded connected 30x15 maze with braids and east/west tunnel. Pilot, enemies and lunge/knockbacks wrap locally. Cardinal routing recovers from displaced grid alignment without reversal stalls."
+      },
+      {
+        "request": "Pilots: only useful facing art",
+        "status": "implemented and verified",
+        "behavior": "Sixteen selected original sheets: ten 8x4, five 4x4, Sky 2x4 upright run/jump. Star retains its forward ship; Orbit its symmetric spin. All 408 new pilot frames rendered at 44px; fixed scale/center registration and Sky foot baseline."
+      },
+      {
+        "request": "Vector: close captures with earlier boundaries",
+        "status": "implemented and verified",
+        "behavior": "Anchored live paths close against a connected network of surviving old edges. Disconnected, expired or outline-only paths do not falsely capture."
+      },
+      {
+        "request": "Star: immediate attacks",
+        "status": "implemented and verified",
+        "behavior": "Timer expiry shoots and starts its committed dive without a tell/marker state."
+      },
+      {
+        "request": "Star: cellular bunkers",
+        "status": "implemented and verified",
+        "behavior": "Seeded arches consist of independent 16px, 18-health cells. Both player and hostile shots erode their actual first-contact cell."
+      },
+      {
+        "request": "Tide: shared hop grid and richer canals",
+        "status": "implemented and verified",
+        "behavior": "Pilot/traffic use 24+48k centers, including 96px ferry hops and enemy pauses. External towing yields through public position changes. Seeded islands/quays, eddies, reeds, banks and lily pads stay role-local."
+      }
+    ],
+    "tests": {
+      "standard_run": {
+        "tests": 239,
+        "seconds": 84.827,
+        "failures": 0,
+        "errors": 0,
+        "excluded": "104976-mix exhaustive matrix"
+      },
+      "focused_tests": 19,
+      "unique_standard_methods": 239,
+      "unique_methods_including_matrix": 240,
+      "matrix": {
+        "command": "python tools/verify_matrix.py",
+        "tests": 1,
+        "workers": 4,
+        "combinations": 104976,
+        "fixed_steps_per_mix": 20,
+        "seconds": 656.021,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 104976,
+        "disjoint_full_coverage": true,
+        "results": [
+          {
+            "worker": 0,
+            "workers": 4,
+            "tests": 1,
+            "combinations": 26244,
+            "fixed_steps_per_mix": 20,
+            "seconds": 653.937,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 26244,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 1,
+            "workers": 4,
+            "tests": 1,
+            "combinations": 26244,
+            "fixed_steps_per_mix": 20,
+            "seconds": 552.82,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 26244,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 2,
+            "workers": 4,
+            "tests": 1,
+            "combinations": 26244,
+            "fixed_steps_per_mix": 20,
+            "seconds": 641.449,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 26244,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 3,
+            "workers": 4,
+            "tests": 1,
+            "combinations": 26244,
+            "fixed_steps_per_mix": 20,
+            "seconds": 539.192,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 26244,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          }
+        ],
+        "scope": "Original unittest assertions and full product space, disjoint worker partitions; cached read-only PNG decoding"
+      },
+      "longer_mixes": {
+        "cases": 656,
+        "all_renewed_pilot_weapon_pairs": 144,
+        "seeded_cross_pak_cases": 512,
+        "frames_per_case": 360,
+        "swaps": 512,
+        "peak_projectiles": 57,
+        "finite_state": true,
+        "owned_geometry_released": true,
+        "scope": "Stability and lifecycle, not a claim that every mix clears"
+      },
+      "integration_note": "Final focused and standard runs also validate deferred grid recovery and sword terrain-shuffle relocation added during matrix integration; those lifecycle branches lie outside its twenty-step smoke window."
+    },
+    "procedural": {
+      "cases": 540,
+      "safe_enemy_placements": 15570,
+      "sky_routes": 114
+    },
+    "solo": {
+      "all_eighteen_three_level_smoke": true,
+      "balance_runs": [
+        {
+          "pak": "void_drifter",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 86.85,
+          "seconds": 89.62,
+          "kills": 63,
+          "upgrades": 1,
+          "max_projectiles": 2,
+          "max_kill_drought_seconds": 4.77,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "void_drifter",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 97.82,
+          "kills": 63,
+          "upgrades": 2,
+          "max_projectiles": 2,
+          "max_kill_drought_seconds": 4.9,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "iron_circuit",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 35.65,
+          "kills": 21,
+          "upgrades": 0,
+          "max_projectiles": 24,
+          "max_kill_drought_seconds": 2.97,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "iron_circuit",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 86.61,
+          "seconds": 30.45,
+          "kills": 21,
+          "upgrades": 0,
+          "max_projectiles": 21,
+          "max_kill_drought_seconds": 3.17,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "sky_forge",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 94.21,
+          "seconds": 48.7,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 9,
+          "max_kill_drought_seconds": 6.68,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "sky_forge",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 3,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 22.5,
+          "kills": 7,
+          "upgrades": 0,
+          "max_projectiles": 5,
+          "max_kill_drought_seconds": 7.95,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "vector_coil",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 102.33,
+          "kills": 21,
+          "upgrades": 0,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 22.82,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "vector_coil",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 102.33,
+          "kills": 21,
+          "upgrades": 0,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 22.82,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "star_bastion",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 54.57,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 11,
+          "max_kill_drought_seconds": 9.0,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "star_bastion",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 57.32,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 10,
+          "max_kill_drought_seconds": 9.7,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "tide_hopper",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 42.8,
+          "kills": 21,
+          "upgrades": 2,
+          "max_projectiles": 1,
+          "max_kill_drought_seconds": 6.45,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "tide_hopper",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 45.4,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 1,
+          "max_kill_drought_seconds": 5.5,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          },
+          "target_levels": 6
+        },
+        {
+          "pak": "maze_muncher",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 50.03,
+          "seconds": 49.82,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 3.85,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "target_levels": 8
+        },
+        {
+          "pak": "maze_muncher",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 54.86,
+          "seconds": 50.87,
+          "kills": 36,
+          "upgrades": 2,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 3.87,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "target_levels": 8
+        },
+        {
+          "pak": "maze_muncher",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 7,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 51.18,
+          "kills": 33,
+          "upgrades": 2,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 3.65,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8
+          },
+          "target_levels": 8
+        },
+        {
+          "pak": "maze_muncher",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 7,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 48.0,
+          "kills": 35,
+          "upgrades": 3,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 3.55,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8
+          },
+          "target_levels": 8
+        },
+        {
+          "pak": "maze_muncher",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 8,
+          "phase": "active",
+          "health": 42.26,
+          "seconds": 42.02,
+          "kills": 36,
+          "upgrades": 3,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 3.5,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9
+          },
+          "target_levels": 8
+        },
+        {
+          "pak": "maze_muncher",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 7,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 44.48,
+          "kills": 30,
+          "upgrades": 2,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 3.45,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8
+          },
+          "target_levels": 8
+        }
+      ],
+      "target_clears": 14,
+      "defeats": 4,
+      "stalls": 0,
+      "input": "Ordinary digital Controls; no health/resource/damage grants. Six/eight levels are QA stopping points; progression remains endless."
+    },
+    "assets": {
+      "built_in_imagegen_sources": 17,
+      "new_pilot_sheets": 16,
+      "pilot_frames": 408,
+      "source_directory": "assets/images",
+      "prompt_set": "tools/assetforge/facing-prompts.json",
+      "exact_source_references_preserved": true,
+      "new_offline_sword_effects": 2,
+      "provenance_entries": 354,
+      "neon_music": {
+        "seconds": 20.62,
+        "minimum_cyclic_join_to_peak_rms": 0.8301164644627472,
+        "endpoint_step": 0.008498139679431915,
+        "minimum_four_second_join_to_interior_rms": 0.5989263436391524
+      }
+    },
+    "presentation": {
+      "inspected": [
+        "output/playtest-refinement/facings.png",
+        "output/playtest-refinement/solo/gallery.png",
+        "output/playtest-refinement/maze-final/gallery.png",
+        "output/playtest-refinement/sword-cycle.png"
+      ],
+      "sword_cycle": "All four states captured through ordinary demo input, including physical recovery."
+    },
+    "distribution": {
+      "checks": 25,
+      "source_pickup_chimes": 18,
+      "frozen_pickup_chimes": 18,
+      "fresh_wheel": {
+        "isolated_module": "E:\\GitHub\\SystemPanic\\output\\playtest-installed\\Lib\\site-packages\\system_panic\\__init__.py",
+        "complete_paks": 18,
+        "frames_per_pak": 240,
+        "all_rendered": true
+      },
+      "packaging": {
+        "source_pak_files": 493,
+        "windows_matches_source": true,
+        "wheel_matches_source": true,
+        "zip_matches_source": true,
+        "zip_crc": true,
+        "executable_sha256": "0202312a5b7d0d13d451f7fb36e0cec6240832d25cc555286cb0fe306990d249",
+        "wheel_sha256": "d95f7f0b0ccf8a860deb3c1180e1f0dbf059b55646530564e613219ac0135872",
+        "zip_sha256": "6585a8f98531e6e5d81b69f6ff89fe20a05b3ac09387af44f9456c5cc0af65f6"
+      }
+    },
+    "limitations": [
+      "Automated inputs/rendering do not establish final subjective balance or physical speaker/controller feel.",
+      "One Sky standard sample dies after three clears; three Maze samples die after seven. All final recorded runs either clear their QA target or end in defeat; none stall.",
+      "The exhaustive gameplay matrix samples twenty fixed steps. Longer hold/release/replacement cases are separate; awkward component mixes remain allowed."
+    ]
+  },
+  "arcade_feedback": {
+    "date": "2026-10-26",
+    "status": "complete",
+    "items": [
+      {
+        "request": "Three rotating pilots",
+        "status": "implemented and verified",
+        "result": "Original single-pose Orbit Keeper, Void Drifter and Iron Circuit assets restored byte-for-byte from their original source crops; sprite rotation restored. Movement/abilities and existing gameplay tuning retained."
+      },
+      {
+        "request": "Facing clutter",
+        "status": "implemented and verified",
+        "result": "Shared facing ticks and redundant weapon aiming dots removed."
+      },
+      {
+        "request": "Sky floor alignment",
+        "status": "implemented and verified",
+        "result": "Pilot and crawler physical bounds now meet HEIGHT=480; local crawler drawing aligns alpha feet. Both floor and platform contacts retain their proper body radii."
+      },
+      {
+        "request": "Sky sword",
+        "status": "implemented and verified",
+        "result": "A mirrored 0.22s overhead sweep hits each enemy once and pushes surviving targets 28px through geometry with a 95px/s impulse. Throw/retrieve mechanics persist; dropped-sword arrow removed. The ordinary-input QA recovery route completes deck descents."
+      },
+      {
+        "request": "Control prose",
+        "status": "implemented and verified",
+        "result": "Removed all in-arena control instruction prose at Pak draw sites. Resource meters/numeric nectar and menu/footer help remain."
+      },
+      {
+        "request": "Orbit cover",
+        "status": "implemented and verified",
+        "result": "Obstacles return zero damage and remain indestructible."
+      },
+      {
+        "request": "Neon paddle",
+        "status": "implemented and verified",
+        "result": "Existing sprite rendered as an 84x24 paddle, flush on all four edges. A Pak-owned rectangular contact footprint lets outer-span ball returns work. Original firing assistance retained; border reflections use perpendicular normals."
+      },
+      {
+        "request": "Maze exits",
+        "status": "implemented and verified",
+        "result": "No forced clear center row. Seeded exit height and short east/west stubs join a connected braided maze; actual geometry drives route/wrap queries."
+      },
+      {
+        "request": "Burrow enemies",
+        "status": "implemented and verified",
+        "result": "No attack cues or emergence windup; underground phase transitions immediately to the committed rush."
+      },
+      {
+        "request": "Vector enemies",
+        "status": "implemented and verified",
+        "result": "Base contact damage 32 plus level scaling; drift, 0.25-0.45s pause, then a random-heading 0.4s dart at 3.8x speed."
+      },
+      {
+        "request": "Star enemy fire",
+        "status": "implemented and verified",
+        "result": "Targets scatter within +/-95x28px of player; three spread shots, five from level eight. Formation interval reduced to 1.75s before scaling."
+      },
+      {
+        "request": "Tide movement",
+        "status": "implemented and verified",
+        "result": "Normal/ferry hops grant no invulnerability. Pilot protection circle omitted; existing post-hit and arrival safety remain separate."
+      },
+      {
+        "request": "Bloom damage/radius",
+        "status": "implemented and verified",
+        "result": "Damage is 8+112*growth**2.4; radius 28+70*growth, capped at 98. Cascade reach radius+20. Nectar funding and capacity-only upgrades remain."
+      }
+    ],
+    "architecture": {
+      "pak_rules_local": true,
+      "general_additions": [
+        "Optional PilotBase.draw and EnemyBase.draw callbacks with existing centered defaults",
+        "Body.overlaps_circle default circle; Pak subclasses may define contact footprints"
+      ]
+    },
+    "tests": {
+      "standard": {
+        "tests": 255,
+        "seconds": 119.703,
+        "failures": 0,
+        "errors": 0,
+        "excluded": "104976-mix exhaustive matrix"
+      },
+      "focused_methods": 16,
+      "unique_methods_including_matrix": 256,
+      "full_matrix": {
+        "command": "python tools/verify_matrix.py",
+        "tests": 1,
+        "workers": 8,
+        "combinations": 104976,
+        "fixed_steps_per_mix": 20,
+        "seconds": 556.897,
+        "passed": true,
+        "exit_code": 0,
+        "fresh_gameplay_instances": true,
+        "worlds_created": 104976,
+        "disjoint_full_coverage": true,
+        "results": [
+          {
+            "worker": 0,
+            "workers": 8,
+            "tests": 1,
+            "combinations": 13122,
+            "fixed_steps_per_mix": 20,
+            "seconds": 554.304,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 13122,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 1,
+            "workers": 8,
+            "tests": 1,
+            "combinations": 13122,
+            "fixed_steps_per_mix": 20,
+            "seconds": 451.075,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 13122,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 2,
+            "workers": 8,
+            "tests": 1,
+            "combinations": 13122,
+            "fixed_steps_per_mix": 20,
+            "seconds": 554.037,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 13122,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 3,
+            "workers": 8,
+            "tests": 1,
+            "combinations": 13122,
+            "fixed_steps_per_mix": 20,
+            "seconds": 434.357,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 13122,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 4,
+            "workers": 8,
+            "tests": 1,
+            "combinations": 13122,
+            "fixed_steps_per_mix": 20,
+            "seconds": 520.571,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 13122,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 5,
+            "workers": 8,
+            "tests": 1,
+            "combinations": 13122,
+            "fixed_steps_per_mix": 20,
+            "seconds": 443.849,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 13122,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 6,
+            "workers": 8,
+            "tests": 1,
+            "combinations": 13122,
+            "fixed_steps_per_mix": 20,
+            "seconds": 499.826,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 13122,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          },
+          {
+            "worker": 7,
+            "workers": 8,
+            "tests": 1,
+            "combinations": 13122,
+            "fixed_steps_per_mix": 20,
+            "seconds": 436.734,
+            "passed": true,
+            "exit_code": 0,
+            "fresh_gameplay_instances": true,
+            "worlds_created": 13122,
+            "decode_cache": {
+              "hits": 0,
+              "misses": 0
+            },
+            "scope": "Unmodified test assertions; deterministic disjoint product-index partition; cached read-only PNG pixels"
+          }
+        ],
+        "scope": "Original unittest assertions and full product space, disjoint worker partitions; cached read-only PNG decoding"
+      },
+      "final_neon_matrix": {
+        "combinations": 11340,
+        "passed": true,
+        "fixed_steps_per_mix": 20,
+        "seconds": 76.212,
+        "workers": [
+          {
+            "worker": 0,
+            "combinations": 1418,
+            "expected": 1418,
+            "passed": true
+          },
+          {
+            "worker": 1,
+            "combinations": 1418,
+            "expected": 1418,
+            "passed": true
+          },
+          {
+            "worker": 2,
+            "combinations": 1418,
+            "expected": 1418,
+            "passed": true
+          },
+          {
+            "worker": 3,
+            "combinations": 1418,
+            "expected": 1418,
+            "passed": true
+          },
+          {
+            "worker": 4,
+            "combinations": 1417,
+            "expected": 1417,
+            "passed": true
+          },
+          {
+            "worker": 5,
+            "combinations": 1417,
+            "expected": 1417,
+            "passed": true
+          },
+          {
+            "worker": 6,
+            "combinations": 1417,
+            "expected": 1417,
+            "passed": true
+          },
+          {
+            "worker": 7,
+            "combinations": 1417,
+            "expected": 1417,
+            "passed": true
+          }
+        ],
+        "scope": "Every gameplay combination containing the final Neon pilot or weapon; original unittest assertions; fresh worlds; disjoint coverage"
+      },
+      "longer_mixes": {
+        "cases": 656,
+        "all_renewed_pilot_weapon_pairs": 144,
+        "seeded_cross_pak_cases": 512,
+        "frames_per_case": 360,
+        "swaps": 512,
+        "peak_projectiles": 59,
+        "finite_state": true,
+        "owned_geometry_released": true,
+        "scope": "Stability and lifecycle, not a claim that every mix clears"
+      },
+      "integration": "Full matrix ran during integration; the final Neon firing-assistance correction is covered by every affected pilot/weapon mix (11340). The later Sky QA descent policy is separately covered by focused tests and ordinary-input samples; it is outside the raw Controls matrix."
+    },
+    "procedural": {
+      "cases": 540,
+      "safe_placements": 15570,
+      "sky_routes": 114
+    },
+    "solo": {
+      "all_eighteen_three_level_smoke": true,
+      "target_levels": 6,
+      "runs": [
+        {
+          "pak": "maze_muncher",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 68.37,
+          "seconds": 45.57,
+          "kills": 21,
+          "upgrades": 2,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 3.68,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "maze_muncher",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 27.84,
+          "seconds": 37.78,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 3.38,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "burrow_patrol",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 61.48,
+          "kills": 21,
+          "upgrades": 2,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 12.57,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "burrow_patrol",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 70.45,
+          "seconds": 57.75,
+          "kills": 21,
+          "upgrades": 2,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 10.5,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "vector_coil",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 102.33,
+          "kills": 21,
+          "upgrades": 0,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 22.82,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "vector_coil",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 2,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 47.32,
+          "kills": 3,
+          "upgrades": 0,
+          "max_projectiles": 0,
+          "max_kill_drought_seconds": 22.82,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3
+          }
+        },
+        {
+          "pak": "star_bastion",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 47.05,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 23,
+          "max_kill_drought_seconds": 5.65,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "star_bastion",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 47.63,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 21,
+          "max_kill_drought_seconds": 8.52,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "tide_hopper",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 42.8,
+          "kills": 21,
+          "upgrades": 2,
+          "max_projectiles": 1,
+          "max_kill_drought_seconds": 6.45,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "tide_hopper",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 45.4,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 1,
+          "max_kill_drought_seconds": 5.5,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "sky_forge",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 53.18,
+          "seconds": 57.38,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 9,
+          "max_kill_drought_seconds": 11.82,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "sky_forge",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 43.33,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 7,
+          "max_kill_drought_seconds": 6.67,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "neon_breach",
+          "difficulty": "relaxed",
+          "seed": 0,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 90.12,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 12,
+          "max_kill_drought_seconds": 14.25,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "neon_breach",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 86.77,
+          "kills": 21,
+          "upgrades": 2,
+          "max_projectiles": 9,
+          "max_kill_drought_seconds": 9.67,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "neon_breach",
+          "difficulty": "relaxed",
+          "seed": 997,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 69.32,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 8,
+          "max_kill_drought_seconds": 8.25,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "neon_breach",
+          "difficulty": "standard",
+          "seed": 0,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 95.93,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 13,
+          "max_kill_drought_seconds": 8.8,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "neon_breach",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 101.08,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 11,
+          "max_kill_drought_seconds": 8.72,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "neon_breach",
+          "difficulty": "standard",
+          "seed": 997,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 89.47,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 12,
+          "max_kill_drought_seconds": 11.28,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 32.22,
+          "first_clear_seconds": 2.8,
+          "kills": 21,
+          "upgrades": 2,
+          "max_projectiles": 10,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "pulse_abbey",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 27.03,
+          "first_clear_seconds": 2.78,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 11,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 98.93,
+          "seconds": 37.58,
+          "first_clear_seconds": 2.87,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 41,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "scrap_ballet",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 52.22,
+          "seconds": 41.07,
+          "first_clear_seconds": 2.85,
+          "kills": 21,
+          "upgrades": 2,
+          "max_projectiles": 42,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 98.93,
+          "seconds": 50.75,
+          "first_clear_seconds": 7.28,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 16,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "glasswake",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 44.82,
+          "first_clear_seconds": 6.1,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 14,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 5,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 57.33,
+          "first_clear_seconds": 6.52,
+          "kills": 20,
+          "upgrades": 2,
+          "max_projectiles": 8,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6
+          }
+        },
+        {
+          "pak": "bloom_siege",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 3,
+          "phase": "dead",
+          "health": 0.0,
+          "seconds": 41.85,
+          "first_clear_seconds": 6.48,
+          "kills": 6,
+          "upgrades": 0,
+          "max_projectiles": 6,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 29.37,
+          "first_clear_seconds": 2.7,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 22,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "echo_vault",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 94.61,
+          "seconds": 57.73,
+          "first_clear_seconds": 2.72,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 23,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "relaxed",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 100,
+          "seconds": 44.27,
+          "first_clear_seconds": 5.92,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 14,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        },
+        {
+          "pak": "tidal_choir",
+          "difficulty": "standard",
+          "seed": 24,
+          "cleared_levels": 6,
+          "phase": "active",
+          "health": 41.91,
+          "seconds": 46.17,
+          "first_clear_seconds": 5.92,
+          "kills": 21,
+          "upgrades": 1,
+          "max_projectiles": 15,
+          "initial_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7
+          }
+        }
+      ],
+      "target_clears": 27,
+      "defeats": 3,
+      "stalls": 0,
+      "input": "Ordinary digital Controls; no health, resource or damage grants. Six levels is a QA stopping point; progression remains endless."
+    },
+    "assets": {
+      "provenance_entries": 354,
+      "new_generations": 0,
+      "restored_single_pose_pilots": 3,
+      "remaining_directional_pilot_sheets": 14,
+      "remaining_directional_frames": 344,
+      "media": {
+        "paks": [
+          {
+            "pak": "signal_runner",
+            "images": {
+              "pilot": {
+                "size": [
+                  1992,
+                  996
+                ],
+                "grid": [
+                  8,
+                  4
+                ],
+                "frames": 32,
+                "sha256": "da2e9836fccc6d455caf1627970edb0386fed1d9ea7f76995d1a84d2e123303e"
+              },
+              "enemy": {
+                "size": [
+                  1092,
+                  273
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "67280ad81a3527ff314f9652f5f1735deeb7b5feec0cb2f923975a99af113c08"
+              },
+              "weapon": {
+                "size": [
+                  984,
+                  246
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "cabc5de532437375767b5ef978c46dd1a759535d49ffcb78e2e19750de6c6a45"
+              },
+              "obstacles": {
+                "size": [
+                  1048,
+                  262
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "3e372e41ceeda75fa2db7df4a9871e67c11101cf50c6fc65d7a219f27e233bdf"
+              }
+            },
+            "effects": {
+              "pilot": "158bb1962adb171f7fdc967b3c57ec3bca2cb62228b002f32387ae96256433ff",
+              "weapon": "1bd96ce5c42debd4e5eab6edd5d4d17cd022d7f351249be7044495b32124cc6c"
+            },
+            "music": {
+              "seconds": 30.72,
+              "minimum_cyclic_join_to_peak_rms": 0.11739398560077074,
+              "endpoint_step": 0.01691093808040023
+            }
+          },
+          {
+            "pak": "void_drifter",
+            "images": {
+              "pilot": {
+                "size": [
+                  220,
+                  262
+                ],
+                "grid": [
+                  1,
+                  1
+                ],
+                "frames": 1,
+                "sha256": "7a3fdafbe252fcd4de9dfcba7fa1888cb1fadecd3887fe66ac41bed89603aa3e"
+              },
+              "enemy": {
+                "size": [
+                  1036,
+                  259
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "e3fbeb997f40bdcf79359ebaaddb5b8ef0adc3452ec65dddab071666aa172edd"
+              },
+              "weapon": {
+                "size": [
+                  1180,
+                  295
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "7d24d841dfae7dd457bbc33e8b061d5bf23cf8fbc4ba76e7a4bc6d692bdd2555"
+              },
+              "obstacles": {
+                "size": [
+                  1312,
+                  328
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "f9d6f63f94fa25722a947aa59e741175f98f1d5361889f990cdd224f97677cb9"
+              }
+            },
+            "effects": {
+              "pilot": "e4391d851f4e75aad0f52be0f91bd5f008ea37d8f2dfa7ceb8b3d2e1ad76f203",
+              "weapon": "a13c6cbf55ad6bf017852992731a486db42ea945d37d063974d58f5173af4a95"
+            },
+            "music": {
+              "seconds": 29.02,
+              "minimum_cyclic_join_to_peak_rms": 0.0879871421270407,
+              "endpoint_step": 0.003639695481979288
+            }
+          },
+          {
+            "pak": "iron_circuit",
+            "images": {
+              "pilot": {
+                "size": [
+                  160,
+                  233
+                ],
+                "grid": [
+                  1,
+                  1
+                ],
+                "frames": 1,
+                "sha256": "2282d96c27f12ca1ffab5a0739e8685f67c4068e8f15d3dd922e03a5fdc4337e"
+              },
+              "enemy": {
+                "size": [
+                  1160,
+                  290
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "bacf354e30429f8c989c3b9c5436b55802271323bd556e6957442e62b8fca043"
+              },
+              "weapon": {
+                "size": [
+                  1016,
+                  254
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "95dd5364a2d4fb0aecfc28dbb4d0b0b183a9d77c2239f938e00b6a2c8cb3488f"
+              },
+              "obstacles": {
+                "size": [
+                  1156,
+                  289
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "994f4ee104061ab5d0f8934a2ee9ce88185ae7ada47bd28e2a220fabfea8f8fb"
+              }
+            },
+            "effects": {
+              "pilot": "c5710c5116ff3aad5bb256389a6bf0f9d44070c0cf172b65d5cf9f3a433f5938",
+              "weapon": "975b29c04a41800dbfc4fb105d4dcd2f079281473413dc15fcd96402e3128ecd"
+            },
+            "music": {
+              "seconds": 30.82,
+              "minimum_cyclic_join_to_peak_rms": 0.6346345222236317,
+              "endpoint_step": 0.054638952016830444
+            }
+          },
+          {
+            "pak": "sky_forge",
+            "images": {
+              "pilot": {
+                "size": [
+                  836,
+                  1672
+                ],
+                "grid": [
+                  2,
+                  4
+                ],
+                "frames": 8,
+                "sha256": "6b5ce33af645b3444042a71d5500e01ac7d8ed74cb4b35bbfcdcdcd2ae1bb85d"
+              },
+              "enemy": {
+                "size": [
+                  2032,
+                  508
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "afb77674199d7efd41638e0eeb880a14afb44fd4cc5bd6da73f968bb87976a39"
+              },
+              "weapon": {
+                "size": [
+                  2304,
+                  576
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "3cb44c3c1302a9a9cb065c9c06ed97bc43d64879f8a7eb4bddbecb65f70706c3"
+              },
+              "obstacles": {
+                "size": [
+                  1124,
+                  281
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "5b84fdd87ee0dbb417c4c2e7a5a2bf6613ea644c951dbef22fa9685c3d13e117"
+              }
+            },
+            "effects": {
+              "pilot": "0b2c0c64f358bf41eb2938df73fa2e7fefa5ecc55e3eafab8ffcbb8520d4b7b2",
+              "weapon": "0954d0f5ab4337e1c76570b2d646e43635ba38a0a55c8019ee18cd3ad971f71d"
+            },
+            "music": {
+              "seconds": 31.82,
+              "minimum_cyclic_join_to_peak_rms": 0.4141274145658503,
+              "endpoint_step": 0.022410282865166664
+            }
+          },
+          {
+            "pak": "phase_garden",
+            "images": {
+              "pilot": {
+                "size": [
+                  2296,
+                  1148
+                ],
+                "grid": [
+                  8,
+                  4
+                ],
+                "frames": 32,
+                "sha256": "d261787c4fbc665c51f05877604658516c681216602110f63f72d7320ab7c70e"
+              },
+              "enemy": {
+                "size": [
+                  1240,
+                  310
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "a23663491778a8ae0f6b3acbc7f8a9f737e66f1ec2a8d964663fb3dca712795b"
+              },
+              "weapon": {
+                "size": [
+                  1204,
+                  301
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "42a108312f8d6cc8cabfc1666808f13c3c408c5961319e694e60cbd4074e03cf"
+              },
+              "obstacles": {
+                "size": [
+                  1112,
+                  278
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "9da18c0a4ec068a674f417ae2004d2857012761a204434b990aa7ac6f492bb65"
+              }
+            },
+            "effects": {
+              "pilot": "e34cb0510ac97cc90d1338b776556d2668b3785efae291a28007b8bd9c4c999c",
+              "weapon": "85721acc15e096cdd6229a0f3ff968c8062fb2034a954f08ac3342f29599b2ed"
+            },
+            "music": {
+              "seconds": 30.72,
+              "minimum_cyclic_join_to_peak_rms": 0.13436511220609654,
+              "endpoint_step": 0.002719528041779995
+            }
+          },
+          {
+            "pak": "orbit_keeper",
+            "images": {
+              "pilot": {
+                "size": [
+                  199,
+                  205
+                ],
+                "grid": [
+                  1,
+                  1
+                ],
+                "frames": 1,
+                "sha256": "99bd6d11c1ba11ebcdc54d1ba2adc31ea33eca94b90a82955e57a7121c9a56ba"
+              },
+              "enemy": {
+                "size": [
+                  1156,
+                  289
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "ad0cfa9e1445f95308e4750d0bddcf945474a2525edadf65f8c5db4393b741ca"
+              },
+              "weapon": {
+                "size": [
+                  1088,
+                  272
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "1c65e2bfeb657db2aa394ac27d8c80b0b93aba3f1f2dc2b067369ed096cec1b0"
+              },
+              "obstacles": {
+                "size": [
+                  1152,
+                  288
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "efbe6c7e55fef71420315640df29afa5bcb9691370eb71f67d52522e5760217d"
+              }
+            },
+            "effects": {
+              "pilot": "734592801148c1d7c96063787d8cba1a5049296d48a8b9ee9be38337d759006e",
+              "weapon": "87c9eb67a45598ee2d649a12f501c95153fc8a1c084aea3c103ef9c3cc8e1efd"
+            },
+            "music": {
+              "seconds": 30.32,
+              "minimum_cyclic_join_to_peak_rms": 0.1212865803587767,
+              "endpoint_step": 0.0006596855819225311
+            }
+          },
+          {
+            "pak": "neon_breach",
+            "images": {
+              "pilot": {
+                "size": [
+                  1412,
+                  1412
+                ],
+                "grid": [
+                  4,
+                  4
+                ],
+                "frames": 16,
+                "sha256": "078052436bf312ffd087b3507f9e6252506f0d6bc15df911e42c0b3ebc9ac232"
+              },
+              "enemy": {
+                "size": [
+                  1044,
+                  261
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "9e90426590cab6e20093dd8029f46065d98400a32bc6a00cd88a68df6c4e88c0"
+              },
+              "weapon": {
+                "size": [
+                  1072,
+                  268
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "7983ef56d519621f232499b1b3fed537b048f4aace530fc15f0a44f4df321712"
+              },
+              "obstacles": {
+                "size": [
+                  1084,
+                  271
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "2c70ef965e84181e185ffbf6a0c75a045efa797ab3b6eabc459a0244ecbbffe4"
+              }
+            },
+            "effects": {
+              "pilot": "bac39b616ceae500032030a5ade105300ae7a1067a9a439b82d7cbdbe5442992",
+              "weapon": "631118e54b1ee9d40d8e78d9e5403c652069dff214fc0267c880c55279323dff"
+            },
+            "music": {
+              "seconds": 20.62,
+              "minimum_cyclic_join_to_peak_rms": 0.8301164644627472,
+              "endpoint_step": 0.008498139679431915,
+              "minimum_four_second_join_to_interior_rms": 0.5989263436391524
+            }
+          },
+          {
+            "pak": "maze_muncher",
+            "images": {
+              "pilot": {
+                "size": [
+                  1396,
+                  1396
+                ],
+                "grid": [
+                  4,
+                  4
+                ],
+                "frames": 16,
+                "sha256": "921495fdbf90914b06d8b7dddd9ccc0ec62d645b4de4cf0f8ac21c1bc160cf85"
+              },
+              "enemy": {
+                "size": [
+                  1180,
+                  295
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "77fd9bb5490efde021752607887b37aa83b68a3a95ecd6b1586f3280d62bc5c3"
+              },
+              "weapon": {
+                "size": [
+                  1068,
+                  267
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "28ff7ca9b63f3947a6eb8227f4afc800b693be5c81deca7bfde937e0a2e36292"
+              },
+              "obstacles": {
+                "size": [
+                  968,
+                  242
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "ee052583c978cb778a4bbb75dc6ebffd5c35e5ad143e48375313f082f4bc3f35"
+              }
+            },
+            "effects": {
+              "pilot": "6d56612353b76047616466f32934f22c514f04ca390ae04903515f27c396acdf",
+              "weapon": "bb17c28984f0e21787446f972b3b2168bcc4c380755df8801fac14f7fec7c06b"
+            },
+            "music": {
+              "seconds": 23.62,
+              "minimum_cyclic_join_to_peak_rms": 0.1277930773381884,
+              "endpoint_step": 0.0007991885067895055
+            }
+          },
+          {
+            "pak": "burrow_patrol",
+            "images": {
+              "pilot": {
+                "size": [
+                  1264,
+                  1264
+                ],
+                "grid": [
+                  4,
+                  4
+                ],
+                "frames": 16,
+                "sha256": "176093523c55417c77dc0218b63450a45bbc507afa804852badadffb17f642ce"
+              },
+              "enemy": {
+                "size": [
+                  1228,
+                  307
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "163dd1c90abe18341b2bafa6b2806b26e2be170adca560817d23a2b632a721e3"
+              },
+              "weapon": {
+                "size": [
+                  1188,
+                  297
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "778f1b1586c93d673c189799369392da81e07c94a5daeb4cbfbf44588d8aa4cd"
+              },
+              "obstacles": {
+                "size": [
+                  1124,
+                  281
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "9242aef1b7269d12bc23a3fcdca17ea9766f81100bc1a95401b52f57efdddbe2"
+              }
+            },
+            "effects": {
+              "pilot": "d5d9d5e40a7676944be5f61d1ebe7d2a0c82bacb8afc3bbbdaa48041e8bef271",
+              "weapon": "b8605815320b7c7277a3bc4a8d289f1173e954963a409537bc52f1ee86aef125"
+            },
+            "music": {
+              "seconds": 19.32,
+              "minimum_cyclic_join_to_peak_rms": 0.5238491519488774,
+              "endpoint_step": 0.021756969392299652
+            }
+          },
+          {
+            "pak": "vector_coil",
+            "images": {
+              "pilot": {
+                "size": [
+                  1412,
+                  1412
+                ],
+                "grid": [
+                  4,
+                  4
+                ],
+                "frames": 16,
+                "sha256": "05850c9c11233516b17f8a50e55df2959b5c17556ea09ce298dc0895a86a6cd4"
+              },
+              "enemy": {
+                "size": [
+                  1148,
+                  287
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "43d651c7c6ea996b4b21f8c4ec33583c780a321dd3e2934df48925b0525fb8ad"
+              },
+              "weapon": {
+                "size": [
+                  1112,
+                  278
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "60cd659382d20fbe56c9e3f169db0ac19829c7dcf0993e3934234bc7a12d05a7"
+              },
+              "obstacles": {
+                "size": [
+                  1068,
+                  267
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "3e9873de2cccaee06dacabc5db210ff1b1544ad114028cac47c3865fc68b461e"
+              }
+            },
+            "effects": {
+              "pilot": "f1a36f145239cfeef8a11084ccc0051408ab9e9c4cc41f5a038e725576b46602",
+              "weapon": "f0aa881343241e6dbf73c800d2b860c2a7ba62b5451cc0e5225d8f076d0c30aa"
+            },
+            "music": {
+              "seconds": 23.22,
+              "minimum_cyclic_join_to_peak_rms": 0.08190732946739983,
+              "endpoint_step": 0.0005436529900180176
+            }
+          },
+          {
+            "pak": "star_bastion",
+            "images": {
+              "pilot": {
+                "size": [
+                  1188,
+                  297
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "25173da6a2dfe3e8f8b818ffbfa880f8e744b250d219cb5498e74971c5f6f980"
+              },
+              "enemy": {
+                "size": [
+                  1204,
+                  301
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "75d146722c8da5128d8010a9f7a55db7f6e310f9006d6485bf79d14b201fc699"
+              },
+              "weapon": {
+                "size": [
+                  1128,
+                  282
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "85193cfd5447da2c5a349350724d415879ecaec37bbed0b741293a11cce836ff"
+              },
+              "obstacles": {
+                "size": [
+                  1116,
+                  279
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "1d05c9762e515cb420960b4dee6114d903fdf3c34e96a12a8488a67b6bf3dcc7"
+              }
+            },
+            "effects": {
+              "pilot": "94a2d0bbb5ba9ea2e4450f28d347973e3d531b2b018c0a27b88a84917ba5717e",
+              "weapon": "bd03709c09ae90c425b953e0c8ded0c65cfca4c70eb571ef9c67f8a9b4e397de"
+            },
+            "music": {
+              "seconds": 22.22,
+              "minimum_cyclic_join_to_peak_rms": 0.11325803413252043,
+              "endpoint_step": 0.03617201745510101
+            }
+          },
+          {
+            "pak": "tide_hopper",
+            "images": {
+              "pilot": {
+                "size": [
+                  1428,
+                  1428
+                ],
+                "grid": [
+                  4,
+                  4
+                ],
+                "frames": 16,
+                "sha256": "498dc7b9f3d99c575ee6bddc7c72bc6dafc6477dae099082f1e00b9cdf411515"
+              },
+              "enemy": {
+                "size": [
+                  1252,
+                  313
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "78cca4fde7afc21fc04249feb5cbef1ed8304fb894e755641e31d8961785650f"
+              },
+              "weapon": {
+                "size": [
+                  1160,
+                  290
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "b81585f758406853eb5d5a40718ac2e5dd3ae9ad36791ef194724487223e6d45"
+              },
+              "obstacles": {
+                "size": [
+                  1036,
+                  259
+                ],
+                "grid": [
+                  4,
+                  1
+                ],
+                "frames": 4,
+                "sha256": "0e38f1a6791e5cb0613749e98263e5f9a65283f3e0f6b6d7eae29be06d2ce18d"
+              }
+            },
+            "effects": {
+              "pilot": "b648ab668d4242ad7fb0a31480a80facfd98db597913d7a1d8ad3675ee2f9936",
+              "weapon": "44b6f11ee0926ebe94466a25463bd2ca2eade10d95caf056a7b6e6bfe8aa5621"
+            },
+            "music": {
+              "seconds": 23.12,
+              "minimum_cyclic_join_to_peak_rms": 0.2490364607754473,
+              "endpoint_step": 0.000324491411447525
+            }
+          }
+        ],
+        "role_sheets": 48,
+        "animated_role_sheets": 45,
+        "frames": 303,
+        "unique_special_effects": 12,
+        "unique_attack_effects": 12,
+        "all_encoded_music_joins_above_energy_floor": true,
+        "limit": "Energy and decoding checks do not establish subjective musical quality"
+      }
+    },
+    "presentation": {
+      "inspected": [
+        "output/arcade-feedback/solo/gallery.png",
+        "output/arcade-feedback/final-neon/gallery.png",
+        "output/arcade-feedback/frontier/gallery.png"
+      ],
+      "assertions": "Actual read-only renders verify Sky alpha feet and all four Neon edge extents; pilot tick and dropped-blade arrow draw calls are absent."
+    },
+    "distribution": {
+      "checks": 25,
+      "source_and_frozen_pickups": 18,
+      "source_and_frozen_native_controller_steps": 3155,
+      "fresh_wheel": {
+        "isolated_module": "E:\\GitHub\\SystemPanic\\output\\feedback-installed\\Lib\\site-packages\\system_panic\\__init__.py",
+        "complete_paks": 18,
+        "frames_per_pak": 240,
+        "all_rendered": true
+      },
+      "packaging": {
+        "source_pak_files": 493,
+        "windows_matches_source": true,
+        "wheel_matches_source": true,
+        "zip_matches_source": true,
+        "zip_crc": true,
+        "executable_sha256": "fc611e7e015009d82e3545974ae718c529acab8bbf7bb95af57dd84ed14ec9bd",
+        "wheel_sha256": "ed753e2437f7e0bfc0a46ec35519dcf9ebf0ce5b4837c3d3b80df64044595463",
+        "zip_sha256": "b772564e0c9fe11bbbff005590dbca87e2ed9998740c5f9145d01da67c10284c"
+      }
+    },
+    "limitations": [
+      "Thirty final bot samples are bounded balance observations, not human feel approval. Vector standard seed 24 dies after two clears; Bloom relaxed/standard seed 24 die after five/three.",
+      "The full gameplay matrix samples twenty fixed steps; six-second replacement tests are separate. Ineffective mixed combinations remain allowed.",
+      "Physical controller button operation and speaker listening remain outside the automated evidence."
+    ]
+  },
+  "buggy_navigation_performance": {
+    "date": "2026-10-26",
+    "status": "complete",
+    "report": "docs/buggy-performance.json",
+    "case": {
+      "name": "BUGGY",
+      "seed": 24,
+      "difficulty": "standard",
+      "aim_assist": false,
+      "mix": {
+        "pilot": "sky_forge",
+        "enemy": "maze_muncher",
+        "weapon": "tidal_choir",
+        "music": "echo_vault",
+        "background": "sky_forge",
+        "obstacles": "glasswake"
+      }
+    },
+    "result": "Pak-local exact navigation indexing and bounded filter-compatible graph sharing remove the per-enemy moving-mirror rebuild storm.",
+    "tests": {
+      "standard": {
+        "tests": 263,
+        "seconds": 86.848,
+        "failures": 0,
+        "errors": 0,
+        "excluded": "104976-mix exhaustive matrix"
+      },
+      "focused": {
+        "methods": 8,
+        "seconds": 1.784,
+        "passed": true,
+        "log": "output/buggy-navigation-tests.log",
+        "contracts": [
+          "inherited rectangular sharing across eight enemies and moving snapshots",
+          "per-body filters",
+          "class and instance custom overlap fallback",
+          "bounded cache and unchanged surviving snapshots",
+          "nonblocking geometry/filter changes",
+          "fractional radius and exact edge contact",
+          "indexed graph nodes, links and direction equal conservative sampled geometry including wrap borders"
+        ]
+      },
+      "affected_matrix": {
+        "combinations": 5832,
+        "passed": true,
+        "fixed_steps_per_mix": 20,
+        "seconds": 24.41,
+        "workers": [
+          {
+            "worker": 0,
+            "combinations": 729,
+            "expected": 729,
+            "passed": true
+          },
+          {
+            "worker": 1,
+            "combinations": 729,
+            "expected": 729,
+            "passed": true
+          },
+          {
+            "worker": 2,
+            "combinations": 729,
+            "expected": 729,
+            "passed": true
+          },
+          {
+            "worker": 3,
+            "combinations": 729,
+            "expected": 729,
+            "passed": true
+          },
+          {
+            "worker": 4,
+            "combinations": 729,
+            "expected": 729,
+            "passed": true
+          },
+          {
+            "worker": 5,
+            "combinations": 729,
+            "expected": 729,
+            "passed": true
+          },
+          {
+            "worker": 6,
+            "combinations": 729,
+            "expected": 729,
+            "passed": true
+          },
+          {
+            "worker": 7,
+            "combinations": 729,
+            "expected": 729,
+            "passed": true
+          }
+        ],
+        "scope": "Every gameplay combination containing the Maze Muncher enemy after navigation optimization; original unittest assertions; fresh worlds; disjoint coverage"
+      },
+      "note": "263 fresh standard methods plus the original exhaustive test assertions restricted to all 5832 affected gameplay mixes. The complete 104976-case matrix was not rerun for this Pak-only change; unaffected enemy channels retain prior arcade_feedback evidence. Repeated focused runs are not additional unique methods.",
+      "logs": [
+        "output/buggy-final-standard-tests.log",
+        "output/buggy-enemy-matrix.log"
+      ]
+    },
+    "benchmark_summary": [
+      {
+        "initial_enemies": 1,
+        "fixed_steps": 480,
+        "mean_simulation_speedup": 24.694289823590076,
+        "state_hash_matches": true,
+        "before_simulation_ms_mean": 6.873027916784243,
+        "after_simulation_ms_mean": 0.2783245829656759
+      },
+      {
+        "initial_enemies": 8,
+        "fixed_steps": 480,
+        "mean_simulation_speedup": 65.57751742377087,
+        "state_hash_matches": true,
+        "before_simulation_ms_mean": 42.01977791793373,
+        "after_simulation_ms_mean": 0.6407649994798703
+      },
+      {
+        "initial_enemies": 20,
+        "fixed_steps": 480,
+        "mean_simulation_speedup": 83.4300644680931,
+        "state_hash_matches": true,
+        "before_simulation_ms_mean": 136.38576833345724,
+        "after_simulation_ms_mean": 1.634731666611818
+      }
+    ],
+    "source_and_frozen_4k_app_passed": true,
+    "distribution": {
+      "packaging": {
+        "source_pak_files": 493,
+        "windows_matches_source": true,
+        "wheel_matches_source": true,
+        "zip_matches_source": true,
+        "zip_crc": true,
+        "executable_sha256": "fc611e7e015009d82e3545974ae718c529acab8bbf7bb95af57dd84ed14ec9bd",
+        "wheel_sha256": "bdf2a210a937b1cf2961f3a973c323ca718eb31796a18a75b9b8b44a79bc6776",
+        "zip_sha256": "cae220fcf77c08bf4a6614f4dbdc62c4af12134297fc892bdacab74accf408b9"
+      },
+      "checks": 25,
+      "passed": true,
+      "compiled_host_reused": true,
+      "windows_folder": "dist/SystemPanic",
+      "windows_zip": "dist/SystemPanic-Windows.zip",
+      "wheel": "dist/system_panic-0.1.0-py3-none-any.whl",
+      "logs": [
+        "output/buggy-packaging.log",
+        "output/buggy-distribution.log"
+      ]
+    },
+    "personal_files": {
+      "remixes_sha256_unchanged": true,
+      "preferences_sha256_unchanged": true,
+      "verification": "Read-only hashes compared before and after work. Fixtures contain provider IDs and relevant options; all test profiles are temporary."
+    },
+    "limitations": [
+      "This reproduces the saved provider combination; favorites store no original run seed or level, so the exact previously played run is unavailable.",
+      "Paired state equality and timing cover bounded four-second samples with 1/8/20 initial enemies, not every possible future run.",
+      "Actual 4K SDL dummy App presentation still costs about 27-31ms per frame on this machine, separately from the repaired navigation. This is CPU scaling/presentation overhead, not a physical display FPS measurement or a 60FPS guarantee.",
+      "The affected matrix is a twenty-step stability check, not a claim that all mixed mechanics can clear.",
+      "Physical display/controller/speaker quality and final human balance were not retested for this navigation-only change."
+    ]
   }
 }

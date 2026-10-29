@@ -11,7 +11,7 @@ class SkyForgeObstacles(ObstaclesBase):
         self.routes = []
 
     def sprite(self, world, entity=None):
-        return self.blocks
+        return self.blocks.frame(int((world.time if world else 0)*8)%4,columns=4)
 
     def take_damage(self, world, obstacle, damage):
         return 0.
@@ -59,5 +59,16 @@ class SkyForgeObstacles(ObstaclesBase):
     def draw(self, graphics, surface, world, obstacle):
         accent = world.pak("obstacles").color
         pygame.draw.rect(surface,(16,28,39),obstacle.rect,border_radius=4)
+        frame=self.sprite(world,obstacle)
+        pixels=frame.image.surface.subsurface(frame.rect)
+        bounds=pixels.get_bounding_rect(min_alpha=110)
+        if bounds.width and bounds.height:
+            tile=pixels.subsurface(bounds)
+            for x in range(obstacle.rect.left,obstacle.rect.right,64):
+                width=min(64,obstacle.rect.right-x)
+                # Keep every visible deck pixel within its collision rectangle;
+                # the existing landing/head/side physics stay unchanged.
+                image=pygame.transform.smoothscale(tile,(width,obstacle.rect.height))
+                surface.blit(image,(x,obstacle.rect.top))
         pygame.draw.rect(surface,tuple(int(c*.3) for c in accent),obstacle.rect,2,border_radius=4)
         pygame.draw.line(surface,accent,obstacle.rect.topleft,obstacle.rect.topright,2)

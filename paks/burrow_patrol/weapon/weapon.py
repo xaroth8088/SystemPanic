@@ -7,14 +7,24 @@ from .projectile import PressureLine
 
 class BurrowPatrolWeapon(WeaponBase):
     def init(self):
+        self.pickup_sound = self.load_asset("pickup.ogg")
         self.art=self.load_asset("weapon_sheet.png")
         self.sound=self.load_asset("shot.ogg")
         self._remaining=0.
         self._target=None
         self._pressure=0.
         self._line=None
+        self.recovery=0.
 
-    def sprite(self,world,entity=None): return self.art
+    def on_level_start(self,world):
+        self._target,self._pressure,self.recovery=None,0.,0.
+        self._line=None
+
+    def on_shuffle(self,world,changed):
+        self._target,self._pressure,self.recovery=None,0.,0.
+        self._line=None
+
+    def sprite(self,world,entity=None): return self.art.frame(int((world.time if world else 0)*8)%4,columns=4)
 
     def aim(self,world):
         intent=world.component("pilot").aim_direction(world)
@@ -27,6 +37,10 @@ class BurrowPatrolWeapon(WeaponBase):
 
     def update(self,world,dt,control):
         self._remaining=max(0.,self._remaining-dt)
+        self.recovery=max(0.,self.recovery-dt)
+        if self.recovery:
+            self.show_line(world,world.player.pos,0.)
+            return
         if not control.fire:
             self._pressure=max(0.,self._pressure-dt*.7)
             return
@@ -51,13 +65,14 @@ class BurrowPatrolWeapon(WeaponBase):
             world.hit_enemy(target,max(45,target.max_health*1.25))
             world.burst(target.pos,world.pak("weapon").color,16)
             self._pressure=0.
+            self.recovery=.32
         self.show_line(world,target.pos,self._pressure)
 
     def reach(self,world):
         return min(300.,145.+18*world.powerups_collected)
 
     def show_line(self,world,end,pressure):
-        if self._line is None or not self._line.alive:
+        if self._line is None or not self._line.alive or self._line not in world.effects:
             self._line=PressureLine(self)
             world.effects.append(self._line)
         self._line.start=world.player.pos.copy()
@@ -66,7 +81,7 @@ class BurrowPatrolWeapon(WeaponBase):
         self._line.remaining=.05
 
     def create_powerup(self,world,position):
-        return BurrowPatrolPowerup(position,self.sprite(world),world.pak("weapon").color)
+        return BurrowPatrolPowerup(position,self.art,world.pak("weapon").color, self.pickup_sound)
 
     def on_powerup(self,world,count):
         world.burst(world.player.pos,world.pak("weapon").color,12)

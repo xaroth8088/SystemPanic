@@ -1,7 +1,11 @@
 # Vector Coil: enemy
 
-Read [this Pak](../AGENTS.md), [Pak contracts](../../AGENTS.md) and [public ABCs](../../../src/system_panic/pak_api.py).
+Read [this Pak](../AGENTS.md), [public ABCs](../../../src/system_panic/pak_api.py) and [Pak contracts](../../AGENTS.md). Copy this entire role folder as a partial Pak. Actor factories, local helpers, spawn/difficulty/reward policy and contacts belong here. No private sibling-role state or host feature traits.
 
-This folder owns its component code, helpers and generated assets. Use explicit ABC callbacks, local handle names and private timing/state. Do not import another Pak's module or move content rules into core. Drawing and asset selection cannot change simulation/RNG. Copy the entire role folder when making a partial. Assets are generated outside the game; provenance is recorded in assets/manifest.json.
+Sparks retain level-scaled movement, periodic pursuit turns and real shape/border reflections. Capture and trail damage remain the weapon role, never a pilot passive or host rule.
 
-Vector sparks maintain velocity, reflect from collision normals and increasingly steer toward predicted pilot motion. Reflection and steering remain local.
+The local four-frame sheet selects poses without changing simulation/RNG. Owned transient cues recreate after world cleanup; death clears them. Use actual shape/body/projectile filters for geometry, with rects only as broad-phase metadata.
+
+## Arcade feedback (2026-10-26)
+
+Contact damage is now (32+1.3*(wave-1)^.7)*difficulty. Drift periods of 1.3-2.7s lead to a stationary 0.25-0.45s pause, followed by a 0.4s dart at 3.8x ordinary move_speed. Dart heading is sampled uniformly from the run RNG, independent of player position. Actual geometry/border normals still reflect velocity. No host AI state or new telegraph object is used.

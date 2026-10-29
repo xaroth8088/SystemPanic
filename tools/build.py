@@ -16,7 +16,7 @@ def main():
         "--distpath", str(ROOT / "dist"), "--workpath", str(ROOT / "build"),
         "--specpath", str(ROOT / "build"), "--paths", str(ROOT / "src"),
         "--add-data", str(ROOT / "assets/images/title.png") + os.pathsep + "assets/images",
-        *[argument for name in ("shot", "impact", "shuffle", "hurt", "clear", "select")
+        *[argument for name in ("shot", "impact", "shuffle", "hurt", "clear", "select", "game_over")
           for argument in ("--add-data", str(ROOT / f"assets/audio/production/{name}.ogg") + os.pathsep + "assets/audio/production")],
         "--add-data", str(ROOT / "assets/manifest.json") + os.pathsep + "assets",
         "--add-data", str(ROOT / "LICENSE") + os.pathsep + ".",

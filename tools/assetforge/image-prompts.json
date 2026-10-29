@@ -113,6 +113,3241 @@
         "height": 1280,
         "extraction": "alpha components grouped by quadrant, preserving objects extending beyond nominal cell boundaries"
       }
+    },
+    {
+      "id": "pulse_abbey",
+      "file": "assets/images/pulse_abbey-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Production animation sprite atlas for original arcade game pulse_abbey. ONE square PNG atlas with true transparent background. EXACTLY 4 columns and 4 equal-height rows, 16 evenly spaced sprites. Row 1 four animation frames of ivory masked bell dancer in violet robes. Row 2 four frames of floating bronze clockwork bell enemy with a red eye. Row 3 four frames of circular golden sonic halo. Row 4 four frames of gothic resonator pillar. breathing / ringing animation progresses left to right, consistent size and anchor across each row. Top-down 2D crisp detailed pixel art, strong readable small silhouettes, restrained 16-bit shading, violet, brass gold, ivory palette. Each sprite centered in cell with wide transparent padding, fully contained; no labels, text, grid, floor, backdrop or watermark. Four rows, four columns, preserve alpha.",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "note": "Cell bounds measured by exporter; unequal source dimensions padded losslessly."
+      }
+    },
+    {
+      "id": "scrap_ballet",
+      "file": "assets/images/scrap_ballet-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Production animation sprite atlas for original arcade game scrap_ballet. ONE square PNG atlas with true transparent background. EXACTLY 4 columns and 4 equal-height rows, 16 evenly spaced sprites. Row 1 four animation frames of small orange magnetic salvage tug with two blue magnet claws. Row 2 four frames of angular red rival tug robot. Row 3 four frames of jagged luminous scrap ball. Row 4 four frames of riveted abandoned satellite debris. thruster / magnetic field animation progresses left to right, consistent size and anchor across each row. Top-down 2D crisp detailed pixel art, strong readable small silhouettes, restrained 16-bit shading, rust orange, electric blue, graphite palette. Each sprite centered in cell with wide transparent padding, fully contained; no labels, text, grid, floor, backdrop or watermark. Four rows, four columns, preserve alpha.",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "note": "Cell bounds measured by exporter; unequal source dimensions padded losslessly."
+      }
+    },
+    {
+      "id": "glasswake",
+      "file": "assets/images/glasswake-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Production animation sprite atlas for original arcade game glasswake. ONE square PNG atlas with true transparent background. EXACTLY 4 columns and 4 equal-height rows, 16 evenly spaced sprites. Row 1 four animation frames of elegant white faceted prism skater. Row 2 four frames of teal crystalline shield beetle. Row 3 four frames of spectral light spear. Row 4 four frames of tall floating diagonal crystal mirror. prismatic shimmer animation progresses left to right, consistent size and anchor across each row. Top-down 2D crisp detailed pixel art, strong readable small silhouettes, restrained 16-bit shading, icy teal, coral pink, pearl white palette. Each sprite centered in cell with wide transparent padding, fully contained; no labels, text, grid, floor, backdrop or watermark. Four rows, four columns, preserve alpha.",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "note": "Cell bounds measured by exporter; unequal source dimensions padded losslessly."
+      }
+    },
+    {
+      "id": "bloom_siege",
+      "file": "assets/images/bloom_siege-source.png",
+      "transparent_background": true,
+      "prompt": "Production animation sprite atlas for original arcade game bloom_siege. ONE square PNG atlas true transparent background. EXACTLY 4 columns and 4 equal-height rows, 16 sprites. Row 1 four animation frames of tiny botanical mech gardener with straw hat. Row 2 four frames of crimson six-legged blight weevil. Row 3 four frames of pink carnivorous flower opening from seed. Row 4 four frames of mossy root arch. Four frames progress left to right consistent anchor and size, gentle motion/shimmer. Top-down 2D crisp detailed pixel art, readable small silhouettes, 16-bit shading, fern green, vivid pink, cream. Centered in cells with wide transparent padding, no overlaps, labels, grid, text or backdrop.",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "note": "Cell bounds measured by exporter; unequal source dimensions padded losslessly."
+      }
+    },
+    {
+      "id": "echo_vault",
+      "file": "assets/images/echo_vault-source.png",
+      "transparent_background": true,
+      "prompt": "Production animation sprite atlas for original arcade game echo_vault. ONE square PNG atlas true transparent background. EXACTLY 4 columns and 4 equal-height rows, 16 sprites. Row 1 four animation frames of hooded cyan time thief with hourglass backpack. Row 2 four frames of violet angular chronoguard with one clock face. Row 3 four frames of cyan spectral afterimage dart. Row 4 four frames of dark clockwork gear pedestal. Four frames progress left to right consistent anchor and size, gentle motion/shimmer. Top-down 2D crisp detailed pixel art, readable small silhouettes, 16-bit shading, midnight blue, cyan, violet. Centered in cells with wide transparent padding, no overlaps, labels, grid, text or backdrop.",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "note": "Cell bounds measured by exporter; unequal source dimensions padded losslessly."
+      }
+    },
+    {
+      "id": "tidal_choir",
+      "file": "assets/images/tidal_choir-source.png",
+      "transparent_background": true,
+      "prompt": "Production animation sprite atlas for original arcade game tidal_choir. ONE square PNG atlas true transparent background. EXACTLY 4 columns and 4 equal-height rows, 16 sprites. Row 1 four animation frames of tiny amber diving bell submarine. Row 2 four frames of indigo armored cuttlefish with bright eyes. Row 3 four frames of iridescent rising bubble pearl core. Row 4 four frames of turquoise bioluminescent coral fan. Four frames progress left to right consistent anchor and size, gentle motion/shimmer. Top-down 2D crisp detailed pixel art, readable small silhouettes, 16-bit shading, deep ocean blue, amber, turquoise. Centered in cells with wide transparent padding, no overlaps, labels, grid, text or backdrop.",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "note": "Cell bounds measured by exporter; unequal source dimensions padded losslessly."
+      }
+    },
+    {
+      "id": "signal_runner_renewal",
+      "file": "assets/images/signal_runner-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Signal Runner renewal. Create ONE perfectly regular 4-column by 4-row sheet, 16 isolated sprites on true transparent alpha, no labels, no text, no grid lines, no background. Every cell contains exactly one centered sprite and ample clear padding, no sprite crossing cell boundaries. Each ROW is four successive frames of ONE consistent subject, identical scale/pivot/anatomy/materials across that row, subtle readable animation. Row 1: nimble white-and-electric-cyan courier robot with a cobalt visor, compact rounded body, short limbs, animated running/dashing with a short cyan energy scarf. Row 2: hostile crimson and magenta triangular signal-leech drone, three small claw legs and one bright eye, animated scuttling/charging. Row 3: a concentrated cyan radio-energy pulse projectile with a white core and swept electric arcs, pulsing four frames, SAME silhouette and center. Row 4: one chunky modular dark navy radio relay gate/partition block with cyan circuit inlays, four stages of signal-light pulsing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Camera: top-down three-quarter arcade sprite view, fixed camera per row. Match high-quality modern indie arcade art, keep the robot/drone clearly distinct. No scenery or decorative extra objects. Precisely aligned 4x4 cells. Square sheet, transparent outside the sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            313
+          ],
+          [
+            313,
+            627
+          ],
+          [
+            627,
+            940
+          ],
+          [
+            940,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "void_drifter_renewal",
+      "file": "assets/images/void_drifter-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Void Drifter renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: sleek lavender and white triangular spacecraft pointing UP, compact blue engine nozzles pulsing. Row 2: jagged dark violet asteroid with pink crystalline core and glowing cracks, slowly turning. Row 3: long slender violet-white piercing energy lance pointing RIGHT, controlled plasma shimmering. Row 4: single dark space-ruin crystal island chunk, violet gravity conduits and glowing mineral seams pulsing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            313
+          ],
+          [
+            313,
+            627
+          ],
+          [
+            627,
+            887
+          ],
+          [
+            887,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "iron_circuit_renewal",
+      "file": "assets/images/iron_circuit-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Iron Circuit renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: armored amber racing hovercar viewed directly top-down pointing UP, black tires and white number-free panels, engine lights pulsing. Row 2: heavy charcoal stationary gun turret with amber optics and a crimson barrel, winding up and firing. Row 3: round hot orange ricochet plasma orb with metallic spinning rings, white-hot center pulsing. Row 4: one modular curved steel racetrack guardrail segment with amber hazard strips, warning lamps cycling. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            338
+          ],
+          [
+            338,
+            628
+          ],
+          [
+            628,
+            940
+          ],
+          [
+            940,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "phase_garden_renewal",
+      "file": "assets/images/phase_garden-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Phase Garden renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: gentle mint spectral gardener spirit with a small leaf crown and translucent trailing tail, floating. Row 2: hostile violet thorn-orchid phantom with luminous yellow eyes and spiked petals, opening and closing. Row 3: bright mint lightning seed mote with branching short arcs, energy cycling. Row 4: one square moonstone hedge block wrapped in dark emerald vines and mint runes, runes pulsing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            330
+          ],
+          [
+            330,
+            642
+          ],
+          [
+            642,
+            940
+          ],
+          [
+            940,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "orbit_keeper_renewal",
+      "file": "assets/images/orbit_keeper-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Orbit Keeper renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: gold-and-ivory circular astrolabe guardian drone, central sapphire eye and three short orbiting blades, rotating. Row 2: hostile dark bronze ring sentinel with crimson central gem and small sharp fins, rotating. Row 3: single curved golden crescent glaive with a white blade edge and tiny amber motes, spinning. Row 4: single ancient brass orbital machinery satellite block with concentric inset rings, golden indicator lights cycling. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            313
+          ],
+          [
+            313,
+            627
+          ],
+          [
+            627,
+            920
+          ],
+          [
+            920,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "neon_breach_renewal",
+      "file": "assets/images/neon_breach-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Neon Breach renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: wide horizontal magenta-and-cyan capsule paddle drone with two tiny white eyes and small thrusters, hovering. Row 2: hostile chunky orange brick-armored drone with four stubby legs and a bright red visor, armor lights flashing. Row 3: round pink plasma pinball with a white center and cyan elastic energy bands, bouncing/pulsing. Row 4: one short three-brick navy arcade barrier module with vivid magenta and cyan edges, its neon lights cycling. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            313
+          ],
+          [
+            313,
+            627
+          ],
+          [
+            627,
+            940
+          ],
+          [
+            940,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "maze_muncher_renewal",
+      "file": "assets/images/maze_muncher-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Maze Muncher renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: round brass clockwork muncher with expressive teal eyes, a mechanical hinged jaw and two stubby feet, chomping while running. Row 2: hostile blue-violet armored crab drone with red eye stalks, sideways scuttling. Row 3: a compact golden gear-shaped chomp spark with a crescent of energy teeth, opening/closing. Row 4: one chunky navy maze elbow block with glowing cobalt and golden line inlays, lamps pulsing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            313
+          ],
+          [
+            313,
+            627
+          ],
+          [
+            627,
+            940
+          ],
+          [
+            940,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "burrow_patrol_renewal",
+      "file": "assets/images/burrow_patrol-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Burrow Patrol renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: rust-orange mole miner mech with a round blue headlamp helmet, short drill nose and stout digging claws, digging. Row 2: hostile coiled magenta segmented cave worm with amber ridges and glowing eyes, swelling slightly then relaxing. Row 3: a compact amber pressure jet bubble with a brass nozzle core and short blue rings, pressure pulsing. Row 4: single layered sandstone cave-vein boulder with blue crystals and copper ore seams, crystals glinting. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            313
+          ],
+          [
+            313,
+            627
+          ],
+          [
+            627,
+            940
+          ],
+          [
+            940,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "vector_coil_renewal",
+      "file": "assets/images/vector_coil-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Vector Coil renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: angular lime circuit crawler with triangular silver head, small articulated legs and luminous green circuit traces, stepping. Row 2: hostile violet polygon prism drone with shifting faceted planes and a hot pink eye, tumbling. Row 3: compact square lime induction coil energy sigil with a white diamond center, electric charge cycling. Row 4: one dark cubic wireframe lattice block with lime edges and silver corner nodes, nodes pulsing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            313
+          ],
+          [
+            313,
+            627
+          ],
+          [
+            627,
+            931
+          ],
+          [
+            931,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "star_bastion_renewal",
+      "file": "assets/images/star_bastion-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Star Bastion renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: cobalt-and-white starfighter pointing UP, swept short wings, golden canopy and twin bright engine trails, engines pulsing. Row 2: hostile orange insect starship with sharply segmented bronze wings and red eyes, wing plates opening. Row 3: a compact twin cyan torpedo energy spark with white cores and blue fins, thrusters pulsing. Row 4: one wide silver-blue defense bunker arch module with a clear dark entrance and small amber lamps, lamps cycling. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            313
+          ],
+          [
+            313,
+            627
+          ],
+          [
+            627,
+            940
+          ],
+          [
+            940,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "tide_hopper_renewal",
+      "file": "assets/images/tide_hopper-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Tide Hopper renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: emerald amphibious frog-shaped diving robot with a round brass diving helmet and big glass eyes, crouching/hopping. Row 2: hostile coral-red canal barge traffic drone pointing LEFT, squat armored hull with amber bridge lights, engine wake pulsing. Row 3: single teal-and-brass harpoon hook pointing RIGHT with short coiled rope and a white glint, glint cycling. Row 4: one chunky dark teal floating canal gate module with brass fittings and luminous emerald warning strips, warning lights cycling. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            354
+          ],
+          [
+            354,
+            627
+          ],
+          [
+            627,
+            933
+          ],
+          [
+            933,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "sky_forge_renewal",
+      "file": "assets/images/sky_forge-renewal-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production 2D arcade game spritesheet, Sky Forge renewal. Create ONE regular 4-column by 4-row sheet: 16 isolated sprites. Each ROW is four successive animation frames of ONE consistent subject. Row 1: small coral-and-brass armored forge knight seen SIDE-ON facing RIGHT, thick boots and scarf, running/jumping. Row 2: hostile red iron hopping beetle with spring legs and fiery orange belly, crouching then springing. Row 3: heavy round coral fire grenade with iron fins, a bright ember core and short flame wisps, pulsing. Row 4: one floating forge platform block SIDE VIEW, level flat steel top and dark industrial underside, furnace seams glowing. Style: polished hand-painted sci-fi game sprites, luminous hard surface accents, bold graphic silhouettes with clear dark outlines, crisp edges, restrained bloom, rich shaded detail that remains readable at 32px. Fixed top-down three-quarter arcade view except where SIDE VIEW or directly top-down is requested. Identical scale, pivot and anatomy across each four-frame row; consistent registration, generous transparent padding. No scenery, lettering, grid lines or extra objects. Precisely aligned 4x4 equal cells, square sheet, true transparent alpha outside all sixteen sprites. Keep ALL sprite silhouettes and flames fully inside their own cells with at least 35px empty transparent margins.",
+      "actual_geometry": {
+        "columns": 4,
+        "row_bands": [
+          [
+            0,
+            335
+          ],
+          [
+            335,
+            661
+          ],
+          [
+            661,
+            968
+          ],
+          [
+            968,
+            1254
+          ]
+        ],
+        "source_size": [
+          1254,
+          1254
+        ],
+        "note": "Low-alpha row boundaries measured from delivered original; lossless cells padded into equal animation frames."
+      }
+    },
+    {
+      "id": "signal_runner_facing",
+      "file": "assets/images/signal_runner-facing-source.png",
+      "prompt": "Use case: stylized-concept. Edit the reference character into a production GAME SPRITESHEET with TRUE TRANSPARENT background. Preserve the exact cyan-and-white courier robot identity, blue visor and cyan scarf. 8 evenly spaced columns and 4 evenly spaced rows: 32 separate sprites. Columns show actual camera turnarounds in this exact clockwise order: EAST (facing screen right), SOUTHEAST, SOUTH (facing viewer), SOUTHWEST, WEST (screen left), NORTHWEST, NORTH (back to viewer), NORTHEAST. Rows are four consecutive running animation poses. Keep characters upright with consistent overhead/isometric 2.5D camera; the camera views the same character from different bearings. Do NOT simply rotate a flat side image in the picture plane; feet remain below head in every direction. For NORTH show back of helmet and scarf attachment, not a front face. Keep every cell centered, same character scale, full body entirely inside cell with ample transparent margins. No labels, text, borders, ground, shadows outside character, diagrams, weapons or extra characters. Crisp polished hand-painted/pixel-detailed arcade asset, readable tiny silhouette.",
+      "transparent_background": true,
+      "reference_file": "assets/images/signal_runner-pilot-facing-reference.png",
+      "reference_sha256": "341380c7c438ec8bf2fe021a966b662135cca67348a6689cc417465e25e85d5a",
+      "actual_geometry": {
+        "columns": 8,
+        "rows": 4,
+        "source_size": [
+          1774,
+          887
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            222,
+            222
+          ],
+          [
+            222,
+            0,
+            222,
+            222
+          ],
+          [
+            444,
+            0,
+            221,
+            222
+          ],
+          [
+            665,
+            0,
+            222,
+            222
+          ],
+          [
+            887,
+            0,
+            222,
+            222
+          ],
+          [
+            1109,
+            0,
+            221,
+            222
+          ],
+          [
+            1330,
+            0,
+            222,
+            222
+          ],
+          [
+            1552,
+            0,
+            222,
+            222
+          ],
+          [
+            0,
+            222,
+            222,
+            222
+          ],
+          [
+            222,
+            222,
+            222,
+            222
+          ],
+          [
+            444,
+            222,
+            221,
+            222
+          ],
+          [
+            665,
+            222,
+            222,
+            222
+          ],
+          [
+            887,
+            222,
+            222,
+            222
+          ],
+          [
+            1109,
+            222,
+            221,
+            222
+          ],
+          [
+            1330,
+            222,
+            222,
+            222
+          ],
+          [
+            1552,
+            222,
+            222,
+            222
+          ],
+          [
+            0,
+            444,
+            222,
+            221
+          ],
+          [
+            222,
+            444,
+            222,
+            221
+          ],
+          [
+            444,
+            444,
+            221,
+            221
+          ],
+          [
+            665,
+            444,
+            222,
+            221
+          ],
+          [
+            887,
+            444,
+            222,
+            221
+          ],
+          [
+            1109,
+            444,
+            221,
+            221
+          ],
+          [
+            1330,
+            444,
+            222,
+            221
+          ],
+          [
+            1552,
+            444,
+            222,
+            221
+          ],
+          [
+            0,
+            665,
+            222,
+            222
+          ],
+          [
+            222,
+            665,
+            222,
+            222
+          ],
+          [
+            444,
+            665,
+            221,
+            222
+          ],
+          [
+            665,
+            665,
+            222,
+            222
+          ],
+          [
+            887,
+            665,
+            222,
+            222
+          ],
+          [
+            1109,
+            665,
+            221,
+            222
+          ],
+          [
+            1330,
+            665,
+            222,
+            222
+          ],
+          [
+            1552,
+            665,
+            222,
+            222
+          ]
+        ]
+      }
+    },
+    {
+      "id": "void_drifter_facing",
+      "file": "assets/images/void_drifter-facing-source.png",
+      "prompt": "Use case: stylized-concept. Production transparent GAME SPRITESHEET. Preserve the reference violet-and-silver triangular spacecraft with cyan engine glow. Exactly 8 equal columns and 4 equal rows, 32 separate centered full sprites. Each column is a fixed compass facing in exact order EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST, NORTH, NORTHEAST; each row is one consecutive flight/exhaust flicker animation phase. Fixed overhead/isometric camera, consistent upper-left lighting; turn the actual vehicle around its vertical world axis. Nose points screen right in EAST, down in SOUTH, left in WEST, up in NORTH. Preserve top surfaces and lighting across all bearings, not pasted rotated lighting or underside views. Keep the same physical scale, generous transparent empty margin around every cell, no touching neighbors, no clipped protrusions. Crisp polished detailed arcade game art matching reference. No lettering, labels, grid, ground or background.",
+      "transparent_background": true,
+      "reference_file": "assets/images/void_drifter-pilot-facing-reference.png",
+      "reference_sha256": "0b65c3a052e82d472c1b9ffc89c4eb705c987bd380e46c2ea66da681ed21dd00",
+      "actual_geometry": {
+        "columns": 8,
+        "rows": 4,
+        "source_size": [
+          1536,
+          1024
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            192,
+            256
+          ],
+          [
+            192,
+            0,
+            192,
+            256
+          ],
+          [
+            384,
+            0,
+            192,
+            256
+          ],
+          [
+            576,
+            0,
+            192,
+            256
+          ],
+          [
+            768,
+            0,
+            192,
+            256
+          ],
+          [
+            960,
+            0,
+            192,
+            256
+          ],
+          [
+            1152,
+            0,
+            192,
+            256
+          ],
+          [
+            1344,
+            0,
+            192,
+            256
+          ],
+          [
+            0,
+            256,
+            192,
+            256
+          ],
+          [
+            192,
+            256,
+            192,
+            256
+          ],
+          [
+            384,
+            256,
+            192,
+            256
+          ],
+          [
+            576,
+            256,
+            192,
+            256
+          ],
+          [
+            768,
+            256,
+            192,
+            256
+          ],
+          [
+            960,
+            256,
+            192,
+            256
+          ],
+          [
+            1152,
+            256,
+            192,
+            256
+          ],
+          [
+            1344,
+            256,
+            192,
+            256
+          ],
+          [
+            0,
+            512,
+            192,
+            256
+          ],
+          [
+            192,
+            512,
+            192,
+            256
+          ],
+          [
+            384,
+            512,
+            192,
+            256
+          ],
+          [
+            576,
+            512,
+            192,
+            256
+          ],
+          [
+            768,
+            512,
+            192,
+            256
+          ],
+          [
+            960,
+            512,
+            192,
+            256
+          ],
+          [
+            1152,
+            512,
+            192,
+            256
+          ],
+          [
+            1344,
+            512,
+            192,
+            256
+          ],
+          [
+            0,
+            768,
+            192,
+            256
+          ],
+          [
+            192,
+            768,
+            192,
+            256
+          ],
+          [
+            384,
+            768,
+            192,
+            256
+          ],
+          [
+            576,
+            768,
+            192,
+            256
+          ],
+          [
+            768,
+            768,
+            192,
+            256
+          ],
+          [
+            960,
+            768,
+            192,
+            256
+          ],
+          [
+            1152,
+            768,
+            192,
+            256
+          ],
+          [
+            1344,
+            768,
+            192,
+            256
+          ]
+        ]
+      }
+    },
+    {
+      "id": "iron_circuit_facing",
+      "file": "assets/images/iron_circuit-facing-source.png",
+      "prompt": "Use case: stylized-concept. Production transparent GAME SPRITESHEET. Preserve the reference orange-and-black futuristic racing car with exposed black wheels and a silver cockpit. Exactly 8 equal columns and 4 equal rows, 32 separate centered full sprites. Each column is a fixed compass facing in exact order EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST, NORTH, NORTHEAST; each row is one consecutive driving/suspension and exhaust pulses animation phase. Fixed overhead/isometric camera, consistent upper-left lighting; turn the actual vehicle around its vertical world axis. Nose points screen right in EAST, down in SOUTH, left in WEST, up in NORTH. Preserve top surfaces and lighting across all bearings, not pasted rotated lighting or underside views. Keep the same physical scale, generous transparent empty margin around every cell, no touching neighbors, no clipped protrusions. Crisp polished detailed arcade game art matching reference. No lettering, labels, grid, ground or background.",
+      "transparent_background": true,
+      "reference_file": "assets/images/iron_circuit-pilot-facing-reference.png",
+      "reference_sha256": "7754ac17579216b3d4eaf5379d90a6b38ac857aa0ebd32efc17ed74605ad1973",
+      "actual_geometry": {
+        "columns": 8,
+        "rows": 4,
+        "source_size": [
+          1536,
+          1024
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            192,
+            256
+          ],
+          [
+            192,
+            0,
+            192,
+            256
+          ],
+          [
+            384,
+            0,
+            192,
+            256
+          ],
+          [
+            576,
+            0,
+            192,
+            256
+          ],
+          [
+            768,
+            0,
+            192,
+            256
+          ],
+          [
+            960,
+            0,
+            192,
+            256
+          ],
+          [
+            1152,
+            0,
+            192,
+            256
+          ],
+          [
+            1344,
+            0,
+            192,
+            256
+          ],
+          [
+            0,
+            256,
+            192,
+            256
+          ],
+          [
+            192,
+            256,
+            192,
+            256
+          ],
+          [
+            384,
+            256,
+            192,
+            256
+          ],
+          [
+            576,
+            256,
+            192,
+            256
+          ],
+          [
+            768,
+            256,
+            192,
+            256
+          ],
+          [
+            960,
+            256,
+            192,
+            256
+          ],
+          [
+            1152,
+            256,
+            192,
+            256
+          ],
+          [
+            1344,
+            256,
+            192,
+            256
+          ],
+          [
+            0,
+            512,
+            192,
+            256
+          ],
+          [
+            192,
+            512,
+            192,
+            256
+          ],
+          [
+            384,
+            512,
+            192,
+            256
+          ],
+          [
+            576,
+            512,
+            192,
+            256
+          ],
+          [
+            768,
+            512,
+            192,
+            256
+          ],
+          [
+            960,
+            512,
+            192,
+            256
+          ],
+          [
+            1152,
+            512,
+            192,
+            256
+          ],
+          [
+            1344,
+            512,
+            192,
+            256
+          ],
+          [
+            0,
+            768,
+            192,
+            256
+          ],
+          [
+            192,
+            768,
+            192,
+            256
+          ],
+          [
+            384,
+            768,
+            192,
+            256
+          ],
+          [
+            576,
+            768,
+            192,
+            256
+          ],
+          [
+            768,
+            768,
+            192,
+            256
+          ],
+          [
+            960,
+            768,
+            192,
+            256
+          ],
+          [
+            1152,
+            768,
+            192,
+            256
+          ],
+          [
+            1344,
+            768,
+            192,
+            256
+          ]
+        ]
+      }
+    },
+    {
+      "id": "phase_garden_facing",
+      "file": "assets/images/phase_garden-facing-source.png",
+      "prompt": "Use case: stylized-concept. Produce a polished arcade GAME SPRITESHEET on TRUE TRANSPARENT background, no scenery or ground. Preserve the reference small mint-green leaf spirit with flower head, glowing pale face and curling leafy tail, exact identity and palette. 8 evenly spaced columns, FOUR evenly spaced rows, 32 separate fully contained sprites. Columns in exact clockwise order EAST (right side), SOUTHEAST (front/right), SOUTH (front), SOUTHWEST (front/left), WEST (left side), NORTHWEST (back/left), NORTH (back), NORTHEAST (back/right). Rows are four consecutive floating leaf flutter poses. Each direction is a true character turntable view, not a flat rotated side image. Keep head above feet in every view; NORTH shows actual back of character. Fixed overhead/isometric camera and upper-left light. Equal character scale in every cell; center within cell, generous empty transparent margins, no overlaps/clipping. Crisp details and readable silhouette at small sizes. No text, labels, borders or checkerboard.",
+      "transparent_background": true,
+      "reference_file": "assets/images/phase_garden-pilot-facing-reference.png",
+      "reference_sha256": "308be5c8a15204c8560398c86901ead9122dba8f7df5d81c6f07afb669262016",
+      "actual_geometry": {
+        "columns": 8,
+        "rows": 4,
+        "source_size": [
+          1536,
+          1024
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            192,
+            256
+          ],
+          [
+            192,
+            0,
+            192,
+            256
+          ],
+          [
+            384,
+            0,
+            192,
+            256
+          ],
+          [
+            576,
+            0,
+            192,
+            256
+          ],
+          [
+            768,
+            0,
+            192,
+            256
+          ],
+          [
+            960,
+            0,
+            192,
+            256
+          ],
+          [
+            1152,
+            0,
+            192,
+            256
+          ],
+          [
+            1344,
+            0,
+            192,
+            256
+          ],
+          [
+            0,
+            256,
+            192,
+            256
+          ],
+          [
+            192,
+            256,
+            192,
+            256
+          ],
+          [
+            384,
+            256,
+            192,
+            256
+          ],
+          [
+            576,
+            256,
+            192,
+            256
+          ],
+          [
+            768,
+            256,
+            192,
+            256
+          ],
+          [
+            960,
+            256,
+            192,
+            256
+          ],
+          [
+            1152,
+            256,
+            192,
+            256
+          ],
+          [
+            1344,
+            256,
+            192,
+            256
+          ],
+          [
+            0,
+            512,
+            192,
+            256
+          ],
+          [
+            192,
+            512,
+            192,
+            256
+          ],
+          [
+            384,
+            512,
+            192,
+            256
+          ],
+          [
+            576,
+            512,
+            192,
+            256
+          ],
+          [
+            768,
+            512,
+            192,
+            256
+          ],
+          [
+            960,
+            512,
+            192,
+            256
+          ],
+          [
+            1152,
+            512,
+            192,
+            256
+          ],
+          [
+            1344,
+            512,
+            192,
+            256
+          ],
+          [
+            0,
+            768,
+            192,
+            256
+          ],
+          [
+            192,
+            768,
+            192,
+            256
+          ],
+          [
+            384,
+            768,
+            192,
+            256
+          ],
+          [
+            576,
+            768,
+            192,
+            256
+          ],
+          [
+            768,
+            768,
+            192,
+            256
+          ],
+          [
+            960,
+            768,
+            192,
+            256
+          ],
+          [
+            1152,
+            768,
+            192,
+            256
+          ],
+          [
+            1344,
+            768,
+            192,
+            256
+          ]
+        ]
+      }
+    },
+    {
+      "id": "sky_forge_facing",
+      "file": "assets/images/sky_forge-facing-source.png",
+      "prompt": "Use case: stylized-concept. Produce a polished arcade GAME SPRITESHEET on TRUE TRANSPARENT background, no scenery or ground. Preserve the reference coral-orange armored platform knight, gold glowing visor and red scarf, exact identity and palette. 2 evenly spaced columns, FOUR evenly spaced rows, 8 separate fully contained sprites. Only TWO columns: RIGHT-facing side view, LEFT-facing side view. Four rows: running stride A, running stride B, running stride C, airborne jump with bent knees. Both facings stay upright with feet below helmet; no views looking up/down/back. No weapons. Rows are four consecutive platform running and jumping poses. Each direction is a true character turntable view, not a flat rotated side image. Keep head above feet in every view; NORTH shows actual back of character. Fixed overhead/isometric camera and upper-left light. Equal character scale in every cell; center within cell, generous empty transparent margins, no overlaps/clipping. Crisp details and readable silhouette at small sizes. No text, labels, borders or checkerboard.",
+      "transparent_background": true,
+      "reference_file": "assets/images/sky_forge-pilot-facing-reference.png",
+      "reference_sha256": "61023766a99f1be7545a63a068b1bdb1ca24d2de599cb84a50c12914eafd3ada",
+      "actual_geometry": {
+        "columns": 2,
+        "rows": 4,
+        "source_size": [
+          1024,
+          1536
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            512,
+            384
+          ],
+          [
+            512,
+            0,
+            512,
+            384
+          ],
+          [
+            0,
+            384,
+            512,
+            384
+          ],
+          [
+            512,
+            384,
+            512,
+            384
+          ],
+          [
+            0,
+            768,
+            512,
+            384
+          ],
+          [
+            512,
+            768,
+            512,
+            384
+          ],
+          [
+            0,
+            1152,
+            512,
+            384
+          ],
+          [
+            512,
+            1152,
+            512,
+            384
+          ]
+        ]
+      }
+    },
+    {
+      "id": "vector_coil_facing",
+      "file": "assets/images/vector_coil-facing-source.png",
+      "prompt": "Use case: stylized-concept. Production arcade SPRITESHEET with a genuinely TRANSPARENT background. Preserve the lime-and-black angular robotic crawler with a silver pointed face and articulated insect legs from the reference. FOUR columns, FOUR rows, 16 separate full sprites. Columns exact directions: EAST facing screen right, SOUTH front-facing/down the screen, WEST facing left, NORTH rear-facing/up the screen. Every row is a consecutive articulated crawling strides animation phase, same facing as the sprite directly above it. Use actual turntable views with fixed overhead/isometric camera and upper-left light, never roll the character upside-down in the picture plane. Show distinct front/side/back surfaces; NORTH has back machinery, not a front face. Center every sprite in its equal cell with generous empty transparent margins, consistent scale, no clipping or overlaps. Match reference's polished detailed game style and silhouette. No text, labels, cell borders, ground, shadows beyond sprite or colored backdrop.",
+      "transparent_background": true,
+      "reference_file": "assets/images/vector_coil-pilot-facing-reference.png",
+      "reference_sha256": "121bccdd3e53144e1e4049c107205076d279754545f5014830ec518b02ddfc28",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "source_size": [
+          1312,
+          1199
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            328,
+            300
+          ],
+          [
+            328,
+            0,
+            328,
+            300
+          ],
+          [
+            656,
+            0,
+            328,
+            300
+          ],
+          [
+            984,
+            0,
+            328,
+            300
+          ],
+          [
+            0,
+            300,
+            328,
+            300
+          ],
+          [
+            328,
+            300,
+            328,
+            300
+          ],
+          [
+            656,
+            300,
+            328,
+            300
+          ],
+          [
+            984,
+            300,
+            328,
+            300
+          ],
+          [
+            0,
+            600,
+            328,
+            299
+          ],
+          [
+            328,
+            600,
+            328,
+            299
+          ],
+          [
+            656,
+            600,
+            328,
+            299
+          ],
+          [
+            984,
+            600,
+            328,
+            299
+          ],
+          [
+            0,
+            899,
+            328,
+            300
+          ],
+          [
+            328,
+            899,
+            328,
+            300
+          ],
+          [
+            656,
+            899,
+            328,
+            300
+          ],
+          [
+            984,
+            899,
+            328,
+            300
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tide_hopper_facing",
+      "file": "assets/images/tide_hopper-facing-source.png",
+      "prompt": "Use case: stylized-concept. Production arcade SPRITESHEET with a genuinely TRANSPARENT background. Preserve the jade-and-brass mechanical frog with turquoise goggle eyes and webbed feet from the reference. FOUR columns, FOUR rows, 16 separate full sprites. Columns exact directions: EAST facing screen right, SOUTH front-facing/down the screen, WEST facing left, NORTH rear-facing/up the screen. Every row is a consecutive frog hopping, crouching and landing poses animation phase, same facing as the sprite directly above it. Use actual turntable views with fixed overhead/isometric camera and upper-left light, never roll the character upside-down in the picture plane. Show distinct front/side/back surfaces; NORTH has back machinery, not a front face. Center every sprite in its equal cell with generous empty transparent margins, consistent scale, no clipping or overlaps. Match reference's polished detailed game style and silhouette. No text, labels, cell borders, ground, shadows beyond sprite or colored backdrop.",
+      "transparent_background": true,
+      "reference_file": "assets/images/tide_hopper-pilot-facing-reference.png",
+      "reference_sha256": "362719c122d96e2594bc5943f021c7ba6ebb1057f59b3cb507262f8336e20a8b",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "source_size": [
+          1269,
+          1239
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            317,
+            310
+          ],
+          [
+            317,
+            0,
+            317,
+            310
+          ],
+          [
+            634,
+            0,
+            318,
+            310
+          ],
+          [
+            952,
+            0,
+            317,
+            310
+          ],
+          [
+            0,
+            310,
+            317,
+            310
+          ],
+          [
+            317,
+            310,
+            317,
+            310
+          ],
+          [
+            634,
+            310,
+            318,
+            310
+          ],
+          [
+            952,
+            310,
+            317,
+            310
+          ],
+          [
+            0,
+            620,
+            317,
+            309
+          ],
+          [
+            317,
+            620,
+            317,
+            309
+          ],
+          [
+            634,
+            620,
+            318,
+            309
+          ],
+          [
+            952,
+            620,
+            317,
+            309
+          ],
+          [
+            0,
+            929,
+            317,
+            310
+          ],
+          [
+            317,
+            929,
+            317,
+            310
+          ],
+          [
+            634,
+            929,
+            318,
+            310
+          ],
+          [
+            952,
+            929,
+            317,
+            310
+          ]
+        ]
+      }
+    },
+    {
+      "id": "neon_breach_facing",
+      "file": "assets/images/neon_breach-facing-source.png",
+      "prompt": "Use case: stylized-concept. Production arcade SPRITESHEET with a genuinely TRANSPARENT background. Preserve the magenta floating paddle drone with cyan front visor/slit, side thrusters and dark metal underside from the reference. FOUR columns, FOUR rows, 16 separate full sprites. Columns exact directions: EAST facing screen right, SOUTH front-facing/down the screen, WEST facing left, NORTH rear-facing/up the screen. Every row is a consecutive gentle hovering and cyan power pulse animation phase, same facing as the sprite directly above it. Use actual turntable views with fixed overhead/isometric camera and upper-left light, never roll the character upside-down in the picture plane. Show distinct front/side/back surfaces; NORTH has back machinery, not a front face. Center every sprite in its equal cell with generous empty transparent margins, consistent scale, no clipping or overlaps. Match reference's polished detailed game style and silhouette. No text, labels, cell borders, ground, shadows beyond sprite or colored backdrop.",
+      "transparent_background": true,
+      "reference_file": "assets/images/neon_breach-pilot-facing-reference.png",
+      "reference_sha256": "5b88e06ce6b1ffc515092eadaa1c59e2473323d791b0d1c458aa5ddeddf05d71",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "source_size": [
+          1275,
+          1234
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            319,
+            308
+          ],
+          [
+            319,
+            0,
+            319,
+            308
+          ],
+          [
+            638,
+            0,
+            318,
+            308
+          ],
+          [
+            956,
+            0,
+            319,
+            308
+          ],
+          [
+            0,
+            308,
+            319,
+            309
+          ],
+          [
+            319,
+            308,
+            319,
+            309
+          ],
+          [
+            638,
+            308,
+            318,
+            309
+          ],
+          [
+            956,
+            308,
+            319,
+            309
+          ],
+          [
+            0,
+            617,
+            319,
+            309
+          ],
+          [
+            319,
+            617,
+            319,
+            309
+          ],
+          [
+            638,
+            617,
+            318,
+            309
+          ],
+          [
+            956,
+            617,
+            319,
+            309
+          ],
+          [
+            0,
+            926,
+            319,
+            308
+          ],
+          [
+            319,
+            926,
+            319,
+            308
+          ],
+          [
+            638,
+            926,
+            318,
+            308
+          ],
+          [
+            956,
+            926,
+            319,
+            308
+          ]
+        ]
+      }
+    },
+    {
+      "id": "burrow_patrol_facing",
+      "file": "assets/images/burrow_patrol-facing-source.png",
+      "prompt": "Use case: stylized-concept. Production arcade SPRITESHEET with a genuinely TRANSPARENT background. Preserve the orange brass mole drilling robot with a bright blue round eye, metal drill nose and little digging claws from the reference. FOUR columns, FOUR rows, 16 separate full sprites. Columns exact directions: EAST facing screen right, SOUTH front-facing/down the screen, WEST facing left, NORTH rear-facing/up the screen. Every row is a consecutive digging strides animation phase, same facing as the sprite directly above it. Use actual turntable views with fixed overhead/isometric camera and upper-left light, never roll the character upside-down in the picture plane. Show distinct front/side/back surfaces; NORTH has back machinery, not a front face. Center every sprite in its equal cell with generous empty transparent margins, consistent scale, no clipping or overlaps. Match reference's polished detailed game style and silhouette. No text, labels, cell borders, ground, shadows beyond sprite or colored backdrop.",
+      "transparent_background": true,
+      "reference_file": "assets/images/burrow_patrol-pilot-facing-reference.png",
+      "reference_sha256": "0c7eb8ae126b8b2c67214f45937e3604aaf29cb2c6a4a7d2dfb38bec5155b05a",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "source_size": [
+          1261,
+          1247
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            315,
+            312
+          ],
+          [
+            315,
+            0,
+            315,
+            312
+          ],
+          [
+            630,
+            0,
+            316,
+            312
+          ],
+          [
+            946,
+            0,
+            315,
+            312
+          ],
+          [
+            0,
+            312,
+            315,
+            312
+          ],
+          [
+            315,
+            312,
+            315,
+            312
+          ],
+          [
+            630,
+            312,
+            316,
+            312
+          ],
+          [
+            946,
+            312,
+            315,
+            312
+          ],
+          [
+            0,
+            624,
+            315,
+            311
+          ],
+          [
+            315,
+            624,
+            315,
+            311
+          ],
+          [
+            630,
+            624,
+            316,
+            311
+          ],
+          [
+            946,
+            624,
+            315,
+            311
+          ],
+          [
+            0,
+            935,
+            315,
+            312
+          ],
+          [
+            315,
+            935,
+            315,
+            312
+          ],
+          [
+            630,
+            935,
+            316,
+            312
+          ],
+          [
+            946,
+            935,
+            315,
+            312
+          ]
+        ]
+      }
+    },
+    {
+      "id": "echo_vault_facing",
+      "file": "assets/images/echo_vault-facing-source.png",
+      "prompt": "Use case: stylized-concept. Make an upright CHARACTER TURNAROUND ANIMATION SPRITESHEET, true transparent background. Preserve the reference navy-blue hooded timekeeper, cyan luminous face slit, gold hourglass and flowing blue cloak. EIGHT columns, FOUR rows = 32 full sprites. Fixed isometric/overhead camera and upper-left light. Column order strictly E right profile, SE front-right quarter, S front, SW front-left quarter, W left profile, NW rear-left quarter, N back, NE rear-right quarter. Face points in each actual direction; for the rear three views show cloak/hat/hood back, no face. Feet remain beneath head in all directions; do not rotate a side-view picture sideways. Four rows are consecutive walking and cloak movement animation phases. Keep same scale and identity in every cell, consistent grid, generous transparent margins, no clipping or overlap, crisp polished reference style, legible at small sizes. No captions, grid lines, ground, background or extra props beyond the character's reference equipment.",
+      "transparent_background": true,
+      "reference_file": "assets/images/echo_vault-pilot-facing-reference.png",
+      "reference_sha256": "6c69e508bfe6a56fceada09c7249cfd53cd426e9af37ea76e350595a440e6c98",
+      "actual_geometry": {
+        "columns": 8,
+        "rows": 4,
+        "source_size": [
+          1774,
+          887
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            222,
+            222
+          ],
+          [
+            222,
+            0,
+            222,
+            222
+          ],
+          [
+            444,
+            0,
+            221,
+            222
+          ],
+          [
+            665,
+            0,
+            222,
+            222
+          ],
+          [
+            887,
+            0,
+            222,
+            222
+          ],
+          [
+            1109,
+            0,
+            221,
+            222
+          ],
+          [
+            1330,
+            0,
+            222,
+            222
+          ],
+          [
+            1552,
+            0,
+            222,
+            222
+          ],
+          [
+            0,
+            222,
+            222,
+            222
+          ],
+          [
+            222,
+            222,
+            222,
+            222
+          ],
+          [
+            444,
+            222,
+            221,
+            222
+          ],
+          [
+            665,
+            222,
+            222,
+            222
+          ],
+          [
+            887,
+            222,
+            222,
+            222
+          ],
+          [
+            1109,
+            222,
+            221,
+            222
+          ],
+          [
+            1330,
+            222,
+            222,
+            222
+          ],
+          [
+            1552,
+            222,
+            222,
+            222
+          ],
+          [
+            0,
+            444,
+            222,
+            221
+          ],
+          [
+            222,
+            444,
+            222,
+            221
+          ],
+          [
+            444,
+            444,
+            221,
+            221
+          ],
+          [
+            665,
+            444,
+            222,
+            221
+          ],
+          [
+            887,
+            444,
+            222,
+            221
+          ],
+          [
+            1109,
+            444,
+            221,
+            221
+          ],
+          [
+            1330,
+            444,
+            222,
+            221
+          ],
+          [
+            1552,
+            444,
+            222,
+            221
+          ],
+          [
+            0,
+            665,
+            222,
+            222
+          ],
+          [
+            222,
+            665,
+            222,
+            222
+          ],
+          [
+            444,
+            665,
+            221,
+            222
+          ],
+          [
+            665,
+            665,
+            222,
+            222
+          ],
+          [
+            887,
+            665,
+            222,
+            222
+          ],
+          [
+            1109,
+            665,
+            221,
+            222
+          ],
+          [
+            1330,
+            665,
+            222,
+            222
+          ],
+          [
+            1552,
+            665,
+            222,
+            222
+          ]
+        ]
+      }
+    },
+    {
+      "id": "bloom_siege_facing",
+      "file": "assets/images/bloom_siege-facing-source.png",
+      "prompt": "Use case: stylized-concept. Make an upright CHARACTER TURNAROUND ANIMATION SPRITESHEET, true transparent background. Preserve the reference moss-green garden gnome with a wide straw hat, pink flowers, leafy coat and wooden boots. EIGHT columns, FOUR rows = 32 full sprites. Fixed isometric/overhead camera and upper-left light. Column order strictly E right profile, SE front-right quarter, S front, SW front-left quarter, W left profile, NW rear-left quarter, N back, NE rear-right quarter. Face points in each actual direction; for the rear three views show cloak/hat/hood back, no face. Feet remain beneath head in all directions; do not rotate a side-view picture sideways. Four rows are consecutive walking/scuttling steps animation phases. Keep same scale and identity in every cell, consistent grid, generous transparent margins, no clipping or overlap, crisp polished reference style, legible at small sizes. No captions, grid lines, ground, background or extra props beyond the character's reference equipment.",
+      "transparent_background": true,
+      "reference_file": "assets/images/bloom_siege-pilot-facing-reference.png",
+      "reference_sha256": "db329f34442fd3d15db05f934b7884f53d424e42c09bfdeebf0b4f9ed0a0c975",
+      "actual_geometry": {
+        "columns": 8,
+        "rows": 4,
+        "source_size": [
+          1774,
+          887
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            222,
+            222
+          ],
+          [
+            222,
+            0,
+            222,
+            222
+          ],
+          [
+            444,
+            0,
+            221,
+            222
+          ],
+          [
+            665,
+            0,
+            222,
+            222
+          ],
+          [
+            887,
+            0,
+            222,
+            222
+          ],
+          [
+            1109,
+            0,
+            221,
+            222
+          ],
+          [
+            1330,
+            0,
+            222,
+            222
+          ],
+          [
+            1552,
+            0,
+            222,
+            222
+          ],
+          [
+            0,
+            222,
+            222,
+            222
+          ],
+          [
+            222,
+            222,
+            222,
+            222
+          ],
+          [
+            444,
+            222,
+            221,
+            222
+          ],
+          [
+            665,
+            222,
+            222,
+            222
+          ],
+          [
+            887,
+            222,
+            222,
+            222
+          ],
+          [
+            1109,
+            222,
+            221,
+            222
+          ],
+          [
+            1330,
+            222,
+            222,
+            222
+          ],
+          [
+            1552,
+            222,
+            222,
+            222
+          ],
+          [
+            0,
+            444,
+            222,
+            221
+          ],
+          [
+            222,
+            444,
+            222,
+            221
+          ],
+          [
+            444,
+            444,
+            221,
+            221
+          ],
+          [
+            665,
+            444,
+            222,
+            221
+          ],
+          [
+            887,
+            444,
+            222,
+            221
+          ],
+          [
+            1109,
+            444,
+            221,
+            221
+          ],
+          [
+            1330,
+            444,
+            222,
+            221
+          ],
+          [
+            1552,
+            444,
+            222,
+            221
+          ],
+          [
+            0,
+            665,
+            222,
+            222
+          ],
+          [
+            222,
+            665,
+            222,
+            222
+          ],
+          [
+            444,
+            665,
+            221,
+            222
+          ],
+          [
+            665,
+            665,
+            222,
+            222
+          ],
+          [
+            887,
+            665,
+            222,
+            222
+          ],
+          [
+            1109,
+            665,
+            221,
+            222
+          ],
+          [
+            1330,
+            665,
+            222,
+            222
+          ],
+          [
+            1552,
+            665,
+            222,
+            222
+          ]
+        ]
+      }
+    },
+    {
+      "id": "pulse_abbey_facing",
+      "file": "assets/images/pulse_abbey-facing-source.png",
+      "prompt": "Use case: stylized-concept. Make an upright CHARACTER TURNAROUND ANIMATION SPRITESHEET, true transparent background. Preserve the reference purple-and-gold bell monk with a hood, pale face, long embroidered robes and little hand bells. EIGHT columns, FOUR rows = 32 full sprites. Fixed isometric/overhead camera and upper-left light. Column order strictly E right profile, SE front-right quarter, S front, SW front-left quarter, W left profile, NW rear-left quarter, N back, NE rear-right quarter. Face points in each actual direction; for the rear three views show cloak/hat/hood back, no face. Feet remain beneath head in all directions; do not rotate a side-view picture sideways. Four rows are consecutive walking/dancing bell steps animation phases. Keep same scale and identity in every cell, consistent grid, generous transparent margins, no clipping or overlap, crisp polished reference style, legible at small sizes. No captions, grid lines, ground, background or extra props beyond the character's reference equipment.",
+      "transparent_background": true,
+      "reference_file": "assets/images/pulse_abbey-pilot-facing-reference.png",
+      "reference_sha256": "07a9bd75c650a9effd8fd5126e00eb25ee921bcf8209cf21069a90730310d9ee",
+      "actual_geometry": {
+        "columns": 8,
+        "rows": 4,
+        "source_size": [
+          1774,
+          887
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            222,
+            222
+          ],
+          [
+            222,
+            0,
+            222,
+            222
+          ],
+          [
+            444,
+            0,
+            221,
+            222
+          ],
+          [
+            665,
+            0,
+            222,
+            222
+          ],
+          [
+            887,
+            0,
+            222,
+            222
+          ],
+          [
+            1109,
+            0,
+            221,
+            222
+          ],
+          [
+            1330,
+            0,
+            222,
+            222
+          ],
+          [
+            1552,
+            0,
+            222,
+            222
+          ],
+          [
+            0,
+            222,
+            222,
+            222
+          ],
+          [
+            222,
+            222,
+            222,
+            222
+          ],
+          [
+            444,
+            222,
+            221,
+            222
+          ],
+          [
+            665,
+            222,
+            222,
+            222
+          ],
+          [
+            887,
+            222,
+            222,
+            222
+          ],
+          [
+            1109,
+            222,
+            221,
+            222
+          ],
+          [
+            1330,
+            222,
+            222,
+            222
+          ],
+          [
+            1552,
+            222,
+            222,
+            222
+          ],
+          [
+            0,
+            444,
+            222,
+            221
+          ],
+          [
+            222,
+            444,
+            222,
+            221
+          ],
+          [
+            444,
+            444,
+            221,
+            221
+          ],
+          [
+            665,
+            444,
+            222,
+            221
+          ],
+          [
+            887,
+            444,
+            222,
+            221
+          ],
+          [
+            1109,
+            444,
+            221,
+            221
+          ],
+          [
+            1330,
+            444,
+            222,
+            221
+          ],
+          [
+            1552,
+            444,
+            222,
+            221
+          ],
+          [
+            0,
+            665,
+            222,
+            222
+          ],
+          [
+            222,
+            665,
+            222,
+            222
+          ],
+          [
+            444,
+            665,
+            221,
+            222
+          ],
+          [
+            665,
+            665,
+            222,
+            222
+          ],
+          [
+            887,
+            665,
+            222,
+            222
+          ],
+          [
+            1109,
+            665,
+            221,
+            222
+          ],
+          [
+            1330,
+            665,
+            222,
+            222
+          ],
+          [
+            1552,
+            665,
+            222,
+            222
+          ]
+        ]
+      }
+    },
+    {
+      "id": "glasswake_facing",
+      "file": "assets/images/glasswake-facing-source.png",
+      "prompt": "Use case: stylized-concept. Production transparent GAME SPRITESHEET. Preserve the reference elegant prismatic glass skater, faceted white crystal head, cyan and pink translucent body and curved ribbon legs. EIGHT evenly spaced columns, FOUR evenly spaced rows, 32 fully contained sprites. Exact column compass order EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST, NORTH, NORTHEAST. Rows show four consecutive skating/gliding poses. Actual turntable views, fixed slightly overhead camera. Show front window/face in SOUTH, side surfaces in EAST/WEST, and back machinery/head in NORTH. Keep the object upright in every bearing; do not roll a flat side image sideways/upside down. Keep identity, proportions, camera and lighting consistent, generous transparent margin around each sprite, equal scale and no clipping or touching cells. Match reference's detailed polished arcade style. Absolutely no words, labels, grid, backdrop, ground or checkerboard.",
+      "transparent_background": true,
+      "reference_file": "assets/images/glasswake-pilot-facing-reference.png",
+      "reference_sha256": "5d2cd35948933083b5ebd67558677c78bd8fcf02287f418161149073cbff3389",
+      "actual_geometry": {
+        "columns": 8,
+        "rows": 4,
+        "source_size": [
+          1774,
+          887
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            222,
+            222
+          ],
+          [
+            222,
+            0,
+            222,
+            222
+          ],
+          [
+            444,
+            0,
+            221,
+            222
+          ],
+          [
+            665,
+            0,
+            222,
+            222
+          ],
+          [
+            887,
+            0,
+            222,
+            222
+          ],
+          [
+            1109,
+            0,
+            221,
+            222
+          ],
+          [
+            1330,
+            0,
+            222,
+            222
+          ],
+          [
+            1552,
+            0,
+            222,
+            222
+          ],
+          [
+            0,
+            222,
+            222,
+            222
+          ],
+          [
+            222,
+            222,
+            222,
+            222
+          ],
+          [
+            444,
+            222,
+            221,
+            222
+          ],
+          [
+            665,
+            222,
+            222,
+            222
+          ],
+          [
+            887,
+            222,
+            222,
+            222
+          ],
+          [
+            1109,
+            222,
+            221,
+            222
+          ],
+          [
+            1330,
+            222,
+            222,
+            222
+          ],
+          [
+            1552,
+            222,
+            222,
+            222
+          ],
+          [
+            0,
+            444,
+            222,
+            221
+          ],
+          [
+            222,
+            444,
+            222,
+            221
+          ],
+          [
+            444,
+            444,
+            221,
+            221
+          ],
+          [
+            665,
+            444,
+            222,
+            221
+          ],
+          [
+            887,
+            444,
+            222,
+            221
+          ],
+          [
+            1109,
+            444,
+            221,
+            221
+          ],
+          [
+            1330,
+            444,
+            222,
+            221
+          ],
+          [
+            1552,
+            444,
+            222,
+            221
+          ],
+          [
+            0,
+            665,
+            222,
+            222
+          ],
+          [
+            222,
+            665,
+            222,
+            222
+          ],
+          [
+            444,
+            665,
+            221,
+            222
+          ],
+          [
+            665,
+            665,
+            222,
+            222
+          ],
+          [
+            887,
+            665,
+            222,
+            222
+          ],
+          [
+            1109,
+            665,
+            221,
+            222
+          ],
+          [
+            1330,
+            665,
+            222,
+            222
+          ],
+          [
+            1552,
+            665,
+            222,
+            222
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tidal_choir_facing",
+      "file": "assets/images/tidal_choir-facing-source.png",
+      "prompt": "Use case: stylized-concept. Production transparent GAME SPRITESHEET. Preserve the reference round brass-and-orange diving bell submarine, large blue glass window and small side portholes. EIGHT evenly spaced columns, FOUR evenly spaced rows, 32 fully contained sprites. Exact column compass order EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST, NORTH, NORTHEAST. Rows show four consecutive buoyant bobbing and bubble/light pulses. Actual turntable views, fixed slightly overhead camera. Show front window/face in SOUTH, side surfaces in EAST/WEST, and back machinery/head in NORTH. Keep the object upright in every bearing; do not roll a flat side image sideways/upside down. Keep identity, proportions, camera and lighting consistent, generous transparent margin around each sprite, equal scale and no clipping or touching cells. Match reference's detailed polished arcade style. Absolutely no words, labels, grid, backdrop, ground or checkerboard.",
+      "transparent_background": true,
+      "reference_file": "assets/images/tidal_choir-pilot-facing-reference.png",
+      "reference_sha256": "d8ebce6ab417f7e6d2c5cdfc5b33fd5437c4d96587b792e4334dbf00d430c486",
+      "actual_geometry": {
+        "columns": 8,
+        "rows": 4,
+        "source_size": [
+          1774,
+          887
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            222,
+            222
+          ],
+          [
+            222,
+            0,
+            222,
+            222
+          ],
+          [
+            444,
+            0,
+            221,
+            222
+          ],
+          [
+            665,
+            0,
+            222,
+            222
+          ],
+          [
+            887,
+            0,
+            222,
+            222
+          ],
+          [
+            1109,
+            0,
+            221,
+            222
+          ],
+          [
+            1330,
+            0,
+            222,
+            222
+          ],
+          [
+            1552,
+            0,
+            222,
+            222
+          ],
+          [
+            0,
+            222,
+            222,
+            222
+          ],
+          [
+            222,
+            222,
+            222,
+            222
+          ],
+          [
+            444,
+            222,
+            221,
+            222
+          ],
+          [
+            665,
+            222,
+            222,
+            222
+          ],
+          [
+            887,
+            222,
+            222,
+            222
+          ],
+          [
+            1109,
+            222,
+            221,
+            222
+          ],
+          [
+            1330,
+            222,
+            222,
+            222
+          ],
+          [
+            1552,
+            222,
+            222,
+            222
+          ],
+          [
+            0,
+            444,
+            222,
+            221
+          ],
+          [
+            222,
+            444,
+            222,
+            221
+          ],
+          [
+            444,
+            444,
+            221,
+            221
+          ],
+          [
+            665,
+            444,
+            222,
+            221
+          ],
+          [
+            887,
+            444,
+            222,
+            221
+          ],
+          [
+            1109,
+            444,
+            221,
+            221
+          ],
+          [
+            1330,
+            444,
+            222,
+            221
+          ],
+          [
+            1552,
+            444,
+            222,
+            221
+          ],
+          [
+            0,
+            665,
+            222,
+            222
+          ],
+          [
+            222,
+            665,
+            222,
+            222
+          ],
+          [
+            444,
+            665,
+            221,
+            222
+          ],
+          [
+            665,
+            665,
+            222,
+            222
+          ],
+          [
+            887,
+            665,
+            222,
+            222
+          ],
+          [
+            1109,
+            665,
+            221,
+            222
+          ],
+          [
+            1330,
+            665,
+            222,
+            222
+          ],
+          [
+            1552,
+            665,
+            222,
+            222
+          ]
+        ]
+      }
+    },
+    {
+      "id": "sky_forge_sword",
+      "file": "assets/images/sky_forge_sword-source.png",
+      "prompt": "Use case: stylized-concept. A production WEAPON SPRITESHEET on true transparent background, FOUR equal columns, ONE row. Reference knight is STYLE ONLY; do not draw any knight. Draw four animated glint/heat phases of the SAME long straight forge sword, matching the knight's coral-orange metal, dark bronze grip and bright gold/white heated edge. A readable physical sword with grip and crossguard on LEFT and pointed blade extending horizontally RIGHT in EVERY cell. First phase dim glow, second brighter edge, third hot gold glint, fourth cooling white glint; geometry/scale identical. Whole sword centered within each cell with ample clear margins, no clipping or overlapping. Polished detailed arcade asset, crisp tiny silhouette. No arms, character, scenery, ground, labels, text or grid.",
+      "transparent_background": true,
+      "reference_file": "assets/images/sky_forge-pilot-facing-reference.png",
+      "reference_sha256": "61023766a99f1be7545a63a068b1bdb1ca24d2de599cb84a50c12914eafd3ada",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 1,
+        "source_size": [
+          2172,
+          724
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            543,
+            724
+          ],
+          [
+            543,
+            0,
+            543,
+            724
+          ],
+          [
+            1086,
+            0,
+            543,
+            724
+          ],
+          [
+            1629,
+            0,
+            543,
+            724
+          ]
+        ]
+      }
+    },
+    {
+      "id": "scrap_ballet_facing",
+      "file": "assets/images/scrap_ballet-facing-source.png",
+      "prompt": "Use case: stylized-concept. Production transparent GAME SPRITESHEET. Preserve the reference orange industrial salvage tug spaceship, black machinery, central blue cockpit and side blue engine pods. EIGHT evenly spaced columns, FOUR evenly spaced rows, 32 fully contained sprites. Exact column compass order EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST, NORTH, NORTHEAST. Rows show four consecutive thruster and suspension/light pulses. Fixed overhead camera and upper-left lighting: rotate the physical craft around its world vertical axis, with its NOSE pointing screen right in EAST, down in SOUTH, left in WEST, up in NORTH; engines are behind the nose. Keep identity, proportions, camera and lighting consistent, generous transparent margin around each sprite, equal scale and no clipping or touching cells. Match reference's detailed polished arcade style. Absolutely no words, labels, grid, backdrop, ground or checkerboard.",
+      "transparent_background": true,
+      "reference_file": "assets/images/scrap_ballet-pilot-facing-reference.png",
+      "reference_sha256": "18ab5e200edd6d22fc76f7a71ccc3248821595e2cf47ba6743ea5c85b53ec91a",
+      "actual_geometry": {
+        "columns": 8,
+        "rows": 4,
+        "source_size": [
+          1774,
+          887
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            222,
+            222
+          ],
+          [
+            222,
+            0,
+            222,
+            222
+          ],
+          [
+            444,
+            0,
+            221,
+            222
+          ],
+          [
+            665,
+            0,
+            222,
+            222
+          ],
+          [
+            887,
+            0,
+            222,
+            222
+          ],
+          [
+            1109,
+            0,
+            221,
+            222
+          ],
+          [
+            1330,
+            0,
+            222,
+            222
+          ],
+          [
+            1552,
+            0,
+            222,
+            222
+          ],
+          [
+            0,
+            222,
+            222,
+            222
+          ],
+          [
+            222,
+            222,
+            222,
+            222
+          ],
+          [
+            444,
+            222,
+            221,
+            222
+          ],
+          [
+            665,
+            222,
+            222,
+            222
+          ],
+          [
+            887,
+            222,
+            222,
+            222
+          ],
+          [
+            1109,
+            222,
+            221,
+            222
+          ],
+          [
+            1330,
+            222,
+            222,
+            222
+          ],
+          [
+            1552,
+            222,
+            222,
+            222
+          ],
+          [
+            0,
+            444,
+            222,
+            221
+          ],
+          [
+            222,
+            444,
+            222,
+            221
+          ],
+          [
+            444,
+            444,
+            221,
+            221
+          ],
+          [
+            665,
+            444,
+            222,
+            221
+          ],
+          [
+            887,
+            444,
+            222,
+            221
+          ],
+          [
+            1109,
+            444,
+            221,
+            221
+          ],
+          [
+            1330,
+            444,
+            222,
+            221
+          ],
+          [
+            1552,
+            444,
+            222,
+            221
+          ],
+          [
+            0,
+            665,
+            222,
+            222
+          ],
+          [
+            222,
+            665,
+            222,
+            222
+          ],
+          [
+            444,
+            665,
+            221,
+            222
+          ],
+          [
+            665,
+            665,
+            222,
+            222
+          ],
+          [
+            887,
+            665,
+            222,
+            222
+          ],
+          [
+            1109,
+            665,
+            221,
+            222
+          ],
+          [
+            1330,
+            665,
+            222,
+            222
+          ],
+          [
+            1552,
+            665,
+            222,
+            222
+          ]
+        ]
+      }
+    },
+    {
+      "id": "maze_muncher_facing",
+      "file": "assets/images/maze_muncher-facing-source.png",
+      "prompt": "Use case: stylized-concept. Produce a polished arcade GAME SPRITESHEET on TRUE TRANSPARENT background, no scenery or ground. Preserve the reference golden spherical clockwork chomp robot, turquoise eyes, gear teeth and little brass feet, exact identity and palette. 4 evenly spaced columns, FOUR evenly spaced rows, 16 separate fully contained sprites. Columns in exact order EAST (screen right), SOUTH (front view), WEST (screen left), NORTH (back view). Rows are four consecutive walking/chomping cycle with mouth progressively open and closing poses. Each direction is a true character turntable view, not a flat rotated side image. Keep head above feet in every view; NORTH shows actual back of character. Fixed overhead/isometric camera and upper-left light. Equal character scale in every cell; center within cell, generous empty transparent margins, no overlaps/clipping. Crisp details and readable silhouette at small sizes. No text, labels, borders or checkerboard.",
+      "transparent_background": true,
+      "reference_file": "assets/images/maze_muncher-pilot-facing-reference.png",
+      "reference_sha256": "b9a2d7a6f7f2ee6f186c27d735f0f6ee908d4ba40cb3445bb62013b62b2c1e80",
+      "actual_geometry": {
+        "columns": 4,
+        "rows": 4,
+        "source_size": [
+          1262,
+          1246
+        ],
+        "source_rectangles": [
+          [
+            0,
+            0,
+            316,
+            316
+          ],
+          [
+            316,
+            0,
+            315,
+            316
+          ],
+          [
+            631,
+            0,
+            315,
+            316
+          ],
+          [
+            946,
+            0,
+            316,
+            316
+          ],
+          [
+            0,
+            316,
+            316,
+            287
+          ],
+          [
+            316,
+            316,
+            315,
+            287
+          ],
+          [
+            631,
+            316,
+            315,
+            287
+          ],
+          [
+            946,
+            316,
+            316,
+            287
+          ],
+          [
+            0,
+            603,
+            316,
+            292
+          ],
+          [
+            316,
+            603,
+            315,
+            292
+          ],
+          [
+            631,
+            603,
+            315,
+            292
+          ],
+          [
+            946,
+            603,
+            316,
+            292
+          ],
+          [
+            0,
+            895,
+            316,
+            351
+          ],
+          [
+            316,
+            895,
+            315,
+            351
+          ],
+          [
+            631,
+            895,
+            315,
+            351
+          ],
+          [
+            946,
+            895,
+            316,
+            351
+          ]
+        ],
+        "source_row_edges": [
+          0,
+          316,
+          603,
+          895,
+          1246
+        ]
+      }
     }
   ]
 }

@@ -19,10 +19,26 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def music_loop(data, sr, region=None):
+    """Crop an explicitly auditioned region before joining its cyclic seam."""
+    if region is not None:
+        if (len(region)!=2 or not np.all(np.isfinite(region)) or
+                not 0<=region[0]<region[1]<=len(data)/sr):
+            raise ValueError('loop_region must be an increasing pair of seconds within the source')
+        data=data[round(region[0]*sr):round(region[1]*sr)]
+    overlap=min(int(sr*.18),len(data)//10)
+    if not overlap:
+        return data.copy()
+    ramp=np.linspace(0,1,overlap)[:,None]
+    seam=data[-overlap:]*(1-ramp)+data[:overlap]*ramp
+    return np.concatenate([seam,data[overlap:-overlap]])
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--job", nargs="+", help="Master only these jobs; retain all other outputs and records")
     args = parser.parse_args(argv)
+    jobs={job['id']:job for job in json.loads((ROOT/'tools/assetforge/prompts.json').read_text(encoding='utf-8'))['jobs']}
     audio = ROOT / "assets/audio"
     records = json.loads((audio / "generation.json").read_text(encoding="utf-8"))
     local_records = audio / "local/generation.json"
@@ -57,11 +73,7 @@ def main(argv=None):
         peak = max(float(np.abs(data).max()), .001)
         data = data * ((.68 if is_music else .82) / peak)
         if is_music:
-            # Rotate a crossfaded overlap to form a smooth cyclic boundary.
-            overlap = min(int(sr * .18), len(data) // 10)
-            ramp = np.linspace(0, 1, overlap)[:, None]
-            seam = data[-overlap:] * (1 - ramp) + data[:overlap] * ramp
-            data = np.concatenate([seam, data[overlap:-overlap]])
+            data = music_loop(data,sr,jobs.get(path.stem,{}).get('loop_region'))
         else:
             energy = np.max(np.abs(data), axis=1)
             active = np.flatnonzero(energy > .015)
@@ -99,6 +111,9 @@ def main(argv=None):
                             "source":str(path.relative_to(ROOT)).replace("\\", "/"),
                             "operation":"peak normalized; music loop crossfade" if is_music else "trimmed, faded and peak normalized",
                             "seconds":round(len(data) / sr, 3), "sample_rate":sr, "sha256":digest(output)}
+        if is_music and jobs.get(path.stem,{}).get('loop_region') is not None:
+            derivatives[relative]['loop_region_seconds']=jobs[path.stem]['loop_region']
+            derivatives[relative]['operation']='peak normalized; explicit source loop region; music loop crossfade'
     record_path.write_text(json.dumps(list(derivatives.values()), indent=2) + "\n", encoding="utf-8")
     print("Prepared", len(derivatives), "production audio assets/derivatives")
 

@@ -17,9 +17,10 @@ class SalvoBolt(ProjectileBase):
             self.alive=False
             return
         targets=[e for e in world.enemies if e.health>0]
-        if self.guided and targets:
-            target=min(targets,key=lambda e:e.pos.distance_squared_to(self.pos))
-            self.vel=normalized(self.vel.lerp(normalized(target.pos-self.pos)*550,min(1,dt*3)))*550
+        guides=[e for e in targets if normalized(e.pos-self.pos).dot(normalized(self.vel))>.94]
+        if self.guided and guides:
+            target=min(guides,key=lambda e:e.pos.distance_squared_to(self.pos))
+            self.vel=normalized(self.vel.lerp(normalized(target.pos-self.pos)*550,min(1,dt*1.1)))*550
         self.pos+=self.vel*dt
         if not (0<self.pos.x<WIDTH and 0<self.pos.y<HEIGHT):
             self.alive=False

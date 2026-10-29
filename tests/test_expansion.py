@@ -44,7 +44,8 @@ class ExpansionTests(unittest.TestCase):
         self.assertLess(weapon.aim(world).x,-.99)
         self.assertEqual(pilot.status(world),'FIRE INWARD')
         weapon.update(world,FIXED_DT,Controls(fire=True))
-        self.assertLess(world.projectiles[-1].vel.x,0)
+        shot=next(s for s in world.projectiles if type(s).__name__=='Glaive')
+        self.assertLess(shot.vel.x,0)
         for _ in range(360): pilot.update(world,FIXED_DT,Controls(special=True))
         radial=(world.player.pos-Vec(WIDTH/2,HEIGHT/2)).normalize()
         self.assertLess(pilot.aim_direction(world).dot(radial),-.99)
@@ -120,10 +121,10 @@ class ExpansionTests(unittest.TestCase):
         ball.update(world,.05)
         self.assertLess(ball.vel.x,0)
         weapon.update(world,.7,Controls(fire=True))
-        self.assertEqual(len(world.projectiles),2)
+        self.assertEqual(sum(type(s).__name__=='PlasmaBall' for s in world.projectiles),2)
         world.projectiles.clear()
         weapon.update(world,1,Controls(fire=True))
-        self.assertEqual(len(world.projectiles),1)
+        self.assertEqual(sum(type(s).__name__=='PlasmaBall' for s in world.projectiles),1)
         self.assertIsNot(world.projectiles[0],ball)
 
     def test_maze_buffers_turns_and_dash_bounces_both_bodies_on_one_hit(self):

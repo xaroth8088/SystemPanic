@@ -1,7 +1,15 @@
 # Sky Forge: enemy
 
-Read [this Pak's memory](../AGENTS.md) and [public ABCs](../../../src/system_panic/pak_api.py). `enemy.py` subclasses `EnemyBase`. Required: `spawn_position(world), create(world, identity, position), advance_enemy(world, enemy, dt), sprite(world, entity=None)`. Own spawn stats/local entity state, AI clocks, take_damage, on_contact and on_death. Rewards and child factories belong here; the host infers no family or splitting trait.
+Read [this Pak](../AGENTS.md), [public ABCs](../../../src/system_panic/pak_api.py) and [Pak contracts](../../AGENTS.md). Copy this entire role folder as a partial Pak. Actor factories, local helpers, spawn/difficulty/reward policy and contacts belong here. No private sibling-role state or host feature traits.
 
-Load local handles in `init()`; their attribute names are private choices. Instances belong to one run. Use explicit lifecycle callbacks for setup/cleanup. Rendering cannot advance gameplay. The host schedules projectile/effect callbacks once; do not also advance them from the component update. Local helper modules and assets can be copied as partial components. Preserve asset provenance.
+Crawlers have gravity and flat-foot landings, .38s leap windup, locked jump velocity, and .48s harmless recovery. Lower targets cause committed walks off deck edges. A high pilot triggers a marked .85s/.3s rooftop heat zone that hits once. Local physics/cues/hazards are copied with this enemy folder.
 
-Crawlers dash faster/more often, predict movement, probe cover routes from level 4 and reflect dashes from level 6. Deck generators jitter reachable staggered platforms and add a high deck from level 7. Local tactics.py interprets difficulty and owns spawn clearance/probing. on_level_complete awards 250 * level; contact and bullet damage grow with level. Movement/fire curves approach readable limits; health and damage keep growing.
+The local four-frame sheet selects poses without changing simulation/RNG. Owned transient cues recreate after world cleanup; death clears them. Use actual shape/body/projectile filters for geometry, with rects only as broad-phase metadata.
+
+## Arcade feedback (2026-10-26)
+
+Crawler physics shares the true 480px floor boundary. Its own read-only draw override aligns each animation pose's significant-alpha feet to body.pos.y+body.radius; default enemy rendering remains centered. This corrects transparent frame margins without changing collision radii or introducing host crawler rules.
+
+## Quiet presentation and tail routing (2026-10-28)
+
+Advance attack/recovery/aim marker objects are removed. Creature animation, target locking, attack timing, movement, vulnerability and damage rules remain local and unchanged. Delayed damage areas are invisible before activation; actual active hazards/projectiles still render. Only creature teleport destination warnings remain elsewhere. This supersedes earlier cue-presentation notes; see the Pak-wide presentation memory.

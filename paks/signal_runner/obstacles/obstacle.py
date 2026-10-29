@@ -11,7 +11,7 @@ class SignalRunnerObstacles(ObstaclesBase):
         self.blocks = self.load_asset('obstacles_sheet.png')
 
     def sprite(self, world, entity=None):
-        return self.blocks
+        return self.blocks.frame(int((world.time if world else 0)*8)%4,columns=4)
 
     def take_damage(self, world, obstacle, damage):
         return 0.

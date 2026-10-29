@@ -10,10 +10,12 @@ from .bullet import HostileShot
 class NeonBreachBody(Enemy):
     age: float = 0.
     timer: float = 1.
+    state: str = 'drift'
+    target: object = None
 
 class NeonBreachEnemy(EnemyBase):
     def init(self): self.art=self.load_asset("enemy_sheet.png")
-    def sprite(self,world,entity=None): return self.art
+    def sprite(self,world,entity=None): return self.art.frame(int((world.time if world else 0)*7+(entity.id if entity else 0))%4,columns=4)
 
     def spawn_position(self,world):
         return world.safe_position(Vec(world.rng.uniform(100,WIDTH-100),world.rng.uniform(65,220)),14,away_from=world.player.pos,clearance=160)
@@ -35,11 +37,14 @@ class NeonBreachEnemy(EnemyBase):
         enemy.vel = Vec(math.sin(enemy.age*.8+enemy.id)*self.move_speed(world),8+world.wave*.2)
         world.move_body(enemy,enemy.vel*dt,enemy.radius)
         if enemy.pos.y>HEIGHT-65: enemy.pos.y=55
-        if enemy.timer<=0:
-            enemy.timer=self.fire_interval(world)
+        if enemy.state=='drift' and enemy.timer<=0:
             lead=min(.45,max(0,world.wave-4)*.02)
-            direction=normalized(world.player.pos+world.player.vel*lead-enemy.pos)
+            enemy.target=world.player.pos+world.player.vel*lead
+            enemy.state,enemy.timer='aim',.55
+        elif enemy.state=='aim' and enemy.timer<=0:
+            direction=normalized(enemy.target-enemy.pos)
             self.shoot(world,enemy,direction,120+90*(1-math.exp(-(world.wave-1)/35)))
+            enemy.state,enemy.timer='drift',self.fire_interval(world)
 
     def contact_damage(self,world):
         return (13+.6*(world.wave-1)**.7)*difficulty(world)

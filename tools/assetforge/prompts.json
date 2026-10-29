@@ -6,7 +6,11 @@
       "model": "small-music",
       "duration": 32,
       "seed": 311,
-      "prompt": "Instrumental arcade game loop, 128 BPM, precise punchy electronic drums, warm analog bass, bright syncopated arpeggios, melodic cyberpunk synthwave, clean mix, energetic but not harsh, no vocals, no speech, consistent groove for looping."
+      "prompt": "Instrumental arcade game loop, 128 BPM, precise punchy electronic drums, warm analog bass, bright syncopated arpeggios, melodic cyberpunk synthwave, clean mix, energetic but not harsh, no vocals, no speech, consistent groove for looping.",
+      "loop_region": [
+        0.0,
+        30.9
+      ]
     },
     {
       "id": "void_drifter",
@@ -14,7 +18,11 @@
       "model": "small-music",
       "duration": 32,
       "seed": 312,
-      "prompt": "Instrumental space arcade music, 112 BPM, weightless analog synth arpeggios, deep sub bass, crisp broken beat, mysterious starlit atmosphere, minimal melodic motifs, no vocals, no speech, steady seamless game loop."
+      "prompt": "Instrumental space arcade music, 112 BPM, weightless analog synth arpeggios, deep sub bass, crisp broken beat, mysterious starlit atmosphere, minimal melodic motifs, no vocals, no speech, steady seamless game loop.",
+      "loop_region": [
+        0.0,
+        29.2
+      ]
     },
     {
       "id": "iron_circuit",
@@ -22,7 +30,11 @@
       "model": "small-music",
       "duration": 32,
       "seed": 313,
-      "prompt": "Instrumental retro futuristic racing game music, 140 BPM, driving distorted synth bass, pulsing electronic kick and snare, electric lead synth riff, industrial percussion, exhilarating clean groove, no vocals, no speech, loopable."
+      "prompt": "Instrumental retro futuristic racing game music, 140 BPM, driving distorted synth bass, pulsing electronic kick and snare, electric lead synth riff, industrial percussion, exhilarating clean groove, no vocals, no speech, loopable.",
+      "loop_region": [
+        0.0,
+        31.0
+      ]
     },
     {
       "id": "sky_forge",
@@ -38,7 +50,11 @@
       "model": "small-music",
       "duration": 32,
       "seed": 315,
-      "prompt": "Instrumental dreamlike arcade maze music, 118 BPM, glassy FM bells, soft acid bass, intricate light breakbeat, mysterious lush digital garden atmosphere, gentle sparkling arpeggios, no vocals, no speech, consistent loop."
+      "prompt": "Instrumental dreamlike arcade maze music, 118 BPM, glassy FM bells, soft acid bass, intricate light breakbeat, mysterious lush digital garden atmosphere, gentle sparkling arpeggios, no vocals, no speech, consistent loop.",
+      "loop_region": [
+        0.0,
+        30.9
+      ]
     },
     {
       "id": "orbit_keeper",
@@ -46,7 +62,11 @@
       "model": "small-music",
       "duration": 32,
       "seed": 316,
-      "prompt": "Instrumental circular-motion arcade game music, 126 BPM, hypnotic sequenced modular synth, rich chords, tight electronic drums, optimistic futuristic melody, polished spacious mix, rhythmic orbiting arpeggios, no vocals, no speech, loopable."
+      "prompt": "Instrumental circular-motion arcade game music, 126 BPM, hypnotic sequenced modular synth, rich chords, tight electronic drums, optimistic futuristic melody, polished spacious mix, rhythmic orbiting arpeggios, no vocals, no speech, loopable.",
+      "loop_region": [
+        0.0,
+        30.5
+      ]
     },
     {
       "id": "shot",
@@ -102,7 +122,11 @@
       "model": "small-music",
       "duration": 24,
       "seed": 710,
-      "prompt": "Instrumental upbeat 1980s brick breaking arcade loop, 136 BPM, punchy FM mallet bass, crystalline plucked chords, lively electronic drums, original catchy melody, no vocals or speech. Seamless consistent groove."
+      "prompt": "Instrumental upbeat 1980s brick breaking arcade loop, 136 BPM, punchy FM mallet bass, crystalline plucked chords, lively electronic drums, original catchy melody, no vocals or speech. Seamless consistent groove.",
+      "loop_region": [
+        0,
+        20.8
+      ]
     },
     {
       "id": "neon_breach_shot",
@@ -126,7 +150,11 @@
       "model": "small-music",
       "duration": 24,
       "seed": 713,
-      "prompt": "Instrumental playful maze chase arcade loop, 122 BPM, syncopated square wave bass, little marimba synth runs, quirky electronic funk and crisp handclaps, original melody, no vocals or speech. Seamless consistent groove."
+      "prompt": "Instrumental playful maze chase arcade loop, 122 BPM, syncopated square wave bass, little marimba synth runs, quirky electronic funk and crisp handclaps, original melody, no vocals or speech. Seamless consistent groove.",
+      "loop_region": [
+        0.0,
+        23.8
+      ]
     },
     {
       "id": "maze_muncher_shot",
@@ -150,7 +178,11 @@
       "model": "small-music",
       "duration": 24,
       "seed": 716,
-      "prompt": "Instrumental underground mining arcade loop, 108 BPM, rubbery synth bass, brushed industrial percussion, bubbling glass tones, warm adventurous cavern atmosphere, original melody, no vocals or speech. Seamless consistent groove."
+      "prompt": "Instrumental underground mining arcade loop, 108 BPM, rubbery synth bass, brushed industrial percussion, bubbling glass tones, warm adventurous cavern atmosphere, original melody, no vocals or speech. Seamless consistent groove.",
+      "loop_region": [
+        1.6,
+        21.1
+      ]
     },
     {
       "id": "burrow_patrol_shot",
@@ -174,7 +206,11 @@
       "model": "small-music",
       "duration": 24,
       "seed": 719,
-      "prompt": "Instrumental vector arcade electronic loop, 146 BPM, minimalist geometric sequencer patterns, acid arpeggios, sharp electro drums and pulsing laser-like synths, original music, no vocals or speech. Seamless consistent groove."
+      "prompt": "Instrumental vector arcade electronic loop, 146 BPM, minimalist geometric sequencer patterns, acid arpeggios, sharp electro drums and pulsing laser-like synths, original music, no vocals or speech. Seamless consistent groove.",
+      "loop_region": [
+        0.0,
+        23.4
+      ]
     },
     {
       "id": "vector_coil_shot",
@@ -198,7 +234,11 @@
       "model": "small-music",
       "duration": 24,
       "seed": 722,
-      "prompt": "Instrumental vintage space formation arcade loop, 132 BPM, martial electronic drums, bright heroic chiptune lead, cosmic organ chords, strong steady bassline, original melody, no vocals or speech. Seamless consistent groove."
+      "prompt": "Instrumental vintage space formation arcade loop, 132 BPM, martial electronic drums, bright heroic chiptune lead, cosmic organ chords, strong steady bassline, original melody, no vocals or speech. Seamless consistent groove.",
+      "loop_region": [
+        0.0,
+        22.4
+      ]
     },
     {
       "id": "star_bastion_shot",
@@ -222,7 +262,11 @@
       "model": "small-music",
       "duration": 24,
       "seed": 725,
-      "prompt": "Instrumental breezy canal hopping arcade loop, 116 BPM, plucky tropical FM keys, bouncy synth bass, skipping electronic percussion, playful aquatic atmosphere, original melody, no vocals or speech. Seamless consistent groove."
+      "prompt": "Instrumental breezy canal hopping arcade loop, 116 BPM, plucky tropical FM keys, bouncy synth bass, skipping electronic percussion, playful aquatic atmosphere, original melody, no vocals or speech. Seamless consistent groove.",
+      "loop_region": [
+        0.0,
+        23.3
+      ]
     },
     {
       "id": "tide_hopper_shot",
@@ -239,6 +283,282 @@
       "duration": 1.2,
       "seed": 727,
       "prompt": "quick springy frog hop across water with a digital chirp, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "pulse_abbey",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 1100,
+      "prompt": "Instrumental clockwork cathedral dance, 100 BPM, bronze bells on the beat, violet ambient pads, dry deep drums, minimal original melodic ostinato, no voices. Consistent loopable groove."
+    },
+    {
+      "id": "pulse_abbey_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 1105,
+      "prompt": "deep bronze bell strike with a short shimmering resonant tail, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "pulse_abbey_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 1108,
+      "prompt": "bright bronze wind chime sweep, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "scrap_ballet",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 1103,
+      "prompt": "Instrumental zero gravity scrapyard waltz, 120 BPM, metallic mallets, swung broken beat, warm analog bass, playful magnetic energy, original melody, no voices. Consistent loopable groove."
+    },
+    {
+      "id": "scrap_ballet_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 1108,
+      "prompt": "metallic magnetic charging whirr then a tight heavy scrap launch clank, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "scrap_ballet_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 1111,
+      "prompt": "magnetic brake snap and descending electronic hum, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "glasswake",
+      "kind": "music",
+      "loop_region": [
+        0,
+        30
+      ],
+      "model": "small-music",
+      "duration": 32,
+      "seed": 1106,
+      "prompt": "Instrumental crystalline prism arcade, 128 BPM, glass marimba arpeggios, airy FM pads, soft electro drums, elegant spacious icy atmosphere, no voices. Consistent loopable groove."
+    },
+    {
+      "id": "glasswake_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 1111,
+      "prompt": "short clean glass laser hiss with a bright crystalline chirp, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "glasswake_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 1114,
+      "prompt": "glass skate swoosh with a crystalline shimmer, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "bloom_siege",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 1109,
+      "prompt": "Instrumental carnivorous garden strategy arcade, 108 BPM, organic wooden percussion, plucked strings, bubbling analog bass and blooming bright chords, original melody, no voices. Consistent loopable groove."
+    },
+    {
+      "id": "bloom_siege_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 1114,
+      "prompt": "soft seed pod pop followed by a wet floral bloom, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "bloom_siege_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 1117,
+      "prompt": "rustle of leaves and a springy underground hop, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "echo_vault",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 1112,
+      "prompt": "Instrumental time vault heist, 136 BPM, ticking clock percussion, reversed piano motifs, deep detuned bass, spacious mysterious synth pads, original melody, no voices. Consistent loopable groove."
+    },
+    {
+      "id": "echo_vault_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 1117,
+      "prompt": "short reversing clock tick and clean futuristic dart pulse, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "echo_vault_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 1120,
+      "prompt": "rewinding tape flutter followed by a precise clock click, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "tidal_choir",
+      "kind": "music",
+      "model": "small-music",
+      "duration": 32,
+      "seed": 1115,
+      "prompt": "Instrumental underwater diving bell adventure, 112 BPM, muted steel drum notes, liquid dub bass, rippling mallet arpeggios and distant glass chimes, original melody, no voices. Consistent loopable groove."
+    },
+    {
+      "id": "tidal_choir_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 1120,
+      "prompt": "resonant underwater bubble bloop and soft pressure pop, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "tidal_choir_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 1123,
+      "prompt": "deep ballast pressure whoosh and a water splash, isolated game sound effect on silence, no music or speech."
+    },
+    {
+      "id": "signal_runner_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 2100,
+      "prompt": "short bright digital radio pulse zap, clean cyan sci-fi energy transient with a small static click. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "signal_runner_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 2105,
+      "prompt": "swift electric courier dash, radio chirp rising into a short clean air swoosh. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "void_drifter_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 2113,
+      "prompt": "charged deep violet plasma lance release, a low resonant thump and sharp crystalline laser crack. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "void_drifter_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 2118,
+      "prompt": "brief spacecraft engine boost, deep smooth ion whoosh with a clean taper. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "iron_circuit_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 2126,
+      "prompt": "three tight metallic plasma cannon pops, punchy mechanical scattershot burst. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "iron_circuit_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 2131,
+      "prompt": "racing hovercar turbo surge, a short engine rev with a pneumatic hiss. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "sky_forge_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 2139,
+      "prompt": "heavy forge grenade launcher clunk with a tiny fiery whoosh and ember tick. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "sky_forge_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 2144,
+      "prompt": "springing armored knight leap, metallic boot kick and rising furnace gust. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "phase_garden_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 2152,
+      "prompt": "delicate branching magical electric crackle, glassy mint lightning chime with a short decay. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "phase_garden_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 2157,
+      "prompt": "spectral garden blink, soft reversed leaf rustle and a clear crystalline pop. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "orbit_keeper_shot",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.65,
+      "seed": 2165,
+      "prompt": "spinning metallic crescent glaive launch, bright bronze ring and quick blade swish. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "orbit_keeper_special",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.9,
+      "seed": 2170,
+      "prompt": "orbital shield reversal, rounded golden bell tone with a short mechanical turn click. One isolated arcade game sound effect on silence, no music or speech, clean transient fading quickly to silence."
+    },
+    {
+      "id": "pickup",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.45,
+      "seed": 2641,
+      "prompt": "A tiny cheerful rising two-note glass bell chime for collecting a videogame powerup. Gentle clear pitched ding-ding, prompt bright onset, fast soft decay into silence. One isolated short positive reward sound, silent background, no voice, no percussion, no music bed."
+    },
+    {
+      "id": "sky_forge_stab",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.35,
+      "seed": 2711,
+      "prompt": "One short sharp steel sword stab and light metal swish, precise dry transient with a tiny warm forge ring, no explosion. Isolated arcade action effect on silence, no voice, no music, quick natural decay."
+    },
+    {
+      "id": "sky_forge_throw",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 0.6,
+      "seed": 2712,
+      "prompt": "One forceful thrown sword whizz, sharp metallic launch with a bright hot blade ringing briefly then fading. Isolated arcade weapon effect, no explosion, no music or voice, clean short tail."
+    },
+    {
+      "id": "game_over",
+      "kind": "sfx",
+      "model": "small-sfx",
+      "duration": 1,
+      "seed": 2846,
+      "prompt": "A single short retro arcade game over death sound. Bright 8-bit square-wave notes tumble rapidly down in pitch, a descending chiptune arpeggio collapsing into a low digital power-down zap, then a clean quick decay to silence. Playful classic video game synthesizer sound effect, crisp and compact, no drums, no background music, no voice, no speech."
     }
   ]
 }

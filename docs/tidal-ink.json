@@ -1,0 +1,190 @@
+{
+  "date": "2026-10-28",
+  "standard": {
+    "tests": 303,
+    "seconds": 150.44,
+    "passed": true,
+    "excluded": "The historical exhaustive gameplay mix method"
+  },
+  "focused": {
+    "tests": 43,
+    "seconds": 7.032,
+    "passed": true
+  },
+  "regression": {
+    "old_marker_covered_pixels": 1026,
+    "minimum_visible_coverage_pixels": 8077.82,
+    "old_marker_failed": true,
+    "new_footprint_and_motion_checks_pass": true
+  },
+  "source": {
+    "hidden_until_active": true,
+    "filled_damage_area": true,
+    "charge_wake_rendered": true,
+    "render_preserves_simulation_and_rng": true,
+    "reduced_motion_steady": true,
+    "warm_draw_ms_mean": 0.17737600021064281,
+    "solo_samples": [
+      {
+        "seed": 24,
+        "wave": 8,
+        "phase": "active",
+        "seconds": 60.47,
+        "peak_ink": 7,
+        "initial_enemy_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8
+        }
+      },
+      {
+        "seed": 73,
+        "wave": 8,
+        "phase": "active",
+        "seconds": 75.67,
+        "peak_ink": 7,
+        "initial_enemy_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8
+        }
+      },
+      {
+        "seed": 2026,
+        "wave": 8,
+        "phase": "active",
+        "seconds": 81.37,
+        "peak_ink": 7,
+        "initial_enemy_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8
+        }
+      }
+    ]
+  },
+  "frozen": {
+    "hidden_until_active": true,
+    "filled_damage_area": true,
+    "charge_wake_rendered": true,
+    "render_preserves_simulation_and_rng": true,
+    "reduced_motion_steady": true,
+    "warm_draw_ms_mean": 0.19076800002949312,
+    "solo_samples": [
+      {
+        "seed": 24,
+        "wave": 8,
+        "phase": "active",
+        "seconds": 60.47,
+        "peak_ink": 7,
+        "initial_enemy_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8
+        }
+      },
+      {
+        "seed": 73,
+        "wave": 8,
+        "phase": "active",
+        "seconds": 75.67,
+        "peak_ink": 7,
+        "initial_enemy_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8
+        }
+      },
+      {
+        "seed": 2026,
+        "wave": 8,
+        "phase": "active",
+        "seconds": 81.37,
+        "peak_ink": 7,
+        "initial_enemy_counts": {
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8
+        }
+      }
+    ]
+  },
+  "frozen_checks": 25,
+  "packaging": {
+    "source_pak_files": 485,
+    "windows_matches_source": true,
+    "wheel_matches_source": true,
+    "zip_matches_source": true,
+    "zip_crc": true,
+    "executable_sha256": "f9581f3092a53fd061abbdfb98b03e9efd80029f31b001d1b25922ae58d8072e",
+    "wheel_sha256": "2a21d5b4888c3e1b676932e8f3f2c4f799611d4e01b7dc75c776fa11007889ee",
+    "zip_sha256": "f5b897e0ca04b215e4095b429eaccbe7c35967947a000b39d8b19653558a69e9"
+  },
+  "host_executable_reused_unchanged": true,
+  "wheel_host_modules_exact": 16,
+  "rules": {
+    "ink_starts_at_level": 5,
+    "hidden_delay_seconds": 0.6,
+    "active_duration_seconds": 0.8,
+    "radius_px": 55,
+    "charge_speed": 300,
+    "damage_and_ai_unchanged": true
+  },
+  "presentation": {
+    "filled_violet_cloud": true,
+    "jet_wake_only_while_charging": true,
+    "no_added_windup_or_target_marker": true,
+    "reduced_motion_steady": true,
+    "bounded_cached_stain": true
+  },
+  "inspected_screens": [
+    "source jet",
+    "source active cloud",
+    "source reduced motion",
+    "source low hull",
+    "source dissipated",
+    "packaged active cloud"
+  ],
+  "commands": [
+    "python -m unittest tests.test_tidal_ink tests.test_visual_cleanup tests.test_frontier -v",
+    "standard unittest discovery excluding the one exhaustive mix method",
+    "python tools/verify_tidal_ink.py",
+    "python tools/package_release.py",
+    "python tools/verify_distribution.py"
+  ],
+  "limitations": [
+    "SDL dummy screenshots and automated controls; no physical monitor or human balance playtest.",
+    "No exhaustive component matrix or native-controller rerun for this Pak-only presentation change.",
+    "Warm timings include clearing the test surface; they are not a hardware FPS measurement."
+  ]
+}

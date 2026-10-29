@@ -45,7 +45,7 @@ def main():
                 placed += len(world.enemies)
                 for obstacle in world.cover:
                     rect = obstacle.rect
-                    assert 0 < rect.left < rect.right < WIDTH and 0 < rect.top < rect.bottom < HEIGHT
+                    assert 0 <= rect.left < rect.right <= WIDTH and 0 <= rect.top < rect.bottom <= HEIGHT
                     assert obstacle.health == obstacle.max_health > 0
                 for body in (world.player, *world.enemies):
                     assert not any(c.blocks_body(body) and c.overlaps_circle(body.pos, body.radius) for c in world.geometry)

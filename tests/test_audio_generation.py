@@ -57,3 +57,25 @@ class AudioGenerationTests(unittest.TestCase):
                 with self.subTest(seconds=seconds), self.assertRaises(ValueError):
                     local.render("test", "sm-sfx", seconds, 24, "unused.wav", offline=True)
             backend.assert_not_called()
+
+    def test_explicit_loop_region_removes_generated_outro_before_seam_processing(self):
+        import numpy as np
+        from tools.assetforge.prepare import music_loop
+        data=np.concatenate([np.ones((3000,2)),np.zeros((200,2))])
+        result=music_loop(data,100,[0,30])
+        self.assertEqual(len(result),2982)
+        self.assertTrue(np.allclose(result,1))
+        self.assertTrue(np.all(data[-200:]==0))  # Source is preserved.
+        for region in ((-1,30),(30,2),(0,33),(0,float('nan'))):
+            with self.assertRaises(ValueError):music_loop(data,100,region)
+
+    def test_glasswake_shipped_loop_has_no_silent_outro_at_repeat(self):
+        import numpy as np
+        import soundfile as sf
+        root=OUTPUT.parent
+        data,sr=sf.read(root/'paks/glasswake/music/music.ogg',always_2d=True)
+        self.assertAlmostEqual(len(data)/sr,29.82,places=2)
+        peak_rms=max(np.sqrt(np.mean(data[i:i+sr//10]**2)) for i in range(0,len(data),sr//10))
+        seam=np.concatenate([data[-sr:],data[:sr]])
+        windows=[np.sqrt(np.mean(seam[i:i+sr//10]**2)) for i in range(0,len(seam),sr//10)]
+        self.assertGreater(min(windows),peak_rms*.1)

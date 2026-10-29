@@ -11,6 +11,7 @@ from .model import (WIDTH, HEIGHT, FIXED_DT, Vec, Controls, Pilot, Enemy,
                     Body, Motion, Particle, unit, circle_rect)
 from .paks import get_catalog, CHANNELS
 from .preferences import Preferences
+from .combinations import CombinationSpace, NoAvailableCombination, mix_key
 from .remixes import validate_mix
 from .pak_api import ComponentBase, PilotBase, EnemyBase, WeaponBase, MusicBase, BackgroundBase, ObstaclesBase, ProjectileBase, EffectBase, PowerupBase
 
@@ -21,12 +22,15 @@ EnemyFactory = Callable[["World", int, Vec], Enemy]
 
 class World:
     def __init__(self, prefs: Preferences, seed: int = 0, solo: str | None = None, catalog=None, audio=None,
-                 *, fixed_mix: dict[str, str] | None = None):
+                 *, fixed_mix: dict[str, str] | None = None, blocked_mixes=None):
         self.catalog = catalog if catalog is not None else get_catalog()
         self.prefs = Preferences.from_dict(vars(prefs), self.catalog)
         if solo is not None and fixed_mix is not None:
             raise ValueError("Choose either solo play or a fixed Remix")
         self.fixed_mix = validate_mix(fixed_mix, self.catalog) if fixed_mix is not None else None
+        self.blocked_mixes = blocked_mixes if blocked_mixes is not None else set()
+        if self.fixed_mix is not None and mix_key(self.fixed_mix) in self.blocked_mixes:
+            raise NoAvailableCombination("This Remix is flagged. Re-enable it in Preferences > Flagged combinations, or change a component.")
         if solo is not None and solo not in self.catalog.complete_ids():
             raise ValueError("Solo play requires an installed complete Pak")
         self.solo = solo
@@ -133,28 +137,49 @@ class World:
     def can_shuffle(self):
         if self.solo or self.fixed_mix is not None:
             return False
-        if self.prefs.mix_mode == "coherent":
-            return len(self.catalog.complete_ids(self.enabled)) > 1
+        if self.blocked_mixes:
+            return self.combination_space().available(self.blocked_mixes | {mix_key(self.mix)}) > 0
         return any(len(self.catalog.providers(channel, self.enabled)) > 1 for channel in self.prefs.shuffle_channels)
 
-    def choose(self, channel=None, previous=None):
-        eligible = self.catalog.providers(channel, self.enabled) if channel else self.catalog.complete_ids(self.enabled)
+    def choose(self, channel, previous=None):
+        eligible = self.catalog.providers(channel, self.enabled)
         choices = [p for p in eligible if p != previous] or eligible
         return self.rng.choice(choices)
 
+    def combination_space(self, *, initial=False, prefer_change=False):
+        pools = []
+        for channel in CHANNELS:
+            providers = self.catalog.providers(channel, self.enabled)
+            if not initial and channel not in self.prefs.shuffle_channels:
+                providers = [self.mix[channel]]
+            elif prefer_change and not initial:
+                providers = [p for p in providers if p != self.mix[channel]] or providers
+            pools.append(providers)
+        return CombinationSpace(pools)
+
     def shuffle(self, initial=False):
         if self.fixed_mix is not None and not initial:
-            return
+            return False
         old_mix = self.mix.copy()
         if self.fixed_mix is not None:
             self.mix = self.fixed_mix.copy()
-        elif self.solo or self.prefs.mix_mode == "coherent":
-            selected = self.solo or self.choose(previous=self.mix.get("pilot"))
-            self.mix = {channel: selected for channel in CHANNELS}
+        elif self.solo:
+            self.mix = dict.fromkeys(CHANNELS, self.solo)
         else:
             for channel in CHANNELS:
                 if initial or channel in self.prefs.shuffle_channels:
                     self.mix[channel] = self.choose(channel, self.mix.get(channel))
+        if mix_key(self.mix) in self.blocked_mixes:
+            self.mix = old_mix
+            excluded = self.blocked_mixes | ({mix_key(old_mix)} if old_mix else set())
+            replacement = self.combination_space(initial=initial, prefer_change=True).pick(self.rng, excluded)
+            if replacement is None:
+                replacement = self.combination_space(initial=initial).pick(self.rng, excluded)
+            if replacement is None:
+                if initial:
+                    raise NoAvailableCombination("All combinations available with these Paks are flagged. Change the enabled Paks or re-enable a combination in Preferences.")
+                return False
+            self.mix = replacement
         self.component("pilot")
         if not initial and old_mix.get("obstacles") != self.mix["obstacles"]:
             self.cover = self.component("obstacles").build(self)
@@ -183,6 +208,7 @@ class World:
             self.transition = SWAP_GLITCH_SECONDS
             self.suspend()
             self.events.append("shuffle")
+        return True
 
     def safe_position(self, desired, radius: float = 14., *, away_from: Vec | None = None, clearance: float = 0., body=None):
         def valid(pos):
@@ -243,8 +269,6 @@ class World:
             self._accumulator -= FIXED_DT
 
     def step(self, dt: float, controls: Controls):
-        self.transition = max(0., self.transition - dt)
-        self.shake = max(0., self.shake - dt * 20)
         self.update_effects(dt)
         if self.phase == "dead":
             return
@@ -278,7 +302,7 @@ class World:
                 pickup.update(self, dt)
         self.powerups = [pickup for pickup in self.powerups if pickup.alive]
         for enemy in tuple(self.enemies):
-            if enemy.health > 0 and enemy.pos.distance_to(player.pos) < enemy.radius + player.radius:
+            if enemy.health > 0 and player.overlaps_circle(enemy.pos,enemy.radius):
                 self.component("pilot").on_contact(self, enemy, dt)
                 if enemy.health > 0:
                     self.component("enemy").on_contact(self, enemy, dt)
@@ -402,6 +426,8 @@ class World:
                         raise TypeError("WeaponBase.create_powerup must return a PowerupBase or None")
                     self.powerups.append(pickup)
             self.component("enemy").on_death(self, enemy)
+            for channel in CHANNELS:
+                self.component(channel).on_enemy_destroyed(self, enemy)
 
     def collect_powerup(self, pickup):
         if not pickup.alive or not any(item is pickup for item in self.powerups):
@@ -421,6 +447,8 @@ class World:
         self.particles = self.particles[-450:]
 
     def update_effects(self, dt):
+        self.transition = max(0., self.transition - dt)
+        self.shake = max(0., self.shake - dt * 20)
         for particle in self.particles:
             particle.life -= dt
             particle.pos += particle.vel * dt

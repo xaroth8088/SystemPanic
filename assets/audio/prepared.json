@@ -8,10 +8,14 @@
   {
     "file": "assets/audio/production/burrow_patrol.ogg",
     "source": "assets/audio/local/burrow_patrol.wav",
-    "operation": "peak normalized; music loop crossfade",
-    "seconds": 23.82,
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 19.32,
     "sample_rate": 44100,
-    "sha256": "d2cfdcb03feb17ae588c2cf5be666f317463f664781707a0b124d862528fb592"
+    "sha256": "c61faf3eac6e2c7f152bac2e0e9971146e01dda29058438d797b206ea5cc8491",
+    "loop_region_seconds": [
+      1.6,
+      21.1
+    ]
   },
   {
     "file": "assets/audio/production/burrow_patrol_shot.ogg",
@@ -56,18 +60,26 @@
   {
     "file": "assets/audio/production/iron_circuit.ogg",
     "source": "assets/audio/local/iron_circuit.wav",
-    "operation": "peak normalized; music loop crossfade",
-    "seconds": 31.82,
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 30.82,
     "sample_rate": 44100,
-    "sha256": "a88e1355f502f92bf9bc81862f88a97004c59d291bb5c7253c192ae04bb27449"
+    "sha256": "a6d7b1460c212e20419d61487cf7e818cb631af6f76936edf8540f808aa4a584",
+    "loop_region_seconds": [
+      0.0,
+      31.0
+    ]
   },
   {
     "file": "assets/audio/production/maze_muncher.ogg",
     "source": "assets/audio/local/maze_muncher.wav",
-    "operation": "peak normalized; music loop crossfade",
-    "seconds": 23.82,
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 23.62,
     "sample_rate": 44100,
-    "sha256": "1808051b06c520be651ae8b3cdbe59e6bf8111dc367de44b1082486947f2bb0c"
+    "sha256": "c4ffb3f971c0781e4bc6dbbc3c03995c05b7492927012532454a61b8af9f0542",
+    "loop_region_seconds": [
+      0.0,
+      23.8
+    ]
   },
   {
     "file": "assets/audio/production/maze_muncher_shot.ogg",
@@ -88,10 +100,14 @@
   {
     "file": "assets/audio/production/neon_breach.ogg",
     "source": "assets/audio/local/neon_breach.wav",
-    "operation": "peak normalized; music loop crossfade",
-    "seconds": 23.82,
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 20.62,
     "sample_rate": 44100,
-    "sha256": "adbedb6ea6ab7d3e1e9ebe9a7ad7356976a6cfbf372431eeba9c630e1af100e2"
+    "sha256": "33a2ee148415692b32c55a15a4a04ff58c89e7b22f570311e827545518950adf",
+    "loop_region_seconds": [
+      0,
+      20.8
+    ]
   },
   {
     "file": "assets/audio/production/neon_breach_shot.ogg",
@@ -112,18 +128,26 @@
   {
     "file": "assets/audio/production/orbit_keeper.ogg",
     "source": "assets/audio/local/orbit_keeper.wav",
-    "operation": "peak normalized; music loop crossfade",
-    "seconds": 31.82,
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 30.32,
     "sample_rate": 44100,
-    "sha256": "7484649e4f60ae49021e0624056f68e39141b9eaa19cb47e0c32ff51ae8c8e35"
+    "sha256": "0cdc7d80cb113c539061947fafe623088506a853adfb47f400873fe4e9e4bae8",
+    "loop_region_seconds": [
+      0.0,
+      30.5
+    ]
   },
   {
     "file": "assets/audio/production/phase_garden.ogg",
     "source": "assets/audio/local/phase_garden.wav",
-    "operation": "peak normalized; music loop crossfade",
-    "seconds": 31.82,
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 30.72,
     "sample_rate": 44100,
-    "sha256": "145753f7b7d70370f603cf4a31bcab84abf758b8bf6f162615d1be07ceac97d9"
+    "sha256": "a3acf48e028fa52a2e363849b65e098aeb7896abdca56e94a9250f8c82c1d2c0",
+    "loop_region_seconds": [
+      0.0,
+      30.9
+    ]
   },
   {
     "file": "assets/audio/production/select.ogg",
@@ -152,10 +176,14 @@
   {
     "file": "assets/audio/production/signal_runner.ogg",
     "source": "assets/audio/local/signal_runner.wav",
-    "operation": "peak normalized; music loop crossfade",
-    "seconds": 31.82,
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 30.72,
     "sample_rate": 44100,
-    "sha256": "a26b7acac14a30cfaa94a58e4f4285646cb6b0cb8cf0797a9e19c10cc9cb9b25"
+    "sha256": "6fd18f93259522fd1ae93be84c3e06e33b35bea5f20c9e507250893d5306f250",
+    "loop_region_seconds": [
+      0.0,
+      30.9
+    ]
   },
   {
     "file": "assets/audio/production/sky_forge.ogg",
@@ -168,10 +196,14 @@
   {
     "file": "assets/audio/production/star_bastion.ogg",
     "source": "assets/audio/local/star_bastion.wav",
-    "operation": "peak normalized; music loop crossfade",
-    "seconds": 23.82,
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 22.22,
     "sample_rate": 44100,
-    "sha256": "9a8a118f6ad9f2eedbda64689caadb2a2131b9ce2740ab60332e81a2571c42f8"
+    "sha256": "7afbbf32bfef29f1f2f6e28b09dc5d54876b0461cc4ea75f538857b3425f03bb",
+    "loop_region_seconds": [
+      0.0,
+      22.4
+    ]
   },
   {
     "file": "assets/audio/production/star_bastion_shot.ogg",
@@ -192,10 +224,14 @@
   {
     "file": "assets/audio/production/tide_hopper.ogg",
     "source": "assets/audio/local/tide_hopper.wav",
-    "operation": "peak normalized; music loop crossfade",
-    "seconds": 23.82,
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 23.12,
     "sample_rate": 44100,
-    "sha256": "54edaede9a08cc617924e5149b3d562af147a06ad0feed63686a20434ceaaf42"
+    "sha256": "748b36650bc7d3537675a1de5370135f4a861215c6c98ad9f83a50dbed9a568f",
+    "loop_region_seconds": [
+      0.0,
+      23.3
+    ]
   },
   {
     "file": "assets/audio/production/tide_hopper_shot.ogg",
@@ -216,10 +252,14 @@
   {
     "file": "assets/audio/production/vector_coil.ogg",
     "source": "assets/audio/local/vector_coil.wav",
-    "operation": "peak normalized; music loop crossfade",
-    "seconds": 23.82,
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 23.22,
     "sample_rate": 44100,
-    "sha256": "f8bca5c64ce2e4e535d8bb8408e41b241e4a3946f3d2cb0523fcac49cca7690f"
+    "sha256": "4ba7298ba0d0abc80e451f26c7f267df91800546795f31344e259d95db047a0f",
+    "loop_region_seconds": [
+      0.0,
+      23.4
+    ]
   },
   {
     "file": "assets/audio/production/vector_coil_shot.ogg",
@@ -240,9 +280,289 @@
   {
     "file": "assets/audio/production/void_drifter.ogg",
     "source": "assets/audio/local/void_drifter.wav",
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 29.02,
+    "sample_rate": 44100,
+    "sha256": "9b91d94f12016d33f68214c77e9a3554de985ede630657cdd0f52292dd1ce318",
+    "loop_region_seconds": [
+      0.0,
+      29.2
+    ]
+  },
+  {
+    "file": "assets/audio/production/bloom_siege.ogg",
+    "source": "assets/audio/local/bloom_siege.wav",
     "operation": "peak normalized; music loop crossfade",
     "seconds": 31.82,
     "sample_rate": 44100,
-    "sha256": "018711f6d5e3501b8400f78c16690dbb5f85c8fdcc41b21abd007419e8d53f91"
+    "sha256": "b146c18e520b6500fa38d4055b681711d1ca8df897b5f548d9481b7a49a90a72"
+  },
+  {
+    "file": "assets/audio/production/bloom_siege_shot.ogg",
+    "source": "assets/audio/local/bloom_siege_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.231,
+    "sample_rate": 44100,
+    "sha256": "5aff8cc43b3abdb46839df20a9ce5e5bbec74457d20e397d703a5c32dc2e294e"
+  },
+  {
+    "file": "assets/audio/production/bloom_siege_special.ogg",
+    "source": "assets/audio/local/bloom_siege_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.65,
+    "sample_rate": 44100,
+    "sha256": "117eb700401935112efb27b54833d4836caceb1864156facc6e054fca3d41761"
+  },
+  {
+    "file": "assets/audio/production/echo_vault.ogg",
+    "source": "assets/audio/local/echo_vault.wav",
+    "operation": "peak normalized; music loop crossfade",
+    "seconds": 31.82,
+    "sample_rate": 44100,
+    "sha256": "fa4d1191c02568ef20eb89a45684b1792fc4d6e6621ea8f3c3b93af8220577ea"
+  },
+  {
+    "file": "assets/audio/production/echo_vault_shot.ogg",
+    "source": "assets/audio/local/echo_vault_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.151,
+    "sample_rate": 44100,
+    "sha256": "1cd14bb0d282471babf21aefb969df1706fc6d9012626f016062910f82c5b1d7"
+  },
+  {
+    "file": "assets/audio/production/echo_vault_special.ogg",
+    "source": "assets/audio/local/echo_vault_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.618,
+    "sample_rate": 44100,
+    "sha256": "2c671ef02e59c4fb75a167e8af4c16cb8fa74d9f5c449d00eee58d1872882acb"
+  },
+  {
+    "file": "assets/audio/production/glasswake.ogg",
+    "source": "assets/audio/local/glasswake.wav",
+    "operation": "peak normalized; explicit source loop region; music loop crossfade",
+    "seconds": 29.82,
+    "sample_rate": 44100,
+    "sha256": "79029edd09d0bbca6f0f8fafde0f6136dc39e3a421123c66254cc44b31653380",
+    "loop_region_seconds": [
+      0,
+      30
+    ]
+  },
+  {
+    "file": "assets/audio/production/glasswake_shot.ogg",
+    "source": "assets/audio/local/glasswake_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.498,
+    "sample_rate": 44100,
+    "sha256": "dd753e98b92afa4889b8f5cf65e604ab9d3bcfe850bbff30fa14c7fcd20826ba"
+  },
+  {
+    "file": "assets/audio/production/glasswake_special.ogg",
+    "source": "assets/audio/local/glasswake_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.586,
+    "sample_rate": 44100,
+    "sha256": "1622ff84a1f3199bb7781766812decdaf42a0fc0f8ab668b45a71360be4a16e9"
+  },
+  {
+    "file": "assets/audio/production/pulse_abbey.ogg",
+    "source": "assets/audio/local/pulse_abbey.wav",
+    "operation": "peak normalized; music loop crossfade",
+    "seconds": 31.82,
+    "sample_rate": 44100,
+    "sha256": "22cc4b580adfdff88d31c588548d7e0de0c96318b68d2d0ca18ddd5c35f6fc21"
+  },
+  {
+    "file": "assets/audio/production/pulse_abbey_shot.ogg",
+    "source": "assets/audio/local/pulse_abbey_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.526,
+    "sample_rate": 44100,
+    "sha256": "482219b800c2d8c99f589955ab9ef4652d526cc5aa6f69a09859d5a3265709f0"
+  },
+  {
+    "file": "assets/audio/production/pulse_abbey_special.ogg",
+    "source": "assets/audio/local/pulse_abbey_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.9,
+    "sample_rate": 44100,
+    "sha256": "a5890513e787a003a36dae29e8c9e8dfce051899445930a39c622776842cf367"
+  },
+  {
+    "file": "assets/audio/production/scrap_ballet.ogg",
+    "source": "assets/audio/local/scrap_ballet.wav",
+    "operation": "peak normalized; music loop crossfade",
+    "seconds": 31.82,
+    "sample_rate": 44100,
+    "sha256": "1347643edb8ced636c470de31b3799a0f8b9b53dc090ba3b319b16f59246f3d6"
+  },
+  {
+    "file": "assets/audio/production/scrap_ballet_shot.ogg",
+    "source": "assets/audio/local/scrap_ballet_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.492,
+    "sample_rate": 44100,
+    "sha256": "ca1e9006ff7f0f7f881455536fe5e2425c031d1885e1829c54b25ff292dcb192"
+  },
+  {
+    "file": "assets/audio/production/scrap_ballet_special.ogg",
+    "source": "assets/audio/local/scrap_ballet_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.107,
+    "sample_rate": 44100,
+    "sha256": "3b844257eaf272de103cb8bbd07c281e2d242ad09970f1eee184fd770fbed326"
+  },
+  {
+    "file": "assets/audio/production/tidal_choir.ogg",
+    "source": "assets/audio/local/tidal_choir.wav",
+    "operation": "peak normalized; music loop crossfade",
+    "seconds": 31.82,
+    "sample_rate": 44100,
+    "sha256": "77b22fb7ccfef5f5dd92640cf86dae4c860688ab12f2430059ee171bb2b5dfbd"
+  },
+  {
+    "file": "assets/audio/production/tidal_choir_shot.ogg",
+    "source": "assets/audio/local/tidal_choir_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.289,
+    "sample_rate": 44100,
+    "sha256": "4a78a4579331271b9ec1f9b44cd060d89a121aa8c001fc8f819340ba241c52ab"
+  },
+  {
+    "file": "assets/audio/production/tidal_choir_special.ogg",
+    "source": "assets/audio/local/tidal_choir_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.401,
+    "sample_rate": 44100,
+    "sha256": "25938e0e3de7fa614119d7e7ac4f246dcce5328629c4c13d1eeaf3df10efd044"
+  },
+  {
+    "file": "assets/audio/production/iron_circuit_shot.ogg",
+    "source": "assets/audio/local/iron_circuit_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.342,
+    "sample_rate": 44100,
+    "sha256": "975b29c04a41800dbfc4fb105d4dcd2f079281473413dc15fcd96402e3128ecd"
+  },
+  {
+    "file": "assets/audio/production/iron_circuit_special.ogg",
+    "source": "assets/audio/local/iron_circuit_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.367,
+    "sample_rate": 44100,
+    "sha256": "c5710c5116ff3aad5bb256389a6bf0f9d44070c0cf172b65d5cf9f3a433f5938"
+  },
+  {
+    "file": "assets/audio/production/orbit_keeper_shot.ogg",
+    "source": "assets/audio/local/orbit_keeper_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.363,
+    "sample_rate": 44100,
+    "sha256": "87c9eb67a45598ee2d649a12f501c95153fc8a1c084aea3c103ef9c3cc8e1efd"
+  },
+  {
+    "file": "assets/audio/production/orbit_keeper_special.ogg",
+    "source": "assets/audio/local/orbit_keeper_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.2,
+    "sample_rate": 44100,
+    "sha256": "734592801148c1d7c96063787d8cba1a5049296d48a8b9ee9be38337d759006e"
+  },
+  {
+    "file": "assets/audio/production/phase_garden_shot.ogg",
+    "source": "assets/audio/local/phase_garden_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.114,
+    "sample_rate": 44100,
+    "sha256": "85721acc15e096cdd6229a0f3ff968c8062fb2034a954f08ac3342f29599b2ed"
+  },
+  {
+    "file": "assets/audio/production/phase_garden_special.ogg",
+    "source": "assets/audio/local/phase_garden_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.082,
+    "sample_rate": 44100,
+    "sha256": "e34cb0510ac97cc90d1338b776556d2668b3785efae291a28007b8bd9c4c999c"
+  },
+  {
+    "file": "assets/audio/production/signal_runner_shot.ogg",
+    "source": "assets/audio/local/signal_runner_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.058,
+    "sample_rate": 44100,
+    "sha256": "1bd96ce5c42debd4e5eab6edd5d4d17cd022d7f351249be7044495b32124cc6c"
+  },
+  {
+    "file": "assets/audio/production/signal_runner_special.ogg",
+    "source": "assets/audio/local/signal_runner_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.139,
+    "sample_rate": 44100,
+    "sha256": "158bb1962adb171f7fdc967b3c57ec3bca2cb62228b002f32387ae96256433ff"
+  },
+  {
+    "file": "assets/audio/production/sky_forge_shot.ogg",
+    "source": "assets/audio/local/sky_forge_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.081,
+    "sample_rate": 44100,
+    "sha256": "d53c1a71760372bfb6caf884340d58a9a59e4c68226231a57fcb840262f2ed37"
+  },
+  {
+    "file": "assets/audio/production/sky_forge_special.ogg",
+    "source": "assets/audio/local/sky_forge_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.412,
+    "sample_rate": 44100,
+    "sha256": "0b2c0c64f358bf41eb2938df73fa2e7fefa5ecc55e3eafab8ffcbb8520d4b7b2"
+  },
+  {
+    "file": "assets/audio/production/void_drifter_shot.ogg",
+    "source": "assets/audio/local/void_drifter_shot.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.345,
+    "sample_rate": 44100,
+    "sha256": "a13c6cbf55ad6bf017852992731a486db42ea945d37d063974d58f5173af4a95"
+  },
+  {
+    "file": "assets/audio/production/void_drifter_special.ogg",
+    "source": "assets/audio/local/void_drifter_special.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.382,
+    "sample_rate": 44100,
+    "sha256": "e4391d851f4e75aad0f52be0f91bd5f008ea37d8f2dfa7ceb8b3d2e1ad76f203"
+  },
+  {
+    "file": "assets/audio/production/pickup.ogg",
+    "source": "assets/audio/local/pickup.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.45,
+    "sample_rate": 44100,
+    "sha256": "ce9c936411c9ebf6b80056ad6a09fd4e77802dbeeea55853774311f6205f47c9"
+  },
+  {
+    "file": "assets/audio/production/sky_forge_stab.ogg",
+    "source": "assets/audio/local/sky_forge_stab.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.25,
+    "sample_rate": 44100,
+    "sha256": "0954d0f5ab4337e1c76570b2d646e43635ba38a0a55c8019ee18cd3ad971f71d"
+  },
+  {
+    "file": "assets/audio/production/sky_forge_throw.ogg",
+    "source": "assets/audio/local/sky_forge_throw.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.3,
+    "sample_rate": 44100,
+    "sha256": "7f85f468c51aba076794359958ca695353a3ba1c68dc04dc097b1bbf837124b3"
+  },
+  {
+    "file": "assets/audio/production/game_over.ogg",
+    "source": "assets/audio/local/game_over.wav",
+    "operation": "trimmed, faded and peak normalized",
+    "seconds": 0.554,
+    "sample_rate": 44100,
+    "sha256": "c32fa336bd174968f0a726d598c58cc1c648b5b8de77a3ee7310d367c5202b68"
   }
 ]

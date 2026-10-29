@@ -115,6 +115,8 @@ def verify_static_remix(app, output):
 
 
 def main():
+    from verify_combinations import verify_combinations
+    from verify_menu_refinement import verify_menu_refinement
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=ROOT / "output/verification")
     parser.add_argument("--seconds", type=int, default=300)
@@ -168,6 +170,12 @@ def main():
         app.draw()
         pygame.image.save(app.canvas, output / "pause.png")
         report["static_remix"] = verify_static_remix(app, output)
+        report["flagged_combinations"] = verify_combinations(app, output)
+        report["menu_refinement"] = verify_menu_refinement(app, output)
+        from verify_run_feedback import verify_run_feedback
+        report["run_feedback"] = verify_run_feedback(app, output)
+        from verify_tidal_ink import verify_tidal_ink
+        report["tidal_ink"] = verify_tidal_ink(app, output)
         # Preserve the original main-mode defeat render after the static checks.
         app.start()
         app.world.player.health = 0

@@ -1,0 +1,422 @@
+{
+  "date": "2026-10-26",
+  "status": "complete",
+  "case": {
+    "name": "BUGGY",
+    "seed": 24,
+    "difficulty": "standard",
+    "aim_assist": false,
+    "mix": {
+      "pilot": "sky_forge",
+      "enemy": "maze_muncher",
+      "weapon": "tidal_choir",
+      "music": "echo_vault",
+      "background": "sky_forge",
+      "obstacles": "glasswake"
+    }
+  },
+  "problem": "Maze Muncher enemies rebuilt a complete sampled navigation grid separately for each enemy whenever moving Glasswake mirrors changed their integer bounds. Inherited rectangular colliders were excluded from the former sharing path.",
+  "implementation": {
+    "file": "paks/maze_muncher/enemy/navigation.py",
+    "host_changed": false,
+    "assets_changed": false,
+    "saved_mix_changed": false,
+    "personal_preferences_changed": false,
+    "changes": [
+      "Evaluate actual per-body blocking filters once per direction query and key by the effective blocking set and exact bounds.",
+      "Share nodes/links for identical inherited Cover.overlaps_circle rectangular snapshots and body radius; preserve independent routes, waypoints, BFS and timers.",
+      "Retain at most eight recent graph snapshots per enemy component; clear on level/component replacement.",
+      "Index an immutable coordinate-only lattice of exact original point/edge samples. Rebuild rectangles using nearby probe buckets followed by actual circle/rectangle queries.",
+      "Memoize exact point queries without coordinate rounding; arbitrary custom or instance overlap overrides retain the conservative per-body sampled graph path."
+    ],
+    "preserved": [
+      "Obstacle movement, AI cadence, exact sampled collision topology, enemy statistics and digital controls",
+      "Role-local independently copyable logic; no host trait or fixed content registry"
+    ],
+    "navigation_sha256": "27d80e9d92ded7d88040fe1e3549cfc3e2efa341b4908ee97fbb49e3225d5ff2"
+  },
+  "paired_benchmark": {
+    "profiled": false,
+    "seed": 24,
+    "difficulty": "standard",
+    "aim_assist": false,
+    "fixed_hz": 120,
+    "seconds_per_case": 4,
+    "initial_levels": [
+      1,
+      8,
+      20
+    ],
+    "controls": "Ordinary deterministic digital movement and held/released fire; no special, health, damage or resource grants.",
+    "drawing": "960x480 gameplay surface once per fixed step; presentation measured separately below.",
+    "state_hash_fields": "time; player/enemy position, velocity, health and invulnerability; combat RNG state; projectile class, position, radius and alive flag",
+    "comparisons": [
+      {
+        "initial_enemies": 1,
+        "fixed_steps": 480,
+        "before": {
+          "level": 1,
+          "frames": 480,
+          "simulation_ms_mean": 6.873027916784243,
+          "simulation_ms_max": 99.57160000340082,
+          "simulation_ms_p95": 48.13470001681708,
+          "simulation_ms_p99": 94.180599990068,
+          "draw_ms_mean": 5.7629370830909465,
+          "phase": "active",
+          "kills": 1,
+          "enemies": 2,
+          "graphs": 0,
+          "state_sha256": "10937b24b33179dc97532e6dc311aa41a3b6480072b97a3537a62f0b3b99e2b6"
+        },
+        "after": {
+          "level": 1,
+          "frames": 480,
+          "simulation_ms_mean": 0.2783245829656759,
+          "simulation_ms_max": 15.152999985730276,
+          "simulation_ms_p95": 1.5281000232789665,
+          "simulation_ms_p99": 1.8874999950639904,
+          "draw_ms_mean": 5.651810417051213,
+          "phase": "active",
+          "kills": 1,
+          "enemies": 2,
+          "graphs": 8,
+          "state_sha256": "10937b24b33179dc97532e6dc311aa41a3b6480072b97a3537a62f0b3b99e2b6"
+        },
+        "mean_simulation_speedup": 24.694289823590076,
+        "state_hash_matches": true
+      },
+      {
+        "initial_enemies": 8,
+        "fixed_steps": 480,
+        "before": {
+          "level": 8,
+          "frames": 480,
+          "simulation_ms_mean": 42.01977791793373,
+          "simulation_ms_max": 395.7024999835994,
+          "simulation_ms_p95": 374.03559999074787,
+          "simulation_ms_p99": 382.6233000145294,
+          "draw_ms_mean": 5.937916875276035,
+          "phase": "active",
+          "kills": 2,
+          "enemies": 6,
+          "graphs": 0,
+          "state_sha256": "ef37086b2f7721205a0a3d8f02d241b949d1844e3f173bacecf1d70025da7ac5"
+        },
+        "after": {
+          "level": 8,
+          "frames": 480,
+          "simulation_ms_mean": 0.6407649994798703,
+          "simulation_ms_max": 4.616999998688698,
+          "simulation_ms_p95": 3.6903999862261117,
+          "simulation_ms_p99": 4.1769999952521175,
+          "draw_ms_mean": 5.6968004165658686,
+          "phase": "active",
+          "kills": 2,
+          "enemies": 6,
+          "graphs": 8,
+          "state_sha256": "ef37086b2f7721205a0a3d8f02d241b949d1844e3f173bacecf1d70025da7ac5"
+        },
+        "mean_simulation_speedup": 65.57751742377087,
+        "state_hash_matches": true
+      },
+      {
+        "initial_enemies": 20,
+        "fixed_steps": 480,
+        "before": {
+          "level": 20,
+          "frames": 480,
+          "simulation_ms_mean": 136.38576833345724,
+          "simulation_ms_max": 1180.089700006647,
+          "simulation_ms_p95": 953.3271999971475,
+          "simulation_ms_p99": 987.4040999857243,
+          "draw_ms_mean": 6.069047291627309,
+          "phase": "active",
+          "kills": 0,
+          "enemies": 20,
+          "graphs": 0,
+          "state_sha256": "1fa78720f6e2840e3148305804423025e974a505bb36005d87260284794c741c"
+        },
+        "after": {
+          "level": 20,
+          "frames": 480,
+          "simulation_ms_mean": 1.634731666611818,
+          "simulation_ms_max": 9.161999973002821,
+          "simulation_ms_p95": 8.46739998087287,
+          "simulation_ms_p99": 8.937400009017438,
+          "draw_ms_mean": 5.735950000780576,
+          "phase": "active",
+          "kills": 0,
+          "enemies": 20,
+          "graphs": 8,
+          "state_sha256": "1fa78720f6e2840e3148305804423025e974a505bb36005d87260284794c741c"
+        },
+        "mean_simulation_speedup": 83.4300644680931,
+        "state_hash_matches": true
+      }
+    ],
+    "logs": [
+      "output/buggy-performance/baseline-real.json",
+      "output/buggy-performance/final-real.json"
+    ]
+  },
+  "tests": {
+    "standard": {
+      "tests": 263,
+      "seconds": 86.848,
+      "failures": 0,
+      "errors": 0,
+      "excluded": "104976-mix exhaustive matrix"
+    },
+    "focused": {
+      "methods": 8,
+      "seconds": 1.784,
+      "passed": true,
+      "log": "output/buggy-navigation-tests.log",
+      "contracts": [
+        "inherited rectangular sharing across eight enemies and moving snapshots",
+        "per-body filters",
+        "class and instance custom overlap fallback",
+        "bounded cache and unchanged surviving snapshots",
+        "nonblocking geometry/filter changes",
+        "fractional radius and exact edge contact",
+        "indexed graph nodes, links and direction equal conservative sampled geometry including wrap borders"
+      ]
+    },
+    "affected_matrix": {
+      "combinations": 5832,
+      "passed": true,
+      "fixed_steps_per_mix": 20,
+      "seconds": 24.41,
+      "workers": [
+        {
+          "worker": 0,
+          "combinations": 729,
+          "expected": 729,
+          "passed": true
+        },
+        {
+          "worker": 1,
+          "combinations": 729,
+          "expected": 729,
+          "passed": true
+        },
+        {
+          "worker": 2,
+          "combinations": 729,
+          "expected": 729,
+          "passed": true
+        },
+        {
+          "worker": 3,
+          "combinations": 729,
+          "expected": 729,
+          "passed": true
+        },
+        {
+          "worker": 4,
+          "combinations": 729,
+          "expected": 729,
+          "passed": true
+        },
+        {
+          "worker": 5,
+          "combinations": 729,
+          "expected": 729,
+          "passed": true
+        },
+        {
+          "worker": 6,
+          "combinations": 729,
+          "expected": 729,
+          "passed": true
+        },
+        {
+          "worker": 7,
+          "combinations": 729,
+          "expected": 729,
+          "passed": true
+        }
+      ],
+      "scope": "Every gameplay combination containing the Maze Muncher enemy after navigation optimization; original unittest assertions; fresh worlds; disjoint coverage"
+    },
+    "note": "263 fresh standard methods plus the original exhaustive test assertions restricted to all 5832 affected gameplay mixes. The complete 104976-case matrix was not rerun for this Pak-only change; unaffected enemy channels retain prior arcade_feedback evidence. Repeated focused runs are not additional unique methods.",
+    "logs": [
+      "output/buggy-final-standard-tests.log",
+      "output/buggy-enemy-matrix.log"
+    ]
+  },
+  "app_benchmark": {
+    "command": "python tools/verify_navigation.py --frozen",
+    "source": {
+      "case": {
+        "name": "BUGGY",
+        "seed": 24,
+        "difficulty": "standard",
+        "aim_assist": false,
+        "mix": {
+          "pilot": "sky_forge",
+          "enemy": "maze_muncher",
+          "weapon": "tidal_choir",
+          "music": "echo_vault",
+          "background": "sky_forge",
+          "obstacles": "glasswake"
+        }
+      },
+      "runs": [
+        {
+          "level": 1,
+          "frames": 180,
+          "phase": "clear",
+          "enemies": 0,
+          "kills": 1,
+          "update_ms_mean": 0.9124422217913283,
+          "update_ms_p99": 4.615899990312755,
+          "presentation_ms_mean": 30.412451109764838,
+          "presentation_ms_p99": 41.764299996430054,
+          "graphs": 8,
+          "output_size": [
+            3840,
+            2160
+          ]
+        },
+        {
+          "level": 8,
+          "frames": 180,
+          "phase": "active",
+          "enemies": 3,
+          "kills": 5,
+          "update_ms_mean": 1.8558394424164564,
+          "update_ms_p99": 6.586300005437806,
+          "presentation_ms_mean": 30.94782222308115,
+          "presentation_ms_p99": 37.65169999678619,
+          "graphs": 8,
+          "output_size": [
+            3840,
+            2160
+          ]
+        },
+        {
+          "level": 20,
+          "frames": 180,
+          "phase": "active",
+          "enemies": 8,
+          "kills": 12,
+          "update_ms_mean": 4.057743332588062,
+          "update_ms_p99": 13.789899996481836,
+          "presentation_ms_mean": 29.984569444301695,
+          "presentation_ms_p99": 37.30230001383461,
+          "graphs": 8,
+          "output_size": [
+            3840,
+            2160
+          ]
+        }
+      ],
+      "input": "ordinary digital Controls, two fixed steps per 60Hz update; no gameplay grants",
+      "presentation": "actual App.draw/present to a 3840x2160 SDL dummy window; not a physical display benchmark"
+    },
+    "frozen": {
+      "case": {
+        "name": "BUGGY",
+        "seed": 24,
+        "difficulty": "standard",
+        "aim_assist": false,
+        "mix": {
+          "pilot": "sky_forge",
+          "enemy": "maze_muncher",
+          "weapon": "tidal_choir",
+          "music": "echo_vault",
+          "background": "sky_forge",
+          "obstacles": "glasswake"
+        }
+      },
+      "runs": [
+        {
+          "level": 1,
+          "frames": 180,
+          "phase": "clear",
+          "enemies": 0,
+          "kills": 1,
+          "update_ms_mean": 0.9386761105916877,
+          "update_ms_p99": 2.851100027328357,
+          "presentation_ms_mean": 30.771775555007885,
+          "presentation_ms_p99": 63.47590000950731,
+          "graphs": 8,
+          "output_size": [
+            3840,
+            2160
+          ]
+        },
+        {
+          "level": 8,
+          "frames": 180,
+          "phase": "active",
+          "enemies": 3,
+          "kills": 5,
+          "update_ms_mean": 1.6961850007646717,
+          "update_ms_p99": 6.191199994646013,
+          "presentation_ms_mean": 27.816963335175792,
+          "presentation_ms_p99": 33.668499992927536,
+          "graphs": 8,
+          "output_size": [
+            3840,
+            2160
+          ]
+        },
+        {
+          "level": 20,
+          "frames": 180,
+          "phase": "active",
+          "enemies": 8,
+          "kills": 12,
+          "update_ms_mean": 3.6830988871063,
+          "update_ms_p99": 12.623699993127957,
+          "presentation_ms_mean": 27.41983555638904,
+          "presentation_ms_p99": 36.273399979108945,
+          "graphs": 8,
+          "output_size": [
+            3840,
+            2160
+          ]
+        }
+      ],
+      "input": "ordinary digital Controls, two fixed steps per 60Hz update; no gameplay grants",
+      "presentation": "actual App.draw/present to a 3840x2160 SDL dummy window; not a physical display benchmark"
+    },
+    "inspection": "Inspected output/buggy-performance/app/frozen/level-20.png: exact six providers, moving mirrors, visible enemy sprites and charged bubbles; normal static-remix shell. Rendering assertions in the standard suite remain passing."
+  },
+  "distribution": {
+    "packaging": {
+      "source_pak_files": 493,
+      "windows_matches_source": true,
+      "wheel_matches_source": true,
+      "zip_matches_source": true,
+      "zip_crc": true,
+      "executable_sha256": "fc611e7e015009d82e3545974ae718c529acab8bbf7bb95af57dd84ed14ec9bd",
+      "wheel_sha256": "bdf2a210a937b1cf2961f3a973c323ca718eb31796a18a75b9b8b44a79bc6776",
+      "zip_sha256": "cae220fcf77c08bf4a6614f4dbdc62c4af12134297fc892bdacab74accf408b9"
+    },
+    "checks": 25,
+    "passed": true,
+    "compiled_host_reused": true,
+    "windows_folder": "dist/SystemPanic",
+    "windows_zip": "dist/SystemPanic-Windows.zip",
+    "wheel": "dist/system_panic-0.1.0-py3-none-any.whl",
+    "logs": [
+      "output/buggy-packaging.log",
+      "output/buggy-distribution.log"
+    ]
+  },
+  "personal_files": {
+    "remixes_sha256_unchanged": true,
+    "preferences_sha256_unchanged": true,
+    "verification": "Read-only hashes compared before and after work. Fixtures contain provider IDs and relevant options; all test profiles are temporary."
+  },
+  "limitations": [
+    "This reproduces the saved provider combination; favorites store no original run seed or level, so the exact previously played run is unavailable.",
+    "Paired state equality and timing cover bounded four-second samples with 1/8/20 initial enemies, not every possible future run.",
+    "Actual 4K SDL dummy App presentation still costs about 27-31ms per frame on this machine, separately from the repaired navigation. This is CPU scaling/presentation overhead, not a physical display FPS measurement or a 60FPS guarantee.",
+    "The affected matrix is a twenty-step stability check, not a claim that all mixed mechanics can clear.",
+    "Physical display/controller/speaker quality and final human balance were not retested for this navigation-only change."
+  ]
+}

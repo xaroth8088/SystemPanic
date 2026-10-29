@@ -5,6 +5,7 @@ import secrets
 
 from .graphics import TEXT, MUTED, CYAN, EDGE, PANEL
 from .paks import CHANNELS
+from .combinations import mix_key
 from .remixes import MAX_NAME_LENGTH, Remix, RemixStore, mix_issues, normalize_name
 
 
@@ -122,16 +123,15 @@ class RemixMenus:
         self.header("REMIX / STATIC PLAY")
         self.button("back", (1100, 25, 140, 34), "< BACK", self.back, size=13)
         g.text(self.canvas, "Build your Remix.", (80, 116), 35, TEXT, True)
-        g.text(self.canvas, "Choose six components. Your Paks stay fixed for the entire run.", (80, 170), 18, MUTED)
         selected = self.selected_remix()
         if selected:
-            g.fit_text(self.canvas, selected.name, (80, 207), 700, 22, CYAN, True)
-            self.button("remix-rename", (870, 202, 155, 34), "RENAME", lambda: self.name_remix(rename=True), size=13)
-            self.button("remix-delete", (1040, 202, 160, 34), "DELETE", lambda: self.open_page("remix-delete"), size=13)
+            g.fit_text(self.canvas, selected.name, (80, 184), 700, 22, CYAN, True)
+            self.button("remix-rename", (870, 178, 155, 34), "RENAME", lambda: self.name_remix(rename=True), size=13)
+            self.button("remix-delete", (1040, 178, 160, 34), "DELETE", lambda: self.open_page("remix-delete"), size=13)
         else:
-            g.text(self.canvas, "NEW COMBINATION", (80, 211), 13, CYAN, mono=True)
+            g.text(self.canvas, "NEW COMBINATION", (80, 187), 13, CYAN, mono=True)
         for index, channel in enumerate(CHANNELS):
-            x, y = 80 + index % 2 * 580, 260 + index // 2 * 127
+            x, y = 80 + index % 2 * 580, 228 + index // 2 * 127
             pak_id = self.remix_mix.get(channel)
             pak = self.catalog.by_id.get(pak_id)
             available = pak is not None and channel in pak.parts
@@ -143,14 +143,17 @@ class RemixMenus:
                 self.button("remix-channel:" + channel, (x + 398, y + 34, 124, 44), "CHOOSE >",
                             lambda c=channel: self.pick_remix_channel(c), size=13)
         valid = not mix_issues(self.remix_mix, self.catalog)
+        blocked = valid and mix_key(self.remix_mix) in self.combination_history.keys
         if valid:
-            self.button("remix-play", (80, 678, 350, 53), "PLAY REMIX >", self.play_remix, filled=True, size=20)
-            self.button("remix-save", (450, 678, 350, 53), "SAVE AS NEW", self.name_remix, size=18)
+            if blocked:
+                self.button("remix-blocked", (80, 630, 350, 53), "FLAGGED / REVIEW >", lambda: self.review_combination(self.remix_mix), size=18)
+            else:
+                self.button("remix-play", (80, 630, 350, 53), "PLAY REMIX >", self.play_remix, filled=True, size=20)
+            self.button("remix-save", (450, 630, 350, 53), "SAVE AS NEW", self.name_remix, size=18)
         else:
-            g.wrapped(self.canvas, "Choose an installed provider for every component to play or save this mix.", (80, 678), 700, 17, CYAN)
-        self.button("remix-saved", (820, 678, 380, 53), f"SAVED REMIXES ({len(self.remixes)})",
+            g.wrapped(self.canvas, "Choose an installed provider for every component to play or save this mix.", (80, 630), 700, 17, CYAN)
+        self.button("remix-saved", (820, 630, 380, 53), f"SAVED REMIXES ({len(self.remixes)})",
                     lambda: self.open_page("remix-saved"), size=17)
-        g.text(self.canvas, "Endless levels / fresh terrain each level / current challenge setting", (80, 759), 14, MUTED)
 
     def draw_remix_picker(self):
         g, channel = self.graphics, self.remix_picker_channel
@@ -179,16 +182,24 @@ class RemixMenus:
         self.button("back", (1100, 25, 140, 34), "< BACK", self.back, size=13)
         g.text(self.canvas, "Your favorite combinations.", (80, 116), 35, TEXT, True)
         g.text(self.canvas, "Choose a Remix to play, edit, rename or delete.", (80, 172), 18, MUTED)
-        start = self.page_controls("remix_saved_page", len(self.remixes), 735, 80, 1060)
-        for index, item in enumerate(self.remixes[start:start + 6]):
-            y = 225 + index * 80
-            g.panel(self.canvas, (80, y, 1120, 69), PANEL, EDGE)
-            g.fit_text(self.canvas, item.name, (100, y + 8), 815, 23, TEXT, True)
+        start = self.page_controls("remix_saved_page", len(self.remixes), 735, 80, 1060, per_page=4)
+        for index, item in enumerate(self.remixes[start:start + 4]):
+            y = 225 + index * 119
+            g.panel(self.canvas, (80, y, 1120, 112), PANEL, EDGE)
+            g.fit_text(self.canvas, item.name, (100, y + 8), 700, 22, TEXT, True)
             issues = mix_issues(item.mix, self.catalog)
-            pilot = self.catalog.by_id.get(item.mix["pilot"])
-            description = "Unavailable components / choose replacements" if issues else f"Pilot: {pilot.name} / six fixed components"
-            g.fit_text(self.canvas, description, (100, y + 42), 815, 14, MUTED)
-            self.button("favorite:" + item.id, (950, y + 13, 230, 43), "OPEN REMIX >",
+            blocked = mix_key(item.mix) in self.combination_history.keys
+            if issues or blocked:
+                g.text(self.canvas, "FLAGGED" if blocked else "UNAVAILABLE", (915, y + 15), 11, CYAN, mono=True, anchor="topright")
+            for component, channel in enumerate(CHANNELS):
+                pak_id = item.mix[channel]
+                pak = self.catalog.by_id.get(pak_id)
+                available = pak is not None and channel in pak.parts
+                name = pak.name if available else pak_id + " (missing)"
+                g.fit_text(self.canvas, f"{channel.title()}: {name}",
+                           (100 + component % 3 * 270, y + 43 + component // 3 * 27),
+                           257, 14, TEXT if available else MUTED)
+            self.button("favorite:" + item.id, (950, y + 35, 230, 43), "OPEN REMIX >",
                         lambda i=item.id: self.load_remix(i), size=15)
         if not self.remixes:
             g.text(self.canvas, "No saved Remixes yet.", (80, 259), 27, TEXT, True)

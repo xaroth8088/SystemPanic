@@ -19,7 +19,7 @@ from system_panic.app import App, autopilot
 from system_panic.model import Controls, FIXED_DT
 from system_panic.paks import CHANNELS, discover
 from system_panic.pak_api import PilotBase, WeaponBase, ImageAsset, SoundAsset
-from system_panic.pak_assets import AssetLoader
+from system_panic.pak_assets import AssetLoader, SpriteFrame
 from system_panic.preferences import Preferences
 from system_panic.world import World
 
@@ -99,8 +99,7 @@ class PakTests(unittest.TestCase):
         for channel in CHANNELS:
             self.make_pak("only_" + channel, [channel])
         catalog = self.catalog()
-        world = World(Preferences(enabled=list(catalog.by_id), mix_mode="coherent"), 24, catalog=catalog)
-        self.assertEqual(world.prefs.mix_mode, "remix")
+        world = World(Preferences(enabled=list(catalog.by_id)), 24, catalog=catalog)
         self.assertFalse(world.can_shuffle)
         self.assertEqual(world.mix, {c:"only_" + c for c in CHANNELS})
         for _ in range(1200):
@@ -115,7 +114,7 @@ class PakTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "complete Pak"):
                 World(Preferences(), solo=id, catalog=catalog)
 
-    def test_partial_weapon_only_enters_weapon_pool_and_coherent_excludes_partials(self):
+    def test_partial_weapon_only_enters_weapon_pool_and_locks_hold_components(self):
         self.make_pak("base")
         self.make_pak("addon", ["weapon"])
         catalog = self.catalog()
@@ -126,10 +125,11 @@ class PakTests(unittest.TestCase):
             seen.add(world.mix["weapon"])
             self.assertTrue(all(world.mix[c] == "base" for c in CHANNELS if c != "weapon"))
         self.assertEqual(seen, {"base", "addon"})
-        world.prefs.mix_mode = "coherent"
+        world.prefs.shuffle_channels=[]
+        previous=world.mix.copy()
         self.assertFalse(world.can_shuffle)
         world.shuffle()
-        self.assertEqual(set(world.mix.values()), {"base"})
+        self.assertEqual(world.mix, previous)
 
     def test_music_and_background_are_independent_without_resetting_locked_behavior(self):
         self.make_pak("base")
@@ -164,10 +164,11 @@ class PakTests(unittest.TestCase):
         app.world.mix["weapon"] = addon.id
         weapon = app.world.component("weapon")
         handle = weapon.sprite(app.world)
-        self.assertEqual(handle.path, self.root / "aaa_skin/weapon/alternate.png")
+        image = handle.image if isinstance(handle, SpriteFrame) else handle
+        self.assertEqual(image.path, self.root / "aaa_skin/weapon/alternate.png")
         app.world.component("weapon").update(app.world, 0, Controls(fire=True))
         app.draw()
-        self.assertIn(handle.path, app.graphics.images)
+        self.assertIn(image.path, app.graphics.images)
         self.assertFalse(addon.complete)
 
     def test_music_only_asset_variant_streams_its_own_track(self):

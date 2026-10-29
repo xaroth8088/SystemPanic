@@ -37,6 +37,7 @@ class PadFrame:
     pressed: frozenset[int] = frozenset()
     menu: tuple[float, float] = (0., 0.)
     activity: bool = False
+    neutral: bool = True
 
 
 @dataclass(frozen=True)
@@ -159,11 +160,12 @@ class Gamepads:
         pressed = buttons - self._previous
         activity = bool(pressed or fire != self._last_fire or (any(movement) and movement != self._last_axes))
         self._previous, self._last_axes, self._last_fire = buttons, movement, fire
+        neutral = not buttons and not fire and movement == (0., 0.)
         if not self._armed:
-            if not buttons and not fire and movement == (0., 0.):
+            if neutral:
                 self._armed = True
-            return PadFrame()
-        return PadFrame(Controls(*movement, fire, special), pressed, movement, activity)
+            return PadFrame(neutral=neutral)
+        return PadFrame(Controls(*movement, fire, special), pressed, movement, activity, neutral)
 
     def gameplay(self, frame: PadFrame) -> Controls:
         # A menu command may have blocked input AFTER this frame was sampled.

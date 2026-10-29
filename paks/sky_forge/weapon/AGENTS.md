@@ -1,13 +1,19 @@
 # Sky Forge: weapon
 
-Read [this Pak's memory](../AGENTS.md) and [public ABCs](../../../src/system_panic/pak_api.py). `weapon.py` subclasses `WeaponBase`. Required: `update(world, dt, control), sprite(world, entity=None)`. Own triggering, cadence, charging and firing. Projectile helpers implement their own update/draw, lifetime and hit outcomes; the host does not inspect weapon stats or feature flags.
+Read [this Pak](../AGENTS.md), [public ABCs](../../../src/system_panic/pak_api.py) and [Pak contracts](../../AGENTS.md). This folder owns all behavior/helpers/assets; copy the whole folder as a partial Pak. No sibling-role private state or other Pak imports. Use public world/body/shape contracts. Drawing and sprite selection cannot change simulation or RNG.
 
-Load local handles in `init()`; their attribute names are private choices. Instances belong to one run. Use explicit lifecycle callbacks for setup/cleanup. Rendering cannot advance gameplay. The host schedules projectile/effect callbacks once; do not also advance them from the component update. Local helper modules and assets can be copied as partial components. Preserve asset provenance.
+Tap/release below .55s to stab (25+6n damage, 72+min(36,4n) reach, .13s active). Hold .55–1.3s and release to throw the single sword: strength s gives 90+50s+18n damage, speed 620+220s, and gravity 160. The first enemy, solid surface, border or 1.6s flight limit drops the blade; resting gravity is 550. No automatic return or expiry: physically collect it before attacking again. A locked weapon reinserts its unclaimed blade after host projectile cleanup and relocates it safely on terrain/level changes; replacement discards it. Recovery is .28s. Drawing and charge hints are read-only.
 
-aim(world) selects this weapon's assisted/facing direction locally. The host provides no aiming method or firing gate.
+The local sheet has four horizontal animation frames. Pickups capture the raw local ImageAsset and select their own frame when drawn, so provider changes cannot break them. The engine owns tenth-kill scheduling and the persistent collected count; powerup.py owns movement/pickup/expiry and this weapon interprets the count.
 
-Bombs capture whether guidance is allowed at launch. Explicit pilot aim (such as inward/outward Orbit Keeper) disables nearest-target reacquisition so the pilot's choice remains visible.
+Pickup audio: init loads the role-local pickup.ogg. The factory captures its SoundAsset in the drop, alongside the art. powerup.update plays it once at volume .45 only when world.collect_powerup returns True; expired, unregistered and repeated updates stay silent. The originating drop keeps its sound after a weapon/level change. Playback uses the ordinary effects bus and mute/volume settings.
 
-Obstacle contacts call world.hit_cover; the selected obstacle component owns durability, including impervious geometry.
+## Arcade feedback (2026-10-26)
 
-Powerups: SkyForgePowerup falls under its own gravity and lands on shapes. Bomb damage 58+11n; blast radius 85+min(100,8n). Guidance still respects explicit pilot aim. Each weapon owns its powerup.py subclass, captures local handles, and uses the shared run count; the engine owns only tenth-kill spawning/counting.
+Short release now makes a 0.22s overhead Swing: its right-facing blade sweeps from -0.85pi to +0.25pi, mirrored for left facing. Sampled swept rays stop at actual filtered cover; enemies take 25+6n once and surviving targets are pushed 28px through collision checks with a 95px/s impulse. Existing stab reach formula and charged throw/retrieve ownership remain. The dropped-blade arrow and instructional prose are removed; a charge meter and actual blade remain. Resting blade art anchors its visible bottom at its physical feet. QA commits to a complete ordinary-input walk off a support to retrieve a blade below, including an overhung deck lip.
+
+Presentation: in-arena control prose and redundant facing indicators are removed; actual attacks, meters and numerical resources remain. See [Pak presentation memory](../../AGENTS.md).
+
+## Quiet presentation and tail routing (2026-10-28)
+
+Fixed top-left heat, speed, charge, energy, battery, nectar and cooldown readouts are removed. This role retains its attacks and existing on-pilot physical/charge/resource feedback where applicable. Empty readout scheduling/helpers were removed when they served no other presentation. Weapon mechanics are unchanged; this supersedes earlier fixed-HUD meter notes.

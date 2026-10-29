@@ -7,12 +7,13 @@ from .projectile import Ricochet
 
 class IronCircuitWeapon(WeaponBase):
     def init(self):
+        self.pickup_sound = self.load_asset("pickup.ogg")
         self.projectiles = self.load_asset('weapon_sheet.png')
         self.shot_sound = self.load_asset("shot.ogg")
         self._remaining = 0.
 
     def sprite(self, world, entity=None):
-        return self.projectiles
+        return self.projectiles.frame(int((world.time if world else 0)*8)%4,columns=4)
 
     def update(self, world, dt, control):
         self._remaining = max(0., self._remaining - dt)
@@ -37,7 +38,7 @@ class IronCircuitWeapon(WeaponBase):
             world.projectiles.append(Ricochet(world, self, direction.rotate_rad(offset)))
 
     def create_powerup(self,world,position):
-        return IronCircuitPowerup(position,self.sprite(world),world.pak("weapon").color)
+        return IronCircuitPowerup(position,self.projectiles,world.pak("weapon").color, self.pickup_sound)
 
     def on_powerup(self,world,count):
         world.burst(world.player.pos,world.pak("weapon").color,12)

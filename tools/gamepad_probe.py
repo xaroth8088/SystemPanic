@@ -256,6 +256,13 @@ def exercise(app, output):
         assert app.route == "game"
         app.world.player.health = 0  # Exercise the outcome UI without a balance-dependent wait.
         tick()
+        assert app.route == "game-over" and not app.buttons
+        pad.button(A, True)
+        tick(100)
+        assert app.route == "game-over"
+        snapshot("game-over")
+        pad.neutral()
+        tick(22)
         assert app.route == "outcome"
         snapshot("outcome")
         tick()  # Observe neutral input on the new screen before confirming retry.
