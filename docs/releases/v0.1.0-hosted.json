@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-29",
+  "version": "0.1.0",
+  "published": true,
+  "immutable": true,
+  "commit": "4336615ba6614e4a0d6bc81826cf35b9d72b9d73",
+  "release_url": "https://github.com/xaroth8088/SystemPanic/releases/tag/v0.1.0",
+  "release_workflow": "https://github.com/xaroth8088/SystemPanic/actions/runs/40949232498",
+  "ordinary_ci": "https://github.com/xaroth8088/SystemPanic/actions/runs/40949231218",
+  "regressions": {
+    "windows": 413,
+    "linux": 413,
+    "both_passed": true,
+    "skipped": 0
+  },
+  "matrix": {
+    "workers": 4,
+    "combinations": 331776,
+    "fixed_steps_per_mix": 20,
+    "seconds": 999.543,
+    "passed": true,
+    "disjoint_full_coverage": true,
+    "worlds_created": 331776
+  },
+  "remixes": {
+    "new_gameplay_combinations": 1296,
+    "sampled_old_new_combinations": 512,
+    "seconds_per_case": 6,
+    "swaps": 512,
+    "max_projectiles": 37,
+    "finite_state": true,
+    "close_cleans_geometry": true,
+    "presentation_pairs_checked": 576,
+    "read_only_render": true,
+    "local_music_streams": true
+  },
+  "package_checks": {
+    "clean_tagged_windows_build": true,
+    "native_virtual_controller_source_and_frozen": true,
+    "collectibles_source_and_frozen": true,
+    "extracted_zip_checks": 31,
+    "isolated_wheel_complete_paks": 24,
+    "wheel_frames_each": 240
+  },
+  "assets": [
+    {
+      "id": 689880809,
+      "name": "BUILDINFO.json",
+      "size": 71590,
+      "digest": "sha256:e1711aadc05f659f006d865a3754f461033f8aae60d20e4ab73404393e01aaeb",
+      "browser_download_url": "https://github.com/xaroth8088/SystemPanic/releases/download/v0.1.0/BUILDINFO.json"
+    },
+    {
+      "id": 689880815,
+      "name": "SHA256SUMS.txt",
+      "size": 287,
+      "digest": "sha256:75035e2268c5863de133063d21d1c3acd58181da08c36c797812109650216656",
+      "browser_download_url": "https://github.com/xaroth8088/SystemPanic/releases/download/v0.1.0/SHA256SUMS.txt"
+    },
+    {
+      "id": 689880807,
+      "name": "SystemPanic-v0.1.0-windows-x64.zip",
+      "size": 110908246,
+      "digest": "sha256:d87b054eb84116b6eda38895aa7cb7517944c32f28387962bb3787a5d5d5174b",
+      "browser_download_url": "https://github.com/xaroth8088/SystemPanic/releases/download/v0.1.0/SystemPanic-v0.1.0-windows-x64.zip"
+    },
+    {
+      "id": 689880806,
+      "name": "system_panic-0.1.0-py3-none-any.whl",
+      "size": 94378053,
+      "digest": "sha256:0c64fe2150e9f3b10c45ed90a16e1eabe9faa998a219767569bf939677ee2df6",
+      "browser_download_url": "https://github.com/xaroth8088/SystemPanic/releases/download/v0.1.0/system_panic-0.1.0-py3-none-any.whl"
+    }
+  ],
+  "toolchain": {
+    "pygame": "2.6.1",
+    "pyinstaller": "6.22.3",
+    "setuptools": "84.2.1",
+    "build": "1.6.1"
+  },
+  "upload_verification": "Release asset SHA-256 digests match uploaded SHA256SUMS; BUILDINFO identifies exact clean tagged commit.",
+  "inspected_renders": [
+    "Local source library and Paper gameplay",
+    "Local extracted Remix builder and installed Rime",
+    "Hosted Ubuntu library and Ferric gameplay (CI artifact SHA-256 verified)"
+  ],
+  "remaining_setup": "Weekly scheduled validation requires these workflows on the default branch. master remains unchanged pending explicit approval.",
+  "limits": [
+    "Windows x64 executable is unsigned.",
+    "SDL virtual input/dummy rendering is not physical controller/speaker/display or human balance approval."
+  ]
+}

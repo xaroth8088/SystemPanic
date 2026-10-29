@@ -203,6 +203,8 @@ The packager creates a versioned Windows ZIP, a Python wheel, `BUILDINFO.json` a
 
 Pull requests and branch pushes run ordinary regressions and bounded solo/UI verification on Windows and Linux. `python tools/test.py` excludes exactly the exhaustive gameplay matrix method; `--full` also runs those unchanged assertions through the parallel matrix runner. Weekly/manual extended validation and version-tag releases run the full matrix separately. Screenshots and reports are retained as Actions artifacts for seven days for CI/extended checks and fourteen days for releases.
 
+Scheduled runs require the workflow files on the repository default branch. Tag-driven releases can run from the tagged development branch.
+
 For a release, update `project.version` in `pyproject.toml`, commit the intended source, then push an annotated matching tag:
 
 ```sh
