@@ -1,0 +1,21 @@
+# Python 3.12 CI/build environment; no asset generation models or services.
+# Runtime and verification dependencies.
+pygame==2.6.1
+numpy==2.5.4
+soundfile==0.14.0
+Pillow==13.0.0
+cffi==2.1.1
+pycparser==3.12
+typing_extensions==4.16.0
+
+# Wheel/freezer toolchain, including their transitive dependencies.
+setuptools==84.2.1
+build==1.6.1
+pyproject-hooks==1.3.3
+packaging==26.3
+pyinstaller==6.22.3
+pyinstaller-hooks-contrib==2026.9
+altgraph==0.17.5
+pefile==2024.8.26; sys_platform == "win32"
+pywin32-ctypes==0.2.3; sys_platform == "win32"
+colorama==0.4.6; sys_platform == "win32"

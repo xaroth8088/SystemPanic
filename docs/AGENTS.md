@@ -1,5 +1,11 @@
 # Design memory
 
+## GitHub delivery (2026-10-29)
+
+The first public version is v0.1.0. Delivery uses the existing Windows x64 PyInstaller folder with external Paks, a versioned ZIP and optional Python wheel. GitHub Actions runs Windows/Linux regressions and bounded rendered samples; weekly/manual and tag validation runs the exhaustive gameplay matrix plus longer remix/swap and all presentation-pair checks. The tag workflow builds from its exact clean commit and prepares a draft release after native input/collectible and extracted-ZIP/isolated-wheel checks. Publishing is a separate final step; immutable releases keep published tags/assets fixed. No runtime network or asset generation was added.
+
+See [the player/release instructions](../README.md#github-release-process), [v0.1.0 notes](releases/v0.1.0.md), [local verification checkpoint](releases/v0.1.0-verification.json), [tooling contracts](../tools/AGENTS.md#release-automation-2026-10-29) and [verification memory](../tests/AGENTS.md). GitHub Release assets and BUILDINFO.json are authoritative for the final tagged build, distinct from the local development-build checkpoint. Native Linux/macOS distributions and Windows certificate signing remain future setup; automated SDL checks do not establish physical hardware quality or human balance.
+
 ## Living Arcade expansion (2026-10-28)
 
 The library now has twenty-four complete external Paks. The six new games are Canopy Capers (physical jump-and-stomp), Rime Rink (skating/curling), Storm Loom (reel/snap threads and redirected wind), Kiln Derby (pressure/heat and hot-slag furnaces), Paper Pilgrimage (unfolding blades and paired fold gates), and Ferric Ferry (planted induction rails and reversible magnetic fields). Creative terrain acts on both the pilot and enemies through public body/geometry services. The host API, endless progression and offline runtime are unchanged.

@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-29",
+  "version": "0.1.0",
+  "scope": "Local pre-tag development-build verification. Final tagged assets and hosted evidence are authoritative on GitHub Releases/Actions.",
+  "source_inventory_sha256": {
+    "host": "98ff72977098934fca699f34589a0ae86385aae5a7da8f8503f7b1784b91c8c8",
+    "paks": "29678adea51552a957d7808129fc24c33054e819328e8368f548445085feef60"
+  },
+  "regressions": {
+    "tests_selected": 413,
+    "tests_run": 413,
+    "excluded": [
+      "test_world.WorldTests.test_all_component_mixes_update_and_fire_safely"
+    ],
+    "failures": [],
+    "errors": [],
+    "skipped": [],
+    "unexpected_successes": [],
+    "seconds": 196.227,
+    "passed": true,
+    "matrix_requested": false,
+    "matrix_exit_code": null
+  },
+  "matrix": {
+    "workers": 8,
+    "combinations": 331776,
+    "fixed_steps_per_mix": 20,
+    "seconds": 824.235,
+    "passed": true,
+    "disjoint_full_coverage": true,
+    "worlds_created": 331776
+  },
+  "bounded_solo": {
+    "paks": 24,
+    "cleared_levels_each": 3,
+    "continues_at_level": 4,
+    "exact_plus_one_initial_counts": true
+  },
+  "longer_remixes": {
+    "new_gameplay_combinations": 1296,
+    "sampled_old_new_combinations": 512,
+    "seconds_per_case": 6,
+    "swaps": 512,
+    "max_projectiles": 37,
+    "finite_state": true,
+    "close_cleans_geometry": true,
+    "presentation_pairs_checked": 576,
+    "read_only_render": true,
+    "local_music_streams": true
+  },
+  "build": {
+    "windows_x64_folder": true,
+    "versioned_zip": true,
+    "wheel": true,
+    "exact_pak_tree_files": 635,
+    "source_bytes_archive_crc_and_checksums": true,
+    "development_build_hashes_not_release_identity": true
+  },
+  "extracted_zip": {
+    "frozen_checks": 31,
+    "drop_in_helpers_partials_remix_and_empty_install": true
+  },
+  "isolated_wheel": {
+    "solo_paks": 24,
+    "frames_each": 240,
+    "packages": {
+      "pip": "23.2.1",
+      "pygame": "2.6.1",
+      "system-panic": "0.1.0"
+    }
+  },
+  "native_virtual_controller": {
+    "source": {
+      "steps": 4227,
+      "solo_paks": 24
+    },
+    "frozen": {
+      "steps": 4227,
+      "solo_paks": 24
+    }
+  },
+  "collectibles": {
+    "source_paks": 24,
+    "frozen_paks": 24
+  },
+  "workflow_lint": {
+    "actionlint": "1.7.12",
+    "exit_code": 0
+  },
+  "inspected_renders": [
+    "source/home.png",
+    "source/paper_pilgrimage.png",
+    "distribution/wheel-rime_rink.png",
+    "distribution/distribution/static-remix-builder.png"
+  ],
+  "limitations": [
+    "SDL dummy rendering and virtual input are automated evidence, not physical display/controller/speaker approval.",
+    "No new human balance playtest was performed.",
+    "Windows executable is unsigned; native Linux/macOS packages are not supplied."
+  ]
+}

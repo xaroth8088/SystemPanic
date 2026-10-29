@@ -1,27 +1,49 @@
 """Verify frozen drop-in Paks, partial-only play and wheel layout after a build."""
 from pathlib import Path
+import argparse
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import tempfile
 import zipfile
+
+try:
+    from .release_support import project_version, release_paths
+except ImportError:  # Direct script execution.
+    from release_support import project_version, release_paths
 
 ROOT = Path(__file__).resolve().parents[1]
 CHANNELS = ("pilot", "enemy", "weapon", "music", "background", "obstacles")
 
 
 def main():
-    folder = ROOT / "dist/SystemPanic"
-    exe = folder / "SystemPanic.exe"
-    output = ROOT / "output/verification/distribution"
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--folder", type=Path, help="Frozen folder, including one extracted from the release ZIP")
+    parser.add_argument("--wheel", type=Path, help="Wheel to verify (defaults to the current project version)")
+    parser.add_argument("--output", type=Path, default=ROOT / "output/verification/distribution")
+    args = parser.parse_args()
+    paths = release_paths(project_version())
+    folder = (args.folder or paths["folder"]).resolve()
+    wheel = (args.wheel or paths["wheel"]).resolve()
+    output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="frozen-profile-", dir=output) as temporary:
+        run_checks(folder, wheel, output, Path(temporary))
+
+
+def run_checks(folder, wheel, output, profile_root):
+    exe = folder / "SystemPanic.exe"
+    environment = os.environ.copy()
+    environment.update(LOCALAPPDATA=str(profile_root / "user-data"),
+                       XDG_DATA_HOME=str(profile_root / "user-data"))
     records = []
 
     def run(name, *arguments, frames=240):
         result = subprocess.run([str(exe), "--headless", "--seed", "24", "--frames", str(frames),
-                                 "--data-dir", str(output / "profile"), *map(str, arguments)],
-                                cwd=output, timeout=40, capture_output=True)
+                                 "--data-dir", str(profile_root / "preferences"), *map(str, arguments)],
+                                cwd=output, env=environment, timeout=40, capture_output=True)
         if result.returncode:
             raise AssertionError((name, result.returncode, result.stderr.decode(errors="replace")))
         records.append({"check":name, "frames":frames, "exit_code":result.returncode})
@@ -153,7 +175,6 @@ App.run = _verify_remix
             "normal_progress_retained", "static_remix_returns_home", "solo_returns_home",
             "remove_persists", "disk_failure_excluded_in_memory_and_retried", "paused_world_unchanged"))
 
-    wheel = ROOT / "dist/system_panic-0.1.0-py3-none-any.whl"
     with zipfile.ZipFile(wheel) as bundle:
         names = bundle.namelist()
         assert "system_panic/pak_api.py" in names

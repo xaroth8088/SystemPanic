@@ -7,3 +7,4 @@ include assets/audio/production/shuffle.ogg
 include assets/audio/production/hurt.ogg
 include assets/audio/production/clear.ogg
 include assets/audio/production/select.ogg
+include assets/audio/production/game_over.ogg

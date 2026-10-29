@@ -1,0 +1,175 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag to build, such as v0.1.0
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    name: Validate release tag
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      version: ${{ steps.version.outputs.version }}
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Require an existing exact version tag and clean checkout
+        id: version
+        shell: bash
+        run: |
+          python tools/release_support.py --tag "$RELEASE_TAG" --check
+          echo "tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+          echo "version=${RELEASE_TAG#v}" >> "$GITHUB_OUTPUT"
+
+  regressions:
+    name: Release regressions
+    needs: preflight
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ needs.preflight.outputs.tag }}
+
+  extended:
+    name: Release exhaustive validation
+    needs: preflight
+    uses: ./.github/workflows/extended-validation.yml
+    with:
+      ref: ${{ needs.preflight.outputs.tag }}
+
+  windows:
+    name: Build and verify Windows x64
+    needs: [preflight, regressions, extended]
+    runs-on: windows-2022
+    timeout-minutes: 45
+    env:
+      RELEASE_TAG: ${{ needs.preflight.outputs.tag }}
+      SDL_VIDEODRIVER: dummy
+      SDL_AUDIODRIVER: dummy
+      PYGAME_HIDE_SUPPORT_PROMPT: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ needs.preflight.outputs.tag }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+          architecture: x64
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+      - name: Install pinned build and verification tools
+        run: 'python -m pip install --only-binary=:all: --requirement requirements-ci.txt'
+      - name: Build standalone executable from the tagged source
+        run: python tools/build.py --tag "$env:RELEASE_TAG"
+      - name: Package versioned ZIP, wheel, metadata and checksums
+        run: python tools/package_release.py --tag "$env:RELEASE_TAG"
+      - name: Exercise SDL virtual-controller input in source and frozen builds
+        run: python tools/verify_gamepad.py --frozen
+      - name: Verify collectible behavior and retention in source and frozen builds
+        run: python tools/verify_powerups.py --frozen
+      - name: Verify freshly extracted ZIP and isolated wheel installation
+        # Includes the complete verify_distribution.py probe against the extracted ZIP.
+        run: python tools/verify_release.py --tag "$env:RELEASE_TAG"
+      - name: Retain verification reports and screenshots
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: release-verification
+          path: output/**
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Retain verified release assets for publication
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: release-assets
+          path: |
+            dist/SystemPanic-${{ needs.preflight.outputs.tag }}-windows-x64.zip
+            dist/system_panic-${{ needs.preflight.outputs.version }}-py3-none-any.whl
+            dist/SHA256SUMS.txt
+            dist/BUILDINFO.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+
+  draft:
+    name: Prepare GitHub Release
+    needs: [preflight, windows]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_TAG: ${{ needs.preflight.outputs.tag }}
+      RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ needs.preflight.outputs.tag }}
+          persist-credentials: false
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: release-assets
+          path: release-assets
+      - name: Verify asset checksums after transfer
+        working-directory: release-assets
+        run: sha256sum --check SHA256SUMS.txt
+      - name: Upload all assets to a draft release
+        shell: bash
+        run: |
+          set -euo pipefail
+          assets=(
+            "release-assets/SystemPanic-${RELEASE_TAG}-windows-x64.zip"
+            "release-assets/system_panic-${RELEASE_VERSION}-py3-none-any.whl"
+            "release-assets/SHA256SUMS.txt"
+            "release-assets/BUILDINFO.json"
+          )
+          for asset in "${assets[@]}"; do test -f "$asset"; done
+          if gh release view "$RELEASE_TAG" --json isDraft > "$RUNNER_TEMP/existing-release.json" 2>/dev/null; then
+            if ! jq -e '.isDraft == true' "$RUNNER_TEMP/existing-release.json" > /dev/null; then
+              echo 'This release is already published; published assets will not be replaced.' >&2
+              exit 1
+            fi
+            gh release upload "$RELEASE_TAG" "${assets[@]}" --clobber
+          else
+            notes="docs/releases/${RELEASE_TAG}.md"
+            if [ ! -f "$notes" ]; then
+              notes="$RUNNER_TEMP/release-notes.md"
+              cat > "$notes" <<'NOTES'
+          Download the Windows x64 ZIP, extract the entire folder and run SystemPanic.exe.
+          Keep the executable, supporting files and paks folder together. Python is not required.
+
+          The Python wheel is an optional developer distribution. SHA256SUMS.txt contains download checksums;
+          BUILDINFO.json identifies the source commit and build tools. The Windows executable is unsigned.
+          NOTES
+            fi
+            gh release create "$RELEASE_TAG" "${assets[@]}" --draft --verify-tag \
+              --title "System Panic ${RELEASE_TAG}" --generate-notes --notes-file "$notes"
+          fi
+          echo "Draft release prepared: https://github.com/${GH_REPO}/releases/tag/${RELEASE_TAG}" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Review the verification artifacts and playtest the ZIP before publishing the draft.' >> "$GITHUB_STEP_SUMMARY"

@@ -1,5 +1,13 @@
 # Verification memory
 
+## v0.1.0 release automation (2026-10-29)
+
+`python tools/test.py` is the ordinary regression entry point. It retains discovery/import failures and excludes exactly `test_world.WorldTests.test_all_component_mixes_update_and_fire_safely`; missing/duplicate matrix IDs fail selection. `--full --workers N` then runs the existing disjoint matrix runner. Direct invocation from outside the checkout is covered so repository helper imports cannot silently disappear. Plain unittest discovery remains supported and includes the exhaustive method.
+
+Fresh local evidence: 413 regressions pass in 196.227s, including eleven new runner/release-safety methods; all 331,776 gameplay combinations pass twenty fixed steps in fresh worlds across eight workers in 824.235s. All twenty-four relaxed seed-24 solo samples clear three levels and continue at four with exact initial counts. The actual fresh ZIP extraction passes all 31 frozen checks, and the separately installed wheel runs all twenty-four Paks for 240 frames each with only Pygame as its runtime dependency. Native SDL virtual-controller source/frozen runs each pass 4,227 steps; source/frozen collectible retention checks pass for all twenty-four weapons. Source library/gameplay, installed Rime and extracted Remix builder renders were inspected. All three workflow files pass actionlint 1.7.12; pinned dependencies install and pass pip check.
+
+See [the local release checkpoint](../docs/releases/v0.1.0-verification.json) for source fingerprints, longer remix/presentation results and limits. These local packages precede the clean tagged hosted build; final asset identity is recorded by the GitHub Release BUILDINFO/checksums and Actions run. No physical controller/speaker/display or new human balance approval is implied. CI runs Windows/Linux regressions; extended/tag validation adds the exhaustive and longer-remix checks, and release verification exercises the freshly extracted ZIP plus an isolated wheel installation.
+
 Use real simulation tests for solo play, all pairings/full component combinations, shuffle state preservation, preferences validation/persistence, projectile ownership, damage, endless level progression, death/restart and menu input. Run with SDL dummy video/audio in automation. Do not require network or asset generation for tests.
 
 `tools/verify.py` should produce reproducible screenshots and a machine-readable report. Inspect the screenshots in addition to checking assertions. Record exact results here after running. Interactive playtesting remains distinct from headless simulation.

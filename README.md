@@ -6,6 +6,10 @@ This is a fresh implementation. The 2017 game and unfinished 2025 rewrite remain
 
 ## Play on Windows
 
+Download the Windows x64 ZIP from [GitHub Releases](https://github.com/xaroth8088/SystemPanic/releases/latest), extract the entire archive, and run **`SystemPanic/SystemPanic.exe`**. Keep the executable, `_internal/` and `paks/` together. The standalone release includes all twenty-four Paks and needs no Python installation or network connection. Download `SHA256SUMS.txt` to verify the archive with PowerShell's `Get-FileHash -Algorithm SHA256`.
+
+To run a source checkout instead:
+
 Double-click **`run.bat`**. It uses Python 3.12, creates a project-local virtual environment and installs Pygame 2.6.1, the only runtime dependency. After that first setup, playing requires no network connection.
 
 If a standalone build is present, run **`dist/SystemPanic/SystemPanic.exe`**. Keep the entire `SystemPanic` folder together; no Python installation is needed for that build.
@@ -85,7 +89,7 @@ Vector's filled regions and live enemy-blocking lines are owned by its weapon co
 
 ## Dynamic Paks
 
-The eighteen Paks are ordinary external folders under [`paks/`](paks/AGENTS.md), separate from the game engine. Each contains `pak.json` and six component folders with code and local assets. Classes subclass the discoverable ABCs in `system_panic.pak_api`; handles such as `self.spritesheet` are private author choices. Add a Pak folder and choose **Rescan Paks** in the library; no registry change or executable rebuild is needed. Use **Pak status** for installation locations and skipped-Pak errors. The library supports more than six Paks with pagination.
+The twenty-four Paks are ordinary external folders under [`paks/`](paks/AGENTS.md), separate from the game engine. Each contains `pak.json` and six component folders with code and local assets. Classes subclass the discoverable ABCs in `system_panic.pak_api`; handles such as `self.spritesheet` are private author choices. Add a Pak folder and choose **Rescan Paks** in the library; no registry change or executable rebuild is needed. Use **Pak status** for installation locations and skipped-Pak errors. The library supports more than six Paks with pagination.
 
 The Windows build loads `paks/` beside its executable and `%LOCALAPPDATA%/SystemPanic/paks`. A source checkout uses project-root `paks/` plus the same user location. Complete Paks can run alone; partial Paks can supply any subset of the six component types. Asset-only partial Paks can inherit installed behavior and add their own sprites. Complementary partial Paks can form a playable mix without a complete Pak.
 
@@ -132,7 +136,7 @@ If active gameplay stays below **10 FPS for more than one second**, the engine p
 
 Open **Preferences → Flagged Combinations** to inspect the components, detection time and measured FPS, or **Re-enable This Combination** to try it again. A blocked favorite remains editable; replace a component or re-enable it before playing. If saving fails, the combination stays disabled for the current session and the dialog offers a disk-save retry.
 
-Preferences include coherent/component shuffle, 5–30 second intervals, component locks, three difficulty levels, audio levels, aim assistance, reduced motion and fullscreen. Music and effects buttons adjust by **5 percentage points**. **Preferences → Display** selects windowed/fullscreen output and a saved rendering resolution, from 960 × 600 through 3840 × 2160. Automatic keeps a 1280 × 800 window or the desktop resolution in fullscreen. Scaling preserves the aspect ratio and field of view; it does not change the gamefield or simulation resolution. Progression is always endless; older finite-run settings are ignored. Gameplay changes apply to the next run; audio/display changes apply immediately. Preferences and best score save to `%LOCALAPPDATA%/SystemPanic/preferences.json` on Windows, or the platform's user data directory elsewhere.
+Preferences include 5–30 second shuffle intervals, component locks, three difficulty levels, audio levels, aim assistance, reduced motion and fullscreen. Music and effects buttons adjust by **5 percentage points**. **Preferences → Display** selects windowed/fullscreen output and a saved rendering resolution, from 960 × 600 through 3840 × 2160. Automatic keeps a 1280 × 800 window or the desktop resolution in fullscreen. Scaling preserves the aspect ratio and field of view; it does not change the gamefield or simulation resolution. Progression is always endless; older finite-run settings are ignored. Gameplay changes apply to the next run; audio/display changes apply immediately. Preferences and best score save to `%LOCALAPPDATA%/SystemPanic/preferences.json` on Windows, or the platform's user data directory elsewhere.
 
 ```sh
 python play.py --solo void_drifter --seed 24
@@ -145,6 +149,8 @@ python play.py --headless --demo --frames 480 --solo sky_forge --seed 24 --scree
 Start at [`AGENTS.md`](AGENTS.md). Linked wiki pages live beside the runtime, Paks, tests and asset tools. See [`docs/architecture.md`](docs/architecture.md) for engine architecture, [`docs/paks.md`](docs/paks.md) for the Pak format and callback interface, and [`docs/history.md`](docs/history.md) for the removed prototypes.
 
 ```sh
+python tools/test.py
+python tools/test.py --full --workers 4
 python -m unittest discover -s tests -v
 python tools/verify.py
 python tools/verify_combinations.py
@@ -155,7 +161,7 @@ python tools/verify_renewal.py
 python tools/verify_renewal_mixes.py
 ```
 
-`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` checks stable gameplay updates in every eligible pilot/enemy/weapon/obstacle mixture (**104,976** with the eighteen shipped Paks) and separately renders/streams all **324** background/music pairs using a fixed seed and relaxed difficulty. `--require-clear` optionally probes opening-level balance; some mixes are deliberately ineffective until a shuffle and need not clear. Automated gameplay checks complement human balance testing.
+`verify.py` samples each endless solo run through twelve cleared levels, verifies the one-enemy-per-level increase, and checks play continues on level thirteen. It writes screenshots plus a report; `--levels` changes this QA stopping point without changing the game. `compatibility.py` checks stable gameplay updates in every eligible pilot/enemy/weapon/obstacle mixture (**331,776** with the twenty-four shipped Paks) and separately renders/streams all **576** background/music pairs using a fixed seed and relaxed difficulty. `--require-clear` optionally probes opening-level balance; some mixes are deliberately ineffective until a shuffle and need not clear. Automated gameplay checks complement human balance testing.
 
 ## Original AI asset pipeline
 
@@ -180,11 +186,33 @@ Mastering trims/fades effects and normalizes/crossfades music into loops. Instal
 ## Build a Windows distribution
 
 ```sh
-python -m pip install ".[build]"
+python -m pip install -r requirements-ci.txt
 python tools/build.py
+python tools/package_release.py
+python tools/verify_distribution.py
+python tools/verify_gamepad.py --frozen
+python tools/verify_powerups.py --frozen
+python tools/verify_release.py
 ```
 
 The build packages only the active runtime, production assets and license. Historical prototypes, source WAVs, generation code, credentials and development environments are excluded. Assets resolve independently of the current working directory.
+
+The packager creates a versioned Windows ZIP, a Python wheel, `BUILDINFO.json` and `SHA256SUMS.txt` under `dist/`. The wheel is for Python users; Windows players should download the ZIP. `verify_release.py` checks the complete archive contents and hashes, launches every complete Pak from a fresh ZIP extraction, and installs the wheel into a separate environment with only the runtime dependency before launching its Paks.
+
+## GitHub release process
+
+Pull requests and branch pushes run ordinary regressions and bounded solo/UI verification on Windows and Linux. `python tools/test.py` excludes exactly the exhaustive gameplay matrix method; `--full` also runs those unchanged assertions through the parallel matrix runner. Weekly/manual extended validation and version-tag releases run the full matrix separately. Screenshots and reports are retained as Actions artifacts for seven days for CI/extended checks and fourteen days for releases.
+
+For a release, update `project.version` in `pyproject.toml`, commit the intended source, then push an annotated matching tag:
+
+```sh
+git tag -a v0.1.0 -m "System Panic v0.1.0"
+git push origin v0.1.0
+```
+
+The release workflow validates the tag, builds from its exact commit on Windows, checks regressions, the full gameplay matrix, frozen input/powerups/distribution, and the freshly extracted ZIP and isolated wheel. It creates a draft GitHub Release with player instructions, generated changes and the four distribution assets. Review the screenshots/reports, download and play the ZIP, then publish the draft. Enable release immutability in repository settings so the published tag and assets stay fixed. Later fixes use a new version and tag.
+
+Use the release workflow's manual tag input to retry an existing unpublished tag; published releases are never replaced. Ordinary release builds are unsigned. Certificate-backed Windows signing and native Linux/macOS packages require separate setup; current frozen distribution support is Windows x64. Physical controllers, speaker output and subjective balance still benefit from human playtesting.
 
 The input UI supports keyboard, mouse and SDL-mapped gamepads. Custom remapping and an online catalog remain outside this version's scope.
 
