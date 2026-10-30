@@ -84,9 +84,20 @@
     "Local extracted Remix builder and installed Rime",
     "Hosted Ubuntu library and Ferric gameplay (CI artifact SHA-256 verified)"
   ],
-  "remaining_setup": "Weekly scheduled validation requires these workflows on the default branch. master remains unchanged pending explicit approval.",
+  "remaining_setup": null,
   "limits": [
     "Windows x64 executable is unsigned.",
     "SDL virtual input/dummy rendering is not physical controller/speaker/display or human balance approval."
-  ]
+  ],
+  "default_branch_activation": {
+    "branch": "master",
+    "initial_fast_forward_commit": "7f4b023f38afa3b50e51cfc453a2e8eb3d723749",
+    "workflow_id": 401283035,
+    "workflow_state": "active",
+    "verified_date": "2026-10-29",
+    "schedule_utc": "23 8 * * 1",
+    "next_scheduled_utc": "2026-11-02T08:23:00Z",
+    "next_scheduled_los_angeles": "2026-11-02T00:23:00-08:00",
+    "scheduled_execution_claimed": false
+  }
 }
