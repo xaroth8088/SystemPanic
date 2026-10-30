@@ -99,5 +99,17 @@
     "next_scheduled_utc": "2026-11-02T08:23:00Z",
     "next_scheduled_los_angeles": "2026-11-02T00:23:00-08:00",
     "scheduled_execution_claimed": false
+  },
+  "current_default_branch": "main",
+  "default_branch_rename": {
+    "from": "master",
+    "to": "main",
+    "date": "2026-10-29",
+    "preserved_commit": "9713b5693d6f106f33df28e721fca3192bf9ebd5",
+    "github_default_verified": true,
+    "local_upstream": "origin/main",
+    "origin_head": "refs/remotes/origin/main",
+    "extended_validation_state": "active",
+    "published_release_unchanged": true
   }
 }
