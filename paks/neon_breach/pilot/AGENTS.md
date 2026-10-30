@@ -10,4 +10,8 @@ Facing refinement: the local pilot sheet is 4 columns × 4 animation poses, sele
 
 ## Arcade feedback (2026-10-26)
 
-The existing four-facing art is fitted to an 84x24 paddle, rotated vertically on side edges. Centers travel 12px from each edge so visible art and rectangular footprint sit flush on all four sides, including initial/level presentation. Paddle, a local Pilot subclass, overrides the neutral overlaps_circle query for its rectangle. Body radius remains the nominal terrain/query radius. The optional read-only PilotBase.draw hook owns alignment. Firing assistance retains the weapon's prior policy; there is no new explicit pilot aim restriction.
+The existing four-facing art is fitted to an 84x24 paddle, rotated toward its wall. Centers travel 12px from each edge so visible art and rectangular footprint sit flush on all four sides, including initial/level presentation. Paddle, a local Pilot subclass, overrides the neutral overlaps_circle query for its rectangle. Body radius remains the nominal terrain/query radius. The optional read-only PilotBase.draw hook owns alignment. Firing assistance retains the weapon's prior policy; there is no new explicit pilot aim restriction.
+
+## Wall-facing jets (2026-10-29)
+
+Every source column has downward jets despite the historical E/S/W/N labels. Keep edge-based column/animation selection, then rotate the fitted paddle by 180/90/0/-90 degrees for top/right/bottom/left in draw(). This supersedes the earlier no-rotation presentation claim: jets always point toward the attached wall, including while stationary. Movement, inward gameplay angle and collision footprint are unchanged. Fresh verification and inspected renders are recorded in [verification memory](../../../tests/AGENTS.md#neon-breach-wall-facing-jets-2026-10-29).

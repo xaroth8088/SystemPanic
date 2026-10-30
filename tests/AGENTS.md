@@ -1,5 +1,9 @@
 # Verification memory
 
+## Neon Breach wall-facing jets (2026-10-29)
+
+`.venv/Scripts/python.exe -m unittest discover -s tests -p test_arcade_feedback.py -v`: all 16 tests pass in 8.588s, including all-edge flush paddle bounds and outer-span ball returns. An additional SDL dummy render probe checks all 16 edge/animation combinations against wall-facing rotations, with unchanged RNG/player position during drawing. Inspected `output/neon-wall-jets/all-edges-all-poses.png` and `arena.png`: jets face the attached wall on top/right/bottom/left. Only the Pak-local drawing rotation changed; assets and gameplay are unchanged. This focused check does not establish a full-suite or physical-display playtest. The initial system Python invocation lacked Pygame; verification used the project's Python 3.12.1/Pygame 2.6.1 environment.
+
 ## v0.1.0 release automation (2026-10-29)
 
 After the user's branch-rename request, GitHub reports `default_branch: main`, Extended validation remains `active` with a `blob/main/` URL, and the local `main` branch tracks `origin/main` with `origin/HEAD` pointing there. The rename preserved commit `9713b56`; the historical activation under `master` remains recorded below. The v0.1.0 release still reports `draft: false` and `immutable: true`. No workflow branch-name edits were needed: CI accepts all branch names and scheduled validation follows the default branch.

@@ -51,7 +51,9 @@ class NeonBreachPilot(PilotBase):
         image=graphics.component_sprite(world,'pilot',p,44)
         bounds=image.get_bounding_rect(min_alpha=32)
         image=pygame.transform.scale(image.subsurface(bounds),(84,24))
-        if p.edge in (1,3):image=pygame.transform.rotate(image,90 if p.edge==3 else -90)
+        # Every source pose has downward jets; turn that side toward the wall.
+        angle=(180,90,0,-90)[p.edge]
+        if angle:image=pygame.transform.rotate(image,angle)
         surface.blit(image,image.get_rect(center=p.pos))
 
     def on_level_start(self, world):
